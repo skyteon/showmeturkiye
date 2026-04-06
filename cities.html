@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cities of Turkiye | Show Me Turkiye</title>
+<meta name="description" content="Explore the cities of Turkiye. Find travel guides, places to visit, food, and activities.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar"><a href="index.html" class="nav-logo"><div class="logo-placeholder">Show Me <span>Turkiye</span></div></a><div class="nav-links"><a href="index.html">Home</a><a href="explore.html">Explore Turkiye</a><a href="cities.html" class="active">Cities</a><a href="blog.html">Blog</a><a href="projects.html">Our Projects</a><a href="about.html">About Us</a><a href="contact.html">Contact</a><div class="nav-lang">EN / TR</div></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></nav>
+
+<div class="page-header">
+  <h1>Cities</h1>
+  <p>Discover the cities of Turkiye</p>
+</div>
+
+<section class="section section-cream">
+  <div class="cities-grid">
+    <a href="cities/trabzon.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-trabzon.jpg');"><div class="city-card-name">Trabzon</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">61</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">4,628 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~821K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/rize.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-rize.jpg');"><div class="city-card-name">Rize</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">53</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">3,920 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~345K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/kocaeli.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-kocaeli.jpg');"><div class="city-card-name">Kocaeli</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">41</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">3,632 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~2M118K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/antalya.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-antalya.jpg');"><div class="city-card-name">Antalya</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">229</div><div class="lbl">Blue Flag Beaches</div></div><div class="city-card-stat"><div class="val">20,177 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~2M700K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/mugla.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-mugla.jpg');"><div class="city-card-name">Mugla</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">105</div><div class="lbl">Blue Flag Beaches</div></div><div class="city-card-stat"><div class="val">1,661 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">1M65K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/erzurum.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-erzurum.jpg');"><div class="city-card-name">Erzurum</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">25</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">25,066 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~750K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/nevsehir-cappadocia.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-cappadocia.jpg');"><div class="city-card-name">Nevsehir Cappadocia</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">50</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">535 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">310K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/balikesir.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-balikesir.jpg');"><div class="city-card-name">Balikesir</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">31</div><div class="lbl">Blue Flag Beaches</div></div><div class="city-card-stat"><div class="val">1,454 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~1M260K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/sakarya.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-sakarya.jpg');"><div class="city-card-name">Sakarya</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">54</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">4,823 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~1M100K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/afyonkarahisar.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-afyon.jpg');"><div class="city-card-name">Afyonkarahisar</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">03</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">14,016 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~750K</div><div class="lbl">Population</div></div></div></a>
+    <a href="cities/canakkale.html" class="city-card"><div class="city-card-img" style="background-image:url('images/city-canakkale.jpg');"><div class="city-card-name">Canakkale</div></div><div class="city-card-stats"><div class="city-card-stat"><div class="val">17</div><div class="lbl">Location Code</div></div><div class="city-card-stat"><div class="val">1,016 km²</div><div class="lbl">Area</div></div><div class="city-card-stat"><div class="val">~563K</div><div class="lbl">Population</div></div></div></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid"><div class="footer-col"><div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div><p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p></div><div class="footer-col"><h4>Useful Links</h4><a href="index.html">Home</a><a href="explore.html">Explore Turkiye</a><a href="cities.html">Cities</a><a href="blog.html">Blog</a><a href="projects.html">Our Projects</a></div><div class="footer-col"><h4>Get in Touch</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="contact.html">Become a Partner</a></div><div class="footer-col"><h4>Follow Us</h4><div class="footer-social"><a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a><a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a></div></div></div>
+  <div class="footer-bottom"><span>&copy; 2026 Show Me Turkiye. All rights reserved.</span><span>Accessibility &amp; Privacy Policy | Cookies | Sitemap</span></div>
+</footer>
+<script>function toggleMenu(){document.querySelector('.nav-links').classList.toggle('nav-open');}</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Show Me Turkiye</title>
+<meta name="description" content="Get in touch with Show Me Turkiye. Tell us what you need.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar"><a href="index.html" class="nav-logo"><div class="logo-placeholder">Show Me <span>Turkiye</span></div></a><div class="nav-links"><a href="index.html">Home</a><a href="explore.html">Explore Turkiye</a><a href="cities.html">Cities</a><a href="blog.html">Blog</a><a href="projects.html">Our Projects</a><a href="about.html">About Us</a><a href="contact.html" class="active">Contact</a><div class="nav-lang">EN / TR</div></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div></nav>
+
+<div class="page-header">
+  <h1>Contact</h1>
+  <p>Tell us what you need</p>
+</div>
+
+<section class="section section-cream">
+  <div style="text-align:center;margin-bottom:32px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;">Get In Touch</h2>
+  </div>
+  <div class="contact-form">
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" placeholder="Your name">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="Your phone number">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="Your email address">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Your message"></textarea>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" id="privacy">
+      <label for="privacy">I understand that my data will be stored in accordance with the privacy policy</label>
+    </div>
+    <button class="btn-primary" style="width:100%;text-align:center;">Send</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid"><div class="footer-col"><div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div><p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p></div><div class="footer-col"><h4>Useful Links</h4><a href="index.html">Home</a><a href="explore.html">Explore Turkiye</a><a href="cities.html">Cities</a><a href="blog.html">Blog</a><a href="projects.html">Our Projects</a></div><div class="footer-col"><h4>Get in Touch</h4><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="contact.html">Become a Partner</a></div><div class="footer-col"><h4>Follow Us</h4><div class="footer-social"><a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a><a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a></div></div></div>
+  <div class="footer-bottom"><span>&copy; 2026 Show Me Turkiye. All rights reserved.</span><span>Accessibility &amp; Privacy Policy | Cookies | Sitemap</span></div>
+</footer>
+<script>function toggleMenu(){document.querySelector('.nav-links').classList.toggle('nav-open');}</script>
+</body>
+</html>
