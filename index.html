@@ -11,7 +11,170 @@
 <meta property="og:url" content="https://showmeturkiye.com/">
 <link rel="canonical" href="https://showmeturkiye.com/">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+/* ═══════════════════════════════════════
+   SHOW ME TURKIYE — Global Stylesheet
+   Colors: Turquoise / Black / Light Brown
+   ═══════════════════════════════════════ */
+
+:root{
+  --black:#0e1012;
+  --dark:#151719;
+  --dark2:#1c1f22;
+  --teal:#1a8a7d;
+  --teal-light:#23b5a4;
+  --teal-dim:rgba(26,138,125,0.12);
+  --brown:#c4a265;
+  --brown-light:#d4b87e;
+  --brown-dim:rgba(196,162,101,0.12);
+  --cream:#f5f0e6;
+  --cream2:#ebe4d6;
+  --white:#ffffff;
+  --red:#c0392b;
+  --text:#2c2a26;
+  --text-muted:#7a756c;
+  --text-inv:rgba(255,255,255,0.55);
+  --text-inv2:rgba(255,255,255,0.85);
+  --border:rgba(255,255,255,0.07);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--cream);}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img{max-width:100%;display:block;}
+
+/* ═══ NAVBAR ═══ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:70px;background:rgba(14,16,18,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.logo-placeholder{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#fff;}
+.logo-placeholder span{color:var(--teal-light);}
+.nav-links{display:flex;align-items:center;gap:26px;}
+.nav-links a{color:var(--text-inv);font-size:13.5px;font-weight:400;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-lang{color:var(--text-inv);font-size:12px;padding:5px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;}
+.nav-lang:hover{border-color:var(--teal);color:var(--teal-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:24px;height:2px;background:#fff;display:block;}
+
+/* ═══ SECTIONS ═══ */
+.section{padding:80px 40px;}
+.section-dark{background:var(--dark);color:#fff;}
+.section-teal{background:var(--teal);color:#fff;}
+.section-cream{background:var(--cream);}
+.section-cream2{background:var(--cream2);}
+.section-white{background:var(--white);}
+.section-header{text-align:center;margin-bottom:40px;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.section-header p{font-size:15px;color:var(--text-muted);margin-top:10px;max-width:600px;margin-left:auto;margin-right:auto;}
+.section-dark .section-header p{color:var(--text-inv);}
+.section-teal .section-header p{color:rgba(255,255,255,0.75);}
+.section-teal .section-header p a{color:#fff;font-weight:500;text-decoration:underline;}
+
+/* ═══ BUTTONS ═══ */
+.btn-primary{display:inline-block;margin-top:16px;padding:12px 30px;background:var(--teal);color:#fff;border-radius:30px;font-size:14px;font-weight:500;transition:all 0.3s;border:none;cursor:pointer;font-family:inherit;}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-2px);}
+.btn-outline{display:inline-block;padding:12px 30px;border:1.5px solid var(--teal);color:var(--teal);border-radius:30px;font-size:14px;font-weight:500;transition:all 0.3s;}
+.btn-outline:hover{background:var(--teal);color:#fff;}
+.link-accent{display:inline-block;margin-top:12px;color:var(--teal);font-size:14px;font-weight:500;}
+.link-accent:hover{color:var(--teal-light);}
+
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;background:var(--black);position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;}
+.hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center/cover;opacity:0.3;}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:2px;margin-bottom:36px;}
+.city-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.city-chip{background:rgba(26,138,125,0.15);border:1px solid rgba(26,138,125,0.3);color:#fff;padding:10px 22px;border-radius:30px;font-size:13px;transition:all 0.3s;cursor:pointer;}
+.city-chip:hover{background:var(--teal);border-color:var(--teal);}
+
+/* ═══ AI SECTION ═══ */
+.ai-section{position:relative;overflow:hidden;}
+.ai-badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px;}
+.ai-box{max-width:640px;margin:0 auto;background:var(--dark2);border-radius:16px;border:1px solid var(--border);overflow:hidden;}
+.ai-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);}
+.ai-dot{width:34px;height:34px;border-radius:8px;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;}
+.ai-label{font-size:13px;font-weight:500;color:var(--text-inv2);}
+.ai-label small{display:block;font-size:11px;font-weight:400;color:var(--text-inv);margin-top:1px;}
+.ai-status{margin-left:auto;font-size:10px;color:var(--teal-light);display:flex;align-items:center;gap:5px;}
+.ai-pulse{width:6px;height:6px;border-radius:50%;background:var(--teal-light);display:inline-block;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.ai-chat{padding:20px;display:flex;flex-direction:column;gap:12px;min-height:200px;}
+.msg{max-width:88%;padding:12px 16px;border-radius:12px;font-size:13.5px;line-height:1.6;color:var(--text-inv2);}
+.msg strong{color:#fff;}
+.msg-bot{background:var(--teal-dim);border:1px solid rgba(26,138,125,0.15);border-bottom-left-radius:3px;align-self:flex-start;}
+.msg-user{background:var(--brown-dim);border:1px solid rgba(196,162,101,0.15);border-bottom-right-radius:3px;align-self:flex-end;}
+.ai-foot{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--border);}
+.ai-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:#fff;font-size:13px;font-family:inherit;outline:none;}
+.ai-input:focus{border-color:var(--teal);}
+.ai-input::placeholder{color:rgba(255,255,255,0.2);}
+.ai-send{width:40px;height:40px;border-radius:8px;background:var(--teal);border:none;color:#fff;font-size:15px;cursor:pointer;flex-shrink:0;transition:background 0.2s;}
+.ai-send:hover{background:var(--teal-light);}
+
+/* ═══ SMT VIDEO ═══ */
+.smt-video{text-align:center;}
+.smt-video h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;text-transform:uppercase;margin-bottom:14px;}
+.smt-video p{font-size:15px;color:rgba(255,255,255,0.75);max-width:600px;margin:0 auto 28px;}
+.smt-video p a{color:#fff;font-weight:500;text-decoration:underline;}
+.video-embed{max-width:720px;margin:0 auto;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:#000;}
+.video-embed iframe{width:100%;height:100%;border:none;}
+
+/* ═══ BLOG GRID ═══ */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.blog-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:all 0.3s;display:block;}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.blog-card-img{height:180px;background-size:cover;background-position:center;background-color:var(--cream2);}
+.blog-card-body{padding:20px;}
+.blog-card-date{font-size:12px;color:var(--teal);font-weight:500;}
+.blog-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:600;line-height:1.4;margin-top:8px;color:var(--text);}
+
+/* ═══ TRIPSTER ═══ */
+.tripster{display:flex;align-items:center;gap:48px;max-width:900px;margin:0 auto;}
+.tripster-icon{flex-shrink:0;width:100px;height:100px;background:var(--teal-dim);border-radius:20px;display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:40px;}
+.tripster-icon svg{width:48px;height:48px;fill:var(--teal);}
+.tripster-content h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;text-transform:uppercase;margin-bottom:10px;}
+.tripster-content p{font-size:15px;color:var(--text-muted);line-height:1.7;margin-bottom:16px;}
+
+/* ═══ INSTAGRAM ═══ */
+.insta-section{text-align:center;}
+.insta-section h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:10px;}
+.insta-section p{font-size:15px;color:var(--text-inv);max-width:500px;margin:0 auto 24px;}
+.insta-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border:1.5px solid var(--teal-light);color:var(--teal-light);border-radius:30px;font-size:14px;font-weight:500;transition:all 0.3s;}
+.insta-btn:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+/* ═══ PROJECT CARDS ═══ */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+.project-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all 0.3s;cursor:pointer;}
+.project-card:hover{transform:translateY(-4px);border-color:var(--teal);}
+.project-card-img{height:180px;background-size:cover;background-position:center;position:relative;background-color:var(--dark);}
+.project-card-img::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;}
+.project-card-body{padding:18px;}
+.project-card-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;}
+.project-card-count{font-size:13px;color:var(--text-inv);margin-top:4px;}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--black);color:var(--text-inv);padding:60px 40px 24px;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;margin-bottom:40px;}
+.footer-col h4{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal-light);margin-bottom:14px;}
+.footer-col a{display:block;font-size:13px;padding:3px 0;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-col a:hover{color:#fff;}
+.footer-social{display:flex;gap:10px;margin-top:4px;}
+.footer-social a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:12px;color:rgba(255,255,255,0.6);transition:all 0.2s;}
+.footer-social a:hover{background:var(--teal);color:#fff;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px;color:rgba(255,255,255,0.25);}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:768px){
+  .navbar{padding:0 20px;}
+  .nav-links{display:none;}
+  .nav-links.nav-open{display:flex;flex-direction:column;position:absolute;top:70px;left:0;right:0;background:rgba(14,16,18,0.97);padding:20px;gap:14px;}
+  .hamburger{display:flex;}
+  .section{padding:60px 20px;}
+  .hero{padding:100px 20px 60px;}
+  .tripster{flex-direction:column;text-align:center;gap:20px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+</style>
 </head>
 <body>
 
@@ -38,24 +201,12 @@
   <div class="hero-bg"></div>
   <div class="hero-content">
     <h1>Choose Your Next Destination</h1>
-    <div class="city-chips">
-      <a href="cities/afyonkarahisar.html" class="city-chip">Afyonkarahisar</a>
-      <a href="cities/antalya.html" class="city-chip">Antalya</a>
-      <a href="cities/balikesir.html" class="city-chip">Balikesir</a>
-      <a href="cities/canakkale.html" class="city-chip">Canakkale</a>
-      <a href="cities/erzurum.html" class="city-chip">Erzurum</a>
-      <a href="cities/kocaeli.html" class="city-chip">Kocaeli</a>
-      <a href="cities/mugla.html" class="city-chip">Mugla</a>
-      <a href="cities/nevsehir-cappadocia.html" class="city-chip">Nevsehir Cappadocia</a>
-      <a href="cities/rize.html" class="city-chip">Rize</a>
-      <a href="cities/sakarya.html" class="city-chip">Sakarya</a>
-      <a href="cities/trabzon.html" class="city-chip">Trabzon</a>
-    </div>
+    <a href="#ai-section" class="btn-primary" style="margin-top: 30px;">Plan Your Trip</a>
   </div>
 </section>
 
 <!-- AI TRIP PLANNER -->
-<section class="section section-dark ai-section">
+<section class="section section-dark ai-section" id="ai-section">
   <div class="section-header">
     <div class="ai-badge">AI-Powered</div>
     <h2>Plan Your Trip</h2>
@@ -79,21 +230,46 @@
   </div>
 </section>
 
-<!-- SHOW ME TURKIYE VIDEO -->
+<!-- SHOW ME TURKIYE VIDEO GALLERY -->
 <section class="section section-teal smt-video">
   <h2>Show Me Turkiye</h2>
-  <p>Be sure to check out the cinematic videos of our "<a href="https://www.youtube.com/watch?v=GBil27OsaFc&list=PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_">Show Me Turkiye</a>" project, whose goal is to make Turkiye known to the world!</p>
+  <p>Be sure to check out the cinematic videos of our "<a href="https://www.youtube.com/playlist?list=PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_">Show Me Turkiye</a>" project, whose goal is to make Turkiye known to the world!</p>
   <div class="video-embed">
-    <iframe src="https://www.youtube.com/embed/GBil27OsaFc" title="Show Me Turkiye" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/IxfJr92fJdg" title="Show Me Turkiye - Rize" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
-<!-- EXPLORE TURKIYE -->
-<section class="section section-cream">
+<!-- EXPLORE OUR PROJECTS -->
+<section class="section section-dark">
   <div class="section-header">
-    <h2>Explore Turkiye</h2>
-    <p>Discover the beauties of Turkiye</p>
-    <a href="explore.html" class="btn-primary">Explore</a>
+    <h2>Explore Our Projects</h2>
+    <p>Check out our cinematic video projects</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:1200px;margin:0 auto;">
+    <a href="https://www.youtube.com/watch?v=GBil27OsaFc&list=PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_" target="_blank" style="height:400px;border-radius:16px;overflow:hidden;position:relative;background:url('images/project-smt.jpg') center/cover;display:block;transition:transform 0.3s;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:8px;">Show Me Turkiye</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.7);">5 videos</div>
+      </div>
+    </a>
+    <a href="#" style="height:400px;border-radius:16px;overflow:hidden;position:relative;background:url('images/project-skies.jpg') center/cover;display:block;transition:transform 0.3s;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:8px;">Skies of Turkiye</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.7);">2 videos</div>
+      </div>
+    </a>
+    <a href="#" style="height:400px;border-radius:16px;overflow:hidden;position:relative;background:url('images/project-lmsyt.jpg') center/cover;display:block;transition:transform 0.3s;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:8px;">Let Me Show You Turkiye</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.7);">8 videos</div>
+      </div>
+    </a>
+    <a href="#" style="height:400px;border-radius:16px;overflow:hidden;position:relative;background:url('images/project-parks.jpg') center/cover;display:block;transition:transform 0.3s;">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:40px;">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:8px;">National Parks</div>
+        <div style="font-size:16px;color:rgba(255,255,255,0.7);">3 videos</div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -136,7 +312,7 @@
   </div>
 </section>
 
-<!-- PLAN YOUR TRIP -->
+<!-- THE WAY LOCALS KNOW IT -->
 <section class="section section-cream">
   <div class="tripster">
     <div class="tripster-icon">
@@ -144,8 +320,8 @@
     </div>
     <div class="tripster-content">
       <h3>The Way Locals Know It</h3>
-      <p>HeyTripster will get you excited about visiting new cities. Our intelligent recommendation algorithm will match your preferences to locally designed full-day, digitally curated trip plans!</p>
-      <a href="plan-your-trip.html" class="btn-primary">Start Planning</a>
+      <p>Our intelligent recommendation algorithm will match your preferences to locally designed full-day, digitally curated trip plans!</p>
+      <a href="#ai-section" class="btn-primary">Start Planning</a>
     </div>
   </div>
 </section>
@@ -154,6 +330,14 @@
 <section class="section section-dark insta-section">
   <h3>Follow Us On Instagram</h3>
   <p>If you want to be updated about travel guide in Turkiye, you should follow our social media account!</p>
+  <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px;max-width:1100px;margin:40px auto;">
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+    <div style="aspect-ratio:1;background:linear-gradient(135deg,rgba(26,138,125,0.1),rgba(196,162,101,0.1));border-radius:12px;border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);"></div>
+  </div>
   <a href="https://www.instagram.com/showmeturkiye/" class="insta-btn" target="_blank" rel="noopener">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     @showmeturkiye
