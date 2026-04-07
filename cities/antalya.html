@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antalya | Show Me Turkiye</title>
+<meta name="description" content="Discover Antalya - Turkey's Mediterranean pearl. Explore ancient ruins, turquoise beaches, and vibrant culture.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+:root {
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --cream: #f5f0e6;
+  --brown: #c4a265;
+  --text-dark: #2c2a26;
+  --text-muted: #7a756c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(14, 16, 18, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.logo-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.logo-placeholder span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.3s;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--teal);
+}
+
+.nav-lang {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 16, 18, 0.98);
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+/* HERO SECTION */
+.city-hero {
+  margin-top: 70px;
+  height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.city-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 86px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.city-hero p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* CONTENT SECTIONS */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 40px 0 24px;
+  letter-spacing: 0.5px;
+}
+
+.text-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.text-content strong {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* MAP & PLACES */
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  margin-bottom: 50px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.place-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.place-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.place-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.place-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* RESTAURANT CARDS */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.restaurant-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.restaurant-header {
+  margin-bottom: 12px;
+}
+
+.restaurant-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+
+.restaurant-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.restaurant-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.restaurant-specialty {
+  font-size: 14px;
+  color: var(--teal);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* VIDEO CAROUSEL */
+.video-section {
+  background: var(--black);
+  padding: 80px 0;
+}
+
+.video-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.video-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px 40px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) rgba(255,255,255,0.1);
+}
+
+.video-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.video-carousel::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.video-carousel::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 4px;
+}
+
+.video-card {
+  min-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 30px 20px 20px;
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.video-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(26, 138, 125, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.video-card:hover .play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(35, 181, 164, 1);
+}
+
+.play-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  margin-left: 4px;
+}
+
+/* VIDEO MODAL */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16/9;
+}
+
+.video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--teal);
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  color: #fff;
+  padding: 60px 40px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .video-card {
+    min-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-placeholder">Show Me <span>Turkiye</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../explore.html" class="active">Explore Turkiye</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../projects.html">Our Projects</a>
+    <a href="../about.html">About Us</a>
+    <a href="../contact.html">Contact</a>
+    <div class="nav-lang">EN / TR</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="city-hero">
+  <div>
+    <h1>Antalya</h1>
+    <p>Overview</p>
+  </div>
+</section>
+
+<!-- PLACES TO VISIT -->
+<section class="content-section">
+  <h2 class="section-title">Places to Visit in Antalya</h2>
+  
+  <div id="map"></div>
+  
+  <div class="places-grid">
+    <div class="place-card" onclick="focusMarker(0)">
+      <div class="place-marker">A</div>
+      <h3 class="place-title">Düden Waterfall</h3>
+      <p class="place-description">There are 2 Düden Waterfalls in Antalya because the river goes from the ground and underground. The two rivers converge and disappear into Bıyıklı Sinkhole. The water flows underground for 14 kilometers, emerges from Varsak depression, then comes to surface at Düdenbaşı after two kilometers. The waterfall sits in a small natural park with a cave behind it. You can see it from the seaside by boat or from the cliff observation deck. Beautiful to visit at night with the lights.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(1)">
+      <div class="place-marker">B</div>
+      <h3 class="place-title">Perge Ancient City</h3>
+      <p class="place-description">Perge Ancient City is a very wealthy place in terms of history. There is a theatre, Roman stadium, Roman baths, and long columned streets with Hellenistic touches in the city, which have been preserved until today. It is thought that the acropolis in the city was founded during the Bronze Age. The Archaeological Site of Perge was added to the UNESCO World Heritage Tentative List in 2009.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(2)">
+      <div class="place-marker">C</div>
+      <h3 class="place-title">Sandland</h3>
+      <p class="place-description">Sandland is the most enjoyable open-air museum to visit in Antalya. A tourist destination featuring sand sculptures of world-famous works and mythological creatures. The magnificent works created by professional sand sculpture artists from many countries, using 10,000 tons of river sand in an area of 7,000 square meters, can be visited every day. The museum closes at 11pm. Best to visit at night for better atmosphere with night lights.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(3)">
+      <div class="place-marker">D</div>
+      <h3 class="place-title">Karain Cave</h3>
+      <p class="place-description">Karain Cave is one of the largest natural caves in Turkey. The most beautiful examples of Paleolithic artifacts are the Karain Cave finds. Here, cultural layers belonging to all phases of the Paleolithic Age were unearthed in the filling material, which is approximately 10.5 meters thick.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(4)">
+      <div class="place-marker">E</div>
+      <h3 class="place-title">Damlatış Cave</h3>
+      <p class="place-description">Damlatış Cave was named because of the water drops that continue to drip from the stalactites. In addition to its fascinating beauty, the cave is also famous for its air which is good for asthma patients. Some patients sit in the cave for a certain period under the control of a doctor and apply for a 21-day treatment course. Also, Damlatış Cave is Turkey's first cave opened to tourism.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(5)">
+      <div class="place-marker">F</div>
+      <h3 class="place-title">St. Nicholas Church</h3>
+      <p class="place-description">Santa Claus Church. It is the church in Demre, built to commemorate the death of St. Nicholas, believed to be Santa Claus. It is believed that Santa Claus lay here for a while after his death, and then his bones were taken to Bari by Italian sailors.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(6)">
+      <div class="place-marker">G</div>
+      <h3 class="place-title">Lycia Way</h3>
+      <p class="place-description">The Lycia Way is a walking route created by marking and mapping some of the paths on the Teke peninsula, which were called Lycia in history, starting from Fethiye and extending to Antalya. A long-distance trail in part of the ancient Lycian coast. The marked walking route is 540 km, taking an average of 29 days of walking. The route mainly consists of Roman roads, ancient trails, and mule tracks, often rocky and stony. Between the coast and mountains, the route often has steep elevations.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(7)">
+      <div class="place-marker">H</div>
+      <h3 class="place-title">Kurşunlu Waterfall Nature Park</h3>
+      <p class="place-description">Kurşunlu Waterfall Nature Park is like part of heaven with its wonderful view. The main waterfall is descended from a height of 18 meters. Seven ponds formed with smaller waterfalls formed the Kurşunlu Waterfall Nature Park. Small lakes have a depth of about 6 meters. Entry fee needed.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(8)">
+      <div class="place-marker">I</div>
+      <h3 class="place-title">Patara Ancient City</h3>
+      <p class="place-description">Patara was an ancient and flourishing maritime and commercial city, the capital of Lycia. Patara is a unique place, not only with its history but with its beach and dunes. The Ministry of Culture and Tourism chose Patara Ancient City as the theme of 2020. Patara Beach is the second-longest beach in Turkey at 12km. With its beautiful white sand and dunes in the middle of the beach, it's spectacular. You can also ride a horse for approximately 2.5 hours. Take pictures like you're in the desert!</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(9)">
+      <div class="place-marker">J</div>
+      <h3 class="place-title">Sapadere Canyon</h3>
+      <p class="place-description">Sapadere Canyon is 360 meters long. The canyon was formed hundreds of years by the shaping of the rocks by water, wind, and ground movements. There are natural pools and two ponds next to the walking track and recreation facility. The water temperature will be between 0 degrees and 12 degrees in summer. Don't forget your swimsuit! Entry fee needed.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(10)">
+      <div class="place-marker">K</div>
+      <h3 class="place-title">Kaputaş Beach</h3>
+      <p class="place-description">Kaputaş, one of Antalya's most popular beaches with a blue flag, is the closest sandy beach to Kaş, one of the favorite holiday destinations of local and foreign tourists during summer vacation. The crowded beach is reached by descending 187 steps from the highway. Access to the beach is free, but there is a fee to rent sunbeds and umbrellas. The sea is deep blue, slightly wavy, and deepens immediately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VISIT ANTALYA -->
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Why Visit Antalya?</h2>
+    <p class="text-content">Antalya wraps Roman history, mountain peaks, and the Mediterranean into one coastal stretch. You can walk through 2,000-year-old gates in the old quarter, then dive into water so clear it looks filtered. The food here spans fresh seafood pulled straight from the harbor to mountain village cooking brought down from the Taurus peaks. Beaches stay warm enough for swimming well into November, and the old town still feels like a neighborhood instead of a museum.</p>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="content-section">
+  <h2 class="section-title">Food & Cuisine</h2>
+  
+  <h3 class="section-subtitle">Taratorlu Piyaz (Haricot Bean Salad with Tarator)</h3>
+  <p class="text-content">One of the rich tastes of the Mediterranean Region, Piyaz with tarator is the most famous dish of Antalya. In addition to the beans and onions in the classic piyaz, you should try the tarator pide, where boiled eggs and tahini add color and flavor.</p>
+  
+  <h3 class="section-subtitle">Kabak Dessert (Pumpkin with Syrup and Walnuts)</h3>
+  <p class="text-content">Pumpkin dessert is Antalya's famous dessert, adding flavor to its taste with tahini.</p>
+  
+  <h3 class="section-subtitle" style="margin-top: 50px;">Top Restaurants in Antalya</h3>
+  <p class="text-content" style="margin-bottom: 30px; font-style: italic; color: var(--text-muted);">Based on Google reviews - 4.5+ stars with 200+ reviews</p>
+  
+  <div class="restaurant-grid">
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">7 Mehmet</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (4,500+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Traditional Turkish restaurant in the heart of Kaleiçi old town. Family-run establishment known for authentic Antalya cuisine and warm hospitality.</p>
+      <div class="restaurant-specialty">Specialty: Taratorlu Piyaz, Grilled Meats, Meze Platters</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Seraser Fine Dining Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (850+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Upscale dining in a beautifully restored Ottoman mansion. Creative Mediterranean cuisine with modern presentation in an elegant setting.</p>
+      <div class="restaurant-specialty">Specialty: Turkish-Mediterranean Fusion, Tasting Menus</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Vanilla Lounge</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.5 (3,200+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Rooftop restaurant with stunning panoramic views of Kaleiçi and the Mediterranean. International and Turkish cuisine in a romantic atmosphere.</p>
+      <div class="restaurant-specialty">Specialty: Seafood, Steaks, Sunset Dining</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Parlak Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (2,100+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Harbor-side seafood restaurant with fresh daily catches. Known for traditional fish preparation and mezze selection. Great views of the marina.</p>
+      <div class="restaurant-specialty">Specialty: Fresh Fish, Octopus, Mediterranean Meze</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Gizli Bahçe (Secret Garden)</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.8 (1,400+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Hidden gem in Kaleiçi's narrow streets. Garden restaurant serving authentic Turkish home cooking in a peaceful, intimate setting.</p>
+      <div class="restaurant-specialty">Specialty: Ottoman Cuisine, Stuffed Vegetables, Slow-cooked Stews</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Köfteci Ramiz</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.5 (3,800+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Local favorite for authentic köfte (Turkish meatballs). Simple, honest cooking with generous portions. Always packed with locals.</p>
+      <div class="restaurant-specialty">Specialty: Köfte, Lahmacun, Traditional Sides</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Castle Cafe & Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-text">4.5 (2,900+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Located near Kaleiçi harbor with beautiful sea views. Turkish and international menu with emphasis on fresh ingredients and presentation.</p>
+      <div class="restaurant-specialty">Specialty: Grilled Fish, Pasta, Turkish Breakfast</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Lara Balık Evi</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (1,800+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Seafood restaurant in Lara district. Known for extremely fresh fish and traditional Mediterranean preparation. Family atmosphere.</p>
+      <div class="restaurant-specialty">Specialty: Grilled Sea Bass, Calamari, Fish Soup</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Hasanağa Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (2,500+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Traditional Turkish restaurant near Hadrian's Gate. Excellent meze selection and grilled meats. Beautiful courtyard seating.</p>
+      <div class="restaurant-specialty">Specialty: Mixed Grill, Meze Variety, Kabak Dessert</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Sim Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (1,600+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Modern Turkish cuisine with creative twists on traditional recipes. Stylish interior and attentive service. Great wine selection.</p>
+      <div class="restaurant-specialty">Specialty: Contemporary Turkish, Tasting Plates, Local Wines</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Activities & Experiences</h2>
+    
+    <h3 class="section-subtitle">Rafting</h3>
+    <p class="text-content">Köprülü Canyon Nature Park is the place for rafting in Antalya. The canyon is a valley suitable for rafting starting in Isparta and pouring into the sea in Antalya. There are two historical bridges at the beginning of the rafting area. The small bridge was built by the master, the great bridge was made by the master's journeyman.</p>
+    
+    <h3 class="section-subtitle">Beach Horse Riding</h3>
+    <p class="text-content">Don't miss the chance of 2 hours of horseback riding pleasure in the woods, countryside, or on the beach in Side when you come to Antalya. Experience riding along the Mediterranean coastline with professional guides.</p>
+    
+    <h3 class="section-subtitle" style="margin-top: 50px;">Near Places to Visit</h3>
+    <p class="text-content"><strong>Isparta:</strong> The distance between Antalya and Isparta is 131 kilometers. It takes 1 hour 45 minutes by car. Known for its lavender fields and rose gardens.</p>
+  </div>
+</section>
+
+<!-- VIDEO CAROUSEL -->
+<section class="video-section">
+  <h2>Watch Antalya</h2>
+  <div class="video-carousel">
+    <div class="video-card" onclick="openVideo('XC1klonfzNU')">
+      <img src="https://img.youtube.com/vi/XC1klonfzNU/maxresdefault.jpg" alt="Antalya Video" class="video-thumbnail">
+      <div class="video-overlay">
+        <div class="video-title">Show Me Turkiye - Antalya</div>
+        <div class="video-desc">Discover the turquoise coast and ancient wonders</div>
+      </div>
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div>
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Useful Links</h4>
+      <a href="../index.html">Home</a>
+      <a href="../explore.html">Explore Turkiye</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Our Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../contact.html">Become a Partner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Accessibility & Privacy Policy | Cookies | Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('nav-open');
+}
+
+// Initialize map centered on Antalya
+const map = L.map('map').setView([36.8969, 30.7133], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Places data with real coordinates
+const places = [
+  { name: 'Düden Waterfall', coords: [36.9297, 30.7956], marker: 'A' },
+  { name: 'Perge Ancient City', coords: [36.9603, 30.8528], marker: 'B' },
+  { name: 'Sandland', coords: [36.8485, 30.7056], marker: 'C' },
+  { name: 'Karain Cave', coords: [36.8656, 30.5478], marker: 'D' },
+  { name: 'Damlatış Cave', coords: [36.5434, 31.9954], marker: 'E' },
+  { name: 'St. Nicholas Church', coords: [36.2444, 29.9856], marker: 'F' },
+  { name: 'Lycia Way (Start)', coords: [36.7000, 30.3000], marker: 'G' },
+  { name: 'Kurşunlu Waterfall', coords: [36.9592, 30.8183], marker: 'H' },
+  { name: 'Patara Ancient City', coords: [36.2667, 29.3167], marker: 'I' },
+  { name: 'Sapadere Canyon', coords: [36.5589, 31.7328], marker: 'J' },
+  { name: 'Kaputaş Beach', coords: [36.2400, 29.6089], marker: 'K' }
+];
+
+// Create markers
+const markers = [];
+places.forEach((place, index) => {
+  const customIcon = L.divIcon({
+    html: `<div style="background: #1a8a7d; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${place.marker}</div>`,
+    className: '',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  
+  const marker = L.marker(place.coords, { icon: customIcon })
+    .addTo(map)
+    .bindPopup(`<strong>${place.name}</strong>`);
+  
+  markers.push(marker);
+});
+
+// Focus on marker when card clicked
+function focusMarker(index) {
+  map.setView(places[index].coords, 13);
+  markers[index].openPopup();
+}
+
+// Video modal functions
+function openVideo(videoId) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal on background click
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideo();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideo();
+  }
+});
+</script>
+</body>
+</html>
