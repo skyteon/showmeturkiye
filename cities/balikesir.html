@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balikesir | Show Me Turkiye</title>
+<meta name="description" content="Discover Balikesir - Turkey's Aegean paradise. Explore Ayvalik, Cunda Island, and Kaz Mountains.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+:root {
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --cream: #f5f0e6;
+  --brown: #c4a265;
+  --text-dark: #2c2a26;
+  --text-muted: #7a756c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(14, 16, 18, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.logo-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.logo-placeholder span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.3s;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--teal);
+}
+
+.nav-lang {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 16, 18, 0.98);
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.city-hero {
+  margin-top: 70px;
+  height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.city-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 86px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.city-hero p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 40px 0 24px;
+  letter-spacing: 0.5px;
+}
+
+.text-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.text-content strong {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  margin-bottom: 50px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.place-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.place-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.place-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.place-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.restaurant-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.restaurant-header {
+  margin-bottom: 12px;
+}
+
+.restaurant-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+
+.restaurant-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.restaurant-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.restaurant-specialty {
+  font-size: 14px;
+  color: var(--teal);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.video-section {
+  background: var(--black);
+  padding: 80px 0;
+}
+
+.video-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.video-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px 40px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) rgba(255,255,255,0.1);
+}
+
+.video-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.video-carousel::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.video-carousel::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 4px;
+}
+
+.video-card {
+  min-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 30px 20px 20px;
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.video-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(26, 138, 125, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.video-card:hover .play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(35, 181, 164, 1);
+}
+
+.play-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  margin-left: 4px;
+}
+
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16/9;
+}
+
+.video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--teal);
+}
+
+footer {
+  background: var(--black);
+  color: #fff;
+  padding: 60px 40px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .video-card {
+    min-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-placeholder">Show Me <span>Turkiye</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../explore.html" class="active">Explore Turkiye</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../projects.html">Our Projects</a>
+    <a href="../about.html">About Us</a>
+    <a href="../contact.html">Contact</a>
+    <div class="nav-lang">EN / TR</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<section class="city-hero">
+  <div>
+    <h1>Balikesir</h1>
+    <p>Overview</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <h2 class="section-title">Places to Visit in Balikesir</h2>
+  
+  <div id="map"></div>
+  
+  <div class="places-grid">
+    <div class="place-card" onclick="focusMarker(0)">
+      <div class="place-marker">A</div>
+      <h3 class="place-title">Ayvalık</h3>
+      <p class="place-description">This charming town is located on the Aegean coast and is known for its beautiful beaches, historic architecture, and delicious seafood.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(1)">
+      <div class="place-marker">B</div>
+      <h3 class="place-title">Cunda Island</h3>
+      <p class="place-description">Cunda Island, also known as Alibey Island, is a small island in the Aegean Sea off the coast of Turkey. It has rich history with evidence of human settlement dating back to ancient times. Once an important center for olive oil production and trade, the island's old stone houses and narrow streets reflect traditional architecture. Today it's a popular tourist destination known for scenic beauty, crystal-clear waters, and charming villages. Visitors enjoy swimming, sunbathing, water sports, and exploring historic sites. The island is famous for local cuisine featuring fresh seafood and traditional dishes made with olive oil.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(2)">
+      <div class="place-marker">C</div>
+      <h3 class="place-title">Taksiyarhis Church</h3>
+      <p class="place-description">Historic Greek Orthodox church in Ayvalık built in the 19th century during Ottoman era, named after patron saint of sailors, Saint Nicholas. Known for impressive architecture combining Byzantine and Ottoman styles with intricate stone carvings, large dome, and interior frescoes depicting Bible scenes. After the 1923 population exchange, it was used as a mosque before being abandoned. Restored in the 1990s and converted into a cultural center hosting exhibitions and concerts.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(3)">
+      <div class="place-marker">D</div>
+      <h3 class="place-title">Sarımsaklı Beach</h3>
+      <p class="place-description">Popular tourist destination in Ayvalık known for crystal-clear waters, fine white sand, and stunning scenery. Beach stretches over 7 kilometers surrounded by pine forests and olive groves. Shallow calm water ideal for swimming, snorkeling, and windsurfing. Facilities include sun loungers, umbrellas, and beach cafes. Popular with families offering water slides and playgrounds.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(4)">
+      <div class="place-marker">E</div>
+      <h3 class="place-title">Badavut Beach</h3>
+      <p class="place-description">Beautiful secluded beach on Aegean coast near Ayvalık known for pristine natural beauty, clear waters, and peaceful atmosphere. Surrounded by pine forests and olive groves with long stretch of white sand. Less developed giving it more secluded and tranquil feel. Located about 10 kilometers from Ayvalık.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(5)">
+      <div class="place-marker">F</div>
+      <h3 class="place-title">Şeytan Sofrası</h3>
+      <p class="place-description">Rock formation on mountain top in Kaz Mountains National Park, about 40km south of city center. Legend says the devil used to sit and dine on this rock formation. Popular spot for hiking, camping, and enjoying stunning views of surrounding mountains and forests. Hike takes 1-2 hours and is moderately difficult.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(6)">
+      <div class="place-marker">G</div>
+      <h3 class="place-title">Kaz Mountains National Park</h3>
+      <p class="place-description">Must-visit destination for nature lovers. Home to diverse range of flora and fauna including oak and chestnut trees, bears, and wolves.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(7)">
+      <div class="place-marker">H</div>
+      <h3 class="place-title">Kyzikos Ancient City</h3>
+      <p class="place-description">Ancient city in southeastern Marmara Sea, once prosperous and important commerce center. Explore ruins including impressive city walls, Acropolis with Temple of Hadrian, theater and agora, Roman Bridge, and Archaeological Museum featuring artifacts from the ancient city.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(8)">
+      <div class="place-marker">I</div>
+      <h3 class="place-title">Hasanboguldu Canyon</h3>
+      <p class="place-description">Canyon located in Kaz Mountains, popular spot for hiking and camping. Home to beautiful waterfalls and stunning views.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(9)">
+      <div class="place-marker">J</div>
+      <h3 class="place-title">Kapıdağ Peninsula</h3>
+      <p class="place-description">Beautiful rugged peninsula in southern Balıkesir, popular for adventure, hiking, and natural beauty. Rich history with sites including ancient city of Dascylium and Ayvalık Islands.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(10)">
+      <div class="place-marker">K</div>
+      <h3 class="place-title">Edremit Gulf</h3>
+      <p class="place-description">Beautiful stretch of coastline in western Balıkesir. Popular destination for swimming, sunbathing, and water sports.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Why Visit Balikesir?</h2>
+    <p class="text-content">Balıkesir connects the Aegean Sea to the Sea of Marmara, packing beaches, thermal springs, and mountain villages into one province. Ayvalık and Cunda Island give you Greek architecture and seafood restaurants where octopus hangs drying in the sun. Head inland and you hit Kaz Mountains, where locals swear the air itself tastes different. The region moves slow enough to actually relax but stays interesting enough to keep exploring, and you can swim in water that shifts between emerald and sapphire depending on the depth.</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <h2 class="section-title">Food & Cuisine</h2>
+  
+  <h3 class="section-subtitle">Keskek</h3>
+  <p class="text-content">Traditional dish made from wheat and meat (usually lamb or beef) cooked in large pot for hours until it becomes porridge-like consistency. Usually served with melted butter and chili flakes.</p>
+  
+  <h3 class="section-subtitle">İncir Uyutması</h3>
+  <p class="text-content">Dessert made from dried figs soaked in water then mixed with ground walnuts and sugar. The mixture is baked in the oven and served with cream.</p>
+  
+  <h3 class="section-subtitle">Kaz Helv ası</h3>
+  <p class="text-content">Dessert made from the breast of a goose, sugar, and flour. The breast is cooked until tender, then mixed with sugar and flour and cooked again until it becomes a sweet and sticky dessert.</p>
+  
+  <h3 class="section-subtitle" style="margin-top: 50px;">Top Restaurants in Balikesir</h3>
+  <p class="text-content" style="margin-bottom: 30px; font-style: italic; color: var(--text-muted);">Based on Google reviews - 4.5+ stars with 200+ reviews</p>
+  
+  <div class="restaurant-grid">
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Cunda Balık Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (2,400+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Waterfront seafood restaurant on Cunda Island. Famous for fresh catch and traditional Aegean meze. Beautiful sunset views.</p>
+      <div class="restaurant-specialty">Specialty: Fresh Fish, Octopus, Meze Selection</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Ayvalık Toast</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (1,900+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Local institution famous for Ayvalık toast. Casual atmosphere with generous portions and affordable prices.</p>
+      <div class="restaurant-specialty">Specialty: Ayvalık Toast, Turkish Breakfast</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Zeytinli Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.5 (1,200+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Traditional Turkish restaurant in Ayvalık with olive grove setting. Known for local olive oil dishes and fresh ingredients.</p>
+      <div class="restaurant-specialty">Specialty: Olive Oil Dishes, Grilled Fish, Meze</div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Activities & Experiences</h2>
+    
+    <h3 class="section-subtitle">Paragliding</h3>
+    <p class="text-content">Kaz Mountains provide perfect setting for paragliding. Soar above the mountain range and enjoy breathtaking views of surrounding landscape.</p>
+    
+    <h3 class="section-subtitle">Rock Climbing</h3>
+    <p class="text-content">Kaz Mountains and Kapıdağ Peninsula offer great opportunities for rock climbing. Several climbing routes available for beginners and experienced climbers.</p>
+    
+    <h3 class="section-subtitle">Rafting</h3>
+    <p class="text-content">Balıkesir has several rivers offering great rafting opportunities. Kocaçay River is particularly popular for rafting enthusiasts.</p>
+    
+    <h3 class="section-subtitle">Trekking and Hiking</h3>
+    <p class="text-content">Several hiking trails wind through Kaz Mountains and Kapıdağ Peninsula offering stunning views and great way to explore natural beauty.</p>
+    
+    <h3 class="section-subtitle">Mountain Biking</h3>
+    <p class="text-content">Kapıdağ Peninsula particularly popular among mountain bikers with rugged terrain and stunning coastal views.</p>
+    
+    <h3 class="section-subtitle" style="margin-top: 50px;">Near Places to Visit</h3>
+    <p class="text-content"><strong>Bursa:</strong> Larger bustling city about 180 kilometers away known for historical landmarks, rich cultural heritage, and modern industries. Top attractions include Green Mosque, Bursa Castle, Grand Mosque, and Bursa City Museum. Famous for traditional Turkish baths, thermal springs, and Iskender kebab.</p>
+  </div>
+</section>
+
+<section class="video-section">
+  <h2>Watch Balikesir</h2>
+  <div class="video-carousel">
+    <div class="video-card" onclick="openVideo('VIDEO_ID')">
+      <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="Balikesir Video" class="video-thumbnail">
+      <div class="video-overlay">
+        <div class="video-title">Show Me Turkiye - Balikesir</div>
+        <div class="video-desc">Discover Aegean beauty and mountain paradise</div>
+      </div>
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div>
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Useful Links</h4>
+      <a href="../index.html">Home</a>
+      <a href="../explore.html">Explore Turkiye</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Our Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../contact.html">Become a Partner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Accessibility & Privacy Policy | Cookies | Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('nav-open');
+}
+
+const map = L.map('map').setView([39.6484, 27.8826], 9);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+const places = [
+  { name: 'Ayvalık', coords: [39.3189, 26.6939], marker: 'A' },
+  { name: 'Cunda Island', coords: [39.3667, 26.6833], marker: 'B' },
+  { name: 'Taksiyarhis Church', coords: [39.3189, 26.6939], marker: 'C' },
+  { name: 'Sarımsaklı Beach', coords: [39.3089, 26.6756], marker: 'D' },
+  { name: 'Badavut Beach', coords: [39.3256, 26.7056], marker: 'E' },
+  { name: 'Şeytan Sofrası', coords: [39.3422, 26.7089], marker: 'F' },
+  { name: 'Kaz Mountains', coords: [39.6500, 26.9000], marker: 'G' },
+  { name: 'Kyzikos', coords: [40.3833, 27.9000], marker: 'H' },
+  { name: 'Hasanboguldu Canyon', coords: [39.7000, 26.9500], marker: 'I' },
+  { name: 'Kapıdağ Peninsula', coords: [40.4000, 27.9000], marker: 'J' },
+  { name: 'Edremit Gulf', coords: [39.5833, 27.0000], marker: 'K' }
+];
+
+const markers = [];
+places.forEach((place, index) => {
+  const customIcon = L.divIcon({
+    html: `<div style="background: #1a8a7d; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${place.marker}</div>`,
+    className: '',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  
+  const marker = L.marker(place.coords, { icon: customIcon })
+    .addTo(map)
+    .bindPopup(`<strong>${place.name}</strong>`);
+  
+  markers.push(marker);
+});
+
+function focusMarker(index) {
+  map.setView(places[index].coords, 12);
+  markers[index].openPopup();
+}
+
+function openVideo(videoId) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideo();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideo();
+  }
+});
+</script>
+</body>
+</html>

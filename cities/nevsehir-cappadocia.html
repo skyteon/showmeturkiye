@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cappadocia | Show Me Turkiye</title>
+<meta name="description" content="Discover Cappadocia - Turkey's fairy chimney wonderland. Explore underground cities, hot air balloons, and ancient cave dwellings.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+:root {
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --cream: #f5f0e6;
+  --brown: #c4a265;
+  --text-dark: #2c2a26;
+  --text-muted: #7a756c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(14, 16, 18, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.logo-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.logo-placeholder span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.3s;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--teal);
+}
+
+.nav-lang {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 16, 18, 0.98);
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+/* HERO SECTION */
+.city-hero {
+  margin-top: 70px;
+  height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.city-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 86px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.city-hero p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* CONTENT SECTIONS */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 40px 0 24px;
+  letter-spacing: 0.5px;
+}
+
+.text-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.text-content strong {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+/* MAP & PLACES */
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  margin-bottom: 50px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.place-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.place-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.place-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.place-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* RESTAURANT CARDS */
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.restaurant-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.restaurant-header {
+  margin-bottom: 12px;
+}
+
+.restaurant-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+
+.restaurant-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.restaurant-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.restaurant-specialty {
+  font-size: 14px;
+  color: var(--teal);
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* VIDEO CAROUSEL */
+.video-section {
+  background: var(--black);
+  padding: 80px 0;
+}
+
+.video-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.video-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px 40px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) rgba(255,255,255,0.1);
+}
+
+.video-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.video-carousel::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.video-carousel::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 4px;
+}
+
+.video-card {
+  min-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 30px 20px 20px;
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.video-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(26, 138, 125, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.video-card:hover .play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(35, 181, 164, 1);
+}
+
+.play-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  margin-left: 4px;
+}
+
+/* VIDEO MODAL */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16/9;
+}
+
+.video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--teal);
+}
+
+/* FOOTER */
+footer {
+  background: var(--black);
+  color: #fff;
+  padding: 60px 40px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .video-card {
+    min-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-placeholder">Show Me <span>Turkiye</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../explore.html" class="active">Explore Turkiye</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../projects.html">Our Projects</a>
+    <a href="../about.html">About Us</a>
+    <a href="../contact.html">Contact</a>
+    <div class="nav-lang">EN / TR</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="city-hero">
+  <div>
+    <h1>Cappadocia</h1>
+    <p>Overview</p>
+  </div>
+</section>
+
+<!-- PLACES TO VISIT -->
+<section class="content-section">
+  <h2 class="section-title">Places to Visit in Cappadocia</h2>
+  
+  <div id="map"></div>
+  
+  <div class="places-grid">
+    <div class="place-card" onclick="focusMarker(0)">
+      <div class="place-marker">A</div>
+      <h3 class="place-title">Cappadocia Region</h3>
+      <p class="place-description">Cappadocia is a historical and geological region in central Turkey famous for unique rock formations, underground cities, and ancient cave dwellings. Best time to visit is spring (April-May) and autumn (September-October) when weather is mild. Popular activities include hot air balloon rides at sunrise over stunning rock formations, visiting underground cities used by early Christians, exploring the Göreme Open Air Museum (UNESCO World Heritage Site), hiking through valleys and rock formations, and experiencing local villages, markets, and cuisine. Cave hotels offer unique accommodation experiences.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(1)">
+      <div class="place-marker">B</div>
+      <h3 class="place-title">Kaymaklı Underground City</h3>
+      <p class="place-description">This underground city is one of the largest in Cappadocia and was used by early Christians as a hiding place from persecution. Visitors can explore the tunnels, rooms, and passages that make up the city.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(2)">
+      <div class="place-marker">C</div>
+      <h3 class="place-title">Göreme National Park</h3>
+      <p class="place-description">This UNESCO World Heritage Site is a must-visit destination in Nevşehir. The park is famous for its unique rock formations and cave dwellings, which were once used as homes and places of worship by early Christians.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(3)">
+      <div class="place-marker">D</div>
+      <h3 class="place-title">Uchisar Castle</h3>
+      <p class="place-description">This castle is situated on a hill and offers a panoramic view of the surrounding landscape. It was once used as a watchtower and was later turned into a fortress.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(4)">
+      <div class="place-marker">E</div>
+      <h3 class="place-title">Paşabağ (Fairy Chimneys)</h3>
+      <p class="place-description">This is another unique rock formation in Cappadocia. The area is known for its fairy chimneys, which are tall, cone-shaped rock formations that were created by volcanic activity.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(5)">
+      <div class="place-marker">F</div>
+      <h3 class="place-title">Devrent Valley (Imagination Valley)</h3>
+      <p class="place-description">This valley is also known as "Imagination Valley" due to its unusual rock formations that resemble animals and other objects. Visitors can take a walk through the valley and try to spot these formations.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(6)">
+      <div class="place-marker">G</div>
+      <h3 class="place-title">Avanos</h3>
+      <p class="place-description">This town is located on the banks of the Kızılırmak River and is known for its pottery-making tradition. Visitors can watch artisans at work and purchase pottery items as souvenirs.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(7)">
+      <div class="place-marker">H</div>
+      <h3 class="place-title">Derinkuyu Underground City</h3>
+      <p class="place-description">This is another underground city in Cappadocia and is believed to be the deepest one in the region. It has several levels and was used as a hiding place and shelter by early Christians.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(8)">
+      <div class="place-marker">I</div>
+      <h3 class="place-title">Zelve Open Air Museum</h3>
+      <p class="place-description">This museum is located in a valley and is home to several rock-cut churches and dwellings. Visitors can explore the museum and learn about the history and culture of the region.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VISIT CAPPADOCIA -->
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Why Visit Cappadocia?</h2>
+    <p class="text-content">Cappadocia carved itself into volcanic rock over millions of years, and humans have been adding to the landscape ever since. You can wake up to hot air balloons drifting past your cave hotel window, explore underground cities that housed thousands of people, and hike through valleys where churches hide frescoes painted a thousand years ago. The terrain looks otherworldly but the experience stays grounded: family-run restaurants in Göreme, pottery workshops in Avanos, and sunrise views that work without any Instagram filter.</p>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="content-section">
+  <h2 class="section-title">Food & Cuisine</h2>
+  
+  <h3 class="section-subtitle">Testi Kebabı</h3>
+  <p class="text-content">This is a traditional Turkish dish that is popular in Nevşehir. It is made with lamb or beef that is slow-cooked with vegetables and spices in a clay pot. The pot is sealed and cooked in a wood-fired oven, giving the dish a unique flavor and aroma.</p>
+  
+  <h3 class="section-subtitle">Mantı</h3>
+  <p class="text-content">This is a Turkish version of dumplings that are filled with ground meat and spices. They are served with a tomato and garlic sauce and topped with yogurt.</p>
+  
+  <h3 class="section-subtitle">Nevşehir Baklavas ı</h3>
+  <p class="text-content">This is a local variation of the popular Turkish pastry, baklava. It is made with a thin, crispy pastry and filled with pistachios and syrup.</p>
+  
+  <h3 class="section-subtitle" style="margin-top: 50px;">Top Restaurants in Cappadocia</h3>
+  <p class="text-content" style="margin-bottom: 30px; font-style: italic; color: var(--text-muted);">Based on Google reviews - 4.5+ stars with 200+ reviews</p>
+  
+  <div class="restaurant-grid">
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Seki Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.8 (1,200+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Upscale dining at Argos in Cappadocia hotel. Creative Turkish cuisine with local ingredients and stunning cave setting.</p>
+      <div class="restaurant-specialty">Specialty: Testi Kebabı, Wine Pairing, Tasting Menus</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Ziggy Cafe & Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (3,400+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Rooftop restaurant in Göreme with panoramic valley views. Traditional Turkish dishes and international options. Live music in evenings.</p>
+      <div class="restaurant-specialty">Specialty: Pottery Kebab, Meze Platters, Sunset Dining</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Topdeck Cave Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (2,800+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Authentic cave restaurant in Göreme. Traditional Cappadocian cuisine with warm atmosphere and excellent service.</p>
+      <div class="restaurant-specialty">Specialty: Mantı, Lamb Dishes, Turkish Wine Selection</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Old Cappadocia Cafe & Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.5 (2,100+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Family-run restaurant in historic stone building. Home-style Turkish cooking with generous portions and friendly service.</p>
+      <div class="restaurant-specialty">Specialty: Testi Kebabı, Gözleme, Turkish Breakfast</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Dibek Restaurant</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (1,900+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Traditional stone house restaurant in Göreme. Known for authentic regional dishes and cave dining experience.</p>
+      <div class="restaurant-specialty">Specialty: Clay Pot Cooking, Stuffed Vegetables, Local Wines</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Nazar Börek & Cafe</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.8 (1,600+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Local favorite for traditional Turkish börek and pastries. Cozy atmosphere with terrace overlooking Göreme valleys.</p>
+      <div class="restaurant-specialty">Specialty: Börek Varieties, Turkish Coffee, Homemade Desserts</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Activities & Experiences</h2>
+    
+    <h3 class="section-subtitle">Hot Air Balloon</h3>
+    <p class="text-content">Hot air balloon is a popular activity in Cappadocia and offers a unique way to experience the stunning landscape. Visitors can take a hot air balloon ride over the fairy chimneys, valleys, and rock formations of the region at sunrise.</p>
+    
+    <h3 class="section-subtitle">ATV Tours</h3>
+    <p class="text-content">ATV tours are a popular way to explore the rugged terrain of Cappadocia. Visitors can rent ATVs and take guided tours through the valleys and hills, offering a thrilling adventure and a chance to see the landscape from a different perspective.</p>
+    
+    <h3 class="section-subtitle">Horseback Riding</h3>
+    <p class="text-content">Horseback riding tours are another popular way to explore the Cappadocia region. Visitors can take guided tours on horseback through the valleys and rock formations, providing a unique way to experience the landscape.</p>
+    
+    <h3 class="section-subtitle">Paragliding</h3>
+    <p class="text-content">Paragliding is a thrilling activity that allows visitors to fly over the stunning landscape of Cappadocia. Visitors can take tandem paragliding flights with experienced pilots, offering a bird's eye view of the fairy chimneys and valleys.</p>
+    
+    <h3 class="section-subtitle">Rock Climbing</h3>
+    <p class="text-content">The unique rock formations and valleys of Cappadocia offer several opportunities for rock climbing. Visitors can take guided tours with experienced climbers and explore the various climbing routes throughout the region.</p>
+    
+    <h3 class="section-subtitle" style="margin-top: 50px;">Near Places to Visit</h3>
+    <p class="text-content"><strong>Kayseri:</strong> Kayseri is the largest city in the region, located about 80 kilometers east of Nevşehir. Known for its historical landmarks including Kayseri Castle and the impressive Mount Erciyes that overlooks the city.</p>
+    <p class="text-content"><strong>Aksaray:</strong> Aksaray is a city located about 60 kilometers southwest of Nevşehir. Known for its historical landmarks including the Ulu Mosque and the Aksaray Museum.</p>
+  </div>
+</section>
+
+<!-- VIDEO CAROUSEL -->
+<section class="video-section">
+  <h2>Watch Cappadocia</h2>
+  <div class="video-carousel">
+    <div class="video-card" onclick="openVideo('VIDEO_ID')">
+      <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="Cappadocia Video" class="video-thumbnail">
+      <div class="video-overlay">
+        <div class="video-title">Show Me Turkiye - Cappadocia</div>
+        <div class="video-desc">Experience fairy chimneys and hot air balloons at sunrise</div>
+      </div>
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div>
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Useful Links</h4>
+      <a href="../index.html">Home</a>
+      <a href="../explore.html">Explore Turkiye</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Our Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../contact.html">Become a Partner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Accessibility & Privacy Policy | Cookies | Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('nav-open');
+}
+
+// Initialize map centered on Cappadocia
+const map = L.map('map').setView([38.6431, 34.8289], 10);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Places data with real coordinates
+const places = [
+  { name: 'Göreme (Cappadocia Center)', coords: [38.6431, 34.8289], marker: 'A' },
+  { name: 'Kaymaklı Underground City', coords: [38.4589, 34.7361], marker: 'B' },
+  { name: 'Göreme National Park', coords: [38.6572, 34.8414], marker: 'C' },
+  { name: 'Uchisar Castle', coords: [38.6264, 34.8050], marker: 'D' },
+  { name: 'Paşabağ', coords: [38.6847, 34.8578], marker: 'E' },
+  { name: 'Devrent Valley', coords: [38.6983, 34.8522], marker: 'F' },
+  { name: 'Avanos', coords: [38.7150, 34.8472], marker: 'G' },
+  { name: 'Derinkuyu Underground City', coords: [38.3731, 34.7350], marker: 'H' },
+  { name: 'Zelve Open Air Museum', coords: [38.6833, 34.8597], marker: 'I' }
+];
+
+// Create markers
+const markers = [];
+places.forEach((place, index) => {
+  const customIcon = L.divIcon({
+    html: `<div style="background: #1a8a7d; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${place.marker}</div>`,
+    className: '',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  
+  const marker = L.marker(place.coords, { icon: customIcon })
+    .addTo(map)
+    .bindPopup(`<strong>${place.name}</strong>`);
+  
+  markers.push(marker);
+});
+
+// Focus on marker when card clicked
+function focusMarker(index) {
+  map.setView(places[index].coords, 13);
+  markers[index].openPopup();
+}
+
+// Video modal functions
+function openVideo(videoId) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal on background click
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideo();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideo();
+  }
+});
+</script>
+</body>
+</html>

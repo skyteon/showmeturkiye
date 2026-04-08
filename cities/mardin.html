@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mardin | Show Me Turkiye</title>
+<meta name="description" content="Discover Mardin - Medieval golden stone city overlooking Mesopotamian plains. Explore Artuqid architecture, Syriac monasteries, and ancient culture.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+:root {
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --cream: #f5f0e6;
+  --brown: #c4a265;
+  --text-dark: #2c2a26;
+  --text-muted: #7a756c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(14, 16, 18, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+  text-decoration: none;
+}
+
+.logo-placeholder {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.logo-placeholder span {
+  color: var(--teal);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.3s;
+  letter-spacing: 0.3px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--teal);
+}
+
+.nav-lang {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: rgba(14, 16, 18, 0.98);
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 20px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  .nav-links.nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+.city-hero {
+  margin-top: 70px;
+  height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1609137144813-7d9921338f24') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.city-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 86px);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.city-hero p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 40px 0 24px;
+  letter-spacing: 0.5px;
+}
+
+.text-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+
+.text-content strong {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  margin-bottom: 50px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.place-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.place-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.place-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.place-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+}
+
+.place-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.restaurant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.restaurant-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--teal);
+}
+
+.restaurant-header {
+  margin-bottom: 12px;
+}
+
+.restaurant-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-family: 'Playfair Display', serif;
+}
+
+.restaurant-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.restaurant-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.restaurant-specialty {
+  font-size: 14px;
+  color: var(--teal);
+  font-weight: 600;
+  font-style: italic;
+}
+
+.video-section {
+  background: var(--black);
+  padding: 80px 0;
+}
+
+.video-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+}
+
+.video-carousel {
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 20px 40px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) rgba(255,255,255,0.1);
+}
+
+.video-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.video-carousel::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+
+.video-carousel::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 4px;
+}
+
+.video-card {
+  min-width: 400px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 30px 20px 20px;
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.video-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background: rgba(26, 138, 125, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.video-card:hover .play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(35, 181, 164, 1);
+}
+
+.play-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  margin-left: 4px;
+}
+
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.video-modal.active {
+  display: flex;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 16/9;
+}
+
+.video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.modal-close:hover {
+  color: var(--teal);
+}
+
+footer {
+  background: var(--black);
+  color: #fff;
+  padding: 60px 40px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  .video-card {
+    min-width: 300px;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="../index.html" class="nav-logo">
+    <div class="logo-placeholder">Show Me <span>Turkiye</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../explore.html" class="active">Explore Turkiye</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../projects.html">Our Projects</a>
+    <a href="../about.html">About Us</a>
+    <a href="../contact.html">Contact</a>
+    <div class="nav-lang">EN / TR</div>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<section class="city-hero">
+  <div>
+    <h1>Mardin</h1>
+    <p>Overview</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <h2 class="section-title">Places to Visit in Mardin</h2>
+  
+  <div id="map"></div>
+  
+  <div class="places-grid">
+    <div class="place-card" onclick="focusMarker(0)">
+      <div class="place-marker">A</div>
+      <h3 class="place-title">Mardin Old City (Eski Mardin)</h3>
+      <p class="place-description">UNESCO World Heritage Tentative List site featuring golden limestone buildings cascading down hillside toward Mesopotamian plains. Open-air museum with labyrinthine cobblestone streets, ornately carved facades with tulips and geometric patterns. Buildings date from 12th-15th centuries during Artuqid Dynasty. Narrow winding alleys called 'Abbaras' provide shortcuts through maze. Soft limestone keeps houses surprisingly cool even in summer heat. Most of Mardin's famous historical attractions concentrated here. Stunning views over endless Mesopotamian plains from elevated position.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(1)">
+      <div class="place-marker">B</div>
+      <h3 class="place-title">Mardin Castle (Citadel)</h3>
+      <p class="place-description">Iconic fortress spread along top of rocky ridge overlooking city and plains. Much of it military zone but outer walls and ancient structures visible. Defensive fortress with stories spanning multiple civilizations. Climb to base rewarded with stunning panoramic views stretching across Mesopotamian plains. Symbol of Mardin visible from kilometers away. Strategic location explains city's importance throughout history.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(2)">
+      <div class="place-marker">C</div>
+      <h3 class="place-title">Deyrulzafaran Monastery (Mor Hananyo)</h3>
+      <p class="place-description">Saffron Monastery located 6 km southeast of Mardin in Tur Abdin hills. Former seat of Syriac Orthodox Patriarchate from 493 until 1932. One of oldest functioning monasteries in world and most significant for Syriac Church. Built in 5th century, nicknamed for yellow saffron flowers allegedly mixed into mortar. Daily services held in Aramaic (language of Jesus). Golden limestone glowing in sunlight. Visitors explore via guided tour. Site used as sun worship temple as far back as 2000 BC. Active pilgrimage destination for Syriac Christians worldwide.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(3)">
+      <div class="place-marker">D</div>
+      <h3 class="place-title">Zinciriye Medrese</h3>
+      <p class="place-description">Built in 1385, finest example of Artuqid Islamic architecture. Grand courtyard with intricate stone carvings and elegant domes. Important spiritual and academic center. Elevated location provides exceptional viewpoint over city. Unique ridged dome shape. Masterpiece of medieval Islamic educational architecture combining beauty with function.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(4)">
+      <div class="place-marker">E</div>
+      <h3 class="place-title">Kasımiye Medrese</h3>
+      <p class="place-description">Completed in 15th century, masterpiece of Islamic architecture. Intended as both place of learning and residence for scholars. Legend says Prince Kasım was assassinated here, his blood staining courtyard pool waters. Two-story building centered around oblong courtyard with astonishing views of old Mesopotamia. Ottoman-era educational complex showcasing sophisticated stonework and design.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(5)">
+      <div class="place-marker">F</div>
+      <h3 class="place-title">Mardin Museum</h3>
+      <p class="place-description">Housed in beautiful historic limestone building, formerly Syriac Catholic Patriarchate built in 1895. Opened in 2000 dedicated to city's rich history. Comprehensive info on Mardin's culture and modern aspects. Archaeological displays, artifacts from various civilizations. Good place for historical overview of region. Open daily except Monday.</p>
+    </div>
+    
+    <div class="place-card" onclick="focusMarker(6)">
+      <div class="place-marker">G</div>
+      <h3 class="place-title">Midyat Old City</h3>
+      <p class="place-description">One hour drive from Mardin, charming rustic old city known as "City of Languages and Religions." Over 100 traditional yellow limestone houses, 9 Syriac Orthodox churches, 2 monasteries. Incredibly well-preserved open-air museum. Cultural heart of Tur Abdin region. Mix of Assyrians, Arabs, Kurds, Turks creating distinctive local identity. Center for telkari (silver filigree work), stone carving, handicrafts. Syriac language still spoken. Often setting for Turkish film productions. Can explore within day from Mardin or stay overnight.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Why Visit Mardin?</h2>
+    <p class="text-content">Mardin cascades down a rocky hillside in golden limestone that glows amber at sunset, the old city spilling toward Mesopotamian plains that stretch to Syria's border forty kilometers south. The Artuqid dynasty built most of what you see between the 12th and 15th centuries, using soft local stone that let craftsmen carve intricate geometric patterns and tulip motifs into every surface that mattered. Walking the narrow alleys feels like moving through a three-dimensional history lesson - Syriac Orthodox churches hide behind carved wooden doors, Islamic madrasas offer rooftop views that justify the climb, and the call to prayer echoes off stones that have heard it for a thousand years. The city's population mixes Kurds, Arabs, and Assyrians who've learned to coexist in ways that larger Turkish cities never managed, and the food reflects all three traditions. Spring and fall visit best - summer heat here doesn't negotiate.</p>
+  </div>
+</section>
+
+<section class="content-section">
+  <h2 class="section-title">Food & Cuisine</h2>
+  
+  <h3 class="section-subtitle">İçli Köfte</h3>
+  <p class="text-content">Mardin's version of stuffed bulgur meatballs. Crispy bulgur shell filled with spiced minced meat, onions, walnuts. Regional specialty with unique flavor profile.</p>
+  
+  <h3 class="section-subtitle">Kaburga Dolması</h3>
+  <p class="text-content">Stuffed lamb ribs, Mardin specialty. Ribs filled with rice, nuts, spices. Slow-cooked until tender. Must-try at restaurants with Mesopotamian plain views.</p>
+  
+  <h3 class="section-subtitle">Harire</h3>
+  <p class="text-content">Traditional dessert made with flour, butter, walnuts. Sweet, nutty flavor. Served in many cafes and restaurants. Perfect with Turkish coffee or Süryani wine.</p>
+  
+  <h3 class="section-subtitle">Süryani Wine</h3>
+  <p class="text-content">Wine-making in Mardin dates back thousands of years among Syriac community. Local vineyards produce distinctive wines. Available at select restaurants and monasteries.</p>
+  
+  <h3 class="section-subtitle" style="margin-top: 50px;">Top Restaurants in Mardin</h3>
+  <p class="text-content" style="margin-bottom: 30px; font-style: italic; color: var(--text-muted);">Based on Google reviews - 4.5+ stars with 200+ reviews</p>
+  
+  <div class="restaurant-grid">
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Cercis Murat Konağı</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.7 (1,800+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Historic stone mansion restaurant with terrace views over Mesopotamian plains. Traditional Mardin cuisine in atmospheric setting. Stunning sunset dining.</p>
+      <div class="restaurant-specialty">Specialty: Kaburga Dolması, İçli Köfte, Regional Dishes</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Seyr-i Mardin</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.6 (2,100+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Located on busy 1. Cadde with spectacular views. Good Turkish food with large portions. Best part is nighttime views when castle and minarets illuminated.</p>
+      <div class="restaurant-specialty">Specialty: Grilled Meats, Kebabs, Mesopotamian Plain Views</div>
+    </div>
+    
+    <div class="restaurant-card">
+      <div class="restaurant-header">
+        <h4 class="restaurant-name">Izla Art Cafe</h4>
+        <div class="restaurant-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.8 (900+ reviews)</span>
+        </div>
+      </div>
+      <p class="restaurant-desc">Tucked away in Mardin streets with mystical atmosphere. Specialty coffee and Süryani wine. Perfect place to unwind. Must try Harire dessert.</p>
+      <div class="restaurant-specialty">Specialty: Specialty Coffee, Süryani Wine, Harire Dessert</div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" style="background: var(--cream); margin: 0; max-width: 100%;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <h2 class="section-title">Activities & Experiences</h2>
+    
+    <h3 class="section-subtitle">Walking the Old City</h3>
+    <p class="text-content">Explore labyrinthine cobblestone alleys discovering carved facades, hidden courtyards, historic buildings. Walk narrow streets called Abbaras connecting different levels. Best during early morning or late afternoon for photography.</p>
+    
+    <h3 class="section-subtitle">Monastery Visits</h3>
+    <p class="text-content">Visit Deyrulzafaran Monastery 6 km outside city. Guided tours show ancient architecture and Syriac Orthodox traditions. Daily services in Aramaic. Nearby Mor Gabriel Monastery also accessible (one of world's oldest functioning monasteries).</p>
+    
+    <h3 class="section-subtitle">Sunset Viewing</h3>
+    <p class="text-content">Watch sunset over Mesopotamian plains from rooftop restaurants or castle viewpoints. Golden hour when limestone buildings glow amber. Call to prayer echoing across city during sunset creates magical atmosphere.</p>
+    
+    <h3 class="section-subtitle">Day Trip to Midyat</h3>
+    <p class="text-content">One hour drive to explore Midyat's 100+ traditional limestone houses, churches, handicraft workshops. See telkari silver filigree work. Experience "City of Languages and Religions" with its cultural mosaic.</p>
+    
+    <h3 class="section-subtitle" style="margin-top: 50px;">Practical Information</h3>
+    <p class="text-content"><strong>Getting There:</strong> Dr. Aziz Sancar Airport 20 km away in Kızıltepe. Minibuses to Old Town. Excellent bus connections from major Turkish cities.</p>
+    <p class="text-content"><strong>Best Time:</strong> Spring (April-June) and autumn (September-October) for mild weather. Summer extremely hot (35°C+). Winter wet with occasional snow.</p>
+    <p class="text-content"><strong>Where to Stay:</strong> Historic stone mansions converted to hotels in Old City offer authentic experience. Terrace views over plains worth premium.</p>
+  </div>
+</section>
+
+<section class="video-section">
+  <h2>Watch Mardin</h2>
+  <div class="video-carousel">
+    <div class="video-card" onclick="openVideo('VIDEO_ID')">
+      <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="Mardin Video" class="video-thumbnail">
+      <div class="video-overlay">
+        <div class="video-title">Show Me Turkiye - Mardin</div>
+        <div class="video-desc">Discover the golden stone city of Mesopotamia</div>
+      </div>
+      <div class="play-icon">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-content">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo-placeholder" style="margin-bottom:16px;font-size:18px;">Show Me <span>Turkiye</span></div>
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Useful Links</h4>
+      <a href="../index.html">Home</a>
+      <a href="../explore.html">Explore Turkiye</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Our Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../contact.html">Become a Partner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Accessibility & Privacy Policy | Cookies | Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('nav-open');
+}
+
+const map = L.map('map').setView([37.3212, 40.7245], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+const places = [
+  { name: 'Mardin Old City', coords: [37.3212, 40.7245], marker: 'A' },
+  { name: 'Mardin Castle', coords: [37.3250, 40.7280], marker: 'B' },
+  { name: 'Deyrulzafaran Monastery', coords: [37.2850, 40.7450], marker: 'C' },
+  { name: 'Zinciriye Medrese', coords: [37.3200, 40.7250], marker: 'D' },
+  { name: 'Kasımiye Medrese', coords: [37.3180, 40.7260], marker: 'E' },
+  { name: 'Mardin Museum', coords: [37.3210, 40.7240], marker: 'F' },
+  { name: 'Midyat Old City', coords: [37.4167, 41.3667], marker: 'G' }
+];
+
+const markers = [];
+places.forEach((place, index) => {
+  const customIcon = L.divIcon({
+    html: `<div style="background: #1a8a7d; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">${place.marker}</div>`,
+    className: '',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16]
+  });
+  
+  const marker = L.marker(place.coords, { icon: customIcon })
+    .addTo(map)
+    .bindPopup(`<strong>${place.name}</strong>`);
+  
+  markers.push(marker);
+});
+
+function focusMarker(index) {
+  map.setView(places[index].coords, 14);
+  markers[index].openPopup();
+}
+
+function openVideo(videoId) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('videoIframe');
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeVideo();
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideo();
+  }
+});
+</script>
+</body>
+</html>
