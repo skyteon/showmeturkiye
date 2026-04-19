@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Projects | Show Me Turkiye</title>
+<meta name="description" content="Cinematic video projects showcasing the beauties of Turkiye.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --dark-bg: #151515;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lora', serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Hero Header */
+.page-header {
+  margin-top: 0;
+  padding: 120px 40px 80px;
+  text-align: center;
+  position: relative;
+  background: #000;
+}
+
+.hero-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 40px;
+  z-index: 10;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(14, 16, 18, 0.98);
+  backdrop-filter: blur(12px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 24px;
+  z-index: 999;
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--teal);
+}
+
+.nav-lang {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.nav-lang:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.close-menu {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.close-menu:hover {
+  opacity: 1;
+}
+
+.page-header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 16px;
+}
+
+.page-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 0 40px 120px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 2x2 ELEGANT GRID */
+.projects-elegant-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 100%;
+}
+
+.project-elegant-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 16/9;
+  display: block;
+  text-decoration: none;
+}
+
+.project-elegant-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-elegant-card:hover .project-elegant-image {
+  transform: scale(1.05);
+}
+
+.project-elegant-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, transparent 100%);
+  transition: background 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+}
+
+.project-elegant-card:hover .project-elegant-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 70%);
+}
+
+.project-elegant-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-elegant-card:hover .project-elegant-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-play-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.project-elegant-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Footer */
+footer {
+  background: #0e1012;
+  color: #fff;
+  padding: 60px 40px 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-col a {
+  display: block;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--teal);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-social a:hover {
+  background: var(--teal);
+  color: #fff;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .projects-elegant-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 100px 20px 60px;
+  }
+  
+  .page-header h1 {
+    font-size: 28px;
+    letter-spacing: 0.3em;
+  }
+  
+  .hero-header {
+    padding: 20px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .projects-section {
+    padding: 0 20px 80px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <!-- Header inside page-header -->
+  <div class="hero-header">
+    <a href="index.html" class="nav-logo">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="site-logo">
+    </a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="nav-links">
+    <button class="close-menu" onclick="toggleMenu()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="explore.html">Explore Turkiye</a>
+    <a href="blog.html">Blog</a>
+    <a href="projects.html" class="active">Our Projects</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+    <div class="nav-lang">EN / TR</div>
+  </div>
+  
+  <h1>OUR PROJECTS</h1>
+  <p class="page-subtitle">A quick look into our projects</p>
+</div>
+
+<section class="projects-section">
+  <div class="projects-elegant-grid">
+    <!-- Project 1: Show Me Turkiye -->
+    <a href="projects/show-me-turkiye.html" class="project-elegant-card">
+      <div class="project-elegant-image" style="background-image:url('https://img.showmeturkiye.com/Projects/show-me-turkiye.jpg');">
+        <div class="project-elegant-overlay">
+          <div class="project-elegant-content">
+            <div class="project-play-icon">▶</div>
+            <h3 class="project-elegant-title">Show Me Turkiye</h3>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 2: Skies of Turkiye -->
+    <a href="projects/skies-of-turkiye.html" class="project-elegant-card">
+      <div class="project-elegant-image" style="background-image:url('https://img.showmeturkiye.com/Projects/skies-of-turkiye.jpg');">
+        <div class="project-elegant-overlay">
+          <div class="project-elegant-content">
+            <div class="project-play-icon">▶</div>
+            <h3 class="project-elegant-title">Skies of Turkiye</h3>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 3: Let Me Show You Turkiye -->
+    <a href="projects/let-me-show-you-turkiye.html" class="project-elegant-card">
+      <div class="project-elegant-image" style="background-image:url('https://img.showmeturkiye.com/Projects/let-me-show-you-turkiye.jpg');">
+        <div class="project-elegant-overlay">
+          <div class="project-elegant-content">
+            <div class="project-play-icon">▶</div>
+            <h3 class="project-elegant-title">Let Me Show You Turkiye</h3>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Project 4: National Parks -->
+    <a href="projects/national-parks.html" class="project-elegant-card">
+      <div class="project-elegant-image" style="background-image:url('https://img.showmeturkiye.com/Projects/national-parks.jpg');">
+        <div class="project-elegant-overlay">
+          <div class="project-elegant-content">
+            <div class="project-play-icon">▶</div>
+            <h3 class="project-elegant-title">National Parks</h3>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" style="height:60px;width:auto;margin-bottom:16px;">
+      <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,0.5);">Discover the beauties of Turkiye through cinematic eyes.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Useful Links</h4>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore Turkiye</a>
+      <a href="blog.html">Blog</a>
+      <a href="projects.html">Our Projects</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html">Become a Partner</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Accessibility & Privacy Policy | Cookies | Sitemap</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('active');
+}
+</script>
+</body>
+</html>
