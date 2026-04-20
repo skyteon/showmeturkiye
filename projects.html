@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Projects | Show Me Türkiye</title>
+<meta name="description" content="Cinematic video projects showcasing the beauties of Türkiye.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0c0e;
+  --dark: #0f1214;
+  --brown: #c4a265;
+  --brown-light: #d4b87e;
+  --border: rgba(255,255,255,0.07);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Poppins',sans-serif; background:var(--black); color:#fff; overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+
+/* ── NAV ── */
+.site-nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:24px 48px;
+  background:rgba(10,12,14,0.92); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.site-nav a img { height:38px; width:auto; object-fit:contain; }
+.hamburger { display:flex; flex-direction:column; gap:6px; cursor:pointer; background:none; border:none; padding:8px; }
+.hamburger span { width:26px; height:2px; background:#fff; display:block; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:center; }
+.hamburger.open span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+.nav-overlay { display:none; position:fixed; inset:0; background:rgba(10,12,14,0.98); backdrop-filter:blur(20px); flex-direction:column; align-items:center; justify-content:center; gap:28px; z-index:999; animation:navFadeIn 0.3s ease; }
+@keyframes navFadeIn { from{opacity:0;} to{opacity:1;} }
+.nav-overlay.open { display:flex; }
+.nav-overlay a { font-family:'Poppins',sans-serif; font-size:16px; font-weight:300; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.55); transition:color 0.3s; }
+.nav-overlay a:hover, .nav-overlay a.active { color:#fff; }
+.nav-overlay .nav-lang { font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.12); padding:8px 20px; margin-top:12px; cursor:pointer; transition:all 0.3s; }
+.nav-overlay .nav-lang:hover { border-color:var(--brown); color:var(--brown-light); }
+.close-nav { position:absolute; top:28px; right:48px; background:none; border:none; color:#fff; font-size:36px; cursor:pointer; opacity:0.5; transition:opacity 0.2s, transform 0.2s; line-height:1; }
+.close-nav:hover { opacity:1; transform:rotate(90deg); }
+
+/* ── PAGE HEADER ── */
+.page-header { min-height:42vh; background:var(--black); display:flex; flex-direction:column; align-items:center; justify-content:flex-end; padding:120px 48px 72px; position:relative; text-align:center; overflow:hidden; }
+.page-header::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 30%, var(--black) 100%); z-index:1; }
+.page-header-bg { position:absolute; inset:0; background:url('https://img.showmeturkiye.com/Projects/show-me-turkiye.jpg') center/cover; opacity:0.18; }
+.page-header-content { position:relative; z-index:2; }
+.page-header-badge { display:inline-block; font-family:'Poppins',sans-serif; font-size:9px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase; color:var(--brown-light); border:1px solid rgba(196,162,101,0.3); padding:7px 20px; margin-bottom:20px; background:rgba(196,162,101,0.06); }
+.page-header h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,52px); font-weight:300; letter-spacing:0.3em; text-transform:uppercase; color:#fff; line-height:1.1; margin-bottom:14px; }
+.page-header p { font-family:'Poppins',sans-serif; font-weight:300; font-size:13px; color:rgba(255,255,255,0.5); font-style:italic; }
+
+/* ── PROJECTS GRID ── */
+.projects-section { padding:60px 48px 120px; max-width:1300px; margin:0 auto; }
+.projects-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+
+.project-card { display:flex; flex-direction:column; cursor:pointer; text-decoration:none; color:#fff; background:var(--dark); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+.project-card:hover { transform:translateY(-6px); }
+
+.project-card-thumb { position:relative; overflow:hidden; aspect-ratio:16/9; }
+.project-card-img { width:100%; height:100%; background-size:cover; background-position:center; transition:transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+.project-card:hover .project-card-img { transform:scale(1.06); }
+
+.project-card-overlay { position:absolute; inset:0; background:rgba(10,12,14,0.3); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.4s; }
+.project-card:hover .project-card-overlay { opacity:1; }
+
+.project-play { width:56px; height:56px; background:rgba(196,162,101,0.25); backdrop-filter:blur(10px); border:1px solid rgba(196,162,101,0.5); display:flex; align-items:center; justify-content:center; color:#fff; font-size:18px; transition:background 0.3s; }
+.project-card:hover .project-play { background:rgba(196,162,101,0.5); }
+
+.project-card-body { padding:24px 20px 28px; border:1px solid rgba(255,255,255,0.05); border-top:none; flex:1; }
+.project-card-label { font-family:'Poppins',sans-serif; font-size:9px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:var(--brown); margin-bottom:10px; }
+.project-card-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:300; color:#fff; letter-spacing:0.04em; margin-bottom:12px; line-height:1.3; }
+.project-card-desc { font-family:'Poppins',sans-serif; font-size:12px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.75; }
+
+/* ── FOOTER ── */
+footer { background:var(--black); color:#fff; padding:80px 48px 36px; border-top:1px solid rgba(255,255,255,0.06); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; max-width:1200px; margin:0 auto 48px; }
+.footer-logo { height:44px; width:auto; margin-bottom:20px; }
+.footer-tagline { font-family:'Poppins',sans-serif; font-size:13px; font-weight:300; color:rgba(255,255,255,0.4); line-height:1.7; max-width:240px; }
+.footer-col h4 { font-family:'Poppins',sans-serif; font-size:9px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px; }
+.footer-col a { display:block; font-family:'Poppins',sans-serif; font-size:13px; font-weight:300; color:rgba(255,255,255,0.55); margin-bottom:12px; transition:color 0.3s; }
+.footer-col a:hover { color:var(--brown-light); }
+.footer-social { display:flex; gap:12px; }
+.footer-social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid rgba(255,255,255,0.12); font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); transition:all 0.3s; margin-bottom:0; }
+.footer-social a:hover { border-color:var(--brown); color:var(--brown-light); }
+.footer-bottom { display:flex; justify-content:space-between; padding-top:28px; border-top:1px solid rgba(255,255,255,0.07); font-family:'Poppins',sans-serif; font-size:11px; font-weight:300; color:rgba(255,255,255,0.28); max-width:1200px; margin:0 auto; }
+
+@media(max-width:960px) { .projects-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:640px) {
+  .site-nav { padding:20px 24px; }
+  .page-header { padding:100px 24px 56px; }
+  .projects-section { padding:40px 24px 80px; }
+  .projects-grid { grid-template-columns:1fr; }
+  footer { padding:60px 24px 28px; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:36px; }
+  .close-nav { right:24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="explore.html">Explore Türkiye</a>
+  <a href="blog.html">Blog</a>
+  <a href="projects.html" class="active">Our Projects</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-content">
+    <div class="page-header-badge">Cinematic Work</div>
+    <h1>Our Projects</h1>
+    <p>A look into our cinematic journeys across Türkiye</p>
+  </div>
+</div>
+
+<section class="projects-section">
+  <div class="projects-grid">
+
+    <a href="https://www.youtube.com/@showmeturkiye" target="_blank" rel="noopener" class="project-card">
+      <div class="project-card-thumb">
+        <div class="project-card-img" style="background-image:url('https://img.showmeturkiye.com/Projects/show-me-turkiye.jpg');"></div>
+        <div class="project-card-overlay">
+          <div class="project-play">▶</div>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-label">Flagship Series</div>
+        <h3 class="project-card-title">Show Me Türkiye</h3>
+        <p class="project-card-desc">Our main cinematic series exploring the most breathtaking destinations, hidden valleys, and ancient cities across Türkiye.</p>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@showmeturkiye" target="_blank" rel="noopener" class="project-card">
+      <div class="project-card-thumb">
+        <div class="project-card-img" style="background-image:url('https://img.showmeturkiye.com/Projects/skies-of-turkiye.jpg');"></div>
+        <div class="project-card-overlay">
+          <div class="project-play">▶</div>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-label">Aerial Series</div>
+        <h3 class="project-card-title">Skies of Türkiye</h3>
+        <p class="project-card-desc">A bird's-eye perspective of Türkiye's dramatic landscapes — from volcanic plateaus to turquoise coastlines, all from above.</p>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@showmeturkiye" target="_blank" rel="noopener" class="project-card">
+      <div class="project-card-thumb">
+        <div class="project-card-img" style="background-image:url('https://img.showmeturkiye.com/Projects/let-me-show-you-turkiye.jpg');"></div>
+        <div class="project-card-overlay">
+          <div class="project-play">▶</div>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-label">Travel Series</div>
+        <h3 class="project-card-title">Let Me Show You Türkiye</h3>
+        <p class="project-card-desc">A personal journey through Türkiye's culture, food, and people — intimate stories from the ground up, told with authenticity.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Türkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="explore.html">Cities & Destinations</a>
+      <a href="blog.html">Travel Blog</a>
+      <a href="projects.html">Our Projects</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Türkiye. All rights reserved.</span>
+    <span>Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav() {
+  navOverlay.classList.add('open');
+  hamburgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('open');
+  hamburgerBtn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburgerBtn.addEventListener('click', openNav);
+closeNavBtn.addEventListener('click', closeNav);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>
