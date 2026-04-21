@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Istanbul | Show Me Turkiye</title>
+<meta name="description" content="Discover Istanbul, Turkey's largest city. Visit Hagia Sophia, Topkapi Palace, Grand Bazaar, cross the Bosphorus and taste balik ekmek and baklava.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{--black:#0a0c0e;--dark:#0f1214;--dark2:#151719;--brown:#c4a265;--brown-light:#d4b87e;--cream:#f5f0e6;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(255,255,255,0.07);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.35) 0%,rgba(10,12,14,0.2) 40%,rgba(10,12,14,0.7) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:200px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:100%;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:block;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0.0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;max-width:100%;opacity:0;transform:translateY(8px);transition:all 0.4s ease;margin-top:10px;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+@media(max-width:1100px){.why-grid{grid-template-columns:1fr;gap:40px;}.places-layout{grid-template-columns:1fr;}.map-container{position:relative;top:0;height:50vh;}.dishes-grid{grid-template-columns:1fr 1fr;}.resto-grid{grid-template-columns:1fr;}.activities-grid{grid-template-columns:1fr 1fr;}.daytrips-grid{grid-template-columns:1fr;}.stats-bar{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){.site-nav{padding:20px 24px;}.section{padding:60px 24px;}.hero h1{font-size:clamp(52px,14vw,80px);}.dishes-grid{grid-template-columns:1fr;}.activities-grid{grid-template-columns:1fr;}.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}.stats-bar{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr;}.close-nav{right:24px;}.places-list{padding:40px 24px;}}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore Turkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <span class="nav-lang">EN</span>
+</div>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Bosphorus Strait &middot; Turkiye</div>
+    <h1>Istanbul</h1>
+    <p class="hero-subtitle">The city where two continents share one skyline</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Marmara</span><span class="stat-sub">European and Asian shores</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Apr, May, Sep, Oct</span><span class="stat-sub">Mild, clear, less crowded</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Hagia Sophia</span><span class="stat-sub">Byzantine, Ottoman, Bosphorus</span></div>
+  <div class="stat-item"><span class="stat-label">Climate</span><span class="stat-value">Mediterranean</span><span class="stat-sub">Warm summers, mild wet winters</span></div>
+</div>
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Istanbul</h2>
+        <p>Istanbul is the only city in the world that sits across two continents, and this is not merely a geographic curiosity. It shapes everything: the food, the architecture, the pace of the streets, the way the city thinks about itself. The European side carries the weight of Byzantium and Ottoman imperial ambition. The Asian side is quieter, more residential, a place where Istanbullus go when they want to eat well without crowds. The Bosphorus between them is a working strait, and watching the tankers pass at dusk from a waterfront tea house on the Asian shore is one of the better ways to understand the scale of this place.</p>
+        <p>Sultanahmet is where the Byzantine and Ottoman empires built their great monuments within walking distance of each other. Hagia Sophia, completed in 537 AD, held the record as the largest cathedral in the world for almost a thousand years. The Blue Mosque directly opposite was built in the 17th century by Ottoman architects who understood exactly what they were competing with. Topkapi Palace to the northeast was the administrative centre of an empire that stretched from the Danube to the Persian Gulf. You can walk between all three in under ten minutes.</p>
+        <p>Beyond Sultanahmet, Istanbul rewards patience. Karakoy and Beyoglu north of the Golden Horn have the galleries, fish restaurants and meyhane culture. Kadikoy on the Asian side has the best produce market and the most honest street food. The Bosphorus ferry crossing on a public boat for a few lira is one of the great city experiences anywhere.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=900" alt="Istanbul Bosphorus skyline">
+        <div class="why-image-caption">Bosphorus Strait and Istanbul skyline</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+    <div class="place-item active" data-lat="41.0086" data-lng="28.9802" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">01. Hagia Sophia</span>
+      <div class="place-name">Hagia Sophia</div>
+      <p class="place-desc">Built between 532 and 537 AD under Emperor Justinian I, Hagia Sophia was the largest cathedral in the world for nearly a thousand years. Its main dome, 55 metres high and 31 metres in diameter, appears to float. The interior held Byzantine mosaics over more than a millennium. It became a mosque in 1453 after the Ottoman conquest and was reconverted to mosque status in 2020. Entry is free. Go in the first hour it opens at 9am, before the crowds arrive. The light through the upper windows in the morning is remarkable.</p>
+    </div>
+    <div class="place-item" data-lat="41.0054" data-lng="28.9768" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">02. Blue Mosque (Sultanahmet)</span>
+      <div class="place-name">Blue Mosque</div>
+      <p class="place-desc">Built between 1609 and 1616 by architect Sedefkar Mehmed Agha for Sultan Ahmed I, the Sultanahmet Mosque is named for the 20,000 hand-painted Iznik tiles lining its interior. It is the only Ottoman imperial mosque in Istanbul with six minarets. The architect was reported to have been told to build gold minarets, misheard it as six. The mosque remains active for daily prayers. Entry is free but the mosque closes to visitors during the five daily prayer times. Check current hours before visiting.</p>
+    </div>
+    <div class="place-item" data-lat="41.0115" data-lng="28.9833" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">03. Topkapi Palace</span>
+      <div class="place-name">Topkapi Palace</div>
+      <p class="place-desc">The administrative heart of the Ottoman Empire from the 1460s until the 1850s, Topkapi occupies the tip of the historic peninsula overlooking both the Bosphorus and the Golden Horn. The palace complex holds the Imperial Treasury with the Topkapi Dagger, the throne rooms, the Harem quarters and a collection of Islamic relics including the mantle of the Prophet. Allow a full day. Buy tickets in advance. Closed on Tuesdays.</p>
+    </div>
+    <div class="place-item" data-lat="41.0084" data-lng="28.9778" data-zoom="17" onclick="selectPlace(this)">
+      <span class="place-num">04. Basilica Cistern</span>
+      <div class="place-name">Basilica Cistern</div>
+      <p class="place-desc">Built in 532 AD under Justinian I to supply water to the Great Palace of Constantinople, the Basilica Cistern holds 80,000 cubic metres of water supported by 336 marble columns. Two columns at the far end stand on carved Medusa heads, one upside down and one sideways. The cistern appeared briefly in the James Bond film From Russia with Love. It was extensively renovated and reopened in 2022 with new lighting and walkways. Walk slowly through it. The acoustics and the reflections in the water justify the visit.</p>
+    </div>
+    <div class="place-item" data-lat="41.0256" data-lng="28.9741" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">05. Galata Tower</span>
+      <div class="place-name">Galata Tower</div>
+      <p class="place-desc">A medieval stone tower built by the Genoese in 1348 at 66.9 metres, sitting at the highest point of the Galata district north of the Golden Horn. The view from the top balcony takes in the entire Sultanahmet skyline, the Bosphorus and the Asian shore. The queue for the lift can be long at weekends and in summer. Going early in the morning or at dusk avoids the worst of it. The surrounding Galata neighbourhood has the best coffee shops and independent bookstores in the city.</p>
+    </div>
+    <div class="place-item" data-lat="41.0108" data-lng="28.9681" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">06. Grand Bazaar</span>
+      <div class="place-name">Grand Bazaar</div>
+      <p class="place-desc">One of the oldest and largest covered markets in the world, with 61 covered streets and around 4,000 shops. First established in 1455 after the Ottoman conquest, it has been operating continuously ever since. The Bedesten at the centre is the oldest part and sells the best antiques. The outer lanes are tourist-facing. Go on a Tuesday or Wednesday morning when it is quieter. Do not make any purchase without a firm price negotiation. The bazaar closes on Sundays.</p>
+    </div>
+  </div>
+  <div class="map-container"><div id="map"></div></div>
+</div>
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('IxfJr92fJdg')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/IxfJr92fJdg/maxresdefault.jpg" alt="Istanbul Bosphorus" onerror="this.src='https://img.youtube.com/vi/IxfJr92fJdg/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('GBil27OsaFc')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/GBil27OsaFc/maxresdefault.jpg" alt="Istanbul historic peninsula" onerror="this.src='https://img.youtube.com/vi/GBil27OsaFc/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('ElUzM23qx-A')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/ElUzM23qx-A/maxresdefault.jpg" alt="Istanbul streets" onerror="this.src='https://img.youtube.com/vi/ElUzM23qx-A/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+<section class="section section-cream" id="food">
+  <span class="section-label reveal">Bosphorus Table</span>
+  <h2 class="section-title reveal">Food and Cuisine</h2>
+  <div class="food-intro reveal">
+    <p>Istanbul has every food tradition that has passed through this city over two thousand years. The result is a depth of food culture that rewards time spent eating methodically across different neighbourhoods. The Kadikoy market on the Asian side is the place to understand what local Istanbullus actually eat. The meyhane dinner in Beyoglu is the social institution. The balik ekmek at Galata Bridge is the democracy.</p>
+  </div>
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Icon</div>
+        <div class="dish-name">Balik Ekmek</div>
+        <p class="dish-desc">A grilled mackerel fillet in a half-loaf of bread with onion, lettuce and lemon, sold from boats moored at the Galata Bridge and from small stands along the Golden Horn. It is one of the great pieces of street food in any city and costs almost nothing. The fishermen on the bridge above are catching the same mackerel the stands sell below. Eat it standing at the water. This is the correct way.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Classic</div>
+        <div class="dish-name">Iskender Kebab</div>
+        <p class="dish-desc">Thin slices of doner meat laid over pieces of pide bread, covered with tomato sauce and hot butter, served with yogurt. Invented in Bursa in 1867 by Iskender Efendi and still made best in Bursa, but the Istanbul versions are perfectly good. Available at most proper kebab restaurants across the city. Order it for lunch rather than dinner. Eating Iskender after 9pm is a reliable way to sleep badly.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Institution</div>
+        <div class="dish-name">Meze and Raki</div>
+        <p class="dish-desc">The meyhane is the Turkish tavern tradition, where an evening is built around meze dishes, conversation and raki. It proceeds slowly and in a specific order: cold mezes first, then hot, then a main fish or meat course. Raki is diluted with cold water and turns milky white. The meyhane culture belongs to Beyoglu and Karakoy and is at its best on weekday evenings when the room is full but not frantic. Piyaz, arnavut cigeri and stuffed mussels are the essential cold mezes to order.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Sweet</div>
+        <div class="dish-name">Baklava</div>
+        <p class="dish-desc">Layers of paper-thin filo dough, chopped pistachios and clarified butter, soaked in syrup and cut into diamond shapes. The Gaziantep tradition produces the finest baklava in Turkey, and the two main Gaziantep-origin shops in Istanbul, Karakoy Gulluoglu and Hafiz Mustafa, set the standard. Buy by weight at the counter rather than in pre-packaged boxes. Eat the same day. Baklava deteriorates quickly once cut and should never be refrigerated.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Morning Ritual</div>
+        <div class="dish-name">Simit and Tea</div>
+        <p class="dish-desc">The simit is a circular bread encrusted with sesame seeds, baked in a wood oven and sold from carts throughout Istanbul at any hour. It is inexpensive, good when fresh and the correct breakfast for anyone arriving at a ferry terminal in the early morning. Eat it with a glass of tea from a nearby tea house. The combination costs almost nothing and tastes entirely right in the specific context of an Istanbul morning by the water.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1556040220-4096d522378d?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">From the Sea</div>
+        <div class="dish-name">Fried Calamari</div>
+        <p class="dish-desc">The Bosphorus calamari season runs from autumn through spring when squid move through the strait. Lightly battered and fried with good olive oil, served with lemon and a simple green salad. The best versions are at the smaller fish restaurants in Karakoy and Eminonu near the water, where the calamari was likely caught the same morning. One of those dishes that is simple to describe and very hard to find done correctly outside of a few specific places in Istanbul.</p>
+      </div>
+    </div>
+  </div>
+  <span class="resto-section-label reveal">Where to Eat</span>
+  <h3 class="resto-section-title reveal">Top Restaurants in Istanbul</h3>
+  <p class="resto-note reveal">4.5 stars and above, 500 or more reviews on Google</p>
+  <div class="resto-grid reveal">
+    <a class="resto-card" href="https://www.google.com/maps/search/Ciya+Sofrasi+Kadikoy+Istanbul" target="_blank">
+      <div class="resto-name">Ciya Sofrasi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.7 (2,800+ reviews)</span></div>
+      <p class="resto-desc">A lokanta on the Asian side in Kadikoy market run by chef Musa Dagdeviren, who has spent decades documenting and cooking regional Anatolian recipes that were disappearing. The daily menu draws from dozens of regional traditions. One of the most important restaurants in Istanbul for understanding the actual breadth of Turkish food. Take the ferry across from Eminonu.</p>
+      <div class="resto-specialty">Regional Anatolian cuisine, Daily changing menu</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Mikla+Restaurant+Istanbul+Pera" target="_blank">
+      <div class="resto-name">Mikla</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (1,100+ reviews)</span></div>
+      <p class="resto-desc">On the rooftop of the Marmara Pera hotel in Beyoglu, with one of the best views of the Bosphorus and the historic peninsula. Chef Mehmet Gurs cooks a modern Turkish menu using regional Anatolian ingredients. Book well in advance. The view at sunset is worth the price of the meal on its own.</p>
+      <div class="resto-specialty">Modern Turkish, Bosphorus views</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Karakoy+Lokantasi+Istanbul" target="_blank">
+      <div class="resto-name">Karakoy Lokantasi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (900+ reviews)</span></div>
+      <p class="resto-desc">A well-run lokanta in Karakoy with a daily menu of traditional Turkish dishes prepared with good ingredients. Busy at lunch with working Istanbullus from the surrounding neighbourhood. The fried liver, the stuffed vine leaves and the fish are consistently good. Affordable and reliable.</p>
+      <div class="resto-specialty">Daily lokanta menu, Turkish classics</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Karakoy+Gulluoglu+baklava+Istanbul" target="_blank">
+      <div class="resto-name">Karakoy Gulluoglu</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.7 (3,200+ reviews)</span></div>
+      <p class="resto-desc">The oldest and most respected baklava shop in Istanbul, originating from Gaziantep and running in Karakoy since 1949. The pistachio baklava is the standard by which all other Istanbul baklava is measured. Buy by weight at the counter and eat it within the hour. Do not put it in a bag for later.</p>
+      <div class="resto-specialty">Pistachio baklava, Gaziantep pastries</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Hamdi+Restaurant+Eminonu+Istanbul" target="_blank">
+      <div class="resto-name">Hamdi Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,400+ reviews)</span></div>
+      <p class="resto-desc">A Southeast Anatolian kebab restaurant in Eminonu near the Spice Bazaar, well regarded for its lamb kebabs and lahmacun. The terrace on the upper floor has a view of the Golden Horn. One of the more reliable places in central Istanbul for well-executed kebab in a setting where the food is the focus rather than the decor.</p>
+      <div class="resto-specialty">Lamb kebab, Lahmacun, Southeastern dishes</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Balikci+Sabahattin+Istanbul+Sultanahmet" target="_blank">
+      <div class="resto-name">Balikci Sabahattin</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (850+ reviews)</span></div>
+      <p class="resto-desc">A fish meyhane in a restored wooden house in Sultanahmet, running since 1927. The meze selection is broad and well prepared. The fish changes daily. Book in advance. One of the few genuinely good fish restaurants in the Sultanahmet area, which tends toward the tourist-facing end of the spectrum.</p>
+      <div class="resto-specialty">Seasonal fish, Cold and hot mezes, Raki</div>
+    </a>
+  </div>
+</section>
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">On the Ground</span>
+    <h2 class="section-title reveal">Activities and Experiences</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Morning in Sultanahmet</div>
+        <p class="activity-desc">The historic peninsula before 9am operates on a different scale. Start at Hagia Sophia when it opens. Walk to the Blue Mosque. Walk down through the Hippodrome square where the Byzantine chariot racing track still marks the ground. Descend to the Basilica Cistern. By 11am the tour groups will have arrived in force. Four monuments, no crowds, two to three hours. This sequencing is the only way to experience central Istanbul without spending most of your time waiting.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Bosphorus Ferry Crossing</div>
+        <p class="activity-desc">The public ferry from Eminonu or Karakoy to Kadikoy on the Asian side runs frequently and costs very little. The 20-minute crossing gives an unobstructed view of the Sultanahmet skyline, the Topkapi promontory, the Galata Tower and the strait itself. Buy a glass of tea on board. The ferry back at dusk, looking at the minarets lit against the sky, is one of those views that is genuinely difficult to improve upon. No tour boat required.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Full Evening in Beyoglu</div>
+        <p class="activity-desc">Istiklal Avenue and the streets running off it contain the meyhane tradition, the live music venues, the fish restaurants and the patisseries that make up a proper Istanbul evening. Start in Karakoy for baklava and coffee. Walk up to Galata Tower. Continue to Istiklal and into the side streets of Cihangir. Eat at a meyhane no earlier than 8pm. The evenings here run late by Turkish standards, and the correct pace is slow. This is not a neighbourhood to rush through.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-black" id="nearby">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">Further Afield</span>
+    <h2 class="section-title reveal">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid reveal">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1510051831-32c90e93ea39?w=900');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">Ferry from Kabatas, about 1 to 2 hours</div>
+        <div class="daytrip-name">Princes Islands</div>
+        <p class="daytrip-desc">Nine islands in the Sea of Marmara, of which four are inhabited. Cars are prohibited and transport is by horse-drawn carriage or bicycle. Buyukada is the largest, with Ottoman mansions, pine forests, beach clubs and good fish restaurants. The ferry from Kabatas runs several times daily. In summer the islands are busy at weekends. Arriving on a weekday morning and leaving by mid-afternoon avoids the worst of the crowds returning to Istanbul in the evening.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=900');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">160 km South, ferry from Yenikapi plus road, about 3 hours</div>
+        <div class="daytrip-name">Bursa and Uludag</div>
+        <p class="daytrip-desc">The first Ottoman capital sits below the Uludag massif with its covered bazaar, the Green Mosque and Tomb from 1421, and the original Iskender kebab tradition. The fast ferry from Yenikapi to Mudanya takes about 75 minutes and is significantly more pleasant than the highway. In winter the cable car up Uludag to the ski station runs from the city centre. A one-night stay is better than a rushed day trip if time allows.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allowfullscreen title="Show Me Turkiye video"></iframe>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy &middot; Cookies &middot; Sitemap</span>
+  </div>
+</footer>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closeVideo();}});
+  window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+  var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+  var modal=document.getElementById('videoModal');if(modal)modal.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+  var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Hagia Sophia',lat:41.0086,lng:28.9802,zoom:16},
+    {name:'Blue Mosque (Sultanahmet)',lat:41.0054,lng:28.9768,zoom:16},
+    {name:'Topkapi Palace',lat:41.0115,lng:28.9833,zoom:16},
+    {name:'Basilica Cistern',lat:41.0084,lng:28.9778,zoom:17},
+    {name:'Galata Tower',lat:41.0256,lng:28.9741,zoom:16},
+    {name:'Grand Bazaar',lat:41.0108,lng:28.9681,zoom:16}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([41.010,28.976],14);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var popupStyle=document.createElement('style');popupStyle.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(popupStyle);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps/dir/?api=1&destination='+loc.lat+','+loc.lng+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">Get Directions &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});
+    markers[idx].openPopup();
+  };
+});
+</script>
+</body>
+</html>
