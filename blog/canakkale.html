@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Çanakkale Travel Guide: How to Feel 1915 in the Gallipoli Peninsula | Show Me Türkiye</title>
+<meta name="description" content="Gallipoli battlefields, Seddülbahir, Chunuk Bair and Troy. Çanakkale is where Turkish history becomes physical.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>:root { --teal:#1a8a7d;--teal-hover:#23b5a4;--black:#0e1012;--dark:#151719;--dark-2:#1c1f22;--cream:#f5f0e6;--cream-2:#efe7d7;--brown:#c4a265;--brown-light:#d4b87e;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(0,0,0,0.08);--sans:'Poppins',sans-serif;--serif:'Playfair Display',serif;--body:'Lora',Georgia,serif;--display:'Montserrat',sans-serif; }
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--text);background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}img{max-width:100%;display:block}a{color:inherit}
+.reading-progress{position:fixed;top:0;left:0;height:3px;background:var(--brown);width:0%;z-index:1001;transition:width 0.1s linear}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:background 0.5s,backdrop-filter 0.5s,border-color 0.5s,padding 0.4s}
+.navbar.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding:16px 48px;border-bottom-color:rgba(255,255,255,0.07)}
+.navbar .logo img{height:38px;width:auto;object-fit:contain}
+.hamburger{display:flex;flex-direction:column;gap:6px;background:none;border:none;padding:8px;cursor:pointer;z-index:1101}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1),opacity 0.3s;transform-origin:center}
+.menu-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;animation:navFadeIn 0.3s ease}
+@keyframes navFadeIn{from{opacity:0}to{opacity:1}}.menu-overlay.open{display:flex}
+.nav-close{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;line-height:1;transition:opacity 0.2s,transform 0.2s}
+.nav-close:hover{opacity:1;transform:rotate(90deg)}
+.menu-overlay a{font-family:var(--sans);font-size:16px;font-weight:300;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.65);text-decoration:none;transition:color 0.3s}
+.menu-overlay a:hover,.menu-overlay a.active{color:#fff}
+.nav-lang{font-family:var(--sans);font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;transition:border-color 0.3s,color 0.3s}
+.nav-lang:hover{border-color:var(--brown);color:var(--brown-light)}
+.hero{position:relative;height:100vh;min-height:680px;max-height:920px;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.40) 0%,rgba(0,0,0,0.20) 40%,rgba(0,0,0,0.88) 100%)}
+.hero-inner{position:absolute;left:0;right:0;bottom:90px;padding:0 64px;max-width:1400px;margin:0 auto;z-index:2}
+.hero-eyebrow{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--brown-light);margin-bottom:26px;display:inline-flex;align-items:center;gap:16px}
+.hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--brown-light);display:inline-block}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,6.4vw,76px);font-weight:500;line-height:1.08;letter-spacing:-0.015em;max-width:1080px;margin-bottom:28px;text-wrap:balance}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--brown-light)}
+.hero-standfirst{font-family:var(--body);font-size:clamp(18px,1.5vw,22px);font-style:italic;line-height:1.6;color:rgba(255,255,255,0.88);max-width:720px;margin-bottom:44px}
+.hero-meta{display:flex;align-items:center;flex-wrap:wrap;gap:22px;font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.75)}
+.hero-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--brown-light)}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.55);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2}
+.scroll-cue span.line{width:1px;height:28px;background:rgba(255,255,255,0.35);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(0.3);opacity:0.3;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
+.chapter-index{padding:28px 48px;background:#fff;border-bottom:1px solid var(--border);display:flex;justify-content:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chapter-index-inner{display:flex;gap:44px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;white-space:nowrap}
+.chapter-index a{color:rgba(44,42,38,0.45);text-decoration:none;display:flex;gap:10px;align-items:baseline;padding-bottom:6px;border-bottom:1px solid transparent;transition:color 0.3s,border-color 0.3s}
+.chapter-index a:hover,.chapter-index a.active{color:var(--brown);border-bottom-color:var(--brown)}
+.chapter-index a .n{font-size:9px;opacity:0.6}
+.opening{max-width:740px;margin:0 auto;padding:110px 40px 56px}
+.opening .lead{font-family:var(--serif);font-size:clamp(24px,2.5vw,30px);font-weight:400;line-height:1.45;color:var(--black);margin-bottom:44px;letter-spacing:-0.005em;text-wrap:pretty}
+.opening p{font-family:var(--body);font-size:19px;line-height:1.85;color:var(--text);margin-bottom:26px}
+.chapter{padding:120px 40px}.chapter.dark{background:var(--black);color:#fff}.chapter.cream{background:var(--cream)}
+.chapter-inner{max-width:760px;margin:0 auto}
+.chapter-head{display:flex;align-items:baseline;gap:22px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid rgba(196,162,101,0.35)}
+.chapter.dark .chapter-head{border-bottom-color:rgba(196,162,101,0.3)}
+.chapter-num{font-family:var(--display);font-size:72px;font-weight:200;color:var(--brown);line-height:1;letter-spacing:-0.02em;flex-shrink:0}
+.chapter-head-text .kicker{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--brown);margin-bottom:10px}
+.chapter.dark .chapter-head-text .kicker{color:var(--brown-light)}
+.chapter-head-text h2{font-family:var(--serif);font-size:clamp(36px,4.2vw,52px);font-weight:500;line-height:1.1;letter-spacing:-0.015em;color:var(--black)}
+.chapter.dark .chapter-head-text h2{color:#fff}
+.chapter-head-text .sub{font-family:var(--body);font-size:18px;font-style:italic;color:var(--text-muted);margin-top:10px}
+.chapter.dark .chapter-head-text .sub{color:rgba(255,255,255,0.6)}
+.chapter p{font-family:var(--body);font-size:19px;line-height:1.9;margin-bottom:26px;color:var(--text)}
+.chapter.dark p{color:rgba(255,255,255,0.9)}
+.chapter p strong{font-weight:500;color:var(--brown)}
+.chapter.dark p strong{color:var(--brown-light)}
+.chapter p em{font-style:italic}
+.pull-quote{margin:60px -40px;padding:56px 48px;background:#fff;position:relative}
+.chapter.dark .pull-quote{background:var(--dark-2)}
+.chapter:not(.dark):not(.cream) .pull-quote{background:var(--cream)}
+.pull-quote::before{content:'\201C';position:absolute;top:10px;left:28px;font-family:var(--serif);font-size:110px;line-height:1;color:var(--brown);opacity:0.3}
+.pull-quote p{font-family:var(--serif);font-size:clamp(24px,2.8vw,32px);font-weight:400;font-style:italic;line-height:1.35;color:var(--black);margin:0;letter-spacing:-0.01em;text-wrap:balance}
+.chapter.dark .pull-quote p{color:#fff}
+.traveler-note{margin:56px 0;padding:32px 36px;background:var(--black);color:#fff;position:relative}
+.chapter.dark .traveler-note{background:var(--dark-2);border-left:2px solid var(--brown-light)}
+.traveler-note .label{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown-light);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.traveler-note p{font-family:var(--body);font-size:17px;line-height:1.8;font-style:italic;color:rgba(255,255,255,0.9);margin:0}
+.stats{max-width:1100px;margin:72px auto 0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1)}
+.chapter:not(.dark) .stats{border-color:var(--border)}
+.stats .stat{padding:34px 20px;text-align:center;border-left:1px solid rgba(255,255,255,0.1)}
+.chapter:not(.dark) .stats .stat{border-color:var(--border)}
+.stats .stat:first-child{border-left:none}
+.stats .stat .num{font-family:var(--serif);font-size:clamp(32px,3.5vw,44px);font-weight:400;color:var(--brown-light);letter-spacing:-0.02em;margin-bottom:10px}
+.chapter:not(.dark) .stats .stat .num{color:var(--brown)}
+.stats .stat .lbl{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+.chapter:not(.dark) .stats .stat .lbl{color:var(--text-muted)}
+.cinematic-break{margin:0;position:relative}
+.cinematic-break .bg{height:clamp(420px,55vh,640px);background-size:cover;background-position:center}
+.cinematic-break figcaption{position:absolute;bottom:32px;left:48px;padding:10px 16px 10px 14px;background:rgba(14,16,18,0.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-family:var(--sans);font-size:11px;font-style:italic;color:rgba(255,255,255,0.88);letter-spacing:0.04em;border-left:2px solid var(--brown-light);max-width:min(480px,60vw)}
+.author-share{padding:80px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#fff}
+.author-share-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.author-avatar{width:82px;height:82px;border-radius:50%;background:linear-gradient(135deg,var(--brown),var(--brown-light));display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:30px;color:#fff;font-weight:500;flex-shrink:0}
+.author-info{flex:1;min-width:240px}
+.author-info .label{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:8px}
+.author-info .name{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--black);margin-bottom:6px}
+.author-info .bio{font-family:var(--sans);font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.65}
+.share{display:flex;gap:10px}
+.share a{width:44px;height:44px;border:1px solid rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0.08em;text-decoration:none;transition:all 0.3s ease}
+.share a:hover{background:var(--black);color:var(--brown-light);border-color:var(--black);transform:translateY(-2px)}
+.newsletter{background:var(--cream);padding:100px 40px;text-align:center}
+.newsletter-inner{max-width:640px;margin:0 auto}
+.newsletter .eyebrow{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--brown);margin-bottom:22px;display:inline-flex;align-items:center;gap:16px}
+.newsletter .eyebrow::before,.newsletter .eyebrow::after{content:'';width:34px;height:1px;background:var(--brown)}
+.newsletter h2{font-family:var(--serif);font-size:clamp(32px,4vw,44px);font-weight:500;letter-spacing:-0.015em;line-height:1.15;color:var(--black);margin-bottom:18px}
+.newsletter p{font-family:var(--body);font-size:17px;font-style:italic;line-height:1.65;color:var(--text-muted);margin-bottom:36px}
+.newsletter-form{display:flex;gap:0;max-width:480px;margin:0 auto;background:#fff;border:1px solid rgba(0,0,0,0.08)}
+.newsletter-form input{flex:1;padding:18px 22px;border:none;background:transparent;font-family:var(--body);font-size:15px;color:var(--text);outline:none}
+.newsletter-form input::placeholder{color:var(--text-muted);font-style:italic}
+.newsletter-form button{padding:18px 28px;background:var(--black);color:#fff;border:none;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;transition:background 0.3s ease}
+.newsletter-form button:hover{background:var(--brown)}
+.newsletter .privacy{font-family:var(--sans);font-size:11px;color:var(--text-muted);margin-top:20px}
+.related{background:var(--black);color:#fff;padding:120px 40px}
+.related-inner{max-width:1400px;margin:0 auto}
+.related-head{text-align:center;margin-bottom:72px}
+.related-head .eyebrow{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--brown-light);margin-bottom:18px;display:inline-flex;align-items:center;gap:16px}
+.related-head .eyebrow::before,.related-head .eyebrow::after{content:'';width:40px;height:1px;background:var(--brown-light)}
+.related-head h2{font-family:var(--serif);font-size:clamp(32px,4vw,48px);font-weight:500;letter-spacing:-0.015em;color:#fff}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.related-card{display:block;text-decoration:none;color:inherit;cursor:pointer;position:relative;overflow:hidden}
+.related-card .img{height:380px;background-size:cover;background-position:center;position:relative;transition:transform 0.6s ease}
+.related-card:hover .img{transform:scale(1.04)}
+.related-card .img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(14,16,18,0.82))}
+.related-card .n{position:absolute;top:22px;left:22px;font-family:var(--display);font-size:36px;font-weight:200;color:var(--brown-light);line-height:1;z-index:2}
+.related-card .meta{position:absolute;bottom:22px;left:22px;right:22px;z-index:2}
+.related-card .cat{font-family:var(--sans);font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:10px}
+.related-card h3{font-family:var(--serif);font-size:22px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:10px}
+.related-card .read{font-family:var(--sans);font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.55)}
+footer.site-footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-grid{max-width:1200px;margin:0 auto 48px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-brand img{height:44px;margin-bottom:22px}
+.footer-brand p{font-family:var(--sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.42);line-height:1.7;max-width:260px}
+.footer-col h4{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:22px}
+.footer-col a{display:block;font-family:var(--sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.6);text-decoration:none;margin-bottom:12px;transition:color 0.3s}
+.footer-col a:hover{color:var(--brown-light)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--sans);font-size:11px;font-weight:300;color:rgba(255,255,255,0.3)}
+@media(max-width:900px){.navbar{padding:16px 24px}.navbar.scrolled{padding:12px 24px}.hero-inner{padding:0 28px;bottom:70px}.opening,.chapter{padding-left:24px;padding-right:24px}.opening{padding-top:72px;padding-bottom:32px}.chapter{padding-top:80px;padding-bottom:80px}.pull-quote{margin:48px -24px;padding:40px 28px}.chapter-head{flex-direction:column;align-items:flex-start;gap:14px}.chapter-num{font-size:56px}.stats{grid-template-columns:repeat(2,1fr)}.related-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:span 2}.author-share-inner{flex-direction:column;text-align:center}.newsletter-form{flex-direction:column;background:transparent;border:none}.newsletter-form input{background:#fff;border:1px solid rgba(0,0,0,0.08);margin-bottom:10px}.newsletter-form button{width:100%}}</style>
+</head>
+<body>
+<div class="reading-progress" id="progress"></div>
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a><a href="../explore.html">Explore Türkiye</a><a href="../blog.html" class="active">Blog</a><a href="../projects.html">Our Projects</a><a href="../about.html">About Us</a><a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div><section class="hero"><div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=2400&q=90');"></div><div class="hero-inner"><div class="hero-eyebrow">Historical Guide</div><h1>You Know What Happened Here. <em>Now Go Feel It.</em></h1><p class="hero-standfirst">1915 is a date in a textbook until you stand on the Gallipoli peninsula and read the name of an eighteen-year-old on a stone that has been there since before your parents were born.</p><div class="hero-meta"><span>By Halil Bekar</span><span class="dot"></span><span>April 2026</span><span class="dot"></span><span id="readingTime">9 min read</span></div></div><div class="scroll-cue">Scroll<span class="line"></span></div></section><nav class="chapter-index" id="chapterIndex"><div class="chapter-index-inner"><a href="#ch-01"><span class="n">01</span>ANZAC Cove</a><a href="#ch-02"><span class="n">02</span>Seddülbahir</a><a href="#ch-03"><span class="n">03</span>Chunuk Bair</a><a href="#ch-04"><span class="n">04</span>Troy</a><a href="#ch-05"><span class="n">05</span>When to Go</a></div></nav><article class="opening"><p class="lead">History becomes physical at Çanakkale in a way that almost nowhere else manages. The peninsula holds its past without fuss, without theme-park management, without apology.</p><p>The battlefields of Gallipoli are not simulated. The terrain where the campaigns of 1915 were fought is still the terrain: the same ridgelines, the same ravines, the same coves. Walking across it, the tactical decisions of the commanders read as spatial facts. You can see what they saw. You can understand, in a way that no book conveys, why the calculations were so catastrophic.</p></article><section class="chapter dark" id="ch-01"><div class="chapter-inner"><div class="chapter-head"><span class="chapter-num">01</span><div class="chapter-head-text"><div class="kicker">Gallipoli Peninsula</div><h2>ANZAC Cove</h2><div class="sub">The shore that changed two nations</div></div></div><p>ANZAC Cove is small. That is the first and most important fact. The beach where the Australian and New Zealand forces landed on April 25, 1915 is shorter than a standard city block and enclosed by cliffs that rise immediately from the shore on both sides. Looking at it, you understand the landing differently than any map or account allows. The terrain itself explains the failure.</p><p>The cemeteries at Arıburnu are maintained to a standard that reflects the weight placed on them by Australia, New Zealand and Turkey. The inscriptions are personal rather than ceremonial. The youngest recorded casualty at ANZAC was fourteen years old. His name is on a stone at the edge of the ridge path.</p><blockquote class="pull-quote"><p>The terrain at Gallipoli is not reconstructed. The ridgelines where the campaigns were fought are the same ridgelines. You can see what the commanders saw. That is why the calculations read as tragedies rather than errors.</p></blockquote><div class="traveler-note"><div class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Photographer's Note</div><p>ANZAC Cove at dawn before any visitors arrive. The cove faces east and catches first light across the water. The combination of the small shore, the cliff profiles and the Strait beyond is the most photographically honest version of what happened here.</p></div></div><div class="stats"><div class="stat"><div class="num">1915</div><div class="lbl">Year of Campaign</div></div><div class="stat"><div class="num">500,000</div><div class="lbl">Total Casualties</div></div><div class="stat"><div class="num">8</div><div class="lbl">Months of Campaign</div></div><div class="stat"><div class="num">250,000</div><div class="lbl">Casualties Combined</div></div></div></section><figure class="cinematic-break"><div class="bg" style="background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=2400&q=90');"></div><figcaption>Chunuk Bair — the highest point captured by ANZAC forces, briefly held in August 1915</figcaption></figure><section class="chapter cream" id="ch-02"><div class="chapter-inner"><div class="chapter-head"><span class="chapter-num">02</span><div class="chapter-head-text"><div class="kicker">Turkish Memorial</div><h2>Seddülbahir</h2><div class="sub">The quieter side of the peninsula</div></div></div><p>Seddülbahir is the southern tip of the Gallipoli peninsula, where the Turkish memorial sites are concentrated. It receives fewer visitors than the ANZAC sector and consequently carries a different atmosphere: quieter, more contemplative, less organised around the tourism infrastructure that has grown around the northern sites.</p><p>The Çanakkale Martyrs' Memorial here is the largest Turkish military monument on the peninsula. The scale of it is necessary given what it is representing. Standing beneath it and then walking to the cliff edge to look at the Strait, you have both the land and water dimensions of the campaign visible simultaneously.</p><div class="traveler-note"><div class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Traveler's Note</div><p>The Kabatepe Museum near the ANZAC sector is small and often skipped in favour of the outdoor memorials. It contains battlefield-recovered objects — bullets, mess tins, personal effects — displayed with minimal curatorial intervention. It is the museum that most directly conveys the experience of the soldiers rather than the strategy of the commanders.</p></div></div></section><section class="chapter" id="ch-03"><div class="chapter-inner"><div class="chapter-head"><span class="chapter-num">03</span><div class="chapter-head-text"><div class="kicker">Highest Point</div><h2>Chunuk Bair</h2><div class="sub">Where the peninsula's geography is fully visible</div></div></div><p>Chunuk Bair is the highest point that ANZAC forces reached, briefly captured in August 1915 and held for two days before being retaken. The New Zealand memorial here marks the spot with a simplicity that suits the place. From the summit you can see both the Aegean to the west and the Sea of Marmara to the east, which is the fact that made this ridge worth the cost of attempting it.</p><p>The geography from Chunuk Bair makes the entire campaign legible in a way that ground-level visits cannot provide. The distances between objectives, the narrowness of the peninsula, the visibility from each ridge to the next. A single hour here produces an understanding that multiple days of reading does not.</p></div></section><section class="chapter cream" id="ch-04"><div class="chapter-inner"><div class="chapter-head"><span class="chapter-num">04</span><div class="chapter-head-text"><div class="kicker">Ancient City</div><h2>Troy</h2><div class="sub">30 kilometres from the city, 3,000 years from the war</div></div></div><p>The archaeological site of Troy is 30 kilometres south of Çanakkale city. The site itself is smaller than expectation calibrated on Homer: a series of layered settlements excavated over 150 years, with the most impressive features being the defensive walls of Troy VI and the entry ramp of the lower town. The adjacent museum, opened in 2019, is the best argument for visiting. It contextualises the site properly and contains the ceramic and decorative evidence that the outdoor ruins cannot carry alone.</p><div class="traveler-note"><div class="label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Traveler's Note</div><p>Troy is best visited in the late afternoon when tour buses have returned to the city. The site empties reliably after 4pm in summer. The light on the defensive walls at that hour, with the Troad plain visible in the distance, is the image that earns the visit.</p></div></div></section><section class="chapter dark" id="ch-05"><div class="chapter-inner"><div class="chapter-head"><span class="chapter-num">05</span><div class="chapter-head-text"><div class="kicker">Planning</div><h2>When to Visit Çanakkale</h2><div class="sub">ANZAC Day and the rest of the year</div></div></div><p>April 25th ANZAC Day brings the dawn service at ANZAC Cove and draws large numbers from Australia, New Zealand and Turkey. The service is genuine and moving but the logistical demands require advance planning for transport and accommodation. The days immediately surrounding April 25 are the most crowded the peninsula sees.</p><p>Early April and October are ideal for the peninsula outside the commemorations. The sites are accessible, the crowds are manageable, and the Strait light in autumn has a particular quality that suits photography of both the battlefields and the city waterfront.</p></div></section><section class="related"><div class="related-inner"><div class="related-head"><div class="eyebrow">Continue Reading</div><h2>More stories from Türkiye</h2></div><div class="related-grid"><a href="./trabzon.html" class="related-card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80');"><span class="n">02</span><div class="meta"><div class="cat">Black Sea</div><h3>Trabzon: Why First-Timers Always Come Back</h3><div class="read">9 min read</div></div></div></a><a href="./antalya.html" class="related-card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1588776814546-ec7e1fe6f125?w=1200&q=80');"><span class="n">03</span><div class="meta"><div class="cat">Mediterranean</div><h3>Antalya Is Not a Resort Town</h3><div class="read">8 min read</div></div></div></a><a href="./kapadokya.html" class="related-card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1527838832700-5059252407fa?w=1200&q=80');"><span class="n">04</span><div class="meta"><div class="cat">Landscape</div><h3>Cappadocia Beyond the Balloon Photo</h3><div class="read">10 min read</div></div></div></a></div></div></section><section class="author-share"><div class="author-share-inner">
+  <div class="author-avatar" style="font-size:13px;letter-spacing:0.02em;">SMT</div>
+  <div class="author-info"><div class="label">Written by</div><div class="name">Show Me Türkiye Team</div><div class="bio">A collective of cinematographers, travel storytellers and local experts dedicated to showing the world what Türkiye actually looks like.</div></div>
+  <div class="share"><a href="#" data-share="twitter">TW</a><a href="#" data-share="facebook">FB</a><a href="#" data-share="linkedin">IN</a><a href="#" data-share="copy">URL</a></div>
+</div></section>
+<section class="newsletter"><div class="newsletter-inner">
+  <div class="eyebrow">Stay in touch</div><h2>Dispatches from T&uuml;rkiye, <em>once a month</em></h2>
+  <p>Long-form city guides, underreported regions, and the occasional recipe.</p>
+  <form class="newsletter-form" onsubmit="event.preventDefault();handleNewsletter(this);"><input type="email" placeholder="your@email.com" required><button type="submit">Subscribe</button></form>
+  <div class="privacy">We never share your email. Unsubscribe anytime.</div>
+</div></section>
+<footer class="site-footer"><div class="footer-grid">
+  <div class="footer-brand"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me T&uuml;rkiye"><p>Discover the beauty of T&uuml;rkiye through cinematic storytelling.</p></div>
+  <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities &amp; Destinations</a><a href="../blog.html">Travel Blog</a><a href="../projects.html">Our Projects</a><a href="../about.html">About Us</a></div>
+  <div class="footer-col"><h4>Connect</h4><a href="../contact.html">Contact Us</a><a href="https://instagram.com/showmeturkiye" target="_blank">Instagram</a><a href="https://youtube.com/@showmeturkiye" target="_blank">YouTube</a></div>
+  <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+</div><div class="footer-bottom"><span>&copy; 2026 Show Me T&uuml;rkiye. All rights reserved.</span></div></footer>
+<script>
+(function(){
+var POST={title:"Çanakkale: You Know What Happened. Now Go Feel It.",author:"Halil Bekar",url:location.href};
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+var pr=document.getElementById('progress');
+function up(){var h=document.documentElement;pr.style.width=(h.scrollHeight-h.clientHeight>0?(h.scrollTop/(h.scrollHeight-h.clientHeight))*100:0)+'%'}
+window.addEventListener('scroll',up,{passive:true});up();
+var hm=document.getElementById('hamburger'),mo=document.getElementById('menuOverlay'),nc=document.getElementById('navClose');
+function on(){mo.classList.add('open');mo.setAttribute('aria-hidden','false');hm.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'}
+function off(){mo.classList.remove('open');mo.setAttribute('aria-hidden','true');hm.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+hm.addEventListener('click',on);nc.addEventListener('click',off);
+mo.querySelectorAll('a').forEach(function(a){a.addEventListener('click',off)});
+mo.addEventListener('click',function(e){if(e.target===mo)off()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')off()});
+var cl=document.querySelectorAll('.chapter-index a'),ch=document.querySelectorAll('[id^="ch-"]');
+function ac(){var y=window.scrollY+window.innerHeight*0.35,id=null;ch.forEach(function(c){if(c.offsetTop<=y)id=c.id});cl.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id)})}
+window.addEventListener('scroll',ac,{passive:true});ac();
+(function(){var n=0;document.querySelectorAll('.opening p,.chapter p,.pull-quote p,.traveler-note p').forEach(function(p){n+=p.textContent.trim().split(/\s+/).length});var el=document.getElementById('readingTime');if(el)el.textContent=Math.max(1,Math.round(n/220))+' min read'})();
+document.querySelectorAll('[data-share]').forEach(function(btn){btn.addEventListener('click',function(e){e.preventDefault();var k=btn.dataset.share,u=encodeURIComponent(POST.url),t=encodeURIComponent(POST.title),h=null;if(k==='twitter')h='https://twitter.com/intent/tweet?text='+t+'&url='+u;else if(k==='facebook')h='https://www.facebook.com/sharer/sharer.php?u='+u;else if(k==='linkedin')h='https://www.linkedin.com/sharing/share-offsite/?url='+u;else if(k==='copy'){navigator.clipboard&&navigator.clipboard.writeText(POST.url).then(function(){var o=btn.textContent;btn.textContent='✓';setTimeout(function(){btn.textContent=o},1400)});return}if(h)window.open(h,'_blank','width=600,height=520,noopener')})});
+function handleNewsletter(form){var btn=form.querySelector('button'),orig=btn.textContent;btn.textContent='✓ Subscribed';btn.style.background='var(--brown)';form.querySelector('input').value='';setTimeout(function(){btn.textContent=orig;btn.style.background=''},2800)}
+})();
+</script>
+</body>
+</html>
