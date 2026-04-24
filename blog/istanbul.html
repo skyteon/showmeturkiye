@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Istanbul: Where East Meets West Between Two Continents | Show Me Türkiye</title>
+<meta name="description" content="Discover Istanbul's iconic landmarks from Hagia Sophia to the Bosphorus, where 16 million people live between Europe and Asia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* ================================================
+   TEMPLATE CONFIG — change these per-post
+   ================================================
+   All other blog posts copy this file and swap the
+   POST_CONFIG script tag + chapter sections below.
+   ================================================ */
+
+:root {
+  /* Brand */
+  --teal: #1a8a7d;
+  --teal-hover: #23b5a4;
+  --black: #0e1012;
+  --dark: #151719;
+  --dark-2: #1c1f22;
+  --cream: #f5f0e6;
+  --cream-2: #efe7d7;
+  --brown: #c4a265;
+  --brown-light: #d4b87e;
+  --text: #2c2a26;
+  --text-muted: #7a756c;
+  --border: rgba(0,0,0,0.08);
+
+  /* Type */
+  --sans: 'Poppins', sans-serif;
+  --serif: 'Playfair Display', serif;
+  --body: 'Lora', Georgia, serif;
+  --display: 'Montserrat', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  color: var(--text);
+  background: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+/* ================================================
+   READING PROGRESS BAR (top of viewport)
+   ================================================ */
+.reading-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: var(--brown);
+  width: 0%;
+  z-index: 1001;
+  transition: width 0.1s linear;
+}
+
+/* ================================================
+   NAVBAR — site-standard (logo left, hamburger right)
+   ================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  background: rgba(10,12,14,0);
+  backdrop-filter: blur(0);
+  border-bottom: 1px solid transparent;
+  transition: background 0.5s, backdrop-filter 0.5s, border-color 0.5s, padding 0.4s;
+}
+.navbar.scrolled {
+  background: rgba(10,12,14,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 16px 48px;
+  border-bottom-color: rgba(255,255,255,0.07);
+}
+.navbar .logo img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 1101;
+}
+.hamburger span {
+  width: 26px;
+  height: 2px;
+  background: #fff;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+  transform-origin: center;
+}
+
+/* ================================================
+   FULL-SCREEN OVERLAY MENU — site-standard
+   ================================================ */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,12,14,0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  z-index: 999;
+  animation: navFadeIn 0.3s ease;
+}
+@keyframes navFadeIn { from { opacity: 0; } to { opacity: 1; } }
+.menu-overlay.open { display: flex; }
+
+.nav-close {
+  position: absolute;
+  top: 28px;
+  right: 48px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.6;
+  line-height: 1;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.nav-close:hover { opacity: 1; transform: rotate(90deg); }
+
+.menu-overlay a {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.menu-overlay a:hover,
+.menu-overlay a.active { color: #fff; }
+
+.nav-lang {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 8px 20px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+.nav-lang:hover { border-color: var(--brown); color: var(--brown-light); }
+
+/* ================================================
+   HERO — cinematic
+   ================================================ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 680px;
+  max-height: 920px;
+  color: #fff;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.40) 0%,
+    rgba(0,0,0,0.20) 40%,
+    rgba(0,0,0,0.88) 100%);
+}
+.hero-inner {
+  position: absolute;
+  left: 0; right: 0; bottom: 90px;
+  padding: 0 64px;
+  max-width: 1400px;
+  margin: 0 auto;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--brown-light);
+  display: inline-block;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(44px, 6.4vw, 76px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  max-width: 1080px;
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brown-light);
+}
+.hero-standfirst {
+  font-family: var(--body);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.88);
+  max-width: 720px;
+  margin-bottom: 44px;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+}
+.hero-meta .dot {
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--brown-light);
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+.scroll-cue span.line {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,0.35);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.3); opacity: 0.3; transform-origin: top; }
+  50% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+}
+
+/* ================================================
+   CHAPTER INDEX STRIP (under hero)
+   ================================================ */
+.chapter-index {
+  padding: 28px 48px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.chapter-index-inner {
+  display: flex;
+  gap: 44px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.chapter-index a {
+  color: rgba(44,42,38,0.45);
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding-bottom: 6px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+.chapter-index a:hover,
+.chapter-index a.active {
+  color: var(--brown);
+  border-bottom-color: var(--brown);
+}
+.chapter-index a .n { font-size: 9px; opacity: 0.6; }
+
+/* ================================================
+   OPENING PROSE
+   ================================================ */
+.opening {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 110px 40px 56px;
+}
+.opening .lead {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.5vw, 30px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--black);
+  margin-bottom: 44px;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+.opening p {
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 26px;
+}
+
+/* ================================================
+   CHAPTERS
+   ================================================ */
+.chapter {
+  padding: 120px 40px;
+}
+.chapter.dark {
+  background: var(--black);
+  color: #fff;
+}
+.chapter.cream {
+  background: var(--cream);
+}
+.chapter-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.chapter-head {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(196,162,101,0.35);
+}
+.chapter.dark .chapter-head { border-bottom-color: rgba(196,162,101,0.3); }
+.chapter-num {
+  font-family: var(--display);
+  font-size: 72px;
+  font-weight: 200;
+  color: var(--brown);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.chapter-head-text .kicker {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 10px;
+}
+.chapter.dark .chapter-head-text .kicker { color: var(--brown-light); }
+.chapter-head-text h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.2vw, 52px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--black);
+}
+.chapter.dark .chapter-head-text h2 { color: #fff; }
+.chapter-head-text .sub {
+  font-family: var(--body);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+.chapter.dark .chapter-head-text .sub { color: rgba(255,255,255,0.6); }
+
+.chapter p {
+  font-family: var(--body);
+  font-size: 19px;
+  line-height: 1.9;
+  margin-bottom: 26px;
+  color: var(--text);
+}
+.chapter.dark p { color: rgba(255,255,255,0.9); }
+.chapter p strong {
+  font-weight: 500;
+  color: var(--brown);
+}
+.chapter.dark p strong { color: var(--brown-light); }
+.chapter p em { font-style: italic; }
+
+/* Pull quote */
+.pull-quote {
+  margin: 60px -40px;
+  padding: 56px 48px;
+  background: #fff;
+  position: relative;
+}
+.chapter.dark .pull-quote { background: var(--dark-2); }
+.chapter:not(.dark):not(.cream) .pull-quote { background: var(--cream); }
+.pull-quote::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  left: 28px;
+  font-family: var(--serif);
+  font-size: 110px;
+  line-height: 1;
+  color: var(--brown);
+  opacity: 0.3;
+}
+.pull-quote p {
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--black);
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.chapter.dark .pull-quote p { color: #fff; }
+
+/* Traveler's Note */
+.traveler-note {
+  margin: 56px 0;
+  padding: 32px 36px;
+  background: var(--black);
+  color: #fff;
+  position: relative;
+}
+.chapter.dark .traveler-note {
+  background: var(--dark-2);
+  border-left: 2px solid var(--brown-light);
+}
+.traveler-note .label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.traveler-note .label svg { display: block; }
+.traveler-note p {
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.8;
+  font-style: italic;
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+}
+
+/* Stats strip */
+.stats {
+  max-width: 1100px;
+  margin: 72px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.chapter:not(.dark) .stats {
+  border-color: var(--border);
+}
+.stats .stat {
+  padding: 34px 20px;
+  text-align: center;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+.chapter:not(.dark) .stats .stat { border-color: var(--border); }
+.stats .stat:first-child { border-left: none; }
+.stats .stat .num {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.5vw, 44px);
+  font-weight: 400;
+  color: var(--brown-light);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.chapter:not(.dark) .stats .stat .num { color: var(--brown); }
+.stats .stat .lbl {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.chapter:not(.dark) .stats .stat .lbl { color: var(--text-muted); }
+
+/* Full-bleed cinematic break */
+.cinematic-break {
+  margin: 0;
+  position: relative;
+}
+.cinematic-break .bg {
+  height: clamp(420px, 55vh, 640px);
+  background-size: cover;
+  background-position: center;
+}
+.cinematic-break figcaption {
+  position: absolute;
+  bottom: 32px;
+  left: 48px;
+  padding: 10px 16px 10px 14px;
+  background: rgba(14,16,18,0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.04em;
+  border-left: 2px solid var(--brown-light);
+  max-width: min(480px, 60vw);
+}
+
+/* ================================================
+   AUTHOR + SHARE
+   ================================================ */
+.author-share {
+  padding: 80px 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+.author-share-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.author-avatar {
+  width: 82px; height: 82px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brown), var(--brown-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 30px;
+  color: #fff;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.author-info { flex: 1; min-width: 240px; }
+.author-info .label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 8px;
+}
+.author-info .name {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--black);
+  margin-bottom: 6px;
+  letter-spacing: -0.005em;
+}
+.author-info .bio {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.share {
+  display: flex;
+  gap: 10px;
+}
+.share a {
+  width: 44px; height: 44px;
+  border: 1px solid rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.share a:hover {
+  background: var(--black);
+  color: var(--brown-light);
+  border-color: var(--black);
+  transform: translateY(-2px);
+}
+
+/* ================================================
+   NEWSLETTER
+   ================================================ */
+.newsletter {
+  background: var(--cream);
+  padding: 100px 40px;
+  text-align: center;
+}
+.newsletter-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.newsletter .eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.newsletter .eyebrow::before,
+.newsletter .eyebrow::after {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: var(--brown);
+}
+.newsletter h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--black);
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.newsletter p {
+  font-family: var(--body);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.newsletter-form {
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 18px 22px;
+  border: none;
+  background: transparent;
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+}
+.newsletter-form input::placeholder { color: var(--text-muted); font-style: italic; }
+.newsletter-form button {
+  padding: 18px 28px;
+  background: var(--black);
+  color: #fff;
+  border: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.newsletter-form button:hover { background: var(--brown); }
+.newsletter .privacy {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* ================================================
+   RELATED
+   ================================================ */
+.related {
+  background: var(--black);
+  color: #fff;
+  padding: 120px 40px;
+}
+.related-inner { max-width: 1400px; margin: 0 auto; }
+.related-head { text-align: center; margin-bottom: 72px; }
+.related-head .eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.related-head .eyebrow::before,
+.related-head .eyebrow::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--brown-light);
+}
+.related-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #fff;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.related-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.related-card .img {
+  height: 380px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 0.6s ease;
+}
+.related-card:hover .img { transform: scale(1.04); }
+.related-card .img::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(14,16,18,0.82));
+}
+.related-card .n {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 200;
+  color: var(--brown-light);
+  line-height: 1;
+  z-index: 2;
+}
+.related-card .meta {
+  position: absolute;
+  bottom: 22px; left: 22px; right: 22px;
+  z-index: 2;
+}
+.related-card .cat {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 10px;
+}
+.related-card h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+.related-card .read {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ================================================
+   FOOTER
+   ================================================ */
+footer.site-footer {
+  background: var(--black);
+  color: #fff;
+  padding: 80px 48px 36px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+}
+.footer-brand img {
+  height: 44px;
+  margin-bottom: 22px;
+}
+.footer-brand p {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.42);
+  line-height: 1.7;
+  max-width: 260px;
+}
+.footer-col h4 {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 22px;
+}
+.footer-col a {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--brown-light); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 900px) {
+  .navbar { padding: 16px 24px; }
+  .navbar.scrolled { padding: 12px 24px; }
+  .hero-inner { padding: 0 28px; bottom: 70px; }
+  .opening, .chapter { padding-left: 24px; padding-right: 24px; }
+  .opening { padding-top: 72px; padding-bottom: 32px; }
+  .navbar { padding: 18px 24px; }
+  .navbar.scrolled { padding: 14px 24px; }
+  .chapter { padding-top: 80px; padding-bottom: 80px; }
+  .pull-quote { margin: 48px -24px; padding: 40px 28px; }
+  .chapter-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .chapter-num { font-size: 56px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats .stat:nth-child(3) { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); }
+  .stats .stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.1); }
+  .chapter:not(.dark) .stats .stat:nth-child(3),
+  .chapter:not(.dark) .stats .stat:nth-child(4) { border-top-color: var(--border); }
+  .cinematic-break figcaption { left: 20px; bottom: 20px; font-size: 10px; }
+  .related-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: span 2; }
+  .author-share-inner { flex-direction: column; text-align: center; }
+  .author-info .label, .author-info .bio { text-align: center; }
+  .chapter-head-text h2 { font-size: 36px; }
+  .newsletter-form { flex-direction: column; background: transparent; border: none; }
+  .newsletter-form input { background: #fff; border: 1px solid rgba(0,0,0,0.08); margin-bottom: 10px; }
+  .newsletter-form button { width: 100%; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 520px) {
+  .navbar { padding: 18px 20px; }
+  .nav-close { right: 20px; top: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Reading progress bar -->
+<div class="reading-progress" id="progress"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <a href="../index.html" class="logo" aria-label="Show Me Türkiye home">
+    <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye">
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Full-screen overlay menu -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="nav-close" id="navClose" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html">Explore Türkiye</a>
+  <a href="../blog.html" class="active">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=2400&q=90');"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">City Guide</div>
+    <h1>Istanbul, Where East Meets West <em>Between Two Continents</em></h1>
+    <p class="hero-standfirst">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</p>
+    <div class="hero-meta">
+      <span>By Leyla Demir</span>
+      <span class="dot"></span>
+      <span>April 8, 2026</span>
+      <span class="dot"></span>
+      <span id="readingTime">8 min read</span>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll<span class="line"></span></div>
+</section>
+
+<!-- Chapter index -->
+<nav class="chapter-index" id="chapterIndex">
+  <div class="chapter-index-inner">
+    <a href="#ch-01" data-chapter="01"><span class="n">01</span>Hagia Sophia</a>
+    <a href="#ch-02" data-chapter="02"><span class="n">02</span>Blue Mosque</a>
+    <a href="#ch-03" data-chapter="03"><span class="n">03</span>Topkapi</a>
+    <a href="#ch-04" data-chapter="04"><span class="n">04</span>Basilica Cistern</a>
+    <a href="#ch-05" data-chapter="05"><span class="n">05</span>Grand Bazaar</a>
+    <a href="#ch-06" data-chapter="06"><span class="n">06</span>Bosphorus</a>
+  </div>
+</nav>
+
+<!-- Opening prose -->
+<article class="opening">
+  <p class="lead">Istanbul plants one foot in Europe and the other in Asia, and the city spends every day reminding you of that split.</p>
+  <p>Sixteen million people live here, which makes it bigger than most countries' capitals, and they've organized themselves around the Bosphorus Strait that cuts the city in half. One side gets the mosques and bazaars that tourists photograph, the other gets business districts and residential neighborhoods that actually house people, and both sides claim they're the real Istanbul.</p>
+</article>
+
+<!-- Chapter 01 — DARK -->
+<section class="chapter dark" id="ch-01">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">01</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Byzantine Legacy</div>
+        <h2>Hagia Sophia</h2>
+        <div class="sub">1,500 years of reinvention</div>
+      </div>
+    </div>
+    <p>The building that became Hagia Sophia went up in <strong>537 AD</strong> when Justinian decided Byzantium needed a church that would make everyone shut up about Rome. For 916 years it served as Orthodox cathedral and seat of Constantinople's patriarch, which meant every emperor got crowned here and every major theological argument played out under its dome.</p>
+    <p>Then 1453 happened. Mehmed II walked in after conquering the city, converted it to a mosque, and added four minarets to make the point stick. It stayed a mosque for 481 years until Atatürk turned it into a museum in 1935, trying to secularize a building that had spent 1,400 years being explicitly religious. That lasted until 2020, when it became a mosque again, which means you now need to observe prayer times and modest dress codes to see the Byzantine mosaics that were briefly easier to access.</p>
+    <p>The dome still dominates — 31 meters across, sitting 56 meters up, engineered in ways that made medieval architects nervous because they couldn't quite explain how it worked. The interior mixes Christian imagery with Islamic calligraphy in combinations that shouldn't work but do, mostly because both religions valued geometry and light in ways that translated across the conversion.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">537</div><div class="lbl">Year Built</div></div>
+    <div class="stat"><div class="num">31m</div><div class="lbl">Dome Diameter</div></div>
+    <div class="stat"><div class="num">56m</div><div class="lbl">Dome Height</div></div>
+    <div class="stat"><div class="num">1,489</div><div class="lbl">Years Standing</div></div>
+  </div>
+</section>
+
+<!-- Full-bleed break -->
+<figure class="cinematic-break">
+  <div class="bg" style="background-image: url('https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=2400&q=90');"></div>
+  <figcaption>The Blue Mosque at dawn — 20,000 İznik tiles line the interior</figcaption>
+</figure>
+
+<!-- Chapter 02 — CREAM -->
+<section class="chapter cream" id="ch-02">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">02</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Ottoman Answer</div>
+        <h2>The Blue Mosque</h2>
+        <div class="sub">Sultan Ahmed's architectural flex</div>
+      </div>
+    </div>
+    <p>Sultan Ahmed I looked at Hagia Sophia across the park and decided the Ottomans needed their own architectural flex, so between 1609 and 1616 he built what locals call <em>Sultanahmet Camii</em> but tourists know as the Blue Mosque. The name comes from 20,000 İznik tiles lining the interior in blues and whites, though you notice the six minarets first.</p>
+
+    <blockquote class="pull-quote">
+      <p>Six minarets — one more than most mosques get, which allegedly annoyed Mecca's mosque until Ahmed funded a seventh minaret there to smooth things over.</p>
+    </blockquote>
+
+    <p>The courtyard is the same size as the prayer hall, which is unusual. Four elephant-foot pillars hold up the main dome. The mihrab points toward Mecca. None of this sounds revolutionary until you're standing inside realizing how much light the architect Sedefkar Mehmed Agha managed to pump through 260 windows into a space that could easily feel like a cave.</p>
+
+    <div class="traveler-note" style="background: var(--black);">
+      <div class="label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Traveler's Note
+      </div>
+      <p>It's still an active mosque — five prayer times daily when tourists get kicked out. Come early morning or late afternoon for fewer crowds. Cover shoulders and knees. Women get scarves at the entrance if needed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 03 — WHITE -->
+<section class="chapter" id="ch-03">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">03</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Imperial Seat</div>
+        <h2>Topkapi Palace</h2>
+        <div class="sub">Four centuries of Ottoman power</div>
+      </div>
+    </div>
+    <p>Mehmed II built Topkapi Palace in 1459, and for the next 400 years it served as the Ottoman Empire's administrative center, royal residence, and occasional prison for princes who got too ambitious. The complex covers <strong>700,000 square meters</strong> overlooking where the Bosphorus meets the Golden Horn and Sea of Marmara — strategic placement that let sultans watch three bodies of water while deciding empire business.</p>
+    <p>The palace has four courtyards, each more restricted than the last. First courtyard was public — anyone could enter. Second courtyard held council meetings and treasury. Third courtyard was royal family only. Fourth courtyard was the sultan's private gardens and pavilions where he could escape court politics, though "escape" is relative when you're running an empire that stretched from Algeria to Iraq.</p>
+    <p>The Harem gets most tourist attention because Western imagination turns it into something it wasn't. It housed the sultan's family, mother, and consorts — basically the royal household — with strict protocols about who could access which sections. The Imperial Treasury displays what 400 years of taxation and conquest accumulate: emeralds the size of eggs, ceremonial swords nobody would actually fight with, and the 86-carat Spoonmaker's Diamond that supposedly got found in a garbage heap.</p>
+  </div>
+</section>
+
+<!-- Full-bleed break -->
+<figure class="cinematic-break">
+  <div class="bg" style="background-image: url('https://images.unsplash.com/photo-1589818115793-5c2f8e6cff40?w=2400&q=90');"></div>
+  <figcaption>336 marble columns hold up the ceiling of the Basilica Cistern — most recycled from older temples</figcaption>
+</figure>
+
+<!-- Chapter 04 — DARK -->
+<section class="chapter dark" id="ch-04">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">04</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Underground Byzantium</div>
+        <h2>Basilica Cistern</h2>
+        <div class="sub">A reservoir beneath the city</div>
+      </div>
+    </div>
+    <p>In <strong>532 AD</strong>, Emperor Justinian built a cistern under Constantinople that could hold 80,000 cubic meters of water — insurance against sieges when you couldn't trust your aqueducts to keep running. Three hundred thirty-six marble columns hold up the brick ceiling, most of them recycled from older temples because Byzantines were practical about their building materials.</p>
+
+    <blockquote class="pull-quote">
+      <p>Two Medusa head columns sit in the northwest corner — one sideways, one upside down — and nobody knows why.</p>
+    </blockquote>
+
+    <p>Best guess is the builders needed column bases that were the right height and didn't care about orientation. The cistern supplied water to the Great Palace and surrounding neighborhood until the Ottomans preferred other water systems. It got forgotten, locals used it as a garbage dump, some basement warehouses connected to it accidentally. Discovery happened in 1545 when scholars noticed people were pulling up water and fish through basement holes.</p>
+    <p>Now it's a tourist site with dramatic lighting and raised walkways. The water's about knee-deep, the columns create endless photo opportunities, and the whole thing feels like a movie set even though it's just municipal infrastructure from 1,500 years ago.</p>
+  </div>
+</section>
+
+<!-- Chapter 05 — CREAM -->
+<section class="chapter cream" id="ch-05">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">05</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Commerce &amp; Chaos</div>
+        <h2>Grand Bazaar</h2>
+        <div class="sub">61 covered streets, since 1461</div>
+      </div>
+    </div>
+    <p>The Grand Bazaar has been operating since 1461, making it one of the world's oldest covered markets. Sixty-one covered streets contain about 4,000 shops spread across 30,700 square meters. During peak season, 400,000 people come through daily, which means it's either atmospheric or overwhelming depending on your tolerance for crowds and aggressive sales techniques.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">1461</div><div class="lbl">Founded</div></div>
+    <div class="stat"><div class="num">61</div><div class="lbl">Covered Streets</div></div>
+    <div class="stat"><div class="num">4,000</div><div class="lbl">Shops</div></div>
+    <div class="stat"><div class="num">400K</div><div class="lbl">Daily Visitors</div></div>
+  </div>
+
+  <div class="chapter-inner" style="margin-top: 72px;">
+    <p>The original purpose was commerce — Mehmed II wanted a market near the new mosque and palace. Merchants organized by guild, so streets specialized: gold here, carpets there, leather somewhere else. That system mostly holds, though tourist shops have diluted the specialization. The Old Book Bazaar still clusters around Beyazıt Gate. Jewelry stays concentrated. Spice merchants occupy their traditional section, though the Egyptian Bazaar handles more spice volume now.</p>
+
+    <div class="traveler-note">
+      <div class="label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Traveler's Note
+      </div>
+      <p>Bargaining is expected — starting prices can be 2–3 times final. Shopkeepers speak enough languages to negotiate in whichever one you're most comfortable with. Quality varies wildly: proper Turkish ceramics exist alongside Chinese knockoffs. Research first if you're serious about carpets or jewelry; if you're browsing, the architecture alone justifies the visit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Full-bleed break -->
+<figure class="cinematic-break">
+  <div class="bg" style="background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=2400&q=90');"></div>
+  <figcaption>The Bosphorus Strait separates Europe from Asia — 700 meters at its narrowest point</figcaption>
+</figure>
+
+<!-- Chapter 06 — DARK -->
+<section class="chapter dark" id="ch-06">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num">06</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Defining Geography</div>
+        <h2>The Bosphorus</h2>
+        <div class="sub">31 kilometers between continents</div>
+      </div>
+    </div>
+    <p>The Bosphorus runs <strong>31 kilometers</strong> from the Black Sea to the Sea of Marmara, separating Europe and Asia while keeping Istanbul from being a normal city that exists on one continent. It's 700 meters wide at its narrowest point, which means you can stand in Europe and clearly see Asia, or take a 15-minute ferry between continents for the price of a bus ticket.</p>
+    <p>About 48,000 vessels transit the strait annually — oil tankers from Russia, cargo ships heading to Mediterranean ports, cruise ships treating it like a tourist attraction. Swimming is technically possible but highly inadvisable given the current and ship traffic. Locals treat it like any resident treats their city's defining feature: practically. Ferries run constantly. People commute across continents. The waterfront is where you go to sit and think.</p>
+
+    <blockquote class="pull-quote">
+      <p>Three bridges and a tunnel connect the continents, but none of them quite erase the psychological divide between European and Asian Istanbul.</p>
+    </blockquote>
+
+    <p>Bosphorus Bridge opened in 1973, Fatih Sultan Mehmet Bridge in 1988, and Yavuz Sultan Selim Bridge in 2016 further north. The Marmaray Tunnel runs trains beneath the water. These connections make intercontinental traffic flow but can't quite erase the feeling that every crossing is a small act of translation.</p>
+  </div>
+</section>
+
+<!-- When to visit (white, prose close) -->
+<section class="chapter" id="when-to-visit">
+  <div class="chapter-inner">
+    <div class="chapter-head">
+      <span class="chapter-num" style="font-size: 48px;">✦</span>
+      <div class="chapter-head-text">
+        <div class="kicker">Planning</div>
+        <h2>When to Visit</h2>
+        <div class="sub">Choosing your season</div>
+      </div>
+    </div>
+    <p>Spring (April–June) and autumn (September–November) offer the most comfortable weather and manageable crowds. Summer brings heat and peak tourist season — expect long lines at major sites and premium accommodation prices. Winter is quiet and cheap but cold and occasionally rainy, though the city's indoor attractions make it workable if you don't mind grey skies.</p>
+    <p>Ramadan shifts the rhythm — restaurants close during daylight hours, though tourist areas stay operational. The post-sunset iftar meals turn into citywide events if you know where to look. Major religious holidays (Eid) can shut down shops and museums while filling hotels with domestic tourists.</p>
+  </div>
+</section>
+
+<!-- Author + Share -->
+<section class="author-share">
+  <div class="author-share-inner">
+    <div class="author-avatar">LD</div>
+    <div class="author-info">
+      <div class="label">Written by</div>
+      <div class="name">Leyla Demir</div>
+      <div class="bio">Istanbul-based travel writer and architectural historian. Contributing editor at Show Me Türkiye since 2024.</div>
+    </div>
+    <div class="share" id="shareLinks">
+      <a href="#" data-share="twitter" aria-label="Share on Twitter">TW</a>
+      <a href="#" data-share="facebook" aria-label="Share on Facebook">FB</a>
+      <a href="#" data-share="linkedin" aria-label="Share on LinkedIn">IN</a>
+      <a href="#" data-share="copy" aria-label="Copy link" id="copyLink">URL</a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <div class="eyebrow">Stay in touch</div>
+    <h2>Dispatches from Türkiye, <em style="font-style:italic; font-weight:400;">once a month</em></h2>
+    <p>Long-form city guides, underreported regions, and the occasional recipe. No spam, no affiliate stuff.</p>
+    <form class="newsletter-form" id="newsletterForm" onsubmit="event.preventDefault(); handleNewsletter(this);">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="privacy">We'll never share your email. Unsubscribe anytime.</div>
+  </div>
+</section>
+
+<!-- Related -->
+<section class="related">
+  <div class="related-inner">
+    <div class="related-head">
+      <div class="eyebrow">Continue Reading</div>
+      <h2>More stories from Türkiye</h2>
+    </div>
+    <div class="related-grid">
+      <a href="./balikesir.html" class="related-card">
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=1200&q=80');">
+          <span class="n">02</span>
+          <div class="meta">
+            <div class="cat">Travel Guide</div>
+            <h3>Balıkesir: Top Things to Do and Must-Visit Places</h3>
+            <div class="read">6 min read</div>
+          </div>
+        </div>
+      </a>
+      <a href="./artvin.html" class="related-card">
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1589818115793-5c2f8e6cff40?w=1200&q=80');">
+          <span class="n">03</span>
+          <div class="meta">
+            <div class="cat">Hidden Gems</div>
+            <h3>Exploring Artvin: Unveiling the Best Places to Visit</h3>
+            <div class="read">9 min read</div>
+          </div>
+        </div>
+      </a>
+      <a href="./gaziantep.html" class="related-card">
+        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&q=80');">
+          <span class="n">04</span>
+          <div class="meta">
+            <div class="cat">Food &amp; Culinary</div>
+            <h3>A Culinary Journey Through the Streets of Gaziantep</h3>
+            <div class="read">7 min read</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye">
+      <p>Discover the beauty of Türkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities &amp; Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://youtube.com/@showmeturkiye" target="_blank" rel="noopener">YouTube</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Show Me Türkiye. All rights reserved.</span>
+    <span>Accessibility &amp; Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script>
+/* ==================================================
+   POST METADATA — for sharing + reading-time calc
+   ================================================== */
+const POST = {
+  title: "Istanbul: Where East Meets West Between Two Continents",
+  description: "Sixteen million people, two continents, fifteen hundred years of empire.",
+  author: "Leyla Demir",
+  url: location.href
+};
+
+/* Navbar: add shadow after scroll */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* Reading progress bar */
+const progress = document.getElementById('progress');
+function updateProgress() {
+  const h = document.documentElement;
+  const scrolled = h.scrollTop;
+  const height = h.scrollHeight - h.clientHeight;
+  const pct = height > 0 ? (scrolled / height) * 100 : 0;
+  progress.style.width = pct + '%';
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress);
+updateProgress();
+
+/* Hamburger / overlay menu — site-standard */
+const hamburger = document.getElementById('hamburger');
+const menuOverlay = document.getElementById('menuOverlay');
+const navClose = document.getElementById('navClose');
+
+function openNav() {
+  menuOverlay.classList.add('open');
+  menuOverlay.setAttribute('aria-hidden', 'false');
+  hamburger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  menuOverlay.classList.remove('open');
+  menuOverlay.setAttribute('aria-hidden', 'true');
+  hamburger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+hamburger.addEventListener('click', openNav);
+navClose.addEventListener('click', closeNav);
+document.querySelectorAll('.menu-overlay a').forEach(a => a.addEventListener('click', closeNav));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+/* Chapter index: active-state on scroll */
+const chapterLinks = document.querySelectorAll('.chapter-index a');
+const chapters = document.querySelectorAll('[id^="ch-"]');
+function updateActiveChapter() {
+  const y = window.scrollY + window.innerHeight * 0.35;
+  let currentId = null;
+  chapters.forEach(c => {
+    if (c.offsetTop <= y) currentId = c.id;
+  });
+  chapterLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', updateActiveChapter, { passive: true });
+updateActiveChapter();
+
+/* Estimate reading time from all <p> text */
+(function estimateReadingTime() {
+  const words = document.querySelectorAll('.opening p, .chapter p, .pull-quote p, .traveler-note p');
+  let count = 0;
+  words.forEach(p => { count += p.textContent.trim().split(/\s+/).length; });
+  const minutes = Math.max(1, Math.round(count / 220));
+  document.getElementById('readingTime').textContent = minutes + ' min read';
+})();
+
+/* Share buttons */
+document.querySelectorAll('[data-share]').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const kind = btn.dataset.share;
+    const url = encodeURIComponent(POST.url);
+    const text = encodeURIComponent(POST.title);
+    let href = null;
+    if (kind === 'twitter') href = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+    else if (kind === 'facebook') href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+    else if (kind === 'linkedin') href = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+    else if (kind === 'copy') {
+      navigator.clipboard?.writeText(POST.url).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(() => btn.textContent = orig, 1400);
+      });
+      return;
+    }
+    if (href) window.open(href, '_blank', 'width=600,height=520,noopener');
+  });
+});
+
+/* Newsletter (demo handler — replace with real endpoint) */
+function handleNewsletter(form) {
+  const input = form.querySelector('input[type="email"]');
+  const btn = form.querySelector('button');
+  const orig = btn.textContent;
+  btn.textContent = '✓ Subscribed';
+  btn.style.background = 'var(--brown)';
+  input.value = '';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2800);
+}
+</script>
+</body>
+</html>
