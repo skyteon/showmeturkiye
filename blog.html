@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Show Me Türkiye</title>
+<meta name="description" content="Inspiring travel stories about cities, cultures, and hidden corners of Türkiye.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0a0c0e;
+  --dark: #0f1214;
+  --teal: #1a8a7d;
+  --teal-light: #23b5a4;
+  --brown: #c4a265;
+  --brown-light: #d4b87e;
+  --cream: #f5f0e6;
+  --cream2: #ebe4d6;
+  --text: #2c2a26;
+  --text-muted: #7a756c;
+  --border: rgba(255,255,255,0.07);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Poppins',sans-serif; color:var(--text); background:var(--cream); overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+
+/* ── NAV ── */
+.site-nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:24px 48px;
+  background:rgba(10,12,14,0.92); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.site-nav a img { height:38px; width:auto; object-fit:contain; }
+.hamburger { display:flex; flex-direction:column; gap:6px; cursor:pointer; background:none; border:none; padding:8px; }
+.hamburger span { width:26px; height:2px; background:#fff; display:block; transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:center; }
+.hamburger.open span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+.nav-overlay { display:none; position:fixed; inset:0; background:rgba(10,12,14,0.98); backdrop-filter:blur(20px); flex-direction:column; align-items:center; justify-content:center; gap:28px; z-index:999; animation:navFadeIn 0.3s ease; }
+@keyframes navFadeIn { from{opacity:0;} to{opacity:1;} }
+.nav-overlay.open { display:flex; }
+.nav-overlay a { font-family:'Poppins',sans-serif; font-size:16px; font-weight:300; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.55); transition:color 0.3s; }
+.nav-overlay a:hover, .nav-overlay a.active { color:#fff; }
+.nav-overlay .nav-lang { font-family:'Poppins',sans-serif; font-size:11px; letter-spacing:0.18em; color:rgba(255,255,255,0.3); border:1px solid rgba(255,255,255,0.12); padding:8px 20px; margin-top:12px; cursor:pointer; transition:all 0.3s; }
+.nav-overlay .nav-lang:hover { border-color:#c4a265; color:#d4b87e; }
+.close-nav { position:absolute; top:28px; right:48px; background:none; border:none; color:#fff; font-size:36px; cursor:pointer; opacity:0.5; transition:opacity 0.2s, transform 0.2s; line-height:1; }
+.close-nav:hover { opacity:1; transform:rotate(90deg); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  min-height:44vh; background:var(--black);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:flex-end;
+  padding:120px 48px 72px;
+  position:relative; overflow:hidden; text-align:center;
+}
+.page-header::before {
+  content:''; position:absolute; inset:0;
+  background:url('https://img.showmeturkiye.com/Blog/istanbul.jpg') center/cover;
+  opacity:0.14; z-index:0;
+}
+.page-header::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(10,12,14,0.4) 0%, rgba(10,12,14,0.88) 100%);
+  z-index:1;
+}
+.page-header-content { position:relative; z-index:2; }
+.page-header-badge {
+  display:inline-block; font-family:'Poppins',sans-serif;
+  font-size:9px; font-weight:400; letter-spacing:0.3em; text-transform:uppercase;
+  color:var(--brown-light); border:1px solid rgba(196,162,101,0.3);
+  padding:7px 20px; margin-bottom:20px;
+  background:rgba(196,162,101,0.06);
+}
+.page-header h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,4vw,52px); font-weight:300;
+  letter-spacing:0.3em; text-transform:uppercase;
+  color:#fff; line-height:1.1; margin-bottom:14px;
+}
+.page-header p {
+  font-family:'Poppins',sans-serif; font-weight:300;
+  font-size:13px; color:rgba(255,255,255,0.5);
+  letter-spacing:0.06em;
+}
+
+/* ── BLOG GRID ── */
+.blog-section { padding:80px 48px 100px; background:var(--cream); }
+.blog-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:28px; max-width:1300px; margin:0 auto;
+}
+
+/* Featured first card spans 2 columns */
+.blog-card-featured {
+  grid-column: span 2;
+}
+.blog-card-featured .blog-card-img {
+  height: 340px !important;
+}
+
+.blog-card {
+  background:#fff; border:1px solid rgba(0,0,0,0.06);
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.blog-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(0,0,0,0.1); }
+.blog-card-img {
+  width:100%; height:220px;
+  overflow:hidden; position:relative;
+  background:var(--cream2);
+}
+.blog-card-img img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.6s ease;
+}
+.blog-card:hover .blog-card-img img { transform:scale(1.05); }
+.blog-card-body { padding:28px 24px; flex:1; display:flex; flex-direction:column; }
+.blog-card-category {
+  font-family:'Poppins',sans-serif; font-size:9px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--brown); margin-bottom:12px;
+}
+.blog-card-title {
+  font-family:'Playfair Display',serif; font-size:18px; font-weight:400;
+  color:var(--text); line-height:1.45; margin-bottom:10px; letter-spacing:0.01em;
+}
+.blog-card-featured .blog-card-title {
+  font-size:22px;
+}
+.blog-card-excerpt {
+  font-family:'Poppins',sans-serif; font-size:12px; font-weight:300;
+  color:var(--text-muted); line-height:1.75; flex:1; margin-bottom:20px;
+}
+.blog-card-link {
+  font-family:'Poppins',sans-serif; font-size:10px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--brown); display:inline-flex; align-items:center; gap:6px;
+  transition:gap 0.25s, color 0.25s;
+}
+.blog-card-link:hover { color:var(--brown-light); gap:10px; }
+
+/* ── FOOTER ── */
+footer { background:var(--black); color:#fff; padding:80px 48px 36px; }
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px; max-width:1200px; margin:0 auto 48px;
+}
+.footer-logo { height:44px; width:auto; margin-bottom:20px; }
+.footer-tagline { font-family:'Poppins',sans-serif; font-size:13px; font-weight:300; color:rgba(255,255,255,0.4); line-height:1.7; max-width:240px; }
+.footer-col h4 { font-family:'Poppins',sans-serif; font-size:9px; font-weight:500; letter-spacing:0.28em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px; }
+.footer-col a { display:block; font-family:'Poppins',sans-serif; font-size:13px; font-weight:300; color:rgba(255,255,255,0.55); margin-bottom:12px; transition:color 0.3s; }
+.footer-col a:hover { color:var(--brown-light); }
+.footer-social { display:flex; gap:12px; }
+.footer-social a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid rgba(255,255,255,0.12); font-size:11px; font-weight:600; color:rgba(255,255,255,0.5); transition:all 0.3s; margin-bottom:0; }
+.footer-social a:hover { border-color:var(--brown); color:var(--brown-light); }
+.footer-bottom { display:flex; justify-content:space-between; padding-top:28px; border-top:1px solid rgba(255,255,255,0.07); font-family:'Poppins',sans-serif; font-size:11px; font-weight:300; color:rgba(255,255,255,0.28); max-width:1200px; margin:0 auto; }
+
+@media(max-width:900px) {
+  .blog-grid { grid-template-columns:1fr 1fr; }
+  .blog-card-featured { grid-column:span 2; }
+}
+@media(max-width:640px) {
+  .site-nav { padding:20px 24px; }
+  .close-nav { right:24px; top:20px; }
+  .page-header { padding:100px 24px 56px; }
+  .blog-section { padding:60px 24px 80px; }
+  .blog-grid { grid-template-columns:1fr; }
+  .blog-card-featured { grid-column:span 1; }
+  .blog-card-featured .blog-card-img { height:220px !important; }
+  footer { padding:60px 24px 28px; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:36px; }
+  .footer-bottom { flex-direction:column; gap:8px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="explore.html">Explore Türkiye</a>
+  <a href="blog.html" class="active">Blog</a>
+  <a href="projects.html">Our Projects</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-content">
+    <div class="page-header-badge">Travel Stories</div>
+    <h1>Latest Posts</h1>
+    <p>Destinations, culture, and hidden corners of Türkiye</p>
+  </div>
+</div>
+
+<section class="blog-section">
+  <div class="blog-grid">
+
+    <!-- FEATURED — Istanbul -->
+    <a href="blog/istanbul.html" class="blog-card blog-card-featured">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/istanbul.jpg" alt="Istanbul">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">City Guide</div>
+        <div class="blog-card-title">Istanbul: Where East Meets West Between Two Continents</div>
+        <p class="blog-card-excerpt">Hagia Sophia, the Bosphorus, Topkapı Palace and the Grand Bazaar. Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- 5 Reasons -->
+    <a href="blog/5-reasons.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/turkiye.jpg" alt="Türkiye" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Editorial</div>
+        <div class="blog-card-title">5 Reasons to Visit Türkiye. The Real Ones.</div>
+        <p class="blog-card-excerpt">Three seas, two continents, ancient cities you can walk through alone, and a breakfast culture that makes you rethink what a morning can be.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Antalya -->
+    <a href="blog/antalya.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/antalya.jpg" alt="Antalya" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Mediterranean</div>
+        <div class="blog-card-title">Antalya Is Not a Resort Town. It Just Plays One.</div>
+        <p class="blog-card-excerpt">Behind every all-inclusive there is a Roman harbour, a mountain city in the clouds, and a piyaz that will change how you think about a salad.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Trabzon -->
+    <a href="blog/trabzon.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/trabzon.jpg" alt="Trabzon" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Black Sea</div>
+        <div class="blog-card-title">Trabzon: Why First-Time Visitors Always Come Back</div>
+        <p class="blog-card-excerpt">Sümela Monastery before the crowd arrives, a tea glass at dawn over the city, and an Akçaabat köfte that makes every other köfte feel incomplete.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Kapadokya -->
+    <a href="blog/kapadokya.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/kapadokya.jpg" alt="Cappadocia" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Landscape</div>
+        <div class="blog-card-title">Cappadocia Has Been Photographed Millions of Times. Very Few People Have Seen It.</div>
+        <p class="blog-card-excerpt">Behind the balloon shot: red valleys at sunset, Derinkuyu 85 metres underground, and the version of the famous flight that is actually worth taking.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Kemer -->
+    <a href="blog/kemer.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/kemer.jpg" alt="Kemer" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Coast &amp; Antiquity</div>
+        <div class="blog-card-title">Kemer: What the Resorts Are Standing In Front Of</div>
+        <p class="blog-card-excerpt">Phaselis has three ancient harbours. Olympos has a river running through Roman ruins to the sea. Yanartaş has been burning since before the Iliad was written.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Çanakkale -->
+    <a href="blog/canakkale.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/canakkale.jpg" alt="Çanakkale" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">History</div>
+        <div class="blog-card-title">You Know What Happened Here. Now Go Feel It.</div>
+        <p class="blog-card-excerpt">1915 is a date in a textbook until you stand on the Gallipoli peninsula and the terrain itself explains what the maps never could.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Erzurum -->
+    <a href="blog/erzurum.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/erzurum.jpg" alt="Erzurum" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">East Anatolia</div>
+        <div class="blog-card-title">Erzurum: East Anatolia's Silent and Proud Fortress</div>
+        <p class="blog-card-excerpt">At 1,900 metres, Türkiye's coldest large city is also one of its most architecturally serious. Selçuk stone carving, cağ kebabı and a mountain that rises directly behind the city.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Hakkari -->
+    <a href="blog/hakkari.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/hakkari.jpg" alt="Hakkari" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Remote East</div>
+        <div class="blog-card-title">Hakkari: The Province That Refuses to Be Simplified</div>
+        <p class="blog-card-excerpt">Where Turkey shares borders with Iraq and Iran, the mountains reach 4,135 metres and the Zap canyon cuts through rock that has no interest in being legible.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Aladağlar -->
+    <a href="blog/aladaglar.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/aladaglar.jpg" alt="Aladağlar" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Mountain</div>
+        <div class="blog-card-title">Aladağlar: The Back Face of the Taurus, Turkey's Hardest Landscape</div>
+        <p class="blog-card-excerpt">Demirkazık at 3,756 metres. Kapuzbaşı waterfall system fed by karst springs. The Taurus range at its most uncompromising.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Rize -->
+    <a href="blog/rize.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/rize.jpg" alt="Rize" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Black Sea</div>
+        <div class="blog-card-title">Rize: Is There Anywhere Greener?</div>
+        <p class="blog-card-excerpt">Turkey's rainiest city is not apologising for the grey sky. That sky is why the tea gardens are the colour they are, and why Rize looks like no other place in the country.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Giresun -->
+    <a href="blog/giresun.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/giresun.jpg" alt="Giresun" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Hidden Coast</div>
+        <div class="blog-card-title">Giresun: The Black Sea's Most Cinematic City, Consistently Overlooked</div>
+        <p class="blog-card-excerpt">A castle on a hill, an island in the harbour with Amazon mythology attached, and a hazelnut crop that feeds the world's chocolate industry. Everyone drives past.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Artvin -->
+    <a href="blog/artvin.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/artvin.jpg" alt="Artvin">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Northeast</div>
+        <div class="blog-card-title">Artvin: Where the Çoruh Canyon Refuses to Let You Pass</div>
+        <p class="blog-card-excerpt">The Çoruh River drops 800 metres through a canyon that hosted the World Rafting Championship. Borçka Karagöl sits emerald-green in a forest. Georgian monasteries stand in active valleys.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Balıkesir -->
+    <a href="blog/balikesir.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/balikesir.jpg" alt="Balıkesir">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Aegean</div>
+        <div class="blog-card-title">Balıkesir: The Province Where the Aegean Begins</div>
+        <p class="blog-card-excerpt">Kazdağları rises above Homer's Ida Mountain. Ayvalık faces a sea full of islands. Cunda has a ruined church with a fig tree growing through the nave.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+    <!-- Ordu -->
+    <a href="blog/ordu.html" class="blog-card">
+      <div class="blog-card-img">
+        <img src="https://img.showmeturkiye.com/Blog/ordu.jpg" alt="Ordu" onerror="this.style.display='none'">
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-category">Black Sea</div>
+        <div class="blog-card-title">Ordu: The Black Sea Coast That Doesn't Try to Explain Itself</div>
+        <p class="blog-card-excerpt">A cable car above the cloud line, river meanders on a highland plateau that loop almost into full circles, and a hazelnut crop that appears in most of the world's chocolate bars.</p>
+        <span class="blog-card-link">Read More →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Türkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="explore.html">Cities &amp; Destinations</a>
+      <a href="blog.html">Travel Blog</a>
+      <a href="projects.html">Our Projects</a>
+      <a href="about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="contact.html">Contact Us</a>
+      <a href="contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Türkiye. All rights reserved.</span>
+    <span>Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+function openNav()  { navOverlay.classList.add('open');    hamburgerBtn.classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeNav() { navOverlay.classList.remove('open'); hamburgerBtn.classList.remove('open'); document.body.style.overflow = ''; }
+hamburgerBtn.addEventListener('click', openNav);
+closeNavBtn.addEventListener('click', closeNav);
+navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+navOverlay.addEventListener('click', e => { if (e.target === navOverlay) closeNav(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+</body>
+</html>
