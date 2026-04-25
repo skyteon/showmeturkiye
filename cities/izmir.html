@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Izmir | Show Me Turkiye</title>
+<meta name="description" content="Explore Izmir on the Aegean coast. Visit Ephesus, stroll the Kordon, taste boyoz and kumru and escape to Alacati and Cesme.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root {
+  --black:#0a0c0e; --dark:#0f1214; --dark2:#151719;
+  --teal:#1a8a7d; --teal-light:#23b5a4;
+  --brown:#c4a265; --brown-light:#d4b87e;
+  --cream:#f5f0e6; --cream2:#ebe4d6;
+  --text:#2c2a26; --text-muted:#7a756c;
+  --border:rgba(255,255,255,0.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+
+/* HERO */
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1627894006066-b45df11cb91f?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.35) 0%,rgba(10,12,14,0.2) 40%,rgba(10,12,14,0.7) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+
+/* SECTION UTILITY */
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+
+/* WHY VISIT */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+
+/* PLACES + MAP */
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:200px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:100%;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+
+
+/* FOOD */
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+
+/* RESTAURANTS */
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:block;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+
+/* ACTIVITIES */
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+
+/* DAY TRIPS */
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0.0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;max-width:100%;opacity:0;transform:translateY(8px);transition:all 0.4s ease;margin-top:10px;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* VIDEO MODAL */
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+
+/* FOOTER */
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST — mobile: map slides down from top and sticks when a place is clicked */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore Turkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Aegean Coast, Turkiye</div>
+    <h1>Izmir</h1>
+    <p class="hero-subtitle">The Aegean pearl where ancient history meets relaxed coastal living</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-label">Region</span>
+    <span class="stat-value">Aegean</span>
+    <span class="stat-sub">Turkiye's third largest city</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Best Season</span>
+    <span class="stat-value">May to Oct</span>
+    <span class="stat-sub">Long Aegean summer</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Known For</span>
+    <span class="stat-value">Ephesus</span>
+    <span class="stat-sub">Kordon, Alacati, seafood</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Climate</span>
+    <span class="stat-value">Mediterranean</span>
+    <span class="stat-sub">Hot dry summers</span>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- PLACES + MAP -->
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="38.3233" data-lng="26.3053" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">01. Ephesus</span>
+      <div class="place-name">Ephesus</div>
+      <p class="place-desc">One of the best preserved ancient cities in the Mediterranean. The Library of Celsus, the Great Theatre and the marble-paved Curetes Street are all unforgettable. Budget half a day, start early, and add the Terrace Houses ticket to see mosaic-floored Roman villas.</p>
+    </div>
+<div class="place-item" data-lat="38.438" data-lng="27.1425" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">02. Kordon Waterfront</span>
+      <div class="place-name">Kordon Waterfront</div>
+      <p class="place-desc">Izmir's long seafront promenade with palm trees, open-air cafes and ferry terminals. Locals walk, jog and sit here every evening. Catch the sunset ferry across the bay to Karsiyaka and back, one of the most relaxing hours in the city.</p>
+    </div>
+<div class="place-item" data-lat="38.4191" data-lng="27.1289" data-zoom="17" onclick="selectPlace(this)">
+      <span class="place-num">03. Kemeralti Bazaar</span>
+      <div class="place-name">Kemeralti Bazaar</div>
+      <p class="place-desc">A sprawling 17th-century bazaar that stretches from the waterfront inland. Spices, ceramics, silver, textiles and some of the best street food in the city. Stop at Kizlaragasi Han, the restored Ottoman caravanserai, for coffee in its courtyard.</p>
+    </div>
+<div class="place-item" data-lat="38.2589" data-lng="26.3753" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">04. Alacati</span>
+      <div class="place-name">Alacati</div>
+      <p class="place-desc">A restored Greek stone village turned boutique holiday town. Cobbled lanes lined with bougainvillea, excellent restaurants, small hotels and some of the best windsurfing in the world just outside the centre. Worth two nights on the way through.</p>
+    </div>
+<div class="place-item" data-lat="38.3233" data-lng="26.3053" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">05. Cesme Peninsula</span>
+      <div class="place-name">Cesme Peninsula</div>
+      <p class="place-desc">White sand beaches, hot springs, the restored Genoese castle and the laid-back town of Cesme itself. Ilica Beach has shallow warm water ideal for families, while Altinkum to the south is quieter and more beautiful.</p>
+    </div>
+<div class="place-item" data-lat="38.4189" data-lng="27.1287" data-zoom="17" onclick="selectPlace(this)">
+      <span class="place-num">06. Agora of Smyrna</span>
+      <div class="place-name">Agora of Smyrna</div>
+      <p class="place-desc">The Roman marketplace of ancient Smyrna, hidden just behind Kemeralti. Vaulted basement galleries, original columns and reliefs. Far less touristed than Ephesus and a reminder that Izmir itself is an ancient city. Less than an hour to visit.</p>
+    </div>
+<div class="place-item" data-lat="39.1321" data-lng="27.1845" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">07. Pergamon (Bergama)</span>
+      <div class="place-name">Bergama Akropolü</div>
+      <p class="place-desc">The ancient capital of the Attalid Kingdom and later a major Roman city, 100 km north of İzmir. The Acropolis of Pergamon, on a dramatically steep hill above the modern town of Bergama, holds the foundations of the famous Library, the Temple of Athena and the steepest ancient theatre in the world. The Asklepion healing centre below the acropolis was the Greco-Roman world's most celebrated medical sanctuary.</p>
+    </div>
+<div class="place-item" data-lat="37.9376" data-lng="27.4129" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">08. Şirince Village</span>
+      <div class="place-name">Şirince</div>
+      <p class="place-desc">A hillside village 8 km from Selçuk (Ephesus), with old stone and plaster houses, a 19th-century Greek Orthodox church and wine shops selling fruit wines made from local produce. The village was settled by Greek Orthodox Christians until the 1923 population exchange, and the architecture and street layout retain their pre-exchange character. Best visited in the morning before the day-trip crowds from Kuşadası arrive.</p>
+    </div>
+  </div>
+<div class="map-container">
+    <div id="map"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('fQ1BWDRu-tY')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/fQ1BWDRu-tY/maxresdefault.jpg" alt="Izmir" onerror="this.src='https://img.youtube.com/vi/fQ1BWDRu-tY/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('E9c4hTMqk0w')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/E9c4hTMqk0w/maxresdefault.jpg" alt="Sumela" onerror="this.src='https://img.youtube.com/vi/E9c4hTMqk0w/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('yHQsJpv2oHk')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/yHQsJpv2oHk/maxresdefault.jpg" alt="Uzungol" onerror="this.src='https://img.youtube.com/vi/yHQsJpv2oHk/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="section section-cream" id="food">
+  <span class="section-label reveal">Black Sea Table</span>
+  <h2 class="section-title reveal">Food and Cuisine</h2>
+  <div class="food-intro reveal">
+    <p>Izmir food is pure Aegean. Olive oil, wild herbs, fresh fish and vegetables from fertile hillsides. The city has its own beloved snacks and a strong Greek and Sephardic heritage in the kitchen. Meals here are lighter than the rest of Turkiye, more about quality ingredients than heavy sauces.</p>
+  </div>
+
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1619740455993-9df612617b86?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Signature</div>
+        <div class="dish-name">Kumru</div>
+        <p class="dish-desc">Izmir's famous sandwich. Sesame-crusted bread with sucuk, kasar cheese and tomato, grilled until melted. A Cesme invention that spread across the city. A proper kumru is impossible to eat and walk at the same time.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1535140728325-a4d3707eee94?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">From the Sea</div>
+        <div class="dish-name">Cipura and Levrek</div>
+        <p class="dish-desc">Aegean sea bream and sea bass, grilled whole with olive oil and lemon. The fish markets on the Kordon have rows of stalls and simple kitchens out back. Pick your fish, they cook it, and you eat it with salad and white wine by the water.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1564834361930-0f9b08f82ab3?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Aegean Greens</div>
+        <div class="dish-name">Ot Kavurma</div>
+        <p class="dish-desc">Wild Aegean herbs and greens like sevketi bostan, radika and deniz borulcesi, sauteed with olive oil, lemon and garlic. Served at lokantas and mezehanes. Light, healthy and deeply traditional.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1565299715199-866c917206bb?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Pastry Icon</div>
+        <div class="dish-name">Boyoz</div>
+        <p class="dish-desc">A Sephardic flaky pastry brought by Jewish migrants 500 years ago. Plain, or filled with tahini or cheese. Paired with a boiled egg and black tea, this is the classic Izmir breakfast on the street. Altinkapi Boyoz in Alsancak is legendary.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1547928576-b822bc410bdf?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Aegean Ritual</div>
+        <div class="dish-name">Raki and Mezze</div>
+        <p class="dish-desc">Aniseed spirit poured slowly and iced, then mixed with water until it turns milky white. Drunk alongside a procession of cold mezes and grilled fish in a proper meyhane. Not rushed, not a pre-dinner drink, this is the dinner.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1608039755401-742074f0548d?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Morning Staple</div>
+        <div class="dish-name">Gevrek and Boyoz Breakfast</div>
+        <p class="dish-desc">Gevrek is Izmir's name for simit, the sesame-encrusted bread ring. Paired with olives, white cheese, boiled egg and strong tea, it is the no-frills breakfast that Izmir runs on. Best from a street cart on the Kordon.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="resto-section-label reveal">Where to Eat</span>
+  <h3 class="resto-section-title reveal">Top Restaurants in Izmir</h3>
+  <p class="resto-note reveal">4.5 stars and above, 200 or more reviews on Google</p>
+  <div class="resto-grid reveal">
+    <a class="resto-card" href="https://www.google.com/maps/search/Deniz+Restaurant+Izmir" target="_blank">
+      <div class="resto-name">Deniz Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (3,800+ reviews)</span></div>
+      <p class="resto-desc">An Izmir classic on the waterfront, serving Aegean seafood since 1975. Grilled sea bass, octopus salad, seabream carpaccio. The view of the bay at sunset is the best dinner table in the city.</p>
+      <div class="resto-specialty">Aegean seafood, Raki mezze</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Asansor+Restaurant+Izmir" target="_blank">
+      <div class="resto-name">Asansor Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,100+ reviews)</span></div>
+      <p class="resto-desc">Perched at the top of the historic 1907 elevator in Karatas. Panoramic view over the bay, classic Turkish menu and a Sephardic heritage. A special occasion restaurant steeped in Izmir history.</p>
+      <div class="resto-specialty">Turkish classics, Rooftop view</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Topcu+Restaurant+Alsancak" target="_blank">
+      <div class="resto-name">Topcu Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.4 (4,600+ reviews)</span></div>
+      <p class="resto-desc">Open since 1952, an Alsancak institution for kebabs. Adana, urfa and grilled lamb chops cooked over charcoal. Always busy, always reliable, and completely unpretentious. The classic Izmir dinner.</p>
+      <div class="resto-specialty">Charcoal kebabs</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Asma+Yaprak+Restaurant+Alacati" target="_blank">
+      <div class="resto-name">Asma Yaprak Alacati</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,800+ reviews)</span></div>
+      <p class="resto-desc">A stone courtyard restaurant in the heart of Alacati famous for Aegean wild herb mezes. The appetizer trolley rolls to your table with 30 or more small plates. Choose what you want. A magical summer dinner.</p>
+      <div class="resto-specialty">Wild herb mezes</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Agora+Meyhanesi+Izmir" target="_blank">
+      <div class="resto-name">Agora Meyhanesi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,500+ reviews)</span></div>
+      <p class="resto-desc">A lively Alsancak meyhane with live Turkish music most nights. The full mezze and raki experience, with grilled fish to follow. Book a weekend table at least a few days ahead. Perfect first-night dinner.</p>
+      <div class="resto-specialty">Meyhane, Live music</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Meshur+Seferihisar+Restaurant+Sigacik" target="_blank">
+      <div class="resto-name">Meshur Sigacik</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (1,400+ reviews)</span></div>
+      <p class="resto-desc">A seafood spot in the old harbour of Sigacik, 40 km from Izmir. Whole fish, seafood pasta and sea-view tables on the water. Worth the drive for a long lunch away from the city. Pair with a walk through the old castle village.</p>
+      <div class="resto-specialty">Harbour seafood</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/La+Cigale+Izmir" target="_blank">
+      <div class="resto-name">La Cigale</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.4 (1,100+ reviews)</span></div>
+      <p class="resto-desc">A quiet French-Mediterranean restaurant in Alsancak with a short menu that changes monthly. Great wine list, attentive service and a garden for summer dinners. A calm escape from the bustle of the waterfront.</p>
+      <div class="resto-specialty">French-Aegean</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Dostlar+Firin+Izmir+Boyoz" target="_blank">
+      <div class="resto-name">Dostlar Firin</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.7 (2,400+ reviews)</span></div>
+      <p class="resto-desc">The most famous boyoz bakery in Izmir. Hot from the oven, served with a boiled egg and tea. Small, no-frills, and open since 1931. The essential Izmir breakfast stop, especially on a Saturday morning.</p>
+      <div class="resto-specialty">Boyoz, Breakfast pastry</div>
+    </a>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">On the Ground</span>
+    <h2 class="section-title reveal">Activities and Experiences</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Ephesus Full Day</div>
+        <p class="activity-desc">A full day at Ephesus, combined with the Virgin Mary's House, the Temple of Artemis and lunch in Sirince village. Drive down in the morning to beat the heat. One of the best single-day archaeology experiences in Turkiye.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Kordon Sunset Walk</div>
+        <p class="activity-desc">The ten kilometre promenade from Alsancak to Konak at golden hour. Palm trees, grass lawns, cafes along the water and ferries silhouetted against the sunset. Follow with dinner at one of the open-air fish restaurants by the bay.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Windsurfing in Alacati</div>
+        <p class="activity-desc">Alacati's Reef and Altinkum beaches are among the best windsurf spots in the world. Reliable steady winds, shallow water, and plenty of schools offering lessons and rentals. Beginners can learn the basics in a day.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">04</div>
+        <div class="activity-title">Sirince Wine Village</div>
+        <p class="activity-desc">A whitewashed mountain village 40 minutes east of Izmir, famous for fruit wines made from pomegranate, blackberry and quince. Visit in the morning, stop at the small wineries, then have lunch at one of the stone cottage restaurants.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">05</div>
+        <div class="activity-title">Pergamon and Asclepion</div>
+        <p class="activity-desc">The ruins of Pergamon sit on a dramatic acropolis two hours north of Izmir. One of the steepest theatres of the ancient world. Combine with the ancient healing centre of Asclepion at its base. Less visited than Ephesus and just as impressive.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">06</div>
+        <div class="activity-title">Boat Day from Cesme</div>
+        <p class="activity-desc">Take a gulet or speedboat charter from Cesme marina and anchor in the coves of Ildirlik and Karaburun. The water is clear, the hills behind are dry and fragrant with sage. A classic Aegean boat day with swimming, lunch and naps on deck.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY TRIPS -->
+<section class="section-black" style="padding:0;" id="daytrips">
+  <div style="padding:72px 80px 44px;" class="reveal">
+    <span class="section-label">Extended Itinerary</span>
+    <h2 class="section-title" style="margin-bottom:0;">Day Trips from Izmir</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1561361398-a23f06d35fc0?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">250 km East, about 3 hours</div>
+        <div class="daytrip-name">Pamukkale and Hierapolis</div>
+        <p class="daytrip-desc">The white travertine terraces of Pamukkale with thermal pools and the ruins of the Roman spa town of Hierapolis above. One of the most photographed sights in Turkiye. An early start makes this workable as a long day trip.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1599983032199-b4872b31cb7c?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">80 km South, about 1 hour</div>
+        <div class="daytrip-name">Selcuk and Sirince</div>
+        <p class="daytrip-desc">Ephesus, the Basilica of St John, the Temple of Artemis and the hilltop village of Sirince in one day. Stay overnight in Sirince for fruit wine and a long slow dinner after the day crowds leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+var vm=document.getElementById('videoModal');if(vm)vm.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Ephesus Ancient City',lat:38.3233,lng:26.3053,zoom:13},
+    {name:'Kordon Waterfront',lat:38.438,lng:27.1425,zoom:15},
+    {name:'Kemeralti Bazaar',lat:38.4191,lng:27.1289,zoom:17},
+    {name:'Alacati',lat:38.2589,lng:26.3753,zoom:14},
+    {name:'Cesme Peninsula',lat:38.3233,lng:26.3053,zoom:13},
+    {name:'Agora of Smyrna',lat:38.4189,lng:27.1287,zoom:17},
+    {name:'Pergamon Bergama',lat:39.1321,lng:27.1845,zoom:14},
+    {name:'Sirince Village',lat:37.9376,lng:27.4129,zoom:14}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([38.43,27.14],12);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var ps=document.createElement('style');ps.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(ps);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps/place/'+encodeURIComponent(loc.name)+'/@'+loc.lat+','+loc.lng+',15z" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});markers[idx].openPopup();
+    if(window.innerWidth<=1100){var mc=document.querySelector('.map-container');if(mc){mc.classList.add('expanded');var nh=document.querySelector('.site-nav');var top=mc.getBoundingClientRect().top+window.pageYOffset-(nh?nh.offsetHeight:64);window.scrollTo({top:top,behavior:'smooth'});setTimeout(function(){map.invalidateSize();},450);}}
+  };
+});
+</script>
+</body>
+</html>

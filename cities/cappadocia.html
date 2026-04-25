@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cappadocia | Show Me Turkiye</title>
+<meta name="description" content="Experience Cappadocia\u0027s fairy chimneys, hot air balloons at sunrise, ancient cave churches and underground cities carved by early Christians.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root {
+  --black:#0a0c0e; --dark:#0f1214; --dark2:#151719;
+  --teal:#1a8a7d; --teal-light:#23b5a4;
+  --brown:#c4a265; --brown-light:#d4b87e;
+  --cream:#f5f0e6; --cream2:#ebe4d6;
+  --text:#2c2a26; --text-muted:#7a756c;
+  --border:rgba(255,255,255,0.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+
+/* HERO */
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.35) 0%,rgba(10,12,14,0.2) 40%,rgba(10,12,14,0.7) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+
+/* SECTION UTILITY */
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+
+/* WHY VISIT */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+
+/* PLACES + MAP */
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:200px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:100%;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+
+
+/* FOOD */
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+
+/* RESTAURANTS */
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:block;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+
+/* ACTIVITIES */
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+
+/* DAY TRIPS */
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0.0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;max-width:100%;opacity:0;transform:translateY(8px);transition:all 0.4s ease;margin-top:10px;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* VIDEO MODAL */
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+
+/* FOOTER */
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST — mobile: map slides down from top and sticks when a place is clicked */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore Turkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Central Anatolia, Turkiye</div>
+    <h1>Cappadocia</h1>
+    <p class="hero-subtitle">A lunar landscape of fairy chimneys, cave dwellings and dawn balloons</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-label">Region</span>
+    <span class="stat-value">Nevsehir</span>
+    <span class="stat-sub">Central Anatolian plateau</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Best Season</span>
+    <span class="stat-value">Apr to Oct</span>
+    <span class="stat-sub">Clear skies, balloons fly</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Known For</span>
+    <span class="stat-value">Balloons</span>
+    <span class="stat-sub">Fairy chimneys, cave hotels</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Climate</span>
+    <span class="stat-value">Continental</span>
+    <span class="stat-sub">Hot summers, cold winters</span>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- PLACES + MAP -->
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="38.6496" data-lng="34.8197" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">01. Goreme Open Air Museum</span>
+      <div class="place-name">Goreme Open Air Museum</div>
+      <p class="place-desc">A UNESCO World Heritage site with a cluster of rock-cut Byzantine churches, chapels and monasteries dating from the 10th to 12th centuries. The frescoes inside the Dark Church are remarkably preserved. Budget two hours and arrive early before the tour buses.</p>
+    </div>
+<div class="place-item" data-lat="38.6287" data-lng="34.8075" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">02. Uchisar Castle</span>
+      <div class="place-name">Uchisar Castle</div>
+      <p class="place-desc">The highest point in Cappadocia, a honeycombed rock fortress that was once home to an entire village. Climb the stairs for a 360-degree view over the valleys. At sunset the whole landscape glows orange and pink. The nearby village is the most atmospheric place to stay.</p>
+    </div>
+<div class="place-item" data-lat="38.7128" data-lng="34.8428" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">03. Pasabag Valley</span>
+      <div class="place-name">Pasabag Valley</div>
+      <p class="place-desc">Also called Monks Valley, Pasabag has some of the most dramatic fairy chimneys in Cappadocia, many with multiple stone caps. Hermit monks once lived inside them. Easy to reach and walk around. The best spot for classic fairy chimney photos.</p>
+    </div>
+<div class="place-item" data-lat="38.6392" data-lng="34.855" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">04. Rose and Red Valley</span>
+      <div class="place-name">Rose and Red Valley</div>
+      <p class="place-desc">The best hiking valleys in the region. A marked trail runs between Goreme and Cavusin, passing hidden cave churches and pink-orange rock walls. Take two to three hours at sunset when the stone glows. Bring water and good shoes.</p>
+    </div>
+<div class="place-item" data-lat="38.37" data-lng="34.735" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">05. Derinkuyu Underground City</span>
+      <div class="place-name">Derinkuyu Underground City</div>
+      <p class="place-desc">Eight levels deep, with stables, kitchens, churches, wineries and ventilation shafts. Early Christians carved it out to hide from invading armies. Claustrophobic in parts but completely remarkable. Wear shoes with grip.</p>
+    </div>
+<div class="place-item" data-lat="38.6496" data-lng="34.8197" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">06. Love Valley</span>
+      <div class="place-name">Love Valley</div>
+      <p class="place-desc">Famous for its tall, slender rock columns. The best viewing spot is on the ridge between Goreme and Uchisar, a 20-minute walk. At sunrise the balloons drift directly over it. One of the most photographed landscapes in Turkiye.</p>
+    </div>
+<div class="place-item" data-lat="38.4422" data-lng="34.7131" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">07. Kaymaklı Underground City</span>
+      <div class="place-name">Kaymaklı Yeraltı Şehri</div>
+      <p class="place-desc">An underground city 20 km south of Nevşehir, second only to Derinkuyu in scale, with eight excavated levels descending 40 metres into the volcanic tufa. Used as a refuge during Byzantine and early Christian periods, with churches, stables, wine cellars and ventilation shafts carved through the rock. Less visited than Derinkuyu and marginally easier to navigate. The two can be combined in a single day.</p>
+    </div>
+<div class="place-item" data-lat="38.6800" data-lng="34.8667" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">08. Zelve Open Air Museum</span>
+      <div class="place-name">Zelve Açık Hava Müzesi</div>
+      <p class="place-desc">A valley of abandoned cave dwellings, carved churches and monastic cells north of Göreme, inhabited continuously from the 9th to the 20th century and abandoned only in 1952 when the tufa became structurally unsafe. Three interconnected valleys with hundreds of rooms, chapels and the ruins of a working Byzantine monastery. Less organised than Göreme Open Air Museum but more atmospherically intact.</p>
+    </div>
+  </div>
+<div class="map-container">
+    <div id="map"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('H0nWgbUh6uY')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/H0nWgbUh6uY/maxresdefault.jpg" alt="Cappadocia" onerror="this.src='https://img.youtube.com/vi/H0nWgbUh6uY/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('ZQsR3Nh3fAc')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/ZQsR3Nh3fAc/maxresdefault.jpg" alt="Sumela" onerror="this.src='https://img.youtube.com/vi/ZQsR3Nh3fAc/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('gAFP4GNGnLk')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/gAFP4GNGnLk/maxresdefault.jpg" alt="Uzungol" onerror="this.src='https://img.youtube.com/vi/gAFP4GNGnLk/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="section section-cream" id="food">
+  <span class="section-label reveal">Black Sea Table</span>
+  <h2 class="section-title reveal">Food and Cuisine</h2>
+  <div class="food-intro reveal">
+    <p>Cappadocian food is the honest cooking of Central Anatolia. Slow-cooked stews baked in clay pots, hand-rolled mantı, local wines from volcanic soil and small village kitchens that have not changed in generations. Meals in Cappadocia tend to be long, warm and memorable.</p>
+  </div>
+
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Signature</div>
+        <div class="dish-name">Testi Kebab</div>
+        <p class="dish-desc">Lamb or beef with vegetables sealed inside a clay jug and slow-cooked over embers for hours. At the table the neck of the jug is dramatically broken with a cleaver. Only found in this region and always worth ordering at least once.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Handmade</div>
+        <div class="dish-name">Manti</div>
+        <p class="dish-desc">Tiny hand-folded dumplings filled with minced lamb, served with garlic yogurt, melted butter and red pepper oil. Kayseri, just north of Cappadocia, claims to make the best. Properly sized manti are so small that 40 pieces fit on one spoon.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1547592180-85f173990554?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Slow Cooked</div>
+        <div class="dish-name">Guvec</div>
+        <p class="dish-desc">A stew of meat, vegetables and tomato baked inside a ceramic pot. Every village has its own version. The pot comes straight from the oven to your table, still bubbling. Served with rice and fresh bread.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Local Wine</div>
+        <div class="dish-name">Cappadocia Wines</div>
+        <p class="dish-desc">One of the oldest wine regions in the world. The volcanic soil gives distinctive character to native grapes like Emir and Kalecik Karasi. Visit the Turasan and Kocabag wineries, or have a glass of local red with dinner in a cave restaurant.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Sweet Finish</div>
+        <div class="dish-name">Pekmez and Walnuts</div>
+        <p class="dish-desc">Grape molasses drizzled over yogurt or ice cream with toasted walnuts. Also served on bread at breakfast. Cappadocia produces some of the best pekmez in Turkiye because of the local grapes. Small jars make excellent souvenirs.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1533089860892-a7c6f10a081a?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Morning Staple</div>
+        <div class="dish-name">Village Breakfast</div>
+        <p class="dish-desc">A spread of local white cheese, olives, honey with honeycomb, tomato, cucumber, eggs, fresh bread and sweet black tea. Best enjoyed on a terrace with the sun rising over the valleys. A full Anatolian breakfast is a small meal on its own.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="resto-section-label reveal">Where to Eat</span>
+  <h3 class="resto-section-title reveal">Top Restaurants in Cappadocia</h3>
+  <p class="resto-note reveal">4.5 stars and above, 200 or more reviews on Google</p>
+  <div class="resto-grid reveal">
+    <a class="resto-card" href="https://www.google.com/maps/search/Topdeck+Cave+Restaurant+Goreme" target="_blank">
+      <div class="resto-name">Topdeck Cave Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.8 (3,900+ reviews)</span></div>
+      <p class="resto-desc">Small family-run cave restaurant in Goreme. Chef Zafer cooks everything himself from his grandmother's recipes. Famous for testi kebab and Anatolian classics. Small and always busy, reservations essential.</p>
+      <div class="resto-specialty">Testi kebab, Cave dining</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Seki+Restaurant+Argos+Uchisar" target="_blank">
+      <div class="resto-name">Seki at Argos</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (1,200+ reviews)</span></div>
+      <p class="resto-desc">The fine-dining restaurant at the Argos in Cappadocia hotel in Uchisar. Contemporary Anatolian menu with its own vineyard. The terrace view over Pigeon Valley at sunset is the best in the region.</p>
+      <div class="resto-specialty">Modern Anatolian, Wine pairing</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Dibek+Restaurant+Goreme" target="_blank">
+      <div class="resto-name">Dibek Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (4,500+ reviews)</span></div>
+      <p class="resto-desc">A 475-year-old cave house in the centre of Goreme. Guests sit on floor cushions around low tables. Testi kebab needs 24-hour advance ordering. Traditional, warm and completely unpretentious.</p>
+      <div class="resto-specialty">Traditional Anatolian</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Ziggy+Cafe+Restaurant+Urgup" target="_blank">
+      <div class="resto-name">Ziggy Cafe</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (2,800+ reviews)</span></div>
+      <p class="resto-desc">Rooftop restaurant in Urgup with a creative Anatolian menu and a great mezze selection. Named after the owner's cat. Relaxed atmosphere, good cocktails, and a view over the old town rooftops.</p>
+      <div class="resto-specialty">Mezze, Creative Anatolian</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Old+Greek+House+Mustafapasa" target="_blank">
+      <div class="resto-name">Old Greek House</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,600+ reviews)</span></div>
+      <p class="resto-desc">In the Greek village of Mustafapasa, a restored 19th-century stone mansion. Fixed menu of home-cooked Anatolian dishes. Eat in the courtyard in summer. A calm, delicious escape from the Goreme crowds.</p>
+      <div class="resto-specialty">Home cooking, Stone house</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Lil%27a+Restaurant+Museum+Hotel" target="_blank">
+      <div class="resto-name">Lil'a at Museum Hotel</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.7 (900+ reviews)</span></div>
+      <p class="resto-desc">Inside the Museum Hotel in Uchisar, a luxury experience with panoramic valley views. Seasonal tasting menu of Anatolian ingredients prepared with modern technique. Proper special occasion dining.</p>
+      <div class="resto-specialty">Tasting menu, Fine dining</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Pumpkin+Restaurant+Goreme" target="_blank">
+      <div class="resto-name">Pumpkin Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.8 (2,400+ reviews)</span></div>
+      <p class="resto-desc">Tiny restaurant in Goreme run by chef Sinan. Only three tables and a fixed five-course menu. Everything is homemade, local and seasonal. The most personal dining experience in the region, book a week ahead.</p>
+      <div class="resto-specialty">Set menu, Home kitchen</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Mahzen+Sarap+Evi+Urgup" target="_blank">
+      <div class="resto-name">Mahzen Sarap Evi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (1,100+ reviews)</span></div>
+      <p class="resto-desc">An underground wine cellar and restaurant in Urgup. Over 200 Turkish and Cappadocian wines with small plates to match. Staff will guide you through a tasting. Stone walls, candlelight, proper atmosphere.</p>
+      <div class="resto-specialty">Wine cellar, Small plates</div>
+    </a>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">On the Ground</span>
+    <h2 class="section-title reveal">Activities and Experiences</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Hot Air Balloon Ride</div>
+        <p class="activity-desc">The classic Cappadocia experience. Take off at dawn and drift over the valleys as the sun rises behind the fairy chimneys. Around one hour in the air. Book two nights in advance in peak season and pray for calm weather.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Sunrise at Red Valley</div>
+        <p class="activity-desc">If you cannot get on a balloon, the next best thing is watching the balloons take off from the Red Valley viewpoint. Drive up in the dark and claim your spot. The rocks and balloons glowing pink together at dawn is unforgettable.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Valley Hiking</div>
+        <p class="activity-desc">The Rose, Red, Pigeon and Love valleys all have marked walking trails. A half-day loop is easy for most people. Hidden cave churches, pigeon lofts carved into cliffs and quiet picnic spots. Take plenty of water.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">04</div>
+        <div class="activity-title">Stay in a Cave Hotel</div>
+        <p class="activity-desc">Sleeping inside a rock is part of the experience. Museum Hotel, Argos in Cappadocia and Kayakapi Premium Caves are the most special. Even simpler cave guesthouses in Goreme and Uchisar cost far less and are just as atmospheric.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">05</div>
+        <div class="activity-title">Pottery in Avanos</div>
+        <p class="activity-desc">Avanos has been a pottery town since Hittite times, thanks to the red clay from the Kizilirmak river. Workshops let you watch masters throw pots on a foot-powered wheel, and you can try one yourself. Galerie Ikman is worth the visit on its own.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">06</div>
+        <div class="activity-title">Horseback Through Valleys</div>
+        <p class="activity-desc">Cappadocia means "land of beautiful horses" in old Persian. Two or three-hour rides through Rose Valley or up to the Uchisar ridge. Gentle routes for beginners, tougher rides for experienced riders. The views from the saddle are very different.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY TRIPS -->
+<section class="section-black" style="padding:0;" id="daytrips">
+  <div style="padding:72px 80px 44px;" class="reveal">
+    <span class="section-label">Extended Itinerary</span>
+    <h2 class="section-title" style="margin-bottom:0;">Day Trips from Cappadocia</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1593238739364-ccd38c87d48a?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">80 km North, about 1 hour</div>
+        <div class="daytrip-name">Kayseri</div>
+        <p class="daytrip-desc">The gateway city to Cappadocia and the best place for proper manti. Visit the ancient covered bazaar, the citadel and the Archaeology Museum. A good rainy-day option or a lunch stop on the way out of the region.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">80 km West, about 1 hour</div>
+        <div class="daytrip-name">Ihlara Valley</div>
+        <p class="daytrip-desc">A 14-kilometre canyon carved by the Melendiz river, full of Byzantine rock churches and frescoes. A 3-4 hour walk takes you through the best section. Lunch at a riverside restaurant halfway. Cool even in the hottest summer months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+var vm=document.getElementById('videoModal');if(vm)vm.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Goreme Open Air Museum',lat:38.6496,lng:34.8197,zoom:15},
+    {name:'Uchisar Castle',lat:38.6287,lng:34.8075,zoom:15},
+    {name:'Pasabag Monks Valley',lat:38.7128,lng:34.8428,zoom:14},
+    {name:'Rose Valley',lat:38.6392,lng:34.855,zoom:14},
+    {name:'Derinkuyu Underground City',lat:38.37,lng:34.735,zoom:15},
+    {name:'Love Valley',lat:38.6496,lng:34.8197,zoom:15},
+    {name:'Kaymakli Underground City',lat:38.4422,lng:34.7131,zoom:15},
+    {name:'Zelve Open Air Museum',lat:38.6800,lng:34.8667,zoom:14}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([38.64,34.83],11);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var ps=document.createElement('style');ps.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(ps);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps/place/'+encodeURIComponent(loc.name)+'/@'+loc.lat+','+loc.lng+',15z" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});markers[idx].openPopup();
+    if(window.innerWidth<=1100){var mc=document.querySelector('.map-container');if(mc){mc.classList.add('expanded');var nh=document.querySelector('.site-nav');var top=mc.getBoundingClientRect().top+window.pageYOffset-(nh?nh.offsetHeight:64);window.scrollTo({top:top,behavior:'smooth'});setTimeout(function(){map.invalidateSize();},450);}}
+  };
+});
+</script>
+</body>
+</html>
