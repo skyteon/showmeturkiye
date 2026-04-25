@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adana | Show Me Turkiye</title>
+<meta name="description" content="Discover Adana in southern Turkey. Taste the legendary Adana kebab, cross the ancient Roman stone bridge, explore the Çukurova plains and reach the Taurus mountains within an hour.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{--black:#0a0c0e;--dark:#0f1214;--dark2:#151719;--brown:#c4a265;--brown-light:#d4b87e;--cream:#f5f0e6;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(255,255,255,0.07);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}a{text-decoration:none;color:inherit;}img{max-width:100%;display:block;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}.site-nav a img{height:38px;width:auto;object-fit:contain;}.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}.hamburger span{width:26px;height:2px;background:#fff;display:block;}.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}.nav-overlay.open{display:flex;}.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}.nav-overlay .nav-lang{font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}.close-nav:hover{opacity:1;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}.hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 8s ease-out;}.hero-bg.loaded{transform:scale(1);}.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.25) 0%,rgba(10,12,14,0.15) 40%,rgba(10,12,14,0.68) 75%,rgba(10,12,14,0.96) 100%);}.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}.stat-item:last-child{border-right:none;}.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+.section{padding:90px 80px;}.section-cream{background:var(--cream);color:var(--text);}.section-dark{background:var(--dark);color:#fff;}.section-black{background:var(--black);color:#fff;}.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}.section-cream .section-label{color:var(--brown);}.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}.section-cream .section-title{color:var(--text);}.section-dark .section-title,.section-black .section-title{color:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}.why-image img{width:100%;height:100%;object-fit:cover;}.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}.place-item:last-child{border-bottom:none;}.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}.place-item.active .place-desc{max-height:240px;opacity:1;}.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}#map{width:100%;height:100%;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}.gallery-card:hover .gallery-thumb{transform:scale(1.05);}.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}.dish-card:hover .dish-bg{transform:scale(1.06);}.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s;position:relative;overflow:hidden;}.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}.resto-card:hover::before{transform:scaleY(1);}.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}.video-modal.active{display:flex;}.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}.video-modal iframe{width:100%;height:100%;border:none;}.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}.modal-close:hover{opacity:1;}
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}.footer-logo{height:44px;width:auto;margin-bottom:20px;}.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}.footer-col a:hover{color:var(--brown-light);}.footer-social{display:flex;gap:10px;}.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()">&times;</button>
+  <a href="../index.html">Home</a><a href="../explore.html" class="active">Explore</a><a href="../blog.html">Blog</a><a href="../projects.html">Projects</a><a href="../about.html">About</a><a href="../contact.html">Contact</a>
+  <span class="nav-lang">TR / EN</span>
+</div>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner"><button class="modal-close" onclick="closeVideo()">&times;</button><iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+</div>
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=1920');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Southern Turkey, Çukurova Plain</span>
+    <h1>Adana</h1>
+    <p class="hero-subtitle">The kebab capital. Stone bridge. Çukurova.</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</header>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Mediterranean</span><span class="stat-sub">Çukurova plain</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Oct to Apr</span><span class="stat-sub">Summers very hot (40°C+)</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Adana Kebab</span><span class="stat-sub">Stone bridge, şalgam, cotton</span></div>
+  <div class="stat-item"><span class="stat-label">Population</span><span class="stat-value">2.2 million</span><span class="stat-sub">5th largest city in Turkey</span></div>
+</div>
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Adana</h2>
+        <p>Adana is Turkey's fifth largest city and the economic capital of the Çukurova region — a vast alluvial plain between the Taurus Mountains and the Mediterranean that produces cotton, citrus and grain on an industrial scale. The city has the character of a place that works for a living: busy, loud, proud of its food and genuinely indifferent to tourism. This is part of its appeal.</p>
+        <p>The Taşköprü — the 2,000-year-old Roman stone bridge across the Seyhan River — still carries pedestrian traffic through the city centre, its 14 surviving arches an improbable continuity from the 2nd century AD. The Sabancı Central Mosque, completed in 1998, is one of the largest mosques in Turkey and a visually striking presence on the river. The old bazaar around the Ulu Cami has been trading continuously for centuries.</p>
+        <p>The Adana kebab is the dish every Turkish person mentions when the city comes up, and rightly. Made from hand-minced lamb mixed with isot pepper and tail fat, shaped onto a wide flat skewer and grilled over charcoal, it is a technically demanding preparation that the better restaurants here execute at a level that justifies the journey. Paired with şalgam — fermented turnip juice — it constitutes one of the most distinctive food experiences in Turkish cuisine.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900" alt="Adana Çukurova southern Turkey">
+        <div class="why-image-caption">Seyhan River, Adana city centre</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="36.7667" data-lng="35.7833" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">01. Taşköprü (Stone Bridge)</span>
+      <div class="place-name">Taşköprü — Roman Stone Bridge</div>
+      <p class="place-desc">A Roman bridge from the 2nd century AD across the Seyhan River, built under Emperor Hadrian, with 14 of its original 21 arches surviving in use. The bridge was the primary crossing point of the Seyhan for almost two millennia and still carries pedestrian traffic today. The scale of the arches, viewed from the river bank at water level, conveys the engineering ambition of the original construction more clearly than any description. The bridge is best at dawn before the city wakes, or at dusk when the light is on the stonework. Free access, 24 hours.</p>
+    </div>
+<div class="place-item" data-lat="36.998" data-lng="35.3288" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">02. Sabancı Merkez Camii</span>
+      <div class="place-name">Sabancı Central Mosque</div>
+      <p class="place-desc">Completed in 1998 and funded by the Sabancı family, this is one of the largest mosques in Turkey and the dominant landmark of Adana's riverside. Six minarets, a central dome of 54 metres, and a capacity of 28,500 worshippers. The interior is decorated with Iznik-inspired ceramic tiles and calligraphy panels of high quality. Entry for non-worshippers is permitted outside prayer times. The exterior, particularly from the Seyhan River bridge, has a composition that is genuinely impressive — the mass of domes and minarets reflected in the river is the postcard image of modern Adana.</p>
+    </div>
+<div class="place-item" data-lat="36.987" data-lng="35.3185" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">03. Ulu Cami ve Bazaar</span>
+      <div class="place-name">Ulu Cami and Old Bazaar</div>
+      <p class="place-desc">The 16th-century Ulu Cami (Great Mosque) with its black and white striped stonework is the oldest significant Ottoman monument in the city centre. The surrounding bazaar district has operated continuously since at least the Ramazanoğlu principality period in the 15th century. The covered market lanes sell spices, textiles, copper goods and regional food products. The isot biber — the dark, sun-dried red pepper specific to Adana and Urfa — is the essential purchase. Without it the Adana kebab cannot be made correctly.</p>
+    </div>
+<div class="place-item" data-lat="36.9921" data-lng="35.3243" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">04. Adana Archaeology Museum</span>
+      <div class="place-name">Adana Arkeoloji Müzesi</div>
+      <p class="place-desc">One of the most important regional archaeology museums in Turkey, with collections spanning the Neolithic, Bronze Age, Hittite, Assyrian, Greek, Roman and Byzantine periods from excavations across the Çukurova region. The Hittite and Late Bronze Age material is particularly significant — the Çukurova was the heartland of the Kizzuwatna kingdom and later a contested zone between Hittite and Egyptian empires. The sarcophagus collection from the Roman period is the largest in the region. Allow 2 to 3 hours. Entry fee applies.</p>
+    </div>
+<div class="place-item" data-lat="37.26" data-lng="35.93" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">05. Yüreğir Ovası ve Seyhan Barajı</span>
+      <div class="place-name">Seyhan Dam and Reservoir</div>
+      <p class="place-desc">The Seyhan Dam north of the city creates a reservoir of 55 km² used for both irrigation of the Çukurova and as the city's recreational water. The dam road passes through citrus orchards and cotton fields before reaching the water at 950 metres above sea level — the Taurus Mountains visible in every direction. Fishing is permitted on the reservoir and there are several simple restaurants on the western shore. A half-day circuit from the city through the orchards and back gives a clear sense of the agricultural scale that defines Adana's economy and character.</p>
+    </div>
+<div class="place-item" data-lat="36.7833" data-lng="35.7833" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">06. Anavarza Antik Kenti</span>
+      <div class="place-name">Anavarza Ancient City</div>
+      <p class="place-desc">A Hellenistic and Roman city 100 km northeast of Adana, dramatically sited on a volcanic rock rising from the Çukurova plain with an Ottoman fortress on the summit and extensive Roman ruins at the base. The colonnaded street, the triumphal arch and the theater are the main monuments. Less visited than major sites but with an atmosphere — the contrast of the ancient columns against the flat agricultural plain and the volcanic rock — that is entirely its own. The drive through the Çukurova cotton fields to reach it is the correct approach to understanding the landscape.</p>
+    </div>
+<div class="place-item" data-lat="36.7667" data-lng="35.7833" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">07. Yumurtalık Castle</span>
+      <div class="place-name">Yumurtalık Kalesi</div>
+      <p class="place-desc">A medieval Armenian and later Genoese fortress on the eastern Mediterranean coast, 80 km south of Adana near the town of Yumurtalık. The castle stands on a rocky promontory over the sea with towers and walls substantially intact. The surrounding coastline has undeveloped beaches and a small fishing harbour. A good half-day from Adana combined with a drive through the Çukurova citrus orchards along the coastal road.</p>
+    </div>
+<div class="place-item" data-lat="36.9128" data-lng="34.8921" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">08. Tarsus</span>
+      <div class="place-name">Tarsus</div>
+      <p class="place-desc">The birthplace of St Paul, 30 km east of Adana, with a continuous urban history from the Hittite period. Cleopatra's Gate — the monumental entrance through which she passed to meet Mark Antony in 41 BC — survives on the eastern side of the old city. The Şelale (waterfall) in the city park has been a gathering place since antiquity. The old bazaar area retains character and the early Christian church tradition makes the city a significant stop.</p>
+    </div>
+  </div>
+  <div class="map-container"><div id="map"></div></div>
+</div>
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('XC1klonfzNU')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/XC1klonfzNU/maxresdefault.jpg" alt="Adana kebab food culture" loading="lazy" onerror="this.src='https://img.youtube.com/vi/XC1klonfzNU/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('GBil27OsaFc')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/GBil27OsaFc/maxresdefault.jpg" alt="Adana Taşköprü Roman bridge" loading="lazy" onerror="this.src='https://img.youtube.com/vi/GBil27OsaFc/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('hJq0TajyDGc')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/hJq0TajyDGc/maxresdefault.jpg" alt="Çukurova plains Adana southern Turkey" loading="lazy" onerror="this.src='https://img.youtube.com/vi/hJq0TajyDGc/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+<section class="section section-cream" id="food">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Local Cuisine</span>
+    <h2 class="section-title">What to Eat</h2>
+    <div class="food-intro reveal">
+      <p>Adana's food culture is built around fire, meat and isot pepper. The Adana kebab is its most famous export but the broader table — şalgam, hummus, liver, cold mezes and the breakfast culture of the south — is equally serious. The city eats late and enthusiastically.</p>
+    </div>
+    <div class="dishes-grid reveal">
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">The Signature</span>
+          <div class="dish-name">Adana Kebabı</div>
+          <p class="dish-desc">Hand-minced lamb with tail fat and isot biber (dark dried red pepper), shaped onto a wide flat skewer and grilled over charcoal until the fat renders and the surface chars slightly. The isot gives a slow, smoky heat rather than immediate sharpness. Served on lavaş with grilled tomato, pepper and red onion. The technique of mincing by hand with two cleavers, the proportion of tail fat, and the charcoal temperature are the variables that separate a definitive Adana kebab from a mediocre one. The better kebabcıs in Adana have been working these variables for decades.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">The Companion</span>
+          <div class="dish-name">Şalgam Suyu</div>
+          <p class="dish-desc">Fermented black carrot and turnip juice, tangy and slightly sour, served cold in a tall glass. The sour fermented vegetable drink cuts through the fat of the kebab and is the canonical accompaniment — ordering kebab with anything else in Adana signals that you don't know. There is also an acı (hot) version with isot pepper added. Produced locally and sold from street carts and at every kebab restaurant in the city. Drink it cold, in quantity, without hesitation.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">The Offal</span>
+          <div class="dish-name">Ciğer Kebabı</div>
+          <p class="dish-desc">Liver kebab is as central to Adana's grill culture as the lamb kebab. Fresh lamb liver cut into small cubes, threaded onto skewers with tail fat, and grilled over very high heat for a very short time — the inside must remain pink. Seasoned with isot and served with the same accompaniments as the Adana kebab. The dedicated ciğer restaurants open early and serve through the morning as a breakfast food. Order a mixed plate with both liver and lamb kebab at a good kebabcı.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Southern Spice</span>
+          <div class="dish-name">Adana İsot Biberi</div>
+          <p class="dish-desc">The isot pepper — sun-dried, then processed with oil and salt to produce a dark, oily, smoky spice with moderate heat — is the defining flavour of Adana cooking. It appears in kebab, in hummus, sprinkled over mezes and dissolved into olive oil as a table condiment. Buy a vacuum-packed quantity at the spice market in the bazaar; it is the one ingredient that cannot be substituted if you want to cook Adana-style food at home. The Urfa isot (from Şanlıurfa) and Adana isot are similar but have distinct character — the Adana version is more intensely smoky.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Southern Meze</span>
+          <div class="dish-name">Humus ve Mevsim Salataları</div>
+          <p class="dish-desc">The meze culture of southern Turkey is distinct from the Aegean tradition — less olive oil, more spice, heavier emphasis on legumes and fire-roasted vegetables. Adana hummus is made with extra tahini and finished with isot-infused butter. Roasted red pepper and walnut spread, chopped lamb liver salad with pomegranate, and a tabbouleh-style parsley and bulgur salad are the standard table starters. Order four or five cold mezes before the kebab arrives at any proper kebabcı.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Sweet</span>
+          <div class="dish-name">Portakal Tatlısı</div>
+          <p class="dish-overlay">Adana and the Çukurova produce citrus at industrial scale — the orchards stretch for kilometres along the coastal plain. The local orange dessert tradition uses the fruit in several preparations: candied orange peel in sugar syrup, orange-scented semolina cake, and the simple practice of serving cold fresh-squeezed orange juice as the conclusion to a kebab meal. The juice from Çukurova oranges in season (November to March) is worth noting — full-flavoured, not particularly sweet, with a clean acidity.</p>
+        </div>
+      </div>
+    </div>
+    <span class="resto-section-label">Where to Eat</span>
+    <h3 class="resto-section-title">Recommended Restaurants</h3>
+    <p class="resto-note">Adana kebab restaurants are the priority. For the best, go where locals eat lunch — busy, simple places near the old bazaar and along the Seyhan River.</p>
+    <div class="resto-grid reveal">
+      <div class="resto-card">
+        <div class="resto-name">Kebapçı Halil Usta</div>
+        <div class="resto-stars">★★★★★ <span>4.8 · 3,200+ reviews</span></div>
+        <p class="resto-desc">A long-established Adana kebab specialist near the city centre, with a reputation among locals that spans generations. The hand-mincing is done in view of customers. Order the karışık (mixed) plate of Adana and Urfa kebabs with all the accompaniments. Always busy at lunch — arrive before noon or after 14:00.</p>
+        <span class="resto-specialty">Adana Kebab, Ciğer, Şalgam</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Öz Asmaaltı</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 2,100+ reviews</span></div>
+        <p class="resto-desc">A riverside restaurant near the Taşköprü with kebab and meze, tables with a direct view of the Roman bridge and the Sabancı Mosque beyond. The food is reliable rather than exceptional but the setting is the best in the city. Go for dinner when the bridge is lit and the river catches it.</p>
+        <span class="resto-specialty">Adana Kebab, River View, Mezes</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Yöresel Tatlar Lokantası</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 1,400+ reviews</span></div>
+        <p class="resto-desc">A lokanta near the Ulu Cami bazaar area serving the full southern Anatolian table: kebab, ciğer, cold mezes, hummus, liver salad and şalgam. Popular with bazaar workers and traders. No tourist orientation. Lunch only, cash preferred. The hummus here is among the better versions in the city.</p>
+        <span class="resto-specialty">Hummus, Mixed Grill, Southern Mezes</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Çiğköfte Dünyası</div>
+        <div class="resto-stars">★★★★☆ <span>4.5 · 900+ reviews</span></div>
+        <p class="resto-desc">A çiğköfte specialist — the bulgur and spice preparation eaten wrapped in lavaş with pomegranate molasses — which in Adana is made in the traditional raw-style preparation (now the isot-spiced bulgur version rather than raw meat). Cheap, fast and good. A meal for under 100 TL. Eat it standing at the counter in lavaş with plenty of pomegranate sauce.</p>
+        <span class="resto-specialty">Çiğköfte, Lavaş, Pomegranate Sauce</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">5 Ocak Kebap</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,800+ reviews</span></div>
+        <p class="resto-desc">One of Adana's most visited kebab houses, recommended consistently by locals as the city's benchmark. Serves alcohol, uncommon for a traditional kebab house. Busy at both lunch and dinner.</p>
+        <span class="resto-specialty">Adana Kebab, Ciğer, Meze</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Onbaşılar Kebap</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 1,500+ reviews</span></div>
+        <p class="resto-desc">Broader menu than most: good lamb ribs (kaburga), liver skewers and cold mezes alongside the Adana kebab. Popular with families and business lunches. Fresh salads and wood-fired bread.</p>
+        <span class="resto-specialty">Adana Kebab, Kaburga, Liver Skewer</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Experiences</span>
+    <h2 class="section-title">Things to Do</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Taşköprü at Dawn</div>
+        <p class="activity-desc">The Roman bridge is best before 08:00 when the city is quiet and the low morning light is on the stonework. Stand at the midpoint and look down at the arches meeting the water — the 2,000-year-old construction is most apparent at this angle and in this light. The Sabancı Mosque behind you, the riverside park below, the old city quarter on the far bank. Allow 30 minutes at the bridge before the breakfast restaurants open. The water level varies seasonally; in spring the arches are at their most dramatic with the Seyhan running high.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Kebab Lunch Circuit</div>
+        <p class="activity-desc">The serious kebabcı restaurants in Adana serve lunch from noon until the meat runs out — typically between 14:00 and 15:00. This is the central cultural experience of visiting the city. Order the Adana kebab with all accompaniments: lavaş, grilled tomato and pepper, red onion, sumac, parsley and şalgam. Watch the preparation if the kitchen is visible. Take time with the meze first — hummus, red pepper spread, liver salad. Do not rush. This is not a meal to eat standing. Budget 200 to 400 TL per person at a good kebabcı including drinks.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Çukurova Drive</div>
+        <p class="activity-desc">The drive east from Adana through the Çukurova plain toward Ceyhan and Anavarza passes through one of Turkey's most productive agricultural zones — cotton fields stretching to the horizon in summer, orange orchards along the water channels, and the dramatic backdrop of the Taurus Mountains to the north. The Anavarza ancient city at the end of this drive (100 km from Adana) adds an archaeological dimension to what is otherwise a landscape experience. Go in October when the cotton harvest is underway and the plain has its fullest character.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-black" style="padding:72px 0;" id="daytrips">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">From Adana</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">75 km west, about 1 hr</span>
+        <div class="daytrip-name">Mersin and Kızkalesi</div>
+        <p class="daytrip-desc">The Mediterranean coast west of Adana reaches Mersin in about an hour. Kızkalesi (Maiden's Castle), 80 km from Adana, has a medieval fortress built on an island 200 metres from the shore — accessible by rowboat from the beach — and a second fortress on the mainland opposite. The coastal road between Mersin and Kızkalesi passes through citrus orchards with the Mediterranean to the south. Silifke, 110 km from Adana, has a Byzantine fortress, an archaeological museum and the nearby Uzuncaburç ancient city with a Temple of Zeus that is in exceptional condition.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">130 km east, about 1 hr 45 min</span>
+        <div class="daytrip-name">Antakya (Hatay)</div>
+        <p class="daytrip-desc">Antakya — ancient Antioch on the Orontes — is 130 km southeast of Adana and one of the most historically layered cities in Turkey. The Hatay Archaeology Museum holds the world's largest collection of Roman mosaics in situ. The old bazaar and the mixed Christian-Muslim-Alevi community character of the Hatay region is unlike anywhere else in Turkey. The food — particularly the künefe, the stuffed lamb dishes and the local pepper preparations — is different again from Adana and worth the journey independently of the history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo"><p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p></div>
+    <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities and Destinations</a><a href="../blog.html">Travel Blog</a><a href="../projects.html">Our Projects</a><a href="../about.html">About Us</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="../contact.html">Contact Us</a><a href="../contact.html">Become a Partner</a><div class="footer-social" style="margin-top:4px;"><a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a><a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a></div></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Show Me Turkiye. All rights reserved.</span><span>Privacy Policy &middot; Cookies &middot; Sitemap</span></div>
+</footer>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closeVideo();}});
+  window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+  var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+  var modal=document.getElementById('videoModal');if(modal)modal.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+  var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Taskopru Roman Stone Bridge',lat:36.7667,lng:35.7833,zoom:13},
+    {name:'Sabanci Merkez Camii',lat:36.998,lng:35.3288,zoom:15},
+    {name:'Ulu Cami & Old Bazaar',lat:36.987,lng:35.3185,zoom:16},
+    {name:'Adana Archaeology Museum',lat:36.9921,lng:35.3243,zoom:15},
+    {name:'Seyhan Dam',lat:37.26,lng:35.93,zoom:13},
+    {name:'Anavarza Ancient City',lat:36.7833,lng:35.7833,zoom:13},
+    {name:'Yumurtalik Castle',lat:36.7667,lng:35.7833,zoom:13},
+    {name:'Tarsus',lat:36.9128,lng:34.8921,zoom:13}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([37.0,35.43],11);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var popupStyle=document.createElement('style');popupStyle.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(popupStyle);
+  var markers=LOCATIONS.map(function(loc){var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps?q='+encodeURIComponent(loc.name+' Adana')+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});return m;});
+  window.selectPlace=function(el){document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});el.classList.add('active');var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});markers[idx].openPopup();};
+});
+</script>
+</body>
+</html>
