@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankara | Show Me Turkiye</title>
+<meta name="description" content="Explore Ankara, Turkiye\u0027s capital. Visit Anitkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root {
+  --black:#0a0c0e; --dark:#0f1214; --dark2:#151719;
+  --teal:#1a8a7d; --teal-light:#23b5a4;
+  --brown:#c4a265; --brown-light:#d4b87e;
+  --cream:#f5f0e6; --cream2:#ebe4d6;
+  --text:#2c2a26; --text-muted:#7a756c;
+  --border:rgba(255,255,255,0.07);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* NAV */
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+
+/* HERO */
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1571043733612-d5444ff5d072?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.35) 0%,rgba(10,12,14,0.2) 40%,rgba(10,12,14,0.7) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+
+/* SECTION UTILITY */
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+
+/* WHY VISIT */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+
+/* PLACES + MAP */
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:200px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:100%;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+
+
+/* FOOD */
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+
+/* RESTAURANTS */
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:block;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+
+/* ACTIVITIES */
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+
+/* DAY TRIPS */
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0.0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;max-width:100%;opacity:0;transform:translateY(8px);transition:all 0.4s ease;margin-top:10px;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* VIDEO MODAL */
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+
+/* FOOTER */
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST — mobile: map slides down from top and sticks when a place is clicked */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore Turkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Central Anatolia, Turkiye</div>
+    <h1>Ankara</h1>
+    <p class="hero-subtitle">The modern capital where the republic was born and the Hittites once ruled</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-label">Region</span>
+    <span class="stat-value">Central Anatolia</span>
+    <span class="stat-sub">Capital of Turkiye</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Best Season</span>
+    <span class="stat-value">Apr to Oct</span>
+    <span class="stat-sub">Cold winters, dry summers</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Known For</span>
+    <span class="stat-value">Anitkabir</span>
+    <span class="stat-sub">Museums, citadel, embassies</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Climate</span>
+    <span class="stat-value">Continental</span>
+    <span class="stat-sub">Snowy winters, hot summers</span>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- PLACES + MAP -->
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="39.925" data-lng="32.837" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">01. Anitkabir</span>
+      <div class="place-name">Anitkabir</div>
+      <p class="place-desc">The mausoleum of Mustafa Kemal Ataturk, founder of modern Turkiye. A huge ceremonial complex on a hill overlooking the city, designed in a minimalist modernist style. The changing of the guard, the hall of honour and the War of Independence museum underneath are all worth visiting. Free entry, allow three hours.</p>
+    </div>
+<div class="place-item" data-lat="39.9401" data-lng="32.8607" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">02. Ankara Citadel</span>
+      <div class="place-name">Ankara Citadel</div>
+      <p class="place-desc">The old fortress town perched on a hill in the middle of modern Ankara. Byzantine walls, Roman columns reused in the walls, Ottoman houses, antique shops and wine bars. Walk up at sunset, have dinner at one of the restored house restaurants with a view of the city.</p>
+    </div>
+<div class="place-item" data-lat="39.9397" data-lng="32.8601" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">03. Museum of Anatolian Civilisations</span>
+      <div class="place-name">Museum of Anatolian Civilisations</div>
+      <p class="place-desc">Inside a restored 15th-century covered bazaar at the foot of the citadel. One of the most important archaeology museums in the world, with finds from Catalhoyuk, Hittite capitals and Phrygian royal tombs. A proper visit takes two to three hours.</p>
+    </div>
+<div class="place-item" data-lat="39.9418" data-lng="32.8552" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">04. Haci Bayram Mosque</span>
+      <div class="place-name">Haci Bayram and Roman Temple</div>
+      <p class="place-desc">A 15th-century mosque built directly next to the 2nd-century Roman Temple of Augustus. Two monuments from entirely different eras share a wall. The Haci Bayram square and cafe scene is one of the most atmospheric in the city, especially at dusk.</p>
+    </div>
+<div class="place-item" data-lat="39.9165" data-lng="32.86" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">05. Kugulu Park and Tunali</span>
+      <div class="place-name">Kugulu Park and Tunali Hilmi</div>
+      <p class="place-desc">The leafy embassies district centred on Kugulu Park, with swans in the pond, and the long cafe-lined Tunali Hilmi Caddesi. Ankara's most walkable, liveable neighbourhood. Great for a morning coffee or evening stroll.</p>
+    </div>
+<div class="place-item" data-lat="39.927" data-lng="32.857" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">06. CerModern</span>
+      <div class="place-name">CerModern</div>
+      <p class="place-desc">A contemporary art museum housed in a converted train maintenance shed near the old station. Regular exhibitions, a great bookshop and a cafe with an outdoor terrace. Ankara's strongest contemporary art space.</p>
+    </div>
+<div class="place-item" data-lat="39.9355" data-lng="32.8508" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">07. Hamamönü Historic District</span>
+      <div class="place-name">Hamamönü</div>
+      <p class="place-desc">A restored Ottoman neighbourhood of timber-framed houses dating from the 1920s and 1930s, converted into cafes, artist shops and small galleries. A pedestrianised area a short walk from Ankara Castle, good for an evening stroll with restaurants, tea houses and boutique shops in the restored houses. One of the few parts of Ankara where the early Republican urban character has been preserved intact.</p>
+    </div>
+<div class="place-item" data-lat="39.8891" data-lng="32.8615" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">08. Atakule Tower</span>
+      <div class="place-name">Atakule</div>
+      <p class="place-desc">A 125-metre observation and communications tower in the Çankaya district, with a 360-degree viewing terrace and a revolving restaurant near the top. The view across Ankara — the old citadel in one direction, the modern government district in another — gives a clear sense of the city's scale and layout. The tower is open daily; evening visits for the illuminated city are popular.</p>
+    </div>
+  </div>
+<div class="map-container">
+    <div id="map"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('Kg6N_tR9CjE')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/Kg6N_tR9CjE/maxresdefault.jpg" alt="Ankara" onerror="this.src='https://img.youtube.com/vi/Kg6N_tR9CjE/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('o04MJUTdq6k')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/o04MJUTdq6k/maxresdefault.jpg" alt="Sumela" onerror="this.src='https://img.youtube.com/vi/o04MJUTdq6k/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+    <div class="gallery-card" onclick="openVideo('xQAKV_D19Zs')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/xQAKV_D19Zs/maxresdefault.jpg" alt="Uzungol" onerror="this.src='https://img.youtube.com/vi/xQAKV_D19Zs/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+        </div>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section class="section section-cream" id="food">
+  <span class="section-label reveal">Black Sea Table</span>
+  <h2 class="section-title reveal">Food and Cuisine</h2>
+  <div class="food-intro reveal">
+    <p>Ankara food is central Anatolian home cooking. Slow-cooked meat, wheat dishes like bulgur and manti, rich lentil soups and the classic Ankara tava, a slow-roasted lamb and rice dish. Not flashy, deeply satisfying, and best eaten at family lokantas that have been serving the same neighbourhood for decades.</p>
+  </div>
+
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1625398407796-82650a8c135f?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Signature</div>
+        <div class="dish-name">Ankara Tava</div>
+        <p class="dish-desc">Slow-cooked lamb and rice baked together in a clay pot until the rice soaks up all the juices. A proper Sunday lunch dish. Served with ayran and a side of pickled vegetables. Kinaci Sofrasi in Cukurambar is the definitive version.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1559847844-1ff4d5bcd1ce?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Wheat Country</div>
+        <div class="dish-name">Manti</div>
+        <p class="dish-desc">Tiny pasta parcels stuffed with spiced lamb, boiled and served under garlic yogurt and chilli butter. Ankara does the small-size, well-sealed version better than anywhere else. A plate of 40 pieces is a classic lunch.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1550547660-d9450f859349?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Soul Food</div>
+        <div class="dish-name">Kelle Paca Soup</div>
+        <p class="dish-desc">A clear soup made from slow-boiled lamb\u0027s head and feet, served with garlic vinegar and red pepper flakes. Traditionally a late-night or early-morning cure. Divan Kelleci Mahmut near Ulus has been serving it since 1940.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1600289031458-3d9e18f5b0f7?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Pastry Love</div>
+        <div class="dish-name">Simit and Pogaca</div>
+        <p class="dish-desc">Ankara office mornings run on simit, pogaca and salep or tea. The pogaca, a buttery soft bread roll stuffed with cheese or olives, is the Ankara favourite. Kiranti Pastanesi has been perfecting them since 1950.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1547928576-b822bc410bdf?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Citadel Ritual</div>
+        <div class="dish-name">Wine in Kale</div>
+        <p class="dish-desc">The Ankara citadel has a small but growing wine bar and restaurant scene, converted from old stone houses. Order a bottle from one of the Cappadocia or Thrace vineyards and watch the city lights come on. A quiet Ankara evening.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Morning Staple</div>
+        <div class="dish-name">Mercimek Corbasi</div>
+        <p class="dish-desc">The most comforting lentil soup in Turkiye, red lentils cooked with onion, carrot and a squeeze of lemon. Served with red pepper butter on top. Every Ankara lokanta makes it, and you will order it again and again.</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="resto-section-label reveal">Where to Eat</span>
+  <h3 class="resto-section-title reveal">Top Restaurants in Ankara</h3>
+  <p class="resto-note reveal">4.5 stars and above, 200 or more reviews on Google</p>
+  <div class="resto-grid reveal">
+    <a class="resto-card" href="https://www.google.com/maps/search/Kinaci+Sofrasi+Ankara" target="_blank">
+      <div class="resto-name">Kinaci Sofrasi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (3,200+ reviews)</span></div>
+      <p class="resto-desc">The pilgrimage address for Ankara tava. Slow-cooked lamb and rice served in the same clay pot it was baked in. No fuss, classic service. A proper long lunch, best on a Saturday afternoon.</p>
+      <div class="resto-specialty">Ankara tava</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Washington+Restaurant+Ankara" target="_blank">
+      <div class="resto-name">Washington Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,800+ reviews)</span></div>
+      <p class="resto-desc">Ankara\u0027s oldest continuously running restaurant, open in Kavaklidere since 1955. Classic Turkish menu, white tablecloths, polished service. Journalists, diplomats and regulars have been eating here for generations.</p>
+      <div class="resto-specialty">Classic Turkish</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Kalegoz+Konagi+Ankara+Kale" target="_blank">
+      <div class="resto-name">Kalegoz Konagi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,700+ reviews)</span></div>
+      <p class="resto-desc">A restored Ottoman house inside the citadel, with a rooftop terrace that has one of the best views in Ankara. Grilled meats, mezes and a short local wine list. Perfect for a sunset dinner with visiting friends.</p>
+      <div class="resto-specialty">Citadel rooftop</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Kalbur+Et+Restaurant+Ankara" target="_blank">
+      <div class="resto-name">Kalbur Et</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (4,300+ reviews)</span></div>
+      <p class="resto-desc">A modern meat restaurant in Cankaya known for dry-aged beef and classic Turkish cuts. A great wine cellar, proper kebabs, a warm wooden interior. A reliable go-to for a proper Ankara dinner.</p>
+      <div class="resto-specialty">Steak, Kebabs</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Divan+Kelleci+Mahmut+Ankara" target="_blank">
+      <div class="resto-name">Divan Kelleci Mahmut</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.4 (2,100+ reviews)</span></div>
+      <p class="resto-desc">Since 1940 in Ulus, serving kelle paca soup, lamb tandoor and offal classics. The kind of unfussy, reliable Ankara lokanta that has not changed much in eighty years. Lunch only, open early.</p>
+      <div class="resto-specialty">Kelle paca, Tandoor lamb</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Ankara+Evi+Ulus" target="_blank">
+      <div class="resto-name">Ankara Evi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,900+ reviews)</span></div>
+      <p class="resto-desc">A historic mansion in Ulus serving proper central Anatolian home cooking. Stuffed cabbage leaves, dry-bean stews, manti, and a range of traditional desserts. Quiet courtyard dining in summer.</p>
+      <div class="resto-specialty">Home cooking</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Trilye+Ankara" target="_blank">
+      <div class="resto-name">Trilye</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (2,400+ reviews)</span></div>
+      <p class="resto-desc">A surprise seafood restaurant hundreds of kilometres from the sea. Fish flown in daily, serious mezes and the best grilled sea bass in Ankara. A favourite of ministers and CEOs. Book ahead.</p>
+      <div class="resto-specialty">Seafood</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Kiranti+Pastanesi+Ankara" target="_blank">
+      <div class="resto-name">Kiranti Pastanesi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,200+ reviews)</span></div>
+      <p class="resto-desc">A pogaca and kurabiye specialist open since 1950. Classic Ankara bakery where office workers queue every morning. The cheese pogaca and the kavala kurabiyesi are the must-tries.</p>
+      <div class="resto-specialty">Pastries, Pogaca</div>
+    </a>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">On the Ground</span>
+    <h2 class="section-title reveal">Activities and Experiences</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Anitkabir Visit</div>
+        <p class="activity-desc">Go early morning before the tour groups. The approach via the Lion Road, the main courtyard, the tomb hall and the War of Independence Museum underneath. Allow three hours. A place that means a lot to Turks, treat it with respect.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Citadel Walking Afternoon</div>
+        <p class="activity-desc">From the Museum of Anatolian Civilisations, walk up through the old citadel streets. Stop at the antique shops, climb to the viewing platforms for the city panorama, then stay for dinner at one of the restored house restaurants at sunset.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Museum of Anatolian Civilisations</div>
+        <p class="activity-desc">Catalhoyuk finds from 9,000 years ago, Hittite reliefs, Phrygian gold. One of the most important archaeology museums in the world, yet relatively quiet. A proper visit takes two to three hours.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">04</div>
+        <div class="activity-title">Hamamonu Neighbourhood</div>
+        <p class="activity-desc">A restored Ottoman neighbourhood with wooden houses, cafes, handicraft shops and little museums. Pedestrianised lanes, evening street music and good bakeries. Nice for a morning walk between big sights.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">05</div>
+        <div class="activity-title">Roman Ankara</div>
+        <p class="activity-desc">Beyond the Temple of Augustus, Ankara has Roman baths, columns and walls hidden all over the old town. A self-guided walk links them in about three hours, starting at Haci Bayram and ending at the Roman bath ruins near Ulus.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">06</div>
+        <div class="activity-title">CerModern and Ankara Art</div>
+        <p class="activity-desc">A morning at CerModern contemporary art museum, lunch at its cafe, then walk along Tunali Hilmi Caddesi through the book and record shops. A good way to see a more modern, creative side of the city.</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY TRIPS -->
+<section class="section-black" style="padding:0;" id="daytrips">
+  <div style="padding:72px 80px 44px;" class="reveal">
+    <span class="section-label">Extended Itinerary</span>
+    <h2 class="section-title" style="margin-bottom:0;">Day Trips from Ankara</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1602513394879-b6e6d82e86ae?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">200 km East, about 2.5 hours</div>
+        <div class="daytrip-name">Hattusa</div>
+        <p class="daytrip-desc">The capital of the Hittite Empire. UNESCO World Heritage ruins including the Lion Gate, underground passages and massive temple foundations. Combine with the Yazilikaya rock reliefs and the museum in Corum for a full Hittite day.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1589554489884-ebeef8ea7bab?w=1200');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">275 km Southeast, about 3 hours</div>
+        <div class="daytrip-name">Cappadocia</div>
+        <p class="daytrip-desc">Fairy chimneys, cave hotels and hot air balloons at sunrise. Long drive but doable by train or plane from Ankara for a weekend. Goreme, Uchisar and Urgup are the main bases. Two nights minimum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy · Cookies · Sitemap</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+var vm=document.getElementById('videoModal');if(vm)vm.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Anitkabir',lat:39.925,lng:32.837,zoom:15},
+    {name:'Ankara Castle',lat:39.9401,lng:32.8607,zoom:16},
+    {name:'Museum of Anatolian Civilisations',lat:39.9397,lng:32.8601,zoom:16},
+    {name:'Haci Bayram Mosque',lat:39.9418,lng:32.8552,zoom:16},
+    {name:'Kugulu Park Tunali',lat:39.9165,lng:32.86,zoom:16},
+    {name:'CerModern Art Centre',lat:39.927,lng:32.857,zoom:16},
+    {name:'Hamamonu District',lat:39.9355,lng:32.8508,zoom:16},
+    {name:'Atakule Tower',lat:39.8891,lng:32.8615,zoom:16}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([39.93,32.854],12);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var ps=document.createElement('style');ps.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(ps);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps?q='+encodeURIComponent(loc.name+' Ankara')+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});markers[idx].openPopup();
+    if(window.innerWidth<=1100){var mc=document.querySelector('.map-container');if(mc){mc.classList.add('expanded');var nh=document.querySelector('.site-nav');var top=mc.getBoundingClientRect().top+window.pageYOffset-(nh?nh.offsetHeight:64);window.scrollTo({top:top,behavior:'smooth'});setTimeout(function(){map.invalidateSize();},450);}}
+  };
+});
+</script>
+</body>
+</html>

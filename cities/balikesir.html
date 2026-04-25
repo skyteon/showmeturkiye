@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balıkesir | Show Me Turkiye</title>
+<meta name="description" content="Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas Bird Paradise National Park and Gönen thermal springs.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{--black:#0a0c0e;--dark:#0f1214;--dark2:#151719;--brown:#c4a265;--brown-light:#d4b87e;--cream:#f5f0e6;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(255,255,255,0.07);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1568454537842-d933259bb258?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.25) 0%,rgba(10,12,14,0.15) 40%,rgba(10,12,14,0.65) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:240px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Projects</a>
+  <a href="../about.html">About</a>
+  <a href="../contact.html">Contact</a>
+  <span class="nav-lang">TR / EN</span>
+</div>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Marmara and North Aegean, Turkiye</span>
+    <h1>Balıkesir</h1>
+    <p class="hero-subtitle">Olive groves, island shores, migration routes. A province worth slowing down for.</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Marmara</span><span class="stat-sub">North Aegean coast</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Apr to Oct</span><span class="stat-sub">Spring best for birds and olives</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Ayvalık</span><span class="stat-sub">Olive oil, Cunda, Kuşcenneti</span></div>
+  <div class="stat-item"><span class="stat-label">Climate</span><span class="stat-value">Mediterranean</span><span class="stat-sub">Mild coast, cooler inland</span></div>
+</div>
+
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Balıkesir</h2>
+        <p>Balıkesir is the kind of province that rewards people who look past the obvious. It covers a large stretch of coast between the Marmara Sea and the northern Aegean, holds Ayvalık, one of the best-preserved Greek trading towns in Turkey, and contains the Kapıdağ Peninsula — a pine-covered finger of land projecting into the Marmara with almost no tourist infrastructure and some of the calmest bays in the region.</p>
+        <p>Ayvalık is the anchor. The town has been an olive oil city for centuries and the architecture reflects the prosperity that came with it: stone houses, church towers, factory chimneys now repurposed as boutique hotels. Cunda Island, connected by causeway, holds the restored Taksiyarhis Church and some of the best seafood meyhanes in the country. 22 small islands surround the bay, reachable by boat in an afternoon.</p>
+        <p>Further north, the Manyas Kuşcenneti National Park holds 266 bird species including breeding crested pelicans and spoonbills in an area smaller than most city parks. It sits on the main bird migration corridor between Asia, Europe and Africa and is almost entirely unknown to international tourism. The Gönen thermal springs, known since antiquity, give the inland part of the province a different reason to stop.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900" alt="Ayvalık North Aegean coast olive groves">
+        <div class="why-image-caption">Ayvalık coast, North Aegean</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="39.3228" data-lng="26.6938" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">01. Ayvalık Old Town</span>
+      <div class="place-name">Ayvalık</div>
+      <p class="place-desc">A former Greek olive oil city evacuated in the 1923 population exchange and resettled. The old town survives largely intact: stone townhouses, a clocktower mosque (the Saatlı Cami, the converted church of Agios Yannis), narrow market lanes and the smell of olive oil from small-scale producers still operating in the old factory buildings. The waterfront fills with fishing boats in the morning and the evening light is exceptional. 22 islands are visible from the shore.</p>
+    </div>
+<div class="place-item" data-lat="39.3417" data-lng="26.6733" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">02. Cunda Island</span>
+      <div class="place-name">Cunda (Alibey) Adası</div>
+      <p class="place-desc">Connected to Ayvalık by causeway, Cunda was a prosperous Greek island until 1923 and the stone architecture of that period survives in considerable density. The Taksiyarhis Church, a large 19th-century Greek Orthodox cathedral, has been restored and operates as a Rahmi M. Koç museum. The waterfront meyhanes are the best place to eat seafood in the province. The island is walkable and the back streets are worth an afternoon. Come for dinner and stay to watch the boats come in at dusk.</p>
+    </div>
+<div class="place-item" data-lat="40.3987" data-lng="27.7933" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">03. Erdek and Kapıdağ Peninsula</span>
+      <div class="place-name">Erdek / Kapıdağ</div>
+      <p class="place-desc">Erdek is the gateway to the Kapıdağ Peninsula, once an island and now connected to the mainland by a narrow tombolo, projecting 30 km into the Marmara Sea. The peninsula is covered in pine and olive forest with very little development. The road circumnavigating it is one of the best coastal drives in the region. The ancient city of Kyzikos, once one of the wealthiest cities of the ancient Greek world, lies ruined on the peninsula floor. Ferries from Erdek connect to Avşa, Marmara and Paşalimanı islands.</p>
+    </div>
+<div class="place-item" data-lat="40.2416" data-lng="28.0252" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">04. Manyas Kuşcenneti</span>
+      <div class="place-name">Bird Paradise National Park</div>
+      <p class="place-desc">Turkey's smallest national park by protected area and arguably its most ecologically significant. The park sits on the northeast shore of Lake Manyas on the main migration route between Asia, Europe and Africa. In spring and summer, crested pelicans, spoonbills, night herons, cormorants and great white pelicans nest in the waterside poplars in visible colonies. The observation tower gives direct sightlines into the nesting area. 266 bird species recorded. Open Tuesday to Sunday. 18 km south of Bandırma.</p>
+    </div>
+<div class="place-item" data-lat="39.595" data-lng="27.025" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">05. Balıkesir City Centre</span>
+      <div class="place-name">Balıkesir Merkez</div>
+      <p class="place-desc">The provincial capital sits inland and is rarely on the tourist circuit. The Zağanos Paşa Camii, a 15th-century Ottoman mosque with an unusual double minaret plan, is the most significant architectural monument in the city. The covered bazaar around it dates to the same period. The archaeological museum covers finds from across the province including the ancient sites of Kyzikos and Assos. A stopover rather than a destination but worth a morning if passing through.</p>
+    </div>
+<div class="place-item" data-lat="40.1022" data-lng="27.6455" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">06. Gönen Thermal Baths</span>
+      <div class="place-name">Gönen Kaplıcaları</div>
+      <p class="place-desc">Gönen has been known for its thermal springs since antiquity. The water reaches 78 degrees at source and feeds a series of hotels and public bath facilities in the town. Several hotels in Gönen pump the thermal water directly into private room baths. The springs are rich in radon and minerals and attract a largely domestic Turkish clientele year round. A working, unpretentious alternative to the more touristic spa resorts found elsewhere in Turkey. 60 km north of Balıkesir city centre.</p>
+    </div>
+<div class="place-item" data-lat="39.2833" data-lng="26.5500" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">07. Ayvalık Islands National Park</span>
+      <div class="place-name">Ayvalık Adaları Milli Parkı</div>
+      <p class="place-desc">An archipelago of 22 islands off the Ayvalık coast, designated a national park, with crystal-clear Aegean water, pine forest and the famous Şeytan Sofrası (Devil's Dinner Table) viewpoint on Alibey Island. Boat trips from Ayvalık harbour visit multiple islands with swimming stops. The light on the water in the late afternoon, with the islands silhouetted against the Aegean, is exceptional.</p>
+    </div>
+<div class="place-item" data-lat="39.5950" data-lng="27.0250" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">08. Edremit Gulf and Olive Groves</span>
+      <div class="place-name">Edremit Körfezi</div>
+      <p class="place-desc">The Edremit Gulf — the southernmost bay of the Aegean Turkish coast — is flanked by olive groves that produce some of Turkey's finest olive oil, with Kaz Dağları (Mount Ida, of Trojan War fame) rising directly behind the coastal towns of Altınoluk, Akçay and Edremit. The combination of olive culture, Aegean coast and mythological landscape makes this corner of Balıkesir worth a dedicated visit.</p>
+    </div>
+  </div>
+<div class="map-container"><div id="map"></div></div>
+</div>
+
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('QomREGcpHlI')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/QomREGcpHlI/maxresdefault.jpg" alt="Ayvalık Cunda island" loading="lazy" onerror="this.src='https://img.youtube.com/vi/QomREGcpHlI/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('vY5HoJVSbMM')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/vY5HoJVSbMM/maxresdefault.jpg" alt="Kapıdağ Peninsula Erdek" loading="lazy" onerror="this.src='https://img.youtube.com/vi/vY5HoJVSbMM/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('TXWJorQ7e9U')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/TXWJorQ7e9U/maxresdefault.jpg" alt="Manyas Kuşcenneti bird paradise" loading="lazy" onerror="this.src='https://img.youtube.com/vi/TXWJorQ7e9U/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream" id="food">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Local Cuisine</span>
+    <h2 class="section-title">What to Eat</h2>
+    <div class="food-intro reveal">
+      <p>Balıkesir's food is built on olive oil. The province, particularly around Ayvalık, Edremit and Burhaniye, produces some of Turkey's finest extra virgin olive oil, and it appears in everything: the mezes, the fish preparations, the breads and the pastries. The Marmara and Aegean coastlines mean fresh seafood throughout the year. Inland, cooking shifts toward lamb and slow-cooked legumes.</p>
+    </div>
+    <div class="dishes-grid reveal">
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">The Foundation</span>
+          <div class="dish-name">Ayvalık Zeytinyağı</div>
+          <p class="dish-desc">Ayvalık and the Edremit Gulf coast produce early-harvest extra virgin olive oil with low acidity and a distinctive grassy, slightly peppery finish. The Ayvalık variety olive is a protected geographical indication and the best oil comes from producers who harvest in October before full ripeness. Several Ayvalık producers sell directly from the press. A litre of properly labeled Ayvalık olive oil bought at source is one of the best value food purchases in Turkey.</p>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Cunda Specialty</span>
+          <div class="dish-name">Aegean Meze</div>
+          <p class="dish-desc">The meyhanes on Cunda waterfront serve a meze spread specific to this coastline: sea urchin roe when in season (October to March), stuffed mussels, smoked sardine, fried courgette with garlic yogurt, fava bean puree, marinated octopus. Order five or six cold mezes and share across the table before the fish arrives. The sea urchin roe alone is reason enough to time a visit to Cunda in late autumn or winter.</p>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Daily Catch</span>
+          <div class="dish-name">Ayvalık Usulü Balık</div>
+          <p class="dish-desc">Grilled sea bass, sea bream or red mullet with local olive oil and lemon. The fish restaurants along the Ayvalık and Cunda waterfront display the daily catch on ice at the entrance. Order by weight, ask what came in that morning, and eat it simply. The proximity of the olive groves to the water means the oil in the good restaurants is often local and genuinely fresh.</p>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Breakfast Pastry</span>
+          <div class="dish-name">Balıkesir Poğaçası</div>
+          <p class="dish-desc">Balıkesir is well known across Turkey for its poğaça, a yeasted, slightly flaky pastry filled with white cheese and black olives, or minced meat. The version specific to this province uses a soft, enriched dough and is larger than the standard Istanbul bakery version. Sold from street bakeries in the early morning in Balıkesir city and from pastane shops in Ayvalık's market lanes. Best eaten warm from the oven, minutes after baking.</p>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Inland Dish</span>
+          <div class="dish-name">Keşkek</div>
+          <p class="dish-desc">A slow-cooked preparation of wheat groats and lamb, beaten together for hours until the mixture reaches a smooth, porridge-like consistency. Keşkek is made for weddings and large celebrations in the inland villages of Balıkesir Province. The version from this region uses lamb from the Kazdağları foothills and local wheat. Hard to find in ordinary restaurants but occasionally available at lokanta-style canteens in the city and at larger village celebrations.</p>
+        </div>
+      </div>
+
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Local Institution</span>
+          <div class="dish-name">Ayvalık Tostu</div>
+          <p class="dish-desc">A specific style of toasted sandwich made with dense Ayvalık bread, filled with sucuk or cheese and grilled until the bread is dark and crunchy. The Ayvalık toast has a following across Turkey and is eaten for breakfast or late at night. Several cafes in Ayvalık specialize in nothing else. The bread, slightly denser and more chewy than standard white sandwich bread, is what makes the difference. Available throughout the day from street cafes in the old town.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <span class="resto-section-label">Where to Eat</span>
+    <h3 class="resto-section-title">Recommended Restaurants</h3>
+    <p class="resto-note">Cunda Island has the best concentration of seafood restaurants in the province. Ayvalık old town has good cafes and breakfast spots in the market area.</p>
+    <div class="resto-grid reveal">
+      <div class="resto-card">
+        <div class="resto-name">Cunda Körfez Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,400+ reviews</span></div>
+        <p class="resto-desc">On the Cunda waterfront with views across the bay to Ayvalık. The meze spread is the main reason to come: sea urchin in season, octopus, stuffed mussels and half a dozen cold Aegean preparations before the grilled fish. Book ahead at weekends in summer and aim for a terrace table at sunset.</p>
+        <span class="resto-specialty">Aegean Meze, Grilled Fish, Sea Urchin</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Taş Kahve Cunda</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 900+ reviews</span></div>
+        <p class="resto-desc">A historic stone teahouse and restaurant overlooking the Cunda harbour in a converted Greek-era building. Good for a long breakfast or lunch in the garden terrace. The kitchen serves Aegean mezes and grilled fish. The atmosphere and view are as important as the food. Arrive before 10:00 for breakfast before the day-trip crowds arrive from the mainland.</p>
+        <span class="resto-specialty">Breakfast, Aegean Mezes, Tea Garden</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Şeytan'ın Kahvesi</div>
+        <div class="resto-stars">★★★★★ <span>4.5 · 700+ reviews</span></div>
+        <p class="resto-desc">A small historic cafe in Ayvalık's back lanes with a Greek-era atmosphere. The breakfast menu is the draw: Ayvalık olive oil, local olives, fresh bread, eggs and cheese. The interior is cluttered with old photographs and Greek-era objects. Arrive early on weekends, particularly in summer, when every table fills by 09:00.</p>
+        <span class="resto-specialty">Ayvalık Breakfast, Local Olive Oil</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Balıkesir Çarşı Lokantası</div>
+        <div class="resto-stars">★★★★☆ <span>4.4 · 500+ reviews</span></div>
+        <p class="resto-desc">A no-nonsense lokanta in Balıkesir city centre near the Zağanos Paşa Camii. The daily menu is written on a board: lamb stew, stuffed peppers, lentil soup and seasonal vegetables. Cheap, filling and genuinely good. Eaten at shared tables by local workers and market vendors. Closes by 15:00.</p>
+        <span class="resto-specialty">Daily Stews, Lamb, Seasonal Vegetables</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <div class="resto-card">
+        <div class="resto-name">Cunda Bahçe</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,100+ reviews</span></div>
+        <p class="resto-desc">Seafood restaurant on Cunda Island with wide cold meze selection and fresh Aegean catch. Baby shrimp and calamari stand out. Waterside tables in summer.</p>
+        <span class="resto-specialty">Aegean Seafood, Cold Mezes, Sea Bass</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Köfteci Yusuf Balikesir</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 900+ reviews</span></div>
+        <p class="resto-desc">The most-cited köfte specialist in Balikesir, serving köfte with piyaz — the locally considered benchmark pairing. Simple, fast and genuinely good. Cash preferred.</p>
+        <span class="resto-specialty">Köfte, Piyaz, Ayran</span>
+      </div>
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Experiences</span>
+    <h2 class="section-title">Things to Do</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Bird Watching at Manyas</div>
+        <p class="activity-desc">The peak breeding season is March to July. Come before 08:00 when the nesting colonies are most active and the light is best for photography. The observation tower gives direct sightlines into the pelican and spoonbill colonies at close range. Bring binoculars and a telephoto lens if you have one; the park loans binoculars at the entrance. The drive from Bandırma takes 20 minutes. Open Tuesday to Sunday. Combined with an afternoon in Erdek, this makes a full day without rushing.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Kapıdağ Peninsula Circuit</div>
+        <p class="activity-desc">The road circumnavigating the Kapıdağ Peninsula from Erdek is approximately 95 km and takes three to four hours without stops. Several small bays along the north shore have no infrastructure and are reachable by a short walk from the road. The ruins of Kyzikos, once among the richest cities of the ancient Greek world, lie in open fields near Erdek and are freely accessible. A car is required; there is no public transport on the peninsula. Best done early in the day before the heat builds in summer.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Ayvalık Island Boat Trip</div>
+        <p class="activity-desc">Day-long boat tours from Ayvalık harbour visit several of the 22 islands in the archipelago, stopping at swimming bays with clear North Aegean water. Tours run June to October, departing around 10:00 and returning by 17:00. The Devil's Dinner Table rock formation viewpoint, Seytan Sofrasi, gives a panoramic view over the island chain at sunset and is reachable by car or taxi from Ayvalık. Good for photography in late afternoon when the light is behind the islands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-black" style="padding:72px 0;" id="daytrips">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Beyond the Centre</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">90 km south, about 1.5 hrs</span>
+        <div class="daytrip-name">Assos and Behramkale</div>
+        <p class="daytrip-desc">The ancient city of Assos, founded in the 8th century BC, sits on a volcanic promontory above the Aegean with a Temple of Athena still standing at the summit. Aristotle lived and taught here for three years. Below the acropolis, the village of Behramkale has preserved Ottoman-era stone houses and a small harbour with a fishing community. The approach road from the north, dropping through olive groves to the sea, is one of the most atmospheric drives in northwestern Turkey.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">Ferry from Erdek, 1 to 2 hrs</span>
+        <div class="daytrip-name">Marmara Islands</div>
+        <p class="daytrip-desc">Regular ferries from Erdek and Bandırma connect to the Marmara Islands: Avşa, Marmara and Paşalimanı. Avşa is the most popular, with sandy beaches and a small resort infrastructure. Marmara Island has the marble quarries that supplied Constantinople and several Byzantine-era structures. Paşalimanı is the quietest, with olive groves and almost no development. A one-night stay on any of them gives access to bays impossible to reach by any other means.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy &middot; Cookies &middot; Sitemap</span>
+  </div>
+</footer>
+
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closeVideo();}});
+  window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+  var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+  var modal=document.getElementById('videoModal');if(modal)modal.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+  var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Ayvalik Old Town',lat:39.3228,lng:26.6938,zoom:14},
+    {name:'Cunda Alibey Island',lat:39.3417,lng:26.6733,zoom:14},
+    {name:'Erdek Kapidag Peninsula',lat:40.3987,lng:27.7933,zoom:12},
+    {name:'Manyas Bird Paradise',lat:40.2416,lng:28.0252,zoom:13},
+    {name:'Balikesir Merkez',lat:39.595,lng:27.025,zoom:12},
+    {name:'Gonen Thermal Baths',lat:40.1022,lng:27.6455,zoom:13},
+    {name:'Ayvalik Islands National Park',lat:39.2833,lng:26.5500,zoom:12},
+    {name:'Edremit Gulf',lat:39.5950,lng:27.0250,zoom:12}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([39.7,27.5],9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var popupStyle=document.createElement('style');popupStyle.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(popupStyle);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    var dest=loc.lat+','+loc.lng;
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps?q='+encodeURIComponent(loc.name+' Balıkesir')+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});
+    markers[idx].openPopup();
+  };
+});
+</script>
+</body>
+</html>
