@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canakkale | Show Me Turkiye</title>
+<meta name="description" content="Discover Canakkale on the Dardanelles Strait. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fish.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{--black:#0a0c0e;--dark:#0f1214;--dark2:#151719;--brown:#c4a265;--brown-light:#d4b87e;--cream:#f5f0e6;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(255,255,255,0.07);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}
+.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+.site-nav a img{height:38px;width:auto;object-fit:contain;}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}
+.hamburger span{width:26px;height:2px;background:#fff;display:block;}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}
+.nav-overlay.open{display:flex;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}
+.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}
+.nav-overlay .nav-lang{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}
+.close-nav:hover{opacity:1;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:url('https://images.unsplash.com/photo-1589519160732-57fc498494f8?w=1920') center/cover no-repeat;transform:scale(1.04);transition:transform 8s ease-out;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.35) 0%,rgba(10,12,14,0.2) 40%,rgba(10,12,14,0.7) 75%,rgba(10,12,14,0.95) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}
+.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}
+.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}
+.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}
+.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}
+.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}
+.stat-item:last-child{border-right:none;}
+.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}
+.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+.section{padding:90px 80px;}
+.section-cream{background:var(--cream);color:var(--text);}
+.section-dark{background:var(--dark);color:#fff;}
+.section-black{background:var(--black);color:#fff;}
+.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}
+.section-cream .section-label{color:var(--brown);}
+.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}
+.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}
+.section-cream .section-title{color:var(--text);}
+.section-dark .section-title,.section-black .section-title{color:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}
+.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}
+.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}
+.why-image img{width:100%;height:100%;object-fit:cover;}
+.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}
+.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}
+.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}
+.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}
+.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}
+.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}
+.place-item:last-child{border-bottom:none;}
+.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}
+.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}
+.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}
+.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.place-item.active .place-desc{max-height:200px;opacity:1;}
+.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}
+#map{width:100%;height:100%;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:100%;}
+.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.gallery-card:hover .gallery-thumb{transform:scale(1.05);}
+.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}
+.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}
+.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}
+.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}
+.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}
+.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}
+.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.dish-card:hover .dish-bg{transform:scale(1.06);}
+.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}
+.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}
+.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}
+.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}
+.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}
+.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}
+.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}
+.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}
+.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:block;}
+.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}
+.resto-card:hover::before{transform:scaleY(1);}
+.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}
+.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}
+.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}
+.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}
+.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}
+.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}
+.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}
+.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}
+.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}
+.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}
+.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}
+.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}
+.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}
+.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0.0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}
+.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}
+.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;max-width:100%;opacity:0;transform:translateY(8px);transition:all 0.4s ease;margin-top:10px;}
+.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
+.video-modal.active{display:flex;}
+.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
+.video-modal iframe{width:100%;height:100%;border:none;}
+.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}
+.modal-close:hover{opacity:1;}
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}
+.footer-logo{height:44px;width:auto;margin-bottom:20px;}
+.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}
+.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}
+.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}
+.footer-col a:hover{color:var(--brown-light);}
+.footer-social{display:flex;gap:10px;}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}
+.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}
+.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html" class="active">Explore Turkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <span class="nav-lang">EN</span>
+</div>
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Dardanelles Strait &middot; Turkiye</div>
+    <h1>Canakkale</h1>
+    <p class="hero-subtitle">Where Troy, Gallipoli and the Dardanelles converge</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Marmara</span><span class="stat-sub">Dardanelles Strait</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Apr to Oct</span><span class="stat-sub">Mild, good for all sites</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Troy and Gallipoli</span><span class="stat-sub">UNESCO site, WWI battlefields</span></div>
+  <div class="stat-item"><span class="stat-label">Climate</span><span class="stat-value">Mediterranean</span><span class="stat-sub">Warm summers, mild winters</span></div>
+</div>
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Canakkale</h2>
+        <p>Canakkale is a city that sits at the narrowest point of the Dardanelles, the strait connecting the Aegean to the Sea of Marmara. Ferries have crossed here for thousands of years and the strategic importance of this passage shaped much of Western history. From both banks you can see the opposite shore. On a clear day the crossing by ferry takes about 15 minutes and the view of the castles on each side is one of the more quietly dramatic sights in Turkiye.</p>
+        <p>Thirty kilometres to the south lies ancient Troy. It has been inhabited continuously for 4,000 years, destroyed and rebuilt nine times, and was added to the UNESCO World Heritage List in 1998. The ruins are not the most visually spectacular in Turkey, but understanding that this specific hill has been settled since 3,600 BC and that the Trojan War legends are tied to this ground gives the visit a different weight. The on-site museum built in 2018 provides the essential context.</p>
+        <p>Across the strait, the Gallipoli Peninsula holds the battlefields of the 1915 Dardanelles Campaign. The cemeteries, memorials and landscape of Gallipoli attract visitors from Australia, New Zealand, the United Kingdom and Turkey year-round. The events of 1915 remain deeply present in the Turkish national consciousness and the battlefield interpretation reflects both sides with unusual even-handedness.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1524486361537-8ad15938e1a3?w=900" alt="Dardanelles Strait Canakkale">
+        <div class="why-image-caption">The Dardanelles Strait from Canakkale waterfront</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="39.9576" data-lng="26.2387" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">01. Troy (Truva) UNESCO Site</span>
+      <div class="place-name">Troy UNESCO Site</div>
+      <p class="place-desc">Ancient Troy sits on a hill 30 km south of Canakkale city centre, inhabited continuously from around 3,600 BC to 500 AD. Nine distinct city layers have been excavated here. The 2018 museum on site is genuinely excellent and provides the archaeological context that the ruins alone cannot supply. Go in the morning and allow three hours minimum. The Trojan Horse replica at the entrance is a crowd-pleaser, but the walls of Troy VI from around 1300 BC are the real thing.</p>
+    </div>
+<div class="place-item" data-lat="40.2361" data-lng="26.2775" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">02. Gallipoli and ANZAC Cove</span>
+      <div class="place-name">Gallipoli Battlefields</div>
+      <p class="place-desc">ANZAC Cove is a 600-metre beach on the Gallipoli Peninsula where Australian and New Zealand troops landed on 25 April 1915. The landscape of the campaign is well preserved within a national park. Lone Pine Cemetery, Chunuk Bair, and the Kabatepe Museum all reward careful visits. A full day is the minimum to see the main sites. A guided tour from Canakkale is strongly recommended for the historical context, particularly for ANZAC Day on 25 April.</p>
+    </div>
+<div class="place-item" data-lat="40.1467" data-lng="26.3792" data-zoom="16" onclick="selectPlace(this)">
+      <span class="place-num">03. Kilitbahir Castle</span>
+      <div class="place-name">Kilitbahir Castle</div>
+      <p class="place-desc">Built by Sultan Mehmed II in 1463 to control the narrowest point of the Dardanelles, this Ottoman fortress on the European shore has an unusual clover-leaf plan and a seven-storey triangular inner tower. Its name means "lock of the sea." The ferry from Canakkale takes 15 minutes and costs almost nothing. The castle and the small village around it are worth two hours. The view back across the strait to Canakkale from the castle walls is excellent.</p>
+    </div>
+<div class="place-item" data-lat="40.1466" data-lng="26.4099" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">04. Canakkale Waterfront</span>
+      <div class="place-name">Canakkale Waterfront and Cimenlik Castle</div>
+      <p class="place-desc">The waterfront promenade runs along the Asian shore of the Dardanelles and is the social centre of the city. Cimenlik Castle, also built by Mehmed II in 1462 as the pair to Kilitbahir, sits at the southern end and now houses a naval museum with a replica of the Nusret minelayer from 1915. The Trojan Horse used in the 2004 film Troy with Brad Pitt can be seen on the waterfront. Walk the promenade in the late afternoon when the light falls on the water.</p>
+    </div>
+<div class="place-item" data-lat="39.4931" data-lng="26.3386" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">05. Assos (Behramkale)</span>
+      <div class="place-name">Assos Ancient City</div>
+      <p class="place-desc">About 85 km south of Canakkale, the ancient city of Assos sits on a volcanic plug above the Aegean. Aristotle taught philosophy here for three years before founding his school in Athens. The Temple of Athena, built in the 6th century BC, stands at the summit with views across the water to the Greek island of Lesbos. The village of Behramkale below has stone houses, a small harbour and several good restaurants. Best visited as a full-day trip from Canakkale.</p>
+    </div>
+<div class="place-item" data-lat="39.7494" data-lng="26.1583" data-zoom="13" onclick="selectPlace(this)">
+      <span class="place-num">06. Alexandria Troas</span>
+      <div class="place-name">Alexandria Troas Ruins</div>
+      <p class="place-desc">The ruins of the Hellenistic and Roman city of Alexandria Troas lie along the Aegean coast south of Canakkale. Founded in the 3rd century BC by Antigonus Monophthalmos, it became one of the most important ports in the Roman Empire. St Paul passed through twice, recording it in the Acts of the Apostles. The site is largely unexcavated and scattered through agricultural land, but the scale of the walls and baths gives a sense of how large this city once was. Rarely visited and genuinely atmospheric.</p>
+    </div>
+<div class="place-item" data-lat="40.0467" data-lng="26.2167" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">07. Çanakkale Şehitleri Memorial</span>
+      <div class="place-name">Çanakkale Şehitleri Abidesi</div>
+      <p class="place-desc">The Çanakkale Martyrs' Memorial on the Gallipoli Peninsula is the largest war memorial in Turkey, commemorating the Ottoman soldiers who died in the 1915 Dardanelles Campaign. The memorial stands on Cape Helles at the tip of the peninsula, visible from the Dardanelles Strait. The surrounding landscape of pine-covered ridges and sea views gives the site a character beyond its formal purpose.</p>
+    </div>
+<div class="place-item" data-lat="39.83" data-lng="26.06" data-zoom="12" onclick="selectPlace(this)">
+      <span class="place-num">08. Bozcaada</span>
+      <div class="place-name">Bozcaada</div>
+      <p class="place-desc">A small Aegean island accessible by ferry from Geyikli (45 minutes), with a Venetian-Ottoman castle, a village of whitewashed houses with colourful window frames, vineyards producing the island's distinctive wines, and clean beaches on the southern shore. The island's Greek Orthodox heritage is visible in its architecture and street layout. A two-day visit is ideal; day trips are possible from Çanakkale.</p>
+    </div>
+  </div>
+  <div class="map-container"><div id="map"></div></div>
+</div>
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('qmvGbCsF4-E')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/qmvGbCsF4-E/maxresdefault.jpg" alt="Canakkale Dardanelles" onerror="this.src='https://img.youtube.com/vi/qmvGbCsF4-E/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('Ud_e0hcMnEw')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/Ud_e0hcMnEw/maxresdefault.jpg" alt="Troy ancient city" onerror="this.src='https://img.youtube.com/vi/Ud_e0hcMnEw/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('ElUzM23qx-A')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/ElUzM23qx-A/maxresdefault.jpg" alt="Gallipoli peninsula" onerror="this.src='https://img.youtube.com/vi/ElUzM23qx-A/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+<section class="section section-cream" id="food">
+  <span class="section-label reveal">Dardanelles Table</span>
+  <h2 class="section-title reveal">Food and Cuisine</h2>
+  <div class="food-intro reveal">
+    <p>Canakkale has a food culture built around the Dardanelles and the Aegean coast. The strait produces fish in variety and quality. Ezine cheese, made from sheep and goat milk in the Ezine district, has PDO status and is one of the most distinctive cheeses in the country. The breakfast culture here is good, the mezes are honest, and the fish restaurants along the waterfront set a reliable standard.</p>
+  </div>
+  <div class="dishes-grid reveal">
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Strait</div>
+        <div class="dish-name">Dardanelles Fish</div>
+        <p class="dish-desc">The Dardanelles current running between the Aegean and the Sea of Marmara creates excellent conditions for sea bass, sea bream, bluefish and various smaller species. The fish restaurants along the Canakkale waterfront get daily deliveries. Ask what came in that morning and order that. Grilled simply with olive oil and lemon is the standard preparation and is consistently good. The smaller family-run places near the ferry pier are more reliable than the tourist-facing terrace spots.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">PDO Cheese</div>
+        <div class="dish-name">Ezine Cheese</div>
+        <p class="dish-desc">Protected Designation of Origin cheese from the Ezine district of Canakkale province, made from sheep, goat and cow milk in varying proportions. The Ezine white cheese is creamier and less salty than standard Turkish beyaz peynir, with a distinctive flavour from the local pastures on the slopes of Kaz Mountain. It is sold throughout the province and is the correct choice for the local breakfast table. Buy a block at the bazaar rather than the vacuum-packed version.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">The Classic</div>
+        <div class="dish-name">Lamb Kebab</div>
+        <p class="dish-desc">The Biga and Ezine districts of Canakkale province produce good lamb on open pasture and the kebab tradition reflects this. The local lamb kebab is leaner and more flavourful than feedlot alternatives. It is cooked over charcoal with minimal seasoning. Most good lokanta in the city centre serve it at lunch as part of a daily menu. Order with a bowl of yogurt and fresh bread.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Morning Table</div>
+        <div class="dish-name">Canakkale Breakfast</div>
+        <p class="dish-desc">A proper Canakkale breakfast centres on Ezine cheese, local olives from the Aegean olive groves, fresh tomatoes, cucumbers, eggs and honey from the Kaz Mountain foothills. It is generous and unhurried. Served with tea in the standard tulip glass. Many guesthouses in the city prepare it with genuinely local produce, which makes it noticeably better than the generic Turkish hotel breakfast found elsewhere.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Aegean Mezes</div>
+        <div class="dish-name">Artichoke Mezes</div>
+        <p class="dish-desc">Canakkale province produces significant quantities of artichokes and they appear in several local meze dishes. Artichoke cooked in olive oil with dill and lemon is a classic Aegean preparation that is particularly good here because the artichokes are local. The meze selection at good fish restaurants in Canakkale is broad, olive-oil-based and worth ordering in quantity rather than rushing to the main course.</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600');"></div>
+      <div class="dish-overlay">
+        <div class="dish-category">Local Craft</div>
+        <div class="dish-name">Canakkale Ceramics</div>
+        <p class="dish-desc">Not a food, but inseparable from the food culture. Canakkale has produced glazed ceramics for centuries and the city's name itself comes from the word for pottery. Local tea is served in Canakkale-made cups at many traditional tea houses and the craft market near the clock tower sells genuine local pieces alongside tourist reproductions. The originals are identifiable by their irregular glaze and the weight of the clay.</p>
+      </div>
+    </div>
+  </div>
+  <span class="resto-section-label reveal">Where to Eat</span>
+  <h3 class="resto-section-title reveal">Top Restaurants in Canakkale</h3>
+  <p class="resto-note reveal">4.5 stars and above, 200 or more reviews on Google</p>
+  <div class="resto-grid reveal">
+    <a class="resto-card" href="https://www.google.com/maps/search/Doyum+Restaurant+Canakkale" target="_blank">
+      <div class="resto-name">Doyum Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.7 (1,200+ reviews)</span></div>
+      <p class="resto-desc">A well-regarded lokanta near the city centre serving Turkish home cooking. The daily rotating menu covers stews, grilled meats and Aegean dishes. Very popular with locals at lunch. No reservations, but it is large enough to accommodate most walk-ins outside peak hours.</p>
+      <div class="resto-specialty">Daily home-style cooking, Grilled meats</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Yalova+Restaurant+Canakkale" target="_blank">
+      <div class="resto-name">Yalova Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (900+ reviews)</span></div>
+      <p class="resto-desc">A seafood restaurant on the Canakkale waterfront with a solid reputation for fresh fish and good mezes. The meze selection is broad and the fish comes from the Dardanelles. Book the waterfront terrace for dinner in the evening, particularly in summer.</p>
+      <div class="resto-specialty">Fresh fish, Aegean mezes</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Canakkale+Et+Lokantasi" target="_blank">
+      <div class="resto-name">Canakkale Et Lokantasi</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (680+ reviews)</span></div>
+      <p class="resto-desc">A meat-focused lokanta with a particular reputation for lamb kebab and grilled dishes made from regional produce. No-frills interior, generous portions, good value. The lunch service is busy and efficient. Ezine cheese appears in several dishes.</p>
+      <div class="resto-specialty">Lamb kebab, Grilled meats, Ezine cheese</div>
+    </a>
+    <a class="resto-card" href="https://www.google.com/maps/search/Sardalye+Restaurant+Canakkale" target="_blank">
+      <div class="resto-name">Sardalye Restaurant</div>
+      <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (520+ reviews)</span></div>
+      <p class="resto-desc">A smaller fish restaurant near the ferry pier, known for serving whatever the Dardanelles produced that morning. The menu changes daily depending on the catch. Simple, direct cooking and honest pricing. Worth the wait if there is one at the door.</p>
+      <div class="resto-specialty">Daily catch, Grilled fish, Mezes</div>
+    </a>
+  </div>
+</section>
+      <div class="resto-card">
+        <div class="resto-name">Çanakkale Balık Evi</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 900+ reviews</span></div>
+        <p class="resto-desc">A fish restaurant on the waterfront sourcing from the Dardanelles. Cold mezes — fish roe, anchovies, calamari — before the main fish is the correct approach.</p>
+        <span class="resto-specialty">Dardanelles Fish, Cold Mezes, Seafood</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Yalova Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 750+ reviews</span></div>
+        <p class="resto-desc">Near the ferry terminal, serving seafood and meat dishes. Reliable for lunch before or after the crossing. Freshly prepared mezes and good value.</p>
+        <span class="resto-specialty">Seafood, Meat Dishes, Mezes</span>
+      </div>
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">On the Ground</span>
+    <h2 class="section-title reveal">Activities and Experiences</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Morning at Troy</div>
+        <p class="activity-desc">The site opens at 8am and the first hour before tour buses arrive is the best time to be there. The museum opens slightly later but is worth waiting for. Allow three hours for both the museum and the ruins. The Trojan Horse replica is at the entrance. The walls of Troy VI, which date to around 1300 BC and are the layer most associated with the legendary war, are the most impressive structural remains on site.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Guided Gallipoli Tour</div>
+        <p class="activity-desc">The Gallipoli battlefields require a full day and a guide who knows the ground. Several reputable operators run small-group tours from Canakkale that cover ANZAC Cove, Lone Pine, Chunuk Bair and the Turkish memorials. The personal testimonies embedded in the landscape, including the famous order from Mustafa Kemal to his soldiers in 1915, require an interpreter who can explain both the military history and its ongoing significance to Turks and Anzacs alike.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Ferry to Kilitbahir</div>
+        <p class="activity-desc">The public ferry from Canakkale to Kilitbahir runs regularly throughout the day and the crossing takes about 15 minutes. The castle and the small village on the European shore are worth a morning. Walking the castle walls gives a clear picture of why Mehmed II built here and the view across the strait to Canakkale is one of the better ones in the region. Combine it with a walk through the village and lunch at one of the small fish restaurants by the water.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-black" id="nearby">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label reveal">Further Afield</span>
+    <h2 class="section-title reveal">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid reveal">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1541849546-216549ae216d?w=900');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">85 km South, about 1 hour 30 min</div>
+        <div class="daytrip-name">Assos and Behramkale</div>
+        <p class="daytrip-desc">The ancient city of Assos perches on a volcanic summit above the Aegean with Aristotle's connection and a 6th-century BC Temple of Athena at the top. The village of Behramkale below has a stone Ottoman bridge, traditional houses, a small harbour and good fish restaurants. The view from the temple across to Lesbos on a clear day is exceptional. Plan a full day and descend to the harbour for dinner before the return drive.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1510051831-32c90e93ea39?w=900');"></div>
+      <div class="daytrip-overlay">
+        <div class="daytrip-distance">ferry from Geyikli, about 2 hours from Canakkale</div>
+        <div class="daytrip-name">Bozcaada Island</div>
+        <p class="daytrip-desc">Turkey's third largest island sits in the northern Aegean and is known for its vineyards, Venetian and Ottoman castle, clean beaches and very quiet streets. The island produces its own wine from indigenous grape varieties and the winery visits are accessible. The ferry from Geyikli takes about 35 minutes. In July and August the island is busy. In May, June and September it is considerably more pleasant and considerably less crowded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="modal-close" onclick="closeVideo()">&times;</button>
+    <iframe id="videoFrame" src="" allowfullscreen title="Show Me Turkiye video"></iframe>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo">
+      <p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="../explore.html">Cities and Destinations</a>
+      <a href="../blog.html">Travel Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="../contact.html">Contact Us</a>
+      <a href="../contact.html">Become a Partner</a>
+      <div class="footer-social" style="margin-top:4px;">
+        <a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a>
+        <a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Show Me Turkiye. All rights reserved.</span>
+    <span>Privacy Policy &middot; Cookies &middot; Sitemap</span>
+  </div>
+</footer>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();closeVideo();}});
+  window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+  var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+  var modal=document.getElementById('videoModal');if(modal)modal.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+  var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:'Troy UNESCO Site',lat:39.9576,lng:26.2387,zoom:14},
+    {name:'Gallipoli Battlefields',lat:40.2361,lng:26.2775,zoom:12},
+    {name:'Kilitbahir Castle',lat:40.1467,lng:26.3792,zoom:16},
+    {name:'Canakkale Waterfront and Cimenlik Castle',lat:40.1466,lng:26.4099,zoom:15},
+    {name:'Assos Ancient City',lat:39.4931,lng:26.3386,zoom:14},
+    {name:'Alexandria Troas Ruins',lat:39.7494,lng:26.1583,zoom:13},
+    {name:'Çanakkale Şehitleri Abidesi',lat:40.0467,lng:26.2167,zoom:14},
+    {name:'Bozcaada',lat:39.83,lng:26.06,zoom:12}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([40.05,26.32],10);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var popupStyle=document.createElement('style');popupStyle.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(popupStyle);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps?q='+encodeURIComponent(loc.name+' Çanakkale')+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});
+    markers[idx].openPopup();
+  };
+});
+</script>
+</body>
+</html>

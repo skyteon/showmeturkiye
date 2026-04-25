@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mersin | Show Me Turkiye</title>
+<meta name="description" content="Discover Mersin on Turkey's Mediterranean coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste the city's distinct southern cuisine.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{--black:#0a0c0e;--dark:#0f1214;--dark2:#151719;--brown:#c4a265;--brown-light:#d4b87e;--cream:#f5f0e6;--text:#2c2a26;--text-muted:#7a756c;--border:rgba(255,255,255,0.07);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--black);overflow-x:hidden;}a{text-decoration:none;color:inherit;}img{max-width:100%;display:block;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:rgba(10,12,14,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:all 0.5s;}.site-nav.scrolled{background:rgba(10,12,14,0.95);backdrop-filter:blur(16px);border-bottom-color:var(--border);}.site-nav a img{height:38px;width:auto;object-fit:contain;}.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:8px;}.hamburger span{width:26px;height:2px;background:#fff;display:block;}.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,12,14,0.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:999;}.nav-overlay.open{display:flex;}.nav-overlay a{font-family:'Poppins',sans-serif;font-size:16px;font-weight:300;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.65);transition:color 0.3s;}.nav-overlay a:hover,.nav-overlay a.active{color:#fff;}.nav-overlay .nav-lang{font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.12);padding:8px 20px;margin-top:12px;cursor:pointer;}.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;opacity:0.6;}.close-nav:hover{opacity:1;}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}.hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 8s ease-out;}.hero-bg.loaded{transform:scale(1);}.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.25) 0%,rgba(10,12,14,0.15) 40%,rgba(10,12,14,0.68) 75%,rgba(10,12,14,0.96) 100%);}.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--brown-light);border:1px solid rgba(196,162,101,0.35);padding:7px 20px;margin-bottom:24px;background:rgba(196,162,101,0.07);}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.5);font-style:italic;}.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);}.stat-item{padding:28px 40px;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;gap:5px;}.stat-item:last-child{border-right:none;}.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.3);}.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;}.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.38);}
+.section{padding:90px 80px;}.section-cream{background:var(--cream);color:var(--text);}.section-dark{background:var(--dark);color:#fff;}.section-black{background:var(--black);color:#fff;}.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}.section-cream .section-label{color:var(--brown);}.section-dark .section-label,.section-black .section-label{color:var(--brown-light);}.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}.section-cream .section-title{color:var(--text);}.section-dark .section-title,.section-black .section-title{color:#fff;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}.why-image img{width:100%;height:100%;object-fit:cover;}.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:rgba(255,255,255,0.5);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+.places-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:100%;min-height:780px;}.places-list{padding:56px 44px 56px 80px;background:var(--cream);overflow-y:auto;}.places-list-title{font-family:'Playfair Display',serif;font-size:clamp(26px,2.5vw,36px);font-weight:300;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:36px;}.place-item{padding:24px 0 24px 20px;border-bottom:1px solid rgba(0,0,0,0.08);cursor:pointer;transition:all 0.3s;position:relative;}.place-item::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%) scaleY(0);width:2px;height:60%;background:var(--brown);transition:transform 0.3s ease;}.place-item:hover::before,.place-item.active::before{transform:translateY(-50%) scaleY(1);}.place-item:last-child{border-bottom:none;}.place-num{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown);margin-bottom:7px;display:block;}.place-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);margin-bottom:8px;letter-spacing:0.04em;transition:color 0.3s;}.place-item:hover .place-name,.place-item.active .place-name{color:var(--brown);}.place-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}.place-item.active .place-desc{max-height:240px;opacity:1;}.map-container{position:sticky;top:86px;height:calc(100vh - 86px);}#map{width:100%;height:100%;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}.gallery-card:hover .gallery-thumb{transform:scale(1.05);}.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}.gallery-play{width:48px;height:48px;background:rgba(196,162,101,0.25);border:1px solid rgba(196,162,101,0.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:all 0.3s;}.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}.dish-card:hover .dish-bg{transform:scale(1.06);}.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--brown-light);margin-bottom:7px;}.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:0.04em;margin-bottom:7px;}.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s;position:relative;overflow:hidden;}.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}.resto-card:hover::before{transform:scaleY(1);}.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}.activity-card{padding:32px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);transition:all 0.3s;}.activity-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(196,162,101,0.3);}.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:12px;}.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.72);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;}.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.92) 0%,rgba(10,12,14,0.15) 60%);}.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.72) 0%,rgba(10,12,14,0) 50%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-bottom:10px;}.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:300;color:#fff;letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,0.5);}.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.88);line-height:1.75;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}.daytrip-card:hover .daytrip-desc{opacity:1;transform:translateY(0);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}.video-modal.active{display:flex;}.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}.video-modal iframe{width:100%;height:100%;border:none;}.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:#fff;font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}.modal-close:hover{opacity:1;}
+footer{background:var(--black);color:#fff;padding:80px 48px 36px;border-top:1px solid var(--border);}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px;}.footer-logo{height:44px;width:auto;margin-bottom:20px;}.footer-tagline{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.38);line-height:1.7;max-width:240px;}.footer-col h4{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:18px;}.footer-col a{display:block;font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.52);margin-bottom:11px;transition:color 0.3s;}.footer-col a:hover{color:var(--brown-light);}.footer-social{display:flex;gap:10px;}.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);transition:all 0.3s;margin-bottom:0;}.footer-social a:hover{border-color:var(--brown);color:var(--brown-light);}.footer-bottom{display:flex;justify-content:space-between;padding-top:26px;border-top:1px solid rgba(255,255,255,0.07);font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.25);max-width:1200px;margin:0 auto;}
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .places-layout{grid-template-columns:1fr;}
+  .map-container{position:relative;top:0;height:60vh;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:32px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES LIST — mobile: map slides down from top and sticks when a place is clicked */
+  .places-layout{display:flex;flex-direction:column;position:relative;}
+  .places-list{padding:48px 22px;order:2;}
+  .places-list-title{font-size:24px;margin-bottom:28px;letter-spacing:0.1em;}
+  .place-item{padding:20px 0 20px 16px;}
+  .place-num{font-size:8px;letter-spacing:0.24em;margin-bottom:6px;}
+  .place-name{font-size:18px;margin-bottom:8px;}
+  .place-desc{font-size:12.5px;line-height:1.75;}
+  .map-container{order:1;position:sticky;top:64px;height:44vh;min-height:320px;z-index:50;background:#0f1214;box-shadow:0 8px 24px rgba(0,0,0,0.4);transition:height 0.4s ease;}
+  .map-container.expanded{height:58vh;}
+  .map-container::after{content:'Tap a place below to see it on the map';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#fff;background:rgba(10,12,14,0.75);backdrop-filter:blur(6px);padding:6px 14px;border:1px solid rgba(196,162,101,0.3);pointer-events:none;opacity:1;transition:opacity 0.3s;}
+  .map-container.expanded::after{opacity:0;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.88) 0%,rgba(10,12,14,0.15) 70%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:38px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()">&times;</button>
+  <a href="../index.html">Home</a><a href="../explore.html" class="active">Explore</a><a href="../blog.html">Blog</a><a href="../projects.html">Projects</a><a href="../about.html">About</a><a href="../contact.html">Contact</a>
+  <span class="nav-lang">TR / EN</span>
+</div>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner"><button class="modal-close" onclick="closeVideo()">&times;</button><iframe id="videoFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+</div>
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg" style="background-image:url('https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=1920');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Mediterranean Coast, Southern Turkey</span>
+    <h1>Mersin</h1>
+    <p class="hero-subtitle">Kızkalesi. Silifke. The longest Mediterranean coastline.</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</header>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Mediterranean</span><span class="stat-sub">Longest coast in Turkey</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Oct to May</span><span class="stat-sub">Summers hot, mild winters</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Kızkalesi</span><span class="stat-sub">Silifke, Tarsus, citrus</span></div>
+  <div class="stat-item"><span class="stat-label">Coastline</span><span class="stat-value">321 km</span><span class="stat-sub">Longest provincial coast in Turkey</span></div>
+</div>
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Mersin</h2>
+        <p>Mersin is Turkey's largest Mediterranean port and a city of 1.9 million people that most international visitors drive through without stopping. This is a navigational error. The province of Mersin has the longest coastline of any Turkish province at 321 km and encompasses one of the most concentrated zones of historical significance in the eastern Mediterranean: Hellenistic, Roman, Byzantine and medieval Crusader monuments crowd the coastal strip between the city and Silifke.</p>
+        <p>Kızkalesi — the Maiden's Castle — sits on a small island 200 metres offshore, accessible by rowboat from the beach, with a second fortress directly opposite on the mainland. The medieval castle complex was built by the Armenian Kingdom of Cilicia in the 12th century and is one of the best-preserved in the eastern Mediterranean. The surrounding village has a beach of clean grey sand, good fish restaurants and a low-key atmosphere that disappears entirely in July and August.</p>
+        <p>Tarsus, 30 km east of the city, is the birthplace of St Paul. The city's Roman-era street layout is still readable, the Cleopatra's Gate survives from antiquity and a natural waterfall in the city park remains a local gathering point since the Roman period. Silifke, 80 km west, has a Byzantine fortress, an archaeology museum with exceptional Bronze Age material, and 10 km further west, Uzuncaburç — a Hellenistic temple city with a nearly intact Temple of Zeus Olbios.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?w=900" alt="Mersin Mediterranean coast Turkey Kızkalesi">
+        <div class="why-image-caption">Mediterranean coast, Mersin Province</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="places-layout" id="places">
+  <div class="places-list">
+    <h2 class="places-list-title">Places to Visit</h2>
+<div class="place-item active" data-lat="36.4561" data-lng="34.1456" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">01. Kızkalesi</span>
+      <div class="place-name">Kızkalesi — Maiden's Castle</div>
+      <p class="place-desc">A 12th-century Armenian Cilician fortress built on a small island 200 metres from the shoreline, reached by rowboat from the beach for a nominal fee. A second castle on the mainland — Korykos Castle — stands directly opposite. Together they controlled access to a defended harbour between them. The island fortress is in remarkable condition, with towers, vaulted halls and the original Armenian stone construction largely intact. The village beach in front is pleasant outside of July and August. Best visited in spring or autumn when the crowds are manageable and the sea temperature still allows swimming.</p>
+    </div>
+<div class="place-item" data-lat="36.3803" data-lng="33.9358" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">02. Silifke Kalesi ve Müzesi</span>
+      <div class="place-name">Silifke</div>
+      <p class="place-desc">A Byzantine fortress on a hill above the Göksu River, 80 km west of Mersin, with extensive walls and towers that are substantially intact. The Silifke Archaeological Museum below the fortress holds one of the better collections of Bronze Age, Hittite and classical material in the region. The Roman bridge over the Göksu dates from the 1st century BC. 10 km north, Uzuncaburç is a Hellenistic sanctuary city in an extraordinary state of preservation — the Temple of Zeus Olbios, the colonnaded street and the city gates are the highlights. Allow a full day for Silifke and Uzuncaburç together.</p>
+    </div>
+<div class="place-item" data-lat="36.9177" data-lng="34.892" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">03. Tarsus</span>
+      <div class="place-name">Tarsus — Birthplace of St Paul</div>
+      <p class="place-desc">The birthplace of Saul of Tarsus (St Paul), one of the founders of Christian theology, and a city of continuous significance from the Hittite period through the Roman, Byzantine and Ottoman eras. Cleopatra's Gate — the monumental entrance through which she passed to meet Mark Antony in 41 BC — survives on the eastern side of the old city. The Şelale (waterfall) in the city park has been a gathering place since antiquity. The old bazaar area has character and the early Christian church tradition makes the city a significant stop on pilgrimage circuits. 30 km east of Mersin.</p>
+    </div>
+<div class="place-item" data-lat="36.8121" data-lng="34.6415" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">04. Mersin Şehir Merkezi</span>
+      <div class="place-name">Mersin City Centre</div>
+      <p class="place-desc">A working port city with a pleasant corniche (atatürk caddesi) along the waterfront, a traditional bazaar area in the older parts of the city, and the Mersin Archaeological Museum with a collection from the surrounding coastal excavations. The city's multicultural character — a mix of Turks, Armenians, Arabs, Levantine traders and Kurdish migrants over the 19th and 20th centuries — produced a food culture that draws on all these traditions simultaneously. The fresh seafood available at the harbour fish market in the morning reflects the port character of the city directly.</p>
+    </div>
+<div class="place-item" data-lat="36.4569" data-lng="34.0964" data-zoom="15" onclick="selectPlace(this)">
+      <span class="place-num">05. Cennet ve Cehennem</span>
+      <div class="place-name">Cennet ve Cehennem — Heaven and Hell</div>
+      <p class="place-desc">Two enormous sinkholes 20 km west of Kızkalesi, formed by the collapse of limestone caverns — one of the largest karst collapse features in the eastern Mediterranean. The "Heaven" sinkhole (Cennet) is 250 metres long and 90 metres deep, with a Byzantine chapel and a cave extending further underground containing a freshwater spring sacred since antiquity. The "Hell" sinkhole (Cehennem) is a vertical shaft too steep to descend. The site is within the Narlıkuyu coastal area and can be combined with a visit to Kızkalesi in the same day.</p>
+    </div>
+<div class="place-item" data-lat="36.5797" data-lng="33.9183" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">06. Uzuncaburç</span>
+      <div class="place-name">Uzuncaburç Antik Kenti</div>
+      <p class="place-desc">A Hellenistic-Roman sanctuary city 30 km north of Silifke, at 1,000 metres altitude in the Taurus foothills. The Temple of Zeus Olbios dates from the 3rd century BC and has 30 of its original 40 columns standing — the best-preserved Hellenistic temple in Turkey after the Temple of Apollo at Didyma. The surrounding city walls, colonnaded street, monumental gate and nymphaeum are also in exceptional condition. The setting in a small mountain village, with the ancient columns rising between the modern houses, gives the site its character. Rarely crowded. Allow 2 hours minimum.</p>
+    </div>
+<div class="place-item" data-lat="36.7917" data-lng="33.3542" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">07. Alahan Monastery</span>
+      <div class="place-name">Alahan Monastery</div>
+      <p class="place-desc">A 5th-6th century Byzantine monastery in the Taurus Mountains above the Goksu Valley, 120 km north of Mersin. The basilica and eastern church retain elaborate carved stonework of exceptional quality, visited rarely enough to be often entirely deserted.</p>
+    </div>
+<div class="place-item" data-lat="36.0756" data-lng="32.8267" data-zoom="14" onclick="selectPlace(this)">
+      <span class="place-num">08. Anamur Castle</span>
+      <div class="place-name">Anamur Castle</div>
+      <p class="place-desc">A Crusader-era castle at the southernmost tip of Anatolia, on a promontory between the Mediterranean and a small beach. 36 towers, three baileys and a moat filled by the sea at high tide. The best-preserved Crusader fortification in Turkey.</p>
+    </div>
+  </div>
+  <div class="map-container"><div id="map"></div></div>
+</div>
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('5Pg-GXMuUso')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/5Pg-GXMuUso/maxresdefault.jpg" alt="Kızkalesi castle Mersin coast" loading="lazy" onerror="this.src='https://img.youtube.com/vi/5Pg-GXMuUso/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('ElUzM23qx-A')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/ElUzM23qx-A/maxresdefault.jpg" alt="Silifke Uzuncaburç ancient city Mersin" loading="lazy" onerror="this.src='https://img.youtube.com/vi/ElUzM23qx-A/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('hJq0TajyDGc')">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/hJq0TajyDGc/maxresdefault.jpg" alt="Mediterranean coast southern Turkey" loading="lazy" onerror="this.src='https://img.youtube.com/vi/hJq0TajyDGc/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+<section class="section section-cream" id="food">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Local Cuisine</span>
+    <h2 class="section-title">What to Eat</h2>
+    <div class="food-intro reveal">
+      <p>Mersin's food is a port city synthesis — Mediterranean seafood, southern Anatolian kebab culture, Arab-influenced meze tradition and the citrus of the coastal orchards all present simultaneously. The cezerye — a carrot and coconut confection that is Mersin's signature sweet — is found nowhere else in Turkey in its original form.</p>
+    </div>
+    <div class="dishes-grid reveal">
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Mersin Signature</span>
+          <div class="dish-name">Cezerye</div>
+          <p class="dish-desc">A confection of caramelised carrot cooked with sugar and mixed with shredded coconut and ground nuts — the defining sweet of Mersin, found in this form only in this city. It is sold at the city's pastry shops and at the bazaar market wrapped in coconut flakes. The texture is dense and chewy, the flavour intensely sweet with a coconut aromatic note. Take a box home — it keeps well and travels without damage. This is a genuinely regional product with no equivalent elsewhere in Turkish confectionery.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Mediterranean Catch</span>
+          <div class="dish-name">Akdeniz Balığı</div>
+          <p class="dish-desc">The eastern Mediterranean produces sea bass, sea bream, red mullet, bluefish and various shellfish. The fish market at Mersin harbour has the freshest supply in the region; the restaurants immediately around it cook whatever came in that morning. The coastal villages between Mersin and Kızkalesi have small fish restaurants with terraces over the water. Order whatever is seasonal, grilled simply with olive oil and lemon, and eat it looking at the sea. The çupra (sea bream) of the eastern Mediterranean is consistently good from October through April.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Southern Meze</span>
+          <div class="dish-name">Mersin Mezesi</div>
+          <p class="dish-desc">The meze table in Mersin draws on both Mediterranean and southern Anatolian traditions: hummus with isot butter, roasted red pepper with garlic and tahini, fresh herb salads with pomegranate, marinated anchovies, grilled halloumi-style cheese and fried calamari alongside the cold vegetable preparations. The combination at a good fish restaurant — four or five cold mezes before the fish arrives — constitutes a meal in itself. Order without restraint and eat slowly.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Port City</span>
+          <div class="dish-name">Tantuni</div>
+          <p class="dish-desc">A Mersin street food — thinly sliced beef or lamb cooked on a copper griddle (sac) with onion, tomato and cumin, then wrapped in thin lavaş with parsley and lemon. The correct tantuni is made from beef not lamb, on a curved copper pan with lard for cooking fat, and eaten immediately from the wrapper. Found at dedicated tantuni restaurants and street carts throughout the city. Inexpensive, fast, filling. The classic lunch of a working Mersin neighbourhood. Order two and eat standing at the counter.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Citrus Country</span>
+          <div class="dish-name">Turunçgil Ürünleri</div>
+          <p class="dish-desc">The Mersin coast is Turkey's primary citrus zone — oranges, lemons, grapefruits and the local bergamot are grown in the orchards between the coast road and the Taurus foothills. Fresh orange juice from roadside stands in season (November to March) is the correct drink between sites. The bergamot from the coastal strip near Finike and Antalya produces the essential oil used in Earl Grey tea — in Mersin, bergamot marmalade and bergamot-infused products are sold at the bazaar market. Local lemon preserved in salt is used as a condiment throughout southern Turkish cooking.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Breakfast</span>
+          <div class="dish-name">Güney Kahvaltısı</div>
+          <p class="dish-desc">The southern Mediterranean breakfast table in Mersin: local white cheese and a crumbly aged cheese from the plateau villages, black and green olives from the coastal groves, fresh tomatoes and cucumbers, tahini with grape molasses for dipping, eggs either soft-boiled or scrambled with isot, warm flatbread and citrus juice. Eaten unhurriedly at tables facing the sea at a seafront café. Several guesthouses in Kızkalesi village serve this on their terraces facing the castle island. The combination of fresh produce, sea air and a clear view of a medieval fortress is sufficient justification for the early arrival.</p>
+        </div>
+      </div>
+    </div>
+    <span class="resto-section-label">Where to Eat</span>
+    <h3 class="resto-section-title">Recommended Restaurants</h3>
+    <p class="resto-note">Tantuni for fast meals in the city. Fish restaurants in Kızkalesi village for the coast. The harbour market area for the freshest seafood.</p>
+    <div class="resto-grid reveal">
+      <div class="resto-card">
+        <div class="resto-name">Mersin Tantuni Evi</div>
+        <div class="resto-stars">★★★★★ <span>4.8 · 2,400+ reviews</span></div>
+        <p class="resto-desc">The most-cited tantuni specialist in Mersin, with copper griddles visible from the street and a lunch crowd that forms before noon. The beef tantuni wrapped in thin lavaş with lemon and parsley is the single order. Eat standing if needed. Cash, no reservations, very fast service.</p>
+        <span class="resto-specialty">Tantuni, Lavaş, Ayran</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Kızkalesi Balık Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,600+ reviews</span></div>
+        <p class="resto-desc">A fish restaurant in Kızkalesi village with a terrace facing the island castle. Fresh seafood from the eastern Mediterranean, good cold mezes, and the castle view as a reliable companion to the meal. Book for dinner in summer; walk in for lunch in shoulder season. The sea bream and the calamari are consistently good.</p>
+        <span class="resto-specialty">Grilled Fish, Calamari, Mediterranean Mezes</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Liman Balıkçısı</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 1,100+ reviews</span></div>
+        <p class="resto-desc">A harbourside restaurant in Mersin with the freshest fish available — buying directly from the morning boats. The daily catch determines the menu. Ask what came in before ordering. Simple preparation, good value. The meze selection here draws on both Mediterranean and Arab cooking traditions specific to the port.</p>
+        <span class="resto-specialty">Daily Catch, Fresh Mezes, Harbour Setting</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Cezerye Ustası</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 900+ reviews</span></div>
+        <p class="resto-desc">A confectionery shop in the Mersin bazaar area specialising in the city's signature cezerye — carrot and coconut sweets made in small batches. Also sells other regional sweets including tahini halva and lokum with citrus. The best place to buy cezerye to take home. Vacuum-packed boxes available for travel.</p>
+        <span class="resto-specialty">Cezerye, Tahini Halva, Regional Sweets</span>
+      </div>
+    </div>
+  </div>
+</section>
+      <div class="resto-card">
+        <div class="resto-name">Tarihi Mersin Tantuni Evi</div>
+        <div class="resto-stars">★★★★★ <span>4.8 · 2,100+ reviews</span></div>
+        <p class="resto-desc">Tantuni at its most honest — thinly sliced lamb sautéed in copper pans and wrapped in flatbread. A city-centre institution locals cite first. Standing room at lunch, full at dinner.</p>
+        <span class="resto-specialty">Tantuni, İşkembe Çorbası, Şalgam</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Kızkalesi Balık Evi</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 800+ reviews</span></div>
+        <p class="resto-desc">A seafood restaurant in Kızkalesi town with direct views of the Maiden's Castle island. Fresh Eastern Mediterranean catch grilled simply with cold mezes. Reservations advised in summer.</p>
+        <span class="resto-specialty">Mediterranean Seafood, Cold Mezes, Grilled Fish</span>
+      </div>
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Experiences</span>
+    <h2 class="section-title">Things to Do</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Kızkalesi by Rowboat</div>
+        <p class="activity-desc">The island castle is reached by a 5-minute rowboat trip from the beach, operated by local boatmen for a small fare. Walk the full perimeter of the island walls, climb the towers, and look back at the mainland Korykos fortress directly opposite across the 200-metre channel. The two castles together, with the Mediterranean behind them, constitute one of the most photographically complete medieval maritime sites in Turkey. The best light is in the morning — go at 09:00 when the castle opens and before the tour groups from Mersin arrive. The boat operators on the beach are informal; negotiate a return time.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">Uzuncaburç Ancient City</div>
+        <p class="activity-desc">The 30-km drive from Silifke north into the Taurus foothills to Uzuncaburç passes through pine forest and reaches the ancient city at 1,000 metres altitude. The Temple of Zeus Olbios — one of the best-preserved Hellenistic temples in the world — is the centerpiece, with 30 of its original columns standing in a mountain village setting of complete improbability. The site is lightly visited, free of crowds and genuinely astonishing. Allow 2 hours at the temple and ruins. Combine with Silifke fortress and museum on the same day. Take the D-715 from Silifke.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Coastal Drive: Mersin to Kızkalesi</div>
+        <p class="activity-desc">The coastal road west from Mersin to Kızkalesi (80 km) passes through citrus orchards, small fishing villages, ancient sites and stretches of undeveloped Mediterranean coastline. Stop at Cennet ve Cehennem (Heaven and Hell sinkholes) en route, visit the Narlıkuyu mosaic floor from a 4th-century Roman bath house, swim at Kızkalesi beach, take the rowboat to the island castle. Return to Mersin in the evening via the same road or via the inland D-400. This circuit covers the greatest concentration of attractions in Mersin Province in a single day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-black" style="padding:72px 0;" id="daytrips">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">From Mersin</span>
+    <h2 class="section-title" style="color:#fff;margin-bottom:0;">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1529042410759-befb1204b468?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">75 km east, about 1 hr</span>
+        <div class="daytrip-name">Adana</div>
+        <p class="daytrip-desc">Mersin and Adana function as a natural pair — both are large, working cities with distinct characters and each offers what the other lacks. Adana has the kebab culture, the Roman stone bridge and the Çukurova agricultural landscape; Mersin has the port seafood, the coast and the western ancient sites. The expressway between them takes under an hour. A combined Mersin-Adana itinerary — Kızkalesi and coastal sites from Mersin base, kebab lunch day-trip to Adana — covers both cities efficiently without duplicating efforts.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">200 km west, about 2 hrs 30 min</span>
+        <div class="daytrip-name">Antalya</div>
+        <p class="daytrip-desc">The coastal road west from Mersin continues through the eastern Mediterranean to Antalya. The journey is long for a day trip but the route passes Alanya (150 km from Mersin) and its Seljuk castle — the best-preserved medieval castle complex on the Turkish Mediterranean — which is a more practical stopping point. The coastal drive through the eastern Mediterranean between Mersin and Alanya has stretches of undeveloped rocky coastline and several small coves accessible by vehicle that are worth noting for those with more time. Side (180 km) with its Temple of Apollo on the beach is the most photogenic single stop between the two cities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo"><p class="footer-tagline">Discover the beauty of Turkiye through cinematic storytelling and authentic local experiences.</p></div>
+    <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities and Destinations</a><a href="../blog.html">Travel Blog</a><a href="../projects.html">Our Projects</a><a href="../about.html">About Us</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="../contact.html">Contact Us</a><a href="../contact.html">Become a Partner</a><div class="footer-social" style="margin-top:4px;"><a href="https://www.instagram.com/showmeturkiye/" target="_blank">IG</a><a href="https://www.youtube.com/@showmeturkiye" target="_blank">YT</a></div></div>
+    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Show Me Turkiye. All rights reserved.</span><span>Privacy Policy &middot; Cookies &middot; Sitemap</span></div>
+</footer>
+<script>
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+function openVideo(id){document.getElementById('videoFrame').src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';document.getElementById('videoModal').classList.add('active');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('videoModal').classList.remove('active');document.getElementById('videoFrame').src='';document.body.style.overflow='';}
+var vm=document.getElementById('videoModal');if(vm)vm.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var LOCATIONS=[
+    {name:"Kızkalesi — Maiden's Castle",lat:36.4561,lng:34.1456,zoom:15},
+    {name:'Silifke',lat:36.3803,lng:33.9358,zoom:14},
+    {name:'Tarsus — Birthplace of St Paul',lat:36.9177,lng:34.892,zoom:14},
+    {name:'Mersin City Centre',lat:36.8121,lng:34.6415,zoom:14},
+    {name:'Cennet ve Cehennem — Heaven and Hell',lat:36.4569,lng:34.0964,zoom:15},
+    {name:'Uzuncaburç Antik Kenti',lat:36.5797,lng:33.9183,zoom:14},
+    {name:'Alahan Monastery',lat:36.7917,lng:33.3542,zoom:14},
+    {name:'Anamur Castle',lat:36.0756,lng:32.8267,zoom:14}
+  ];
+  var map=L.map('map',{zoomControl:false,attributionControl:false}).setView([36.68,34.25],10);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(map);
+  L.control.zoom({position:'bottomright'}).addTo(map);
+  var goldIcon=L.divIcon({html:'<div style="width:12px;height:12px;background:#c4a265;border:2px solid rgba(196,162,101,0.4);border-radius:50%;box-shadow:0 0 12px rgba(196,162,101,0.6);"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var ps=document.createElement('style');ps.textContent='.leaflet-popup-content-wrapper{background:transparent!important;border:none!important;box-shadow:none!important;padding:0!important;}.leaflet-popup-tip{display:none!important;}';document.head.appendChild(ps);
+  var markers=LOCATIONS.map(function(loc){
+    var m=L.marker([loc.lat,loc.lng],{icon:goldIcon}).addTo(map);
+    m.bindPopup('<div style="font-family:Poppins,sans-serif;background:#0f1214;border:1px solid rgba(196,162,101,0.25);padding:14px 18px;min-width:190px;"><div style="font-size:13px;font-weight:400;color:#fff;margin-bottom:10px;">'+loc.name+'</div><a href="https://www.google.com/maps?q='+encodeURIComponent(loc.name+' Mersin')+'" target="_blank" style="font-family:Poppins,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#d4b87e;">View on Map &rarr;</a></div>',{className:'dark-popup',closeButton:false});
+    return m;
+  });
+  window.selectPlace=function(el){
+    document.querySelectorAll('.place-item').forEach(function(p){p.classList.remove('active');});
+    el.classList.add('active');
+    var lat=parseFloat(el.dataset.lat);var lng=parseFloat(el.dataset.lng);var zoom=parseInt(el.dataset.zoom);
+    var idx=Array.from(document.querySelectorAll('.place-item')).indexOf(el);
+    map.flyTo([lat,lng],zoom,{duration:1.4,easeLinearity:0.25});markers[idx].openPopup();
+    if(window.innerWidth<=1100){var mc=document.querySelector('.map-container');if(mc){mc.classList.add('expanded');var nh=document.querySelector('.site-nav');var top=mc.getBoundingClientRect().top+window.pageYOffset-(nh?nh.offsetHeight:64);window.scrollTo({top:top,behavior:'smooth'});setTimeout(function(){map.invalidateSize();},450);}}
+  };
+});
+</script>
+</body>
+</html>
