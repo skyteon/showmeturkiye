@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Adventure, 9 days Itinerary | Show Me Türkiye</title>
+<meta name="description" content="A practical nine day Türkiye trip with kids. Istanbul Bosphorus boats, Cappadocia underground cities and balloons, Pamukkale wading pools, Antalya beaches and Roman theatre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0c0e; color:#fff; font-family:'Poppins',sans-serif; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+
+/* ═══ SITE NAVBAR (matches index.html) ═══ */
+.site-nav-wrap {
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(10,12,14,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(196,162,101,0.18);
+}
+.hero-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; max-width:1400px; margin:0 auto;
+}
+.nav-logo { display:flex; align-items:center; }
+.site-logo { height:40px; width:auto; object-fit:contain; }
+
+.hamburger {
+  display:flex; flex-direction:column; gap:6px;
+  cursor:pointer; background:none; border:none; padding:8px;
+}
+.hamburger span {
+  width:26px; height:2px; background:#fff; display:block;
+  transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:center;
+}
+.hamburger.open span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+.nav-links {
+  display:none; position:fixed; inset:0;
+  background:rgba(10,12,14,0.98); backdrop-filter:blur(20px);
+  flex-direction:column; align-items:center; justify-content:center;
+  gap:28px; z-index:999; animation:navFadeIn 0.3s ease;
+}
+@keyframes navFadeIn { from { opacity:0; } to { opacity:1; } }
+.nav-links.active { display:flex; }
+.nav-links a {
+  font-family:'Poppins',sans-serif; font-size:16px; font-weight:300;
+  letter-spacing:0.25em; text-transform:uppercase;
+  color:rgba(255,255,255,0.55); transition:color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color:#fff; }
+.nav-lang {
+  font-family:'Poppins',sans-serif; font-size:11px;
+  letter-spacing:0.18em; color:rgba(255,255,255,0.3);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:8px 20px; margin-top:12px; cursor:pointer; transition:all 0.3s;
+}
+.nav-lang:hover { border-color:#c4a265; color:#d4b87e; }
+.close-menu {
+  position:absolute; top:28px; right:48px;
+  background:none; border:none; color:#fff;
+  font-size:36px; line-height:1; cursor:pointer;
+  opacity:0.5; transition:opacity 0.2s, transform 0.2s;
+}
+.close-menu:hover { opacity:1; transform:rotate(90deg); }
+
+/* ═══ ROUTE BACK LINK (small, below navbar) ═══ */
+.route-back-bar {
+  position:fixed; top:76px; left:0; right:0; z-index:40;
+  background:rgba(10,12,14,0.7);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(196,162,101,0.08);
+  padding:10px 40px;
+}
+.route-back-link {
+  font-size:11px; font-weight:400; letter-spacing:0.2em; text-transform:uppercase;
+  color:#d4b87e; display:inline-flex; align-items:center; gap:6px;
+  transition:opacity 0.3s;
+}
+.route-back-link:hover { opacity:0.7; }
+
+/* ═══ HERO ═══ */
+.route-hero {
+  position:relative; min-height:80vh;
+  background-image:linear-gradient(180deg, rgba(10,12,14,0.5) 0%, rgba(10,12,14,0.95) 100%), url('https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=2000&q=85&auto=format&fit=crop');
+  background-size:cover; background-position:center;
+  display:flex; align-items:flex-end; padding:140px 40px 60px;
+}
+.route-hero-content { max-width:900px; margin:0 auto; width:100%; }
+.route-hero-badge {
+  display:inline-block; padding:8px 24px; border:1px solid rgba(196,162,101,0.5);
+  background:rgba(196,162,101,0.1); font-size:11px; font-weight:400;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:24px;
+}
+.route-hero h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px);
+  font-weight:300; line-height:1.1; letter-spacing:0.05em; color:#fff; margin-bottom:24px;
+}
+.route-hero-meta {
+  display:flex; flex-wrap:wrap; gap:32px;
+  font-size:13px; font-weight:300; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+.route-hero-meta span strong { color:#d4b87e; font-weight:400; margin-right:8px; }
+
+.route-body { max-width:780px; margin:0 auto; padding:80px 40px; }
+.route-intro {
+  font-size:17px; font-weight:300; line-height:1.85;
+  color:rgba(255,255,255,0.85); margin-bottom:60px;
+  padding-bottom:60px; border-bottom:1px solid rgba(196,162,101,0.15);
+}
+
+.day-card {
+  margin-bottom:48px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(196,162,101,0.15);
+  border-left:3px solid #c4a265; border-radius:8px;
+}
+.day-label {
+  display:inline-block; font-size:11px; font-weight:500;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:8px;
+}
+.day-title {
+  font-family:'Playfair Display',serif; font-size:28px; font-weight:400;
+  color:#fff; margin-bottom:20px; line-height:1.3;
+}
+.day-content { font-size:15px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.85); }
+.day-content p { margin-bottom:16px; }
+.day-content strong { color:#d4b87e; font-weight:500; }
+.day-content a { color:#d4b87e; text-decoration:underline; text-decoration-color:rgba(196,162,101,0.4); text-underline-offset:3px; transition:color 0.2s; }
+.day-content a:hover { color:#e8c98c; }
+
+.activities-block {
+  margin-top:24px; padding:20px;
+  background:rgba(196,162,101,0.06); border:1px solid rgba(196,162,101,0.2);
+  border-radius:8px;
+}
+.activities-label {
+  font-size:11px; font-weight:500; letter-spacing:0.2em;
+  text-transform:uppercase; color:#d4b87e; margin-bottom:14px;
+}
+.activity-link {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 0; border-bottom:1px solid rgba(196,162,101,0.1);
+  font-size:14px; color:rgba(255,255,255,0.85); transition:color 0.2s;
+}
+.activity-link:last-child { border-bottom:none; }
+.activity-link:hover { color:#d4b87e; }
+.activity-link::after { content:'→'; color:#d4b87e; font-size:16px; transition:transform 0.2s; }
+.activity-link:hover::after { transform:translateX(4px); }
+
+.city-link-block { margin-top:24px; padding-top:20px; border-top:1px solid rgba(196,162,101,0.15); }
+.city-link {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:500; letter-spacing:0.15em;
+  text-transform:uppercase; color:#d4b87e;
+  padding:10px 20px; border:1px solid rgba(196,162,101,0.4);
+  border-radius:24px; transition:all 0.3s;
+}
+.city-link:hover { background:rgba(196,162,101,0.1); border-color:rgba(196,162,101,0.7); }
+
+.general-notes {
+  margin-top:80px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+}
+.general-notes h2 {
+  font-family:'Playfair Display',serif; font-size:24px; font-weight:400;
+  color:#fff; margin-bottom:20px;
+}
+.general-notes p {
+  font-size:14px; font-weight:300; line-height:1.75;
+  color:rgba(255,255,255,0.8); margin-bottom:14px;
+}
+.general-notes p strong { color:#d4b87e; font-weight:500; }
+
+.route-cta { text-align:center; padding:80px 40px; border-top:1px solid rgba(196,162,101,0.15); }
+.route-cta h3 {
+  font-family:'Playfair Display',serif; font-size:32px; font-weight:300;
+  color:#fff; margin-bottom:16px;
+}
+.route-cta p { font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); margin-bottom:32px; }
+.route-cta-btn {
+  display:inline-block; padding:16px 48px;
+  background:linear-gradient(135deg, #c4a265 0%, #b08c4f 100%);
+  color:#0a0c0e; font-size:11px; font-weight:600;
+  letter-spacing:0.25em; text-transform:uppercase; border-radius:30px;
+  transition:all 0.3s;
+}
+.route-cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(196,162,101,0.4); }
+
+.route-footer {
+  text-align:center; padding:40px;
+  font-size:11px; font-weight:300; letter-spacing:0.15em;
+  color:rgba(255,255,255,0.4);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width:768px) {
+  .hero-header { padding:14px 20px; }
+  .route-back-bar { padding:8px 20px; top:68px; }
+  .route-hero { padding:120px 24px 40px; min-height:65vh; }
+  .route-body { padding:60px 24px; }
+  .day-card { padding:24px 20px; }
+  .route-hero-meta { gap:16px; font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Site Navbar -->
+<div class="site-nav-wrap">
+  <div class="hero-header">
+    <a href="../index.html" class="nav-logo">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="site-logo">
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<div class="nav-links" id="navOverlay">
+  <button class="close-menu" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html">Explore Türkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- Back to Routes -->
+<div class="route-back-bar">
+  <a href="../index.html#routes-section" class="route-back-link">← All Routes</a>
+</div>
+
+<section class="route-hero">
+  <div class="route-hero-content">
+    <div class="route-hero-badge">Curated Route · 11</div>
+    <h1>Family Adventure</h1>
+    <div class="route-hero-meta">
+      <span><strong>Duration</strong>9 days</span>
+      <span><strong>Best Season</strong>April to June, September to October</span>
+      <span><strong>Budget</strong>Mid range</span>
+      <span><strong>Pace</strong>Balanced</span>
+    </div>
+  </div>
+</section>
+
+<div class="route-body">
+
+  <p class="route-intro">A nine day plan built around what kids will actually remember and enjoy. Istanbul's Bosphorus boats and the Spice Bazaar smells. Cappadocia's underground cities, balloon flights for older kids, and ATV tours through the valleys. Antalya's beaches and the Aspendos theatre big enough to make any kid feel small. Pamukkale's white travertine pools, which kids tend to love and which are warm enough to swim in. The pace alternates active days with rest days because no one travels well exhausted, and the activities are chosen for the moment of wonder rather than the educational checklist. The hotels along the way are kid friendly, with pools and family rooms, but not the giant resort kind that feel like airports.</p>
+
+  <div class="day-card">
+    <div class="day-label">Day 1</div>
+    <h2 class="day-title">Istanbul, Old City Walking</h2>
+    <div class="day-content">
+      <p>Land in Istanbul, settle in <strong>Sultanahmet</strong> with a hotel that has family rooms or interconnecting options. The historic peninsula is car free in places and walkable, which is the pace kids need on the first day.</p>
+      <p>Late afternoon, visit the <strong>Basilica Cistern</strong>. The underground reservoir is the most kid friendly of the major Istanbul sites, dim, atmospheric, with carp swimming in the water and the Medusa head columns at the back. Allow forty five minutes.</p>
+      <p>Then walk over to the <strong>Hippodrome</strong> square between Hagia Sophia and the Blue Mosque. The Egyptian Obelisk and Serpent Column here are easy to absorb in fifteen minutes, and the open square gives kids space to move.</p>
+      <p>Dinner in Sultanahmet, kid friendly options include <strong>köfte</strong> houses, simple grilled meatballs that most children eat without protest. <strong>Sultanahmet Köftecisi</strong> on the main road is the canonical place.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/istanbul-l56/hagia-sophia-basilica-cistern-guided-tour-incl-tickets-t856863/" target="_blank" rel="noopener" class="activity-link">Basilica Cistern skip the line ticket</a>
+        <a href="https://www.getyourguide.com/istanbul-l56/" target="_blank" rel="noopener" class="activity-link">Hippodrome and Old City walking tour</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/istanbul.html" class="city-link">Full Istanbul Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 2</div>
+    <h2 class="day-title">Istanbul, Bosphorus and Bazaars</h2>
+    <div class="day-content">
+      <p>Morning at the <strong>Spice Bazaar</strong>. Smaller than the Grand Bazaar and more sensory, kids tend to engage more here, vendors offer samples, the smells and colours are concentrated. Allow an hour with snack breaks.</p>
+      <p>Then walk down to <strong>Eminönü</strong> for a <strong>Bosphorus boat</strong>. The public ferry from Eminönü to Anadolu Kavağı is the cheap option, two hours each way with a few stops. Kids tend to enjoy the deck more than any sit down activity, especially the moment of crossing under the bridges.</p>
+      <p>Lunch on board or at the <strong>Anadolu Kavağı</strong> stop, fish at the small restaurants there. Back to Eminönü mid afternoon.</p>
+      <p>Late afternoon, walk to <strong>Galata Tower</strong>. The fourteenth century Genoese tower has an elevator now and a 360 view from the top, including over the rooftops of the old city back across the Golden Horn. Allow an hour.</p>
+      <p>Dinner in Karaköy along the waterfront.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/istanbul-l56/" target="_blank" rel="noopener" class="activity-link">Bosphorus public ferry tour</a>
+        <a href="https://www.getyourguide.com/istanbul-l56/" target="_blank" rel="noopener" class="activity-link">Galata Tower visit</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 3</div>
+    <h2 class="day-title">Istanbul to Cappadocia</h2>
+    <div class="day-content">
+      <p>Morning flight to <strong>Nevşehir</strong> or <strong>Kayseri</strong>, around an hour and a half. Both airports are forty five minutes from <strong>Göreme</strong>.</p>
+      <p>Stay in a <strong>cave hotel</strong> with family rooms. Most boutique cave hotels have larger family suites, the experience of staying in a room carved into volcanic rock is itself a memory for kids, especially younger ones.</p>
+      <p>Settle in. Late afternoon, walk the <strong>Göreme Open Air Museum</strong>, the rock cut Byzantine churches with painted interiors. About 90 minutes, kids tend to engage with the doorway sized openings and stair climbs. The Dark Church (Karanlık Kilise) has the best preserved frescoes and is a small additional ticket worth the climb.</p>
+      <p>Sunset at <strong>Sunset Point</strong> just above town. Reserve a balloon flight for tomorrow if your kids are old enough, most operators have age minimums of six to eight.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/cappadocia-l1400/" target="_blank" rel="noopener" class="activity-link">Göreme Open Air Museum entry</a>
+        <a href="https://www.getyourguide.com/cappadocia-l1400/" target="_blank" rel="noopener" class="activity-link">Cave hotel family room</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/cappadocia.html" class="city-link">Full Cappadocia Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 4</div>
+    <h2 class="day-title">Cappadocia, Balloons and Underground</h2>
+    <div class="day-content">
+      <p>If kids are old enough, the <strong>balloon flight</strong> at sunrise is the headline. Up at four thirty, in the air at sunrise. Most operators allow ages six and up, some only ten and up, confirm before booking. About an hour up, then a champagne landing in a field with a small ceremony.</p>
+      <p>Back to the hotel by nine for breakfast. If you skipped the balloon, sleep in and start the morning at the <strong>Avanos pottery workshop</strong>. The town along the river specialises in red clay pottery, several workshops will let kids try the wheel themselves for an extra fee. Hands on, messy, and memorable.</p>
+      <p>Lunch in <strong>Avanos</strong> or back in <strong>Göreme</strong>. Try <strong>testi kebabı</strong>, the lamb stew cooked sealed in a clay pot and broken open at the table. The breaking is the entertainment, the food itself is plain enough for most kids.</p>
+      <p>Afternoon at one of the <strong>underground cities</strong>, <strong>Kaymaklı</strong> is wider and easier than Derinkuyu for families. The chambers are connected by narrow tunnels and stairs, the engagement level is high, claustrophobic kids will struggle but most love it. Allow 90 minutes inside.</p>
+      <p>Evening back at the hotel, or for a treat an <strong>ATV tour</strong> through the valleys, available for older kids and teens, full safety equipment provided.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/cappadocia-l1400/cappadocia-goreme-hot-air-balloon-flight-at-sunrise-t26992/" target="_blank" rel="noopener" class="activity-link">Cappadocia hot air balloon family</a>
+        <a href="https://www.getyourguide.com/cappadocia-l1400/" target="_blank" rel="noopener" class="activity-link">Avanos pottery workshop</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 5</div>
+    <h2 class="day-title">Cappadocia to Pamukkale</h2>
+    <div class="day-content">
+      <p>Morning flight to <strong>Denizli</strong> via Istanbul, or drive south, around six hours. Most families fly to save time and fatigue.</p>
+      <p>Settle in <strong>Pamukkale village</strong>, a small town directly below the travertines. Hotels are simple but most have pools, useful in the afternoon heat.</p>
+      <p>Late afternoon, walk up to the <strong>travertines</strong>. The white limestone pools cascading down the hillside are made of calcium carbonate from hot mineral springs. The pools are warm, around 35 degrees, and walking shoeless is mandatory. Kids love them, both the wading and the strange landscape. The light is best in late afternoon when the sun crosses west to east across the slope.</p>
+      <p>Above the pools, <strong>Hierapolis</strong> is the Greco Roman city built around the springs. Most kids will engage with the Roman theatre, still mostly intact. The full ruins are too much for kids on a hot day, focus on the theatre and the necropolis entrance.</p>
+      <p>Dinner in the village, sleep early.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/marmaris-l987/marmaris-pamukkale-hot-springs-travertines-tour-wlunch-t34926/" target="_blank" rel="noopener" class="activity-link">Pamukkale and Hierapolis ticket</a>
+        <a href="https://www.getyourguide.com/marmaris-l987/marmaris-pamukkale-hot-springs-travertines-tour-wlunch-t34926/" target="_blank" rel="noopener" class="activity-link">Pamukkale pool wading</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/denizli.html" class="city-link">Full Denizli Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 6</div>
+    <h2 class="day-title">Pamukkale to Antalya</h2>
+    <div class="day-content">
+      <p>Drive south to <strong>Antalya</strong>, around three hours. The road descends from the inland plateau down to the Mediterranean coast, the geography changes from steppe to pine forest to coast.</p>
+      <p>Stay in <strong>Kaleiçi</strong>, the old town inside the Roman walls. Several family hotels here have pools, gardens, and breakfast spaces that work for kids. Boutique enough to feel special without being chaos.</p>
+      <p>Settle in, swim if your hotel has a pool. Late afternoon, walk down to <strong>Kaleiçi marina</strong>, the harbour at the base of the cliff. The boats below the cliff and the old town walls behind are a setting kids enjoy without anyone having to explain anything.</p>
+      <p>Dinner along the harbour, fresh fish or <strong>köfte</strong>, both reliable kid food.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/antalya-l172/" target="_blank" rel="noopener" class="activity-link">Kaleiçi marina walk</a>
+        <a href="https://www.getyourguide.com/antalya-l172/" target="_blank" rel="noopener" class="activity-link">Antalya old town family hotel</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/antalya.html" class="city-link">Full Antalya Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 7</div>
+    <h2 class="day-title">Antalya, Aspendos and Beach</h2>
+    <div class="day-content">
+      <p>Morning trip to <strong>Aspendos</strong>, the Roman theatre from the second century AD that is still almost completely intact. Forty five minutes from Antalya. Kids respond strongly to the scale, the theatre seats 12,000 and you can sit in the original stone benches and shout to test the acoustics, which still work.</p>
+      <p>Lunch on the way back, then beach for the afternoon. <strong>Konyaaltı</strong> is the long city beach with calmer water and lifeguards. <strong>Lara</strong> on the eastern side is sandier but busier. Both work for families, choose by what the morning has been like.</p>
+      <p>Late afternoon ice cream and swimming. The water is warm enough to swim in from May to October.</p>
+      <p>Dinner back in Kaleiçi, the night markets and street food in the old town are a softer evening for tired kids.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/antalya-l172/antalya-perge-aspendos-city-of-side-day-trip-with-lunch-t525477/" target="_blank" rel="noopener" class="activity-link">Aspendos Roman theatre tour</a>
+        <a href="https://www.getyourguide.com/antalya-l172/" target="_blank" rel="noopener" class="activity-link">Antalya beach day</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 8</div>
+    <h2 class="day-title">Antalya, Düden Falls and Aquarium</h2>
+    <div class="day-content">
+      <p>Morning at <strong>Düden Waterfalls</strong>, two falls along the Düden River, one inland and one falling directly into the sea. The seaside falls can be seen from a boat tour or from the cliff above, kids respond to both. The boat option is more memorable. Allow two hours.</p>
+      <p>Lunch in town. If kids need a wind down, an <strong>aquarium</strong> visit, the Antalya Aquarium has a long underwater tunnel and a varied collection. Two to three hours, and air conditioned which matters in summer.</p>
+      <p>Afternoon back at the beach or pool, depending on energy. Last evening in the old town.</p>
+      <p>Dinner with a view, the clifftop restaurants above Yat Limanı have the longest light and a view kids will hold in mind for a while.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/antalya-l172/" target="_blank" rel="noopener" class="activity-link">Düden Waterfalls boat tour</a>
+        <a href="https://www.getyourguide.com/antalya-l172/" target="_blank" rel="noopener" class="activity-link">Antalya Aquarium visit</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 9</div>
+    <h2 class="day-title">Antalya, Departure</h2>
+    <div class="day-content">
+      <p>Slow morning. If your flight is late, one more swim, breakfast in the old town, last walk along the marina.</p>
+      <p>Antalya airport is twenty minutes from Kaleiçi, with direct flights to most European capitals.</p>
+      
+      
+    </div>
+  </div>
+
+  <div class="general-notes">
+    <h2>General Notes</h2>
+    <p><strong>Flights.</strong> Two domestic flights, Istanbul to Cappadocia, Cappadocia to Denizli (or Antalya). Booked early, the total runs around 100 to 180 EUR per person. Pegasus tends to be cheaper than Turkish Airlines for families with luggage.</p>
+    <p><strong>Where to stay.</strong> Sultanahmet boutique in Istanbul with family rooms. Cave hotel in Göreme with family suites, choose by terrace and pool. Pamukkale village hotel with pool. Kaleiçi old town boutique in Antalya with garden and pool.</p>
+    <p><strong>Pace.</strong> This is the pace that works for families with school age children. With younger kids, drop Pamukkale and add an extra day in either Antalya or Cappadocia. With teenagers, you can run the route faster and add another stop, Bodrum on the Aegean works well as an extension.</p>
+    <p><strong>Practical kid tips.</strong> Pack hats, sunscreen, swim shoes for Pamukkale and rocky beaches, refillable water bottles. Most museums and sites are free for kids under six, half price under twelve. Most family rooms in Türkiye are two double beds in one room, request twins if needed.</p>
+    <p><strong>Food.</strong> Turkish food is generally kid friendly, plain grilled meats and breads work for most. Avoid the spicier southeast specialities for younger kids. Restaurants are universally welcoming, no need to seek out kid menus, simple grilled fish or köfte is everywhere.</p>
+  </div>
+
+</div>
+
+<div class="route-cta">
+  <h3>Or pick a different route</h3>
+  <p>Eleven other curated itineraries, each built around a different kind of trip.</p>
+  <a href="../index.html#routes-section" class="route-cta-btn">See all routes</a>
+</div>
+
+<footer class="route-footer">
+  © Show Me Türkiye · Curated travel for those who care about the difference
+</footer>
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav() {
+  navOverlay.classList.add('active');
+  hamburgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('active');
+  hamburgerBtn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburgerBtn.addEventListener('click', openNav);
+closeNavBtn.addEventListener('click', closeNav);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="FNFVE8Z"></script>
+</body>
+</html>
