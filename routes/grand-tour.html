@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grand Tour, 14 days Itinerary | Show Me Türkiye</title>
+<meta name="description" content="A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Ephesus, with Izmir at the end. Day by day, with sources you can verify.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0c0e; color:#fff; font-family:'Poppins',sans-serif; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+
+/* ═══ SITE NAVBAR (matches index.html) ═══ */
+.site-nav-wrap {
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(10,12,14,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(196,162,101,0.18);
+}
+.hero-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; max-width:1400px; margin:0 auto;
+}
+.nav-logo { display:flex; align-items:center; }
+.site-logo { height:40px; width:auto; object-fit:contain; }
+
+.hamburger {
+  display:flex; flex-direction:column; gap:6px;
+  cursor:pointer; background:none; border:none; padding:8px;
+}
+.hamburger span {
+  width:26px; height:2px; background:#fff; display:block;
+  transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:center;
+}
+.hamburger.open span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+.nav-links {
+  display:none; position:fixed; inset:0;
+  background:rgba(10,12,14,0.98); backdrop-filter:blur(20px);
+  flex-direction:column; align-items:center; justify-content:center;
+  gap:28px; z-index:999; animation:navFadeIn 0.3s ease;
+}
+@keyframes navFadeIn { from { opacity:0; } to { opacity:1; } }
+.nav-links.active { display:flex; }
+.nav-links a {
+  font-family:'Poppins',sans-serif; font-size:16px; font-weight:300;
+  letter-spacing:0.25em; text-transform:uppercase;
+  color:rgba(255,255,255,0.55); transition:color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color:#fff; }
+.nav-lang {
+  font-family:'Poppins',sans-serif; font-size:11px;
+  letter-spacing:0.18em; color:rgba(255,255,255,0.3);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:8px 20px; margin-top:12px; cursor:pointer; transition:all 0.3s;
+}
+.nav-lang:hover { border-color:#c4a265; color:#d4b87e; }
+.close-menu {
+  position:absolute; top:28px; right:48px;
+  background:none; border:none; color:#fff;
+  font-size:36px; line-height:1; cursor:pointer;
+  opacity:0.5; transition:opacity 0.2s, transform 0.2s;
+}
+.close-menu:hover { opacity:1; transform:rotate(90deg); }
+
+/* ═══ ROUTE BACK LINK (small, below navbar) ═══ */
+.route-back-bar {
+  position:fixed; top:76px; left:0; right:0; z-index:40;
+  background:rgba(10,12,14,0.7);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(196,162,101,0.08);
+  padding:10px 40px;
+}
+.route-back-link {
+  font-size:11px; font-weight:400; letter-spacing:0.2em; text-transform:uppercase;
+  color:#d4b87e; display:inline-flex; align-items:center; gap:6px;
+  transition:opacity 0.3s;
+}
+.route-back-link:hover { opacity:0.7; }
+
+/* ═══ HERO ═══ */
+.route-hero {
+  position:relative; min-height:80vh;
+  background-image:linear-gradient(180deg, rgba(10,12,14,0.5) 0%, rgba(10,12,14,0.95) 100%), url('https://images.unsplash.com/photo-1605093588542-30f1ad6cb95f?w=2000&q=85&auto=format&fit=crop');
+  background-size:cover; background-position:center;
+  display:flex; align-items:flex-end; padding:140px 40px 60px;
+}
+.route-hero-content { max-width:900px; margin:0 auto; width:100%; }
+.route-hero-badge {
+  display:inline-block; padding:8px 24px; border:1px solid rgba(196,162,101,0.5);
+  background:rgba(196,162,101,0.1); font-size:11px; font-weight:400;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:24px;
+}
+.route-hero h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px);
+  font-weight:300; line-height:1.1; letter-spacing:0.05em; color:#fff; margin-bottom:24px;
+}
+.route-hero-meta {
+  display:flex; flex-wrap:wrap; gap:32px;
+  font-size:13px; font-weight:300; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+.route-hero-meta span strong { color:#d4b87e; font-weight:400; margin-right:8px; }
+
+.route-body { max-width:780px; margin:0 auto; padding:80px 40px; }
+.route-intro {
+  font-size:17px; font-weight:300; line-height:1.85;
+  color:rgba(255,255,255,0.85); margin-bottom:60px;
+  padding-bottom:60px; border-bottom:1px solid rgba(196,162,101,0.15);
+}
+
+.day-card {
+  margin-bottom:48px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(196,162,101,0.15);
+  border-left:3px solid #c4a265; border-radius:8px;
+}
+.day-label {
+  display:inline-block; font-size:11px; font-weight:500;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:8px;
+}
+.day-title {
+  font-family:'Playfair Display',serif; font-size:28px; font-weight:400;
+  color:#fff; margin-bottom:20px; line-height:1.3;
+}
+.day-content { font-size:15px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.85); }
+.day-content p { margin-bottom:16px; }
+.day-content strong { color:#d4b87e; font-weight:500; }
+.day-content a { color:#d4b87e; text-decoration:underline; text-decoration-color:rgba(196,162,101,0.4); text-underline-offset:3px; transition:color 0.2s; }
+.day-content a:hover { color:#e8c98c; }
+
+.activities-block {
+  margin-top:24px; padding:20px;
+  background:rgba(196,162,101,0.06); border:1px solid rgba(196,162,101,0.2);
+  border-radius:8px;
+}
+.activities-label {
+  font-size:11px; font-weight:500; letter-spacing:0.2em;
+  text-transform:uppercase; color:#d4b87e; margin-bottom:14px;
+}
+.activity-link {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 0; border-bottom:1px solid rgba(196,162,101,0.1);
+  font-size:14px; color:rgba(255,255,255,0.85); transition:color 0.2s;
+}
+.activity-link:last-child { border-bottom:none; }
+.activity-link:hover { color:#d4b87e; }
+.activity-link::after { content:'→'; color:#d4b87e; font-size:16px; transition:transform 0.2s; }
+.activity-link:hover::after { transform:translateX(4px); }
+
+.city-link-block { margin-top:24px; padding-top:20px; border-top:1px solid rgba(196,162,101,0.15); }
+.city-link {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:500; letter-spacing:0.15em;
+  text-transform:uppercase; color:#d4b87e;
+  padding:10px 20px; border:1px solid rgba(196,162,101,0.4);
+  border-radius:24px; transition:all 0.3s;
+}
+.city-link:hover { background:rgba(196,162,101,0.1); border-color:rgba(196,162,101,0.7); }
+
+.general-notes {
+  margin-top:80px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+}
+.general-notes h2 {
+  font-family:'Playfair Display',serif; font-size:24px; font-weight:400;
+  color:#fff; margin-bottom:20px;
+}
+.general-notes p {
+  font-size:14px; font-weight:300; line-height:1.75;
+  color:rgba(255,255,255,0.8); margin-bottom:14px;
+}
+.general-notes p strong { color:#d4b87e; font-weight:500; }
+
+.route-cta { text-align:center; padding:80px 40px; border-top:1px solid rgba(196,162,101,0.15); }
+.route-cta h3 {
+  font-family:'Playfair Display',serif; font-size:32px; font-weight:300;
+  color:#fff; margin-bottom:16px;
+}
+.route-cta p { font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); margin-bottom:32px; }
+.route-cta-btn {
+  display:inline-block; padding:16px 48px;
+  background:linear-gradient(135deg, #c4a265 0%, #b08c4f 100%);
+  color:#0a0c0e; font-size:11px; font-weight:600;
+  letter-spacing:0.25em; text-transform:uppercase; border-radius:30px;
+  transition:all 0.3s;
+}
+.route-cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(196,162,101,0.4); }
+
+.route-footer {
+  text-align:center; padding:40px;
+  font-size:11px; font-weight:300; letter-spacing:0.15em;
+  color:rgba(255,255,255,0.4);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width:768px) {
+  .hero-header { padding:14px 20px; }
+  .route-back-bar { padding:8px 20px; top:68px; }
+  .route-hero { padding:120px 24px 40px; min-height:65vh; }
+  .route-body { padding:60px 24px; }
+  .day-card { padding:24px 20px; }
+  .route-hero-meta { gap:16px; font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Site Navbar -->
+<div class="site-nav-wrap">
+  <div class="hero-header">
+    <a href="../index.html" class="nav-logo">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="site-logo">
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<div class="nav-links" id="navOverlay">
+  <button class="close-menu" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html">Explore Türkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- Back to Routes -->
+<div class="route-back-bar">
+  <a href="../index.html#routes-section" class="route-back-link">← All Routes</a>
+</div>
+
+<section class="route-hero">
+  <div class="route-hero-content">
+    <div class="route-hero-badge">Curated Route · 02</div>
+    <h1>The Grand Tour</h1>
+    <div class="route-hero-meta">
+      <span><strong>Duration</strong>14 days</span>
+      <span><strong>Best Season</strong>May to June, September to October</span>
+      <span><strong>Budget</strong>Mid range</span>
+      <span><strong>Pace</strong>Balanced</span>
+    </div>
+  </div>
+</section>
+
+<div class="route-body">
+
+  <p class="route-intro">Two weeks is the right shape for Türkiye if you want the country to actually click. Seven days lets you check off the famous places. Fourteen lets you slow down between them, give each region its own rhythm, and start to see the connections, how the food in Antep talks to the food on the Aegean, how Roman ruins keep showing up in places they have no business being. This route covers Istanbul, Cappadocia, the Mediterranean coast, the Aegean, and ends in Izmir. You will fly the long jumps, drive the short ones. The pace is balanced, with two days in each major stop, which is what separates seeing places from feeling them.</p>
+
+  <div class="day-card">
+    <div class="day-label">Day 1</div>
+    <h2 class="day-title">Istanbul, the Old City</h2>
+    <div class="day-content">
+      <p>Land in Istanbul, base in <strong>Sultanahmet</strong>. The historic peninsula was Constantinople, then the Ottoman capital, and most of the famous sights still cluster within walking distance of the same square. Drop your bags, get water, take it easy in the afternoon.</p>
+      <p>Late afternoon at <a href="../cities/istanbul.html">Hagia Sophia</a>. Built in 537 under Justinian, the largest cathedral in the world for nearly a thousand years. The dome still surprises you from below. Then across the square to the <strong>Blue Mosque</strong>, free outside prayer times, and beneath the square the <strong>Basilica Cistern</strong>, a sixth century underground reservoir that is cooler and stranger than any photograph suggests.</p>
+      <p>Dinner in Sultanahmet, sleep early. Tomorrow is a long walking day.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/istanbul-l56/istanbul-blue-mosque-hagia-sophia-guided-tour-w-tickets-t204412/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Hagia Sophia and Blue Mosque guided walk</a>
+        <a href="https://www.getyourguide.com/istanbul-l56/hagia-sophia-basilica-cistern-guided-tour-incl-tickets-t856863/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Basilica Cistern skip the line ticket</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/istanbul.html" class="city-link">Full Istanbul Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 2</div>
+    <h2 class="day-title">Istanbul, Bosphorus and Bazaars</h2>
+    <div class="day-content">
+      <p>Morning at <strong>Topkapı Palace</strong>. The Ottoman court ran the empire from this hill for nearly four centuries. Buy the Harem ticket separately, it is worth the extra fee. Three hours minimum.</p>
+      <p>Lunch toward <strong>Eminönü</strong>, then walk through the <strong>Spice Bazaar</strong>. Smaller than the Grand Bazaar and more practical, vendors are still real shopkeepers. Buy Antep pistachios and a small bag of pomegranate molasses.</p>
+      <p>Afternoon, take the <strong>Bosphorus</strong> on water. The strait is the actual reason Istanbul exists, the geography only makes sense from the middle. Public ferry from Eminönü to Anadolu Kavağı is two hours each way, almost as good as the tour boats and a fraction of the price.</p>
+      <p>Dinner across the Golden Horn in <strong>Karaköy</strong> or <strong>Galata</strong>. Better food, better mood, closer to the city locals actually live in.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/istanbul-l56/istanbul-topkapi-palace-harem-tour-including-entry-ticket-t127010/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Topkapı Palace and Harem guided tour</a>
+        <a href="https://www.getyourguide.com/istanbul-l56/istanbul-bosphorus-dinner-cruise-show-with-private-table-t415437/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Bosphorus sunset cruise</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 3</div>
+    <h2 class="day-title">Istanbul to Cappadocia</h2>
+    <div class="day-content">
+      <p>Morning flight to <strong>Nevşehir</strong> or <strong>Kayseri</strong>, around an hour and a half in the air. Both airports sit forty five minutes from <strong>Göreme</strong>. Pre book a transfer.</p>
+      <p>Cave hotel in Göreme. Choose by the terrace view, not the room size, breakfast on the terrace is the moment you remember.</p>
+      <p>Afternoon walk through the <a href="../cities/cappadocia.html">Göreme Open Air Museum</a>. Tenth century Byzantine churches carved into the volcanic rock with frescoes still on the walls. Two hours.</p>
+      <p>Sunset at <strong>Sunset Point</strong>. Reserve a balloon flight for tomorrow at dawn before sleeping. Operators sell out and the day starts at four.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/cappadocia-l1400/cappadocia-goreme-hot-air-balloon-flight-at-sunrise-t26992/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Cappadocia hot air balloon at sunrise</a>
+        <a href="https://www.getyourguide.com/cappadocia-l1400/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Göreme Open Air Museum entry</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/cappadocia.html" class="city-link">Full Cappadocia Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 4</div>
+    <h2 class="day-title">Cappadocia, Balloons and Valleys</h2>
+    <div class="day-content">
+      <p>Up at four thirty, pickup at five. You are in the air at sunrise, the balloon drifting wherever the wind takes it. About an hour up, then a champagne landing in a field. The photograph everyone has of Cappadocia, and yes it earns its reputation.</p>
+      <p>Back to the hotel by nine for breakfast. Sleep an hour if needed.</p>
+      <p>Late morning, hike one of the valleys on foot. <strong>Rose Valley</strong> and <strong>Red Valley</strong> are the most photogenic. <strong>Love Valley</strong> has the famous fairy chimneys. Two hours of walking is enough to feel the geology, ten million years of volcanic erosion that produced something genuinely unique.</p>
+      <p>Afternoon back at the hotel, evening dinner in <strong>Avanos</strong> at a pottery house, or quietly on your terrace.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/goreme-l984/cappadocia-guided-red-tour-with-lunch-and-entrance-ticket-t479864/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Red and Rose Valley guided hike</a>
+        <a href="https://www.getyourguide.com/cappadocia-l1400/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">ATV sunset tour through the valleys</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 5</div>
+    <h2 class="day-title">Cappadocia, Underground and Pottery</h2>
+    <div class="day-content">
+      <p>Morning, an underground city. <strong>Derinkuyu</strong> goes deeper, <strong>Kaymaklı</strong> is wider but easier. Both were dug as refuges by early Christian communities, ventilation shafts and storage rooms and churches all underground, capable of sheltering thousands for months. Ninety minutes inside.</p>
+      <p>Lunch in <strong>Avanos</strong>, the pottery town on the Kızılırmak river. The red clay here has been worked the same way for centuries. Watch a wheel for fifteen minutes if a workshop will let you.</p>
+      <p>Afternoon, visit <strong>Uçhisar</strong> castle, the natural rock fortress on the highest point in the region. Fifteen minutes to climb, twenty minutes for the views. Sunset is the moment.</p>
+      <p>Tonight is your last in a cave, take it slow.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/goreme-l984/cappadocia-guided-green-tour-with-lunch-and-tickets-t480053/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Underground city day tour</a>
+        <a href="https://www.getyourguide.com/cappadocia-l1400/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Avanos pottery workshop</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 6</div>
+    <h2 class="day-title">Cappadocia to Antalya</h2>
+    <div class="day-content">
+      <p>Morning flight to <strong>Antalya</strong>, around an hour. Stay in <strong>Kaleiçi</strong>, the old town inside the Roman walls. The change in landscape is the point of the route, you go from volcanic stone to palm trees and Mediterranean light in less than half a day.</p>
+      <p>Walk the <strong>Kaleiçi marina</strong> at sunset. The boats below the cliff, the old town behind, the sea opening south.</p>
+      <p>Dinner along the harbour. Fish or meze, ideally both.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/antalya-l172/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Kaleiçi old town guided walk</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/antalya.html" class="city-link">Full Antalya Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 7</div>
+    <h2 class="day-title">Antalya, Aspendos and Side</h2>
+    <div class="day-content">
+      <p>Day trip east to <strong>Aspendos</strong>, a Roman theatre from the second century AD that still stands almost completely intact. Acoustics are good enough that operas are performed there in summer without amplification. Forty five minutes from Antalya.</p>
+      <p>Continue along the coast to <strong>Side</strong>, an ancient port city with ruins literally on the beach. The temple of Apollo on a small peninsula at sunset is one of the better photographs you will take this trip.</p>
+      <p>Back to Antalya for dinner. Try a clifftop place above the harbour for the longest light.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/antalya-l172/antalya-perge-aspendos-city-of-side-day-trip-with-lunch-t525477/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Aspendos and Side day tour</a>
+        <a href="https://www.getyourguide.com/antalya-l172/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Düden Waterfalls boat tour</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 8</div>
+    <h2 class="day-title">Antalya to Pamukkale</h2>
+    <div class="day-content">
+      <p>Drive west to <strong>Pamukkale</strong>, around three hours. The white travertine pools spilling down the hillside are made of calcium carbonate deposited from hot springs over thousands of years. The water in the pools is around 35 degrees, mineral rich, walking shoeless is mandatory and the limestone is softer than you expect.</p>
+      <p>Above the pools sits <strong>Hierapolis</strong>, a Greco Roman city that grew up around the springs as a thermal resort. The Roman theatre is intact and the necropolis stretches a kilometre. Combine the two in one ticket.</p>
+      <p>Stay in Pamukkale village or in <strong>Karahayıt</strong>, the next village over which has cheaper hotel options.</p>
+      <p>If you want to swim where Cleopatra reportedly swam, the <strong>Antique Pool</strong> charges separately and is genuinely worth the extra ticket.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/pamukkale-l189126/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Pamukkale and Hierapolis ticket</a>
+        <a href="https://www.getyourguide.com/pamukkale-l189126/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Cleopatra Antique Pool entry</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/denizli.html" class="city-link">Full Denizli Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 9</div>
+    <h2 class="day-title">Pamukkale to Muğla coast</h2>
+    <div class="day-content">
+      <p>Morning at the pools again if you skipped sunrise yesterday, then drive south to the Muğla coast. <strong>Fethiye</strong> is roughly three hours, <strong>Bodrum</strong> a bit further west.</p>
+      <p>Pick a base. Fethiye is more nature heavy, with <strong>Ölüdeniz</strong> blue lagoon and the start of the Lycian Way trail twenty minutes away. Bodrum is more boat heavy, more nightlife, more Aegean rather than Mediterranean.</p>
+      <p>If you want one place, choose Fethiye, the surrounding coves are easier to reach and the food scene is calmer. Settle in tonight, no rush.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/mugla-l192/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Ölüdeniz boat tour to coves</a>
+        <a href="https://www.getyourguide.com/mugla-l192/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Saklıkent canyon walk</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/mugla.html" class="city-link">Full Muğla Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 10</div>
+    <h2 class="day-title">Muğla coast, A Day on the Water</h2>
+    <div class="day-content">
+      <p>Take a boat. The Fethiye and Göcek coves are best seen from sea, six islands tour or a private gulet rental are the two ways most people do it. Six islands is the cheap option, big shared boat with multiple swim stops, around eight hours. A private wooden gulet for four to six guests starts around 350 EUR for the day and is worth it if you can split with friends.</p>
+      <p>Stops will likely include <strong>Cleopatra Beach</strong>, the <strong>Aquarium Bay</strong> for snorkelling, and <strong>Tersane Island</strong> with its half submerged Byzantine ruins. Lunch is on the boat.</p>
+      <p>Back to the marina by late afternoon. Dinner in town, then walk along the waterfront.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/fethiye-l1386/fethiye-12-islands-boat-tour-with-lunch-and-hotel-pickup-t828779/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Twelve islands gulet day cruise</a>
+        <a href="https://www.getyourguide.com/mugla-l192/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Private gulet charter</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 11</div>
+    <h2 class="day-title">Lycian Coast and Kayaköy</h2>
+    <div class="day-content">
+      <p><strong>Tlos</strong> in the morning, an ancient Lycian city carved into a cliff with rock cut tombs you can walk up to. About forty five minutes from Fethiye, two hours to wander.</p>
+      <p>Then <strong>Saklıkent Gorge</strong> for lunch. The canyon is eighteen kilometres long, the first kilometre is walkable in summer when the water is low, ankle to knee deep depending on the year. Cool off in the icy water, eat at one of the riverside restaurants suspended over the stream.</p>
+      <p>Afternoon, drive to <strong>Kayaköy</strong>, the abandoned Greek village above Fethiye. The population was exchanged in 1923 and the houses have stood empty since, slowly losing roofs to weather. Walk through it as the sun drops, the light on the stone is the reason photographers come here.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/mugla-l192/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Tlos and Saklıkent day tour</a>
+        <a href="https://www.getyourguide.com/mugla-l192/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Kayaköy sunset walk</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 12</div>
+    <h2 class="day-title">Muğla to Izmir via Ephesus</h2>
+    <div class="day-content">
+      <p>Drive north to <strong>Ephesus</strong>, the largest and best preserved Roman city in the eastern Mediterranean. Three hours from Fethiye. Try to arrive before the cruise ship buses, which is roughly ten in the morning, otherwise after three when they leave.</p>
+      <p>Allow at least three hours inside. The Library of Celsus and the Great Theatre are the famous photographs, but the real value is the residential terraces with intact mosaics, ticketed separately and worth the extra fee.</p>
+      <p>Continue to <strong>Izmir</strong> in the afternoon, around an hour from Ephesus. Stay along the <strong>Kordon</strong>, the seaside promenade, the city is best at evening when the air cools and the boats fill the bay.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/izmir-l1082/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Ephesus skip the line guided tour</a>
+        <a href="https://www.getyourguide.com/izmir-l1082/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Terrace Houses extra entry</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/izmir.html" class="city-link">Full Izmir Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 13</div>
+    <h2 class="day-title">Izmir, Alaçatı and Çeşme</h2>
+    <div class="day-content">
+      <p>Morning in central Izmir. The <strong>Kemeraltı</strong> bazaar runs into the city like a real Levantine market, less polished than the Grand Bazaar in Istanbul but more lived in. Eat <strong>boyoz</strong>, the Sephardic pastry that is local to Izmir, at a small bakery for breakfast.</p>
+      <p>Afternoon, drive to <strong>Alaçatı</strong>, an Ottoman Greek village turned boutique destination an hour west of the city. The cobbled streets are full of stone houses with bright shutters, restored into hotels and restaurants. The streets are best in late afternoon, before dinner.</p>
+      <p><strong>Çeşme</strong> is the next town over and has cleaner beaches if you want to swim before sunset. Ilıca is the famous one. Back to Izmir or stay in Alaçatı if you booked a hotel there.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/izmir-l1082/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Alaçatı food tour</a>
+        <a href="https://www.getyourguide.com/izmir-l1082/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Çeşme beaches day</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 14</div>
+    <h2 class="day-title">Izmir, Departure</h2>
+    <div class="day-content">
+      <p>Slow morning. If your flight is late, walk the <strong>Kordon</strong> waterfront one more time and have a long breakfast somewhere with a sea view. Izmir airport flies direct to most European capitals and several Middle Eastern ones.</p>
+      <p>If you want a last stop, the <strong>Izmir Archaeological Museum</strong> on the way to the airport holds finds from Ephesus, Pergamon, and the Aegean coast cities. About an hour.</p>
+      
+      
+    </div>
+  </div>
+
+  <div class="general-notes">
+    <h2>General Notes</h2>
+    <p><strong>Flights and driving.</strong> Three domestic flights this trip: Istanbul to Cappadocia, Cappadocia to Antalya, and the option of flying out of Izmir at the end. The Antalya to Pamukkale and Pamukkale to coast legs are by car. Rent the car in Antalya, drop in Izmir, most companies allow this for a one way fee.</p>
+    <p><strong>Where to stay.</strong> Sultanahmet or Karaköy in Istanbul. Cave hotel in Göreme, choose by the terrace view. Kaleiçi old town in Antalya. Pamukkale village or Karahayıt for one night. Fethiye centre or a cove hotel near Ölüdeniz. Kordon waterfront in Izmir, or Alaçatı if you want a smaller town.</p>
+    <p><strong>Season.</strong> May to early June, or September to early October. The shoulder seasons. July and August add heat and crowds especially on the coast. Avoid winter for this route, several legs become difficult and Pamukkale loses its colour without sun.</p>
+    <p><strong>Pace.</strong> Two weeks is the version that lets the country breathe. Cutting to ten days means dropping Pamukkale and Izmir. Cutting to eight means dropping Antalya as well, and you end up with the seven day classic plus Fethiye. Adding more time, the natural extension is the Aegean north toward Bergama and Çanakkale, or the southeast toward Antep and Mardin.</p>
+    <p><strong>Driving notes.</strong> Distances on the south coast look short on the map but mountain roads add time. Plan three hours where Google says two. Petrol is around the European average. Toll roads are minimal.</p>
+  </div>
+
+</div>
+
+<div class="route-cta">
+  <h3>Or pick a different route</h3>
+  <p>Eleven other curated itineraries, each built around a different kind of trip.</p>
+  <a href="../index.html#routes-section" class="route-cta-btn">See all routes</a>
+</div>
+
+<footer class="route-footer">
+  © Show Me Türkiye · Curated travel for those who care about the difference
+</footer>
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav() {
+  navOverlay.classList.add('active');
+  hamburgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('active');
+  hamburgerBtn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburgerBtn.addEventListener('click', openNav);
+closeNavBtn.addEventListener('click', closeNav);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="FNFVE8Z"></script>
+</body>
+</html>

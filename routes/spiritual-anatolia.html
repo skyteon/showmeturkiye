@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spiritual Anatolia, 8 days Itinerary | Show Me Türkiye</title>
+<meta name="description" content="Eight days through Türkiye's spiritual ground. Konya for Rumi and Sufism, Şanlıurfa for Abraham's birthplace and Göbekli Tepe, Mardin for Syriac monasteries still active after 1500 years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0c0e; color:#fff; font-family:'Poppins',sans-serif; line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+
+/* ═══ SITE NAVBAR (matches index.html) ═══ */
+.site-nav-wrap {
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(10,12,14,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(196,162,101,0.18);
+}
+.hero-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 40px; max-width:1400px; margin:0 auto;
+}
+.nav-logo { display:flex; align-items:center; }
+.site-logo { height:40px; width:auto; object-fit:contain; }
+
+.hamburger {
+  display:flex; flex-direction:column; gap:6px;
+  cursor:pointer; background:none; border:none; padding:8px;
+}
+.hamburger span {
+  width:26px; height:2px; background:#fff; display:block;
+  transition:all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin:center;
+}
+.hamburger.open span:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.hamburger.open span:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+.nav-links {
+  display:none; position:fixed; inset:0;
+  background:rgba(10,12,14,0.98); backdrop-filter:blur(20px);
+  flex-direction:column; align-items:center; justify-content:center;
+  gap:28px; z-index:999; animation:navFadeIn 0.3s ease;
+}
+@keyframes navFadeIn { from { opacity:0; } to { opacity:1; } }
+.nav-links.active { display:flex; }
+.nav-links a {
+  font-family:'Poppins',sans-serif; font-size:16px; font-weight:300;
+  letter-spacing:0.25em; text-transform:uppercase;
+  color:rgba(255,255,255,0.55); transition:color 0.3s;
+}
+.nav-links a:hover, .nav-links a.active { color:#fff; }
+.nav-lang {
+  font-family:'Poppins',sans-serif; font-size:11px;
+  letter-spacing:0.18em; color:rgba(255,255,255,0.3);
+  border:1px solid rgba(255,255,255,0.12);
+  padding:8px 20px; margin-top:12px; cursor:pointer; transition:all 0.3s;
+}
+.nav-lang:hover { border-color:#c4a265; color:#d4b87e; }
+.close-menu {
+  position:absolute; top:28px; right:48px;
+  background:none; border:none; color:#fff;
+  font-size:36px; line-height:1; cursor:pointer;
+  opacity:0.5; transition:opacity 0.2s, transform 0.2s;
+}
+.close-menu:hover { opacity:1; transform:rotate(90deg); }
+
+/* ═══ ROUTE BACK LINK (small, below navbar) ═══ */
+.route-back-bar {
+  position:fixed; top:76px; left:0; right:0; z-index:40;
+  background:rgba(10,12,14,0.7);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(196,162,101,0.08);
+  padding:10px 40px;
+}
+.route-back-link {
+  font-size:11px; font-weight:400; letter-spacing:0.2em; text-transform:uppercase;
+  color:#d4b87e; display:inline-flex; align-items:center; gap:6px;
+  transition:opacity 0.3s;
+}
+.route-back-link:hover { opacity:0.7; }
+
+/* ═══ HERO ═══ */
+.route-hero {
+  position:relative; min-height:80vh;
+  background-image:linear-gradient(180deg, rgba(10,12,14,0.5) 0%, rgba(10,12,14,0.95) 100%), url('https://images.unsplash.com/photo-1578912996078-305d92249aa6?w=2000&q=85&auto=format&fit=crop');
+  background-size:cover; background-position:center;
+  display:flex; align-items:flex-end; padding:140px 40px 60px;
+}
+.route-hero-content { max-width:900px; margin:0 auto; width:100%; }
+.route-hero-badge {
+  display:inline-block; padding:8px 24px; border:1px solid rgba(196,162,101,0.5);
+  background:rgba(196,162,101,0.1); font-size:11px; font-weight:400;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:24px;
+}
+.route-hero h1 {
+  font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px);
+  font-weight:300; line-height:1.1; letter-spacing:0.05em; color:#fff; margin-bottom:24px;
+}
+.route-hero-meta {
+  display:flex; flex-wrap:wrap; gap:32px;
+  font-size:13px; font-weight:300; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,0.7);
+}
+.route-hero-meta span strong { color:#d4b87e; font-weight:400; margin-right:8px; }
+
+.route-body { max-width:780px; margin:0 auto; padding:80px 40px; }
+.route-intro {
+  font-size:17px; font-weight:300; line-height:1.85;
+  color:rgba(255,255,255,0.85); margin-bottom:60px;
+  padding-bottom:60px; border-bottom:1px solid rgba(196,162,101,0.15);
+}
+
+.day-card {
+  margin-bottom:48px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(196,162,101,0.15);
+  border-left:3px solid #c4a265; border-radius:8px;
+}
+.day-label {
+  display:inline-block; font-size:11px; font-weight:500;
+  letter-spacing:0.25em; text-transform:uppercase; color:#d4b87e; margin-bottom:8px;
+}
+.day-title {
+  font-family:'Playfair Display',serif; font-size:28px; font-weight:400;
+  color:#fff; margin-bottom:20px; line-height:1.3;
+}
+.day-content { font-size:15px; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.85); }
+.day-content p { margin-bottom:16px; }
+.day-content strong { color:#d4b87e; font-weight:500; }
+.day-content a { color:#d4b87e; text-decoration:underline; text-decoration-color:rgba(196,162,101,0.4); text-underline-offset:3px; transition:color 0.2s; }
+.day-content a:hover { color:#e8c98c; }
+
+.activities-block {
+  margin-top:24px; padding:20px;
+  background:rgba(196,162,101,0.06); border:1px solid rgba(196,162,101,0.2);
+  border-radius:8px;
+}
+.activities-label {
+  font-size:11px; font-weight:500; letter-spacing:0.2em;
+  text-transform:uppercase; color:#d4b87e; margin-bottom:14px;
+}
+.activity-link {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 0; border-bottom:1px solid rgba(196,162,101,0.1);
+  font-size:14px; color:rgba(255,255,255,0.85); transition:color 0.2s;
+}
+.activity-link:last-child { border-bottom:none; }
+.activity-link:hover { color:#d4b87e; }
+.activity-link::after { content:'→'; color:#d4b87e; font-size:16px; transition:transform 0.2s; }
+.activity-link:hover::after { transform:translateX(4px); }
+
+.city-link-block { margin-top:24px; padding-top:20px; border-top:1px solid rgba(196,162,101,0.15); }
+.city-link {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:500; letter-spacing:0.15em;
+  text-transform:uppercase; color:#d4b87e;
+  padding:10px 20px; border:1px solid rgba(196,162,101,0.4);
+  border-radius:24px; transition:all 0.3s;
+}
+.city-link:hover { background:rgba(196,162,101,0.1); border-color:rgba(196,162,101,0.7); }
+
+.general-notes {
+  margin-top:80px; padding:32px;
+  background:rgba(20,22,26,0.5); border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+}
+.general-notes h2 {
+  font-family:'Playfair Display',serif; font-size:24px; font-weight:400;
+  color:#fff; margin-bottom:20px;
+}
+.general-notes p {
+  font-size:14px; font-weight:300; line-height:1.75;
+  color:rgba(255,255,255,0.8); margin-bottom:14px;
+}
+.general-notes p strong { color:#d4b87e; font-weight:500; }
+
+.route-cta { text-align:center; padding:80px 40px; border-top:1px solid rgba(196,162,101,0.15); }
+.route-cta h3 {
+  font-family:'Playfair Display',serif; font-size:32px; font-weight:300;
+  color:#fff; margin-bottom:16px;
+}
+.route-cta p { font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); margin-bottom:32px; }
+.route-cta-btn {
+  display:inline-block; padding:16px 48px;
+  background:linear-gradient(135deg, #c4a265 0%, #b08c4f 100%);
+  color:#0a0c0e; font-size:11px; font-weight:600;
+  letter-spacing:0.25em; text-transform:uppercase; border-radius:30px;
+  transition:all 0.3s;
+}
+.route-cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(196,162,101,0.4); }
+
+.route-footer {
+  text-align:center; padding:40px;
+  font-size:11px; font-weight:300; letter-spacing:0.15em;
+  color:rgba(255,255,255,0.4);
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+
+@media (max-width:768px) {
+  .hero-header { padding:14px 20px; }
+  .route-back-bar { padding:8px 20px; top:68px; }
+  .route-hero { padding:120px 24px 40px; min-height:65vh; }
+  .route-body { padding:60px 24px; }
+  .day-card { padding:24px 20px; }
+  .route-hero-meta { gap:16px; font-size:11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Site Navbar -->
+<div class="site-nav-wrap">
+  <div class="hero-header">
+    <a href="../index.html" class="nav-logo">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="site-logo">
+    </a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<div class="nav-links" id="navOverlay">
+  <button class="close-menu" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <a href="../index.html">Home</a>
+  <a href="../explore.html">Explore Türkiye</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../projects.html">Our Projects</a>
+  <a href="../about.html">About Us</a>
+  <a href="../contact.html">Contact</a>
+  <div class="nav-lang">EN / TR</div>
+</div>
+
+<!-- Back to Routes -->
+<div class="route-back-bar">
+  <a href="../index.html#routes-section" class="route-back-link">← All Routes</a>
+</div>
+
+<section class="route-hero">
+  <div class="route-hero-content">
+    <div class="route-hero-badge">Curated Route · 09</div>
+    <h1>Spiritual Anatolia</h1>
+    <div class="route-hero-meta">
+      <span><strong>Duration</strong>8 days</span>
+      <span><strong>Best Season</strong>March to May, September to November</span>
+      <span><strong>Budget</strong>Mid range</span>
+      <span><strong>Pace</strong>Balanced</span>
+    </div>
+  </div>
+</section>
+
+<div class="route-body">
+
+  <p class="route-intro">Anatolia is where three religions traced their early beginnings, and a route that takes you through that ground does not need to be one of religion to leave you changed. <strong>Konya</strong> for Rumi's tomb and the heart of Sufism. <strong>Şanlıurfa</strong>, traditionally Abraham's birthplace, with its cave and sacred carp pool. <strong>Mardin</strong> for Syriac Orthodox monasteries that have been continuously active for fifteen hundred years. Eight days is enough to slow down and let each place register, with whirling dervish ceremonies, evening prayers from minarets that have been calling for a thousand years, and dinners in stone monastery refectories. The pace is balanced, the comfort is good, the photographs are unlike anywhere else.</p>
+
+  <div class="day-card">
+    <div class="day-label">Day 1</div>
+    <h2 class="day-title">Arrival in Konya</h2>
+    <div class="day-content">
+      <p>Fly into <strong>Konya</strong>, around an hour from Istanbul. Most international travellers connect here. The city itself sits at 1000 metres on the central Anatolian plateau, with a different climate to the coast, hotter summers, colder winters, and dust in the air on dry days.</p>
+      <p>Settle in centrally, walk to the <strong>Mevlana Museum</strong>, which is the tomb of Mevlana Celaleddin Rumi, the thirteenth century Sufi poet. The green tiled minaret over the tomb is the most recognisable building in Konya and the destination of millions of pilgrims a year.</p>
+      <p>The museum is technically a museum but functions as an active shrine. Visitors are silent, women cover their hair, you take off your shoes at the entrance. The atmosphere is the experience as much as the artefacts. Allow an hour.</p>
+      <p>Dinner at a traditional Konya place. Try <strong>etli ekmek</strong>, the long flatbread topped with spiced lamb that is the local version of pide, served only here in Konya.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/konya-l124282/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Mevlana Museum guided visit</a>
+        <a href="https://www.getyourguide.com/konya-l124282/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Konya old town walk</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/konya.html" class="city-link">Full Konya Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 2</div>
+    <h2 class="day-title">Konya, Sufism and Sema</h2>
+    <div class="day-content">
+      <p>Morning at the <strong>Karatay Medresesi</strong>, a thirteenth century Seljuk theological school turned tile museum. The interior dome has the original Iznik tiles from the period, the geometric patterns are the strongest in any Konya building. About 45 minutes.</p>
+      <p>Walk to the <strong>Alaaddin Mosque</strong> on the central hill, built on the site of the older Seljuk citadel. The mosque is small but the hill itself was the centre of Konya for centuries.</p>
+      <p>Afternoon, a <strong>sema ceremony</strong>. The whirling dervish ceremony is performed weekly at the Mevlana Cultural Centre and on Saturdays at the historic Mevlana lodge. Tickets are not required for most performances but seating fills up. The ceremony is a religious ritual, not a performance, photography is allowed but no flash. Allow ninety minutes.</p>
+      <p>Dinner. Konya is more conservative than Istanbul or Izmir, alcohol is available in licensed restaurants but most family places do not serve. Plan accordingly.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/konya-l124282/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Whirling dervish sema ceremony</a>
+        <a href="https://www.getyourguide.com/konya-l124282/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Karatay Medresesi tile museum visit</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 3</div>
+    <h2 class="day-title">Konya to Şanlıurfa</h2>
+    <div class="day-content">
+      <p>Long travel day. Fly Konya to <strong>Şanlıurfa</strong> via Istanbul or Ankara, around four hours total. Or drive south through Adana, around eight hours, longer than most want.</p>
+      <p>Arrive Urfa late afternoon. Stay in the <a href="../cities/sanliurfa.html">old town</a>, ideally in a restored Urfa house, the courtyards in these places hold the heat of the day longer into the evening and are the best part of the architecture.</p>
+      <p>Late afternoon, walk to the <strong>Balıklıgöl</strong>, the sacred carp pool in the old town. Local tradition holds this is where Abraham was thrown into a fire by Nimrod, and the fire turned to water and the firewood to fish. The pool is full of fat carp considered sacred, fed daily by visitors. The complex includes the <strong>cave of Abraham</strong> and several Ottoman mosques.</p>
+      <p>Dinner in town. Try <strong>çiğ köfte</strong>, the raw bulgur and pepper paste version that is canonically Urfa, traditionally wrapped in lettuce leaves with lemon.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/sanliurfa-l163286/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Balıklıgöl and Abraham's cave guided visit</a>
+        <a href="https://www.getyourguide.com/sanliurfa-l163286/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Şanlıurfa old town walking tour</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/sanliurfa.html" class="city-link">Full Şanlıurfa Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 4</div>
+    <h2 class="day-title">Şanlıurfa, Göbekli Tepe and Harran</h2>
+    <div class="day-content">
+      <p>Morning at <strong>Göbekli Tepe</strong>, twenty minutes by taxi from the city. This is the oldest known temple complex in the world, dated to roughly 9500 BCE, predating Stonehenge by seven thousand years and the invention of agriculture by a thousand. The site changed how archaeologists think about the origins of civilisation, and the role of religion in early human society. The standing T shaped pillars carved with animals are the photographs, but seeing the scale in person is what registers.</p>
+      <p>Plan two hours on site. The visitor centre context boards are worth time before walking the site, the why is more interesting than the what.</p>
+      <p>Afternoon detour to <strong>Harran</strong>, an hour south. One of the oldest continuously inhabited places on earth, mentioned in Genesis. The famous beehive houses, conical mud brick domes that are essentially passive cooling for the desert climate, are still occupied in parts of the village.</p>
+      <p>Walk through, talk to a family if invited. The site has a small museum at the ruins of an ancient university, the first university in the Islamic world, founded in the eighth century.</p>
+      <p>Back to Urfa for evening. Try a <strong>sıra gecesi</strong>, the local musical evening with food and rakı, originally a tradesmen's gathering, now opened to outsiders at certain venues.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/sanliurfa-l163286/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Göbekli Tepe entry and guided visit</a>
+        <a href="https://www.getyourguide.com/sanliurfa-l163286/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Harran beehive houses tour</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 5</div>
+    <h2 class="day-title">Şanlıurfa to Mardin</h2>
+    <div class="day-content">
+      <p>Drive east to <a href="../cities/mardin.html">Mardin</a>, around three hours. The road climbs out of the plain and the geography changes, you start to see the hills that mark the southeastern edge of Anatolia.</p>
+      <p>Arrive Mardin late morning, settle in. Stay in the old town, in a stone house hotel facing south. The city is built into a south facing cliff, looking out over the Mesopotamian plain.</p>
+      <p>Lunch at one of the <strong>Süryani</strong> places. The Syriac Christian community here is small but still active. Try <strong>kibe</strong>, similar to içli köfte but specifically Syriac, and <strong>harire</strong>, the bulgur soup. Most restaurants serve some local wine, the southeast has been making wine for thousands of years.</p>
+      <p>Afternoon, walk through the <strong>Mardin old town</strong>, west to east along the main street with side alley exploration. The architecture mixes Syriac, Armenian, Arab and Ottoman elements layered over each other. The <strong>Sultan Isa Medresesi</strong> from the fourteenth century has the most photographed doorway in the city.</p>
+      <p>Sunset from one of the rooftop terraces, the views southward at this hour are why the city has been built where it is.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Mardin old town heritage walk</a>
+        <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Mardin sunset terrace dinner</a>
+      </div>
+      <div class="city-link-block">
+        <a href="../cities/mardin.html" class="city-link">Full Mardin Guide →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 6</div>
+    <h2 class="day-title">Mardin, Deyrulzafaran and Mor Gabriel</h2>
+    <div class="day-content">
+      <p>Morning at <strong>Deyrulzafaran Monastery</strong>, fifteen minutes outside Mardin. A Syriac Orthodox monastery founded in the fifth century, still active, the home base of the Syriac Patriarch until the early twentieth century. The yellow stone gives the place its name, deyr zaferan, the saffron monastery. The complex includes a chapel, refectory, courtyard, and rooms where monks still live. Tour with a monk if available, otherwise the audio guide is good.</p>
+      <p>Drive east to <strong>Mor Gabriel Monastery</strong> near Midyat, around an hour and a half. This is the oldest active Syriac Orthodox monastery in the world, founded in 397, still functioning, with monks living and praying there. The afternoon visit is more relaxed than the morning. Modest dress is required, photographs allowed in the courtyard but not in the chapel during prayer.</p>
+      <p>Lunch in <strong>Midyat</strong>, the smaller stone city further east, with several active Syriac neighbourhoods and silver workshops where filigree silver is still made by hand. Walk through one of the workshops, the work is genuinely artisanal.</p>
+      <p>Back to Mardin for the evening, dinner on a terrace.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Mor Gabriel Monastery visit</a>
+        <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Deyrulzafaran Monastery tour</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 7</div>
+    <h2 class="day-title">Mardin, Quiet Day</h2>
+    <div class="day-content">
+      <p>Slow morning. The Mardin old town deserves a second pass. Side alleys you missed yesterday hold doorways and stone carvings worth a slower look.</p>
+      <p>Optional drive to <strong>Hasankeyf</strong>, two hours east, the ancient cliff town along the Tigris. Most of the old town is now under a dam reservoir but the cave city on the cliffs above is partially preserved and still walkable. This is a long day for one site, decide based on appetite.</p>
+      <p>Or stay in Mardin and use the day for unhurried exploration. Several smaller mosques and tombs in the old city are worth thirty minutes each, including the <strong>Latifiye Mosque</strong> with Roman columns reused as pillars.</p>
+      <p>Last dinner on a rooftop. The route ends tomorrow, take it slow tonight.</p>
+      <div class="activities-block">
+        <div class="activities-label">Recommended experiences</div>
+                <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Hasankeyf cliff city visit</a>
+        <a href="https://www.getyourguide.com/mardin-l32249/?partner_id=FNFVE8Z" target="_blank" rel="noopener" class="activity-link">Mardin small mosques walking tour</a>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-label">Day 8</div>
+    <h2 class="day-title">Mardin, Departure</h2>
+    <div class="day-content">
+      <p>Slow morning. If your flight is late, walk the old town one more time as the morning light arrives, breakfast at a stone house café.</p>
+      <p>Mardin airport is thirty minutes from the old town, with direct flights to Istanbul and Ankara. Connections to Europe via Istanbul.</p>
+      <p>If you have hours to spare, the <strong>Mardin Museum</strong> in the old town centre holds Mesopotamian artefacts, Roman, Syriac, and Ottoman pieces gathered over the centuries. Worth an hour.</p>
+      
+      
+    </div>
+  </div>
+
+  <div class="general-notes">
+    <h2>General Notes</h2>
+    <p><strong>Flights.</strong> Best routing is fly into Konya, fly out of Mardin, both via Istanbul. Domestic legs run around 80 to 150 EUR each. The drive between Konya and Şanlıurfa is too long for most travellers, fly that leg even if you drive the others.</p>
+    <p><strong>Where to stay.</strong> Konya centre, several four star options in the old town. Şanlıurfa old town in a restored Urfa house with courtyard, ideally with rooftop access. Mardin old town stone house facing south.</p>
+    <p><strong>Cultural notes.</strong> All three cities are more conservative than Istanbul or the coast. Cover shoulders and knees in religious sites, women cover hair when entering tombs and shrines. Alcohol is available in licensed restaurants but less prominent than elsewhere. The food is heavier on lamb and chickpeas, lighter on seafood. Hospitality at religious sites is genuine, you will be offered tea and given time, accept it.</p>
+    <p><strong>Season.</strong> Mid March to mid May, mid September to early November. The shoulder seasons. Summers are very hot, often 40 plus, and the stone cities radiate heat into the night. Winters are cold with some snow in Konya and Mardin. Avoid the heat extremes if possible.</p>
+    <p><strong>Pace.</strong> Eight days at this pace is the right shape. Cutting to six means dropping Mardin or merging Mardin and Urfa into shorter stays, both lose something. Adding more time, the natural extension is into the Tur Abdin region around Midyat for more Syriac monasteries, or to Antep for food.</p>
+  </div>
+
+</div>
+
+<div class="route-cta">
+  <h3>Or pick a different route</h3>
+  <p>Eleven other curated itineraries, each built around a different kind of trip.</p>
+  <a href="../index.html#routes-section" class="route-cta-btn">See all routes</a>
+</div>
+
+<footer class="route-footer">
+  © Show Me Türkiye · Curated travel for those who care about the difference
+</footer>
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav() {
+  navOverlay.classList.add('active');
+  hamburgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('active');
+  hamburgerBtn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburgerBtn.addEventListener('click', openNav);
+closeNavBtn.addEventListener('click', closeNav);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+</script>
+
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="FNFVE8Z"></script>
+</body>
+</html>
