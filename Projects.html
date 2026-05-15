@@ -801,33 +801,83 @@ img { max-width:100%; display:block; }
   100% { background-position: -100% 0; }
 }
 
-/* Error / fallback */
-.video-fallback {
+/* Fallback CTA card (shown when API can't fetch) */
+.video-fallback-cta {
   grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 36px 40px;
   background: var(--white);
   border: 1px solid rgba(42,20,16,0.08);
-  border-radius: 12px;
-  padding: 0;
-  overflow: hidden;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s cubic-bezier(0.22,0.61,0.36,1),
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  box-shadow: 0 2px 10px rgba(42,20,16,0.04);
 }
-.video-fallback-msg {
-  padding: 18px 24px;
+.video-fallback-cta:hover {
+  transform: translateY(-3px);
+  border-color: rgba(192,57,43,0.35);
+  box-shadow: 0 16px 36px rgba(42,20,16,0.10);
+}
+.video-fallback-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: var(--brown);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+.video-fallback-cta:hover .video-fallback-icon { transform: scale(1.05); }
+.video-fallback-text { flex: 1; min-width: 0; }
+.video-fallback-eyebrow {
   font-family: var(--sans);
-  font-size: 13px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.video-fallback-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0 0 6px;
+  letter-spacing: -0.008em;
+}
+.video-fallback-desc {
+  font-family: var(--sans);
+  font-size: 13.5px;
   color: var(--text-muted);
-  border-bottom: 1px solid rgba(42,20,16,0.08);
-  background: var(--cream);
+  margin: 0;
+  line-height: 1.55;
 }
-.video-fallback-iframe {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: #000;
+.video-fallback-arrow {
+  flex-shrink: 0;
+  font-family: var(--sans);
+  font-size: 26px;
+  color: var(--text-muted);
+  transition: transform 0.4s ease, color 0.4s ease;
 }
-.video-fallback-iframe iframe {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  border: 0;
+.video-fallback-cta:hover .video-fallback-arrow {
+  transform: translateX(4px);
+  color: var(--brown);
+}
+@media (max-width: 640px) {
+  .video-fallback-cta { padding: 24px 22px; gap: 18px; }
+  .video-fallback-icon { width: 44px; height: 44px; }
+  .video-fallback-icon svg { width: 24px; height: 24px; }
+  .video-fallback-title { font-size: 18px; }
+  .video-fallback-arrow { font-size: 22px; }
 }
 
 .video-empty {
@@ -839,87 +889,81 @@ img { max-width:100%; display:block; }
   font-size: 14px;
 }
 
-/* ─────────── LIGHTBOX ─────────── */
-.lightbox {
-  position: fixed; inset: 0;
-  background: rgba(10,10,10,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 48px;
-  animation: lbFadeIn 0.35s ease;
-}
-.lightbox.open { display: flex; }
-@keyframes lbFadeIn { from { opacity: 0; } to { opacity: 1; } }
-.lightbox-inner {
-  position: relative;
-  width: 100%;
-  max-width: 1280px;
-  aspect-ratio: 16/9;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-  animation: lbScaleIn 0.45s cubic-bezier(0.22,0.61,0.36,1);
-}
-@keyframes lbScaleIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
-}
-.lightbox-inner iframe { width: 100%; height: 100%; border: 0; }
-.lightbox-close {
-  position: absolute;
-  top: -48px;
-  right: 0;
-  background: none;
-  border: none;
-  color: var(--cream);
-  font-size: 28px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 8px;
-  opacity: 0.7;
-  transition: opacity 0.2s, transform 0.3s;
-}
-.lightbox-close:hover { opacity: 1; transform: rotate(90deg); }
-.lightbox-caption {
-  position: absolute;
-  left: 0; right: 60px;
-  top: -48px;
-  color: rgba(244,239,229,0.65);
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 8px 0;
-}
-
 @media (max-width: 1080px) {
   .video-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
   .video-panel-inner { padding: 44px 40px 52px; }
 }
 @media (max-width: 768px) {
-  .video-panel.open { margin-top: 32px; }
-  .video-panel-inner { padding: 36px 24px 44px; }
+  .video-panel.open { margin-top: 24px; max-height: 6000px; }
+  .video-panel { border-radius: 12px; }
+  .video-panel-inner { padding: 32px 20px 40px; }
   .video-panel-head {
     flex-direction: column;
     align-items: flex-start;
-    gap: 18px;
-    margin-bottom: 32px;
-    padding-bottom: 22px;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
   }
-  .video-grid { grid-template-columns: 1fr; gap: 28px; }
+  .video-panel-eyebrow { font-size: 10px; letter-spacing: 0.24em; margin-bottom: 10px; }
+  .video-panel-title { font-size: 26px; }
+  .video-panel-sub { font-size: 13px; }
+  .video-panel-yt { font-size: 10.5px; letter-spacing: 0.2em; }
+  .video-grid { grid-template-columns: 1fr; gap: 24px; }
+  .video-meta { padding: 14px 2px 0; }
   .video-title { font-size: 16px; }
-  .lightbox { padding: 16px; }
-  .lightbox-close { top: -40px; font-size: 24px; }
-  .lightbox-caption { top: -40px; font-size: 11px; right: 44px; }
+  .video-date { font-size: 11px; }
+  .video-duration { font-size: 10.5px; padding: 2px 6px; bottom: 8px; right: 8px; }
+  .video-yt-link { font-size: 10px; letter-spacing: 0.16em; }
+  /* Disable hover lift on touch — keep things still */
+  .video-item:hover { transform: none; }
+  .video-item:hover .video-thumb img { transform: none; }
+  .video-thumb-overlay { opacity: 0.18; }
+  .project-card:hover { transform: none; }
 }
+@media (max-width: 480px) {
+  .video-panel-inner { padding: 26px 16px 32px; }
+  .video-panel-title { font-size: 22px; }
+  .video-grid { gap: 20px; }
+}
+
+/* ─────────── INLINE VIDEO PLAYBACK ─────────── */
+/* When a thumb is clicked, its inner is replaced with an iframe;
+   .video-item gets .playing so we hide hover overlay + duration */
+.video-thumb iframe.video-iframe {
+  width: 100%; height: 100%;
+  border: 0;
+  display: block;
+  background: #000;
+}
+.video-item.playing .video-thumb-overlay,
+.video-item.playing .video-duration { display: none; }
+.video-item.playing:hover { transform: none; }
+.video-item.playing .video-thumb {
+  box-shadow: 0 10px 28px rgba(42,20,16,0.18);
+}
+.video-item.playing .video-meta {
+  padding-top: 16px;
+}
+.video-item.playing .video-title {
+  color: var(--brown);
+}
+
+/* Escape link injected when a video is playing */
+.video-yt-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.video-yt-link:hover { color: var(--brown); border-color: var(--brown); }
 
 </style>
 </head>
@@ -961,7 +1005,7 @@ img { max-width:100%; display:block; }
   <div class="projects-grid" id="projectsGrid">
 
     <article class="project-card"
-             data-playlist="PLcxpMEs-iETam-PhSNCDG_tsX1w99rhVn"
+             data-playlist="PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_"
              data-title="Show Me Türkiye"
              data-eyebrow="Flagship Series">
       <div class="project-card-thumb">
@@ -995,7 +1039,7 @@ img { max-width:100%; display:block; }
     </article>
 
     <article class="project-card"
-             data-playlist="PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_"
+             data-playlist="PLcxpMEs-iETam-PhSNCDG_tsX1w99rhVn"
              data-title="Let Me Show You Türkiye"
              data-eyebrow="Travel Series">
       <div class="project-card-thumb">
@@ -1020,7 +1064,7 @@ img { max-width:100%; display:block; }
         <div class="video-panel-head-text">
           <div class="video-panel-eyebrow" id="videoPanelEyebrow">Flagship Series</div>
           <h3 class="video-panel-title" id="videoPanelTitle">Latest <em>Videos</em></h3>
-          <p class="video-panel-sub" id="videoPanelSub">Select an episode to play in the lightbox.</p>
+          <p class="video-panel-sub" id="videoPanelSub">Click any episode to play it in place.</p>
         </div>
         <a id="videoPanelYt" href="#" target="_blank" rel="noopener" class="video-panel-yt">
           View playlist on YouTube <span class="arr" aria-hidden="true">→</span>
@@ -1031,14 +1075,7 @@ img { max-width:100%; display:block; }
   </div>
 </section>
 
-<!-- Lightbox modal -->
-<div class="lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Video player">
-  <div class="lightbox-inner">
-    <div class="lightbox-caption" id="lightboxCaption"></div>
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close video">&times;</button>
-    <iframe id="lightboxIframe" src="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-</div>
+<!-- Inline playback: thumbnail becomes player in place -->
 
 
 
@@ -1069,7 +1106,7 @@ closeNavBtn.addEventListener('click', closeNav);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
 /* ═══════════════════════════════════════
-   PROJECT VIDEOS — fetch playlist + lightbox
+   PROJECT VIDEOS — fetch playlist + inline playback
    ═══════════════════════════════════════ */
 
 // ────────────────────────────────────────
@@ -1091,12 +1128,8 @@ const panelEyebrow = document.getElementById('videoPanelEyebrow');
 const panelSub     = document.getElementById('videoPanelSub');
 const panelYt      = document.getElementById('videoPanelYt');
 
-const lightbox     = document.getElementById('videoLightbox');
-const lightboxIfr  = document.getElementById('lightboxIframe');
-const lightboxCap  = document.getElementById('lightboxCaption');
-const lightboxX    = document.getElementById('lightboxClose');
-
 let activePlaylist = null;
+let activeVideoItem = null;
 
 // ─── Helpers ───────────────────────────────────────────
 function escapeHtml(s) {
@@ -1154,7 +1187,7 @@ async function fetchPlaylistViaApi(playlistId) {
   const itemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems`
     + `?part=snippet,contentDetails&maxResults=${MAX_VIDEOS}`
     + `&playlistId=${playlistId}&key=${YT_API_KEY}`;
-  const res = await fetch(itemsUrl);
+  const res = await fetchWithTimeout(itemsUrl, 6000);
   if (!res.ok) throw new Error('api-' + res.status);
   const json = await res.json();
   if (!json.items || !json.items.length) throw new Error('empty');
@@ -1173,7 +1206,7 @@ async function fetchPlaylistViaApi(playlistId) {
   try {
     const ids = videos.map(v => v.id).join(',');
     const dUrl = `https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=${ids}&key=${YT_API_KEY}`;
-    const dRes = await fetch(dUrl);
+    const dRes = await fetchWithTimeout(dUrl, 5000);
     if (dRes.ok) {
       const dJson = await dRes.json();
       const durMap = {};
@@ -1185,6 +1218,66 @@ async function fetchPlaylistViaApi(playlistId) {
   } catch (e) { /* duration is non-critical */ }
 
   return videos;
+}
+
+// ─── Fetch from YouTube RSS feed (API-key-free fallback) ────
+// Uses public CORS proxies. Returns up to 15 most recent videos.
+// No duration data, but works without authentication.
+function fetchWithTimeout(url, ms = 5000) {
+  return new Promise((resolve, reject) => {
+    const ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    const t = setTimeout(() => {
+      if (ctrl) ctrl.abort();
+      reject(new Error('timeout'));
+    }, ms);
+    fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(r => { clearTimeout(t); resolve(r); })
+      .catch(e => { clearTimeout(t); reject(e); });
+  });
+}
+
+async function fetchPlaylistViaRSS(playlistId) {
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`;
+  const proxies = [
+    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+  ];
+
+  let xml = null, lastErr = null;
+  for (const proxy of proxies) {
+    try {
+      const r = await fetchWithTimeout(proxy(rssUrl), 5000);
+      if (!r.ok) { lastErr = 'proxy-' + r.status; continue; }
+      const t = await r.text();
+      if (t && t.includes('<entry')) { xml = t; break; }
+      lastErr = 'empty-xml';
+    } catch (e) { lastErr = String(e && e.message || e); }
+  }
+  if (!xml) throw new Error('rss-' + (lastErr || 'all-proxies-failed'));
+
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  const entries = doc.getElementsByTagName('entry');
+  if (!entries.length) throw new Error('rss-empty');
+
+  const out = [];
+  for (let i = 0; i < entries.length && out.length < MAX_VIDEOS; i++) {
+    const e = entries[i];
+    // <id>yt:video:VIDEO_ID</id>
+    const idText = (e.getElementsByTagName('id')[0] || {}).textContent || '';
+    const id = idText.replace(/^yt:video:/, '');
+    if (!id) continue;
+    const title = (e.getElementsByTagName('title')[0] || {}).textContent || '';
+    const published = (e.getElementsByTagName('published')[0] || {}).textContent || '';
+    out.push({
+      id,
+      title,
+      published,
+      thumb: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`
+    });
+  }
+  if (!out.length) throw new Error('rss-no-videos');
+  return out;
 }
 
 // ─── Render ───────────────────────────────────────────
@@ -1227,16 +1320,22 @@ function renderVideos(videos) {
   `).join('');
 }
 
-function renderFallback(playlistId, message) {
+function renderFallback(playlistId) {
   grid.innerHTML = `
-    <div class="video-fallback">
-      ${message ? `<div class="video-fallback-msg">${escapeHtml(message)}</div>` : ''}
-      <div class="video-fallback-iframe">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=${playlistId}&rel=0"
-                loading="lazy" allowfullscreen
-                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"></iframe>
+    <a class="video-fallback-cta" href="https://www.youtube.com/playlist?list=${playlistId}" target="_blank" rel="noopener">
+      <div class="video-fallback-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"/>
+        </svg>
       </div>
-    </div>`;
+      <div class="video-fallback-text">
+        <div class="video-fallback-eyebrow">Continue on YouTube</div>
+        <h4 class="video-fallback-title">Watch the full playlist on YouTube</h4>
+        <p class="video-fallback-desc">Opens in a new tab so you can browse every episode and subscribe.</p>
+      </div>
+      <div class="video-fallback-arrow" aria-hidden="true">→</div>
+    </a>`;
 }
 
 // ─── Load playlist ────────────────────────────────────
@@ -1249,7 +1348,7 @@ async function loadPlaylist(card) {
   // Update head
   panelEyebrow.textContent = eyebrow;
   panelTitle.innerHTML     = `${escapeHtml(title)} <em>Episodes</em>`;
-  panelSub.textContent     = 'Latest videos from this playlist. Click any thumbnail to watch.';
+  panelSub.textContent     = 'Click any episode to play it right here. Use the player controls to go fullscreen.';
   panelYt.href             = `https://www.youtube.com/playlist?list=${playlistId}`;
 
   // Open panel + scroll
@@ -1268,22 +1367,32 @@ async function loadPlaylist(card) {
     return;
   }
 
-  // No API key → straight to iframe fallback (no flicker, no error msg)
-  if (!YT_API_KEY) {
-    renderFallback(playlistId, '');
-    return;
+  renderSkeleton(6);
+
+  // 1) Try YouTube Data API (best quality, durations, requires key + correct referrer)
+  if (YT_API_KEY) {
+    try {
+      const videos = await fetchPlaylistViaApi(playlistId);
+      setCached(playlistId, videos);
+      renderVideos(videos);
+      return;
+    } catch (err) {
+      console.warn('[Projects] API path failed, falling back to RSS:', err);
+    }
   }
 
-  // Otherwise fetch with skeleton
-  renderSkeleton(6);
+  // 2) Fallback: YouTube RSS feed via CORS proxy (no key, no referrer restriction)
   try {
-    const videos = await fetchPlaylistViaApi(playlistId);
+    const videos = await fetchPlaylistViaRSS(playlistId);
     setCached(playlistId, videos);
     renderVideos(videos);
+    return;
   } catch (err) {
-    console.warn('[Projects] playlist fetch failed:', err);
-    renderFallback(playlistId, 'Showing playlist embed (couldn\'t load custom grid).');
+    console.warn('[Projects] RSS path failed:', err);
   }
+
+  // 3) Last resort: link out to YouTube
+  renderFallback(playlistId);
 }
 
 // ─── Card click ───────────────────────────────────────
@@ -1296,6 +1405,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     if (isActive) {
       // close
       panel.classList.remove('open');
+      if (activeVideoItem) deactivateInlineVideo(activeVideoItem);
       activePlaylist = null;
       return;
     }
@@ -1303,34 +1413,108 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-// ─── Lightbox ─────────────────────────────────────────
-function openLightbox(videoId, title) {
-  lightboxIfr.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-  lightboxCap.textContent = title || '';
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
+// ─── Inline video playback ────────────────────────────
+// Click a thumbnail → that card's thumb becomes an iframe in place.
+// Only one video plays at a time; clicking another swaps.
+function activateInlineVideo(item) {
+  if (item === activeVideoItem) return;
+  if (activeVideoItem) deactivateInlineVideo(activeVideoItem);
+
+  const thumb = item.querySelector('.video-thumb');
+  const videoId = item.dataset.videoId;
+  if (!thumb || !videoId) return;
+
+  if (!item.dataset._origThumb) {
+    item.dataset._origThumb = thumb.innerHTML;
+  }
+  // youtube-nocookie has fewer embed restrictions for some restricted videos
+  thumb.innerHTML = `<iframe class="video-iframe"
+    src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+    allowfullscreen></iframe>`;
+  item.classList.add('playing');
+
+  // Inject a tiny escape link so users can always go to YouTube if embed errors
+  const meta = item.querySelector('.video-meta');
+  if (meta && !meta.querySelector('.video-yt-link')) {
+    const link = document.createElement('a');
+    link.className = 'video-yt-link';
+    link.href = `https://www.youtube.com/watch?v=${videoId}`
+      + (activePlaylist ? `&list=${activePlaylist}` : '');
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Watch on YouTube ↗';
+    meta.appendChild(link);
+  }
+
+  activeVideoItem = item;
 }
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  lightboxIfr.src = '';
-  document.body.style.overflow = '';
+
+function deactivateInlineVideo(item) {
+  if (!item) return;
+  const thumb = item.querySelector('.video-thumb');
+  if (thumb && item.dataset._origThumb) {
+    thumb.innerHTML = item.dataset._origThumb;
+  }
+  const link = item.querySelector('.video-yt-link');
+  if (link) link.remove();
+  item.classList.remove('playing');
+  if (activeVideoItem === item) activeVideoItem = null;
 }
 
 grid.addEventListener('click', (e) => {
   const item = e.target.closest('.video-item');
   if (!item) return;
-  const vid = item.dataset.videoId;
-  if (!vid) return;          // not a custom-grid item (could be fallback iframe)
+  if (!item.dataset.videoId) return;   // fallback CTA — let default link fire
   e.preventDefault();
-  openLightbox(vid, item.dataset.videoTitle);
+  activateInlineVideo(item);
 });
-lightboxX.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) closeLightbox();
+
+// ─── Card cover prefetch ──────────────────────────────
+// Pull each playlist's first-video thumbnail in the background and swap
+// the card cover to it. Also primes the cache so opening the panel is instant.
+async function fetchPlaylist(playlistId) {
+  // Try API, then RSS, return null on failure
+  if (YT_API_KEY) {
+    try { return await fetchPlaylistViaApi(playlistId); }
+    catch (e) { /* fall through */ }
+  }
+  try { return await fetchPlaylistViaRSS(playlistId); }
+  catch (e) { return null; }
+}
+
+document.querySelectorAll('.project-card').forEach(card => {
+  const pid = card.dataset.playlist;
+  if (!pid) return;
+  const imgEl = card.querySelector('.project-card-img');
+  if (!imgEl) return;
+
+  const cached = getCached(pid);
+  if (cached && cached.length) {
+    swapCover(imgEl, cached[0].thumb);
+    return;
+  }
+  fetchPlaylist(pid).then(videos => {
+    if (videos && videos.length) {
+      setCached(pid, videos);
+      swapCover(imgEl, videos[0].thumb);
+    }
+  });
 });
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
-});
+
+function swapCover(imgEl, url) {
+  // Preload to avoid flash, then crossfade
+  const probe = new Image();
+  probe.onload = () => {
+    imgEl.style.transition = 'opacity 0.45s ease';
+    imgEl.style.opacity = '0';
+    setTimeout(() => {
+      imgEl.style.backgroundImage = `url('${url}')`;
+      imgEl.style.opacity = '1';
+    }, 200);
+  };
+  probe.src = url;
+}
 
 
 // Close menu when clicking any nav link (same-page navigation safety)
