@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Türkiye | Show Me Türkiye</title>
+<meta name="description" content="Explore the cities and destinations of Türkiye. Discover beaches, mountains, history and culture.">
+<meta name="author" content="Halil Bekar">
+<link rel="preload" as="image" href="https://img.showmeturkiye.com/hero/logo-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══ NAV (Adana style) ═══ */
+.site-nav{display:contents;}
+.site-nav>a,.site-nav>.nav-logo{position:fixed;top:24px;left:48px;z-index:1003;display:block;}
+.site-nav.scrolled{display:contents;}
+.site-nav a img,.site-logo{height:96px;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.25));}
+.hamburger{position:fixed;top:24px;right:48px;display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:9px;min-width:44px;min-height:44px;z-index:1003;align-items:center;justify-content:center;}
+.hamburger span{width:26px;height:2px;background:var(--text);display:block;transition:all 0.35s cubic-bezier(0.4,0,0.2,1);transform-origin:center;}
+.hamburger.open span{background:var(--cream);}
+.hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.nav-overlay{display:none;position:fixed;inset:0;background:var(--espresso);flex-direction:column;align-items:center;justify-content:center;z-index:1002;animation:navFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);}
+.nav-overlay.open{display:flex;}
+@keyframes navFadeIn{from{opacity:0}to{opacity:1}}
+.nav-overlay-inner{display:flex;flex-direction:column;align-items:center;gap:0;max-width:480px;width:100%;padding:0 32px;}
+.nav-eyebrow{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;display:flex;align-items:center;gap:16px;}
+.nav-eyebrow::before,.nav-eyebrow::after{content:'';width:34px;height:1px;background:var(--gold);opacity:0.55;}
+.nav-overlay nav{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;}
+.nav-overlay a{font-family:'Poppins',sans-serif;font-size:15px;font-weight:300;letter-spacing:0.32em;text-transform:uppercase;color:rgba(244,239,229,0.55);text-decoration:none;padding:11px 0;line-height:1.4;transition:color 0.3s ease;position:relative;display:inline-block;}
+.nav-overlay a:hover{color:var(--cream);}
+.nav-overlay a.active{color:var(--cream);font-weight:400;}
+.nav-overlay a.active::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:60%;height:1px;background:var(--gold);}
+.nav-lang{margin-top:40px;display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;}
+.nav-lang button{background:none;border:none;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:6px 8px;color:rgba(244,239,229,0.30);transition:color 0.3s ease;}
+.nav-lang button:hover{color:rgba(244,239,229,0.85);}
+.nav-lang button.on{color:var(--cream);font-weight:400;}
+.nav-lang .sep{color:rgba(244,239,229,0.20);user-select:none;pointer-events:none;}
+.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:var(--cream);font-size:28px;cursor:pointer;opacity:0.55;z-index:1004;line-height:1;transition:opacity 0.2s,transform 0.2s;}
+.close-nav:hover{opacity:1;transform:rotate(90deg);}
+@media (max-width: 768px){
+  .hamburger{top:18px;right:20px;}
+  .site-nav>a,.site-nav>.nav-logo{top:18px;left:20px;}
+  .site-nav a img,.site-logo{height:54px;}
+  .nav-overlay-inner{padding:0 24px;}
+  .nav-overlay nav{gap:2px;}
+  .nav-overlay a{font-size:13px;letter-spacing:0.28em;padding:10px 0;}
+  .nav-eyebrow{font-size:11px;letter-spacing:0.32em;margin-bottom:28px;}
+  .nav-lang{margin-top:28px;}
+  .close-nav{top:22px;right:22px;font-size:26px;}
+}
+@media (max-width: 480px){
+  .hamburger{top:16px;right:16px;}
+  .site-nav>a,.site-nav>.nav-logo{top:16px;left:16px;}
+  .site-nav a img,.site-logo{height:48px;}
+  .nav-overlay a{font-size:12px;letter-spacing:0.26em;}
+}
+/* ═══ END NAV ═══ */
+
+
+:root {
+  --cream: #F4EFE5;
+  --cream2: #E8DFCD;
+  --white: #FAF5EA;
+  --gold: #C9A75D;
+  --black: #0a0a0a;
+  --text: #2A1410;
+  --text-muted: #5C3530;
+  --text-inv: rgba(244,239,229,0.80);
+  --text-inv2: rgba(244,239,229,0.90);
+  --brown: #C0392B;
+  --espresso: #0a0a0a;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.6;
+}
+em {
+  line-height: inherit;
+  vertical-align: baseline;
+  display: inline;
+}
+
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+
+/* NAV */
+
+
+.site-nav a img { height: 96px; width: auto; object-fit: contain; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PAGE HEADER */
+.page-header {
+  min-height: auto; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 130px 48px 72px; text-align: center;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(42,20,16,0.08);
+}
+.page-header-bg, .page-header-overlay { display: none; }
+.page-header-content { position: relative; z-index: 2; max-width: 720px; }
+
+.page-header-eyebrow {
+  display:inline-block;
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.page-header h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5.4vw, 72px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.page-header h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brown);
+  line-height: inherit;
+  letter-spacing: 0.015em;
+  padding-left: 0.04em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+.page-header p {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(42,20,16,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 48px;
+  overflow-x: auto;
+}
+.filter-btn {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  background: none; border: none;
+  padding: 22px 28px; cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  min-height: 44px;
+}
+.filter-btn:hover { color: var(--text); }
+.filter-btn.active { color: var(--text); border-bottom-color: var(--brown); font-weight:600; }
+
+/* FEATURED CITY (Istanbul) */
+.featured-section { padding: 0; }
+.featured-card {
+  display: block; position: relative;
+  height: 70vh; overflow: hidden; cursor: pointer;
+}
+.featured-bg {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.featured-card:hover .featured-bg { transform: scale(1.04); }
+.featured-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(10,10,10,0.85) 100%);
+  display: flex; align-items: flex-end;
+  padding: 60px 64px;
+}
+.featured-label {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px; display: block;
+}
+.featured-city-name {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  color: var(--cream);
+  line-height: 1; margin-bottom: 20px;
+}
+.featured-meta { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+.featured-meta-item { font-family: var(--sans); font-size: 13px; font-weight: 400; color: rgba(244,239,229,0.82); }
+.featured-meta-item strong { color: var(--cream); font-weight: 500; display: block; margin-bottom: 4px; font-size: 14px; }
+.featured-arrow {
+  margin-left: auto;
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(244,239,229,0.25);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream); font-size: 20px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.featured-card:hover .featured-arrow {
+  border-color: var(--text-muted);
+  background: var(--brown);
+}
+
+/* CITIES GRID */
+.cities-section { padding: 4px 4px 0; }
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.city-card {
+  position: relative; overflow: hidden; cursor: pointer;
+  aspect-ratio: 5/4; display: block;
+  background: var(--black);
+}
+.city-card-bg {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  transition: transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.city-card:hover .city-card-bg { transform: scale(1.07); }
+.city-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10,10,10,0.0) 50%,
+    rgba(10,10,10,0.85) 100%);
+  transition: background 0.5s ease;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 24px;
+}
+.city-card:hover .city-card-overlay {
+  background: linear-gradient(180deg,
+    rgba(10,10,10,0.15) 30%,
+    rgba(10,10,10,0.92) 100%);
+}
+/* Top section removed */
+.city-card-top { display: none; }
+/* Bottom: name+index row, vibe + details below */
+.city-card-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.city-card-namerow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.city-name {
+  font-family: var(--serif);
+  font-size: clamp(22px, 1.9vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--cream);
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.7);
+  flex-shrink: 1;
+}
+.city-card-index {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(244,239,229,0.70);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.city-vibe {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(244,239,229,0.82);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.city-card-details {
+  opacity: 0; transform: translateY(8px); max-height: 0; overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.4,0,0.2,1);
+  margin-top: 0;
+}
+.city-card:hover .city-card-details {
+  opacity: 1; transform: translateY(0); max-height: 100px;
+  margin-top: 6px;
+}
+.city-detail-row { display: flex; gap: 20px; }
+.city-detail-item { flex: 1; }
+.city-detail-label {
+  font-family: var(--sans);
+  font-size: 8px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(244,239,229,0.65);
+  margin-bottom: 3px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+.city-detail-val {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 400;
+  color: var(--cream);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+}
+.city-card.hidden { display: none; }
+
+@media (max-width: 1100px) {
+  .cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .cities-grid {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  .city-card {
+    aspect-ratio: 4/3;
+  }
+  .city-card-overlay {
+    padding: 22px 20px;
+  }
+  .city-name {
+    font-size: 26px;
+  }
+}
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .cities-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-overlay { padding: 48px 32px; }
+  
+}
+
+@media (max-width: 768px) {
+
+  .page-header {
+    min-height: auto;
+    padding: 110px 24px 64px;
+  }
+  .page-header h1 {
+    font-size: clamp(34px, 8.5vw, 48px);
+  }
+  .page-header p { font-size: 14px; }
+
+  .filter-bar {
+    padding: 0 16px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn { padding: 18px 18px; font-size: 10.5px; letter-spacing: 0.14em; }
+
+  .featured-section { padding: 0; }
+  .featured-card { height: 60vh; }
+  .featured-overlay { padding: 32px 24px; }
+  .featured-meta { gap: 16px; flex-direction: column; align-items: flex-start; }
+  .featured-arrow { margin-left: 0; align-self: flex-end; }
+
+  .cities-grid { grid-template-columns: 1fr; gap: 4px; }
+
+  footer { padding: 64px 24px 28px; }
+}
+
+
+/* hamburger fixed mobile */
+@media (max-width: 768px) {
+  .hamburger { top: 18px; right: 20px; }
+  .site-nav > a, .site-nav > .nav-logo { top: 18px; left: 20px; }
+  .site-nav > a img, .site-logo { height: 52px; }
+}
+
+
+/* ═══ FOOTER ═══ */
+.footer{
+  background:var(--espresso);
+  color:var(--cream);
+  padding:96px 40px 40px;
+}
+
+.footer-content{
+  max-width:1320px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:64px;
+  margin-bottom:72px;
+}
+
+.footer-section h3{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  margin-bottom:24px;
+  text-transform:uppercase;
+  letter-spacing:0.22em;
+  color: var(--gold);
+}
+
+.footer-section p{
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:14px;
+  font-weight:400;
+  line-height:1.7;
+  color:rgba(244,239,229,0.85);
+  max-width:36ch;
+  margin-top:8px;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.footer-links a{
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:400;
+  color:rgba(244,239,229,0.85);
+  text-decoration:none;
+  transition:color 0.25s ease;
+  letter-spacing:0;
+  line-height:1.4;
+}
+.footer-links a:hover{
+  color:var(--cream);
+}
+
+.footer-logo{
+  height:54px;
+  width:auto;
+  margin-bottom:22px;
+}
+
+.footer-bottom{
+  text-align:center;
+  padding-top:32px;
+  border-top:1px solid rgba(244,239,229,0.10);
+  color:rgba(244,239,229,0.55);
+  font-size:12px;
+  font-family:var(--sans);
+  letter-spacing:0.05em;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footer-bottom p{margin:0;}
+.footer-bottom-credit{
+  font-style:italic;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* Footer socials */
+.footer-socials{
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+.footer-socials a{
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  border:1px solid rgba(244,239,229,0.18);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(244,239,229,0.85);
+  transition:all 0.3s ease;
+}
+.footer-socials a:hover{
+  border-color:var(--cream);
+  color:var(--cream);
+  transform:translateY(-2px);
+}
+
+/* Footer newsletter band */
+.footer-newsletter{
+  border-bottom:1px solid rgba(244,239,229,0.10);
+  padding-bottom:64px;
+  margin-bottom:64px;
+}
+.footer-newsletter-inner{
+  max-width:1320px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.footer-newsletter-text{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.footer-newsletter-eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color: var(--gold);
+}
+.footer-newsletter-text h3{
+  font-family:var(--serif);
+  font-size:clamp(28px, 3vw, 38px);
+  font-weight:500;
+  letter-spacing:-0.018em;
+  text-wrap: balance;
+  line-height:1.1;
+  color:var(--cream);
+  margin:0;
+}
+.footer-newsletter-text h3 em{
+  font-style:italic;
+  font-weight:500;
+  color:var(--gold);
+  white-space: nowrap;
+  line-height: inherit;
+  letter-spacing: 0.015em;
+  padding-left: 0.04em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+.footer-newsletter-text p{
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.65;
+  color:rgba(244,239,229,0.85);
+  margin:0;
+  max-width:42ch;
+}
+.footer-newsletter-form{
+  display:flex;
+  gap:0;
+  align-items:stretch;
+  background:rgba(244,239,229,0.06);
+  border:1px solid rgba(244,239,229,0.18);
+  border-radius:999px;
+  padding:6px;
+  transition:border-color 0.3s ease, background 0.3s ease;
+}
+.footer-newsletter-form:focus-within{
+  border-color: rgba(244,239,229,0.50);
+  background:rgba(244,239,229,0.08);
+}
+.footer-newsletter-form input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  padding:14px 22px;
+  font-family:var(--sans);
+  font-size:16px;
+  color:var(--cream);
+  min-width:0;
+}
+.footer-newsletter-form input::placeholder{
+  color: rgba(244,239,229,0.55);
+}
+.footer-newsletter-btn{
+  background:var(--cream);
+  color:var(--espresso);
+  border:none;
+  border-radius:999px;
+  padding:14px 28px;
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background 0.3s ease, color 0.3s ease, gap 0.3s ease;
+  white-space:nowrap;
+}
+.footer-newsletter-btn:hover{
+  background:var(--brown);
+  color:var(--cream);
+  gap:12px;
+}
+.footer-newsletter-btn .arr{transition:transform 0.3s ease;}
+.footer-newsletter-btn:hover .arr{transform:translateX(2px);}
+
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+@media (max-width:900px){
+  .footer-content{grid-template-columns:1fr 1fr; gap:40px;}
+  .footer-newsletter-inner{grid-template-columns:1fr; gap:32px;}
+}
+@media (max-width:600px){
+  .footer{padding:64px 24px 32px;}
+  .footer-newsletter{padding-bottom:48px; margin-bottom:48px;}
+  .footer-newsletter-form{flex-direction:column; border-radius:18px; padding:8px;}
+  .footer-newsletter-form input{text-align:center;}
+  .footer-newsletter-btn{justify-content:center;}
+  .footer-content{grid-template-columns:1fr; gap:32px; margin-bottom:48px;}
+  .footer-bottom{flex-direction:column; gap:8px; text-align:center;}
+}
+
+
+
+/* Logo + hamburger (navbar görünmez, child'lar fixed) */
+.site-nav { display: contents; }
+
+
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <a href="index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button class="close-nav" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <div class="nav-overlay-inner">
+    <span class="nav-eyebrow">Show Me Türkiye</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="explore.html" class="active">Explore Türkiye</a>
+      <a href="first-guide.html">First Guide</a>
+      <a href="blog.html">Blog</a>
+      <a href="projects.html">Our Projects</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-lang">
+      <button class="on" aria-label="English">EN</button><span class="sep">·</span><button aria-label="Turkish">TR</button>
+    </div>
+  </div>
+</div>
+
+<section class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content">
+    <div class="page-header-eyebrow">Destinations</div>
+    <h1>Explore <em>Türkiye</em></h1>
+    <p>From Aegean coastlines to eastern highlands. Pick your next destination.</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Cities</button>
+  <button class="filter-btn" data-filter="coast">Coast</button>
+  <button class="filter-btn" data-filter="mountain">Mountain</button>
+  <button class="filter-btn" data-filter="history">History</button>
+  <button class="filter-btn" data-filter="culture">Culture</button>
+</div>
+
+<div class="featured-section">
+  <a href="cities/istanbul.html" class="featured-card" data-tags="history culture">
+    <div class="featured-bg" style="background-image:url('https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg');"></div>
+    <div class="featured-overlay">
+      <div>
+        <span class="featured-label">Featured City</span>
+        <div class="featured-city-name">Istanbul</div>
+        <div class="featured-meta">
+          <div class="featured-meta-item">
+            <strong>East Meets West</strong>
+            The vibe
+          </div>
+          <div class="featured-meta-item">
+            <strong>Hagia Sophia, Bosphorus</strong>
+            Key spots
+          </div>
+          <div class="featured-meta-item">
+            <strong>Apr-Jun, Sep-Nov</strong>
+            Best season
+          </div>
+          <div class="featured-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
+
+<section class="cities-section">
+  <div class="cities-grid" id="citiesGrid">
+
+    <a href="cities/antalya.html" class="city-card" data-tags="coast history">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Antalya</div>
+            <span class="city-card-index">01</span>
+          </div>
+          <div class="city-vibe">Mediterranean Paradise</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Kaleiçi, Düden Falls</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">April - October</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/nevsehir-cappadocia.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Cappadocia</div>
+            <span class="city-card-index">02</span>
+          </div>
+          <div class="city-vibe">Fairy Chimneys</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Göreme, Ürgüp</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Apr-Jun, Sep-Nov</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/mugla.html" class="city-card" data-tags="coast">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Mugla</div>
+            <span class="city-card-index">03</span>
+          </div>
+          <div class="city-vibe">Turquoise Coast</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Fethiye, Bodrum</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">May - October</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/izmir.html" class="city-card" data-tags="coast history">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Izmir</div>
+            <span class="city-card-index">04</span>
+          </div>
+          <div class="city-vibe">Pearl of the Aegean</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Kordon, Ephesus</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Apr-Jun, Sep-Oct</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/bursa.html" class="city-card" data-tags="history mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Bursa</div>
+            <span class="city-card-index">05</span>
+          </div>
+          <div class="city-vibe">First Ottoman Capital</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Uludağ, Yeşil Cami</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Year-round</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/trabzon.html" class="city-card" data-tags="mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Trabzon</div>
+            <span class="city-card-index">06</span>
+          </div>
+          <div class="city-vibe">Lush Highlands</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Sümela, Uzungöl</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">May - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/denizli.html" class="city-card" data-tags="history">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Denizli</div>
+            <span class="city-card-index">07</span>
+          </div>
+          <div class="city-vibe">Cotton Castle</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Pamukkale, Hierapolis</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Apr-Jun, Sep-Nov</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/canakkale.html" class="city-card" data-tags="history coast">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Canakkale</div>
+            <span class="city-card-index">08</span>
+          </div>
+          <div class="city-vibe">Historic Shores</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Troy, Gallipoli</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">April - October</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/ankara.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Ankara</div>
+            <span class="city-card-index">09</span>
+          </div>
+          <div class="city-vibe">Capital on the Plateau</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Anıtkabir, Castle</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Apr-Jun, Sep-Oct</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/mardin.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Mardin</div>
+            <span class="city-card-index">10</span>
+          </div>
+          <div class="city-vibe">Golden Stone City</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Old Town, Midyat</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Apr-Jun, Sep-Oct</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/konya.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Konya</div>
+            <span class="city-card-index">11</span>
+          </div>
+          <div class="city-vibe">Spiritual Heart of Anatolia</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Mevlana, Çatalhöyük</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">April - October</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/gaziantep.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Gaziantep</div>
+            <span class="city-card-index">12</span>
+          </div>
+          <div class="city-vibe">Food Capital of Turkey</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Zeugma, Baklava</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Mar-May, Sep-Nov</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/mersin.html" class="city-card" data-tags="coast history">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Mersin</div>
+            <span class="city-card-index">13</span>
+          </div>
+          <div class="city-vibe">Mediterranean Coast</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Kızkalesi, Silifke</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">October - May</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/balikesir.html" class="city-card" data-tags="coast">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Balikesir</div>
+            <span class="city-card-index">14</span>
+          </div>
+          <div class="city-vibe">Aegean Beauty</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Ayvalık, Cunda</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">May - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/adana.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Adana</div>
+            <span class="city-card-index">15</span>
+          </div>
+          <div class="city-vibe">Kebab Capital</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Stone Bridge, Kebab</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">October - April</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+
+    <a href="cities/kayseri.html" class="city-card" data-tags="history culture mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Kayseri</div>
+            <span class="city-card-index">16</span>
+          </div>
+          <div class="city-vibe">Silk Road and Erciyes</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Erciyes, Seljuk Tombs</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Dec-Mar, Apr-Jun</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/sanliurfa.html" class="city-card" data-tags="history culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Sanliurfa</div>
+            <span class="city-card-index">17</span>
+          </div>
+          <div class="city-vibe">City of Prophets</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Göbeklitepe, Balıklıgöl</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Mar-May, Sep-Nov</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/rize.html" class="city-card" data-tags="mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Rize</div>
+            <span class="city-card-index">18</span>
+          </div>
+          <div class="city-vibe">Tea Plantations</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Ayder, Fırtına Valley</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">June - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+    <a href="cities/eskisehir.html" class="city-card" data-tags="culture history">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Eskişehir</div>
+            <span class="city-card-index">19</span>
+          </div>
+          <div class="city-vibe">Student City of Anatolia</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Odunpazarı, Porsuk</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">April - October</div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/kocaeli.html" class="city-card" data-tags="culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Kocaeli</div>
+            <span class="city-card-index">20</span>
+          </div>
+          <div class="city-vibe">Gulf, Forest, Mountain</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Izmit, Kartepe</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Year-round</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/artvin.html" class="city-card" data-tags="mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Artvin</div>
+            <span class="city-card-index">21</span>
+          </div>
+          <div class="city-vibe">Caucasus Frontier</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Çoruh, Karagöl</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">June - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/hakkari.html" class="city-card" data-tags="mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Hakkari</div>
+            <span class="city-card-index">22</span>
+          </div>
+          <div class="city-vibe">The Last Frontier</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Cilo Glaciers, Sat Lakes</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">July - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/kastamonu.html" class="city-card" data-tags="culture mountain">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Kastamonu</div>
+            <span class="city-card-index">23</span>
+          </div>
+          <div class="city-vibe">Ottoman Garlic City</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Konak Houses, İlgaz</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">June - September</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+
+
+
+    <a href="cities/afyonkarahisar.html" class="city-card" data-tags="culture">
+      <div class="city-card-bg" style="background-image:url('https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg');"></div>
+      <div class="city-card-overlay">
+        <div class="city-card-bottom">
+          <div class="city-card-namerow">
+            <div class="city-name">Afyon</div>
+            <span class="city-card-index">24</span>
+          </div>
+          <div class="city-vibe">Thermal Springs</div>
+          <div class="city-card-details">
+          <div class="city-detail-row">
+            <div class="city-detail-item">
+              <div class="city-detail-label">Key Spots</div>
+              <div class="city-detail-val">Thermal Hotels, Castle</div>
+            </div>
+            <div class="city-detail-item">
+              <div class="city-detail-label">Best Season</div>
+              <div class="city-detail-val">Year-round</div>
+            </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+
+<script>
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav() {
+  navOverlay.classList.add('open');
+  hamburgerBtn.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeNav() {
+  navOverlay.classList.remove('open');
+  hamburgerBtn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function toggleNav() {
+  if (navOverlay.classList.contains('open')) {
+    closeNav();
+  } else {
+    openNav();
+  }
+}
+hamburgerBtn.addEventListener('click', toggleNav);
+closeNavBtn.addEventListener('click', closeNav);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+// Close menu when clicking any nav link (same-page navigation safety)
+navOverlay.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', closeNav);
+});
+// Click on overlay backdrop closes menu
+navOverlay.addEventListener('click', e => {
+  if (e.target === navOverlay) closeNav();
+});
+
+// Filter logic
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cityCards = document.querySelectorAll('.city-card');
+const featuredCard = document.querySelector('.featured-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+
+    // Featured card (Istanbul - history/culture)
+    if (filter === 'all' || filter === 'history' || filter === 'culture') {
+      featuredCard.style.display = 'block';
+    } else {
+      featuredCard.style.display = 'none';
+    }
+
+    cityCards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      if (filter === 'all' || tags.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+</script>
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="footer reveal-up">
+  <!-- Newsletter band -->
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-text">
+        <span class="footer-newsletter-eyebrow">The Journal · Newsletter</span>
+        <h3>Letters from <em>the road</em>.</h3>
+        <p>One quiet email a month. New routes, hidden cities, and notes from the field. No spam, ever.</p>
+      </div>
+      <form class="footer-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit" class="footer-newsletter-btn">
+          Subscribe <span class="arr" aria-hidden="true">→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer-content">
+    <div class="footer-section">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo" width="160" height="48">
+      <p>A complete travel guide to Türkiye. Curated routes, city guides, and stories from across the country.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://youtube.com/@showmeturkiye" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Explore</h3>
+      <div class="footer-links">
+        <a href="explore.html">Cities</a>
+        <a href="first-guide.html">Routes</a>
+        <a href="blog.html">Journal</a>
+        <a href="projects.html">Films</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>About</h3>
+      <div class="footer-links">
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="press.html">Press</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Legal</h3>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="footerYear">2026</span> Show Me Türkiye. Made in Türkiye.</p>
+    <p class="footer-bottom-credit">by Show Me Türkiye Team</p>
+  </div>
+</footer>
+</body>
+</html>
