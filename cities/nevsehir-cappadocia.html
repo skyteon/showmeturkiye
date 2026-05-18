@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cappadocia (Nevşehir) | Show Me Turkiye</title>
+<meta name="description" content="Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride a hot air balloon at sunrise.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+:root{
+  --cream:#F4EFE5;
+  --cream2:#E8DFCD;
+  --white:#FAF5EA;
+  --black:#0a0a0a;
+  --dark:#0a0a0a;
+  --dark2:#1a1a1a;
+  --espresso:#0a0a0a;
+  --text:#2A1410;
+  --text-muted:#5C3530;
+  --brown:#C0392B;
+  --brown-light:#D4534A;
+  --gold:#C9A75D;
+  --teal:#1a8a7d;
+  --teal-light:#23b5a4;
+  --border:rgba(42,20,16,0.10);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden;}a{text-decoration:none;color:inherit;}img{max-width:100%;display:block;}
+.site-nav{display:contents;}.site-nav>a{position:fixed;top:24px;left:48px;z-index:1003;}.site-nav.scrolled{display:contents;}.site-nav a img{height:96px;width:auto;object-fit:contain;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.25));}.hamburger{position:fixed;top:24px;right:48px;display:flex;flex-direction:column;gap:6px;cursor:pointer;background:none;border:none;padding:9px;min-width:44px;min-height:44px;z-index:1003;align-items:center;justify-content:center;}.hamburger span{width:26px;height:2px;background:var(--text);display:block;transition:all 0.35s;transform-origin:center;}.hamburger.open span{background:var(--cream);}.nav-overlay{display:none;position:fixed;inset:0;background:var(--espresso);flex-direction:column;align-items:center;justify-content:center;z-index:1002;animation:navFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);}.nav-overlay.open{display:flex;}@keyframes navFadeIn{from{opacity:0}to{opacity:1}}.nav-overlay-inner{display:flex;flex-direction:column;align-items:center;gap:0;max-width:480px;width:100%;padding:0 32px;}.nav-eyebrow{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;display:flex;align-items:center;gap:16px;}.nav-eyebrow::before,.nav-eyebrow::after{content:'';width:34px;height:1px;background:var(--gold);opacity:0.55;}.nav-overlay nav{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;}.nav-overlay a{font-family:'Poppins',sans-serif;font-size:15px;font-weight:300;letter-spacing:0.32em;text-transform:uppercase;color:rgba(244,239,229,0.55);text-decoration:none;padding:11px 0;line-height:1.4;transition:color 0.3s ease;position:relative;display:inline-block;}.nav-overlay a:hover{color:var(--cream);}.nav-overlay a.active{color:var(--cream);font-weight:400;}.nav-overlay a.active::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:60%;height:1px;background:var(--gold);}.nav-lang{margin-top:40px;display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:0.32em;text-transform:uppercase;}.nav-lang button{background:none;border:none;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;padding:6px 8px;color:rgba(244,239,229,0.30);transition:color 0.3s ease;}.nav-lang button:hover{color:rgba(244,239,229,0.85);}.nav-lang button.on{color:var(--cream);font-weight:400;}.nav-lang .sep{color:rgba(244,239,229,0.20);user-select:none;pointer-events:none;}.close-nav{position:absolute;top:28px;right:48px;background:none;border:none;color:var(--cream);font-size:28px;cursor:pointer;opacity:0.55;z-index:1004;line-height:1;transition:opacity 0.2s,transform 0.2s;}.close-nav:hover{opacity:1;transform:rotate(90deg);}
+.hero{height:100vh;min-height:700px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;isolation:isolate;}.hero-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 8s ease-out;}.hero-bg.loaded{transform:scale(1);}.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,12,14,0.25) 0%,rgba(10,12,14,0.15) 40%,rgba(10,12,14,0.68) 75%,rgba(10,12,14,0.96) 100%);}.hero-content{position:relative;z-index:2;text-align:center;padding:0 48px;}.hero-badge{display:inline-block;font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,167,93,0.45);padding:7px 20px;margin-bottom:24px;background:rgba(201,167,93,0.08);}.hero h1{font-family:'Playfair Display',serif;font-size:clamp(72px,10vw,136px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:#fff;line-height:0.95;margin-bottom:20px;}.hero-subtitle{font-family:'Poppins',sans-serif;font-weight:300;font-size:14px;letter-spacing:0.16em;color:rgba(255,255,255,0.85);font-style:italic;}.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.45;}.hero-scroll span{font-family:'Poppins',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#fff;}.scroll-line{width:1px;height:36px;background:rgba(255,255,255,0.4);animation:scrollLine 2s ease-in-out infinite;}@keyframes scrollLine{0%,100%{transform:scaleY(0.4);opacity:0.3;}50%{transform:scaleY(1);opacity:1;}}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(42,20,16,0.10);border-bottom:1px solid rgba(42,20,16,0.10);background:var(--white);}.stat-item{padding:28px 40px;border-right:1px solid rgba(42,20,16,0.10);display:flex;flex-direction:column;gap:5px;}.stat-item:last-child{border-right:none;}.stat-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-muted);}.stat-value{font-family:'Playfair Display',serif;font-size:20px;font-weight:300;color:var(--text);letter-spacing:0.04em;}.stat-sub{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);}
+.section{padding:90px 80px;}.section-cream{background:var(--cream);color:var(--text);}.section-dark{background:var(--cream2);color:var(--text);}.section-black{background:var(--cream2);color:var(--text);}.section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;margin-bottom:14px;display:block;}.section-cream .section-label{color:var(--brown);}.section-dark .section-label,.section-black .section-label{color:var(--brown);}.section-title{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(30px,3.5vw,48px);letter-spacing:0.15em;text-transform:uppercase;line-height:1.1;margin-bottom:44px;}.section-cream .section-title{color:var(--text);}.section-dark .section-title,.section-black .section-title{color:var(--text);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start;}.why-text p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;line-height:1.9;color:var(--text-muted);margin-bottom:20px;}.why-image{aspect-ratio:3/4;overflow:hidden;position:relative;}.why-image img{width:100%;height:100%;object-fit:cover;}.why-image-caption{position:absolute;bottom:20px;left:20px;font-family:'Poppins',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:var(--text-muted);background:rgba(10,12,14,0.6);backdrop-filter:blur(8px);padding:5px 12px;}
+/* ════════════════════════════════════════════════════════════
+   PLACES TO VISIT — photo river + sticky map */
+.atl-places{
+  --atl-cream:#F4EFE5;
+  --atl-cream-2:#EBE3D2;
+  --atl-paper:#FAF6EC;
+  --atl-ink:#2A1410;
+  --atl-mute:#5C3530;
+  --atl-brown:#8B2820;
+  --atl-rule:rgba(42,20,16,0.12);
+  --atl-rule-soft:rgba(42,20,16,0.07);
+  background:var(--atl-cream);
+  color:var(--atl-ink);
+  padding:88px 0 0;
+  font-family:'Poppins', sans-serif;
+  position:relative;
+}
+.atl-places .atl-header{padding:0 80px 32px;display:grid;grid-template-columns:repeat(12,1fr);column-gap:32px;align-items:end;border-bottom:1px solid var(--atl-rule);margin:0 80px;padding-left:0;padding-right:0;}
+.atl-places .atl-eyebrow{grid-column:1 / span 6;font-family:'Poppins', sans-serif;font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--atl-brown);display:inline-flex;align-items:center;gap:14px;}
+.atl-places .atl-eyebrow::before{content:'';width:32px;height:1px;background:var(--atl-brown);}
+.atl-places .atl-title{grid-column:1 / span 8;margin-top:14px;font-family:'Playfair Display', serif;font-weight:400;font-size:clamp(32px,3.6vw,52px);line-height:1.04;letter-spacing:-0.008em;color:var(--atl-ink);}
+.atl-places .atl-title em{font-style:italic;font-weight:400;color:var(--atl-brown);}
+.atl-places .atl-lede{grid-column:1 / span 8;justify-self:start;font-family:'Poppins', sans-serif;font-style:normal;font-size:14px;font-weight:300;line-height:1.7;color:var(--atl-mute);max-width:560px;margin:16px 0 0;padding-bottom:8px;}
+
+.atl-places .atl-body{display:grid;grid-template-columns:minmax(0, 1.05fr) minmax(0, 0.95fr);gap:0;align-items:start;margin-top:56px;}
+
+/* Photo river */
+.atl-places .atl-river{padding:0 48px 0 80px;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.atl-places .atl-col{display:flex;flex-direction:column;gap:64px;}
+.atl-places .atl-col-b{margin-top:120px;}
+
+.atl-places .atl-place{position:relative;cursor:pointer;display:block;transition:transform 0.5s cubic-bezier(0.2,0.7,0.2,1);}
+.atl-places .atl-place .num{position:absolute;top:-28px;left:-12px;font-family:'Playfair Display', serif;font-style:italic;font-weight:400;font-size:60px;line-height:0.9;color:var(--atl-ink);z-index:3;letter-spacing:-0.02em;text-shadow:0 0 18px var(--atl-cream);transition:color 0.35s ease, transform 0.5s cubic-bezier(0.2,0.7,0.2,1);}
+.atl-places .atl-place .num::after{content:'';display:block;width:0;height:1px;background:var(--atl-brown);margin-top:6px;transition:width 0.5s cubic-bezier(0.2,0.7,0.2,1);}
+.atl-places .atl-place .frame{aspect-ratio:4/5;background:#2c1f1a;position:relative;overflow:hidden;z-index:1;transition:box-shadow 0.4s ease;}
+.atl-places .atl-place .frame::before{content:'';position:absolute;inset:0;background:radial-gradient(120% 80% at 20% 10%, rgba(201,167,93,0.18), transparent 60%), radial-gradient(120% 80% at 80% 90%, rgba(139,40,32,0.32), transparent 65%), linear-gradient(180deg, #4a342a 0%, #2c1f1a 100%);}
+.atl-places .atl-place .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(0.2,0.7,0.2,1), filter 0.5s ease;filter:saturate(0.95);color:var(--atl-paper);font-family:'Poppins', sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;text-align:center;padding:16px;background:transparent;}
+.atl-places .atl-place:hover .frame img{transform:scale(1.04);filter:saturate(1.05);}
+.atl-places .atl-place .caption{padding-top:18px;display:flex;flex-direction:column;gap:6px;}
+.atl-places .atl-place .name{font-family:'Playfair Display', serif;font-weight:400;font-size:22px;line-height:1.18;color:var(--atl-ink);letter-spacing:-0.005em;transition:color 0.3s ease;margin:0;}
+.atl-places .atl-place .note{font-family:'Poppins', sans-serif;font-style:normal;font-size:13px;font-weight:300;line-height:1.8;color:var(--atl-mute);margin:0;}
+.atl-places .atl-place .rule{height:1px;background:var(--atl-rule-soft);margin-top:12px;position:relative;}
+.atl-places .atl-place .rule::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:var(--atl-brown);transition:width 0.6s cubic-bezier(0.2,0.7,0.2,1);}
+.atl-places .atl-place:hover .name,
+.atl-places .atl-place:hover .num{color:var(--atl-brown);}
+.atl-places .atl-place:hover .num::after{width:36px;}
+.atl-places .atl-place:hover .rule::after{width:48px;}
+.atl-places .atl-place.active .name,
+.atl-places .atl-place.active .num{color:var(--atl-brown);}
+.atl-places .atl-place.active .num{transform:translateX(-4px);}
+.atl-places .atl-place.active .num::after{width:54px;}
+.atl-places .atl-place.active .rule::after{width:100%;}
+.atl-places .atl-place.active .frame{box-shadow:0 0 0 2px var(--atl-brown), 0 20px 60px -20px rgba(139,40,32,0.45);}
+.atl-places .atl-place.active .frame img{filter:saturate(1.08) contrast(1.02);}
+
+/* Sticky map */
+.atl-places .atl-mapstage{position:sticky;top:96px;height:calc(100vh - 120px);min-height:560px;max-height:880px;padding:0 80px 0 24px;}
+.atl-places .atl-mapcard{height:100%;background:var(--atl-paper);position:relative;overflow:hidden;border:1px solid var(--atl-rule);}
+.atl-places .atl-map{width:100%;height:100%;background:var(--atl-paper);position:absolute;inset:0;}
+.atl-places .atl-mapchrome{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;z-index:600;pointer-events:none;}
+.atl-places .atl-map-label{background:var(--atl-paper);border:1px solid var(--atl-rule);padding:9px 14px;font-family:'Poppins', sans-serif;font-size:9.5px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--atl-mute);display:inline-flex;align-items:center;gap:10px;}
+.atl-places .atl-map-label i{width:6px;height:6px;border-radius:50%;background:var(--atl-brown);display:inline-block;}
+.atl-places .atl-map-label b{color:var(--atl-ink);font-weight:500;letter-spacing:0.3em;}
+.atl-places .atl-map-n{background:var(--atl-paper);border:1px solid var(--atl-rule);width:42px;height:42px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display', serif;font-style:italic;font-size:14px;color:var(--atl-brown);position:relative;}
+.atl-places .atl-map-n::after{content:'';position:absolute;top:4px;left:50%;transform:translateX(-50%);width:1px;height:8px;background:var(--atl-brown);}
+.atl-places .atl-mapfoot{position:absolute;bottom:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;z-index:600;pointer-events:none;}
+.atl-places .atl-now{pointer-events:auto;background:rgba(250,246,236,0.94);backdrop-filter:blur(6px);border:1px solid var(--atl-rule);padding:14px 18px;max-width:300px;min-height:64px;}
+.atl-places .atl-now-num{font-family:'Poppins', sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--atl-brown);display:block;margin-bottom:6px;}
+.atl-places .atl-now-name{font-family:'Playfair Display', serif;font-size:17px;font-weight:400;line-height:1.2;color:var(--atl-ink);letter-spacing:-0.005em;}
+.atl-places .atl-mapfit{pointer-events:auto;background:var(--atl-paper);border:1px solid var(--atl-rule);padding:10px 16px;font-family:'Poppins', sans-serif;font-size:9.5px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--atl-mute);cursor:pointer;transition:all 0.3s ease;white-space:nowrap;}
+.atl-places .atl-mapfit:hover{color:var(--atl-brown);border-color:var(--atl-brown);}
+
+/* Pins */
+.atl-places .atl-pin{width:34px;height:34px;background:var(--atl-paper);border:1.5px solid var(--atl-brown);border-radius:50% 50% 50% 0;transform:rotate(-45deg) translate(2px,2px);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -6px rgba(0,0,0,0.35);transition:all 0.35s cubic-bezier(0.2,0.7,0.2,1);transform-origin:50% 50%;}
+.atl-places .atl-pin span{transform:rotate(45deg) translate(-2px,-2px);font-family:'Playfair Display', serif;font-style:italic;font-size:13px;font-weight:500;color:var(--atl-brown);line-height:1;}
+.atl-places .atl-pin.active{background:var(--atl-brown);transform:rotate(-45deg) translate(2px,-6px) scale(1.18);box-shadow:0 14px 28px -6px rgba(139,40,32,0.55);}
+.atl-places .atl-pin.active span{color:var(--atl-paper);}
+
+/* Leaflet popup */
+.atl-places .leaflet-popup-content-wrapper{background:var(--atl-paper);border:1px solid var(--atl-rule);border-radius:0;box-shadow:0 16px 36px -10px rgba(0,0,0,0.22);padding:0;}
+.atl-places .leaflet-popup-tip{background:var(--atl-paper);box-shadow:none;}
+.atl-places .leaflet-popup-tip-container{display:none;}
+.atl-places .leaflet-popup-content{margin:18px 22px;font-family:'Poppins', sans-serif;color:var(--atl-ink);line-height:1.7;}
+.atl-places .pop-num{font-family:'Poppins', sans-serif;font-size:9px;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--atl-brown);display:block;margin-bottom:5px;}
+.atl-places .pop-name{font-family:'Playfair Display', serif;font-size:19px;font-weight:400;line-height:1.15;color:var(--atl-ink);margin-bottom:8px;letter-spacing:-0.005em;}
+.atl-places .pop-desc{font-family:'Poppins', sans-serif;font-style:normal;font-size:12.5px;font-weight:300;line-height:1.7;color:var(--atl-mute);max-width:240px;margin-bottom:12px;}
+.atl-places .pop-link{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins', sans-serif;font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--atl-brown);text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:border-color 0.3s ease, gap 0.3s ease;}
+.atl-places .pop-link:hover{border-bottom-color:var(--atl-brown);gap:12px;}
+.atl-places .leaflet-popup-close-button{color:var(--atl-mute) !important;font-size:18px !important;padding:6px 8px !important;}
+
+/* Leaflet chrome */
+.atl-places .leaflet-control-attribution{background:rgba(250,246,236,0.92) !important;font-family:'Poppins', sans-serif;font-size:9px;letter-spacing:0.04em;color:var(--atl-mute);padding:3px 8px;}
+.atl-places .leaflet-control-attribution a{color:var(--atl-mute);}
+.atl-places .leaflet-control-zoom{border:1px solid var(--atl-rule) !important;margin:74px 18px 0 0 !important;box-shadow:none !important;}
+.atl-places .leaflet-control-zoom a{background:var(--atl-paper) !important;color:var(--atl-ink) !important;border-bottom:1px solid var(--atl-rule) !important;font-family:'Playfair Display', serif !important;font-weight:400 !important;}
+.atl-places .leaflet-control-zoom a:hover{background:var(--atl-cream) !important;color:var(--atl-brown) !important;}
+
+.atl-places .atl-end{margin-top:88px;padding:40px 80px 64px;border-top:1px solid var(--atl-rule);display:flex;justify-content:space-between;align-items:center;font-family:'Poppins', sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--atl-mute);}
+.atl-places .atl-end .arrow{font-family:'Playfair Display', serif;font-style:italic;color:var(--atl-brown);font-size:14px;letter-spacing:0;}
+/* Gallery inline play */
+.gallery-card.playing{cursor:default;}
+.gallery-card.playing .gallery-thumb,.gallery-card.playing .gallery-overlay{display:none;}
+.gallery-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}.gallery-card{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:var(--dark2);}.gallery-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}.gallery-card:hover .gallery-thumb{transform:scale(1.05);}.gallery-overlay{position:absolute;inset:0;background:rgba(10,12,14,0.35);display:flex;align-items:center;justify-content:center;transition:background 0.3s;}.gallery-card:hover .gallery-overlay{background:rgba(10,12,14,0.2);}.gallery-play{width:52px;height:52px;background:rgba(201,167,93,0.30);border:1px solid rgba(201,167,93,0.55);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:16px;transition:all 0.3s;}.gallery-card:hover .gallery-play{background:rgba(196,162,101,0.5);}
+.food-intro{max-width:600px;margin:0 auto 56px;text-align:center;}.food-intro p{font-family:'Poppins',sans-serif;font-size:14px;font-weight:300;color:var(--text-muted);line-height:1.9;}.dishes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:72px;}.dish-card{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;background:var(--dark2);}.dish-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s cubic-bezier(0.4,0,0.2,1);}.dish-card:hover .dish-bg{transform:scale(1.06);}.dish-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.94) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px;}.dish-category{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}.dish-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--cream);letter-spacing:0.04em;margin-bottom:7px;text-shadow:0 2px 8px rgba(0,0,0,0.4);}.dish-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:400;color:rgba(244,239,229,0.92);line-height:1.7;opacity:0;transform:translateY(8px);transition:all 0.4s ease;}.dish-card:hover .dish-desc{opacity:1;transform:translateY(0);}
+.resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s;position:relative;overflow:hidden;}.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}.resto-card:hover::before{transform:scaleY(1);}.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}.activity-card{padding:32px 24px;background:var(--white);border:1px solid rgba(42,20,16,0.10);transition:all 0.3s;}.activity-card:hover{background:var(--white);border-color:rgba(192,57,43,0.3);}.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);margin-bottom:12px;}.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text);line-height:1.8;}
+.daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;background:#1a1410;}.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.95) 0%,rgba(10,12,14,0.55) 50%,rgba(10,12,14,0.25) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,0.9);}.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+.video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}.video-modal.active{display:flex;}.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}.video-modal iframe{width:100%;height:100%;border:none;}.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:var(--text);font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}.modal-close:hover{opacity:1;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .atl-places{padding:72px 0 0;}
+  .atl-places .atl-header{margin:0 40px;padding:0 0 24px;}
+  .atl-places .atl-river{padding:0 24px 0 40px;gap:0 28px;}
+  .atl-places .atl-col{gap:48px;}
+  .atl-places .atl-col-b{margin-top:80px;}
+  .atl-places .atl-mapstage{padding:0 40px 0 16px;}
+  .atl-places .atl-end{padding:32px 40px 56px;}
+  .dishes-grid{grid-template-columns:1fr 1fr;}
+  .resto-grid{grid-template-columns:1fr 1fr;}
+  .activities-grid{grid-template-columns:1fr 1fr;}
+  .daytrips-grid{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  /* NAV */
+  .site-nav{padding:16px 20px;}
+  .site-nav a img{height:64px;}
+  .close-nav{right:20px;top:20px;font-size:32px;}
+  .nav-overlay{gap:22px;}
+  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+
+  /* HERO */
+  .hero{min-height:560px;height:88vh;}
+  .hero-content{padding:0 20px;}
+  .hero-badge{font-size:8px;padding:6px 14px;letter-spacing:0.28em;margin-bottom:18px;}
+  .hero h1{font-size:clamp(48px,15vw,72px);letter-spacing:0.08em;margin-bottom:16px;}
+  .hero-subtitle{font-size:11px;letter-spacing:0.12em;padding:0 12px;line-height:1.6;}
+  .hero-scroll{bottom:28px;}
+  .hero-scroll span{font-size:8px;letter-spacing:0.24em;}
+  .scroll-line{height:28px;}
+
+  /* STATS */
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:22px 20px;border-right:1px solid rgba(42,20,16,0.10);border-bottom:1px solid rgba(42,20,16,0.10);}
+  .stat-item:nth-child(2n){border-right:none;}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
+  .stat-label{font-size:8px;letter-spacing:0.22em;}
+  .stat-value{font-size:17px;}
+  .stat-sub{font-size:10px;}
+
+  /* SECTIONS */
+  .section{padding:56px 22px;}
+  .section-label{font-size:8px;letter-spacing:0.26em;margin-bottom:11px;}
+  .section-title{font-size:28px;letter-spacing:0.1em;margin-bottom:32px;}
+
+  /* WHY */
+  .why-text p{font-size:13px;line-height:1.85;margin-bottom:16px;}
+  .why-image{aspect-ratio:4/5;}
+  .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
+
+  /* PLACES — mobile: map sticks to top of viewport, river collapses to single column */
+  .atl-places{padding:56px 0 0;}
+  .atl-places .atl-header{margin:0 22px;padding:0 0 22px;grid-template-columns:1fr;gap:10px;}
+  .atl-places .atl-eyebrow{grid-column:1;}
+  .atl-places .atl-title{grid-column:1;font-size:30px;margin-top:8px;}
+  .atl-places .atl-lede{grid-column:1;justify-self:start;max-width:none;font-size:15px;padding-bottom:0;}
+  .atl-places .atl-body{display:flex;flex-direction:column-reverse;margin-top:0;}
+  .atl-places .atl-mapstage{position:sticky;top:0;z-index:40;padding:0;height:46vh;min-height:340px;max-height:none;box-shadow:0 12px 28px -10px rgba(0,0,0,0.25);}
+  .atl-places .atl-mapcard{border-left:none;border-right:none;}
+  .atl-places .atl-mapchrome{top:12px;left:12px;right:12px;}
+  .atl-places .atl-mapfoot{bottom:12px;left:12px;right:12px;}
+  .atl-places .atl-now{padding:10px 14px;max-width:65%;}
+  .atl-places .atl-now-name{font-size:14px;}
+  .atl-places .atl-mapfit{padding:8px 12px;font-size:9px;letter-spacing:0.24em;}
+  .atl-places .leaflet-control-zoom{margin:58px 12px 0 0 !important;}
+  .atl-places .atl-river{padding:48px 22px 24px;grid-template-columns:1fr;gap:56px;}
+  .atl-places .atl-col{gap:56px;}
+  .atl-places .atl-col-b{margin-top:0;}
+  .atl-places .atl-place .num{font-size:48px;top:-22px;left:-6px;}
+  .atl-places .atl-place .name{font-size:20px;}
+  .atl-places .atl-place .note{font-size:13.5px;}
+  .atl-places .atl-end{margin-top:48px;padding:24px 22px 40px;flex-direction:column;align-items:flex-start;gap:10px;font-size:9px;letter-spacing:0.24em;}
+
+  /* GALLERY */
+  .gallery-grid{grid-template-columns:1fr;gap:3px;}
+  .gallery-card{aspect-ratio:16/10;}
+  .section-black>div[style*="padding:0 80px"]{padding:0 22px 32px !important;}
+  .gallery-play{width:42px;height:42px;font-size:14px;}
+
+  /* FOOD */
+  .food-intro{margin:0 auto 36px;}
+  .food-intro p{font-size:13px;line-height:1.8;}
+  .dishes-grid{grid-template-columns:1fr;gap:3px;margin-bottom:48px;}
+  .dish-card{aspect-ratio:16/11;}
+  .dish-overlay{padding:20px 18px;}
+  .dish-category{font-size:8px;letter-spacing:0.24em;}
+  .dish-name{font-size:18px;}
+  .dish-desc{opacity:1;transform:none;font-size:11.5px;line-height:1.65;}
+
+  /* RESTAURANTS */
+  .resto-section-title{font-size:22px;margin-bottom:6px;}
+  .resto-note{font-size:11px;margin-bottom:22px;}
+  .resto-grid{grid-template-columns:1fr;gap:2px;}
+  .resto-card{padding:22px 20px;}
+  .resto-name{font-size:16px;}
+  .resto-stars{font-size:10px;margin-bottom:8px;}
+  .resto-stars span{font-size:10px;}
+  .resto-desc{font-size:12px;line-height:1.7;margin-bottom:8px;}
+  .resto-specialty{font-size:9px;letter-spacing:0.12em;}
+
+  /* ACTIVITIES */
+  .activities-grid{grid-template-columns:1fr;gap:16px;}
+  .activity-card{padding:26px 22px;}
+  .activity-num{font-size:36px;margin-bottom:10px;}
+  .activity-title{font-size:10.5px;letter-spacing:0.16em;margin-bottom:10px;}
+  .activity-desc{font-size:12.5px;line-height:1.75;}
+
+  /* DAY TRIPS */
+  .section-black>div[style*="padding:72px 80px 44px"]{padding:48px 22px 28px !important;}
+  .daytrips-grid{grid-template-columns:1fr;gap:3px;}
+  .daytrip-card{aspect-ratio:16/10;}
+  .daytrip-overlay{padding:22px 20px;background:linear-gradient(to top,rgba(10,12,14,0.95) 0%,rgba(10,12,14,0.55) 50%,rgba(10,12,14,0.25) 100%) !important;}
+  .daytrip-distance{font-size:8px;letter-spacing:0.2em;margin-bottom:8px;}
+  .daytrip-name{font-size:22px !important;letter-spacing:0.04em;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,0.85);}
+  .daytrip-desc{opacity:1 !important;transform:none !important;font-size:12px;line-height:1.7;}
+
+  /* VIDEO MODAL */
+  .video-modal{padding:20px;}
+  .modal-close{top:-40px;font-size:30px;}
+
+  /* FOOTER */
+  footer{padding:52px 22px 28px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;margin-bottom:32px;}
+  .footer-logo{height:42px;}
+  .footer-tagline{max-width:100%;font-size:12.5px;}
+  .footer-col h4{font-size:8px;letter-spacing:0.24em;margin-bottom:14px;}
+  .footer-col a{font-size:12.5px;margin-bottom:9px;}
+  .footer-bottom{flex-direction:column;gap:8px;align-items:flex-start;font-size:10px;padding-top:22px;}
+}
+@media(max-width:420px){
+  .hero h1{font-size:52px;}
+  .section-title{font-size:24px;}
+  .places-list-title{font-size:22px;}
+  .stat-value{font-size:15px;}
+}
+
+/* Brand mobile fix */
+@media (max-width: 768px) {
+  .hamburger { top: 18px; right: 20px; }
+  .site-nav > a { top: 18px; left: 20px; }
+  .site-nav a img { height: 54px; }
+  .nav-overlay-inner { padding: 0 24px; }
+  .nav-overlay nav { gap: 2px; }
+  .nav-overlay a { font-size: 13px; letter-spacing: 0.28em; padding: 10px 0; }
+  .nav-eyebrow { font-size: 11px; letter-spacing: 0.32em; margin-bottom: 28px; }
+  .nav-lang { margin-top: 28px; }
+  .close-nav { top: 22px; right: 22px; font-size: 26px; }
+}
+@media (max-width: 480px) {
+  .hamburger { top: 16px; right: 16px; }
+  .site-nav > a { top: 16px; left: 16px; }
+  .site-nav a img { height: 48px; }
+  .nav-overlay a { font-size: 12px; letter-spacing: 0.26em; }
+}
+
+/* ═══ FOOTER ═══ */
+.footer{
+  background:var(--espresso);
+  color:var(--cream);
+  padding:96px 40px 40px;
+}
+
+.footer-content{
+  max-width:1320px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:64px;
+  margin-bottom:72px;
+}
+
+.footer-section h3{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  margin-bottom:24px;
+  text-transform:uppercase;
+  letter-spacing:0.22em;
+  color: var(--gold);
+}
+
+.footer-section p{
+  font-family:var(--sans);
+  font-style:normal;
+  font-size:14px;
+  font-weight:400;
+  line-height:1.7;
+  color:rgba(244,239,229,0.85);
+  max-width:36ch;
+  margin-top:8px;
+}
+
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.footer-links a{
+  font-family:var(--sans);
+  font-size:14px;
+  font-weight:400;
+  color:rgba(244,239,229,0.85);
+  text-decoration:none;
+  transition:color 0.25s ease;
+  letter-spacing:0;
+  line-height:1.4;
+}
+.footer-links a:hover{
+  color:var(--cream);
+}
+
+.footer-logo{
+  height:54px;
+  width:auto;
+  margin-bottom:22px;
+}
+
+.footer-bottom{
+  text-align:center;
+  padding-top:32px;
+  border-top:1px solid rgba(244,239,229,0.10);
+  color:rgba(244,239,229,0.55);
+  font-size:12px;
+  font-family:var(--sans);
+  letter-spacing:0.05em;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.footer-bottom p{margin:0;}
+.footer-bottom-credit{
+  font-style:italic;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* Footer socials */
+.footer-socials{
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+.footer-socials a{
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  border:1px solid rgba(244,239,229,0.18);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(244,239,229,0.85);
+  transition:all 0.3s ease;
+}
+.footer-socials a:hover{
+  border-color:var(--cream);
+  color:var(--cream);
+  transform:translateY(-2px);
+}
+
+/* Footer newsletter band */
+.footer-newsletter{
+  border-bottom:1px solid rgba(244,239,229,0.10);
+  padding-bottom:64px;
+  margin-bottom:64px;
+}
+.footer-newsletter-inner{
+  max-width:1320px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.footer-newsletter-text{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.footer-newsletter-eyebrow{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color: var(--gold);
+}
+.footer-newsletter-text h3{
+  font-family:var(--serif);
+  font-size:clamp(28px, 3vw, 38px);
+  font-weight:500;
+  letter-spacing:-0.018em;
+  text-wrap: balance;
+  line-height:1.1;
+  color:var(--cream);
+  margin:0;
+}
+.footer-newsletter-text h3 em{
+  font-style:italic;
+  font-weight:500;
+  color:var(--gold);
+  white-space: nowrap;
+  line-height: inherit;
+  letter-spacing: 0.015em;
+  padding-left: 0.04em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+}
+.footer-newsletter-text p{
+  font-family:var(--sans);
+  font-size:14px;
+  line-height:1.65;
+  color:rgba(244,239,229,0.85);
+  margin:0;
+  max-width:42ch;
+}
+.footer-newsletter-form{
+  display:flex;
+  gap:0;
+  align-items:stretch;
+  background:rgba(244,239,229,0.06);
+  border:1px solid rgba(244,239,229,0.18);
+  border-radius:999px;
+  padding:6px;
+  transition:border-color 0.3s ease, background 0.3s ease;
+}
+.footer-newsletter-form:focus-within{
+  border-color: rgba(244,239,229,0.50);
+  background:rgba(244,239,229,0.08);
+}
+.footer-newsletter-form input{
+  flex:1;
+  background:transparent;
+  border:none;
+  outline:none;
+  padding:14px 22px;
+  font-family:var(--sans);
+  font-size:16px;
+  color:var(--cream);
+  min-width:0;
+}
+.footer-newsletter-form input::placeholder{
+  color: rgba(244,239,229,0.55);
+}
+.footer-newsletter-btn{
+  background:var(--cream);
+  color:var(--espresso);
+  border:none;
+  border-radius:999px;
+  padding:14px 28px;
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:background 0.3s ease, color 0.3s ease, gap 0.3s ease;
+  white-space:nowrap;
+}
+.footer-newsletter-btn:hover{
+  background:var(--brown);
+  color:var(--cream);
+  gap:12px;
+}
+.footer-newsletter-btn .arr{transition:transform 0.3s ease;}
+.footer-newsletter-btn:hover .arr{transform:translateX(2px);}
+
+.visually-hidden{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+@media (max-width:900px){
+  .footer-content{grid-template-columns:1fr 1fr; gap:40px;}
+  .footer-newsletter-inner{grid-template-columns:1fr; gap:32px;}
+}
+@media (max-width:600px){
+  .footer{padding:64px 24px 32px;}
+  .footer-newsletter{padding-bottom:48px; margin-bottom:48px;}
+  .footer-newsletter-form{flex-direction:column; border-radius:18px; padding:8px;}
+  .footer-newsletter-form input{text-align:center;}
+  .footer-newsletter-btn{justify-content:center;}
+  .footer-content{grid-template-columns:1fr; gap:32px; margin-bottom:48px;}
+  .footer-bottom{flex-direction:column; gap:8px; text-align:center;}
+}
+
+
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <a href="../index.html"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
+  <button class="hamburger" onclick="openNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay">
+  <button class="close-nav" onclick="closeNav()" aria-label="Close menu">&times;</button>
+  <div class="nav-overlay-inner">
+    <span class="nav-eyebrow">Show Me Türkiye</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../explore.html" class="active">Explore Türkiye</a>
+      <a href="../first-guide.html">First Guide</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Our Projects</a>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+    <div class="nav-lang">
+      <button class="on" aria-label="English">EN</button><span class="sep">·</span><button aria-label="Turkish">TR</button>
+    </div>
+  </div>
+</div>
+<!-- video modal removed: videos play inline -->
+
+<header class="hero" id="hero">
+  <div class="hero-bg" id="heroBg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg');"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Central Anatolia</span>
+    <h1>Cappadocia</h1>
+    <p class="hero-subtitle">Fairy chimneys, cave churches, underground cities. Nothing else looks like this.</p>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-label">Region</span><span class="stat-value">Central Anatolia</span><span class="stat-sub">Nevşehir Province</span></div>
+  <div class="stat-item"><span class="stat-label">Best Season</span><span class="stat-value">Apr to Jun</span><span class="stat-sub">Also Sep to Nov</span></div>
+  <div class="stat-item"><span class="stat-label">Known For</span><span class="stat-value">Balloons</span><span class="stat-sub">Fairy chimneys, cave cities, churches</span></div>
+  <div class="stat-item"><span class="stat-label">Base Town</span><span class="stat-value">Göreme</span><span class="stat-sub">Best access to all major sites</span></div>
+</div>
+
+<section class="section section-cream" id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Visit</span>
+        <h2 class="section-title">Cappadocia</h2>
+        <p>Cappadocia looks like nothing else on earth. Millions of years of volcanic eruption and erosion produced a landscape of soft tufa rock that people began carving into roughly three thousand years ago. The fairy chimneys, the cave churches, the underground cities that extend twelve levels below the surface, the valleys that seem designed for hiking with no designer involved — all of it is genuinely strange in the best sense.</p>
+        <p>The hot air balloon flights at sunrise have become Cappadocia's most famous image. They are worth doing once. But the region rewards people who go slowly on foot. The Göreme Open Air Museum holds Byzantine frescoes that are a thousand years old, painted in a style that belongs to no other tradition. The underground city of Derinkuyu sheltered twenty thousand people and their livestock. Paşabağ has the tallest and most elaborate fairy chimneys in the region. None of these are quick stops.</p>
+        <p>Base yourself in Göreme for the best access. Stay at least three nights to do the region properly. The light in the late afternoon on the valley walls, and again in the early morning, is something photographers drive from far away to see.</p>
+      </div>
+      <div class="why-image reveal">
+        <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-overview.jpg" alt="Cappadocia hot air balloons sunrise">
+        <div class="why-image-caption">Göreme Valley, Cappadocia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="atl-places" id="places" aria-labelledby="atl-title">
+
+  <div class="atl-header">
+    <span class="atl-eyebrow">Places to Visit · Eight Anchors</span>
+    <h2 class="atl-title" id="atl-title">Where you actually <em>go</em> in Cappadocia.</h2>
+    <p class="atl-lede">Eight places worth your time. Tap a photograph, the map will follow.</p>
+  </div>
+
+  <div class="atl-body">
+
+    <div class="atl-river">
+      <div class="atl-col atl-col-a">
+        <article class="atl-place" data-i="0">
+          <span class="num">01</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-goreme-open-air-museum.jpg" alt="Göreme Open Air Museum" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Göreme Open Air Museum</h3>
+            <p class="note">A UNESCO World Heritage Site and the most important Byzantine monastic site in Cappadocia. The complex holds around fifteen rock-cut churches and refectories from the 10th to 12th centuries, with frescoes in exceptional condition. The Dark Church has the best-preserved paintings and requires a separate ticket. Arrive at opening (08:30) and go to the Dark Church first before groups arrive. Photography not permitted inside the churches.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="2">
+          <span class="num">03</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-pasabag-monks-valley.jpg" alt="Paşabağ Monks Valley" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Paşabağ Monks Valley</h3>
+            <p class="note">The finest fairy chimneys in Cappadocia, with three-headed formations rising from a vineyard. Early Christian monks carved hermitage cells and small chapels into the cones in the 4th and 5th centuries. The valley is a 10-minute drive northeast of Göreme on the Avanos road, or can be reached by dolmuş. Entrance fee applies. Go early morning or late afternoon for the best light and fewer groups.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="4">
+          <span class="num">05</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-ihlara-valley.jpg" alt="Ihlara Valley" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Ihlara Valley</h3>
+            <p class="note">A 14 km canyon cut through volcanic rock by the Melendiz River, with around 105 Byzantine churches carved into the cliff walls and fifty of them decorated with frescoes. The standard walk between Ihlara village and Belisırma takes 2 to 3 hours along the river. 75 km southwest of Göreme, typically visited on the Green Tour route combining Derinkuyu and Selime Monastery. Best April to October.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="6">
+          <span class="num">07</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-kaymakli-underground-city.jpg" alt="Kaymakli Underground City" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Kaymakli Underground City</h3>
+            <p class="note">An underground city 20 km south of Nevsehir with eight excavated levels descending 40 metres into volcanic tufa. Churches, stables, wine cellars and ventilation shafts carved through the rock. Marginally easier to navigate than Derinkuyu and often less crowded.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="atl-col atl-col-b">
+        <article class="atl-place" data-i="1">
+          <span class="num">02</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-uchisar-castle.jpg" alt="Uçhisar Castle" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Uçhisar Castle</h3>
+            <p class="note">The highest point in Cappadocia, a 60-metre monolithic tufa rock riddled with tunnels and cave rooms that once housed a thousand people. The climb to the summit gives 360 degrees of Cappadocia: fairy chimneys, valleys, Mount Erciyes on the horizon. Best at sunset. The surrounding village has some of the best cave hotels in the region. 7 km from Nevşehir, 5 km from Göreme.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="3">
+          <span class="num">04</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-derinkuyu.jpg" alt="Derinkuyu" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Derinkuyu</h3>
+            <p class="note">The deepest underground city in Turkey, extending 85 metres below the surface with at least eight excavated levels. It could shelter 20,000 people with livestock and food stores. The rolling stone doors, the ventilation shafts that drop 55 metres, and the cross-shaped underground church are the highlights. 30 km south of Göreme. The narrow passages require comfortable shoes and no claustrophobia. Allow 90 minutes minimum.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="5">
+          <span class="num">06</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-love-valley-and-rose-valley.jpg" alt="Love Valley and Rose Valley" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Love Valley and Rose Valley</h3>
+            <p class="note">The two most photographed valleys on foot from Göreme. Love Valley is an easy 1.5 km walk north of town and famous for its tall cylindrical rock formations. Rose Valley runs east toward Cavuşin with rock churches and carved pigeon houses cut into ochre and pink cliff walls. The hike through Rose Valley to Cavuşin and back takes 3 to 4 hours. Bring water and sturdy shoes. Free of charge and rarely crowded on weekdays.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+
+        <article class="atl-place" data-i="7">
+          <span class="num">08</span>
+          <div class="frame">
+            <img src="https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-zelve-open-air-museum.jpg" alt="Zelve Open Air Museum" loading="lazy">
+          </div>
+          <div class="caption">
+            <h3 class="name">Zelve Open Air Museum</h3>
+            <p class="note">A valley of abandoned cave dwellings, carved churches and monastic cells north of Goreme, inhabited from the 9th to the 20th century. Three interconnected valleys with hundreds of rooms and monastery ruins, more atmospherically intact than Goreme Open Air Museum.</p>
+            <div class="rule"></div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="atl-mapstage">
+      <div class="atl-mapcard">
+        <div class="atl-mapchrome">
+          <div class="atl-map-label"><i></i><b>Cappadocia</b><span style="opacity:0.45">·</span>8 places</div>
+          <div class="atl-map-n" title="North">N</div>
+        </div>
+        <div class="atl-map" id="map" aria-label="Map of 8 places in Cappadocia"></div>
+        <div class="atl-mapfoot">
+          <div class="atl-now" id="atlNow">
+            <span class="atl-now-num">Cappadocia · 8 places</span>
+            <div class="atl-now-name">A field guide</div>
+          </div>
+          <button class="atl-mapfit" id="atlFit" type="button">Fit All</button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="atl-end">
+    <span>Next · Food and Cuisine</span>
+    <span class="arrow">↓ continue reading</span>
+  </div>
+
+</section>
+
+<section class="section-black" style="padding:72px 0 56px;" id="gallery">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Watch and Explore</span>
+    <h2 class="section-title" style="color:var(--text);margin-bottom:0;">Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card" onclick="openVideo('vXBrioAQELk', this)">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/vXBrioAQELk/maxresdefault.jpg" alt="Cappadocia hot air balloon" loading="lazy" onerror="this.src='https://img.youtube.com/vi/vXBrioAQELk/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('9gNFTOm0bCA', this)">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/9gNFTOm0bCA/maxresdefault.jpg" alt="Göreme fairy chimneys" loading="lazy" onerror="this.src='https://img.youtube.com/vi/9gNFTOm0bCA/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+    <div class="gallery-card" onclick="openVideo('ElUzM23qx-A', this)">
+      <img class="gallery-thumb" src="https://img.youtube.com/vi/ElUzM23qx-A/maxresdefault.jpg" alt="Cappadocia underground city" loading="lazy" onerror="this.src='https://img.youtube.com/vi/ElUzM23qx-A/hqdefault.jpg'">
+      <div class="gallery-overlay"><div class="gallery-play">&#9654;</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream" id="food">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Local Cuisine</span>
+    <h2 class="section-title">What to Eat</h2>
+    <div class="food-intro reveal">
+      <p>Cappadocian food is Central Anatolian at heart: lamb, legumes, dried fruit, local honey and wine from volcanic soil vineyards. The region has a distinct cooking tradition that uses pottery extensively. Testi kebab, cooked and sealed inside a clay pot and broken open at the table, is the dish that defines the experience here.</p>
+    </div>
+    <div class="dishes-grid reveal">
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/cappadocia-testi-kebab-pottery.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Cappadocian Signature</span>
+          <div class="dish-name">Testi Kebab</div>
+          <p class="dish-desc">Lamb, vegetables and spices sealed inside a clay pot and slow-cooked in a wood oven. The pot is brought to the table intact and broken open with a small hammer. The steam carries the smell of the clay into the dish. This is a meal that requires advance ordering at most restaurants. The experience of breaking the seal at the table is part of the ritual.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/cappadocia-wine-volcanic-vineyards.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Local Wine</span>
+          <div class="dish-name">Kapadokya Şarabı</div>
+          <p class="dish-desc">Cappadocia's volcanic soil and high altitude produce wines with mineral character and lower alcohol than Mediterranean regions. The main local varieties are Emir (white) and Öküzgözü (red). Several family wineries around Ürgüp and Avanos offer tastings and direct sales. Turasan and Kocabağ are the most established names. Try Emir with the local cheeses before dinner.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/cappadocia-pekmez-walnuts-sweet.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Dessert</span>
+          <div class="dish-name">Pekmezli Tatlı</div>
+          <p class="dish-desc">Grape molasses is a staple of the Central Anatolian table and appears in everything from breakfast spreads to winter desserts. The most common sweet is semolina cooked with grape molasses and served warm. Local honey from the plateau is also exceptional: ask specifically for Kapadokya balı when you see it in markets. The small jars sold at roadside stops are genuine.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/cappadocia-guvec-clay-pot-stew.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Pottery Town</span>
+          <div class="dish-name">Avanos Market</div>
+          <p class="dish-desc">Avanos, 10 km north on the Kızılırmak River, is known for red clay pottery that has been made here continuously since Hittite times. The town also has a good weekly market with local produce, dried fruit, pottery and textiles. Visit on a Friday. The riverside restaurants in Avanos serve fresh river fish in the summer months, a lighter option in a region heavy on lamb.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/cappadocia/nevsehir-comlek-fasulyesi-bean-stew.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Clay Pot Beans</span>
+          <div class="dish-name">Çömlek Fasulyesi</div>
+          <p class="dish-desc">White beans slow-cooked in a sealed clay pot in a wood-fired oven for several hours with tomato, pepper, garlic and sometimes a small piece of pastırma or kavurma. The pot is cracked open at the table. The clay holds the heat evenly and the slow cooking gives the beans a creamy texture without breaking them. A Cappadocia winter staple, served at the traditional restaurants in Ürgüp and Göreme with bulgur pilav and pickles. The pot itself is local pottery, often sold as a kitchen souvenir.</p>
+        </div>
+      </div>
+      <div class="dish-card">
+        <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/cappadocia/nevsehir-kabak-cekirdegi-pumpkin-seeds.jpg')"></div>
+        <div class="dish-overlay">
+          <span class="dish-category">Roasted Pumpkin Seed</span>
+          <div class="dish-name">Kabak Çekirdeği</div>
+          <p class="dish-desc">Nevşehir is one of Turkey's main pumpkin seed producing regions, with the volcanic soil of the Cappadocia plain particularly suited to the variety grown for seed. The seeds are roasted with salt and sold by weight in shallow paper bags. Eaten as a snack throughout the day, particularly with tea or while talking. The producers and roasters in the region are well-established; the seeds you find in the rest of Turkey often come from here. A staple of the rural çay culture.</p>
+        </div>
+      </div>
+    </div>
+
+    <span class="resto-section-label">Where to Eat</span>
+    <h3 class="resto-section-title">Recommended Restaurants</h3>
+    <p class="resto-note">Most top restaurants are concentrated in Göreme and Ürgüp. Cave settings dominate.</p>
+    <div class="resto-grid reveal">
+      <div class="resto-card">
+        <div class="resto-name">Topdeck Cave Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,600+ reviews</span></div>
+        <p class="resto-desc">A cave restaurant in Göreme with a panoramic terrace over the valley. The testi kebab here is one of the references in the region. The setting at sunset, with the valley turning golden below and the cave interior lit warmly, is worth the price premium. Book ahead for terrace seating.</p>
+        <span class="resto-specialty">Testi Kebab, Local Wine, Meze</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Seten Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 900+ reviews</span></div>
+        <p class="resto-desc">A cave restaurant in Uçhisar with views down Pigeon Valley. Known for traditional Anatolian cooking with local ingredients. The lamb dishes and the meze selection are consistently good. Quieter and less crowded than Göreme restaurants. Good wine list.</p>
+        <span class="resto-specialty">Anatolian Lamb, Meze, Local Wines</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Dibek Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.6 · 1,200+ reviews</span></div>
+        <p class="resto-desc">One of the oldest restaurants in Göreme, set in a 475-year-old cave house with stone floors and arched ceilings. The cooking is home-style Central Anatolian: slow-cooked stews, fresh mantı, local yogurt dishes. No pretension and consistent quality over many years.</p>
+        <span class="resto-specialty">Mantı, Cave Stews, Testi Kebab</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Ziggy's Cafe</div>
+        <div class="resto-stars">★★★★☆ <span>4.5 · 700+ reviews</span></div>
+        <p class="resto-desc">A relaxed breakfast and brunch spot in Göreme with an outdoor courtyard setting. Good for a slower morning meal before heading out to the sites. The eggs are reliable, the coffee is proper, and the village bread comes fresh. Popular with longer-stay visitors who want something lighter.</p>
+        <span class="resto-specialty">Turkish Breakfast, Coffee, Light Lunch</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Topdeck Cave Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.8 · 1,600+ reviews</span></div>
+        <p class="resto-desc">A cave restaurant in Goreme carved into volcanic tufa, serving testi kebabı (clay pot kebab cracked at the table), mantı and regional mezes. The testi takes 90 minutes — book ahead. Best terrace view of the Cappadocian valleys at sunset.</p>
+        <span class="resto-specialty">Testi Kebabı, Mantı, Cave Setting</span>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Dibek Restaurant</div>
+        <div class="resto-stars">★★★★★ <span>4.7 · 1,200+ reviews</span></div>
+        <p class="resto-desc">A restaurant in a restored 475-year-old stone house in Goreme. Slow-cooked lamb, testi kebabı and Cappadocian pottery stew. One of the oldest restaurants in the region with a consistently high standard.</p>
+        <span class="resto-specialty">Slow-Cooked Lamb, Testi, Stone House</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="activities">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span class="section-label">Experiences</span>
+    <h2 class="section-title">Things to Do</h2>
+    <div class="activities-grid reveal">
+      <div class="activity-card">
+        <div class="activity-num">01</div>
+        <div class="activity-title">Hot Air Balloon at Sunrise</div>
+        <p class="activity-desc">The balloon flights launch at first light and stay airborne for about an hour over the fairy chimneys and valleys. Book at least two weeks ahead in spring and summer. Prices range from 150 to 300 euros depending on the operator and basket size. Reputable operators: Kapadokya Balloons, Sultan Balloons, Royal Balloon. Flights are weather-dependent and may be cancelled with short notice. Book with an operator that offers a full refund for cancellations.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">02</div>
+        <div class="activity-title">The Red Tour on Foot</div>
+        <p class="activity-desc">The standard North Cappadocia day route: Göreme Open Air Museum, Uçhisar Castle, Çavuşin village, Paşabağ, Zelve Open Air Museum, Avanos for lunch and pottery. Can be done by rented scooter or car in one day, or broken across two days on foot through the connecting valleys. The walk from Göreme through Pigeon Valley to Uçhisar (3.5 km) is one of the best short hikes in the region.</p>
+      </div>
+      <div class="activity-card">
+        <div class="activity-num">03</div>
+        <div class="activity-title">Green Tour (Southern Route)</div>
+        <p class="activity-desc">Derinkuyu Underground City, Ihlara Valley hike (2 to 3 hours along the river), lunch in Belisırma, Selime Monastery, Narlı Lake. Typically done as a guided day tour from Göreme as public transport is limited. The Ihlara section is the physical centrepiece. Wear walking shoes and bring water. The combination of underground and canyon in one day is physically demanding but covers Cappadocia's full range.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-black" style="padding:72px 0;" id="daytrips">
+  <div style="padding:0 80px 44px;" class="reveal">
+    <span class="section-label" style="color:var(--brown-light);">Beyond Göreme</span>
+    <h2 class="section-title" style="color:var(--text);margin-bottom:0;">Day Trips</h2>
+  </div>
+  <div class="daytrips-grid">
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/mount-erciyes-day-trip-from-cappadocia.jpg')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">80 km northeast</span>
+        <div class="daytrip-name">Mount Erciyes</div>
+        <p class="daytrip-desc">The extinct stratovolcano responsible for all of Cappadocia's geology, rising to 3,916 metres and visible from most of the region on clear days. The Erciyes ski resort operates from December through April with well-equipped facilities. In summer, trekking routes ascend to various plateau levels. The 80 km drive through the Kayseri plateau is a different landscape entirely from the tufa valleys.</p>
+      </div>
+    </div>
+    <div class="daytrip-card">
+      <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/nevsehir-cappadocia/sultanhani-caravanserai-from-cappadocia.jpg')"></div>
+      <div class="daytrip-overlay">
+        <span class="daytrip-distance">110 km west</span>
+        <div class="daytrip-name">Sultanhanı Caravanserai</div>
+        <p class="daytrip-desc">The largest Seljuk caravanserai in Anatolia, built in 1229 on the Silk Road between Konya and Aksaray. The portal is carved in extraordinary detail and the interior courtyard with its central raised mosque is intact. An hour's drive west from Nevşehir through the plateau. Combine with Aksaray and the Ağzıkarahan Caravanserai, also on the Silk Road route, for a full day of Seljuk history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ -->
+<footer class="footer reveal-up">
+  <!-- Newsletter band -->
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-inner">
+      <div class="footer-newsletter-text">
+        <span class="footer-newsletter-eyebrow">The Journal · Newsletter</span>
+        <h3>Letters from <em>the road</em>.</h3>
+        <p>One quiet email a month. New routes, hidden cities, and notes from the field. No spam, ever.</p>
+      </div>
+      <form class="footer-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit" class="footer-newsletter-btn">
+          Subscribe <span class="arr" aria-hidden="true">→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer-content">
+    <div class="footer-section">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo" width="160" height="48">
+      <p>A complete travel guide to Türkiye. Curated routes, city guides, and stories from across the country.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://youtube.com/@showmeturkiye" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Explore</h3>
+      <div class="footer-links">
+        <a href="../explore.html">Cities</a>
+        <a href="../first-guide.html">Routes</a>
+        <a href="../blog.html">Journal</a>
+        <a href="../projects.html">Films</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>About</h3>
+      <div class="footer-links">
+        <a href="../about.html">About us</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../press.html">Press</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Legal</h3>
+      <div class="footer-links">
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+        <a href="../cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; <span id="footerYear">2026</span> Show Me Türkiye. Made in Türkiye.</p>
+    <p class="footer-bottom-credit">by Show Me Türkiye Team</p>
+  </div>
+</footer>
+
+<script>
+function openNav(){var ov=document.getElementById('navOverlay');var hm=document.querySelector('.hamburger');if(ov.classList.contains('open')){closeNav();return;}ov.classList.add('open');if(hm)hm.classList.add('open');document.body.style.overflow='hidden';}
+function closeNav(){var ov=document.getElementById('navOverlay');var hm=document.querySelector('.hamburger');ov.classList.remove('open');if(hm)hm.classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('DOMContentLoaded',function(){var ov=document.getElementById('navOverlay');if(ov){ov.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeNav);});ov.addEventListener('click',function(e){if(e.target===ov)closeNav();});}document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeNav();if(typeof closeVideo==='function')closeVideo();}});});
+window.addEventListener('scroll',function(){document.getElementById('siteNav').classList.toggle('scrolled',window.scrollY>80);});
+var heroBg=document.getElementById('heroBg');if(heroBg)heroBg.classList.add('loaded');
+function openVideo(id, card){if(!card||card.classList.contains('playing'))return;card.classList.add('playing');var f=document.createElement('iframe');f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';f.setAttribute('allow','autoplay; encrypted-media; picture-in-picture; fullscreen');f.setAttribute('allowfullscreen','');card.appendChild(f);}
+function closeVideo(){}
+var vm=document.getElementById('videoModal');if(vm)vm.addEventListener('click',function(e){if(e.target===this)closeVideo();});
+var revealObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof L==='undefined'||!document.getElementById('map'))return;
+  var PLACES=[
+    {n:'01', name:'Göreme Open Air Museum', short:'A UNESCO World Heritage Site and the most important Byzantine monastic site in Cappadocia.', lat:38.6436, lng:34.8307, zoom:15},
+    {n:'02', name:'Uçhisar Castle', short:'The highest point in Cappadocia, a 60-metre monolithic tufa rock riddled with tunnels and cave rooms that once housed a thousand people.', lat:38.6285, lng:34.8013, zoom:15},
+    {n:'03', name:'Paşabağ Monks Valley', short:'The finest fairy chimneys in Cappadocia, with three-headed formations rising from a vineyard.', lat:38.678, lng:34.862, zoom:14},
+    {n:'04', name:'Derinkuyu', short:'The deepest underground city in Turkey, extending 85 metres below the surface with at least eight excavated levels.', lat:38.3722, lng:34.735, zoom:15},
+    {n:'05', name:'Ihlara Valley', short:'A 14 km canyon cut through volcanic rock by the Melendiz River, with around 105 Byzantine churches carved into the cliff walls and fifty of them decorated with frescoes.', lat:38.2611, lng:34.2922, zoom:13},
+    {n:'06', name:'Love Valley and Rose Valley', short:'The two most photographed valleys on foot from Göreme.', lat:38.6496, lng:34.8197, zoom:14},
+    {n:'07', name:'Kaymakli Underground City', short:'An underground city 20 km south of Nevsehir with eight excavated levels descending 40 metres into volcanic tufa.', lat:38.4422, lng:34.7131, zoom:15},
+    {n:'08', name:'Zelve Open Air Museum', short:'A valley of abandoned cave dwellings, carved churches and monastic cells north of Goreme, inhabited from the 9th to the 20th century.', lat:38.68, lng:34.8667, zoom:14}
+  ];
+  var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
+  var bounds=L.latLngBounds(PLACES.map(function(p){return [p.lat,p.lng];}));
+  map.fitBounds(bounds,{padding:[50,50]});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap · © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
+  var markers=PLACES.map(function(p,i){
+    var icon=L.divIcon({className:'',html:'<div class="atl-pin"><span>'+p.n+'</span></div>',iconSize:[34,34],iconAnchor:[10,32],popupAnchor:[7,-26]});
+    var m=L.marker([p.lat,p.lng],{icon:icon,title:p.name}).addTo(map);
+    m.bindPopup(
+      '<span class="pop-num">'+p.n+' · Place</span>'+
+      '<div class="pop-name">'+p.name+'</div>'+
+      '<div class="pop-desc">'+p.short+'</div>'+
+      '<a class="pop-link" target="_blank" href="https://www.google.com/maps?q='+encodeURIComponent(p.name+' Cappadocia')+'">View on Map &rarr;</a>',
+      {closeButton:true,autoPan:true,autoPanPadding:[40,80],offset:[0,-6]}
+    );
+    m.on('click',function(){selectPlace(i,{fromPin:true});});
+    return m;
+  });
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.atl-places .atl-place'));
+  var nowBox=document.getElementById('atlNow');
+  var active=-1;
+  function setActive(i){
+    cards.forEach(function(c){c.classList.toggle('active', Number(c.dataset.i)===i);});
+    document.querySelectorAll('.atl-places .atl-pin').forEach(function(el,idx){el.classList.toggle('active', idx===i);});
+    if(i>=0){var p=PLACES[i];nowBox.innerHTML='<span class="atl-now-num">Now Viewing · '+p.n+'</span><div class="atl-now-name">'+p.name+'</div>';}
+    active=i;
+  }
+  function selectPlace(i,opts){
+    opts=opts||{};
+    if(i===active&&!opts.force)return;
+    setActive(i);
+    var p=PLACES[i];
+    map.flyTo([p.lat,p.lng],p.zoom,{duration:1.0,easeLinearity:0.3});
+    markers[i].openPopup();
+    if(window.matchMedia('(max-width: 768px)').matches&&!opts.fromPin){
+      var stage=document.querySelector('.atl-mapstage');
+      if(stage){var nh=document.querySelector('.site-nav');var top=stage.getBoundingClientRect().top+window.pageYOffset-(nh?nh.offsetHeight:64);window.scrollTo({top:Math.max(0,top),behavior:'smooth'});setTimeout(function(){map.invalidateSize();},420);}
+    }
+  }
+  cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
+  var fit=document.getElementById('atlFit');
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Cappadocia · '+PLACES.length+' places</span><div class="atl-now-name">A field guide</div>';});}
+  map.on('click',function(){map.scrollWheelZoom.enable();});
+  map.on('mouseout',function(){map.scrollWheelZoom.disable();});
+  window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};
+});
+</script>
+</body>
+</html>
