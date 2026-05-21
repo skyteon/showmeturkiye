@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Journal · Show Me Türkiye</title>
+<meta name="description" content="Travel stories, city guides, and hidden corners of Türkiye, by the Show Me Türkiye editorial team.">
+<link rel="preload" as="image" href="https://img.showmeturkiye.com/hero/logo-v2.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#F4EFE5"/>
+    <text x="100" y="92" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="500" font-size="28" fill="#2A1410">The</text>
+    <text x="100" y="128" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="500" font-size="36" fill="#C0392B">Journal</text>
+    <line x1="70" y1="142" x2="130" y2="142" stroke="#2A1410" stroke-width="1" opacity="0.3"/>
+  </svg>
+</template>
+<style>
+:root {
+  --cream:        #F4EFE5;
+  --cream-2:      #E8DFCD;
+  --cream-3:      #DCD0B7;
+  --paper:        #FAF6EC;
+  --gold:         #C9A75D;
+  --gold-soft:    #D9BC7A;
+  --terracotta:   #C0392B;
+  --terracotta-2: #A12E22;
+  --espresso:     #0E0908;
+  --ink:          #2A1410;
+  --ink-soft:     #5C3530;
+  --ink-mute:     #8A6B62;
+  --line:         rgba(42,20,16,0.10);
+  --line-strong:  rgba(42,20,16,0.18);
+  --cream-inv:    rgba(244,239,229,0.86);
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans:  'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --accent: var(--terracotta);
+  --accent-2: var(--gold);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+button { font: inherit; cursor: pointer; }
+em { font-style: italic; }
+
+/* ═══════════ NAVIGATION ═══════════ */
+.site-nav { display: contents; }
+.site-nav > a, .site-nav > .nav-logo {
+  position: fixed; top: 24px; left: 48px; z-index: 1003;
+}
+.site-nav a img, .site-logo {
+  height: 96px; width: auto; object-fit: contain; display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
+}
+
+.hamburger {
+  position: fixed; top: 28px; right: 48px;
+  display: flex; flex-direction: column; gap: 6px;
+  background: rgba(244,239,229,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(42,20,16,0.10);
+  padding: 14px; min-width: 48px; min-height: 48px;
+  z-index: 1003; align-items: center; justify-content: center;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.hamburger:hover { background: var(--cream); transform: translateY(-1px); }
+.hamburger span {
+  width: 18px; height: 1.5px; background: var(--ink);
+  display: block; transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center;
+}
+.hamburger.open span { background: var(--cream); }
+.hamburger.open span:nth-child(1){ transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2){ opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3){ transform: translateY(-7.5px) rotate(-45deg); }
+
+.nav-overlay {
+  display: none; position: fixed; inset: 0;
+  background: var(--espresso); flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 1002; animation: navFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.nav-overlay.open { display: flex; }
+@keyframes navFadeIn { from{opacity:0} to{opacity:1} }
+.nav-overlay-inner { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 480px; width: 100%; padding: 0 32px; }
+.nav-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 36px; display: flex; align-items: center; gap: 16px;
+}
+.nav-eyebrow::before, .nav-eyebrow::after {
+  content:''; width: 34px; height: 1px; background: var(--gold); opacity: 0.55;
+}
+.nav-overlay nav { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 100%; }
+.nav-overlay a {
+  font-size: 15px; font-weight: 300; letter-spacing: 0.32em;
+  text-transform: uppercase; color: rgba(244,239,229,0.55);
+  padding: 11px 0; transition: color 0.3s ease;
+  position: relative; display: inline-block;
+}
+.nav-overlay a:hover { color: var(--cream); }
+.nav-overlay a.active { color: var(--cream); font-weight: 400; }
+.nav-overlay a.active::after {
+  content: ''; position: absolute; bottom: 3px; left: 50%;
+  transform: translateX(-50%); width: 60%; height: 1px; background: var(--gold);
+}
+.nav-lang { margin-top: 40px; display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; }
+.nav-lang button { background: none; border: none; padding: 6px 8px; color: rgba(244,239,229,0.30); transition: color 0.3s ease; }
+.nav-lang button:hover { color: rgba(244,239,229,0.85); }
+.nav-lang button.on { color: var(--cream); font-weight: 400; }
+.nav-lang .sep { color: rgba(244,239,229,0.20); user-select: none; pointer-events: none; }
+.close-nav {
+  position: absolute; top: 28px; right: 48px;
+  background: none; border: none; color: var(--cream);
+  font-size: 28px; opacity: 0.55; z-index: 1004; line-height: 1;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.close-nav:hover { opacity: 1; transform: rotate(90deg); }
+
+/* ═══════════ MASTHEAD (centered, editorial cover) ═══════════ */
+.masthead {
+  padding: 140px 48px 56px;
+  background: var(--cream);
+  position: relative;
+  text-align: center;
+}
+.masthead-inner {
+  max-width: 980px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+.masthead-eyebrow {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  border: 1px solid var(--terracotta);
+  padding: 11px 22px;
+  border-radius: 3px;
+  margin-bottom: 36px;
+}
+.masthead-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(48px, 7.5vw, 104px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  text-wrap: balance;
+  margin-bottom: 32px;
+}
+.masthead-title em {
+  font-style: italic; color: var(--accent);
+  font-weight: 500;
+}
+.masthead-sub {
+  font-family: var(--sans);
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 56ch;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+.masthead-meta {
+  max-width: 980px; margin: 28px auto 0;
+  display: flex; justify-content: center; gap: 56px;
+  flex-wrap: wrap;
+}
+.masthead-meta .item {
+  display: inline-flex; align-items: baseline; gap: 12px;
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.masthead-meta .label {
+  font-weight: 600; color: var(--ink);
+}
+.masthead-meta .value {
+  color: var(--ink-soft);
+}
+
+/* ═══════════ HERO / FEATURED STORY ═══════════ */
+.hero {
+  padding: 48px 48px 96px;
+  background: var(--cream);
+  position: relative;
+}
+.hero-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+}
+.hero-image-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #C0392B 0%, #7d2419 60%, #2A1410 100%);
+  box-shadow:
+    0 1px 2px rgba(42,20,16,0.10),
+    0 24px 64px rgba(42,20,16,0.22);
+}
+.hero-image-wrap img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
+}
+.hero:hover .hero-image-wrap img { transform: scale(1.04); }
+.hero-image-tag {
+  position: absolute; top: 24px; left: 24px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 8px 14px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  border-radius: 2px;
+}
+.hero-image-tag::before {
+  content: '★'; color: var(--accent);
+  margin-right: 8px; font-size: 12px;
+}
+
+.hero-text { padding-right: 24px; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 28px;
+}
+.hero-eyebrow::after {
+  content: ''; flex: 1; height: 1px; background: var(--line-strong);
+  max-width: 80px;
+}
+.hero h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.04; letter-spacing: -0.018em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.hero h2 em {
+  font-style: italic; color: var(--accent);
+}
+.hero-excerpt {
+  font-family: var(--sans); font-style: normal; font-weight: 400;
+  font-size: 17px; line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 32px; max-width: 52ch;
+  text-wrap: pretty;
+}
+.hero-byline {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 12px; color: var(--ink-mute);
+  margin-bottom: 36px;
+  letter-spacing: 0.04em;
+}
+.hero-byline .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
+.hero-byline .author { color: var(--ink); font-weight: 500; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--ink); color: var(--cream);
+  padding: 18px 28px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  border-radius: 999px;
+  transition: all 0.35s cubic-bezier(.22,.61,.36,1);
+}
+.hero-cta:hover {
+  background: var(--accent); color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(192,57,43,0.30);
+}
+.hero-cta .arr { transition: transform 0.3s ease; }
+.hero-cta:hover .arr { transform: translateX(4px); }
+
+/* ═══════════ FILTER BAR (sticky) ═══════════ */
+.filter-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(244,239,229,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 48px;
+}
+.filter-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; align-items: center; gap: 24px;
+  justify-content: space-between;
+}
+.filter-pills {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  flex: 1; min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-pills::-webkit-scrollbar { display: none; }
+.pill {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink-soft);
+  padding: 9px 16px;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+.pill:hover { color: var(--ink); background: rgba(42,20,16,0.04); }
+.pill.active {
+  background: var(--ink); color: var(--cream);
+  border-color: var(--ink);
+}
+.pill .count {
+  font-size: 10px; opacity: 0.55;
+  margin-left: 6px; font-variant-numeric: tabular-nums;
+}
+.search-box {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 999px;
+  min-width: 240px;
+  transition: all 0.25s ease;
+}
+.search-box:focus-within {
+  border-color: var(--ink-soft);
+  background: var(--cream);
+  box-shadow: 0 0 0 4px rgba(42,20,16,0.04);
+}
+.search-box svg { color: var(--ink-mute); flex-shrink: 0; }
+.search-box input {
+  background: transparent; border: none; outline: none;
+  font: inherit; font-size: 13px; color: var(--ink);
+  width: 100%;
+}
+.search-box input::placeholder { color: var(--ink-mute); }
+
+/* ═══════════ EDITOR'S PICKS ═══════════ */
+.editors-picks {
+  padding: 96px 48px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+.section-header {
+  max-width: 1320px; margin: 0 auto 56px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+.section-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 12px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.section-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--accent);
+}
+.section-header h3 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.05; letter-spacing: -0.014em;
+  color: var(--ink);
+}
+.section-header h3 em { font-style: italic; color: var(--accent); }
+.section-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+  transition: gap 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+.section-link:hover { gap: 14px; color: var(--accent); border-color: var(--accent); }
+
+.picks-list {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; flex-direction: column;
+  gap: 0;
+}
+.pick {
+  display: grid;
+  grid-template-columns: 80px 1fr 240px;
+  gap: 48px;
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  align-items: center;
+  transition: padding-left 0.4s cubic-bezier(.22,.61,.36,1);
+  position: relative;
+}
+.pick:last-child { border-bottom: 1px solid var(--line); }
+.pick:hover { padding-left: 24px; }
+.pick-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: 56px; font-weight: 400;
+  color: var(--accent);
+  line-height: 1; opacity: 0.92;
+  font-variant-numeric: tabular-nums;
+}
+.pick-content { min-width: 0; }
+.pick-meta {
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin-bottom: 12px;
+  display: flex; gap: 14px; align-items: center;
+}
+.pick-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
+.pick h4 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.15; letter-spacing: -0.012em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+.pick:hover h4 { color: var(--accent); }
+.pick-excerpt {
+  font-size: 14px; line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+.pick-image {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--cream-2);
+}
+.pick-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
+}
+.pick:hover .pick-image img { transform: scale(1.06); }
+
+/* ═══════════ MAIN GRID (asymmetric magazine) ═══════════ */
+.archive {
+  padding: 96px 48px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.archive-grid {
+  max-width: 1320px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 40px 32px;
+}
+.card {
+  display: flex; flex-direction: column;
+  background: transparent;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
+}
+.card:hover { transform: translateY(-4px); }
+
+.card-img {
+  width: 100%; overflow: hidden;
+  background: var(--cream-2);
+  border-radius: 4px;
+  position: relative;
+  aspect-ratio: 4/3;
+  margin-bottom: 22px;
+}
+/* Category-tinted fallback gradients (when images don't load) */
+.card[data-category="cities"] .card-img    { background: linear-gradient(135deg, #C0392B, #2A1410); }
+.card[data-category="coast"] .card-img     { background: linear-gradient(135deg, #0F7BB5, #0a4f76); }
+.card[data-category="mountain"] .card-img  { background: linear-gradient(135deg, #5C3530, #2A1410); }
+.card[data-category="history"] .card-img   { background: linear-gradient(135deg, #C9A75D, #8d6e34); }
+.card[data-category="planning"] .card-img  { background: linear-gradient(135deg, #4A6B4F, #2c3f30); }
+.pick:nth-child(1) .pick-image { background: linear-gradient(135deg, #C0392B, #7d2419); }
+.pick:nth-child(2) .pick-image { background: linear-gradient(135deg, #C9A75D, #8d6e34); }
+.pick:nth-child(3) .pick-image { background: linear-gradient(135deg, #5C3530, #2A1410); }
+.card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
+}
+.card:hover .card-img img { transform: scale(1.05); }
+.card-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(14,9,8,0.18) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card:hover .card-img::after { opacity: 1; }
+
+.card-cat {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 12px;
+}
+.card h4 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: 20px; line-height: 1.2; letter-spacing: -0.008em;
+  color: var(--ink);
+  margin-bottom: 12px;
+  text-wrap: balance;
+  transition: color 0.3s ease;
+}
+.card:hover h4 { color: var(--accent); }
+.card p {
+  font-size: 13.5px; line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+  text-wrap: pretty;
+}
+.card-meta {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 11px; color: var(--ink-mute);
+  letter-spacing: 0.05em;
+  margin-top: auto;
+}
+.card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
+
+/* Size variants */
+.card-wide   { grid-column: span 4; }   /* big editorial */
+.card-wide .card-img { aspect-ratio: 16/9; }
+.card-wide h4 { font-size: 30px; }
+.card-wide p { font-size: 15px; max-width: 56ch; }
+
+.card-med    { grid-column: span 2; }   /* standard */
+.card-tall   { grid-column: span 2; }   /* tall portrait */
+.card-tall .card-img { aspect-ratio: 3/4; }
+
+.card-text   { grid-column: span 2; }
+.card-text .card-img { display: none; }
+.card-text {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px 28px;
+  justify-content: space-between;
+  min-height: 320px;
+}
+.card-text::before {
+  content: '“';
+  font-family: var(--serif);
+  font-size: 96px;
+  line-height: 0.6;
+  color: var(--accent);
+  opacity: 0.30;
+  margin-bottom: 8px;
+  display: block;
+  height: 0;
+}
+.card-text h4 { font-size: 22px; margin-top: 32px; }
+.card-text p { font-style: normal; font-family: var(--sans); font-size: 14px; line-height: 1.7; }
+
+.card-half   { grid-column: span 3; }
+.card-half .card-img { aspect-ratio: 5/3; }
+.card-half h4 { font-size: 24px; }
+
+/* Load more */
+.load-more-wrap {
+  max-width: 1320px; margin: 64px auto 0;
+  text-align: center;
+}
+.load-more {
+  background: transparent;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 16px 36px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+.load-more:hover {
+  background: var(--ink); color: var(--cream);
+  transform: translateY(-1px);
+}
+
+/* ═══════════ REGIONS ═══════════ */
+.regions {
+  padding: 96px 48px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.regions-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+}
+.regions-left h3 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(34px, 4.2vw, 56px);
+  line-height: 1.04; letter-spacing: -0.018em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+.regions-left h3 em { font-style: italic; color: var(--accent); }
+.regions-left p {
+  font-family: var(--sans); font-style: normal;
+  font-size: 16px; line-height: 1.65;
+  color: var(--ink-soft);
+  margin-bottom: 36px;
+  max-width: 50ch;
+}
+.regions-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.region-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+.region-item:hover { padding-left: 16px; color: var(--accent); }
+.region-item:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 20px; }
+.region-item:nth-child(even) { padding-left: 20px; }
+.region-item:nth-child(even):hover { padding-left: 36px; }
+.region-name {
+  font-family: var(--serif);
+  font-size: 19px; font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.region-name em { font-style: italic; color: var(--ink-mute); font-size: 14px; font-family: var(--sans); margin-left: 8px; letter-spacing: 0.06em; }
+.region-arrow {
+  font-size: 14px; color: var(--ink-mute);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.region-item:hover .region-arrow { transform: translateX(4px); color: var(--accent); }
+
+.regions-right {
+  position: relative;
+  aspect-ratio: 6/5;
+  background: linear-gradient(135deg, var(--cream-2) 0%, var(--cream-3) 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 40px;
+  display: flex; align-items: center; justify-content: center;
+}
+.regions-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 22% 38%, rgba(192,57,43,0.20) 0%, transparent 6%),
+    radial-gradient(circle at 35% 52%, rgba(201,167,93,0.25) 0%, transparent 5%),
+    radial-gradient(circle at 50% 45%, rgba(192,57,43,0.18) 0%, transparent 5%),
+    radial-gradient(circle at 64% 58%, rgba(201,167,93,0.22) 0%, transparent 5%),
+    radial-gradient(circle at 76% 42%, rgba(192,57,43,0.20) 0%, transparent 5%),
+    radial-gradient(circle at 28% 65%, rgba(201,167,93,0.18) 0%, transparent 4%);
+  pointer-events: none;
+}
+.regions-map {
+  width: 100%; height: 100%;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 6px 16px rgba(42,20,16,0.18));
+}
+.regions-map svg { width: 100%; height: 100%; }
+.regions-map svg path {
+  fill: var(--ink);
+  fill-opacity: 0.86;
+  stroke: var(--cream);
+  stroke-width: 0.5;
+}
+.regions-caption {
+  position: absolute; bottom: 24px; left: 28px; right: 28px;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-soft);
+  display: flex; justify-content: space-between; gap: 16px;
+}
+
+/* ═══════════ NEWSLETTER ═══════════ */
+.newsletter-section {
+  padding: 96px 48px;
+  background: var(--espresso);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+.newsletter-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(201,167,93,0.10) 0%, transparent 60%);
+  pointer-events: none;
+}
+.newsletter-inner {
+  max-width: 920px; margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.newsletter-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--gold);
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+}
+.newsletter-eyebrow::before, .newsletter-eyebrow::after {
+  content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.55;
+}
+.newsletter-section h3 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 58px);
+  line-height: 1.05; letter-spacing: -0.018em;
+  color: var(--cream);
+  margin-bottom: 20px;
+  text-wrap: balance;
+}
+.newsletter-section h3 em { font-style: italic; color: var(--gold); }
+.newsletter-section p {
+  font-family: var(--sans); font-style: normal;
+  font-size: 16px; line-height: 1.65;
+  color: rgba(244,239,229,0.78);
+  margin-bottom: 40px;
+  max-width: 56ch;
+  margin-left: auto; margin-right: auto;
+}
+.newsletter-form {
+  display: flex; gap: 0; align-items: stretch;
+  background: rgba(244,239,229,0.06);
+  border: 1px solid rgba(244,239,229,0.18);
+  border-radius: 999px;
+  padding: 6px;
+  max-width: 540px;
+  margin: 0 auto;
+  transition: border-color 0.3s ease;
+}
+.newsletter-form:focus-within { border-color: rgba(244,239,229,0.50); }
+.newsletter-form input {
+  flex: 1; background: transparent; border: none; outline: none;
+  padding: 14px 22px;
+  font: inherit; font-size: 15px; color: var(--cream);
+  min-width: 0;
+}
+.newsletter-form input::placeholder { color: rgba(244,239,229,0.50); }
+.newsletter-btn {
+  background: var(--cream); color: var(--espresso);
+  border: none; border-radius: 999px;
+  padding: 14px 26px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.newsletter-btn:hover { background: var(--gold); color: var(--espresso); gap: 12px; }
+.newsletter-trust {
+  margin-top: 24px;
+  font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(244,239,229,0.45);
+}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer {
+  background: var(--espresso);
+  color: var(--cream);
+  padding: 24px 48px 40px;
+  border-top: 1px solid rgba(244,239,229,0.08);
+}
+.footer-content {
+  max-width: 1320px; margin: 64px auto 56px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 64px;
+}
+.footer-section h4 {
+  font-size: 10.5px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.28em;
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+.footer-section p {
+  font-size: 14px; line-height: 1.7;
+  color: rgba(244,239,229,0.78);
+  max-width: 38ch;
+  margin-top: 12px;
+}
+.footer-logo { height: 48px; width: auto; margin-bottom: 4px; }
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 14px; color: rgba(244,239,229,0.78);
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.footer-links a:hover { color: var(--cream); padding-left: 4px; }
+.footer-socials { display: flex; gap: 10px; margin-top: 22px; }
+.footer-socials a {
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(244,239,229,0.18);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: rgba(244,239,229,0.78);
+  transition: all 0.3s ease;
+}
+.footer-socials a:hover { border-color: var(--cream); color: var(--cream); transform: translateY(-2px); }
+.footer-bottom {
+  padding-top: 28px;
+  border-top: 1px solid rgba(244,239,229,0.10);
+  color: rgba(244,239,229,0.50);
+  font-size: 12px; letter-spacing: 0.04em;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+  max-width: 1320px; margin: 0 auto;
+}
+.footer-bottom .credit { font-style: italic; color: var(--gold); opacity: 0.85; }
+
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ═══════════ RESPONSIVE ═══════════ */
+@media (max-width: 1100px) {
+  .archive-grid { grid-template-columns: repeat(4, 1fr); }
+  .card-wide { grid-column: span 4; }
+  .card-half { grid-column: span 2; }
+  .card-text { grid-column: span 2; }
+  .pick { grid-template-columns: 60px 1fr 180px; gap: 32px; }
+  .pick-num { font-size: 44px; }
+}
+
+@media (max-width: 900px) {
+  .masthead, .hero, .editors-picks, .archive, .regions, .newsletter-section, .footer { padding-left: 28px; padding-right: 28px; }
+  .filter-bar { padding-left: 24px; padding-right: 24px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-text { padding-right: 0; }
+  .hero-image-wrap { aspect-ratio: 4/5; max-height: 70vh; }
+  .regions-inner { grid-template-columns: 1fr; gap: 48px; }
+  .footer-content { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .pick { grid-template-columns: 48px 1fr; }
+  .pick-image { display: none; }
+  .pick-num { font-size: 36px; }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  .card-wide, .card-half, .card-text, .card-tall, .card-med { grid-column: span 2; }
+  .card-text { min-height: auto; }
+}
+
+@media (max-width: 640px) {
+  .masthead-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .masthead-meta { align-items: flex-start; }
+  .hamburger { top: 14px; right: 16px; padding: 12px; min-width: 44px; min-height: 44px; }
+  .site-nav > a, .site-nav > .nav-logo { top: 14px; left: 16px; }
+  .site-nav a img { height: 48px; }
+  body.scrolled .site-nav a img { height: 40px; }
+
+  .masthead { padding: 96px 20px 36px; }
+  .masthead-eyebrow { padding: 9px 16px; font-size: 10px; letter-spacing: 0.28em; margin-bottom: 24px; }
+  .masthead-inner { padding-bottom: 28px; }
+  .masthead-meta { gap: 24px 32px; margin-top: 22px; }
+
+  .hero, .editors-picks, .archive, .regions, .newsletter-section, .footer { padding-left: 20px; padding-right: 20px; }
+  .hero { padding-top: 32px; padding-bottom: 56px; }
+  .hero-inner { gap: 28px; }
+  .hero-image-wrap { aspect-ratio: 4/5; max-height: 60vh; }
+  .hero-image-tag { top: 16px; left: 16px; padding: 7px 12px; font-size: 9.5px; }
+  .hero h2 { font-size: clamp(30px, 8vw, 42px); margin-bottom: 18px; }
+  .hero-excerpt { font-size: 15px; margin-bottom: 24px; }
+  .hero-byline { gap: 10px; flex-wrap: wrap; font-size: 11px; margin-bottom: 28px; }
+  .hero-byline .dot { width: 2px; height: 2px; }
+  .hero-cta { padding: 16px 24px; font-size: 10.5px; letter-spacing: 0.24em; width: 100%; justify-content: center; }
+
+  .editors-picks, .archive, .regions { padding-top: 64px; padding-bottom: 64px; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; }
+  .section-header h3 { font-size: clamp(26px, 7vw, 36px); }
+
+  .pick { grid-template-columns: 40px 1fr; gap: 18px; padding: 22px 0; }
+  .pick:hover { padding-left: 0; }
+  .pick-num { font-size: 30px; }
+  .pick h4 { font-size: 20px; }
+  .pick-meta { font-size: 9.5px; gap: 10px; flex-wrap: wrap; }
+  .pick-excerpt { font-size: 13.5px; }
+
+  .filter-bar { padding: 12px 20px; }
+  .filter-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+  .search-box { min-width: 0; }
+  .filter-pills { margin: 0 -20px; padding: 0 20px; }
+  .pill { padding: 8px 14px; font-size: 11.5px; }
+
+  .archive-grid { grid-template-columns: 1fr; gap: 24px; }
+  .card-wide, .card-half, .card-text, .card-tall, .card-med { grid-column: span 1; }
+  .card-img { margin-bottom: 16px; }
+  .card-wide .card-img, .card-half .card-img, .card-tall .card-img { aspect-ratio: 4/3; }
+  .card h4, .card-wide h4, .card-half h4 { font-size: 21px; }
+  .card p { font-size: 14px; }
+  .card-text { min-height: auto; padding: 24px 20px; }
+  .card-text h4 { margin-top: 20px; font-size: 20px; }
+
+  /* Boxed cards: tighter padding on mobile */
+  body[data-cards="boxed"] .card { padding: 12px; }
+
+  /* Overlap hero on mobile: give image a real height */
+  body[data-hero="overlap"] .hero { padding: 0; }
+  body[data-hero="overlap"] .hero-inner { display: flex; flex-direction: column; min-height: auto; }
+  body[data-hero="overlap"] .hero-image-wrap { aspect-ratio: 4/5; height: auto; max-height: 60vh; width: 100%; order: -1; }
+  body[data-hero="overlap"] .hero-text { margin-left: 0; padding: 40px 20px 56px; box-shadow: none; }
+
+  .regions-list { grid-template-columns: 1fr; }
+  .region-item:nth-child(odd) { border-right: none; padding-right: 4px; }
+  .region-item:nth-child(even) { padding-left: 4px; border-bottom: 1px solid var(--line); }
+  .region-item:nth-child(even):hover { padding-left: 16px; }
+  .regions-right { padding: 24px; }
+
+  .newsletter-section { padding-top: 64px; padding-bottom: 64px; }
+  .newsletter-section h3 { font-size: clamp(28px, 7.5vw, 40px); }
+  .newsletter-section p { font-size: 14.5px; margin-bottom: 28px; }
+  .newsletter-form { flex-direction: column; border-radius: 16px; padding: 6px; gap: 6px; }
+  .newsletter-form input { text-align: center; padding: 14px 18px; font-size: 14.5px; }
+  .newsletter-btn { width: 100%; justify-content: center; padding: 14px 22px; }
+  .newsletter-trust { font-size: 10.5px; margin-top: 20px; }
+
+  .footer { padding: 56px 20px 28px; }
+  .footer-content { grid-template-columns: 1fr 1fr; gap: 28px 20px; margin-top: 0; margin-bottom: 36px; }
+  .footer-section:first-child { grid-column: 1 / -1; }
+  .footer-section p { font-size: 13.5px; }
+  .footer-links a { font-size: 13.5px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; font-size: 11.5px; }
+}
+
+@media (max-width: 400px) {
+  .masthead-title { font-size: 44px; line-height: 0.98; }
+  .hero h2 { font-size: 28px; }
+  .hero-image-tag { padding: 6px 10px; font-size: 9px; letter-spacing: 0.22em; }
+  .card h4, .card-wide h4, .card-half h4 { font-size: 19px; }
+  .pick h4 { font-size: 18px; }
+  .pick-num { font-size: 26px; }
+  .pick { grid-template-columns: 34px 1fr; gap: 14px; }
+  .footer-content { grid-template-columns: 1fr; }
+  .footer-section:first-child { grid-column: auto; }
+}
+
+@media (hover: none) {
+  /* Disable hover-only transforms on touch devices to avoid sticky states */
+  .card:hover { transform: none; }
+  .card:hover h4 { color: var(--ink); }
+  .pick:hover { padding-left: 0; }
+  .pick:hover h4 { color: var(--ink); }
+  .hero:hover .hero-image-wrap img { transform: none; }
+  .footer-links a:hover { padding-left: 0; }
+  .region-item:hover { padding-left: 4px; color: var(--ink); }
+}
+
+/* ═══════════ REVEAL ANIMATIONS ═══════════ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ═══════════ TWEAKS-DRIVEN VARIATIONS ═══════════ */
+body[data-accent="gold"]     { --accent: #B8893A; --accent-2: #C9A75D; }
+body[data-accent="terracotta"]{ --accent: #C0392B; --accent-2: #C9A75D; }
+body[data-accent="forest"]   { --accent: #4A6B4F; --accent-2: #C9A75D; }
+body[data-accent="ink"]      { --accent: #2A1410; --accent-2: #C9A75D; }
+
+body[data-bg="paper"]   { background: var(--paper); }
+body[data-bg="cream"]   { background: var(--cream); }
+body[data-bg="dark"]    {
+  background: #1a1310;
+  --ink: #F4EFE5; --ink-soft: rgba(244,239,229,0.78); --ink-mute: rgba(244,239,229,0.50);
+  --cream: #1a1310; --cream-2: #2a1f1a; --paper: #15100d; --line: rgba(244,239,229,0.12); --line-strong: rgba(244,239,229,0.20);
+}
+body[data-bg="dark"] .hamburger { background: rgba(244,239,229,0.10); border-color: rgba(244,239,229,0.18); }
+body[data-bg="dark"] .hamburger span { background: var(--cream); }
+body[data-bg="dark"] .filter-bar { background: rgba(26,19,16,0.85); }
+body[data-bg="dark"] .hero-cta { background: var(--cream); color: var(--espresso); }
+body[data-bg="dark"] .load-more { border-color: var(--cream); color: var(--cream); }
+body[data-bg="dark"] .load-more:hover { background: var(--cream); color: var(--espresso); }
+body[data-bg="dark"] .card-text { background: #2a1f1a; }
+
+body[data-hero="cinematic"] .hero-inner { grid-template-columns: 1fr; }
+body[data-hero="cinematic"] .hero-image-wrap { aspect-ratio: 21/9; order: -1; max-height: 70vh; }
+body[data-hero="cinematic"] .hero-text { padding-right: 0; max-width: 800px; margin: 0 auto; text-align: center; }
+body[data-hero="cinematic"] .hero-eyebrow { justify-content: center; }
+body[data-hero="cinematic"] .hero-eyebrow::after { display: none; }
+body[data-hero="cinematic"] .hero-eyebrow::before { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); }
+
+body[data-hero="overlap"] .hero { padding-top: 0; padding-bottom: 0; }
+body[data-hero="overlap"] .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 0; align-items: stretch; min-height: 80vh; }
+body[data-hero="overlap"] .hero-image-wrap { aspect-ratio: auto; height: 100%; border-radius: 0; }
+body[data-hero="overlap"] .hero-text { background: var(--cream); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; margin-left: -80px; z-index: 2; position: relative; box-shadow: -20px 0 60px rgba(42,20,16,0.10); }
+
+@media (max-width: 900px) {
+  body[data-hero="overlap"] .hero-text { margin-left: 0; padding: 48px 28px; }
+  body[data-hero="overlap"] .hero-inner { min-height: auto; }
+}
+
+/* Card style variants */
+body[data-cards="boxed"] .card {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+body[data-cards="boxed"] .card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 48px rgba(42,20,16,0.10);
+}
+body[data-cards="boxed"] .card .card-img { margin-bottom: 18px; }
+body[data-cards="boxed"] .card-text { background: var(--paper); }
+
+body[data-cards="bordered"] .card {
+  border-top: 1px solid var(--ink);
+  padding-top: 20px;
+}
+body[data-cards="bordered"] .card-img { border-radius: 0; }
+
+/* density */
+body[data-density="cozy"]    .archive-grid { gap: 56px 40px; }
+body[data-density="default"] .archive-grid { gap: 40px 32px; }
+body[data-density="compact"] .archive-grid { gap: 28px 20px; }
+</style>
+</head>
+<body data-accent="terracotta" data-bg="cream" data-hero="overlap" data-cards="boxed" data-density="compact">
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="site-nav" id="siteNav">
+  <a href="index.html"><img data-src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <button class="close-nav" id="closeNavBtn" aria-label="Close menu">&times;</button>
+  <div class="nav-overlay-inner">
+    <span class="nav-eyebrow">Show Me Türkiye</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore Türkiye</a>
+      <a href="first-guide.html">First Guide</a>
+      <a href="blog.html" class="active">Journal</a>
+      <a href="projects.html">Our Projects</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-lang">
+      <button class="on" aria-label="English">EN</button><span class="sep">·</span><button aria-label="Turkish">TR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MASTHEAD ═══════════ -->
+<section class="masthead" data-screen-label="01 Masthead">
+  <div class="masthead-inner">
+    <span class="masthead-eyebrow">From the editors</span>
+    <h1 class="masthead-title">The <em>Journal</em></h1>
+    <p class="masthead-sub">Travel stories, city guides, and hidden corners of Türkiye. Field notes from the road, written by the Show Me Türkiye team.</p>
+  </div>
+  <div class="masthead-meta">
+    <span class="item"><span class="label">Stories</span><span class="value">16</span></span>
+    <span class="item"><span class="label">Last updated</span><span class="value">May 2026</span></span>
+    <span class="item"><span class="label">Regions</span><span class="value">7</span></span>
+  </div>
+</section>
+
+<!-- ═══════════ HERO / FEATURED STORY ═══════════ -->
+<section class="hero" data-screen-label="02 Featured">
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-eyebrow">Cover Story · Destinations</div>
+      <h2>Top 10 Places to Visit <em>in Türkiye in 2026</em>.</h2>
+      <p class="hero-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Twelve-thousand-year-old temples in Şanlıurfa, monasteries on a Mesopotamian limestone ridge, an entire coast of Lycian ruins where you can swim inside the ancient harbours, and the toppled stone heads of a forgotten king on a mountain summit in Adıyaman.</p>
+      <div class="hero-byline">
+        <span class="author">Show Me Türkiye Editorial</span>
+        <span class="dot"></span>
+        <span>9 min read</span>
+        <span class="dot"></span>
+        <span>Updated May 2026</span>
+      </div>
+      <a href="blog/top-10-places-to-visit-in-Turkey.html" class="hero-cta">
+        Read the cover story <span class="arr">→</span>
+      </a>
+    </div>
+    <div class="hero-image-wrap reveal">
+      <div class="hero-image-tag">Cover Story</div>
+      <img data-src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=2400&q=85" alt="Top 10 places to visit in Türkiye in 2026">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FILTER BAR ═══════════ -->
+<div class="filter-bar" style="display:none">
+  <div class="filter-inner">
+    <div class="filter-pills" id="filterPills">
+      <button class="pill active" data-filter="all">All Stories <span class="count">13</span></button>
+      <button class="pill" data-filter="coast">Coast <span class="count">5</span></button>
+      <button class="pill" data-filter="mountain">Mountain <span class="count">4</span></button>
+      <button class="pill" data-filter="cities">Cities <span class="count">3</span></button>
+      <button class="pill" data-filter="history">History <span class="count">1</span></button>
+    </div>
+    <label class="search-box">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" placeholder="Search stories, regions, cities…" id="searchInput">
+    </label>
+  </div>
+</div>
+
+<!-- ═══════════ EDITOR'S PICKS ═══════════ -->
+<section class="editors-picks" data-screen-label="03 Editor's Picks" style="display:none">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Editor's Picks</div>
+      <h3>Three stories worth <em>your evening</em>.</h3>
+    </div>
+    <a href="#archive" class="section-link">View all <span>→</span></a>
+  </div>
+  <div class="picks-list">
+    <a href="blog/top-10-places-to-visit-in-Turkey.html" class="pick reveal">
+      <div class="pick-num">01</div>
+      <div class="pick-content">
+        <div class="pick-meta">
+          <span>Destinations</span><span class="dot"></span>
+          <span>Türkiye</span><span class="dot"></span>
+          <span>9 min read</span>
+        </div>
+        <h4>Top 10 Places to Visit in Türkiye in 2026.</h4>
+        <p class="pick-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Lycian ruins you swim through, Mesopotamian monasteries, and stone heads on a mountain summit in Adıyaman.</p>
+      </div>
+      <div class="pick-image"><img data-src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=2400&q=85" alt="Top 10 places to visit in Türkiye"></div>
+    </a>
+    <a href="blog/when-is-the-best-time-to-visit-turkiye.html" class="pick reveal">
+      <div class="pick-num">02</div>
+      <div class="pick-content">
+        <div class="pick-meta">
+          <span>Planning Guide</span><span class="dot"></span>
+          <span>Türkiye</span><span class="dot"></span>
+          <span>8 min read</span>
+        </div>
+        <h4>When Is the Best Time to Visit Türkiye: A Month-by-Month Guide.</h4>
+        <p class="pick-excerpt">There is no single best month. There are best months for each region. A month-by-month guide for travellers who want the right answer for their specific trip.</p>
+      </div>
+      <div class="pick-image"><img data-src="https://images.unsplash.com/photo-1527838832700-5059252407fa?w=2400&q=85" alt="When is the best time to visit Türkiye"></div>
+    </a>
+    <a href="blog/istanbul.html" class="pick reveal">
+      <div class="pick-num">03</div>
+      <div class="pick-content">
+        <div class="pick-meta">
+          <span>City Guide</span><span class="dot"></span>
+          <span>Marmara</span><span class="dot"></span>
+          <span>8 min read</span>
+        </div>
+        <h4>Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h4>
+        <p class="pick-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</p>
+      </div>
+      <div class="pick-image"><img data-src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=2400&q=85" alt="Istanbul"></div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════ MAIN ARCHIVE GRID ═══════════ -->
+<section class="archive" id="archive" data-screen-label="04 Archive">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">The Archive</div>
+      <h3>Latest dispatches from <em>across Türkiye</em>.</h3>
+    </div>
+    <a href="#" class="section-link">RSS feed <span>↗</span></a>
+  </div>
+  <div class="archive-grid" id="archiveGrid">
+
+    <!-- WIDE / Antalya -->
+    <a href="blog/antalya.html" class="card card-wide reveal" data-category="coast">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=2400&q=85" alt="Antalya"></div>
+      <div class="card-cat">Mediterranean</div>
+      <h4>Antalya: Kaleiçi, Aspendos, and the Lycian Coast.</h4>
+      <p>Roman aqueducts, Greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. Antalya is not a resort town. It's a province with five thousand years of stone.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
+    </a>
+
+    <!-- Cappadocia -->
+    <a href="blog/kapadokya.html" class="card card-med reveal" data-category="cities">
+      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg" alt="Cappadocia"></div>
+      <div class="card-cat">Central Anatolia</div>
+      <h4>Cappadocia: Göreme, Derinkuyu, and the Balloon Flight.</h4>
+      <p>Ten million years of volcanic erosion. Underground cities going down eighteen levels. Byzantine rock-cut churches with frescoes from the tenth century. And the version of the balloon photo that's actually worth taking.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Kemer -->
+    <a href="blog/kemer.html" class="card card-med reveal" data-category="coast">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=2400&q=85" alt="Kemer"></div>
+      <div class="card-cat">Mediterranean</div>
+      <h4>Kemer: Olympos, Phaselis, and Mount Tahtalı.</h4>
+      <p>A resort town wrapped around a strategic position, the Beydağları rising behind, the Lycian coast stretching west, and the Chimaera flames within a half-hour drive.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Trabzon -->
+    <a href="blog/trabzon.html" class="card card-med reveal" data-category="cities">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=85" alt="Trabzon"></div>
+      <div class="card-cat">Black Sea</div>
+      <h4>Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast.</h4>
+      <p>Sümela Monastery, an underground river cave, a lake that fills every poster of the eastern Black Sea, and the most outdoor-active province on this coast.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Rize -->
+    <a href="blog/rize.html" class="card card-med reveal" data-category="coast">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=2400&q=85" alt="Rize"></div>
+      <div class="card-cat">Black Sea</div>
+      <h4>Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country.</h4>
+      <p>Two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- HALF / Çanakkale -->
+    <a href="blog/canakkale.html" class="card card-half reveal" data-category="history">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=2400&q=85" alt="Çanakkale"></div>
+      <div class="card-cat">Aegean · History</div>
+      <h4>Çanakkale: Gallipoli, Troy, and Assos.</h4>
+      <p>The Trojan horse, the Gallipoli memorials, the temple of Apollo at Smintheion, the medieval castles guarding the Dardanelles, and the wine islands of Bozcaada and Gökçeada, all in one province.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- HALF / Artvin -->
+    <a href="blog/artvin.html" class="card card-half reveal" data-category="mountain">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=2400&q=85" alt="Artvin"></div>
+      <div class="card-cat">Northeast</div>
+      <h4>Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands.</h4>
+      <p>Two Karagöl lakes, a Çoruh River that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited Turkish provinces.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- TALL / Giresun -->
+    <a href="blog/giresun.html" class="card card-tall reveal" data-category="coast">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=85" alt="Giresun"></div>
+      <div class="card-cat">Black Sea</div>
+      <h4>Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast.</h4>
+      <p>Tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. One of the eastern Black Sea's most underrated stops. Most of its best moments are inland.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Erzurum -->
+    <a href="blog/erzurum.html" class="card card-med reveal" data-category="mountain">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=85" alt="Erzurum"></div>
+      <div class="card-cat">Eastern Anatolia</div>
+      <h4>Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express.</h4>
+      <p>At 1,950 metres on the eastern Anatolian plateau, one of the highest provincial capitals in Türkiye. Seljuk and Ottoman stone, the country's best ski resort, and the famous Doğu Express terminus.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Hakkari -->
+    <a href="blog/hakkari.html" class="card card-med reveal" data-category="mountain">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=85" alt="Hakkari"></div>
+      <div class="card-cat">Far Southeast</div>
+      <h4>Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier.</h4>
+      <p>The Cilo and Sat mountains, glaciers that almost nobody photographs, the Zap River cutting through canyons, and a regional culture you cannot see anywhere else in the country.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Ordu -->
+    <a href="blog/ordu.html" class="card card-med reveal" data-category="cities">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=2400&q=85" alt="Ordu"></div>
+      <div class="card-cat">Black Sea</div>
+      <h4>Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast.</h4>
+      <p>Ordu starts at the water and climbs. In a single drive: wake up by the sea, stand inside a Byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Aladağlar -->
+    <a href="blog/aladaglar.html" class="card card-med reveal" data-category="mountain">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=85" alt="Aladağlar"></div>
+      <div class="card-cat">Central Taurus</div>
+      <h4>Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains.</h4>
+      <p>Emli Valley campsites, Kazıklı Ali Canyon's vertical rock, the Bolkar mountains' alpine lakes. Where Turkish mountaineering grew up, and where most Turks who climb spend their summers.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+    <!-- MED / Balıkesir -->
+    <a href="blog/balikesir.html" class="card card-med reveal" data-category="coast">
+      <div class="card-img"><img data-src="https://images.unsplash.com/photo-1551641506-ee5bf4cb45f1?w=2400&q=85" alt="Balıkesir"></div>
+      <div class="card-cat">Aegean</div>
+      <h4>Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean.</h4>
+      <p>Kaz Dağları's pine and oxygen, Ayvalık's old Greek streets, Cunda's harbour seafood, a Glass Terrace at altitude. The Aegean before it became a brand.</p>
+      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
+    </a>
+
+  </div>
+
+  <div class="load-more-wrap">
+    <button class="load-more">Load older dispatches</button>
+  </div>
+</section>
+
+<!-- ═══════════ REGIONS ═══════════ -->
+<section class="regions" data-screen-label="05 Regions" style="display:none">
+  <div class="regions-inner">
+    <div class="regions-left reveal">
+      <div class="section-eyebrow">Wander by Region</div>
+      <h3>Pick a <em>direction</em> on the map.</h3>
+      <p>Seven regions, eighty-one provinces, one country that genuinely never stops surprising the people who think they already know it.</p>
+      <div class="regions-list">
+        <a href="#" class="region-item"><span class="region-name">Marmara <em>· 5</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">Aegean <em>· 4</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">Mediterranean <em>· 6</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">Central Anatolia <em>· 3</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">Black Sea <em>· 8</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">East Anatolia <em>· 4</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">Southeast <em>· 3</em></span><span class="region-arrow">→</span></a>
+        <a href="#" class="region-item"><span class="region-name">All Türkiye <em>· 33</em></span><span class="region-arrow">→</span></a>
+      </div>
+    </div>
+    <div class="regions-right reveal">
+      <div class="regions-map">
+        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <!-- Stylized Türkiye silhouette -->
+          <path d="M40,200
+                   C 60,150 100,120 150,115
+                   C 200,110 240,130 280,125
+                   C 320,120 360,100 410,105
+                   C 460,110 500,130 540,128
+                   C 580,126 620,115 660,120
+                   C 700,125 740,140 760,160
+                   L 770,170
+                   C 775,185 770,205 755,215
+                   C 740,225 715,230 690,228
+                   C 660,225 635,235 620,250
+                   C 605,265 575,275 545,272
+                   C 510,268 485,250 455,252
+                   C 425,254 400,270 370,272
+                   C 340,274 310,265 280,265
+                   C 250,265 225,275 200,275
+                   C 170,275 145,265 115,255
+                   C 85,245 60,225 50,210 Z"/>
+          <!-- City markers as small circles -->
+          <circle cx="155" cy="180" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="265" cy="200" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="180" cy="225" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="345" cy="195" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="475" cy="155" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="600" cy="160" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="685" cy="190" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="540" cy="225" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+          <circle cx="395" cy="230" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="regions-caption">
+        <span>Türkiye · 33 cities covered</span>
+        <span>★ Editor's pick</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ NEWSLETTER ═══════════ -->
+<section class="newsletter-section" data-screen-label="06 Newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-eyebrow">The Journal · Newsletter</div>
+    <h3>Letters from <em>the road</em>.</h3>
+    <p>One quiet email a month. New routes, hidden cities, and field notes from across Türkiye. No spam. An unsubscribe link in every dispatch.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Subscribed ✓';">
+      <label for="newsletter-email" class="visually-hidden">Email address</label>
+      <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <button type="submit" class="newsletter-btn">Subscribe <span>→</span></button>
+    </form>
+    <div class="newsletter-trust">Joined by 8,400+ travellers · Read on phone or in bed</div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer" data-screen-label="07 Footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <img data-src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye" class="footer-logo">
+      <p>A complete travel journal for Türkiye. Curated routes, city guides, and stories from across the country.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://youtube.com/@showmeturkiye" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Explore</h4>
+      <div class="footer-links">
+        <a href="explore.html">Cities</a>
+        <a href="first-guide.html">Routes</a>
+        <a href="blog.html">Journal</a>
+        <a href="projects.html">Films</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>About</h4>
+      <div class="footer-links">
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="press.html">Press</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; <span id="footerYear">2026</span> Show Me Türkiye · Made in Türkiye.</p>
+    <p class="credit">by the Show Me Türkiye Team</p>
+  </div>
+</footer>
+
+<!-- ═══════════ TWEAKS PANEL ═══════════ -->
+<div id="tweaksRoot"></div>
+
+<script>
+/* ─── Navigation ─── */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeNavBtn  = document.getElementById('closeNavBtn');
+const navOverlay   = document.getElementById('navOverlay');
+
+function openNav()  { navOverlay.classList.add('open');    hamburgerBtn.classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeNav() { navOverlay.classList.remove('open'); hamburgerBtn.classList.remove('open'); document.body.style.overflow = ''; }
+hamburgerBtn.addEventListener('click', () => navOverlay.classList.contains('open') ? closeNav() : openNav());
+closeNavBtn.addEventListener('click', closeNav);
+navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+navOverlay.addEventListener('click', e => { if (e.target === navOverlay) closeNav(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) document.body.classList.add('scrolled');
+  else document.body.classList.remove('scrolled');
+}, { passive: true });
+
+/* ─── Filter pills ─── */
+const pills = document.querySelectorAll('.pill');
+const cards = document.querySelectorAll('#archiveGrid .card');
+pills.forEach(p => {
+  p.addEventListener('click', () => {
+    pills.forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+    const f = p.dataset.filter;
+    cards.forEach(c => {
+      if (f === 'all' || c.dataset.category === f) {
+        c.style.display = '';
+      } else {
+        c.style.display = 'none';
+      }
+    });
+  });
+});
+
+/* ─── Search ─── */
+const searchInput = document.getElementById('searchInput');
+searchInput && searchInput.addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  cards.forEach(c => {
+    const text = c.textContent.toLowerCase();
+    c.style.display = (q === '' || text.includes(q)) ? '' : 'none';
+  });
+  if (q !== '') {
+    pills.forEach(x => x.classList.remove('active'));
+    pills[0].classList.add('active');
+  }
+});
+
+/* ─── Reveal on scroll ─── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ─── Footer year ─── */
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+/* Resilient image loader: tests URL and only sets src if it loads. Silent on 404. */
+document.querySelectorAll('img[data-src]').forEach(img => {
+  const url = img.dataset.src;
+  const test = new Image();
+  test.onload = () => { img.src = url; };
+  test.onerror = () => { /* leave parent's gradient fallback in place */ };
+  test.src = url;
+});
+
+</script>
+
+<!-- Tweaks panel stripped from production build (defaults baked into body data-attrs) -->
+
+</body>
+</html>
