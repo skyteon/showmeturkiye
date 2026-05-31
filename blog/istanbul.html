@@ -476,11 +476,11 @@ body.invert-nav .hamburger span { background: var(--cream); }
   font-family: var(--serif);
   font-style: italic;
   font-weight: 500;
-  font-size: 5.2em;
-  line-height: 0.85;
+  font-size: 3.4em;
+  line-height: 0.82;
   color: var(--terracotta);
-  padding: 8px 14px 4px 0;
-  margin-top: 4px;
+  padding: 6px 18px 2px 0;
+  margin-top: 6px;
 }
 .opening p {
   font-family: var(--sans);
@@ -632,7 +632,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
   margin-top: 20px;
 }
 
-/* Marginalia pull quote on wide screens — pulls into left margin */
+/* Marginalia pull quote on wide screens: pulls into left margin */
 @media (min-width: 1100px) {
   .pullquote {
     margin-left: -88px;
@@ -1311,7 +1311,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
   .opening { padding: 64px 20px 36px; }
   .opening .lead { font-size: 19px; }
-  .opening .lead::first-letter { font-size: 4.2em; padding-right: 10px; }
+  .opening .lead::first-letter { font-size: 2.9em; padding-right: 14px; }
   .opening p { font-size: 16.5px; }
 
   .chapter { padding: 64px 20px; }
@@ -1398,7 +1398,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
 </style>
 <style id="smt-search-css">
 /* ═══════════════════════════════════════
-   SEARCH — Core shared styles
+   SEARCH / Core shared styles
    ═══════════════════════════════════════ */
 .search-overlay{
   position:fixed;inset:0;z-index:2000;
@@ -1550,7 +1550,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
   border-color:var(--brown);
 }
 
-/* Body grid — results left, side rail right */
+/* Body grid: results left, side rail right */
 .so-body{
   display:grid;
   grid-template-columns:1fr 280px;
@@ -1668,7 +1668,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
   border-top-color:transparent;
 }
 
-/* Side rail — suggestions when empty */
+/* Side rail: suggestions when empty */
 .so-rail{
   display:none;
   flex-direction:column;
@@ -1713,7 +1713,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
 .so-rail-link:hover{padding-left:8px;color:var(--so-accent);}
 .so-rail-link .meta{color:var(--so-muted);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;}
 
-/* Empty state — when typed but no results */
+/* Empty state: when typed but no results */
 .so-empty{
   padding:80px 0;
   text-align:center;
@@ -1755,7 +1755,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
   height:52px;width:auto;display:block;
   opacity:0.95;
 }
-/* Logo is dark wine on its own — invert for the dark espresso variant */
+/* Logo is dark wine on its own: invert for the dark espresso variant */
 .search-overlay[data-variant="espresso"] .brand-logo{
   filter:invert(1) brightness(1.1);
   opacity:0.78;
@@ -1963,6 +1963,68 @@ body.invert-nav .hamburger span { background: var(--cream); }
 }
 
 </style>
+<style id="hero-v2">
+/* ═══ Immersive article header (Option 2) — overrides base .post-hero ═══ */
+.post-hero{ height:clamp(520px,76vh,740px) !important; }
+.post-hero::before{
+  background:
+    linear-gradient(180deg, rgba(14,9,8,0.32) 0%, rgba(14,9,8,0.04) 30%, rgba(14,9,8,0.42) 62%, rgba(14,9,8,0.88) 100%),
+    radial-gradient(ellipse at 26% 96%, rgba(192,57,43,0.16) 0%, transparent 60%) !important;
+}
+.hero-content{ max-width:1180px !important; padding:0 56px 56px !important; }
+/* category -> outlined chip */
+.hero-eyebrow{
+  display:inline-block !important;
+  border:1px solid rgba(244,239,229,0.5); border-radius:100px;
+  padding:7px 16px !important; margin-bottom:22px !important;
+  color:var(--cream) !important; letter-spacing:0.24em !important; font-size:10.5px !important;
+}
+.hero-eyebrow::before, .hero-eyebrow::after{ display:none !important; content:none !important; }
+/* headline */
+.post-hero h1{ margin-bottom:24px !important; line-height:1.1 !important; }
+.post-hero h1 .hero-h1-sub{ display:inline !important; color:var(--gold-soft) !important; font-size:0.92em !important; font-style:italic !important; }
+.hero-h1-label{ font-family:var(--serif) !important; font-style:italic !important; font-weight:500 !important; color:var(--gold-soft) !important; font-size:clamp(22px,2.6vw,34px) !important; line-height:1.05; margin-top:4px; }
+/* deck */
+.hero-sub{ color:rgba(244,239,229,0.9) !important; max-width:48ch !important; margin-bottom:28px !important; }
+/* byline: photo stamp + rule */
+.hero-meta{ align-items:center !important; gap:13px !important; padding-top:20px !important; border-top:1px solid rgba(244,239,229,0.24); }
+.hero-av{ width:46px; height:46px; border-radius:50%; flex-shrink:0; background:var(--cream) url('https://img.showmeturkiye.com/hero/logo-v2.png') center/66% no-repeat !important; border:1px solid rgba(201,167,93,0.6); }
+.hero-meta .author{ color:var(--cream) !important; font-weight:600 !important; }
+@media (max-width:768px){
+  .post-hero{ height:clamp(440px,70vh,600px) !important; }
+  .hero-content{ padding:0 22px 38px !important; }
+  .hero-eyebrow{ margin-bottom:16px !important; }
+  .post-hero h1{ font-size:clamp(31px,8.4vw,46px) !important; }
+  .hero-sub{ font-size:15px !important; margin-bottom:22px !important; }
+  .hero-meta{ font-size:10px !important; gap:11px !important; padding-top:16px !important; }
+  .hero-av{ width:38px; height:38px; }
+}
+</style>
+<style id="nav-align-fix">
+/* ═══ Unified nav alignment — logo · search · hamburger share ONE vertical center. ═══ */
+.site-nav > a, .site-nav > .nav-logo{ top:56px !important; left:52px !important; transform:translateY(-50%) !important; }
+.site-nav a img, .site-logo{ height:80px !important; }
+.hamburger{ top:56px !important; right:52px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
+.hamburger span{ width:28px !important; }
+.nav-search-btn{ top:56px !important; right:112px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
+.nav-search-btn svg{ width:22px !important; height:22px !important; }
+@media (max-width:768px){
+  .site-nav > a, .site-nav > .nav-logo{ top:42px !important; left:18px !important; }
+  .site-nav a img, .site-logo{ height:58px !important; }
+  .hamburger{ top:42px !important; right:16px !important; padding:11px !important; gap:6px !important; }
+  .hamburger span{ width:30px !important; height:2.5px !important; }
+  .hamburger.open span:nth-child(1){ transform:translateY(8.5px) rotate(45deg) !important; }
+  .hamburger.open span:nth-child(2){ opacity:0 !important; transform:scaleX(0) !important; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-8.5px) rotate(-45deg) !important; }
+  .nav-search-btn{ top:42px !important; right:74px !important; width:46px !important; height:46px !important; }
+  .nav-search-btn svg{ width:24px !important; height:24px !important; }
+}
+@media (max-width:480px){
+  .site-nav > a, .site-nav > .nav-logo{ left:16px !important; }
+  .hamburger{ right:14px !important; }
+  .nav-search-btn{ right:72px !important; }
+}
+</style>
 </head>
 <body>
 
@@ -1980,6 +2042,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
     <nav>
       <a href="../index.html">Home</a>
       <a href="../explore.html">Explore Türkiye</a>
+      <a href="../routes.html">Routes</a>
       <a href="../first-guide.html">First Guide</a>
       <a href="../blog.html" class="active">Journal</a>
       <a href="../projects.html">Our Projects</a>
@@ -1990,12 +2053,21 @@ body.invert-nav .hamburger span { background: var(--cream); }
 </div>
 
 <aside class="side-rail" id="sideRail" aria-hidden="true">
-  <a href="#ch-hagia-sophia" data-target="ch-hagia-sophia">01<span class="label">Byzantine Legacy</span></a>
-  <a href="#ch-blue-mosque" data-target="ch-blue-mosque">02<span class="label">Ottoman Answer</span></a>
-  <a href="#ch-topkapi" data-target="ch-topkapi">03<span class="label">Imperial Seat</span></a>
-  <a href="#ch-cistern" data-target="ch-cistern">04<span class="label">Underground Byzantium</span></a>
-  <a href="#ch-grand-bazaar" data-target="ch-grand-bazaar">05<span class="label">Commerce & Chaos</span></a>
-  <a href="#ch-bosphorus" data-target="ch-bosphorus">06<span class="label">Defining Geography</span></a>
+  <a href="#ch-getting-there" data-target="ch-getting-there">01<span class="label">Arrival</span></a>
+  <a href="#ch-getting-around" data-target="ch-getting-around">02<span class="label">City Transport</span></a>
+  <a href="#ch-when-to-visit" data-target="ch-when-to-visit">03<span class="label">Timing</span></a>
+  <a href="#ch-hagia-sophia" data-target="ch-hagia-sophia">04<span class="label">Byzantine Legacy</span></a>
+  <a href="#ch-blue-mosque" data-target="ch-blue-mosque">05<span class="label">Ottoman Answer</span></a>
+  <a href="#ch-topkapi" data-target="ch-topkapi">06<span class="label">Imperial Seat</span></a>
+  <a href="#ch-cistern" data-target="ch-cistern">07<span class="label">Underground Byzantium</span></a>
+  <a href="#ch-grand-bazaar" data-target="ch-grand-bazaar">08<span class="label">Commerce & Chaos</span></a>
+  <a href="#ch-bosphorus" data-target="ch-bosphorus">09<span class="label">Defining Geography</span></a>
+  <a href="#ch-suleymaniye" data-target="ch-suleymaniye">10<span class="label">Sinan's Crown</span></a>
+  <a href="#ch-galata-tower" data-target="ch-galata-tower">11<span class="label">The Watchful Stone</span></a>
+  <a href="#ch-ortakoy" data-target="ch-ortakoy">12<span class="label">Water's Edge</span></a>
+  <a href="#ch-maidens-tower" data-target="ch-maidens-tower">13<span class="label">The Islet Legend</span></a>
+  <a href="#ch-neighbourhoods" data-target="ch-neighbourhoods">14<span class="label">Beyond Sultanahmet</span></a>
+  <a href="#ch-more-places" data-target="ch-more-places">15<span class="label">The Wider List</span></a>
 </aside>
 
 <header class="post-hero" data-screen-label="01 Hero">
@@ -2004,7 +2076,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
     <div class="hero-eyebrow">City Guide · Marmara</div>
     <h1>Istanbul <span class="hero-h1-sub">Travel Guide</span></h1>
     <p class="hero-sub">Hagia Sophia, the Bosphorus, and the Grand Bazaar.</p>
-    <div class="hero-meta">
+    <div class="hero-meta"><span class="hero-av" style="background-image:url('https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg')"></span>
       <span class="author">Show Me Türkiye</span>
       <span class="dot"></span>
       <span>May 2026</span>
@@ -2023,7 +2095,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <ol class="quick-tips">
       <li>
         <span class="qt-n">01</span>
-        <span class="qt-t"><strong>Stay in Sultanahmet or Karaköy.</strong> Sultanahmet walks to the historic sites. Karaköy puts you on the tram and the Bosphorus ferry.</span>
+        <span class="qt-t"><strong>Stay in Sultanahmet or Beyoğlu.</strong> Sultanahmet walks to the historic sites. Beyoğlu, taking in Karaköy and Galata, puts you near the tram, the funiculars, and the Bosphorus ferries, with the livelier cafés and nightlife on your doorstep.</span>
       </li>
       <li>
         <span class="qt-n">02</span>
@@ -2031,15 +2103,15 @@ body.invert-nav .hamburger span { background: var(--cream); }
       </li>
       <li>
         <span class="qt-n">03</span>
-        <span class="qt-t"><strong>Eat five minutes from the Grand Bazaar.</strong> Walk to Beyazıt or Süleymaniye. Half the price of bazaar-front restaurants and twice the locals.</span>
+        <span class="qt-t"><strong>Eat five minutes from the Grand Bazaar.</strong> Walk to Beyazıt or Süleymaniye for better value than the bazaar-front restaurants, and a more local crowd.</span>
       </li>
       <li>
         <span class="qt-n">04</span>
-        <span class="qt-t"><strong>Hagia Sophia on a weekday morning.</strong> Cruise ships dock Tuesdays and Wednesdays. Aim for Thursday or Monday before noon for a real visit.</span>
+        <span class="qt-t"><strong>Hagia Sophia on a weekday morning.</strong> Cruise-ship days fill the site fast, so aim for a weekday morning before noon for a calmer visit.</span>
       </li>
       <li>
         <span class="qt-n">05</span>
-        <span class="qt-t"><strong>Hagia Sophia update.</strong> Tourists now access only the upper gallery via a dedicated entrance. Expect queues and ensure your ticket (25 EUR) is ready on your phone.</span>
+        <span class="qt-t"><strong>Hagia Sophia update.</strong> Tourists now access only the upper gallery via a dedicated entrance. Expect queues and have your ticket ready on your phone before you arrive.</span>
       </li>
       <li>
         <span class="qt-n">06</span>
@@ -2050,14 +2122,25 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
     <div class="toc reveal">
       <div class="toc-eyebrow">In this story</div>
-      <h2 class="toc-title">6 chapters, <em>one story</em>.</h2>
+      <h2 class="toc-title">17 chapters, <em>one story</em>.</h2>
       <ol class="toc-list">
-        <li><a href="#ch-hagia-sophia"><span class="n">01</span><span class="t">Hagia Sophia</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-blue-mosque"><span class="n">02</span><span class="t">The Blue Mosque</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-topkapi"><span class="n">03</span><span class="t">Topkapı Palace</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-cistern"><span class="n">04</span><span class="t">Basilica Cistern</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-grand-bazaar"><span class="n">05</span><span class="t">Grand Bazaar</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-bosphorus"><span class="n">06</span><span class="t">The Bosphorus</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-getting-there"><span class="n">01</span><span class="t">Getting There</span><span class="r">2 min</span></a></li>
+        <li><a href="#ch-getting-around"><span class="n">02</span><span class="t">Getting Around</span><span class="r">2 min</span></a></li>
+        <li><a href="#ch-when-to-visit"><span class="n">03</span><span class="t">When to Visit</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-hagia-sophia"><span class="n">04</span><span class="t">Hagia Sophia</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-blue-mosque"><span class="n">05</span><span class="t">The Blue Mosque</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-topkapi"><span class="n">06</span><span class="t">Topkapı Palace</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-cistern"><span class="n">07</span><span class="t">Basilica Cistern</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-grand-bazaar"><span class="n">08</span><span class="t">Grand Bazaar</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-bosphorus"><span class="n">09</span><span class="t">The Bosphorus</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-suleymaniye"><span class="n">10</span><span class="t">Süleymaniye Mosque</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-galata-tower"><span class="n">11</span><span class="t">Galata Tower</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-ortakoy"><span class="n">12</span><span class="t">Ortaköy</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-maidens-tower"><span class="n">13</span><span class="t">Maiden's Tower</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-light"><span class="n">14</span><span class="t">Chasing the Light</span><span class="r">2 min</span></a></li>
+        <li><a href="#ch-neighbourhoods"><span class="n">15</span><span class="t">Neighbourhoods</span><span class="r">2 min</span></a></li>
+        <li><a href="#ch-local-day"><span class="n">16</span><span class="t">A Local Day</span><span class="r">2 min</span></a></li>
+        <li><a href="#ch-more-places"><span class="n">17</span><span class="t">More Places to See</span><span class="r">3 min</span></a></li>
       </ol>
     </div>
 
@@ -2067,17 +2150,74 @@ body.invert-nav .hamburger span { background: var(--cream); }
 <article class="opening" data-screen-label="03 Opening">
   <p class="lead">Istanbul plants one foot in Europe and the other in Asia, and the city spends every day reminding you of that split.</p>
   <p>Sixteen million people live here, which makes it bigger than most countries' capitals, and they've organised themselves around the Bosphorus Strait that cuts the city in half. One side gets the mosques and bazaars that tourists photograph, the other gets business districts and residential neighbourhoods that actually house people, and both sides claim they're the real Istanbul.</p>
-  <p>The six chapters below cover the Sultanahmet core and the Bosphorus crossing, the version of Istanbul most first-time visitors come for. We've left out the modern neighbourhoods deliberately. Those need their own guide.</p>
+  <p>This guide starts with the practical groundwork: how to get in from the airport, how to move around a city this size, and when to come. Then it walks through the great landmarks, from the monuments of the Sultanahmet core and the Bosphorus to Sinan's Süleymaniye, the Galata Tower, and the waterfront at Ortaköy, before ending with the neighbourhoods and a wider list of places worth your time once you have seen the headline sights.</p>
 </article>
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter" id="ch-hagia-sophia" data-screen-label="04 Ch1 Hagia Sophia">
+<section class="chapter is-paper" id="ch-getting-there" data-screen-label="04 Getting There">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
       <span class="chapter-num-display" aria-hidden="true">01</span>
       <div class="chapter-kicker">
-        <span class="num">01</span><span class="sep"></span>Byzantine Legacy
+        <span class="num">01</span><span class="sep"></span>Arrival
+      </div>
+      <h2 class="chapter-title">Getting there.</h2>
+      <p class="chapter-sub">From the airport to the old city.</p>
+      <div class="chapter-meta"><span>2 min read</span></div>
+    </header>
+    <p>Istanbul has two airports, one on each continent, and which one you land at changes your whole arrival. <strong>İstanbul Airport (IST)</strong> sits on the European side in Arnavutköy, well to the northwest of the centre. It handles most international long-haul traffic. The catch is distance: Sultanahmet is roughly fifty kilometres away, so plan for the better part of an hour by road in light traffic, and considerably more at rush hour.</p>
+    <p>From IST, the cheapest and most traffic-proof option is the <strong>M11 metro</strong>, which connects to the rest of the rail network at Gayrettepe (transfer to the M2 line for Taksim, Şişhane, and the historic peninsula via further connections). If you have heavy luggage or would rather not change trains, the <strong>Havaist</strong> airport coaches run from the terminal to Taksim, Beşiktaş, Sultanahmet, and other central stops in a single seated ride. Taxis and pre-booked transfers are the door-to-door choice, but they are the most exposed to the city's traffic.</p>
+    <p><strong>Sabiha Gökçen Airport (SAW)</strong> is on the Asian side in Pendik, and it is the better arrival point if you are staying on that side or in Kadıköy, which is around thirty kilometres away. The <strong>M4 metro</strong> runs from the terminal toward Kadıköy and connects to Marmaray at Ayrılık Çeşmesi, which then crosses under the Bosphorus to the European side. The <strong>Havabüs</strong> coaches link SAW to Taksim and Kadıköy. Crossing between the two airports is possible but slow, often two hours or more, so try to book your arrival and departure from the same side if you can.</p>
+    <blockquote class="pullquote"><p>The single most useful thing you can do on arrival is pick up an İstanbulkart. One contactless card covers the metro, tram, bus, funicular, and ferry across the whole city.</p></blockquote>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter" id="ch-getting-around" data-screen-label="05 Getting Around">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">02</span>
+      <div class="chapter-kicker">
+        <span class="num">02</span><span class="sep"></span>City transport
+      </div>
+      <h2 class="chapter-title">Getting around.</h2>
+      <p class="chapter-sub">Trams, ferries, and one card for everything.</p>
+      <div class="chapter-meta"><span>2 min read</span></div>
+    </header>
+    <p>Istanbul's traffic is legendary, and the lesson every local has learned is to stay off the roads at peak hours and travel on rails and water instead. The backbone for visitors is the <strong>T1 tram</strong>, which runs along the historic peninsula and links almost everything a first-timer wants to see: it stops at Sultanahmet (Hagia Sophia, the Blue Mosque, the Cistern), Beyazıt for the Grand Bazaar, Eminönü for the Spice Bazaar and the ferries, and continues across the Galata Bridge to Karaköy and up to Kabataş.</p>
+    <p>From Karaköy you can ride the <strong>Tünel</strong>, a short historic funicular up the hill to Beyoğlu, while the <strong>F1 funicular</strong> connects Kabataş to Taksim Square. The <strong>M2 metro</strong> serves Şişhane and Vezneciler for the Beyoğlu and university sides, and the <strong>Marmaray</strong> line runs beneath the Bosphorus, connecting the European and Asian shores in a few minutes, with a central stop at Sirkeci.</p>
+    <p>The most enjoyable way to cross the city, though, is by <strong>ferry</strong>. The public Şehir Hatları boats run from Eminönü and Karaköy to Kadıköy and Üsküdar on the Asian side, and a one-way crossing with a glass of tea on deck is, for the price of a normal fare, the cheapest Bosphorus cruise you will ever take. All of it runs on the same İstanbulkart, which you can top up at machines in every station.</p>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter is-paper" id="ch-when-to-visit" data-screen-label="06 When to Visit">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">03</span>
+      <div class="chapter-kicker">
+        <span class="num">03</span><span class="sep"></span>Timing
+      </div>
+      <h2 class="chapter-title">When to visit.</h2>
+      <p class="chapter-sub">Spring and autumn do the city the most favours.</p>
+      <div class="chapter-meta"><span>1 min read</span></div>
+    </header>
+    <p>Istanbul is a year-round city, but two windows stand out. <strong>Spring (April and May)</strong> brings mild, walkable weather, the Judas trees turning the Bosphorus slopes purple, and the city's parks at their most colourful. April also brings the annual <strong>Tulip Festival</strong>, when parks such as Emirgan are planted with millions of tulips, a flower with deep Ottoman roots in the city. <strong>Autumn (September and October)</strong> is the other sweet spot: the summer crowds thin out, the light softens, and the cultural season of festivals and exhibitions gets going.</p>
+    <p>The two periods to think twice about are the height of summer and the depth of winter. <strong>July and August</strong> are hot and humid and busy. <strong>January and February</strong> are cold and grey, with rain and the occasional snowfall, though the upside is short queues and the rare, beautiful sight of snow on the domes. Whatever month you choose, build your days around the rail and ferry network rather than the roads.</p>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter" id="ch-hagia-sophia" data-screen-label="07 Ch1 Hagia Sophia">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">04</span>
+      <div class="chapter-kicker">
+        <span class="num">04</span><span class="sep"></span>Byzantine Legacy
       </div>
       <h2 class="chapter-title">Hagia Sophia.</h2>
       <p class="chapter-sub">1,500 years of reinvention.</p>
@@ -2085,44 +2225,44 @@ body.invert-nav .hamburger span { background: var(--cream); }
     </header>
     <p>The building that became Hagia Sophia went up in <strong>537 AD</strong> when Justinian decided Byzantium needed a church that would make everyone shut up about Rome. For 916 years it served as Orthodox cathedral and seat of Constantinople's patriarch, which meant every emperor got crowned here and every major theological argument played out under its dome.</p>
     <p>Then 1453 happened. Mehmed II walked in after conquering the city, converted it to a mosque, and added four minarets to make the point stick. It stayed a mosque for 481 years until Atatürk turned it into a museum in 1935, trying to secularise a building that had spent 1,400 years being explicitly religious. That lasted until 2020, when it became a mosque again, which means you now need to observe prayer times and modest dress codes to see the Byzantine mosaics that were briefly easier to access.</p>
-    <p>The dome still dominates, 31 metres across, sitting 56 metres up, engineered in ways that made medieval architects nervous because they couldn't quite explain how it worked. The interior mixes Christian imagery with Islamic calligraphy in combinations that shouldn't work but do, mostly because both religions valued geometry and light in ways that translated across the conversion.</p>
+    <p>The dome still dominates, 31 metres across and floating impossibly high, engineered in ways that made medieval architects nervous because they couldn't quite explain how it worked. The interior mixes Christian imagery with Islamic calligraphy in combinations that shouldn't work but do, mostly because both religions valued geometry and light in ways that translated across the conversion.</p>
   </div>
 </section>
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter is-paper" id="ch-blue-mosque" data-screen-label="05 Ch2 The Blue Mosque">
+<section class="chapter is-paper" id="ch-blue-mosque" data-screen-label="08 Ch2 The Blue Mosque">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">02</span>
+      <span class="chapter-num-display" aria-hidden="true">05</span>
       <div class="chapter-kicker">
-        <span class="num">02</span><span class="sep"></span>Ottoman Answer
+        <span class="num">05</span><span class="sep"></span>Ottoman Answer
       </div>
       <h2 class="chapter-title">The Blue Mosque.</h2>
       <p class="chapter-sub">Sultan Ahmed's architectural answer to Hagia Sophia.</p>
       <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>Sultan Ahmed I looked at Hagia Sophia across the park and decided the Ottomans needed their own architectural flex, so between 1609 and 1616 he built what locals call <em>Sultanahmet Camii</em> but tourists know as the Blue Mosque. The name comes from 20,000 İznik tiles lining the interior in blues and whites, though you notice the six minarets first.</p>
-    <p>The courtyard is the same size as the prayer hall, which is unusual. Four elephant-foot pillars hold up the main dome. The mihrab points toward Mecca. None of this sounds revolutionary until you're standing inside realising how much light the architect Sedefkâr Mehmed Ağa managed to pump through 260 windows into a space that could easily feel like a cave.</p>
-    <blockquote class="pullquote"><p>Six minarets, one more than most mosques get, which allegedly annoyed Mecca's mosque until Ahmed funded a seventh minaret there to smooth things over.</p></blockquote>
-    <p>It's still an active mosque, five prayer times daily when tourists get kicked out. Come early morning or late afternoon for fewer crowds. Cover shoulders and knees. Women get scarves at the entrance if needed.</p>
+    <p>Facing Hagia Sophia across a garden of fountains and rose beds, the mosque that locals simply call <em>Sultanahmet Camii</em> was built between 1609 and 1616 for the young Sultan Ahmed I, and it is often read as the great closing statement of classical Ottoman architecture, a confident conversation with the Byzantine dome across the square. Westerners know it as the Blue Mosque for the tens of thousands of İznik tiles that wash its interior in blue, and it remains the only one of the old imperial mosques with six minarets, the first in Türkiye to be built that way.</p>
+    <p>The courtyard is as large as the prayer hall itself, which is rare, and four great fluted piers, nicknamed the elephant feet, carry the central dome. The real surprise waits inside: more than two hundred windows pour daylight across the tilework, so a space that could have felt cavernous instead glows. The whole design, by the architect Sedefkâr Mehmed Ağa, is often called the high point of two centuries in which Ottoman and Byzantine ideas slowly grew into one another.</p>
+    <blockquote class="pullquote"><p>More than twenty thousand handmade İznik tiles line the interior, drawn from some fifty different tulip designs. Stand under the dome on a sunny morning and the whole room turns the colour of the sky.</p></blockquote>
+    <p>It is still very much a working mosque, closed to visitors for short spells around the five daily prayers, so plan your visit for early morning or late afternoon when it is calmer anyway. Dress is modest, shoulders and knees covered, and scarves are lent at the entrance for anyone who needs one.</p>
   </div>
 </section>
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter" id="ch-topkapi" data-screen-label="06 Ch3 Topkapı Palace">
+<section class="chapter" id="ch-topkapi" data-screen-label="09 Ch3 Topkapı Palace">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">03</span>
+      <span class="chapter-num-display" aria-hidden="true">06</span>
       <div class="chapter-kicker">
-        <span class="num">03</span><span class="sep"></span>Imperial Seat
+        <span class="num">06</span><span class="sep"></span>Imperial Seat
       </div>
       <h2 class="chapter-title">Topkapı Palace.</h2>
       <p class="chapter-sub">Four centuries of Ottoman power.</p>
       <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>Mehmed II built Topkapı Palace in 1459, and for the next 400 years it served as the Ottoman Empire's administrative centre, royal residence, and occasional prison for princes who got too ambitious. The complex covers <strong>700,000 square metres</strong> overlooking where the Bosphorus meets the Golden Horn and Sea of Marmara, strategic placement that let sultans watch three bodies of water while deciding empire business.</p>
+    <p>Mehmed II began building Topkapı Palace in the 1460s, and for the next 400 years it served as the Ottoman Empire's administrative centre, royal residence, and occasional prison for princes who got too ambitious. The complex covers <strong>700,000 square metres</strong> overlooking where the Bosphorus meets the Golden Horn and Sea of Marmara, strategic placement that let sultans watch three bodies of water while deciding empire business.</p>
     <p>The palace has four courtyards, each more restricted than the last. The first was public, anyone could enter. The second held council meetings and the treasury. The third was royal family only. The fourth held the sultan's private gardens and pavilions where he could escape court politics, though "escape" is relative when you're running an empire that stretched from Algeria to Iraq.</p>
     <p>The Harem gets most tourist attention because Western imagination turns it into something it wasn't. It housed the sultan's family, mother, and consorts, basically the royal household, with strict protocols about who could access which sections. The Imperial Treasury displays what 400 years of taxation and conquest accumulate: emeralds the size of eggs, ceremonial swords nobody would actually fight with, and the 86-carat Spoonmaker's Diamond that supposedly got found in a garbage heap.</p>
   </div>
@@ -2130,12 +2270,12 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter is-paper" id="ch-cistern" data-screen-label="07 Ch4 Basilica Cistern">
+<section class="chapter is-paper" id="ch-cistern" data-screen-label="10 Ch4 Basilica Cistern">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">04</span>
+      <span class="chapter-num-display" aria-hidden="true">07</span>
       <div class="chapter-kicker">
-        <span class="num">04</span><span class="sep"></span>Underground Byzantium
+        <span class="num">07</span><span class="sep"></span>Underground Byzantium
       </div>
       <h2 class="chapter-title">Basilica Cistern.</h2>
       <p class="chapter-sub">A reservoir beneath the city.</p>
@@ -2150,12 +2290,12 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter" id="ch-grand-bazaar" data-screen-label="08 Ch5 Grand Bazaar">
+<section class="chapter" id="ch-grand-bazaar" data-screen-label="11 Ch5 Grand Bazaar">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">05</span>
+      <span class="chapter-num-display" aria-hidden="true">08</span>
       <div class="chapter-kicker">
-        <span class="num">05</span><span class="sep"></span>Commerce & Chaos
+        <span class="num">08</span><span class="sep"></span>Commerce & Chaos
       </div>
       <h2 class="chapter-title">Grand Bazaar.</h2>
       <p class="chapter-sub">61 covered streets, since 1461.</p>
@@ -2169,12 +2309,12 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter is-paper" id="ch-bosphorus" data-screen-label="09 Ch6 The Bosphorus">
+<section class="chapter is-paper" id="ch-bosphorus" data-screen-label="12 Ch6 The Bosphorus">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">06</span>
+      <span class="chapter-num-display" aria-hidden="true">09</span>
       <div class="chapter-kicker">
-        <span class="num">06</span><span class="sep"></span>Defining Geography
+        <span class="num">09</span><span class="sep"></span>Defining Geography
       </div>
       <h2 class="chapter-title">The Bosphorus.</h2>
       <p class="chapter-sub">31 kilometres between continents.</p>
@@ -2187,20 +2327,191 @@ body.invert-nav .hamburger span { background: var(--cream); }
   </div>
 </section>
 
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-
-<section class="video">
-  <div class="video-inner">
-    <div class="video-head">
-      <div class="eyebrow">Watch the film</div>
-      <h2>See Istanbul <em>in motion</em>.</h2>
-      <p>A short cinematic film from our journey.</p>
-    </div>
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/OpRCoPDKDVo" title="Istanbul from Above · Cinematic Aerial Clip" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+<section class="chapter" id="ch-suleymaniye" data-screen-label="13 Süleymaniye">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">10</span>
+      <div class="chapter-kicker">
+        <span class="num">10</span><span class="sep"></span>Sinan's Crown
+      </div>
+      <h2 class="chapter-title">Süleymaniye Mosque.</h2>
+      <p class="chapter-sub">The architect's own favourite, riding the city's third hill.</p>
+      <div class="chapter-meta"><span>1 min read</span></div>
+    </header>
+    <p>If the Blue Mosque is the one everyone photographs, Süleymaniye is the one architects come to study. Built between <strong>1550 and 1557</strong> by the great Mimar Sinan for Süleyman the Magnificent, it sits on one of the city's seven hills with the Golden Horn unrolling below it, and it was conceived not as a single building but as a whole world: a mosque ringed by its medrese schools, a hospital, a kitchen that fed the poor, a hamam, and a library, the social machinery of an empire at its height.</p>
+    <p>Sinan called the Selimiye in Edirne his masterwork and this his journeyman piece, but few visitors leave agreeing with his modesty. The interior is calmer and more restrained than its rivals, flooded with even light, and famously tuned: the story goes that Sinan set hollow clay jars into the structure so a whisper from the mihrab would carry to the back wall. Süleyman and his wife Hürrem both rest in the garden behind it, and the terrace out front is one of the great free views in the city.</p>
+    <blockquote class="pullquote"><p>Sinan called the Selimiye his masterpiece and Süleymaniye merely his journeyman work. Standing under its dome, that reads less like fact and more like the humility of a man who knew exactly how good he was.</p></blockquote>
   </div>
 </section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter is-paper" id="ch-galata-tower" data-screen-label="14 Galata Tower">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">11</span>
+      <div class="chapter-kicker">
+        <span class="num">11</span><span class="sep"></span>The Watchful Stone
+      </div>
+      <h2 class="chapter-title">Galata Tower.</h2>
+      <p class="chapter-sub">The Genoese sentinel that has watched the city for centuries.</p>
+      <div class="chapter-meta"><span>1 min read</span></div>
+    </header>
+    <p>Stand anywhere on the water and your eye eventually finds it: the stout cylinder of stone crowning the hill above Karaköy, a fixed point in a skyline that never stops changing. The Genoese merchants who held this quarter raised the tower in its present form in <strong>1348</strong>, the high corner of the walls around their colony, and called it the Tower of Christ. After 1453 the Ottomans kept it busy through the centuries: lighthouse, prison, observatory, and for a long stretch a fire-watch over a city built of timber.</p>
+    <p>Then there is the legend everyone repeats, that in the 17th century one Hezârfen Ahmed Çelebi strapped on a pair of wings and glided from the top clear across the Bosphorus to the Asian shore. Historians are sceptical, but the story has stuck to the stone for good. Today a lift and a last climb take you to the gallery, where the reward is the postcard: the old city, the Golden Horn, and the strait laid out below. The queue peaks at sunset, so come earlier for a calmer turn around the parapet.</p>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter" id="ch-ortakoy" data-screen-label="15 Ortaköy">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">12</span>
+      <div class="chapter-kicker">
+        <span class="num">12</span><span class="sep"></span>Water's Edge
+      </div>
+      <h2 class="chapter-title">Ortaköy.</h2>
+      <p class="chapter-sub">A baroque mosque, a bridge, and the city's most photographed square.</p>
+      <div class="chapter-meta"><span>1 min read</span></div>
+    </header>
+    <p>Some views in Istanbul are so familiar you feel you have seen them before you arrive, and the Ortaköy waterfront is one of them: the slender twin minarets of a small white mosque set right at the lip of the Bosphorus, with the great suspension bridge soaring overhead and ferries sliding past behind. The mosque is the <strong>Büyük Mecidiye</strong>, finished around <strong>1854</strong> for Sultan Abdülmecid by an architect of the Balyan family, the same dynasty behind Dolmabahçe, in a light, ornate baroque that feels almost weightless on the water.</p>
+    <p>The square around it is pure Istanbul weekend: a cluster of lanes that fill with strollers, street stalls, and the smell of kumpir and waffles, busiest on a Sunday when half the city seems to drift down here. Come on a clear morning before the crowds, catch the mosque with the bridge framed behind it, then let the day get noisier around you.</p>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter is-paper" id="ch-maidens-tower" data-screen-label="16 Maiden's Tower">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">13</span>
+      <div class="chapter-kicker">
+        <span class="num">13</span><span class="sep"></span>The Islet Legend
+      </div>
+      <h2 class="chapter-title">Maiden's Tower.</h2>
+      <p class="chapter-sub">A small tower on its own rock, heavy with legend.</p>
+      <div class="chapter-meta"><span>1 min read</span></div>
+    </header>
+    <p>Just off the Üsküdar shore, on a rock barely bigger than itself, stands the little tower the Turks call Kız Kulesi. There has been a structure on this spot since antiquity, guarding the mouth of the strait where the Bosphorus opens into the Sea of Marmara, and over the centuries it has served as toll point, lighthouse, quarantine station, and now a restored landmark you can visit by a short boat from the Asian side.</p>
+    <p>What it is really made of, though, is stories. The best-loved tells of a sultan's daughter shut away on the island to escape a prophecy that a snake would kill her, only for the serpent to arrive hidden in a basket of fruit. Whether you believe a word of it or not, the tower is at its most beautiful from a distance: a single pale silhouette on the water, glowing at dusk against the lights of two continents.</p>
+    <blockquote class="pullquote"><p>Half the romance of the Maiden's Tower is that you do not need to set foot on it. From the Üsküdar promenade at sunset it does all its work as a silhouette.</p></blockquote>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter" id="ch-light" data-screen-label="17 Chasing the Light">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">14</span>
+      <div class="chapter-kicker">
+        <span class="num">14</span><span class="sep"></span>Golden hour
+      </div>
+      <h2 class="chapter-title">Chasing the light.</h2>
+      <p class="chapter-sub">Where the city turns gold, and which way to face.</p>
+      <div class="chapter-meta"><span>2 min read</span></div>
+    </header>
+    <p>Most guides hand you a list of viewpoints and leave you to work out the rest. The thing they rarely tell you is which way each one faces, and that single fact decides whether you watch the sun set into the skyline or stare into a flat, washed-out glare. Istanbul is laid out along a north-south spine of water, so the light moves across the city rather than along it, and a few minutes of thought changes the whole evening.</p>
+    <p>For the postcard, the historic peninsula has to sit between you and the sun, which puts you on the water or on the eastern shore looking back west. The simplest version is a dusk crossing on the <strong>Eminönü-to-Kadıköy ferry</strong>: stand at the open stern, face the silhouette of the old city, and let Süleymaniye and the minarets darken against the colour. From the <strong>Üsküdar shore at Salacak</strong>, the Maiden's Tower does the same work in the foreground, the sun dropping behind the peninsula beyond it.</p>
+    <p>For height, the rooftop cafés of <strong>Karaköy</strong> look straight across the Golden Horn at the same skyline, and the climb up to <strong>Galata</strong> sits above them. Across the water, <strong>Pierre Loti</strong> in Eyüp faces back down the Golden Horn over the old cemeteries, the light here softer and the crowd more local. For the widest sweep, <strong>Büyük Çamlıca</strong> on the Asian side is the highest hill in the city, both bridges and both continents laid out at once.</p>
+    <blockquote class="pullquote"><p>The rule is simple: put the old city between you and the sun, and let the minarets do the rest. Everything after that is just deciding how high you want to stand.</p></blockquote>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter is-paper" id="ch-neighbourhoods" data-screen-label="18 Neighbourhoods">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">15</span>
+      <div class="chapter-kicker">
+        <span class="num">15</span><span class="sep"></span>Beyond Sultanahmet
+      </div>
+      <h2 class="chapter-title">Neighbourhoods to wander.</h2>
+      <p class="chapter-sub">Where the city stops being a museum and starts being a city.</p>
+      <div class="chapter-meta"><span>2 min read</span></div>
+    </header>
+    <p>The monuments of the historic peninsula are the reason most people come, but the Istanbul that stays with you is usually a neighbourhood. <strong>Karaköy and Galata</strong>, just across the Golden Horn, pair the climb up to the Galata Tower with a dense grid of cafés, design shops, and old hardware streets slowly turning into galleries. Up the hill is <strong>Beyoğlu</strong>, with İstiklal Avenue and its red nostalgic tram running down the spine of the city's nightlife and arts scene.</p>
+    <p>Further up the Golden Horn, <strong>Balat and Fener</strong> are the old Jewish and Greek quarters, full of steep lanes, coloured timber houses, antique shops, and weekend breakfast spots. They have become photogenic enough to draw crowds, so go early if you want them quiet.</p>
+    <p>And then there is the Asian side. A ferry from Eminönü to <strong>Kadıköy</strong> drops you into a part of the city that locals love precisely because the tour buses do not reach it: a buzzing produce market, record shops, meyhane streets, and the seaside calm of neighbouring Moda. Spending an evening here, watching the sun set behind the old city skyline from the Asian shore, is the kind of thing that turns a first visit into a habit.</p>
+    <blockquote class="pullquote"><p>See the monuments by day on the historic peninsula, then cross the water at dusk: the best view of old Istanbul is from a ferry, or from the Asian shore looking back.</p></blockquote>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter" id="ch-local-day" data-screen-label="19 A Local Day">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">16</span>
+      <div class="chapter-kicker">
+        <span class="num">16</span><span class="sep"></span>The local rhythm
+      </div>
+      <h2 class="chapter-title">A day on local time.</h2>
+      <p class="chapter-sub">How the city eats and moves when no one is performing for tourists.</p>
+      <div class="chapter-meta"><span>2 min read</span></div>
+    </header>
+    <p>The monuments tell you what Istanbul was. To feel what it is, you have to fall into its daily rhythm, and that rhythm runs on tea, ferries, and small neighbourhood kitchens. Start the morning the way the city does, with a proper kahvaltı, the long Turkish breakfast spread across a dozen small plates, somewhere off the tourist track on the Beşiktaş or Kadıköy side rather than on the square.</p>
+    <p>At midday, follow the working crowd into an <strong>esnaf lokantası</strong>, the tradesmen's canteen where the day's dishes sit in a steam counter and you point at what looks good. No menu, no theatre, just home cooking made for people who eat there every day. Later, do as locals do and cross the water for no particular reason: the ferry here is less transport than ritual, a glass of tea on the deck while the gulls trail the boat and the skyline slides past.</p>
+    <p>Evening belongs to the meyhane, the old tavern tradition of long tables, slow meze, and conversation that outlasts the food. You do not go for any single dish; you go for the rhythm of small plates arriving over hours. It is the most Istanbul thing you can do after dark, and it asks nothing of you but time: sit down, slow down, and let the table fill up.</p>
+  </div>
+</section>
+
+<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+
+<section class="chapter is-paper" id="ch-more-places" data-screen-label="20 More Places">
+  <div class="chapter-inner">
+    <header class="chapter-head reveal">
+      <span class="chapter-num-display" aria-hidden="true">17</span>
+      <div class="chapter-kicker">
+        <span class="num">17</span><span class="sep"></span>The wider list
+      </div>
+      <h2 class="chapter-title">More places to see.</h2>
+      <p class="chapter-sub">Eight more sights once you have done the headline sights.</p>
+      <div class="chapter-meta"><span>3 min read</span></div>
+    </header>
+    <p>The headline sights are the spine of a first visit, but Istanbul keeps unfolding well past them. Here are eight more places worth folding into your days, loosely grouped by where they sit.</p>
+    <ol class="quick-tips">
+      <li>
+        <span class="qt-n">01</span>
+        <span class="qt-t"><strong>Spice Bazaar (Mısır Çarşısı).</strong> The L-shaped covered market by the Eminönü waterfront, mounded with spices, lokum, dried fruit, and tea, the air thick with cardamom and saffron. Smaller and more sensory than the Grand Bazaar, and right beside the ferry piers.</span>
+      </li>
+      <li>
+        <span class="qt-n">02</span>
+        <span class="qt-t"><strong>Dolmabahçe Palace.</strong> The 19th-century palace on the Bosphorus shore at Beşiktaş, where the Ottomans swapped courtyards for European neo-baroque grandeur, crystal staircases and gilded halls. The lavish counterpoint to the older, more intimate Topkapı.</span>
+      </li>
+      <li>
+        <span class="qt-n">03</span>
+        <span class="qt-t"><strong>İstanbul Archaeology Museums.</strong> Tucked just below Topkapı in Gülhane, a serious complex holding treasures from across the ancient world, the famous Alexander Sarcophagus among them. Quietly one of the city's great museums, and rarely crowded.</span>
+      </li>
+      <li>
+        <span class="qt-n">04</span>
+        <span class="qt-t"><strong>Gülhane Park.</strong> Once the outer garden of Topkapı, now a public park sloping down toward the old sea walls. A green breath in the middle of the historic peninsula, at its loveliest in spring when the tulips come up.</span>
+      </li>
+      <li>
+        <span class="qt-n">05</span>
+        <span class="qt-t"><strong>İstiklal Avenue and Taksim.</strong> The long pedestrian boulevard of Beyoğlu, its red nostalgic tram threading through crowds past arcades, bookshops, and music venues. The modern, after-dark heart of the European side.</span>
+      </li>
+      <li>
+        <span class="qt-n">06</span>
+        <span class="qt-t"><strong>Eyüp and Pierre Loti Hill.</strong> Up the Golden Horn, the revered Eyüp Sultan Mosque sits below a hilltop you can reach by cable car, where a famous café terrace opens onto a sweeping view back down the inlet, especially at sunset.</span>
+      </li>
+      <li>
+        <span class="qt-n">07</span>
+        <span class="qt-t"><strong>Chora (Kariye).</strong> A former Byzantine church near the land walls, holding some of the finest surviving mosaics and frescoes of the late Byzantine world, gold-ground scenes that reward the detour. A short hop off the main tourist track.</span>
+      </li>
+      <li>
+        <span class="qt-n">08</span>
+        <span class="qt-t"><strong>The Princes' Islands (Adalar).</strong> A ferry ride out into the Sea of Marmara to a cluster of car-light islands of pine woods, old wooden mansions, and a slower, salt-air pace. A full-day escape from the city, best kept off peak summer weekends.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
 
 <section class="author-share">
   <div class="author-share-inner">
@@ -2269,9 +2580,9 @@ body.invert-nav .hamburger span { background: var(--cream); }
         <a href="https://www.facebook.com/showmeturkey/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
-    <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities</a><a href="../first-guide.html">Routes</a><a href="../blog.html">Journal</a><a href="../projects.html">Films</a></div>
-    <div class="footer-col"><h4>About</h4><a href="../about.html">About us</a><a href="../contact.html">Contact</a><a href="#">Press</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+    <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities</a><a href="../routes.html">Routes</a><a href="../blog.html">Journal</a><a href="../projects.html">Films</a></div>
+    <div class="footer-col"><h4>About</h4><a href="../about.html">About us</a><a href="../contact.html">Contact</a><a href="../explore.html">Press</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="../explore.html">Privacy</a><a href="../explore.html">Terms</a><a href="../explore.html">Cookies</a></div>
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Show Me Türkiye · Made in Türkiye.</span>
@@ -2384,7 +2695,7 @@ document.querySelectorAll('.video-mini[data-vid]').forEach(btn => {
     <div class="so-slim-inner">
       <div class="so-slim-row">
         <span class="so-slim-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></span>
-        <input type="text" class="so-slim-input" placeholder="Search Türkiye — cities, routes, journal…" aria-label="Search">
+        <input type="text" class="so-slim-input" placeholder="Search Türkiye: cities, routes, journal..." aria-label="Search">
         <button class="so-slim-close" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg></button>
       </div>
       <div class="so-slim-filters">
@@ -2404,9 +2715,9 @@ document.querySelectorAll('.video-mini[data-vid]').forEach(btn => {
   </div>
 </div>
 <script id="smt-search-js">
-const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana", "excerpt": "Discover Adana in southern Turkey. Taste the legendary Adana kebab, cross the ancient Roman stone bridge, explore the Çukurova plains and reach the Ta", "meta": "City guide", "tags": ["adana", "southern", "taste", "legendary", "kebab", "cross", "ancient", "roman", "stone", "bridge"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/cities/adana.html"}, {"id": "afyonkarahisar", "category": "City", "title": "Afyonkarahisar", "excerpt": "Discover Afyonkarahisar in western Turkey. Climb the Hittite castle rock, visit Seljuk mosques, soak in Turkey's finest thermal springs, and taste the", "meta": "City guide", "tags": ["afyonkarahisar", "western", "climb", "hittite", "castle", "rock", "seljuk", "mosques", "soak", "finest"], "img": "https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg", "url": "/cities/afyonkarahisar.html"}, {"id": "ankara", "category": "City", "title": "Ankara", "excerpt": "Explore Ankara, Turkiye\\u0027s capital. Visit Anitkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.", "meta": "City guide", "tags": ["ankara", "explore", "capital", "anitkabir", "museum", "anatolian", "civilisations", "citadel", "taste", "tava"], "img": "https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg", "url": "/cities/ankara.html"}, {"id": "antalya", "category": "City", "title": "Antalya", "excerpt": "Explore Antalya on the Turquoise Coast. Visit Kaleici old town, the ancient ruins of Aspendos and Perge, swim in turquoise coves and hike the Lycian W", "meta": "City guide", "tags": ["antalya", "explore", "turquoise", "coast", "kaleici", "town", "ancient", "ruins", "aspendos", "perge"], "img": "https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg", "url": "/cities/antalya.html"}, {"id": "artvin", "category": "City", "title": "Artvin", "excerpt": "Discover Artvin in northeastern Turkey. Raft the Çoruh River, explore Karagöl lake, trek the Kaçkar Mountains, visit Macahel UNESCO Biosphere Reserve ", "meta": "City guide", "tags": ["artvin", "northeastern", "raft", "çoruh", "river", "explore", "karagöl", "lake", "trek", "kaçkar"], "img": "https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg", "url": "/cities/artvin.html"}, {"id": "balikesir", "category": "City", "title": "Balıkesir", "excerpt": "Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas ", "meta": "City guide", "tags": ["balikesir", "balıkesir", "province", "northwestern", "ayvalık", "olive", "coast", "cunda", "island", "erdek"], "img": "https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg", "url": "/cities/balikesir.html"}, {"id": "bursa", "category": "City", "title": "Bursa", "excerpt": "Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb and taste the original Iskender kebab.", "meta": "City guide", "tags": ["bursa", "explore", "first", "capital", "ottoman", "empire", "grand", "mosque", "uludag", "resort"], "img": "https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg", "url": "/cities/bursa.html"}, {"id": "canakkale", "category": "City", "title": "Canakkale", "excerpt": "Discover Canakkale on the Dardanelles Strait. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fi", "meta": "City guide", "tags": ["canakkale", "dardanelles", "strait", "ancient", "troy", "unesco", "site", "gallipoli", "battlefields", "kilitbahir"], "img": "https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg", "url": "/cities/canakkale.html"}, {"id": "nevsehir-cappadocia", "category": "City", "title": "Cappadocia (Nevşehir)", "excerpt": "Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride ", "meta": "City guide", "tags": ["nevsehir cappadocia", "cappadocia", "nevşehir", "explore", "göreme", "open", "museum", "uçhisar", "castle", "derinkuyu"], "img": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg", "url": "/cities/nevsehir-cappadocia.html"}, {"id": "denizli", "category": "City", "title": "Denizli", "excerpt": "Discover Denizli in southwestern Turkey. Walk barefoot on Pamukkale's white travertine terraces, explore Hierapolis, Laodicea and Tripolis, and soak i", "meta": "City guide", "tags": ["denizli", "southwestern", "walk", "barefoot", "pamukkale", "white", "travertine", "terraces", "explore", "hierapolis"], "img": "https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg", "url": "/cities/denizli.html"}, {"id": "eskisehir", "category": "City", "title": "Eskisehir", "excerpt": "Visit Eskisehir, Turkiye\\u0027s youthful university city. Explore Odunpazari old town, ride gondolas on the Porsuk river and taste the famous cig bore", "meta": "City guide", "tags": ["eskisehir", "youthful", "university", "city", "explore", "odunpazari", "town", "ride", "gondolas", "porsuk"], "img": "https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg", "url": "/cities/eskisehir.html"}, {"id": "gaziantep", "category": "City", "title": "Gaziantep", "excerpt": "Explore Gaziantep, UNESCO City of Gastronomy. Taste the world's best baklava, visit the Zeugma Mosaic Museum and wander the copper bazaars of old Ante", "meta": "City guide", "tags": ["gaziantep", "explore", "unesco", "city", "gastronomy", "taste", "world", "baklava", "zeugma", "mosaic"], "img": "https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg", "url": "/cities/gaziantep.html"}, {"id": "hakkari", "category": "City", "title": "Hakkari", "excerpt": "Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, climb Turkey's second highest peak Uludoruk, and", "meta": "City guide", "tags": ["hakkari", "southeastern", "trek", "cilo", "glaciers", "lakes", "explore", "valley", "climb", "second"], "img": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg", "url": "/cities/hakkari.html"}, {"id": "istanbul", "category": "City", "title": "Istanbul", "excerpt": "Explore Istanbul where East meets West. Visit Hagia Sophia, Topkapi Palace, the Grand Bazaar, cruise the Bosphorus and taste the best of Turkish cuisi", "meta": "City guide", "tags": ["istanbul", "explore", "east", "meets", "west", "hagia", "sophia", "topkapi", "palace", "grand"], "img": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg", "url": "/cities/istanbul.html"}, {"id": "izmir", "category": "City", "title": "Izmir", "excerpt": "Explore Izmir on the Aegean coast. Visit Ephesus, stroll the Kordon, taste boyoz and kumru and escape to Alacati and Cesme.", "meta": "City guide", "tags": ["izmir", "explore", "aegean", "coast", "ephesus", "stroll", "kordon", "taste", "boyoz", "kumru"], "img": "https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg", "url": "/cities/izmir.html"}, {"id": "kastamonu", "category": "City", "title": "Kastamonu", "excerpt": "Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek İlgaz Mountain, visit Safranbolu, and taste the city's famous garlic sausage", "meta": "City guide", "tags": ["kastamonu", "northern", "explore", "ottoman", "town", "trek", "lgaz", "mountain", "safranbolu", "taste"], "img": "https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg", "url": "/cities/kastamonu.html"}, {"id": "kayseri", "category": "City", "title": "Kayseri", "excerpt": "Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastırma and mantı, and visit the Sultan Hanı caravanserai", "meta": "City guide", "tags": ["kayseri", "central", "anatolia", "erciyes", "mountain", "explore", "seljuk", "monuments", "taste", "pastırma"], "img": "https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg", "url": "/cities/kayseri.html"}, {"id": "kocaeli", "category": "City", "title": "Kocaeli", "excerpt": "Discover Kocaeli in northwestern Turkey. Explore the Gulf of İzmit waterfront, ski Kartepe, walk the shores of Sapanca Lake, visit Maşukiye's forest c", "meta": "City guide", "tags": ["kocaeli", "northwestern", "explore", "gulf", "zmit", "waterfront", "kartepe", "walk", "shores", "sapanca"], "img": "https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg", "url": "/cities/kocaeli.html"}, {"id": "konya", "category": "City", "title": "Konya", "excerpt": "Visit Konya, the spiritual heart of Turkiye. The Mevlana Museum of Rumi, the Whirling Dervishes, Catalhoyuk and the famous Konya etli ekmek.", "meta": "City guide", "tags": ["konya", "spiritual", "heart", "mevlana", "museum", "rumi", "whirling", "dervishes", "catalhoyuk", "famous"], "img": "https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg", "url": "/cities/konya.html"}, {"id": "mardin", "category": "City", "title": "Mardin", "excerpt": "Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh and enjoy panoramic views over Mesopotamia.", "meta": "City guide", "tags": ["mardin", "explore", "golden", "stone", "city", "deyrulzafaran", "monastery", "madrasahs", "taste", "kibbeh"], "img": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg", "url": "/cities/mardin.html"}, {"id": "mersin", "category": "City", "title": "Mersin", "excerpt": "Discover Mersin on Turkey's Mediterranean coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste t", "meta": "City guide", "tags": ["mersin", "mediterranean", "coast", "explore", "kızkalesi", "medieval", "castle", "ancient", "city", "silifke"], "img": "https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg", "url": "/cities/mersin.html"}, {"id": "mugla", "category": "City", "title": "Mugla", "excerpt": "Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan and Datca. Turquoise coves, gulet cruises, Lycian ruins and the best Aegean beaches.", "meta": "City guide", "tags": ["mugla", "province", "bodrum", "marmaris", "fethiye", "dalyan", "datca", "turquoise", "coves", "gulet"], "img": "https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg", "url": "/cities/mugla.html"}, {"id": "rize", "category": "City", "title": "Rize", "excerpt": "Discover Rize on Turkey's Black Sea coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, taste muhlama and Anzer honey in Turkey's tea capita", "meta": "City guide", "tags": ["rize", "black", "coast", "explore", "ayder", "plateau", "zilkale", "castle", "firtina", "valley"], "img": "https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg", "url": "/cities/rize.html"}, {"id": "sanliurfa", "category": "City", "title": "Sanliurfa", "excerpt": "Visit Sanliurfa, city of the prophets. See Gobekli Tepe, the Pool of Sacred Carp, Harran beehive houses and taste legendary Urfa kebab.", "meta": "City guide", "tags": ["sanliurfa", "city", "prophets", "gobekli", "tepe", "pool", "sacred", "carp", "harran", "beehive"], "img": "https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg", "url": "/cities/sanliurfa.html"}, {"id": "trabzon", "category": "City", "title": "Trabzon", "excerpt": "Discover Trabzon on the Black Sea coast. Visit Sumela Monastery, Uzungol lake, taste Akcaabat kofte and explore the Kackar Mountains.", "meta": "City guide", "tags": ["trabzon", "black", "coast", "sumela", "monastery", "uzungol", "lake", "taste", "akcaabat", "kofte"], "img": "https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg", "url": "/cities/trabzon.html"}, {"id": "aladaglar", "category": "Journal", "title": "Aladağlar Travel Guide: Demirkazık, Emli Valley, and the Bolkar Mountains", "excerpt": "Aladağlar guide. Emli Valley, Kazıklı Ali Canyon climbing, Bolkar Mountains, Meydan Plateau, Lake Karagöl, Lake Çinili, Niğde's Gümüşler Monastery, an", "meta": "Journal", "tags": ["aladaglar", "aladağlar", "demirkazık", "emli", "valley", "bolkar", "mountains", "kazıklı", "canyon", "climbing"], "img": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg", "url": "/blog/aladaglar.html"}, {"id": "antalya", "category": "Journal", "title": "Antalya Travel Guide: Kaleiçi, Aspendos, and the Lycian Coast", "excerpt": "Antalya travel guide. Kaleiçi old town, Düden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos and Termessos, plus the Lycian coast from ", "meta": "Journal", "tags": ["antalya", "kaleiçi", "aspendos", "lycian", "coast", "town", "düden", "waterfalls", "lara", "beach"], "img": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg", "url": "/blog/antalya.html"}, {"id": "artvin", "category": "Journal", "title": "Artvin Travel Guide: Çoruh Canyon, Karagöl, and the Kaçkar Highlands", "excerpt": "Artvin in the far northeast of Türkiye, Hatila Valley, Şavşat and Borçka Karagöl, Tibeti Monastery, Macahel district, Maral Waterfall, and the Çoruh R", "meta": "Journal", "tags": ["artvin", "çoruh", "canyon", "karagöl", "kaçkar", "highlands", "northeast", "hatila", "valley", "şavşat"], "img": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg", "url": "/blog/artvin.html"}, {"id": "balikesir", "category": "Journal", "title": "Balıkesir Travel Guide: Kazdağları, Ayvalık, and the Northern Aegean", "excerpt": "Balıkesir travel guide. Mount Ida (Kaz Dağları), Ayvalık and Cunda, the Glass Terrace, Devil's Table, Çaylak Waterfall, Küçükköy, and the geological c", "meta": "Journal", "tags": ["balikesir", "balıkesir", "kazdağları", "ayvalık", "northern", "aegean", "mount", "dağları", "cunda", "glass"], "img": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg", "url": "/blog/balikesir.html"}, {"id": "kapadokya", "category": "Journal", "title": "Cappadocia Travel Guide: Göreme, Derinkuyu, and the Balloon Flight", "excerpt": "A complete guide to Cappadocia, Göreme Open-Air Museum, the Ihlara Valley, Derinkuyu underground city, balloon flights, the cave hotels of Göreme and ", "meta": "Journal", "tags": ["kapadokya", "cappadocia", "göreme", "derinkuyu", "balloon", "flight", "complete", "open", "museum", "ihlara"], "img": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg", "url": "/blog/kapadokya.html"}, {"id": "erzurum", "category": "Journal", "title": "Erzurum Travel Guide: Palandöken Skiing, the Old Town, and the Doğu Express", "excerpt": "Erzurum travel guide. Palandöken ski resort, the old town, Çifte Minareli Medrese, Atatürk House, the Doğu Express train, and what eastern Anatolia lo", "meta": "Journal", "tags": ["erzurum", "palandöken", "skiing", "town", "doğu", "express", "resort", "çifte", "minareli", "medrese"], "img": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg", "url": "/blog/erzurum.html"}, {"id": "giresun", "category": "Journal", "title": "Giresun Travel Guide: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast", "excerpt": "A guide to Giresun on the Black Sea coast. Kuzalan Nature Park, Mavi Göl, Goksu Travertines, Kumbet and Golyani plateaus, Çağlayan Waterfall, the whis", "meta": "Journal", "tags": ["giresun", "kuşköy", "whistling", "language", "kuzalan", "hazelnut", "coast", "black", "nature", "park"], "img": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg", "url": "/blog/giresun.html"}, {"id": "hakkari", "category": "Journal", "title": "Hakkari Travel Guide: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier", "excerpt": "Hakkari travel guide. The Valley of Hell in Heaven (Cennet Cehennem Vadisi), Kaval Waterfall, the Zap River, Bercelen Plateau, the city centre, and wh", "meta": "Journal", "tags": ["hakkari", "cilo", "mountains", "canyon", "wildest", "frontier", "valley", "hell", "heaven", "cennet"], "img": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg", "url": "/blog/hakkari.html"}, {"id": "istanbul", "category": "Journal", "title": "Istanbul Travel Guide: Hagia Sophia, the Bosphorus, and the Grand Bazaar", "excerpt": "A complete guide to Istanbul, Hagia Sophia, the Blue Mosque, Topkapı Palace, Basilica Cistern, the Grand Bazaar, and the Bosphorus. Sixteen million pe", "meta": "Journal", "tags": ["istanbul", "hagia", "sophia", "bosphorus", "grand", "bazaar", "complete", "blue", "mosque", "topkapı"], "img": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg", "url": "/blog/istanbul.html"}, {"id": "kemer", "category": "Journal", "title": "Kemer Travel Guide: Olympos, Phaselis, and Mount Tahtalı", "excerpt": "Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtalı cable car, Göynük Canyon, and the southwestern Antalya co", "meta": "Journal", "tags": ["kemer", "olympos", "phaselis", "mount", "tahtalı", "chimaera", "flames", "ancient", "harbour", "cable"], "img": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg", "url": "/blog/kemer.html"}, {"id": "ordu", "category": "Journal", "title": "Ordu Travel Guide: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast", "excerpt": "A complete guide to Ordu on the Black Sea coast. Uluğöl Nature Park, Ohtamış Waterfall, Perşembe Plateau, Ünye Castle, Cape Jason, Uzunkum Beach and B", "meta": "Journal", "tags": ["ordu", "boztepe", "cable", "perşembe", "plateau", "black", "coast", "complete", "uluğöl", "nature"], "img": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg", "url": "/blog/ordu.html"}, {"id": "rize", "category": "Journal", "title": "Rize Travel Guide: Ayder, the Fırtına Valley, and Turkey's Tea Country", "excerpt": "Rize travel guide. Ayder Plateau, Fırtına River rafting, Zil Castle, Palovit Waterfall, Elevit and Handüzü plateaus, Çeceva tea garden, Komilo village", "meta": "Journal", "tags": ["rize", "ayder", "fırtına", "valley", "country", "plateau", "river", "rafting", "castle", "palovit"], "img": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg", "url": "/blog/rize.html"}, {"id": "top-10-places-to-visit-in-Turkey", "category": "Journal", "title": "Top 10 Places to Visit in Türkiye in 2026", "excerpt": "The 10 best places to visit in Türkiye: Istanbul, Cappadocia, the Muğla and Antalya coast, Ephesus, Pamukkale, Şanlıurfa for Göbekli Tepe, Mardin, Tra", "meta": "Journal", "tags": ["top 10 places to visit in Turkey", "istanbul", "cappadocia", "muğla", "antalya", "coast", "ephesus", "pamukkale", "şanlıurfa", "göbekli"], "img": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg", "url": "/blog/top-10-places-to-visit-in-Turkey.html"}, {"id": "trabzon", "category": "Journal", "title": "Trabzon Travel Guide: Sümela Monastery, Uzungöl, and the Black Sea Coast", "excerpt": "Trabzon travel guide. Sümela Monastery, Uzungöl, Çal Cave, Sera Lake, Boztepe, the Ortamahalle old quarter, Asmasu Waterfall, and outdoor activities f", "meta": "Journal", "tags": ["trabzon", "sümela", "monastery", "uzungöl", "black", "coast", "cave", "sera", "lake", "boztepe"], "img": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg", "url": "/blog/trabzon.html"}, {"id": "when-is-the-best-time-to-visit-turkiye", "category": "Journal", "title": "When Is the Best Time to Visit Türkiye: A Month-by-Month Guide", "excerpt": "Month-by-month guide to visiting Türkiye. The shoulder seasons, peak summer, winter strengths, and what each region looks like at each time of year.", "meta": "Journal", "tags": ["when is the best time to visit turkiye", "time", "month", "visiting", "shoulder", "seasons", "peak", "summer", "winter", "strengths"], "img": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg", "url": "/blog/when-is-the-best-time-to-visit-turkiye.html"}, {"id": "canakkale", "category": "Journal", "title": "Çanakkale Travel Guide: Gallipoli, Troy, and Assos", "excerpt": "Çanakkale travel guide. Troy archaeological site, Gallipoli Martyrs' Memorial, Kilitbahir and Bigali castles, Assos, Bozcaada and Gökçeada islands, Ap", "meta": "Journal", "tags": ["canakkale", "çanakkale", "gallipoli", "troy", "assos", "archaeological", "site", "martyrs", "memorial", "kilitbahir"], "img": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg", "url": "/blog/canakkale.html"}, {"id": "aegean-coast-escape", "category": "Route", "title": "Aegean Coast Escape, 8 days Itinerary", "excerpt": "An eight day Aegean coast itinerary. Izmir, Ephesus, Bodrum, Datca, Fethiye, by road and water, slow paced.", "meta": "Itinerary", "tags": ["aegean coast escape", "aegean", "coast", "escape", "days", "itinerary", "eight", "izmir", "ephesus", "bodrum"], "img": "https://img.showmeturkiye.com/routes/aegean-coast-tour-bodrum-fethiye.jpg", "url": "/routes/aegean-coast-escape.html"}, {"id": "black-sea-highlands", "category": "Route", "title": "Black Sea Highlands, 8 days Itinerary", "excerpt": "An eight day Black Sea itinerary. Trabzon, Sumela, Firtina valley, Pokut, Ayder, Karagol, Macahel, the wettest greenest corner of Turkiye.", "meta": "Itinerary", "tags": ["black sea highlands", "black", "highlands", "days", "itinerary", "eight", "trabzon", "sumela", "firtina", "valley"], "img": "https://img.showmeturkiye.com/routes/black-sea-highlands-trabzon-rize-tour.jpg", "url": "/routes/black-sea-highlands.html"}, {"id": "eastern-heritage", "category": "Route", "title": "Eastern Heritage, 9 days Itinerary", "excerpt": "A nine day southeastern Türkiye itinerary. Gaziantep, Sanliurfa, Gobekli Tepe, Mardin, the deepest history in the country.", "meta": "Itinerary", "tags": ["eastern heritage", "eastern", "heritage", "days", "itinerary", "nine", "southeastern", "gaziantep", "sanliurfa", "gobekli"], "img": "https://img.showmeturkiye.com/routes/eastern-anatolia-tour-mardin-gaziantep.jpg", "url": "/routes/eastern-heritage.html"}, {"id": "first-time-turkey", "category": "Route", "title": "First Time in Türkiye, 7 days Itinerary", "excerpt": "A practical seven day Türkiye itinerary. Istanbul, Cappadocia, Antalya, day by day, with sources you can verify.", "meta": "Itinerary", "tags": ["first time turkey", "first", "time", "days", "itinerary", "practical", "seven", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/routes/first-time-turkey-itinerary-7-days.jpg", "url": "/routes/first-time-turkey.html"}, {"id": "photographers-turkey", "category": "Route", "title": "Photographer's Türkiye, 10 days Itinerary", "excerpt": "A ten day Türkiye itinerary built around four distinct visual languages. Istanbul, Cappadocia, Antalya, Mardin.", "meta": "Itinerary", "tags": ["photographers turkey", "photographer", "days", "itinerary", "built", "around", "four", "distinct", "visual", "languages"], "img": "https://img.showmeturkiye.com/routes/turkey-photography-tour-cappadocia-mardin.jpg", "url": "/routes/photographers-turkey.html"}, {"id": "grand-tour", "category": "Route", "title": "The Grand Tour, 14 days Itinerary", "excerpt": "A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Ephesus, with Izmir at the end. Day by day, ", "meta": "Itinerary", "tags": ["grand tour", "grand", "tour", "days", "itinerary", "practical", "fourteen", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg", "url": "/routes/grand-tour.html"}];
+const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana", "excerpt": "Discover Adana in southern Turkey. Taste the legendary Adana kebab, cross the ancient Roman stone bridge, explore the Çukurova plains and reach the Ta", "meta": "City guide", "tags": ["adana", "southern", "taste", "legendary", "kebab", "cross", "ancient", "roman", "stone", "bridge"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/cities/adana.html"}, {"id": "afyonkarahisar", "category": "City", "title": "Afyonkarahisar", "excerpt": "Discover Afyonkarahisar in western Turkey. Climb the Hittite castle rock, visit Seljuk mosques, soak in Turkey's finest thermal springs, and taste the", "meta": "City guide", "tags": ["afyonkarahisar", "western", "climb", "hittite", "castle", "rock", "seljuk", "mosques", "soak", "finest"], "img": "https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg", "url": "/cities/afyonkarahisar.html"}, {"id": "ankara", "category": "City", "title": "Ankara", "excerpt": "Explore Ankara, Turkiye\\u0027s capital. Visit Anitkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.", "meta": "City guide", "tags": ["ankara", "explore", "capital", "anitkabir", "museum", "anatolian", "civilisations", "citadel", "taste", "tava"], "img": "https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg", "url": "/cities/ankara.html"}, {"id": "antalya", "category": "City", "title": "Antalya", "excerpt": "Explore Antalya on the Turquoise Coast. Visit Kaleici old town, the ancient ruins of Aspendos and Perge, swim in turquoise coves and hike the Lycian W", "meta": "City guide", "tags": ["antalya", "explore", "turquoise", "coast", "kaleici", "town", "ancient", "ruins", "aspendos", "perge"], "img": "https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg", "url": "/cities/antalya.html"}, {"id": "artvin", "category": "City", "title": "Artvin", "excerpt": "Discover Artvin in northeastern Turkey. Raft the Çoruh River, explore Karagöl lake, trek the Kaçkar Mountains, visit Macahel UNESCO Biosphere Reserve ", "meta": "City guide", "tags": ["artvin", "northeastern", "raft", "çoruh", "river", "explore", "karagöl", "lake", "trek", "kaçkar"], "img": "https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg", "url": "/cities/artvin.html"}, {"id": "balikesir", "category": "City", "title": "Balıkesir", "excerpt": "Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas ", "meta": "City guide", "tags": ["balikesir", "balıkesir", "province", "northwestern", "ayvalık", "olive", "coast", "cunda", "island", "erdek"], "img": "https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg", "url": "/cities/balikesir.html"}, {"id": "bursa", "category": "City", "title": "Bursa", "excerpt": "Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb and taste the original Iskender kebab.", "meta": "City guide", "tags": ["bursa", "explore", "first", "capital", "ottoman", "empire", "grand", "mosque", "uludag", "resort"], "img": "https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg", "url": "/cities/bursa.html"}, {"id": "canakkale", "category": "City", "title": "Canakkale", "excerpt": "Discover Canakkale on the Dardanelles Strait. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fi", "meta": "City guide", "tags": ["canakkale", "dardanelles", "strait", "ancient", "troy", "unesco", "site", "gallipoli", "battlefields", "kilitbahir"], "img": "https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg", "url": "/cities/canakkale.html"}, {"id": "nevsehir-cappadocia", "category": "City", "title": "Cappadocia (Nevşehir)", "excerpt": "Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride ", "meta": "City guide", "tags": ["nevsehir cappadocia", "cappadocia", "nevşehir", "explore", "göreme", "open", "museum", "uçhisar", "castle", "derinkuyu"], "img": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg", "url": "/cities/nevsehir-cappadocia.html"}, {"id": "denizli", "category": "City", "title": "Denizli", "excerpt": "Discover Denizli in southwestern Turkey. Walk barefoot on Pamukkale's white travertine terraces, explore Hierapolis, Laodicea and Aphrodisias, and soa", "meta": "City guide", "tags": ["denizli", "southwestern", "walk", "barefoot", "pamukkale", "white", "travertine", "terraces", "explore", "hierapolis"], "img": "https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg", "url": "/cities/denizli.html"}, {"id": "eskisehir", "category": "City", "title": "Eskisehir", "excerpt": "Visit Eskisehir, Turkiye\\u0027s youthful university city. Explore Odunpazari old town, ride gondolas on the Porsuk river and taste the famous cig bore", "meta": "City guide", "tags": ["eskisehir", "youthful", "university", "city", "explore", "odunpazari", "town", "ride", "gondolas", "porsuk"], "img": "https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg", "url": "/cities/eskisehir.html"}, {"id": "gaziantep", "category": "City", "title": "Gaziantep", "excerpt": "Explore Gaziantep, UNESCO City of Gastronomy. Taste the world\\u0027s best baklava, visit the Zeugma Mosaic Museum and wander the copper bazaars of old", "meta": "City guide", "tags": ["gaziantep", "explore", "unesco", "city", "gastronomy", "taste", "world", "baklava", "zeugma", "mosaic"], "img": "https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg", "url": "/cities/gaziantep.html"}, {"id": "hakkari", "category": "City", "title": "Hakkari", "excerpt": "Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, climb Turkey's second highest peak Uludoruk, and", "meta": "City guide", "tags": ["hakkari", "southeastern", "trek", "cilo", "glaciers", "lakes", "explore", "valley", "climb", "second"], "img": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg", "url": "/cities/hakkari.html"}, {"id": "istanbul", "category": "City", "title": "Istanbul", "excerpt": "Explore Istanbul where East meets West. Visit Hagia Sophia, Topkapi Palace, the Grand Bazaar, cruise the Bosphorus and taste the best of Turkish cuisi", "meta": "City guide", "tags": ["istanbul", "explore", "east", "meets", "west", "hagia", "sophia", "topkapi", "palace", "grand"], "img": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg", "url": "/cities/istanbul.html"}, {"id": "izmir", "category": "City", "title": "Izmir", "excerpt": "Explore Izmir on the Aegean coast. Visit Ephesus, stroll the Kordon, taste boyoz and kumru and escape to Alacati and Cesme.", "meta": "City guide", "tags": ["izmir", "explore", "aegean", "coast", "ephesus", "stroll", "kordon", "taste", "boyoz", "kumru"], "img": "https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg", "url": "/cities/izmir.html"}, {"id": "kastamonu", "category": "City", "title": "Kastamonu", "excerpt": "Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek İlgaz Mountain, visit Safranbolu, and taste the city's famous garlic sausage", "meta": "City guide", "tags": ["kastamonu", "northern", "explore", "ottoman", "town", "trek", "lgaz", "mountain", "safranbolu", "taste"], "img": "https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg", "url": "/cities/kastamonu.html"}, {"id": "kayseri", "category": "City", "title": "Kayseri", "excerpt": "Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastırma and mantı, and visit the Sultan Hanı caravanserai", "meta": "City guide", "tags": ["kayseri", "central", "anatolia", "erciyes", "mountain", "explore", "seljuk", "monuments", "taste", "pastırma"], "img": "https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg", "url": "/cities/kayseri.html"}, {"id": "kocaeli", "category": "City", "title": "Kocaeli", "excerpt": "Discover Kocaeli in northwestern Turkey. Explore the Gulf of İzmit waterfront, ski Kartepe, walk the shores of Sapanca Lake, visit Maşukiye's forest c", "meta": "City guide", "tags": ["kocaeli", "northwestern", "explore", "gulf", "zmit", "waterfront", "kartepe", "walk", "shores", "sapanca"], "img": "https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg", "url": "/cities/kocaeli.html"}, {"id": "konya", "category": "City", "title": "Konya", "excerpt": "Visit Konya, the spiritual heart of Turkiye. The Mevlana Museum of Rumi, the Whirling Dervishes, Catalhoyuk and the famous Konya etli ekmek.", "meta": "City guide", "tags": ["konya", "spiritual", "heart", "mevlana", "museum", "rumi", "whirling", "dervishes", "catalhoyuk", "famous"], "img": "https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg", "url": "/cities/konya.html"}, {"id": "mardin", "category": "City", "title": "Mardin", "excerpt": "Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh and enjoy panoramic views over Mesopotamia.", "meta": "City guide", "tags": ["mardin", "explore", "golden", "stone", "city", "deyrulzafaran", "monastery", "madrasahs", "taste", "kibbeh"], "img": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg", "url": "/cities/mardin.html"}, {"id": "mersin", "category": "City", "title": "Mersin", "excerpt": "Discover Mersin on Turkey's Mediterranean coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste t", "meta": "City guide", "tags": ["mersin", "mediterranean", "coast", "explore", "kızkalesi", "medieval", "castle", "ancient", "city", "silifke"], "img": "https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg", "url": "/cities/mersin.html"}, {"id": "mugla", "category": "City", "title": "Mugla", "excerpt": "Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan and Datca. Turquoise coves, gulet cruises, Lycian ruins and the best Aegean beaches.", "meta": "City guide", "tags": ["mugla", "province", "bodrum", "marmaris", "fethiye", "dalyan", "datca", "turquoise", "coves", "gulet"], "img": "https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg", "url": "/cities/mugla.html"}, {"id": "rize", "category": "City", "title": "Rize", "excerpt": "Discover Rize on Turkey's Black Sea coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, taste muhlama and Anzer honey in Turkey's tea capita", "meta": "City guide", "tags": ["rize", "black", "coast", "explore", "ayder", "plateau", "zilkale", "castle", "firtina", "valley"], "img": "https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg", "url": "/cities/rize.html"}, {"id": "sanliurfa", "category": "City", "title": "Sanliurfa", "excerpt": "Visit Sanliurfa, city of the prophets. See Gobekli Tepe, the Pool of Sacred Carp, Harran beehive houses and taste legendary Urfa kebab.", "meta": "City guide", "tags": ["sanliurfa", "city", "prophets", "gobekli", "tepe", "pool", "sacred", "carp", "harran", "beehive"], "img": "https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg", "url": "/cities/sanliurfa.html"}, {"id": "trabzon", "category": "City", "title": "Trabzon", "excerpt": "Discover Trabzon on the Black Sea coast. Visit Sumela Monastery, Uzungol lake, taste Akcaabat kofte and explore the Kackar Mountains.", "meta": "City guide", "tags": ["trabzon", "black", "coast", "sumela", "monastery", "uzungol", "lake", "taste", "akcaabat", "kofte"], "img": "https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg", "url": "/cities/trabzon.html"}, {"id": "aladaglar", "category": "Journal", "title": "Aladağlar Travel Guide: Demirkazık, Emli Valley, and the Bolkar Mountains", "excerpt": "Aladağlar guide. Emli Valley, Kazıklı Ali Canyon climbing, Bolkar Mountains, Meydan Plateau, Lake Karagöl, Lake Çinili, Niğde's Gümüşler Monastery, an", "meta": "Journal", "tags": ["aladaglar", "aladağlar", "demirkazık", "emli", "valley", "bolkar", "mountains", "kazıklı", "canyon", "climbing"], "img": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg", "url": "/blog/aladaglar.html"}, {"id": "antalya", "category": "Journal", "title": "Antalya Travel Guide: Kaleiçi, Aspendos, and the Lycian Coast", "excerpt": "Antalya travel guide. Kaleiçi old town, Düden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos and Termessos, plus the Lycian coast from ", "meta": "Journal", "tags": ["antalya", "kaleiçi", "aspendos", "lycian", "coast", "town", "düden", "waterfalls", "lara", "beach"], "img": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg", "url": "/blog/antalya.html"}, {"id": "artvin", "category": "Journal", "title": "Artvin Travel Guide: Çoruh Canyon, Karagöl, and the Kaçkar Highlands", "excerpt": "Artvin in the far northeast of Türkiye, Hatila Valley, Şavşat and Borçka Karagöl, Tibeti Monastery, Macahel district, Maral Waterfall, and the Çoruh R", "meta": "Journal", "tags": ["artvin", "çoruh", "canyon", "karagöl", "kaçkar", "highlands", "northeast", "hatila", "valley", "şavşat"], "img": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg", "url": "/blog/artvin.html"}, {"id": "balikesir", "category": "Journal", "title": "Balıkesir Travel Guide: Kazdağları, Ayvalık, and the Northern Aegean", "excerpt": "Balıkesir travel guide. Mount Ida (Kaz Dağları), Ayvalık and Cunda, the Glass Terrace, Devil's Table, Çaylak Waterfall, Küçükköy, and the geological c", "meta": "Journal", "tags": ["balikesir", "balıkesir", "kazdağları", "ayvalık", "northern", "aegean", "mount", "dağları", "cunda", "glass"], "img": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg", "url": "/blog/balikesir.html"}, {"id": "kapadokya", "category": "Journal", "title": "Cappadocia Travel Guide: Göreme, Derinkuyu, and the Balloon Flight", "excerpt": "A complete guide to Cappadocia, Göreme Open-Air Museum, the Ihlara Valley, Derinkuyu underground city, balloon flights, the cave hotels of Göreme and ", "meta": "Journal", "tags": ["kapadokya", "cappadocia", "göreme", "derinkuyu", "balloon", "flight", "complete", "open", "museum", "ihlara"], "img": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg", "url": "/blog/kapadokya.html"}, {"id": "erzurum", "category": "Journal", "title": "Erzurum Travel Guide: Palandöken Skiing, the Old Town, and the Doğu Express", "excerpt": "Erzurum travel guide. Palandöken ski resort, the old town, Çifte Minareli Medrese, Atatürk House, the Doğu Express train, and what eastern Anatolia lo", "meta": "Journal", "tags": ["erzurum", "palandöken", "skiing", "town", "doğu", "express", "resort", "çifte", "minareli", "medrese"], "img": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg", "url": "/blog/erzurum.html"}, {"id": "giresun", "category": "Journal", "title": "Giresun Travel Guide: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast", "excerpt": "A guide to Giresun on the Black Sea coast. Kuzalan Nature Park, Mavi Göl, Goksu Travertines, Kumbet and Golyani plateaus, Çağlayan Waterfall, the whis", "meta": "Journal", "tags": ["giresun", "kuşköy", "whistling", "language", "kuzalan", "hazelnut", "coast", "black", "nature", "park"], "img": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg", "url": "/blog/giresun.html"}, {"id": "hakkari", "category": "Journal", "title": "Hakkari Travel Guide: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier", "excerpt": "Hakkari travel guide. The Valley of Hell in Heaven (Cennet Cehennem Vadisi), Kaval Waterfall, the Zap River, Bercelen Plateau, the city centre, and wh", "meta": "Journal", "tags": ["hakkari", "cilo", "mountains", "canyon", "wildest", "frontier", "valley", "hell", "heaven", "cennet"], "img": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg", "url": "/blog/hakkari.html"}, {"id": "istanbul", "category": "Journal", "title": "Istanbul Travel Guide: Hagia Sophia, the Bosphorus, and the Grand Bazaar", "excerpt": "A complete guide to Istanbul, Hagia Sophia, the Blue Mosque, Topkapı Palace, Basilica Cistern, the Grand Bazaar, and the Bosphorus. Sixteen million pe", "meta": "Journal", "tags": ["istanbul", "hagia", "sophia", "bosphorus", "grand", "bazaar", "complete", "blue", "mosque", "topkapı"], "img": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg", "url": "/blog/istanbul.html"}, {"id": "kemer", "category": "Journal", "title": "Kemer Travel Guide: Olympos, Phaselis, and Mount Tahtalı", "excerpt": "Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtalı cable car, Göynük Canyon, and the southwestern Antalya co", "meta": "Journal", "tags": ["kemer", "olympos", "phaselis", "mount", "tahtalı", "chimaera", "flames", "ancient", "harbour", "cable"], "img": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg", "url": "/blog/kemer.html"}, {"id": "ordu", "category": "Journal", "title": "Ordu Travel Guide: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast", "excerpt": "A complete guide to Ordu on the Black Sea coast. Uluğöl Nature Park, Ohtamış Waterfall, Perşembe Plateau, Ünye Castle, Cape Jason, Uzunkum Beach and B", "meta": "Journal", "tags": ["ordu", "boztepe", "cable", "perşembe", "plateau", "black", "coast", "complete", "uluğöl", "nature"], "img": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg", "url": "/blog/ordu.html"}, {"id": "rize", "category": "Journal", "title": "Rize Travel Guide: Ayder, the Fırtına Valley, and Turkey's Tea Country", "excerpt": "Rize travel guide. Ayder Plateau, Fırtına River rafting, Zil Castle, Palovit Waterfall, Elevit and Handüzü plateaus, Çeceva tea garden, Komilo village", "meta": "Journal", "tags": ["rize", "ayder", "fırtına", "valley", "country", "plateau", "river", "rafting", "castle", "palovit"], "img": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg", "url": "/blog/rize.html"}, {"id": "top-10-places-to-visit-in-Turkey", "category": "Journal", "title": "Top 10 Places to Visit in Türkiye in 2026", "excerpt": "The 10 best places to visit in Türkiye: Istanbul, Cappadocia, the Muğla and Antalya coast, Ephesus, Pamukkale, Şanlıurfa for Göbekli Tepe, Mardin, Tra", "meta": "Journal", "tags": ["top 10 places to visit in Turkey", "istanbul", "cappadocia", "muğla", "antalya", "coast", "ephesus", "pamukkale", "şanlıurfa", "göbekli"], "img": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg", "url": "/blog/top-10-places-to-visit-in-Turkey.html"}, {"id": "trabzon", "category": "Journal", "title": "Trabzon Travel Guide: Sümela Monastery, Uzungöl, and the Black Sea Coast", "excerpt": "Trabzon travel guide. Sümela Monastery, Uzungöl, Çal Cave, Sera Lake, Boztepe, the Ortamahalle old quarter, Asmasu Waterfall, and outdoor activities f", "meta": "Journal", "tags": ["trabzon", "sümela", "monastery", "uzungöl", "black", "coast", "cave", "sera", "lake", "boztepe"], "img": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg", "url": "/blog/trabzon.html"}, {"id": "when-is-the-best-time-to-visit-turkiye", "category": "Journal", "title": "When Is the Best Time to Visit Türkiye: A Month-by-Month Guide", "excerpt": "Month-by-month guide to visiting Türkiye. The shoulder seasons, peak summer, winter strengths, and what each region looks like at each time of year.", "meta": "Journal", "tags": ["when is the best time to visit turkiye", "time", "month", "visiting", "shoulder", "seasons", "peak", "summer", "winter", "strengths"], "img": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg", "url": "/blog/when-is-the-best-time-to-visit-turkiye.html"}, {"id": "canakkale", "category": "Journal", "title": "Çanakkale Travel Guide: Gallipoli, Troy, and Assos", "excerpt": "Çanakkale travel guide. Troy archaeological site, Gallipoli Martyrs' Memorial, Kilitbahir and Bigali castles, Assos, Bozcaada and Gökçeada islands, Ap", "meta": "Journal", "tags": ["canakkale", "çanakkale", "gallipoli", "troy", "assos", "archaeological", "site", "martyrs", "memorial", "kilitbahir"], "img": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg", "url": "/blog/canakkale.html"}, {"id": "aegean-coast-escape", "category": "Route", "title": "Aegean Coast Escape, 8 days Itinerary", "excerpt": "An eight day Aegean coastal trip from Izmir down to Bodrum, Datça, and Fethiye. Slow days, ancient ruins next to turquoise water, and a gulet on the s", "meta": "Itinerary", "tags": ["aegean coast escape", "aegean", "coast", "escape", "days", "itinerary", "eight", "coastal", "trip", "izmir"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/aegean-coast-escape.html"}, {"id": "black-sea-highlands", "category": "Route", "title": "Black Sea Highlands, 7 days Itinerary", "excerpt": "Seven days through Türkiye's Black Sea coast and highlands. Sümela Monastery, Ayder Plateau, Hemşin valleys, and the Macahel forest near the Georgian ", "meta": "Itinerary", "tags": ["black sea highlands", "black", "highlands", "days", "itinerary", "seven", "through", "coast", "sümela", "monastery"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/black-sea-highlands.html"}, {"id": "eastern-heritage", "category": "Route", "title": "Eastern Heritage, 9 days Itinerary", "excerpt": "Nine days through Türkiye's southeast. Göbekli Tepe, Mardin's stone city, Antep's deep food culture. If time allows, add Karahan Tepe (35 km east), a ", "meta": "Itinerary", "tags": ["eastern heritage", "eastern", "heritage", "days", "itinerary", "nine", "through", "southeast", "göbekli", "tepe"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/eastern-heritage.html"}, {"id": "family-adventure", "category": "Route", "title": "Family Adventure, 9 days Itinerary", "excerpt": "A practical nine day Türkiye trip with kids. Istanbul Bosphorus boats, Cappadocia underground cities and balloons, Pamukkale wading pools, Antalya bea", "meta": "Itinerary", "tags": ["family adventure", "family", "adventure", "days", "itinerary", "practical", "nine", "trip", "kids", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/family-adventure.html"}, {"id": "first-time-turkey", "category": "Route", "title": "First Time in Türkiye, 7 days Itinerary", "excerpt": "A practical seven day Türkiye itinerary covering Istanbul, Cappadocia, and Antalya. Built for first time visitors who want substance, not a checklist.", "meta": "Itinerary", "tags": ["first time turkey", "first", "time", "days", "itinerary", "practical", "seven", "covering", "istanbul", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/first-time-turkey.html"}, {"id": "foodie-anatolian-trail", "category": "Route", "title": "Foodie Anatolian Trail, 10 days Itinerary", "excerpt": "Ten days eating through Türkiye. Istanbul's imperial kitchen, Gaziantep's pistachios and kebabs, Izmir's olive oil Aegean. Three regions, three deep f", "meta": "Itinerary", "tags": ["foodie anatolian trail", "foodie", "anatolian", "trail", "days", "itinerary", "eating", "through", "istanbul", "imperial"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/foodie-anatolian-trail.html"}, {"id": "luxury-turkey", "category": "Route", "title": "Luxury Türkiye, 8 days Itinerary", "excerpt": "Eight days of premium Türkiye. Bosphorus suite hotels in Istanbul, top tier cave spa in Cappadocia, private crewed gulet through the Muğla coves. Slow", "meta": "Itinerary", "tags": ["luxury turkey", "luxury", "days", "itinerary", "eight", "premium", "bosphorus", "suite", "hotels", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/luxury-turkey.html"}, {"id": "off-the-beaten-path", "category": "Route", "title": "Off the Beaten Path, 12 days Itinerary", "excerpt": "Twelve days through Türkiye's least visited regions. Kastamonu wooden Ottoman houses, Macahel forest near Georgia, Hakkari Kurdish highlands, Mardin M", "meta": "Itinerary", "tags": ["off the beaten path", "beaten", "path", "days", "itinerary", "twelve", "through", "least", "visited", "regions"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/off-the-beaten-path.html"}, {"id": "photographers-turkey", "category": "Route", "title": "Photographer's Türkiye, 10 days Itinerary", "excerpt": "Ten days built around Türkiye's distinct visual geography. Cappadocia volcanic valleys, Pamukkale travertines, Mardin stone city, Muğla turquoise cove", "meta": "Itinerary", "tags": ["photographers turkey", "photographer", "days", "itinerary", "built", "around", "distinct", "visual", "geography", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/photographers-turkey.html"}, {"id": "romantic-getaway", "category": "Route", "title": "Romantic Getaway, 6 days Itinerary", "excerpt": "Six days for couples. Cave hotels with balcony breakfasts in Cappadocia, then a private gulet through the Muğla coast. Built for slow travel and the k", "meta": "Itinerary", "tags": ["romantic getaway", "romantic", "getaway", "days", "itinerary", "couples", "cave", "hotels", "balcony", "breakfasts"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/romantic-getaway.html"}, {"id": "spiritual-anatolia", "category": "Route", "title": "Spiritual Anatolia, 8 days Itinerary", "excerpt": "Eight days through Türkiye's spiritual ground. Konya for Rumi and Sufism, Şanlıurfa for Abraham's birthplace and Göbekli Tepe, Mardin for Syriac monas", "meta": "Itinerary", "tags": ["spiritual anatolia", "spiritual", "anatolia", "days", "itinerary", "eight", "through", "ground", "konya", "rumi"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/spiritual-anatolia.html"}, {"id": "grand-tour", "category": "Route", "title": "The Grand Tour, 14 days Itinerary", "excerpt": "A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Ephesus, with Izmir at the end. Day by day, ", "meta": "Itinerary", "tags": ["grand tour", "grand", "tour", "days", "itinerary", "practical", "fourteen", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/routes/grand-tour.html"}];
 
-/* Show Me Türkiye — Site Search (slim variant) */
+/* Show Me Türkiye / Site Search (slim variant) */
 (function(){
   const $  = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -2528,112 +2839,5 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana", "exce
 })();
 
 </script>
-
-
-<!-- SMT-CONSENT-START -->
-<style>
-.cc-banner{position:fixed;left:24px;right:24px;bottom:24px;z-index:2147483000;max-width:560px;margin:0 auto;background:#FAF5EA;color:#2A1410;border:1px solid rgba(42,20,16,0.12);border-radius:14px;box-shadow:0 18px 50px rgba(42,20,16,0.22);font-family:'Poppins',-apple-system,sans-serif;padding:26px 28px 22px;transform:translateY(140%);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .4s ease;pointer-events:none;}
-.cc-banner.cc-show{transform:translateY(0);opacity:1;pointer-events:auto;}
-.cc-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#C9A75D;margin:0 0 10px;}
-.cc-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin:0 0 8px;line-height:1.25;}
-.cc-text{font-size:13.5px;line-height:1.6;color:#5C3530;margin:0 0 18px;}
-.cc-text a{color:#C0392B;text-decoration:none;border-bottom:1px solid rgba(192,57,43,.3);}
-.cc-text a:hover{border-color:#C0392B;}
-.cc-actions{display:flex;flex-wrap:wrap;gap:10px;}
-.cc-btn{font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:500;letter-spacing:.04em;border-radius:9px;padding:12px 20px;cursor:pointer;border:1px solid transparent;transition:all .25s ease;flex:1 1 auto;min-width:120px;}
-.cc-btn-accept{background:#2A1410;color:#F4EFE5;}
-.cc-btn-accept:hover{background:#C0392B;}
-.cc-btn-reject{background:transparent;color:#2A1410;border-color:rgba(42,20,16,0.25);}
-.cc-btn-reject:hover{border-color:#2A1410;background:rgba(42,20,16,0.04);}
-.cc-btn-prefs{background:none;border:none;color:#5C3530;font-size:12px;letter-spacing:.04em;text-decoration:underline;cursor:pointer;flex:0 0 auto;padding:12px 8px;font-family:'Poppins',sans-serif;}
-.cc-btn-prefs:hover{color:#2A1410;}
-.cc-modal-bg{position:fixed;inset:0;background:rgba(10,10,10,.55);z-index:2147483001;display:none;align-items:center;justify-content:center;padding:24px;}
-.cc-modal-bg.cc-show{display:flex;}
-.cc-modal{background:#FAF5EA;color:#2A1410;border-radius:16px;max-width:520px;width:100%;max-height:86vh;overflow-y:auto;padding:34px 32px 28px;font-family:'Poppins',sans-serif;box-shadow:0 24px 70px rgba(10,10,10,.4);}
-.cc-modal h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin:0 0 6px;}
-.cc-modal>p{font-size:13.5px;color:#5C3530;line-height:1.6;margin:0 0 22px;}
-.cc-row{border-top:1px solid rgba(42,20,16,.1);padding:18px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.cc-row-info h4{font-size:14px;font-weight:600;margin:0 0 5px;}
-.cc-row-info p{font-size:12.5px;color:#5C3530;line-height:1.55;margin:0;}
-.cc-toggle{position:relative;width:44px;height:24px;flex:0 0 auto;margin-top:3px;}
-.cc-toggle input{opacity:0;width:0;height:0;position:absolute;}
-.cc-slider{position:absolute;inset:0;background:rgba(42,20,16,.2);border-radius:24px;cursor:pointer;transition:.3s;}
-.cc-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;top:3px;background:#FAF5EA;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
-.cc-toggle input:checked+.cc-slider{background:#C0392B;}
-.cc-toggle input:checked+.cc-slider::before{transform:translateX(20px);}
-.cc-toggle input:disabled+.cc-slider{background:#C9A75D;cursor:not-allowed;opacity:.7;}
-.cc-modal-actions{display:flex;gap:10px;margin-top:26px;}
-.cc-modal-actions .cc-btn{flex:1;}
-@media (max-width:600px){.cc-banner{left:12px;right:12px;bottom:12px;padding:22px 20px 18px;}.cc-title{font-size:19px;}.cc-actions{flex-direction:column;}.cc-btn{width:100%;flex:1 1 100%;}.cc-btn-prefs{order:3;text-align:center;}}
-</style>
-<div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-  <p class="cc-eyebrow">Privacy</p>
-  <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
-  <div class="cc-actions">
-    <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
-    <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
-    <button class="cc-btn-prefs" id="ccPrefs">Customise</button>
-  </div>
-</div>
-<div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
-  <div class="cc-modal">
-    <h3>Cookie preferences</h3>
-    <p>Choose which cookies you allow. Essential cookies are always on because the site cannot function without them. Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
-      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Analytics</h4><p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Turkiye. Off until you allow them.</p></div>
-      <label class="cc-toggle"><input type="checkbox" id="ccAnalytics"><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-modal-actions">
-      <button class="cc-btn cc-btn-reject" id="ccSavePrefs">Save choices</button>
-      <button class="cc-btn cc-btn-accept" id="ccAcceptModal">Accept all</button>
-    </div>
-  </div>
-</div>
-<script id="smt-consent-js">
-(function(){
-  var KEY='smt_cookie_consent_v1';
-  var banner=document.getElementById('ccBanner');
-  var modalBg=document.getElementById('ccModalBg');
-  var analyticsToggle=document.getElementById('ccAnalytics');
-  function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
-  function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
-  var GA_ID='G-XXXXXXXXXX'; // <-- GA ID'ni buraya yaz
-  var analyticsLoaded=false;
-  function loadAnalytics(){
-    if(analyticsLoaded)return;analyticsLoaded=true;
-    /* --- GA aktif etmek icin bu blogun yorumunu kaldir ---
-    var s=document.createElement('script');s.async=true;
-    s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-    gtag('js',new Date());gtag('config',GA_ID,{anonymize_ip:true});
-    --- GA blogu sonu --- */
-  }
-  function apply(c){if(c&&c.analytics===true)loadAnalytics();}
-  function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
-  function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();analyticsToggle.checked=c?!!c.analytics:false;modalBg.classList.add('cc-show');}
-  function closeModal(){modalBg.classList.remove('cc-show');}
-  function acceptAll(){var c={essential:true,analytics:true};saveConsent(c);apply(c);hideBanner();closeModal();}
-  function rejectNon(){var c={essential:true,analytics:false};saveConsent(c);hideBanner();closeModal();}
-  function savePrefs(){var c={essential:true,analytics:!!analyticsToggle.checked};saveConsent(c);apply(c);hideBanner();closeModal();}
-  document.getElementById('ccAccept').addEventListener('click',acceptAll);
-  document.getElementById('ccReject').addEventListener('click',rejectNon);
-  document.getElementById('ccPrefs').addEventListener('click',openModal);
-  document.getElementById('ccAcceptModal').addEventListener('click',acceptAll);
-  document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
-  modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
-  window.SMTopenCookiePrefs=openModal;
-  var existing=getConsent();
-  if(existing){apply(existing);}else{showBanner();}
-})();
-</script>
-<!-- SMT-CONSENT-END -->
 </body>
 </html>
