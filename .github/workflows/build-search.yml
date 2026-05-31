@@ -4,10 +4,9 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'cities/**.html'
-      - 'routes/**.html'
-      - 'blog/**.html'
+      - '**.html'
       - 'build-search.py'
+      - 'build-consent.py'
   workflow_dispatch:
 
 permissions:
@@ -28,7 +27,10 @@ jobs:
       - name: Rebuild search index
         run: python build-search.py
 
-      - name: Commit updated search index
+      - name: Inject cookie consent banner
+        run: python build-consent.py
+
+      - name: Commit updated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -36,7 +38,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
-            git commit -m "chore: rebuild search index [skip ci]"
-            git pull --rebase origin main
+            git commit -m "chore: rebuild search index + consent banner [skip ci]"
             git push
           fi
