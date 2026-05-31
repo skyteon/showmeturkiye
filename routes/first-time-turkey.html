@@ -2833,10 +2833,11 @@ document.querySelectorAll('[data-action]').forEach(function(btn){
   });
 });
 </script>
-
-
-
-<!-- SMT-CONSENT-START -->
+<!-- ═══════════════════════════════════════════════════════════
+     COOKIE CONSENT (KVKK uyumlu, opt-in)
+     Bu bloğu HER sayfada </body> etiketinden HEMEN ÖNCE ekle.
+     GA dahil hiçbir izleme çerezi, kullanıcı "Accept all" demeden YÜKLENMEZ.
+     ═══════════════════════════════════════════════════════════ -->
 <style>
 .cc-banner{position:fixed;left:24px;right:24px;bottom:24px;z-index:2147483000;max-width:560px;margin:0 auto;background:#FAF5EA;color:#2A1410;border:1px solid rgba(42,20,16,0.12);border-radius:14px;box-shadow:0 18px 50px rgba(42,20,16,0.22);font-family:'Poppins',-apple-system,sans-serif;padding:26px 28px 22px;transform:translateY(140%);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .4s ease;pointer-events:none;}
 .cc-banner.cc-show{transform:translateY(0);opacity:1;pointer-events:auto;}
@@ -2853,6 +2854,7 @@ document.querySelectorAll('[data-action]').forEach(function(btn){
 .cc-btn-reject:hover{border-color:#2A1410;background:rgba(42,20,16,0.04);}
 .cc-btn-prefs{background:none;border:none;color:#5C3530;font-size:12px;letter-spacing:.04em;text-decoration:underline;cursor:pointer;flex:0 0 auto;padding:12px 8px;font-family:'Poppins',sans-serif;}
 .cc-btn-prefs:hover{color:#2A1410;}
+/* Preferences modal */
 .cc-modal-bg{position:fixed;inset:0;background:rgba(10,10,10,.55);z-index:2147483001;display:none;align-items:center;justify-content:center;padding:24px;}
 .cc-modal-bg.cc-show{display:flex;}
 .cc-modal{background:#FAF5EA;color:#2A1410;border-radius:16px;max-width:520px;width:100%;max-height:86vh;overflow-y:auto;padding:34px 32px 28px;font-family:'Poppins',sans-serif;box-shadow:0 24px 70px rgba(10,10,10,.4);}
@@ -2870,28 +2872,42 @@ document.querySelectorAll('[data-action]').forEach(function(btn){
 .cc-toggle input:disabled+.cc-slider{background:#C9A75D;cursor:not-allowed;opacity:.7;}
 .cc-modal-actions{display:flex;gap:10px;margin-top:26px;}
 .cc-modal-actions .cc-btn{flex:1;}
-@media (max-width:600px){.cc-banner{left:12px;right:12px;bottom:12px;padding:22px 20px 18px;}.cc-title{font-size:19px;}.cc-actions{flex-direction:column;}.cc-btn{width:100%;flex:1 1 100%;}.cc-btn-prefs{order:3;text-align:center;}}
+@media (max-width:600px){
+  .cc-banner{left:12px;right:12px;bottom:12px;padding:22px 20px 18px;}
+  .cc-title{font-size:19px;}
+  .cc-actions{flex-direction:column;}
+  .cc-btn{width:100%;flex:1 1 100%;}
+  .cc-btn-prefs{order:3;text-align:center;}
+}
 </style>
+
 <div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cc-eyebrow">Privacy</p>
   <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
+  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="cookies.html">Cookies Policy</a>.</p>
   <div class="cc-actions">
     <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
     <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
     <button class="cc-btn-prefs" id="ccPrefs">Customise</button>
   </div>
 </div>
+
 <div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
   <div class="cc-modal">
     <h3>Cookie preferences</h3>
     <p>Choose which cookies you allow. Essential cookies are always on because the site cannot function without them. Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
     <div class="cc-row">
-      <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
+      <div class="cc-row-info">
+        <h4>Essential</h4>
+        <p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p>
+      </div>
       <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
     </div>
     <div class="cc-row">
-      <div class="cc-row-info"><h4>Analytics</h4><p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Turkiye. Off until you allow them.</p></div>
+      <div class="cc-row-info">
+        <h4>Analytics</h4>
+        <p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Türkiye. Off until you allow them.</p>
+      </div>
       <label class="cc-toggle"><input type="checkbox" id="ccAnalytics"><span class="cc-slider"></span></label>
     </div>
     <div class="cc-modal-actions">
@@ -2900,46 +2916,90 @@ document.querySelectorAll('[data-action]').forEach(function(btn){
     </div>
   </div>
 </div>
-<script id="smt-consent-js">
+
+<script>
+/* ═══ COOKIE CONSENT LOGIC (KVKK opt-in) ═══ */
 (function(){
   var KEY='smt_cookie_consent_v1';
   var banner=document.getElementById('ccBanner');
   var modalBg=document.getElementById('ccModalBg');
   var analyticsToggle=document.getElementById('ccAnalytics');
-  function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
-  function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
-  var GA_ID='G-XXXXXXXXXX'; // <-- GA ID'ni buraya yaz
+
+  /* ----- 1. READ STORED CONSENT ----- */
+  function getConsent(){
+    try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}
+  }
+  function saveConsent(obj){
+    obj.ts=new Date().toISOString();
+    try{localStorage.setItem(KEY,JSON.stringify(obj));}catch(e){}
+  }
+
+  /* ----- 2. LOAD ANALYTICS ONLY AFTER CONSENT ----- */
+  /* Google Analytics buraya gelecek. consent.analytics === true ise yüklenir.
+     GA Measurement ID'ni aldığında alttaki GA_ID değerini değiştir
+     ve fonksiyon gövdesindeki yorumu aç. Başka bir yere GA kodu KOYMA. */
+  var GA_ID='G-Q7E5XWC6GR';
   var analyticsLoaded=false;
   function loadAnalytics(){
-    if(analyticsLoaded)return;analyticsLoaded=true;
-    /* --- GA aktif etmek icin bu blogun yorumunu kaldir ---
-    var s=document.createElement('script');s.async=true;
+    if(analyticsLoaded) return;
+    analyticsLoaded=true;
+    var s=document.createElement('script');
+    s.async=true;
     s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
     document.head.appendChild(s);
     window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-    gtag('js',new Date());gtag('config',GA_ID,{anonymize_ip:true});
-    --- GA blogu sonu --- */
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag=gtag;
+    gtag('js',new Date());
+    gtag('config',GA_ID,{anonymize_ip:true});
   }
-  function apply(c){if(c&&c.analytics===true)loadAnalytics();}
-  function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
-  function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();analyticsToggle.checked=c?!!c.analytics:false;modalBg.classList.add('cc-show');}
-  function closeModal(){modalBg.classList.remove('cc-show');}
-  function acceptAll(){var c={essential:true,analytics:true};saveConsent(c);apply(c);hideBanner();closeModal();}
-  function rejectNon(){var c={essential:true,analytics:false};saveConsent(c);hideBanner();closeModal();}
-  function savePrefs(){var c={essential:true,analytics:!!analyticsToggle.checked};saveConsent(c);apply(c);hideBanner();closeModal();}
+
+  /* ----- 3. APPLY CONSENT ----- */
+  function apply(consent){
+    if(consent && consent.analytics===true){ loadAnalytics(); }
+  }
+
+  /* ----- 4. UI HELPERS ----- */
+  function showBanner(){ setTimeout(function(){ banner.classList.add('cc-show'); }, 700); }
+  function hideBanner(){ banner.classList.remove('cc-show'); }
+  function openModal(){
+    var c=getConsent();
+    analyticsToggle.checked = c ? !!c.analytics : false;
+    modalBg.classList.add('cc-show');
+  }
+  function closeModal(){ modalBg.classList.remove('cc-show'); }
+
+  /* ----- 5. ACTIONS ----- */
+  function acceptAll(){
+    var c={essential:true,analytics:true};
+    saveConsent(c); apply(c); hideBanner(); closeModal();
+  }
+  function rejectNonEssential(){
+    var c={essential:true,analytics:false};
+    saveConsent(c); hideBanner(); closeModal();
+  }
+  function savePrefs(){
+    var c={essential:true,analytics:!!analyticsToggle.checked};
+    saveConsent(c); apply(c); hideBanner(); closeModal();
+  }
+
   document.getElementById('ccAccept').addEventListener('click',acceptAll);
-  document.getElementById('ccReject').addEventListener('click',rejectNon);
+  document.getElementById('ccReject').addEventListener('click',rejectNonEssential);
   document.getElementById('ccPrefs').addEventListener('click',openModal);
   document.getElementById('ccAcceptModal').addEventListener('click',acceptAll);
   document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
-  modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
+  modalBg.addEventListener('click',function(e){ if(e.target===modalBg) closeModal(); });
+
+  /* Cookies sayfasındaki "Manage cookie preferences" linki bunu çağırır */
   window.SMTopenCookiePrefs=openModal;
+
+  /* ----- 6. INIT ----- */
   var existing=getConsent();
-  if(existing){apply(existing);}else{showBanner();}
+  if(existing){ apply(existing); }     // daha önce seçim yapılmış: banner gösterme, seçime uy
+  else { showBanner(); }               // ilk ziyaret: rıza al
 })();
 </script>
-<!-- SMT-CONSENT-END -->
+<!-- ═══════════════════════════════════════════════════════════ END COOKIE CONSENT ═══════════════════════════════════════════════════════════ -->
+
 </body>
 </html>
