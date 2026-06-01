@@ -1,9 +1,0 @@
-files:
-  - source: /*.html
-    translation: /%two_letters_code%/%original_file_name%
-  - source: /cities/*.html
-    translation: /%two_letters_code%/cities/%original_file_name%
-  - source: /blog/*.html
-    translation: /%two_letters_code%/blog/%original_file_name%
-  - source: /routes/*.html
-    translation: /%two_letters_code%/routes/%original_file_name%
