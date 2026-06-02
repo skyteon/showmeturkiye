@@ -2,10 +2,10 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta property="og:locale" content="tr_TR">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:locale" content="tr_TR">
 <title>İstanbul Gezi Rehberi: Ayasofya, Kapalıçarşı ve Boğaz | Show Me Türkiye</title>
-<meta name="description" content="İstanbul'u keşfedin; Doğu'nun Batı'yla buluştuğu şehir. Ayasofya, Topkapı Sarayı, Kapalıçarşı, Boğaz turu ve Türk mutfağının en iyi örnekleri.">
+<meta name="description" content="İstanbul'u keşfedin: Ayasofya, Topkapı Sarayı, Kapalıçarşı, Boğaz turu ve Türk mutfağının en iyi örnekleri.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
@@ -86,7 +86,7 @@ img{max-width:100%;display:block;}
 
 /* PLACES + MAP */
 /* ════════════════════════════════════════════════════════════
-   PLACES TO VISIT - photo river + sticky map */
+   PLACES TO VISIT — photo river + sticky map */
 .atl-places{
   --atl-cream:#F4EFE5;
   --atl-cream-2:#EBE3D2;
@@ -367,7 +367,7 @@ img{max-width:100%;display:block;}
   .site-nav a img{height:64px;}
   .close-nav{right:20px;top:20px;font-size:32px;}
   .nav-overlay{gap:22px;}
-  .nav-overlay a{font-size:14px;letter-spacing:0.22em;}
+  
 
   /* HERO */
   .hero{min-height:560px;height:88vh;}
@@ -399,7 +399,7 @@ img{max-width:100%;display:block;}
   .why-image{aspect-ratio:4/5;}
   .why-image-caption{font-size:9px;padding:5px 11px;bottom:16px;left:16px;}
 
-  /* PLACES - mobile: map sticks to top of viewport, river collapses to single column */
+  /* PLACES — mobile: map sticks to top of viewport, river collapses to single column */
   .atl-places{padding:56px 0 0;}
   .atl-places .atl-header{margin:0 22px;padding:0 0 22px;grid-template-columns:1fr;gap:10px;}
   .atl-places .atl-eyebrow{grid-column:1;}
@@ -494,9 +494,9 @@ img{max-width:100%;display:block;}
   .site-nav > a { top: 18px; left: 20px; }
   .site-nav a img { height: 54px; }
   .nav-overlay-inner { padding: 0 24px; }
-  .nav-overlay nav { gap: 2px; }
-  .nav-overlay a { font-size: 13px; letter-spacing: 0.28em; padding: 10px 0; }
-  .nav-eyebrow { font-size: 11px; letter-spacing: 0.32em; margin-bottom: 28px; }
+  
+  
+  
   .nav-lang { margin-top: 28px; }
   .close-nav { top: 22px; right: 22px; font-size: 26px; }
 }
@@ -504,7 +504,7 @@ img{max-width:100%;display:block;}
   .hamburger { top: 16px; right: 16px; }
   .site-nav > a { top: 16px; left: 16px; }
   .site-nav a img { height: 48px; }
-  .nav-overlay a { font-size: 12px; letter-spacing: 0.26em; }
+  
 }
 
 /* ═══ FOOTER ═══ */
@@ -751,11 +751,11 @@ img{max-width:100%;display:block;}
 
 
 /* ════════════════════════════════════════════════════════════
-   MOBILE FIXES v3 - map visibility + food/daytrip text readability
+   MOBILE FIXES v3 — map visibility + food/daytrip text readability
    Applies at <=1024px AND on any touch / no-hover device.
    ════════════════════════════════════════════════════════════ */
 
-/* ─── MAP: phones & tablets - sticky so it stays visible while
+/* ─── MAP: phones & tablets — sticky so it stays visible while
        you scroll through the places list. Uses flex-column (not reverse)
        + order:-1 so sticky actually works. ─── */
 @media (max-width: 900px) {
@@ -1064,7 +1064,7 @@ img{max-width:100%;display:block;}
 </style>
 <style id="smt-search-css">
 /* ═══════════════════════════════════════
-   SEARCH - Core shared styles
+   SEARCH — Core shared styles
    ═══════════════════════════════════════ */
 .search-overlay{
   position:fixed;inset:0;z-index:2000;
@@ -1216,7 +1216,7 @@ img{max-width:100%;display:block;}
   border-color:var(--brown);
 }
 
-/* Body grid - results left, side rail right */
+/* Body grid — results left, side rail right */
 .so-body{
   display:grid;
   grid-template-columns:1fr 280px;
@@ -1334,7 +1334,7 @@ img{max-width:100%;display:block;}
   border-top-color:transparent;
 }
 
-/* Side rail - suggestions when empty */
+/* Side rail — suggestions when empty */
 .so-rail{
   display:none;
   flex-direction:column;
@@ -1379,7 +1379,7 @@ img{max-width:100%;display:block;}
 .so-rail-link:hover{padding-left:8px;color:var(--so-accent);}
 .so-rail-link .meta{color:var(--so-muted);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;}
 
-/* Empty state - when typed but no results */
+/* Empty state — when typed but no results */
 .so-empty{
   padding:80px 0;
   text-align:center;
@@ -1421,7 +1421,7 @@ img{max-width:100%;display:block;}
   height:52px;width:auto;display:block;
   opacity:0.95;
 }
-/* Logo is dark wine on its own - invert for the dark espresso variant */
+/* Logo is dark wine on its own — invert for the dark espresso variant */
 .search-overlay[data-variant="espresso"] .brand-logo{
   filter:invert(1) brightness(1.1);
   opacity:0.78;
@@ -1598,8 +1598,8 @@ img{max-width:100%;display:block;}
   font-family:var(--serif);font-style:italic;font-size:24px;
   color:var(--brown);
 }
-.so-result-thumb--ph[data-cat="Route"]{background:linear-gradient(135deg,rgba(192,57,43,0.18),rgba(201,167,93,0.18));}
-.so-result-thumb--ph[data-cat="Journal"]{background:linear-gradient(135deg,rgba(42,20,16,0.10),rgba(201,167,93,0.20));}
+.so-result-thumb--ph[data-cat="Rota"]{background:linear-gradient(135deg,rgba(192,57,43,0.18),rgba(201,167,93,0.18));}
+.so-result-thumb--ph[data-cat="Günlük"]{background:linear-gradient(135deg,rgba(42,20,16,0.10),rgba(201,167,93,0.20));}
 
 /* Slim no-result block */
 .so-slim-noresult{grid-column:1/-1;padding:32px 8px;text-align:center;}
@@ -1662,14 +1662,11 @@ img{max-width:100%;display:block;}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
 </style>
 <style id="nav-align-fix">
-/* ═══ Unified nav alignment - logo · search · hamburger share ONE vertical center.
-   Portable: paste this block before 
-
- on every page that uses the site nav. ═══ */
-<link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/istanbul.html">
+/* ═══ Unified nav alignment — logo · search · hamburger share ONE vertical center.
+   Portable: paste this block before <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/istanbul.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/istanbul.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/istanbul.html">
-</head>
+ on every page that uses the site nav. ═══ */
 .site-nav > a, .site-nav > .nav-logo{ top:56px !important; left:52px !important; transform:translateY(-50%) !important; }
 .site-nav a img, .site-logo{ height:80px !important; }
 .hamburger{ top:56px !important; right:52px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
@@ -1694,10 +1691,11 @@ img{max-width:100%;display:block;}
   .nav-search-btn{ right:72px !important; }
 }
 </style>
-
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/istanbul.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/istanbul.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/istanbul.html">
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
 
@@ -1714,11 +1712,12 @@ img{max-width:100%;display:block;}
     <nav>
       <a href="/tr/">Anasayfa</a>
       <a href="/tr/explore.html" class="active">Türkiye'yi Keşfet</a>
-      <a href="/tr/routes.html">Routes</a>
-      <a href="/tr/blog.html">Journal</a>
+      <a href="/tr/routes.html">Rotalar</a>
+      <a href="/tr/first-guide.html">İlk Rehber</a>
+      <a href="/tr/blog.html">Günlük</a>
       <a href="/tr/projects.html">Projelerimiz</a>
       <a href="/tr/about.html">Hakkımızda</a>
-      <a href="/tr/contact.html">Contact</a>
+      <a href="/tr/contact.html">İletişim</a>
     </nav>
     <div class="nav-lang">
       <button onclick="window.location.href='/cities/istanbul.html'" aria-label="English">EN</button><span class="sep">·</span><button class="on" aria-label="Türkçe">TR</button>
@@ -1731,12 +1730,12 @@ img{max-width:100%;display:block;}
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">Marmara Region, Turkiye</div>
+    <div class="hero-badge">Marmara Bölgesi, Türkiye</div>
     <h1>İstanbul</h1>
     <p class="hero-subtitle">İki kıtanın birleştiği, çağların iç içe yaşadığı şehir</p>
   </div>
   <div class="hero-scroll">
-    <span>Scroll</span>
+    <span>Aşağı</span>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -1769,10 +1768,10 @@ img{max-width:100%;display:block;}
   <div class="whyv-inner">
     <span class="whyv-eyebrow reveal">Neden Ziyaret Etmeli</span>
     <h2 class="whyv-title reveal" id="whyv-title">İstanbul</h2>
-    <p class="whyv-lede reveal">İki kıtaya yayılan, on beş yüzyıl boyunca imparatorluklara başkentlik etmiş tek şehir. Bizans, Konstantinopolis, İstanbul; dünyanın büyük şehirlerinden birine verilen üç farklı isim.</p>
+    <p class="whyv-lede reveal">İki kıtaya yayılan, on beş yüzyıl boyunca imparatorluklara başkentlik etmiş tek şehir. Bizans, Konstantinopolis, İstanbul. Dünyanın büyük şehirlerinden birine verilen üç isim.</p>
     <div class="whyv-body-grid reveal">
-      <p class="whyv-body">Tarihi yarımada şehrin kalbini barındırıyor: Bir bahçenin iki yanında karşılıklı Ayasofya ve Sultanahmet Camii, suyun üzerinde Topkapı Sarayı, Kapalıçarşı ve Mısır Çarşısı.</p>
-      <p class="whyv-body">Ama şehir Boğaz'da yaşıyor. Vapurlar gün boyunca Avrupa ile Asya arasında gidip geliyor, Galata Köprüsü'nün yanında balık ekmek ızgarada kızarıyor; Karaköy'den Kadıköy'e uzanan sahil her akşam dolup taşıyor.</p>
+      <p class="whyv-body">Tarihi yarımadada her şey yürüme mesafesinde: Ayasofya ile Sultanahmet Camii bir bahçenin iki yanında karşılıklı, Topkapı Sarayı suyun üzerinde, Kapalıçarşı ile Mısır Çarşısı aynı sokakların devamı. Roma, Bizans, Osmanlı; üç imparatorluk aynı kaldırımda üst üste.</p>
+      <p class="whyv-body">Ama şehir Boğaz'da yaşıyor. Vapurlar gün boyunca Avrupa ile Asya arasında gidip geliyor, Galata Köprüsü'nde balık ekmek dumanı tütüyor, Karaköy'den Kadıköy'e uzanan sahil her akşam dolup taşıyor. En az üç gün ver ve bir kere de Asya yakasına geç.</p>
     </div>
   </div>
 </section>
@@ -1783,7 +1782,7 @@ img{max-width:100%;display:block;}
   <div class="atl-header">
     <span class="atl-eyebrow">İstanbul'da Gezilecek Yerler · Sekiz Durak</span>
     <h2 class="atl-title" id="atl-title">İstanbul'da gerçekten gidilen yerler.</h2>
-    <p class="atl-lede">Sekiz yer, bir fotoğrafa dokunun, harita takip eder.</p>
+    <p class="atl-lede">Sekiz durak. Fotoğrafa dokun, harita açılsın.</p>
   </div>
 
   <div class="atl-body">
@@ -1797,7 +1796,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Ayasofya</h3>
-            <p class="note">MS 537'de inşa edilen Ayasofya, neredeyse bin yıl boyunca dünyanın en büyük katedrali oldu. Osmanlılar döneminde camiye dönüştürüldü; bugün yeniden aktif bir ibadet mekanıdır. Devasa kubbe ve Bizans mozaikleri zaten yeterince konuşuyor. Sabah erken veya öğleden sonra geç saatte; kalabalık en az o zaman.</p>
+            <p class="note">537 tarihli Ayasofya, bin yıl boyunca dünyanın en büyük katedrali oldu. Fatih döneminde camiye çevrildi; bugün yeniden aktif bir ibadet mekanı. Devasa kubbe ve Bizans mozaikleri tek başına İstanbul'a gelme nedeni. Sabah erken ya da öğleden sonra geç saatte git; kalabalık en az o zaman.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1809,7 +1808,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Topkapı Sarayı</h3>
-            <p class="note">Yaklaşık 400 yıl boyunca Osmanlı padişahlarına ev sahipliği yaptı. Dört avlu, Kaşıkçı Elması'nın sergilendiği hazine, Harem ve Boğaz'a ve Haliç'e uzanan manzara.</p>
+            <p class="note">Dört yüz yıl padişahların eviydi. Dört avlu, Kaşıkçı Elması'nın sergilendiği hazine, Harem ve Boğaz'a uzanan manzara. En az üç saat ayır ve Harem için ayrı bilet al; buna değer.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1821,7 +1820,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Mısır Çarşısı</h3>
-            <p class="note">Kapalıçarşı'dan küçük ama çok daha aromalı ve çok daha az yorucu. Galata Köprüsü yakınındaki L şeklindeki bu çarşı baharat, lokum, çay, kurutulmuş meyve ve kurutulmuş incirle dolu.</p>
+            <p class="note">Kapalıçarşı'dan küçük ama çok daha kokulu ve çok daha az yorucu. Galata Köprüsü yakınındaki L şeklindeki çarşıda baharat, lokum, çay, kuru meyve ve kuruyemiş. Hediyelik almak için birebir. Çevredeki dükkanlardan şehrin en iyi lokumunu bulabilirsin.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1833,7 +1832,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Dolmabahçe Sarayı</h3>
-            <p class="note">Osmanlı İmparatorluğu'nun son büyük sarayı; 1856'da Boğaz'ın Avrupa yakasına Barok, Rokoko ve Neoklasik üslupların senteziyle inşa edildi. 285 oda, 46 salon.</p>
+            <p class="note">Osmanlı'nın son büyük sarayı; 1856'da Boğaz'ın Avrupa yakasına Barok, Rokoko ve Neoklasik üslupların harmanıyla inşa edildi. 285 oda, 46 salon, kristal merdiven ve dünyanın en büyük Bohemya kristal avizesi. Atatürk 1938'de burada vefat etti; yatak odası anıt olarak korunuyor. Sadece rehberli tur; kapıdaki kuyruktan kaçınmak için online bilet al.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1847,7 +1846,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Sultanahmet Camii</h3>
-            <p class="note">1600'lerin başında inşa edildi; altı minaresiyle ve içindeki 20.000'den fazla mavi İznik çinisiyle tanınır. Ayasofya'nın tam karşısında. Giriş ücretsiz.</p>
+            <p class="note">1600'lerin başında inşa edildi; altı minaresi ve içindeki 20.000'den fazla mavi İznik çinisiyle tanınır. Ayasofya'nın tam karşısında. Giriş ücretsiz, namaz saatleri dışında ziyarete açık. Kıyafetine dikkat et, kapıda ayakkabıları çıkar.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1859,7 +1858,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Kapalıçarşı</h3>
-            <p class="note">60 sokağa yayılan 4.000'den fazla dükkanıyla dünyanın en eski ve en büyük kapalı çarşılarından biri. Seramik, halı, altın, lamba ve baharat. Pazarlık bekleniyor.</p>
+            <p class="note">60 sokağa yayılan 4.000'den fazla dükkanıyla dünyanın en eski ve en büyük kapalı çarşılarından biri. Seramik, halı, altın, lamba ve baharat. Pazarlık beklenir. Pazar günleri kapalı. Bir saat kaybol, sonra çık; deneyimin bir parçası bu.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1870,8 +1869,8 @@ img{max-width:100%;display:block;}
             <img src="https://img.showmeturkiye.com/cities/istanbul/places/istanbul-galata-tower-medieval-stone.jpg" alt="Galata Tower" loading="lazy">
           </div>
           <div class="caption">
-            <h3 class="name">Galata Tower</h3>
-            <p class="note">14. yüzyıldan kalma Ceneviz kulesi, eski İstanbul, Boğaz ve Haliç üzerinde 360 derecelik manzarasıyla 67 metre yükseklikte yükselir. En iyi fotoğraflar için gün batımında çıkın. Çevresindeki Galata mahallesinin taş kaldırımlı dar sokakları, butikler ve kafeler yürüyerek keşfedilmeye değer.</p>
+            <h3 class="name">Galata Kulesi</h3>
+            <p class="note">14. yüzyıldan kalma Ceneviz kulesi, 67 metre yüksekliğinde. Eski İstanbul, Boğaz ve Haliç'e 360 derece bakıyor. Gün batımında çık, en iyi fotoğraflar o zaman. Çevresindeki Galata mahallesi kafeler, butikler ve dar taş sokaklarla dolu; yürüyerek keşfet.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1883,7 +1882,7 @@ img{max-width:100%;display:block;}
           </div>
           <div class="caption">
             <h3 class="name">Süleymaniye Camii</h3>
-            <p class="note">İstanbul'un en büyük imparatorluk camisi; 1550'de Kanuni Sultan Süleyman'ın emriyle, büyük mimar Sinan tarafından tasarlandı. Eski şehrin üçüncü tepesinde.</p>
+            <p class="note">İstanbul'un en büyük sultan camii; 1550'de Kanuni'nin emriyle Mimar Sinan tasarladı. Eski şehrin üçüncü tepesinde, Haliç ve Boğaz manzaralı. İçi Sultanahmet'ten daha ferah ve daha huzurlu; Sinan'ın en olgun eseri sayılır. Avlu mezarlığında hem Kanuni'nin hem Sinan'ın türbesi var.</p>
             <div class="rule"></div>
           </div>
         </article>
@@ -1893,13 +1892,13 @@ img{max-width:100%;display:block;}
     <aside class="atl-mapstage">
       <div class="atl-mapcard">
         <div class="atl-mapchrome">
-          <div class="atl-map-label"><i></i><b>İstanbul</b><span style="opacity:0.45">·</span>8 places</div>
+          <div class="atl-map-label"><i></i><b>İstanbul</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Istanbul"></div>
+        <div class="atl-map" id="map" aria-label="İstanbul'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">İstanbul · 8 places</span>
+            <span class="atl-now-num">İstanbul · 8 mekan</span>
             <div class="atl-now-name">Bir saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
@@ -1923,7 +1922,7 @@ img{max-width:100%;display:block;}
   <span class="section-label reveal">Marmara Sofrası</span>
   <h2 class="section-title reveal">Yemek ve Mutfak</h2>
   <div class="food-intro reveal">
-    <p>İstanbul'un yemek kültürü Türkiye'nin en çeşitlisi. Dört yüz yıllık imparatorluk mutfakları, eski mahalle lezzetleri ve köklü modern mutfak. Osmanlı coğrafyasının dört bir yanından gelen yüzyıllık göç dalgalarıyla buluşur. Eminönü'deki sade balık ekmekten Beyoğlu'nda geç bir akşam yemeğine, İstanbul her gün farklı bir yemek anısı bırakır.</p>
+    <p>İstanbul'un yemek kültürü Türkiye'nin en çeşitlisi. Dört yüz yıllık saray mutfağı, imparatorluk coğrafyasının dört köşesinden gelen göç, bir de köklü mahalle geleneği. Eminönü'deki sade balık ekmekten Beyoğlu'nda geç bir akşam yemeğine, her gün farklı bir lezzet.</p>
   </div>
 
   <div class="dishes-grid reveal">
@@ -1932,7 +1931,7 @@ img{max-width:100%;display:block;}
       <div class="dish-overlay">
         <div class="dish-category">Boğaz Klasiği</div>
         <div class="dish-name">Balık Ekmek</div>
-        <p class="dish-desc">Eminönü'nde tekne üzerinde pişen ızgara balık, taze ekmek, soğan, limon.</p>
+        <p class="dish-desc">Eminönü'nde tekne üzerinde pişen ızgara uskumru, taze ekmek, soğan ve limon. Suyun kenarında, ayakta ye. Yüz liranın altı ve her zaman değer.</p>
       </div>
     </div>
       <div class="dish-card">
@@ -1940,15 +1939,15 @@ img{max-width:100%;display:block;}
       <div class="dish-overlay">
         <div class="dish-category">Ritüel</div>
         <div class="dish-name">Türk Kahvesi</div>
-        <p class="dish-desc">Bakır cezvede yavaşça. Yanında su ve lokum. Sade, orta ya da şekerli.</p>
+        <p class="dish-desc">Bakır cezvede yavaşça demlenen, yanında su ve lokumla gelen bir fincan. Sade, orta ya da şekerli. Düzgün bir Türk kahvesi acele etmez, sen de etme.</p>
       </div>
     </div>
       <div class="dish-card">
         <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/istanbul/foods/istanbul-kanlica-yogurt-bosphorus.jpg')"></div>
         <div class="dish-overlay">
-          <span class="dish-category">Kanlıca Yoğurdu</span>
+          <span class="dish-category">Boğaz Yoğurdu</span>
           <div class="dish-name">Kanlıca Yoğurdu</div>
-          <p class="dish-desc">Yüzyıllardır Boğaz'ın Asya yakasındaki Kanlıca köyünde üretilen, hafif ekşimsi inek sütü yoğurdu; geleneksel olarak pudra şekeri serpilmiş küçük toprak kâsede servis edilir.</p>
+          <p class="dish-desc">Yüzyıllardır Boğaz'ın Asya yakasındaki Kanlıca köyünde üretilen koyu, hafif ekşimsi inek sütü yoğurdu. Küçük toprak kâsede, üstüne pudra şekeri serpilmiş gelir. Kıvamı kaşığı dik tutar. Kanlıca iskelesindeki büfelerden al. Şeker ve yoğurt kombinasyonu tartışılmaz; bal ya da başka tatlandırıcı koyma.</p>
         </div>
       </div>
       <div class="dish-card">
@@ -1956,15 +1955,15 @@ img{max-width:100%;display:block;}
         <div class="dish-overlay">
           <span class="dish-category">Kış İçeceği</span>
           <div class="dish-name">Boza</div>
-          <p class="dish-desc">Bir bardakta soğuk servis edilen, üstüne tarçın serpilmiş ve kavrulmuş nohut konmuş, hafif mayalı kalın darı içeceği. Tamamen kış içeceği; Ekim sonundan Şubat'a kadar.</p>
+          <p class="dish-desc">Tarçın serpilmiş, kavrulmuş nohutlu, hafif mayalı kalın darı içeceği. Tamamen kış meşrubatı; Ekim sonundan Şubat'a kadar sokak satıcıları akşamları "bozaaa" diye bağırarak dolaşır, özellikle eski mahallelerde. Referans nokta: 1876'dan bu yana aynı dükkanda, aynı reçeteyle çalışan Vefa Bozacısı. Tadı alışılması gereken bir şey; aynı anda tatlı, ekşi ve taneli.</p>
         </div>
       </div>
       <div class="dish-card">
         <div class="dish-bg" style="background-image:url('https://img.showmeturkiye.com/cities/istanbul/foods/istanbul-kumpir-stuffed-baked-potato.jpg')"></div>
         <div class="dish-overlay">
-          <span class="dish-category">Kumpir</span>
+          <span class="dish-category">Ortaköy Klasiği</span>
           <div class="dish-name">Kumpir</div>
-          <p class="dish-desc">Kumpir. Ortaköy klasiği; içine ne istersen koyabilirsin.</p>
+          <p class="dish-desc">Ortadan yarılmış fırın patates, içi tereyağı ve kaşar peyniriyle ezilmiş, üstü mısır, bezelye, zeytin, turşu, sosis, yoğurt, ketçap; ne istersen. Ortaköy sahili kumpirin vatanı; meydandaki sıralı tezgahlar onlarca yıldır aynı yerde. Başlı başına bir öğün, plastik çatalla ayakta yenir. Rafine değil ama doyurucu.</p>
         </div>
       </div>
       <div class="dish-card">
@@ -1972,19 +1971,19 @@ img{max-width:100%;display:block;}
         <div class="dish-overlay">
           <span class="dish-category">Tarihi Köfte</span>
           <div class="dish-name">Sultanahmet Köftesi</div>
-          <p class="dish-desc">Yalnızca tuz ve soğan suyuyla tatlandırılmış, hafif yassı küçük kuzu-dana karışımı köfteler; mangal ateşinde pişirilir, piyaz, közlenmiş yeşil biber ve ekmekle.</p>
+          <p class="dish-desc">Yalnızca tuz ve soğan suyuyla tatlandırılmış, hafif yassı, kuzu-dana karışımı küçük köfteler; mangal ateşinde pişirilir, piyaz, közlenmiş yeşil biber ve ekmekle. Referans: 1920'den bu yana Divanyolu'ndaki Tarihi Sultanahmet Köftecisi. Tarif bilerek yalın; mesele baharat değil, et kalitesi ve ızgara zamanlaması. Bir porsiyon köfte, bir piyaz, bir ayran.</p>
         </div>
       </div>
     </div>
 
-  <span class="resto-section-label reveal">Yemek İçin Öne Çıkan Bazı Yerler</span>
+  <span class="resto-section-label reveal">Nerede Yenir</span>
   <h3 class="resto-section-title reveal">Öne Çıkan Restoranlar: İstanbul</h3>
   <p class="resto-note reveal">Michelin yıldızlı mutfaklardan nesiller boyu yerlilerin güvendiği klasiklere</p>
   <div class="resto-grid reveal">
     <a class="resto-card" href="https://www.google.com/maps/search/Gallada+Peninsula+Istanbul" target="_blank">
       <div class="resto-name">Gallada</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (1,400+ reviews)</span></div>
-      <p class="resto-desc">Galataport'taki The Peninsula'nın çatısında, şef Fatih Tutak'ın Türk-Asya menüsü Anadolu'dan Uzakdoğu'ya uzanıyor. İki Michelin yıldızı.zanan eski İpek Yolu'nu izler. Boğaz manzarası, üç günlük hazırlık gerektiren köfte ve yolculuğa değer bir tandoori ördek. In the Michelin Guide.</p>
+      <p class="resto-desc">Galataport'taki The Peninsula'nın çatısında, şef Fatih Tutak'ın Türk-Asya menüsü Anadolu'dan Uzakdoğu'ya uzanan eski İpek Yolu'nu izler. Boğaz manzarası, üç günlük hazırlık gerektiren köfte ve yolculuğa değer tandoori ördek. Michelin Rehberi'nde.</p>
       <div class="resto-specialty">Türk-Asya, İpek Yolu</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Mikla+Restaurant+Istanbul" target="_blank">
@@ -1996,50 +1995,50 @@ img{max-width:100%;display:block;}
     <a class="resto-card" href="https://www.google.com/maps/search/Murver+Restaurant+Karakoy+Istanbul" target="_blank">
       <div class="resto-name">Mürver</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,100+ reviews)</span></div>
-      <p class="resto-desc">Karaköy'deki Novotel'in en üst katında; etin ve balığın asılıp kurutulduğu açık ateş etrafında şekillendirilmiş. Dumanlı, cesur, ateş odaklı bir mutfak ve tarihi yarımadaya bakan teras. Michelin Rehberi'nde.</p>
+      <p class="resto-desc">Karaköy'deki Novotel'in en üst katında; etin ve balığın asılıp kurutulduğu açık ateş etrafında şekillenmiş. Dumanlı, cesur, ateş odaklı mutfak ve tarihi yarımadaya bakan teras. Michelin Rehberi'nde.</p>
       <div class="resto-specialty">Açık ateş Anadolu mutfağı</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Ciya+Sofrasi+Kadikoy" target="_blank">
       <div class="resto-name">Çiya Sofrası</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.6 (5,200+ reviews)</span></div>
-      <p class="resto-desc">Unutulan Anadolu tariflerini canlandıran nam salmış Kadıköy restoranı. Şef Musa Dağdeviren yemekleri kurtarmak için uzak köylere gider. Günlük menü sürekli değişir ve alışılmış Türk mutfağının çok ötesine geçer; kebap ve meze de var.</p>
+      <p class="resto-desc">Unutulmaya yüz tutmuş Anadolu tariflerini canlandıran nam salmış Kadıköy restoranı. Şef Musa Dağdeviren uzak köylere gidip yemekleri kurtarır. Günlük menü sürekli değişir; alışılmış kebap ve mezenin çok ötesine geçer.</p>
       <div class="resto-specialty">Anadolu bölgesel mutfağı</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Antiochia+Concept+Beyoglu+Istanbul" target="_blank">
       <div class="resto-name">Antiochia</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (1,200+ reviews)</span></div>
-      <p class="resto-desc">Türk, Suriyeli, Lübnanlı ve Osmanlı lezzetlerinin buluştuğu Antakya mutfağını sunan küçük bir Asmalımescit mekanı. Kebaplar ve odun ateşinde pişmiş pidesinin yanında meze tabağı doğrudan denemeli.</p>
+      <p class="resto-desc">Türk, Suriye, Lübnan ve Osmanlı lezzetlerinin buluştuğu Antakya mutfağını sunan küçük bir Asmalımescit mekanı. Meze tabağı kesinlikle sipariş verilmeli; kebaplar ve odun ateşinde pişmiş pide de yanında.</p>
       <div class="resto-specialty">Antakya mutfağı, meze</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Hamdi+Restaurant+Eminonu" target="_blank">
       <div class="resto-name">Hamdi Restaurant</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (6,800+ reviews)</span></div>
-      <p class="resto-desc">Mısır Çarşısı'nın hemen yanında klasik Urfa usulü kebaplar. Üst kattaki terastan Haliç, Galata Kulesi ve Süleymaniye Camii'ne bakılır. Gün batımında gidin.</p>
+      <p class="resto-desc">Mısır Çarşısı'nın hemen yanında klasik Urfa usulü kebaplar. Üst kattaki terastan Haliç, Galata Kulesi ve Süleymaniye Camii'ne bakılır. Gün batımında git.</p>
       <div class="resto-specialty">Kebaplar, fıstıklı baklava</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Kanaat+Lokantasi+Uskudar" target="_blank">
       <div class="resto-name">Kanaat Lokantası</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (2,900+ reviews)</span></div>
-      <p class="resto-desc">1933'ten bu yana Üsküdar'da, Asya yakasında. Geleneksel Türk ev yemekleri, klasik tarifler, makul fiyatlar. Gerçek eski İstanbul mutfağını burada yenilir.</p>
+      <p class="resto-desc">1933'ten bu yana Üsküdar'da, Asya yakasında. Geleneksel Türk ev yemekleri, klasik tarifler, makul fiyatlar. Gerçek eski İstanbul mutfağını burada yersin.</p>
       <div class="resto-specialty">Osmanlı ev yemeği</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Van+Kahvalti+Evi+Cihangir" target="_blank">
       <div class="resto-name">Van Kahvaltı Evi</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (4,100+ reviews)</span></div>
-      <p class="resto-desc">Cihangir'in herkesin favorisi kahvaltı mekanı. Doğu Anadolu peynirleri, bal, kaymak, yumurta ve taze ekmekten oluşan zengin bir sofra. Hafta sonları erken gidin.</p>
+      <p class="resto-desc">Cihangir'in herkesin favorisi kahvaltı mekanı. Doğu Anadolu peynirleri, bal, kaymak, yumurta ve taze ekmekten oluşan zengin bir sofra. Hafta sonları erken git.</p>
       <div class="resto-specialty">Van usulü kahvaltı</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Hayvore+Beyoglu+Istanbul" target="_blank">
       <div class="resto-name">Hayvore</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.4 (9,000+ reviews)</span></div>
-      <p class="resto-desc">Beyoğlu'nda İstiklal'in hemen yanında, 2009'dan bu yana açık, süssüz bir Karadeniz mutfağı. Tezgahta sıralanan sıcak yemekler: karalahana çorbası, hamsi pilavı, kuru fasulye, muhlama ve bedava ılık mısır ekmeği. Ucuz, dürüst ve gerçek bir öğle yemeği için yerlilerin gittiği yer.</p>
+      <p class="resto-desc">Beyoğlu'nda İstiklal'in hemen yanında, 2009'dan bu yana açık, süssüz bir Karadeniz mutfağı. Tezgahta sıralanan sıcak yemekler: karalahana çorbası, hamsi pilavı, kuru fasulye, muhlama ve ikram mısır ekmeği. Ucuz, dürüst ve yerlilerin öğle yemeği için gittiği yer.</p>
       <div class="resto-specialty">Karadeniz ev yemeği</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/Giritli+Restaurant+Sultanahmet+Istanbul" target="_blank">
       <div class="resto-name">Giritli</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span>4.5 (3,000+ reviews)</span></div>
-      <p class="resto-desc">Sultanahmet'in Ahırkapı semtinde asmalı avlusuyla bir 19. yüzyıl Osmanlı konağı. Şef Ayşe Şensılay kendi kökenlerinden gelen Girit-Ege mutfağını pişirir: mevsimlik mezelerden oluşan uzun bir sofra, imza giritli mezesi, mangalda ahtapot ve taze balık. Michelin Bib Gourmand.</p>
-      <div class="resto-specialty">Giritli-Ege, deniz ürünleri mezesi</div>
+      <p class="resto-desc">Sultanahmet'in Ahırkapı semtinde, asmalı avlusuyla bir 19. yüzyıl Osmanlı konağı. Şef Ayşe Şensılay kendi kökenlerinden gelen Girit-Ege mutfağını pişirir: mevsimlik mezelerden oluşan uzun bir sofra, imza giritli mezesi, mangalda ahtapot ve taze balık. Michelin Bib Gourmand.</p>
+      <div class="resto-specialty">Girit-Ege, deniz ürünleri mezesi</div>
     </a>
   </div>
 </section>
@@ -2052,33 +2051,33 @@ img{max-width:100%;display:block;}
     <div class="activities-grid reveal">
       <div class="activity-card">
         <div class="activity-num">01</div>
-        <div class="activity-title">Boğaz Cruise</div>
-        <p class="activity-desc">Eminönü'den kalkıp Boğaz boyunca iki saatlik halk vapuru yolculuğu; sarayların, kalelerin ve yalıların önünden geçer. Turist teknelerinden çok daha ucuz ve genellikle daha az kalabalık. Açık bir günde gidin, üstper deck.</p>
+        <div class="activity-title">Boğaz Turu</div>
+        <p class="activity-desc">Eminönü'den kalkan iki saatlik halk vapuru Boğaz boyunca sarayların, kalelerin ve yalıların önünden geçer. Turist teknelerinden çok daha ucuz ve genellikle daha az kalabalık. Açık bir günde git, üst güverteye otur.</p>
       </div>
       <div class="activity-card">
         <div class="activity-num">02</div>
         <div class="activity-title">Sultanahmet Yürüyüş Turu</div>
-        <p class="activity-desc">Ayasofya, Sultanahmet Camii, Yerebatan Sarnıcı ve Topkapı Sarayı birbirlerine 15 dakikalık yürüme mesafesinde. Tur gruplarından önce olmak için gün doğumunda başlayın. Dört mekan için tam bir gün ayırın; yine de her şeyi göremezsiniz.</p>
+        <p class="activity-desc">Ayasofya, Sultanahmet Camii, Yerebatan Sarnıcı ve Topkapı Sarayı birbirine 15 dakika yürüme mesafesinde. Tur gruplarından önce olmak için gün doğumunda başla. Dört mekan için tam bir gün ayır; yine de her şeyi göremezsin.</p>
       </div>
       <div class="activity-card">
         <div class="activity-num">03</div>
         <div class="activity-title">Kadıköy ve Moda Günü</div>
-        <p class="activity-desc">Sabah vapurla Asya yakasına geçin. Moda'da kahvaltı yapın, Kadıköy gıda pazarında gezinin, Çiya'da geç öğle yemeği yiyin. Beyoğlu'ndan çok daha sakin, çok daha yerel ve çok daha az turistik.</p>
+        <p class="activity-desc">Sabah vapurla Asya yakasına geç. Moda'da kahvaltı yap, Kadıköy gıda pazarında dolaş, Çiya'da geç öğle yemeği ye. Beyoğlu'ndan çok daha sakin, çok daha yerel ve turistten uzak.</p>
       </div>
       <div class="activity-card">
         <div class="activity-num">04</div>
         <div class="activity-title">Türk Hamamı</div>
-        <p class="activity-desc">Gerçek bir hamam ziyareti klasik İstanbul deneyimlerinden biri. 1741'den bu yana açık olan Çemberlitaş Hamamı ya da Tophane'deki daha yeni Kılıç Ali Paşa Hamamı. Önceden rezervasyon yapın ve tam kese-köpük tedavisini tercih edintment.</p>
+        <p class="activity-desc">Gerçek bir hamam ziyareti klasik İstanbul deneyimlerinden biri. 1741'den bu yana açık Çemberlitaş Hamamı ya da Tophane'deki Kılıç Ali Paşa Hamamı. Önceden rezervasyon yap, tam kese ve köpük tedavisini seç.</p>
       </div>
       <div class="activity-card">
         <div class="activity-num">05</div>
         <div class="activity-title">Galata ve İstiklal</div>
-        <p class="activity-desc">Galata Kulesi'nden başlayın, taş kaldırımlı dar sokaklardan aşağı Karaköy'e inin, kahve için. Beyoğlu'nun kalbinden geçen İstiklal Caddesi'ne çıkın. Çiçek Pasajı'nda ve yan sokaklarda durun; akşam meyhane.</p>
+        <p class="activity-desc">Galata Kulesi'nden başla, taş kaldırımlı dar sokaklardan Karaköy'e in, bir kahve iç. Beyoğlu'nun kalbinden geçen İstiklal Caddesi'ne çık. Çiçek Pasajı ve yan sokaklarda dur; akşam meyhane.</p>
       </div>
       <div class="activity-card">
         <div class="activity-num">06</div>
         <div class="activity-title">Adalar Günübirliği</div>
-        <p class="activity-desc">Eminönü'den 90 dakikalık vapur yolculuğuyla en büyük ada Büyükada'ya ulaşılır. Araba yasaktır. Bisiklet kiralayın, limanda balık yiyin ve 19. yüzyıldan kalma ahşap köşkleri gezin. İdeal bir hafta sonu kaçışı.</p>
+        <p class="activity-desc">Eminönü'den 90 dakikalık vapur yolculuğuyla Büyükada'ya varırsın. Araba yasak. Bisiklet kirala, limanda balık ye, 19. yüzyıldan kalma ahşap köşkleri gez. Hafta sonu kaçamağı için birebir.</p>
       </div>
     </div>
   </div>
@@ -2094,17 +2093,17 @@ img{max-width:100%;display:block;}
     <div class="daytrip-card">
       <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/istanbul/edirne-day-trip-from-istanbul.jpg');"></div>
       <div class="daytrip-overlay">
-        <div class="daytrip-distance">235 km batı, yaklaşık 2.5 to 3 saat</div>
+        <div class="daytrip-distance">235 km batı, yaklaşık 2,5 - 3 saat</div>
         <div class="daytrip-name">Edirne</div>
-        <p class="daytrip-desc">İstanbul'dan önceki Osmanlı başkenti. Mimar Sinan'ın tasarladığı Selimiye Camii, onun şaheseri olarak kabul edilir. Yürümeye uygun, kompakt ve ciğer kebabıyla ünlü. Günübirlik yapılabilir long day trip by bus or train.</p>
+        <p class="daytrip-desc">İstanbul'dan önceki Osmanlı başkenti. Mimar Sinan'ın şaheseri Selimiye burada. Kompakt, yürümeye uygun, ciğer kebabıyla ünlü. Otobüs ya da trenle günübirlik yapılabilir.</p>
       </div>
     </div>
     <div class="daytrip-card">
       <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/istanbul/bursa-uludag-day-trip-from-istanbul.jpg');"></div>
       <div class="daytrip-overlay">
-        <div class="daytrip-distance">150 km güney, yaklaşık 2-2,5 saat</div>
-        <div class="daytrip-name">Bursa and Uludag</div>
-        <p class="daytrip-desc">İlk Osmanlı başkenti; parkları ve ağaçlıklı yamaçlarıyla yeşil Bursa adıyla tanınır. Ulu Cami'yi, kapalı çarşıyı gezin ve manzara için teleferiği alarak Uludağ'a çıkın. İskender kebabı burada doğdu.</p>
+        <div class="daytrip-distance">150 km güney, yaklaşık 2 - 2,5 saat</div>
+        <div class="daytrip-name">Bursa ve Uludağ</div>
+        <p class="daytrip-desc">İlk Osmanlı başkenti; parkları ve ağaçlıklı yamaçlarıyla yeşil Bursa diye anılır. Ulu Cami'yi ve kapalı çarşıyı gez, teleferiğe binip Uludağ'a çık. İskender'in vatanı.</p>
       </div>
     </div>
   </div>
@@ -2131,14 +2130,14 @@ document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);
 document.addEventListener('DOMContentLoaded',function(){
   if(typeof L==='undefined'||!document.getElementById('map'))return;
   var PLACES=[
-    {n:'01', name:'Ayasofya', short:'MS 537'de inşa edilen Ayasofya, neredeyse bin yıl boyunca dünyanın en büyük katedrali oldu.', lat:41.0086, lng:28.9802, zoom:16},
-    {n:'02', name:'Sultanahmet Camii', short:'17. yüzyıl başında inşa edildi; altı minaresi ve içinde 20.000'den fazla mavi İznik çinisiyle ünlü.', lat:41.0054, lng:28.9768, zoom:17},
-    {n:'03', name:'Topkapı Sarayı', short:'Yaklaşık 400 yıl Osmanlı sultanlarının evidir.', lat:41.0115, lng:28.9834, zoom:16},
-    {n:'04', name:'Kapalıçarşı', short:'60 sokakta 4.000'den fazla dükkanıyla dünyanın en eski ve büyük kapalı çarşılarından.', lat:41.0107, lng:28.9681, zoom:16},
-    {n:'05', name:'Mısır Çarşısı', short:'Kapalıçarşı'dan küçük ama daha kokulu ve çok daha az yorucu.', lat:41.0165, lng:28.9705, zoom:17},
-    {n:'06', name:'Galata Tower', short:'The 14th-century Genoese tower stands 67 metres tall with a 360-degree view of old Istanbul, the Boğaz and Golden Horn.', lat:41.0256, lng:28.9741, zoom:17},
-    {n:'07', name:'Dolmabahçe Sarayı', short:'The last great palace of the Ottoman Empire, built in 1856 on the European shore of the Boğaz in a blend of Baroque, Rococo and Neoclassical styles.', lat:41.0392, lng:29.0005, zoom:15},
-    {n:'08', name:'Süleymaniye Camii', short:'İstanbul'un en büyük sultan camii; 1550'de Kanuni Süleyman tarafından yaptırıldı, mimar Sinan tasarladı.', lat:41.0160, lng:28.9640, zoom:16}
+    {n:'01', name:'Ayasofya', short:'537 tarihli Ayasofya, bin yıl boyunca dünyanın en büyük katedrali oldu.', lat:41.0086, lng:28.9802, zoom:16},
+    {n:'02', name:'Sultanahmet Camii', short:'17. yüzyıl başında inşa edildi; altı minaresi ve 20.000\'den fazla mavi İznik çinisiyle ünlü.', lat:41.0054, lng:28.9768, zoom:17},
+    {n:'03', name:'Topkapı Sarayı', short:'Dört yüz yıl padişahların eviydi.', lat:41.0115, lng:28.9834, zoom:16},
+    {n:'04', name:'Kapalıçarşı', short:'60 sokakta 4.000\'den fazla dükkanıyla dünyanın en eski ve büyük kapalı çarşılarından.', lat:41.0107, lng:28.9681, zoom:16},
+    {n:'05', name:'Mısır Çarşısı', short:'Kapalıçarşı\'dan küçük ama daha kokulu ve çok daha az yorucu.', lat:41.0165, lng:28.9705, zoom:17},
+    {n:'06', name:'Galata Kulesi', short:'14. yüzyıldan kalma Ceneviz kulesi; 67 metre yüksekliğinde, Tarihi Yarımada, Boğaz ve Haliç\'e 360 derece manzara.', lat:41.0256, lng:28.9741, zoom:17},
+    {n:'07', name:'Dolmabahçe Sarayı', short:'Osmanlı\'nın son büyük sarayı; 1856\'da Boğaz\'ın Avrupa yakasında Barok, Rokoko ve Neoklasik üslupların harmanıyla inşa edildi.', lat:41.0392, lng:29.0005, zoom:15},
+    {n:'08', name:'Süleymaniye Camii', short:'İstanbul\'un en büyük sultan camii; 1550\'de Kanuni tarafından yaptırıldı, Mimar Sinan tasarladı.', lat:41.0160, lng:28.9640, zoom:16}
   ];
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
   // MOBILE FIX: ensure Leaflet sees the real container dimensions
@@ -2153,7 +2152,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var icon=L.divIcon({className:'',html:'<div class="atl-pin"><span>'+p.n+'</span></div>',iconSize:[34,34],iconAnchor:[10,32],popupAnchor:[7,-26]});
     var m=L.marker([p.lat,p.lng],{icon:icon,title:p.name}).addTo(map);
     m.bindPopup(
-      '<span class="pop-num">'+p.n+' · Place</span>'+
+      '<span class="pop-num">'+p.n+' · Mekan</span>'+
       '<div class="pop-name">'+p.name+'</div>'+
       '<div class="pop-desc">'+p.short+'</div>'+
       '<a class="pop-link" target="_blank" href="https://www.google.com/maps?q='+encodeURIComponent(p.name+' Istanbul')+'">View on Map &rarr;</a>',
@@ -2168,7 +2167,7 @@ document.addEventListener('DOMContentLoaded',function(){
   function setActive(i){
     cards.forEach(function(c){c.classList.toggle('active', Number(c.dataset.i)===i);});
     document.querySelectorAll('.atl-places .atl-pin').forEach(function(el,idx){el.classList.toggle('active', idx===i);});
-    if(i>=0){var p=PLACES[i];nowBox.innerHTML='<span class="atl-now-num">Now Viewing · '+p.n+'</span><div class="atl-now-name">'+p.name+'</div>';}
+    if(i>=0){var p=PLACES[i];nowBox.innerHTML='<span class="atl-now-num">Görüntüleniyor · '+p.n+'</span><div class="atl-now-name">'+p.name+'</div>';}
     active=i;
   }
   function selectPlace(i,opts){
@@ -2198,13 +2197,13 @@ document.addEventListener('DOMContentLoaded',function(){
      ════════════════════════════════════════════════════════════ -->
 <section class="section section-cream related-sec" id="related">
   <div class="related-wrap">
-    <span class="section-label r-reveal">Keşfetmeye Devam Edin</span>
+    <span class="section-label r-reveal">Keşfetmeye Devam Et</span>
     <h2 class="section-title r-reveal">İlgili Rotalar ve Günlükler</h2>
-    <p class="related-intro r-reveal">İstanbul'dan geçen özenle hazırlanmış rotalar ve günlük hikayeleri. Sırada nereye, yolda ne okunur.</p>
+    <p class="related-intro r-reveal"><em>İstanbul</em>'dan geçen özenle hazırlanmış rotalar ve günlük hikayeleri. Sırada nereye, yolda ne okunur.</p>
     <div class="related-grid r-reveal">
       <a class="rel-card" data-type="route" href="/tr/routes/grand-tour.html">
         <div class="rel-card-bg" style="background-image:url('https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg');"></div>
-        <span class="rel-tag">Route</span>
+        <span class="rel-tag">Rota</span>
         <div class="rel-card-overlay">
           <div class="rel-meta">14 gün · 7 durak</div>
           <h3 class="rel-title">Büyük Tur</h3>
@@ -2213,18 +2212,18 @@ document.addEventListener('DOMContentLoaded',function(){
       </a>
       <a class="rel-card" data-type="route" href="/tr/routes/first-time-turkey.html">
         <div class="rel-card-bg" style="background-image:url('https://img.showmeturkiye.com/routes/first-time-turkey-itinerary-7-days.jpg');"></div>
-        <span class="rel-tag">Route</span>
+        <span class="rel-tag">Rota</span>
         <div class="rel-card-overlay">
-          <div class="rel-meta">7 gün · İstanbul to Antalya</div>
+          <div class="rel-meta">7 gün · İstanbul'dan Antalya'ya</div>
           <h3 class="rel-title">Türkiye'ye İlk Kez</h3>
           <span class="rel-read">Rotayı gör <span class="arr">→</span></span>
         </div>
       </a>
       <a class="rel-card" data-type="journal" href="/tr/blog/istanbul.html">
         <div class="rel-card-bg" style="background-image:url('https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg');"></div>
-        <span class="rel-tag">Journal</span>
+        <span class="rel-tag">Günlük</span>
         <div class="rel-card-overlay">
-          <div class="rel-meta">Günlük · Şehir Rehberi</div>
+          <div class="rel-meta">Günlük · Şehir rehberi</div>
           <h3 class="rel-title">İstanbul Gezi Rehberi</h3>
           <span class="rel-read">Hikayeyi oku <span class="arr">→</span></span>
         </div>
@@ -2256,10 +2255,10 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="footer-section">
       <h3>Keşfet</h3>
       <div class="footer-links">
-        <a href="/tr/explore.html">Cities</a>
-        <a href="/tr/routes.html">Routes</a>
-        <a href="/tr/blog.html">Journal</a>
-        <a href="/tr/projects.html">Films</a>
+        <a href="/tr/explore.html">Şehirler</a>
+        <a href="/tr/routes.html">Rotalar</a>
+        <a href="/tr/blog.html">Günlük</a>
+        <a href="/tr/projects.html">Filmler</a>
       </div>
     </div>
 
@@ -2267,17 +2266,17 @@ document.addEventListener('DOMContentLoaded',function(){
       <h3>Hakkımızda</h3>
       <div class="footer-links">
         <a href="/tr/about.html">Hakkımızda</a>
-        <a href="/tr/contact.html">Contact</a>
-        <a href="../press.html">Press</a>
+        <a href="/tr/contact.html">İletişim</a>
+        <a href="/tr/press.html">Basın</a>
       </div>
     </div>
 
     <div class="footer-section">
       <h3>Yasal</h3>
       <div class="footer-links">
-        <a href="../privacy.html">Gizlilik</a>
-        <a href="../terms.html">Terms</a>
-        <a href="../cookies.html">Cookies</a>
+        <a href="/tr/privacy.html">Gizlilik</a>
+        <a href="/tr/terms.html">Koşullar</a>
+        <a href="/tr/cookies.html">Çerezler</a>
       </div>
     </div>
   </div>
@@ -2294,15 +2293,15 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="so-slim-inner">
       <div class="so-slim-row">
         <span class="so-slim-search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></span>
-        <input type="text" class="so-slim-input" placeholder="Search Türkiye; cities, routes, journal…" aria-label="Ara">
+        <input type="text" class="so-slim-input" placeholder="Türkiye'de ara: şehirler, rotalar, günlük..." aria-label="Ara">
         <button class="so-slim-close" aria-label="Aramayı kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="6" y1="18" x2="18" y2="6"></line></svg></button>
       </div>
       <div class="so-slim-filters">
         <span class="so-filter-label">Filtrele</span>
         <button class="so-chip is-active" data-cat="all">Hepsi</button>
-        <button class="so-chip" data-cat="Route">Rotalar</button>
-        <button class="so-chip" data-cat="City">Şehirler</button>
-        <button class="so-chip" data-cat="Journal">Günlük</button>
+        <button class="so-chip" data-cat="Rota">Rotalar</button>
+        <button class="so-chip" data-cat="Şehir">Şehirler</button>
+        <button class="so-chip" data-cat="Günlük">Günlük</button>
       </div>
       <div class="so-slim-panel" data-slim-results></div>
       <div class="so-slim-empty-rail" data-slim-empty></div>
@@ -2314,9 +2313,8 @@ document.addEventListener('DOMContentLoaded',function(){
   </div>
 </div>
 <script id="smt-search-js">
-const SEARCH_DATA = [{"id": "adana", "category": "Şehir", "title": "Adana", "excerpt": "Adana'yı keşfedin. Efsane Adana kebabını tadın, antik Roma taş köprüsünden geçin", "meta": "Şehir rehberi", "tags": ["adana", "southern", "taste", "legendary", "kebab", "cross", "ancient", "roman", "stone", "bridge"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/cities/adana.html"}, {"id": "afyonkarahisar", "category": "Şehir", "title": "Afyonkarahisar", "excerpt": "Afyonkarahisar'ı keşfedin. Hitit kale kayasına tırmanın, Selçuklu camilerini ziyaret edin", "meta": "Şehir rehberi", "tags": ["afyonkarahisar", "western", "climb", "hittite", "castle", "rock", "seljuk", "mosques", "soak", "finest"], "img": "https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg", "url": "/tr/cities/afyonkarahisar.html"}, {"id": "ankara", "category": "Şehir", "title": "Ankara", "excerpt": "Explore Ankara, Turkiye\\u0027s capital. Visit Anıtkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.", "meta": "Şehir rehberi", "tags": ["ankara", "explore", "capital", "anitkabir", "museum", "anatolian", "civilisations", "citadel", "taste", "tava"], "img": "https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg", "url": "/tr/cities/ankara.html"}, {"id": "antalya", "category": "Şehir", "title": "Antalya", "excerpt": "Türkiye'nin Turquaz Kıyısı'nda Antalya'yı keşfedin. Kaleiçi, Aspendos ve Perge.", "meta": "Şehir rehberi", "tags": ["antalya", "explore", "turquoise", "coast", "kaleici", "town", "ancient", "ruins", "aspendos", "perge"], "img": "https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg", "url": "/tr/cities/antalya.html"}, {"id": "artvin", "category": "Şehir", "title": "Artvin", "excerpt": "Artvin'i keşfedin. Çoruh'ta rafting, Karagöl ve Kaçkar Dağları.", "meta": "Şehir rehberi", "tags": ["artvin", "northeastern", "raft", "çoruh", "river", "explore", "karagöl", "lake", "trek", "kaçkar"], "img": "https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg", "url": "/tr/cities/artvin.html"}, {"id": "balikesir", "category": "Şehir", "title": "Balıkesir", "excerpt": "Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas ", "meta": "Şehir rehberi", "tags": ["balikesir", "balıkesir", "province", "northwestern", "ayvalık", "olive", "coast", "cunda", "island", "erdek"], "img": "https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg", "url": "/tr/cities/balikesir.html"}, {"id": "bursa", "category": "Şehir", "title": "Bursa", "excerpt": "Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb and taste the original İskender kebab.", "meta": "Şehir rehberi", "tags": ["bursa", "explore", "first", "capital", "ottoman", "empire", "grand", "mosque", "uludag", "resort"], "img": "https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg", "url": "/tr/cities/bursa.html"}, {"id": "canakkale", "category": "Şehir", "title": "Canakkale", "excerpt": "Discover Canakkale on the Çanakkale Boğazı. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fi", "meta": "Şehir rehberi", "tags": ["canakkale", "dardanelles", "strait", "ancient", "troy", "unesco", "site", "gallipoli", "battlefields", "kilitbahir"], "img": "https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg", "url": "/tr/cities/canakkale.html"}, {"id": "nevsehir-cappadocia", "category": "Şehir", "title": "Cappadocia (Nevşehir)", "excerpt": "Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride ", "meta": "Şehir rehberi", "tags": ["nevsehir cappadocia", "cappadocia", "nevşehir", "explore", "göreme", "open", "museum", "uçhisar", "castle", "derinkuyu"], "img": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg", "url": "/tr/cities/nevsehir-cappadocia.html"}, {"id": "denizli", "category": "Şehir", "title": "Denizli", "excerpt": "Discover Denizli in southwestern Turkey. Walk barefoot on Pamukkale's white travertine terraces, explore Hierapolis, Laodicea and Aphrodisias, and soa", "meta": "Şehir rehberi", "tags": ["denizli", "southwestern", "walk", "barefoot", "pamukkale", "white", "travertine", "terraces", "explore", "hierapolis"], "img": "https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg", "url": "/tr/cities/denizli.html"}, {"id": "eskisehir", "category": "Şehir", "title": "Eskisehir", "excerpt": "Visit Eskisehir, Turkiye\\u0027s youthful university city. Explore Odunpazarı old town, ride gondolas on the Porsuk river and taste the famous cig bore", "meta": "Şehir rehberi", "tags": ["eskisehir", "youthful", "university", "city", "explore", "odunpazari", "town", "ride", "gondolas", "porsuk"], "img": "https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg", "url": "/tr/cities/eskisehir.html"}, {"id": "gaziantep", "category": "Şehir", "title": "Gaziantep", "excerpt": "UNESCO Gastronomi Şehri Gaziantep'i keşfedin. Dünyaca ünlü baklavayı tadın.", "meta": "Şehir rehberi", "tags": ["gaziantep", "explore", "unesco", "city", "gastronomy", "taste", "world", "baklava", "zeugma", "mosaic"], "img": "https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg", "url": "/tr/cities/gaziantep.html"}, {"id": "hakkari", "category": "Şehir", "title": "Hakkari", "excerpt": "Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, climb Turkey's second highest peak Uludoruk, and", "meta": "Şehir rehberi", "tags": ["hakkari", "southeastern", "trek", "cilo", "glaciers", "lakes", "explore", "valley", "climb", "second"], "img": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg", "url": "/tr/cities/hakkari.html"}, {"id": "istanbul", "category": "Şehir", "title": "Istanbul", "excerpt": "İstanbul'u keşfedin. Ayasofya, Topkapı ve Boğaz.", "meta": "Şehir rehberi", "tags": ["istanbul", "explore", "east", "meets", "west", "hagia", "sophia", "topkapi", "palace", "grand"], "img": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg", "url": "/tr/cities/istanbul.html"}, {"id": "izmir", "category": "Şehir", "title": "Izmir", "excerpt": "Ege kıyısında İzmir'i keşfedin. Efes ve Kordon yürüyüşü.", "meta": "Şehir rehberi", "tags": ["izmir", "explore", "aegean", "coast", "ephesus", "stroll", "kordon", "taste", "boyoz", "kumru"], "img": "https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg", "url": "/tr/cities/izmir.html"}, {"id": "kastamonu", "category": "Şehir", "title": "Kastamonu", "excerpt": "Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek İlgaz Mountain, visit Safranbolu, and taste the city's famous garlic sausage", "meta": "Şehir rehberi", "tags": ["kastamonu", "northern", "explore", "ottoman", "town", "trek", "lgaz", "mountain", "safranbolu", "taste"], "img": "https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg", "url": "/tr/cities/kastamonu.html"}, {"id": "kayseri", "category": "Şehir", "title": "Kayseri", "excerpt": "Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastırma and mantı, and visit the Sultan Hanı caravanserai", "meta": "Şehir rehberi", "tags": ["kayseri", "central", "anatolia", "erciyes", "mountain", "explore", "seljuk", "monuments", "taste", "pastırma"], "img": "https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg", "url": "/tr/cities/kayseri.html"}, {"id": "kocaeli", "category": "Şehir", "title": "Kocaeli", "excerpt": "Discover Kocaeli in northwestern Turkey. Explore the Gulf of İzmit waterfront, ski Kartepe, walk the shores of Sapanca Lake, visit Maşukiye's forest c", "meta": "Şehir rehberi", "tags": ["kocaeli", "northwestern", "explore", "gulf", "zmit", "waterfront", "kartepe", "walk", "shores", "sapanca"], "img": "https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg", "url": "/tr/cities/kocaeli.html"}, {"id": "konya", "category": "Şehir", "title": "Konya", "excerpt": "Visit Konya, the spiritual heart of Turkiye. The Mevlana Museum of Rumi, the Whirling Dervishes, Catalhoyuk and the famous Konya etli ekmek.", "meta": "Şehir rehberi", "tags": ["konya", "spiritual", "heart", "mevlana", "museum", "rumi", "whirling", "dervishes", "catalhoyuk", "famous"], "img": "https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg", "url": "/tr/cities/konya.html"}, {"id": "mardin", "category": "Şehir", "title": "Mardin", "excerpt": "Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh and enjoy panoramic views over Mesopotamia.", "meta": "Şehir rehberi", "tags": ["mardin", "explore", "golden", "stone", "city", "deyrulzafaran", "monastery", "madrasahs", "taste", "kibbeh"], "img": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg", "url": "/tr/cities/mardin.html"}, {"id": "mersin", "category": "Şehir", "title": "Mersin", "excerpt": "Discover Mersin on Turkey's Akdeniz coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste t", "meta": "Şehir rehberi", "tags": ["mersin", "mediterranean", "coast", "explore", "kızkalesi", "medieval", "castle", "ancient", "city", "silifke"], "img": "https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg", "url": "/tr/cities/mersin.html"}, {"id": "mugla", "category": "Şehir", "title": "Mugla", "excerpt": "Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan and Datca. Turquoise coves, gulet cruises, Lycian ruins and the best Ege beaches.", "meta": "Şehir rehberi", "tags": ["mugla", "province", "bodrum", "marmaris", "fethiye", "dalyan", "datca", "turquoise", "coves", "gulet"], "img": "https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg", "url": "/tr/cities/mugla.html"}, {"id": "rize", "category": "Şehir", "title": "Rize", "excerpt": "Discover Rize on Turkey's Karadeniz coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, taste muhlama and Anzer honey in Turkey's tea capita", "meta": "Şehir rehberi", "tags": ["rize", "black", "coast", "explore", "ayder", "plateau", "zilkale", "castle", "firtina", "valley"], "img": "https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg", "url": "/tr/cities/rize.html"}, {"id": "sanliurfa", "category": "Şehir", "title": "Sanliurfa", "excerpt": "Visit Sanliurfa, city of the prophets. See Gobekli Tepe, the Pool of Sacred Carp, Harran beehive houses and taste legendary Urfa kebab.", "meta": "Şehir rehberi", "tags": ["sanliurfa", "city", "prophets", "gobekli", "tepe", "pool", "sacred", "carp", "harran", "beehive"], "img": "https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg", "url": "/tr/cities/sanliurfa.html"}, {"id": "trabzon", "category": "Şehir", "title": "Trabzon", "excerpt": "Discover Trabzon on the Karadeniz coast. Visit Sümela Monastery, Uzungol lake, taste Akcaabat kofte and explore the Kackar Mountains.", "meta": "Şehir rehberi", "tags": ["trabzon", "black", "coast", "sumela", "monastery", "uzungol", "lake", "taste", "akcaabat", "kofte"], "img": "https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg", "url": "/tr/cities/trabzon.html"}, {"id": "aladaglar", "category": "Günlük", "title": "Aladağlar Travel Guide: Demirkazık, Emli Valley, and the Bolkar Mountains", "excerpt": "Aladağlar guide. Emli Valley, Kazıklı Ali Canyon climbing, Bolkar Mountains, Meydan Plateau, Lake Karagöl, Lake Çinili, Niğde's Gümüşler Monastery, an", "meta": "Journal", "tags": ["aladaglar", "aladağlar", "demirkazık", "emli", "valley", "bolkar", "mountains", "kazıklı", "canyon", "climbing"], "img": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg", "url": "/tr/blog/aladaglar.html"}, {"id": "antalya", "category": "Günlük", "title": "Antalya Travel Guide: Kaleiçi, Aspendos, and the Lycian Coast", "excerpt": "Antalya travel guide. Kaleiçi old town, Düden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos and Termessos, plus the Lycian coast from ", "meta": "Journal", "tags": ["antalya", "kaleiçi", "aspendos", "lycian", "coast", "town", "düden", "waterfalls", "lara", "beach"], "img": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg", "url": "/tr/blog/antalya.html"}, {"id": "artvin", "category": "Günlük", "title": "Artvin Travel Guide: Çoruh Canyon, Karagöl, and the Kaçkar Highlands", "excerpt": "Artvin in the far northeast of Türkiye, Hatila Valley, Şavşat and Borçka Karagöl, Tibeti Monastery, Macahel district, Maral Waterfall, and the Çoruh R", "meta": "Journal", "tags": ["artvin", "çoruh", "canyon", "karagöl", "kaçkar", "highlands", "northeast", "hatila", "valley", "şavşat"], "img": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg", "url": "/tr/blog/artvin.html"}, {"id": "balikesir", "category": "Günlük", "title": "Balıkesir Travel Guide: Kazdağları, Ayvalık, and the Northern Ege", "excerpt": "Balıkesir travel guide. Mount Ida (Kaz Dağları), Ayvalık and Cunda, the Glass Terrace, Devil's Table, Çaylak Waterfall, Küçükköy, and the geological c", "meta": "Journal", "tags": ["balikesir", "balıkesir", "kazdağları", "ayvalık", "northern", "aegean", "mount", "dağları", "cunda", "glass"], "img": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg", "url": "/tr/blog/balikesir.html"}, {"id": "kapadokya", "category": "Günlük", "title": "Cappadocia Travel Guide: Göreme, Derinkuyu, and the Balloon Flight", "excerpt": "A complete guide to Cappadocia, Göreme Open-Air Museum, the Ihlara Valley, Derinkuyu underground city, balloon flights, the cave hotels of Göreme and ", "meta": "Journal", "tags": ["kapadokya", "cappadocia", "göreme", "derinkuyu", "balloon", "flight", "complete", "open", "museum", "ihlara"], "img": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg", "url": "/tr/blog/kapadokya.html"}, {"id": "erzurum", "category": "Günlük", "title": "Erzurum Travel Guide: Palandöken Skiing, the Old Town, and the Doğu Express", "excerpt": "Erzurum travel guide. Palandöken ski resort, the old town, Çifte Minareli Medrese, Atatürk House, the Doğu Express train, and what eastern Anatolia lo", "meta": "Journal", "tags": ["erzurum", "palandöken", "skiing", "town", "doğu", "express", "resort", "çifte", "minareli", "medrese"], "img": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg", "url": "/tr/blog/erzurum.html"}, {"id": "giresun", "category": "Günlük", "title": "Giresun Travel Guide: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast", "excerpt": "A guide to Giresun on the Karadeniz coast. Kuzalan Nature Park, Mavi Göl, Goksu Travertines, Kumbet and Golyani plateaus, Çağlayan Waterfall, the whis", "meta": "Journal", "tags": ["giresun", "kuşköy", "whistling", "language", "kuzalan", "hazelnut", "coast", "black", "nature", "park"], "img": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg", "url": "/tr/blog/giresun.html"}, {"id": "hakkari", "category": "Günlük", "title": "Hakkari Travel Guide: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier", "excerpt": "Hakkari travel guide. The Valley of Hell in Heaven (Cennet Cehennem Vadisi), Kaval Waterfall, the Zap River, Bercelen Plateau, the city centre, and wh", "meta": "Journal", "tags": ["hakkari", "cilo", "mountains", "canyon", "wildest", "frontier", "valley", "hell", "heaven", "cennet"], "img": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg", "url": "/tr/blog/hakkari.html"}, {"id": "istanbul", "category": "Günlük", "title": "Istanbul Travel Guide: Hagia Sophia, the Boğaz, and the Grand Bazaar", "excerpt": "A complete guide to Istanbul, Hagia Sophia, the Blue Mosque, Topkapı Palace, Basilica Cistern, the Grand Bazaar, and the Boğaz. Sixteen million pe", "meta": "Journal", "tags": ["istanbul", "hagia", "sophia", "bosphorus", "grand", "bazaar", "complete", "blue", "mosque", "topkapı"], "img": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg", "url": "/tr/blog/istanbul.html"}, {"id": "kemer", "category": "Günlük", "title": "Kemer Travel Guide: Olympos, Phaselis, and Mount Tahtalı", "excerpt": "Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtalı cable car, Göynük Canyon, and the southwestern Antalya co", "meta": "Journal", "tags": ["kemer", "olympos", "phaselis", "mount", "tahtalı", "chimaera", "flames", "ancient", "harbour", "cable"], "img": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg", "url": "/tr/blog/kemer.html"}, {"id": "ordu", "category": "Günlük", "title": "Ordu Travel Guide: Boztepe Cable Car, Perşembe Plateau, and the Karadeniz Coast", "excerpt": "A complete guide to Ordu on the Karadeniz coast. Uluğöl Nature Park, Ohtamış Waterfall, Perşembe Plateau, Ünye Castle, Cape Jason, Uzunkum Beach and B", "meta": "Journal", "tags": ["ordu", "boztepe", "cable", "perşembe", "plateau", "black", "coast", "complete", "uluğöl", "nature"], "img": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg", "url": "/tr/blog/ordu.html"}, {"id": "rize", "category": "Günlük", "title": "Rize Travel Guide: Ayder, the Fırtına Valley, and Turkey's Tea Country", "excerpt": "Rize travel guide. Ayder Plateau, Fırtına River rafting, Zil Castle, Palovit Waterfall, Elevit and Handüzü plateaus, Çeceva tea garden, Komilo village", "meta": "Journal", "tags": ["rize", "ayder", "fırtına", "valley", "country", "plateau", "river", "rafting", "castle", "palovit"], "img": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg", "url": "/tr/blog/rize.html"}, {"id": "top-10-places-to-visit-in-Turkey", "category": "Günlük", "title": "Top 10 Places to Visit in Türkiye in 2026", "excerpt": "The 10 best places to visit in Türkiye: Istanbul, Cappadocia, the Muğla and Antalya coast, Efes, Pamukkale, Şanlıurfa for Göbekli Tepe, Mardin, Tra", "meta": "Journal", "tags": ["top 10 places to visit in Turkey", "istanbul", "cappadocia", "muğla", "antalya", "coast", "ephesus", "pamukkale", "şanlıurfa", "göbekli"], "img": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg", "url": "/tr/blog/top-10-places-to-visit-in-Turkey.html"}, {"id": "trabzon", "category": "Günlük", "title": "Trabzon Travel Guide: Sümela Monastery, Uzungöl, and the Karadeniz Coast", "excerpt": "Trabzon travel guide. Sümela Monastery, Uzungöl, Çal Cave, Sera Lake, Boztepe, the Ortamahalle old quarter, Asmasu Waterfall, and outdoor activities f", "meta": "Journal", "tags": ["trabzon", "sümela", "monastery", "uzungöl", "black", "coast", "cave", "sera", "lake", "boztepe"], "img": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg", "url": "/tr/blog/trabzon.html"}, {"id": "when-is-the-best-time-to-visit-turkiye", "category": "Günlük", "title": "Türkiye'ye En İyi Zaman Ne Zaman Gidilir: A Month-by-Month Guide", "excerpt": "Month-by-month guide to visiting Türkiye. The shoulder seasons, peak summer, winter strengths, and what each region looks like at each time of year.", "meta": "Journal", "tags": ["when is the best time to visit turkiye", "time", "month", "visiting", "shoulder", "seasons", "peak", "summer", "winter", "strengths"], "img": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg", "url": "/tr/blog/when-is-the-best-time-to-visit-turkiye.html"}, {"id": "canakkale", "category": "Günlük", "title": "Çanakkale Travel Guide: Gallipoli, Troy, and Assos", "excerpt": "Çanakkale travel guide. Troy archaeological site, Gallipoli Martyrs' Memorial, Kilitbahir and Bigali castles, Assos, Bozcaada and Gökçeada islands, Ap", "meta": "Journal", "tags": ["canakkale", "çanakkale", "gallipoli", "troy", "assos", "archaeological", "site", "martyrs", "memorial", "kilitbahir"], "img": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg", "url": "/tr/blog/canakkale.html"}, {"id": "aegean-coast-escape", "category": "Rota", "title": "Ege Kıyısı Escape, 8 days Itinerary", "excerpt": "An eight day Ege coastal trip from Izmir down to Bodrum, Datça, and Fethiye. Slow days, ancient ruins next to turquoise water, and a gulet on the s", "meta": "Itinerary", "tags": ["aegean coast escape", "aegean", "coast", "escape", "days", "itinerary", "eight", "coastal", "trip", "izmir"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/aegean-coast-escape.html"}, {"id": "black-sea-highlands", "category": "Rota", "title": "Karadeniz Highlands, 7 days Itinerary", "excerpt": "Seven days through Türkiye's Karadeniz coast and highlands. Sümela Monastery, Ayder Plateau, Hemşin valleys, and the Macahel forest near the Georgian ", "meta": "Itinerary", "tags": ["black sea highlands", "black", "highlands", "days", "itinerary", "seven", "through", "coast", "sümela", "monastery"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/black-sea-highlands.html"}, {"id": "eastern-heritage", "category": "Rota", "title": "Eastern Heritage, 9 days Itinerary", "excerpt": "Nine days through Türkiye's southeast. Göbekli Tepe, Mardin's stone city, Antep's deep food culture. If time allows, add Karahan Tepe (35 km east), a ", "meta": "Itinerary", "tags": ["eastern heritage", "eastern", "heritage", "days", "itinerary", "nine", "through", "southeast", "göbekli", "tepe"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/eastern-heritage.html"}, {"id": "family-adventure", "category": "Rota", "title": "Family Adventure, 9 days Itinerary", "excerpt": "A practical nine day Türkiye trip with kids. Istanbul Boğaz boats, Cappadocia underground cities and balloons, Pamukkale wading pools, Antalya bea", "meta": "Itinerary", "tags": ["family adventure", "family", "adventure", "days", "itinerary", "practical", "nine", "trip", "kids", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/family-adventure.html"}, {"id": "first-time-turkey", "category": "Rota", "title": "Türkiye'ye İlk Kez, 7 days Itinerary", "excerpt": "A practical seven day Türkiye itinerary covering Istanbul, Cappadocia, and Antalya. Built for first time visitors who want substance, not a checklist.", "meta": "Itinerary", "tags": ["first time turkey", "first", "time", "days", "itinerary", "practical", "seven", "covering", "istanbul", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/first-time-turkey.html"}, {"id": "foodie-anatolian-trail", "category": "Rota", "title": "Foodie Anatolian Trail, 10 days Itinerary", "excerpt": "Ten days eating through Türkiye. Istanbul's imperial kitchen, Gaziantep's pistachios and kebabs, Izmir's olive oil Ege. Three regions, three deep f", "meta": "Itinerary", "tags": ["foodie anatolian trail", "foodie", "anatolian", "trail", "days", "itinerary", "eating", "through", "istanbul", "imperial"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/foodie-anatolian-trail.html"}, {"id": "luxury-turkey", "category": "Rota", "title": "Luxury Türkiye, 8 days Itinerary", "excerpt": "Eight days of premium Türkiye. Boğaz suite hotels in Istanbul, top tier cave spa in Cappadocia, private crewed gulet through the Muğla coves. Slow", "meta": "Itinerary", "tags": ["luxury turkey", "luxury", "days", "itinerary", "eight", "premium", "bosphorus", "suite", "hotels", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/luxury-turkey.html"}, {"id": "off-the-beaten-path", "category": "Rota", "title": "Off the Beaten Path, 12 days Itinerary", "excerpt": "Twelve days through Türkiye's least visited regions. Kastamonu wooden Ottoman houses, Macahel forest near Georgia, Hakkari Kurdish highlands, Mardin M", "meta": "Itinerary", "tags": ["off the beaten path", "beaten", "path", "days", "itinerary", "twelve", "through", "least", "visited", "regions"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/off-the-beaten-path.html"}, {"id": "photographers-turkey", "category": "Rota", "title": "Photographer's Türkiye, 10 days Itinerary", "excerpt": "Ten days built around Türkiye's distinct visual geography. Cappadocia volcanic valleys, Pamukkale travertines, Mardin stone city, Muğla turquoise cove", "meta": "Itinerary", "tags": ["photographers turkey", "photographer", "days", "itinerary", "built", "around", "distinct", "visual", "geography", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/photographers-turkey.html"}, {"id": "romantic-getaway", "category": "Rota", "title": "Romantic Getaway, 6 days Itinerary", "excerpt": "Six days for couples. Cave hotels with balcony breakfasts in Cappadocia, then a private gulet through the Muğla coast. Built for slow travel and the k", "meta": "Itinerary", "tags": ["romantic getaway", "romantic", "getaway", "days", "itinerary", "couples", "cave", "hotels", "balcony", "breakfasts"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/romantic-getaway.html"}, {"id": "spiritual-anatolia", "category": "Rota", "title": "Spiritual Anatolia, 8 days Itinerary", "excerpt": "Eight days through Türkiye's spiritual ground. Konya for Rumi and Sufism, Şanlıurfa for Abraham's birthplace and Göbekli Tepe, Mardin for Syriac monas", "meta": "Itinerary", "tags": ["spiritual anatolia", "spiritual", "anatolia", "days", "itinerary", "eight", "through", "ground", "konya", "rumi"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/spiritual-anatolia.html"}, {"id": "grand-tour", "category": "Rota", "title": "The Grand Tour, 14 days Itinerary", "excerpt": "A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Efes, with Izmir at the end. Day by day, ", "meta": "Itinerary", "tags": ["grand tour", "grand", "tour", "days", "itinerary", "practical", "fourteen", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/grand-tour.html"}];
-
-/* Show Me Türkiye - Site Search (slim variant) */
+const SEARCH_DATA = [{"id": "adana", "category": "Şehir", "title": "Adana", "excerpt": "Adana'yı keşfedin. Efsane Adana kebabını tadın, antik Roma taş köprüsünden geçin", "meta": "Şehir rehberi", "tags": ["adana", "southern", "taste", "legendary", "kebab", "cross", "ancient", "roman", "stone", "bridge"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/cities/adana.html"}, {"id": "afyonkarahisar", "category": "Şehir", "title": "Afyonkarahisar", "excerpt": "Afyonkarahisar'ı keşfedin. Hitit kale kayasına tırmanın, Selçuklu camilerini ziyaret edin", "meta": "Şehir rehberi", "tags": ["afyonkarahisar", "western", "climb", "hittite", "castle", "rock", "seljuk", "mosques", "soak", "finest"], "img": "https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg", "url": "/tr/cities/afyonkarahisar.html"}, {"id": "ankara", "category": "Şehir", "title": "Ankara", "excerpt": "Explore Ankara, Turkiye\\u0027s capital. Visit Anıtkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.", "meta": "Şehir rehberi", "tags": ["ankara", "explore", "capital", "anitkabir", "museum", "anatolian", "civilisations", "citadel", "taste", "tava"], "img": "https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg", "url": "/tr/cities/ankara.html"}, {"id": "antalya", "category": "Şehir", "title": "Antalya", "excerpt": "Türkiye'nin Turquaz Kıyısı'nda Antalya'yı keşfedin. Kaleiçi, Aspendos ve Perge.", "meta": "Şehir rehberi", "tags": ["antalya", "explore", "turquoise", "coast", "kaleici", "town", "ancient", "ruins", "aspendos", "perge"], "img": "https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg", "url": "/tr/cities/antalya.html"}, {"id": "artvin", "category": "Şehir", "title": "Artvin", "excerpt": "Artvin'i keşfedin. Çoruh'ta rafting, Karagöl ve Kaçkar Dağları.", "meta": "Şehir rehberi", "tags": ["artvin", "northeastern", "raft", "çoruh", "river", "explore", "karagöl", "lake", "trek", "kaçkar"], "img": "https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg", "url": "/tr/cities/artvin.html"}, {"id": "balikesir", "category": "Şehir", "title": "Balıkesir", "excerpt": "Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas ", "meta": "Şehir rehberi", "tags": ["balikesir", "balıkesir", "province", "northwestern", "ayvalık", "olive", "coast", "cunda", "island", "erdek"], "img": "https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg", "url": "/tr/cities/balikesir.html"}, {"id": "bursa", "category": "Şehir", "title": "Bursa", "excerpt": "Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb and taste the original İskender kebab.", "meta": "Şehir rehberi", "tags": ["bursa", "explore", "first", "capital", "ottoman", "empire", "grand", "mosque", "uludag", "resort"], "img": "https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg", "url": "/tr/cities/bursa.html"}, {"id": "canakkale", "category": "Şehir", "title": "Canakkale", "excerpt": "Discover Canakkale on the Çanakkale Boğazı. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fi", "meta": "Şehir rehberi", "tags": ["canakkale", "dardanelles", "strait", "ancient", "troy", "unesco", "site", "gallipoli", "battlefields", "kilitbahir"], "img": "https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg", "url": "/tr/cities/canakkale.html"}, {"id": "nevsehir-cappadocia", "category": "Şehir", "title": "Cappadocia (Nevşehir)", "excerpt": "Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride ", "meta": "Şehir rehberi", "tags": ["nevsehir cappadocia", "cappadocia", "nevşehir", "explore", "göreme", "open", "museum", "uçhisar", "castle", "derinkuyu"], "img": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg", "url": "/tr/cities/nevsehir-cappadocia.html"}, {"id": "denizli", "category": "Şehir", "title": "Denizli", "excerpt": "Discover Denizli in southwestern Turkey. Walk barefoot on Pamukkale's white travertine terraces, explore Hierapolis, Laodicea and Aphrodisias, and soa", "meta": "Şehir rehberi", "tags": ["denizli", "southwestern", "walk", "barefoot", "pamukkale", "white", "travertine", "terraces", "explore", "hierapolis"], "img": "https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg", "url": "/tr/cities/denizli.html"}, {"id": "eskisehir", "category": "Şehir", "title": "Eskisehir", "excerpt": "Visit Eskisehir, Turkiye\\u0027s youthful university city. Explore Odunpazarı old town, ride gondolas on the Porsuk river and taste the famous cig bore", "meta": "Şehir rehberi", "tags": ["eskisehir", "youthful", "university", "city", "explore", "odunpazari", "town", "ride", "gondolas", "porsuk"], "img": "https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg", "url": "/tr/cities/eskisehir.html"}, {"id": "gaziantep", "category": "Şehir", "title": "Gaziantep", "excerpt": "UNESCO Gastronomi Şehri Gaziantep'i keşfedin. Dünyaca ünlü baklavayı tadın.", "meta": "Şehir rehberi", "tags": ["gaziantep", "explore", "unesco", "city", "gastronomy", "taste", "world", "baklava", "zeugma", "mosaic"], "img": "https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg", "url": "/tr/cities/gaziantep.html"}, {"id": "hakkari", "category": "Şehir", "title": "Hakkari", "excerpt": "Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, climb Turkey's second highest peak Uludoruk, and", "meta": "Şehir rehberi", "tags": ["hakkari", "southeastern", "trek", "cilo", "glaciers", "lakes", "explore", "valley", "climb", "second"], "img": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg", "url": "/tr/cities/hakkari.html"}, {"id": "istanbul", "category": "Şehir", "title": "Istanbul", "excerpt": "İstanbul'u keşfedin. Ayasofya, Topkapı ve Boğaz.", "meta": "Şehir rehberi", "tags": ["istanbul", "explore", "east", "meets", "west", "hagia", "sophia", "topkapi", "palace", "grand"], "img": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg", "url": "/tr/cities/istanbul.html"}, {"id": "izmir", "category": "Şehir", "title": "Izmir", "excerpt": "Ege kıyısında İzmir'i keşfedin. Efes ve Kordon yürüyüşü.", "meta": "Şehir rehberi", "tags": ["izmir", "explore", "aegean", "coast", "ephesus", "stroll", "kordon", "taste", "boyoz", "kumru"], "img": "https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg", "url": "/tr/cities/izmir.html"}, {"id": "kastamonu", "category": "Şehir", "title": "Kastamonu", "excerpt": "Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek İlgaz Mountain, visit Safranbolu, and taste the city's famous garlic sausage", "meta": "Şehir rehberi", "tags": ["kastamonu", "northern", "explore", "ottoman", "town", "trek", "lgaz", "mountain", "safranbolu", "taste"], "img": "https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg", "url": "/tr/cities/kastamonu.html"}, {"id": "kayseri", "category": "Şehir", "title": "Kayseri", "excerpt": "Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastırma and mantı, and visit the Sultan Hanı caravanserai", "meta": "Şehir rehberi", "tags": ["kayseri", "central", "anatolia", "erciyes", "mountain", "explore", "seljuk", "monuments", "taste", "pastırma"], "img": "https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg", "url": "/tr/cities/kayseri.html"}, {"id": "kocaeli", "category": "Şehir", "title": "Kocaeli", "excerpt": "Discover Kocaeli in northwestern Turkey. Explore the Gulf of İzmit waterfront, ski Kartepe, walk the shores of Sapanca Lake, visit Maşukiye's forest c", "meta": "Şehir rehberi", "tags": ["kocaeli", "northwestern", "explore", "gulf", "zmit", "waterfront", "kartepe", "walk", "shores", "sapanca"], "img": "https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg", "url": "/tr/cities/kocaeli.html"}, {"id": "konya", "category": "Şehir", "title": "Konya", "excerpt": "Visit Konya, the spiritual heart of Turkiye. The Mevlana Museum of Rumi, the Whirling Dervishes, Catalhoyuk and the famous Konya etli ekmek.", "meta": "Şehir rehberi", "tags": ["konya", "spiritual", "heart", "mevlana", "museum", "rumi", "whirling", "dervishes", "catalhoyuk", "famous"], "img": "https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg", "url": "/tr/cities/konya.html"}, {"id": "mardin", "category": "Şehir", "title": "Mardin", "excerpt": "Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh and enjoy panoramic views over Mesopotamia.", "meta": "Şehir rehberi", "tags": ["mardin", "explore", "golden", "stone", "city", "deyrulzafaran", "monastery", "madrasahs", "taste", "kibbeh"], "img": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg", "url": "/tr/cities/mardin.html"}, {"id": "mersin", "category": "Şehir", "title": "Mersin", "excerpt": "Discover Mersin on Turkey's Akdeniz coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste t", "meta": "Şehir rehberi", "tags": ["mersin", "mediterranean", "coast", "explore", "kızkalesi", "medieval", "castle", "ancient", "city", "silifke"], "img": "https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg", "url": "/tr/cities/mersin.html"}, {"id": "mugla", "category": "Şehir", "title": "Mugla", "excerpt": "Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan and Datca. Turquoise coves, gulet cruises, Lycian ruins and the best Ege beaches.", "meta": "Şehir rehberi", "tags": ["mugla", "province", "bodrum", "marmaris", "fethiye", "dalyan", "datca", "turquoise", "coves", "gulet"], "img": "https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg", "url": "/tr/cities/mugla.html"}, {"id": "rize", "category": "Şehir", "title": "Rize", "excerpt": "Discover Rize on Turkey's Karadeniz coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, taste muhlama and Anzer honey in Turkey's tea capita", "meta": "Şehir rehberi", "tags": ["rize", "black", "coast", "explore", "ayder", "plateau", "zilkale", "castle", "firtina", "valley"], "img": "https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg", "url": "/tr/cities/rize.html"}, {"id": "sanliurfa", "category": "Şehir", "title": "Sanliurfa", "excerpt": "Visit Sanliurfa, city of the prophets. See Gobekli Tepe, the Pool of Sacred Carp, Harran beehive houses and taste legendary Urfa kebab.", "meta": "Şehir rehberi", "tags": ["sanliurfa", "city", "prophets", "gobekli", "tepe", "pool", "sacred", "carp", "harran", "beehive"], "img": "https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg", "url": "/tr/cities/sanliurfa.html"}, {"id": "trabzon", "category": "Şehir", "title": "Trabzon", "excerpt": "Discover Trabzon on the Karadeniz coast. Visit Sümela Monastery, Uzungol lake, taste Akcaabat kofte and explore the Kackar Mountains.", "meta": "Şehir rehberi", "tags": ["trabzon", "black", "coast", "sumela", "monastery", "uzungol", "lake", "taste", "akcaabat", "kofte"], "img": "https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg", "url": "/tr/cities/trabzon.html"}, {"id": "aladaglar", "category": "Günlük", "title": "Aladağlar Travel Guide: Demirkazık, Emli Valley, and the Bolkar Mountains", "excerpt": "Aladağlar guide. Emli Valley, Kazıklı Ali Canyon climbing, Bolkar Mountains, Meydan Plateau, Lake Karagöl, Lake Çinili, Niğde's Gümüşler Monastery, an", "meta": "Journal", "tags": ["aladaglar", "aladağlar", "demirkazık", "emli", "valley", "bolkar", "mountains", "kazıklı", "canyon", "climbing"], "img": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg", "url": "/tr/blog/aladaglar.html"}, {"id": "antalya", "category": "Günlük", "title": "Antalya Travel Guide: Kaleiçi, Aspendos, and the Lycian Coast", "excerpt": "Antalya travel guide. Kaleiçi old town, Düden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos and Termessos, plus the Lycian coast from ", "meta": "Journal", "tags": ["antalya", "kaleiçi", "aspendos", "lycian", "coast", "town", "düden", "waterfalls", "lara", "beach"], "img": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg", "url": "/tr/blog/antalya.html"}, {"id": "artvin", "category": "Günlük", "title": "Artvin Travel Guide: Çoruh Canyon, Karagöl, and the Kaçkar Highlands", "excerpt": "Artvin in the far northeast of Türkiye, Hatila Valley, Şavşat and Borçka Karagöl, Tibeti Monastery, Macahel district, Maral Waterfall, and the Çoruh R", "meta": "Journal", "tags": ["artvin", "çoruh", "canyon", "karagöl", "kaçkar", "highlands", "northeast", "hatila", "valley", "şavşat"], "img": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg", "url": "/tr/blog/artvin.html"}, {"id": "balikesir", "category": "Günlük", "title": "Balıkesir Travel Guide: Kazdağları, Ayvalık, and the Northern Ege", "excerpt": "Balıkesir travel guide. Mount Ida (Kaz Dağları), Ayvalık and Cunda, the Glass Terrace, Devil's Table, Çaylak Waterfall, Küçükköy, and the geological c", "meta": "Journal", "tags": ["balikesir", "balıkesir", "kazdağları", "ayvalık", "northern", "aegean", "mount", "dağları", "cunda", "glass"], "img": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg", "url": "/tr/blog/balikesir.html"}, {"id": "kapadokya", "category": "Günlük", "title": "Cappadocia Travel Guide: Göreme, Derinkuyu, and the Balloon Flight", "excerpt": "A complete guide to Cappadocia, Göreme Open-Air Museum, the Ihlara Valley, Derinkuyu underground city, balloon flights, the cave hotels of Göreme and ", "meta": "Journal", "tags": ["kapadokya", "cappadocia", "göreme", "derinkuyu", "balloon", "flight", "complete", "open", "museum", "ihlara"], "img": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg", "url": "/tr/blog/kapadokya.html"}, {"id": "erzurum", "category": "Günlük", "title": "Erzurum Travel Guide: Palandöken Skiing, the Old Town, and the Doğu Express", "excerpt": "Erzurum travel guide. Palandöken ski resort, the old town, Çifte Minareli Medrese, Atatürk House, the Doğu Express train, and what eastern Anatolia lo", "meta": "Journal", "tags": ["erzurum", "palandöken", "skiing", "town", "doğu", "express", "resort", "çifte", "minareli", "medrese"], "img": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg", "url": "/tr/blog/erzurum.html"}, {"id": "giresun", "category": "Günlük", "title": "Giresun Travel Guide: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast", "excerpt": "A guide to Giresun on the Karadeniz coast. Kuzalan Nature Park, Mavi Göl, Goksu Travertines, Kumbet and Golyani plateaus, Çağlayan Waterfall, the whis", "meta": "Journal", "tags": ["giresun", "kuşköy", "whistling", "language", "kuzalan", "hazelnut", "coast", "black", "nature", "park"], "img": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg", "url": "/tr/blog/giresun.html"}, {"id": "hakkari", "category": "Günlük", "title": "Hakkari Travel Guide: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier", "excerpt": "Hakkari travel guide. The Valley of Hell in Heaven (Cennet Cehennem Vadisi), Kaval Waterfall, the Zap River, Bercelen Plateau, the city centre, and wh", "meta": "Journal", "tags": ["hakkari", "cilo", "mountains", "canyon", "wildest", "frontier", "valley", "hell", "heaven", "cennet"], "img": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg", "url": "/tr/blog/hakkari.html"}, {"id": "istanbul", "category": "Günlük", "title": "Istanbul Travel Guide: Hagia Sophia, the Boğaz, and the Grand Bazaar", "excerpt": "A complete guide to Istanbul, Hagia Sophia, the Blue Mosque, Topkapı Palace, Basilica Cistern, the Grand Bazaar, and the Boğaz. Sixteen million pe", "meta": "Journal", "tags": ["istanbul", "hagia", "sophia", "bosphorus", "grand", "bazaar", "complete", "blue", "mosque", "topkapı"], "img": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg", "url": "/tr/blog/istanbul.html"}, {"id": "kemer", "category": "Günlük", "title": "Kemer Travel Guide: Olympos, Phaselis, and Mount Tahtalı", "excerpt": "Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtalı cable car, Göynük Canyon, and the southwestern Antalya co", "meta": "Journal", "tags": ["kemer", "olympos", "phaselis", "mount", "tahtalı", "chimaera", "flames", "ancient", "harbour", "cable"], "img": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg", "url": "/tr/blog/kemer.html"}, {"id": "ordu", "category": "Günlük", "title": "Ordu Travel Guide: Boztepe Cable Car, Perşembe Plateau, and the Karadeniz Coast", "excerpt": "A complete guide to Ordu on the Karadeniz coast. Uluğöl Nature Park, Ohtamış Waterfall, Perşembe Plateau, Ünye Castle, Cape Jason, Uzunkum Beach and B", "meta": "Journal", "tags": ["ordu", "boztepe", "cable", "perşembe", "plateau", "black", "coast", "complete", "uluğöl", "nature"], "img": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg", "url": "/tr/blog/ordu.html"}, {"id": "rize", "category": "Günlük", "title": "Rize Travel Guide: Ayder, the Fırtına Valley, and Turkey's Tea Country", "excerpt": "Rize travel guide. Ayder Plateau, Fırtına River rafting, Zil Castle, Palovit Waterfall, Elevit and Handüzü plateaus, Çeceva tea garden, Komilo village", "meta": "Journal", "tags": ["rize", "ayder", "fırtına", "valley", "country", "plateau", "river", "rafting", "castle", "palovit"], "img": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg", "url": "/tr/blog/rize.html"}, {"id": "top-10-places-to-visit-in-Turkey", "category": "Günlük", "title": "Türkiye'de Görülmesi Gereken 10 Yer (2026)", "excerpt": "The 10 best places to visit in Türkiye: Istanbul, Cappadocia, the Muğla and Antalya coast, Efes, Pamukkale, Şanlıurfa for Göbekli Tepe, Mardin, Tra", "meta": "Journal", "tags": ["türkiye en iyi 10 yer", "istanbul", "cappadocia", "muğla", "antalya", "coast", "ephesus", "pamukkale", "şanlıurfa", "göbekli"], "img": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg", "url": "/tr/blog/top-10-places-to-visit-in-Turkey.html"}, {"id": "trabzon", "category": "Günlük", "title": "Trabzon Travel Guide: Sümela Monastery, Uzungöl, and the Karadeniz Coast", "excerpt": "Trabzon travel guide. Sümela Monastery, Uzungöl, Çal Cave, Sera Lake, Boztepe, the Ortamahalle old quarter, Asmasu Waterfall, and outdoor activities f", "meta": "Journal", "tags": ["trabzon", "sümela", "monastery", "uzungöl", "black", "coast", "cave", "sera", "lake", "boztepe"], "img": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg", "url": "/tr/blog/trabzon.html"}, {"id": "when-is-the-best-time-to-visit-turkiye", "category": "Günlük", "title": "Türkiye'ye En İyi Zaman Ne Zaman Gidilir: A Month-by-Month Guide", "excerpt": "Month-by-month guide to visiting Türkiye. The shoulder seasons, peak summer, winter strengths, and what each region looks like at each time of year.", "meta": "Journal", "tags": ["when is the best time to visit turkiye", "time", "month", "visiting", "shoulder", "seasons", "peak", "summer", "winter", "strengths"], "img": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg", "url": "/tr/blog/when-is-the-best-time-to-visit-turkiye.html"}, {"id": "canakkale", "category": "Günlük", "title": "Çanakkale Travel Guide: Gallipoli, Troy, and Assos", "excerpt": "Çanakkale travel guide. Troy archaeological site, Gallipoli Martyrs' Memorial, Kilitbahir and Bigali castles, Assos, Bozcaada and Gökçeada islands, Ap", "meta": "Journal", "tags": ["canakkale", "çanakkale", "gallipoli", "troy", "assos", "archaeological", "site", "martyrs", "memorial", "kilitbahir"], "img": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg", "url": "/tr/blog/canakkale.html"}, {"id": "aegean-coast-escape", "category": "Rota", "title": "Ege Kıyısı Escape, 8 days Itinerary", "excerpt": "An eight day Ege coastal trip from Izmir down to Bodrum, Datça, and Fethiye. Slow days, ancient ruins next to turquoise water, and a gulet on the s", "meta": "Itinerary", "tags": ["aegean coast escape", "aegean", "coast", "escape", "days", "itinerary", "eight", "coastal", "trip", "izmir"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/aegean-coast-escape.html"}, {"id": "black-sea-highlands", "category": "Rota", "title": "Karadeniz Highlands, 7 days Itinerary", "excerpt": "Seven days through Türkiye's Karadeniz coast and highlands. Sümela Monastery, Ayder Plateau, Hemşin valleys, and the Macahel forest near the Georgian ", "meta": "Itinerary", "tags": ["black sea highlands", "black", "highlands", "days", "itinerary", "seven", "through", "coast", "sümela", "monastery"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/black-sea-highlands.html"}, {"id": "eastern-heritage", "category": "Rota", "title": "Eastern Heritage, 9 days Itinerary", "excerpt": "Nine days through Türkiye's southeast. Göbekli Tepe, Mardin's stone city, Antep's deep food culture. If time allows, add Karahan Tepe (35 km east), a ", "meta": "Itinerary", "tags": ["eastern heritage", "eastern", "heritage", "days", "itinerary", "nine", "through", "southeast", "göbekli", "tepe"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/eastern-heritage.html"}, {"id": "family-adventure", "category": "Rota", "title": "Family Adventure, 9 days Itinerary", "excerpt": "A practical nine day Türkiye trip with kids. Istanbul Boğaz boats, Cappadocia underground cities and balloons, Pamukkale wading pools, Antalya bea", "meta": "Itinerary", "tags": ["family adventure", "family", "adventure", "days", "itinerary", "practical", "nine", "trip", "kids", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/family-adventure.html"}, {"id": "first-time-turkey", "category": "Rota", "title": "Türkiye'ye İlk Kez, 7 days Itinerary", "excerpt": "A practical seven day Türkiye itinerary covering Istanbul, Cappadocia, and Antalya. Built for first time visitors who want substance, not a checklist.", "meta": "Itinerary", "tags": ["first time turkey", "first", "time", "days", "itinerary", "practical", "seven", "covering", "istanbul", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/first-time-turkey.html"}, {"id": "foodie-anatolian-trail", "category": "Rota", "title": "Foodie Anatolian Trail, 10 days Itinerary", "excerpt": "Ten days eating through Türkiye. Istanbul's imperial kitchen, Gaziantep's pistachios and kebabs, Izmir's olive oil Ege. Three regions, three deep f", "meta": "Itinerary", "tags": ["foodie anatolian trail", "foodie", "anatolian", "trail", "days", "itinerary", "eating", "through", "istanbul", "imperial"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/foodie-anatolian-trail.html"}, {"id": "luxury-turkey", "category": "Rota", "title": "Luxury Türkiye, 8 days Itinerary", "excerpt": "Eight days of premium Türkiye. Boğaz suite hotels in Istanbul, top tier cave spa in Cappadocia, private crewed gulet through the Muğla coves. Slow", "meta": "Itinerary", "tags": ["luxury turkey", "luxury", "days", "itinerary", "eight", "premium", "bosphorus", "suite", "hotels", "istanbul"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/luxury-turkey.html"}, {"id": "off-the-beaten-path", "category": "Rota", "title": "Off the Beaten Path, 12 days Itinerary", "excerpt": "Twelve days through Türkiye's least visited regions. Kastamonu wooden Ottoman houses, Macahel forest near Georgia, Hakkari Kurdish highlands, Mardin M", "meta": "Itinerary", "tags": ["off the beaten path", "beaten", "path", "days", "itinerary", "twelve", "through", "least", "visited", "regions"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/off-the-beaten-path.html"}, {"id": "photographers-turkey", "category": "Rota", "title": "Photographer's Türkiye, 10 days Itinerary", "excerpt": "Ten days built around Türkiye's distinct visual geography. Cappadocia volcanic valleys, Pamukkale travertines, Mardin stone city, Muğla turquoise cove", "meta": "Itinerary", "tags": ["photographers turkey", "photographer", "days", "itinerary", "built", "around", "distinct", "visual", "geography", "cappadocia"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/photographers-turkey.html"}, {"id": "romantic-getaway", "category": "Rota", "title": "Romantic Getaway, 6 days Itinerary", "excerpt": "Six days for couples. Cave hotels with balcony breakfasts in Cappadocia, then a private gulet through the Muğla coast. Built for slow travel and the k", "meta": "Itinerary", "tags": ["romantic getaway", "romantic", "getaway", "days", "itinerary", "couples", "cave", "hotels", "balcony", "breakfasts"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/romantic-getaway.html"}, {"id": "spiritual-anatolia", "category": "Rota", "title": "Spiritual Anatolia, 8 days Itinerary", "excerpt": "Eight days through Türkiye's spiritual ground. Konya for Rumi and Sufism, Şanlıurfa for Abraham's birthplace and Göbekli Tepe, Mardin for Syriac monas", "meta": "Itinerary", "tags": ["spiritual anatolia", "spiritual", "anatolia", "days", "itinerary", "eight", "through", "ground", "konya", "rumi"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/spiritual-anatolia.html"}, {"id": "grand-tour", "category": "Rota", "title": "The Grand Tour, 14 days Itinerary", "excerpt": "A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Efes, with Izmir at the end. Day by day, ", "meta": "Itinerary", "tags": ["grand tour", "grand", "tour", "days", "itinerary", "practical", "fourteen", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/tr/routes/grand-tour.html"}];
+/* Show Me Türkiye — Site Search (slim variant) */
 (function(){
   const $  = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -2395,7 +2393,7 @@ const SEARCH_DATA = [{"id": "adana", "category": "Şehir", "title": "Adana", "ex
     if(state.cat!=="all")pool=pool.filter(d=>d.category===state.cat);
     if(!state.q.trim()){
       if(state.cat!=="all")return pool.slice(0,8);
-      const order=["Route","City","Journal"],out=[];
+      const order=["Rota","Şehir","Günlük"],out=[];
       for(const c of order){const f=pool.find(d=>d.category===c&&!out.includes(d));if(f)out.push(f);}
       pool.forEach(d=>{if(out.length<8&&!out.includes(d))out.push(d);});
       return out.slice(0,8);
@@ -2416,17 +2414,17 @@ const SEARCH_DATA = [{"id": "adana", "category": "Şehir", "title": "Adana", "ex
         <p class="so-result-excerpt">${r.excerpt||""}</p>
       </div></a>`;
   }
-  const RAIL = `<div class="so-rail-group"><h4>Popular</h4><div class="so-tags">
-      <button class="so-tag" data-fill="Cappadocia">Cappadocia</button>
-      <button class="so-tag" data-fill="Istanbul">Istanbul</button>
+  const RAIL = `<div class="so-rail-group"><h4>Popüler</h4><div class="so-tags">
+      <button class="so-tag" data-fill="Cappadocia">Kapadokya</button>
+      <button class="so-tag" data-fill="Istanbul">İstanbul</button>
       <button class="so-tag" data-fill="Ege">Ege</button>
       <button class="so-tag" data-fill="Mardin">Mardin</button>
       <button class="so-tag" data-fill="Karadeniz">Karadeniz</button>
-      <button class="so-tag" data-fill="food">Food</button></div></div>`;
+      <button class="so-tag" data-fill="yemek">Yemek</button></div></div>`;
   function render(){
     const r=getResults(),has=state.q.trim().length>0;
     if(has){
-      panel.innerHTML=r.length?r.map(rowHTML).join(""):`<div class="so-slim-noresult"><div class="t">Nothing yet.</div><p>Try <em>Istanbul</em>, <em>Cappadocia</em> or <em>Ege</em>.</p></div>`;
+      panel.innerHTML=r.length?r.map(rowHTML).join(""):`<div class="so-slim-noresult"><div class="t">Henüz sonuç yok.</div><p><em>İstanbul</em>, <em>Kapadokya</em> ya da <em>Ege</em> deneyin.</p></div>`;
       emptyEl.style.display="none";emptyEl.innerHTML="";
     }else{
       panel.innerHTML=r.map(rowHTML).join("");
@@ -2489,33 +2487,36 @@ const SEARCH_DATA = [{"id": "adana", "category": "Şehir", "title": "Adana", "ex
 .site-nav>a,.site-nav>.nav-logo{position:fixed!important;top:60px!important;left:48px!important;z-index:1003!important;display:block!important;transform:translateY(-50%)!important;transition:top .4s cubic-bezier(.22,.61,.36,1)!important;}
 .site-nav a img,.site-logo{height:106px!important;width:auto!important;object-fit:contain!important;display:block!important;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.35))!important;transition:height .4s cubic-bezier(.22,.61,.36,1)!important;}
 body.scrolled .site-nav a img,body.scrolled .site-logo,.site-nav.scrolled a img,.site-nav.scrolled .site-logo{height:74px!important;}
-.nav-search-btn,.hamburger{position:fixed!important;top:60px!important;transform:translateY(-50%)!important;z-index:1003!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important;width:48px!important;height:48px!important;background:none!important;border:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:11px !important;box-shadow:none!important;filter:none!important;}
+.nav-search-btn,.hamburger{position:fixed!important;top:60px!important;transform:translateY(-50%)!important;z-index:1003!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:center!important;width:48px!important;height:48px!important;background:none!important;border:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:0!important;box-shadow:none!important;filter:none!important;}
 .nav-search-btn{right:112px!important;transition:color .35s ease!important;}
-.nav-search-btn svg{width:24px !important;height:24px !important;stroke-width:1.6;}
-.hamburger{right:48px!important;flex-direction:column!important;gap:6px !important;padding:11px !important;}
-.hamburger span{width:30px !important;height:2.5px !important;display:block!important;transition:all .35s cubic-bezier(0.4,0,0.2,1)!important;transform-origin:center!important;}
+.nav-search-btn svg{width:26px!important;height:26px!important;stroke-width:2.2!important;}
+.hamburger{right:48px!important;flex-direction:column!important;gap:7px!important;padding:0!important;}
+.hamburger span{width:31px!important;height:2.4px!important;display:block!important;transition:all .35s cubic-bezier(0.4,0,0.2,1)!important;transform-origin:center!important;}
 .hamburger.open span:nth-child(1){transform:translateY(9.4px) rotate(45deg)!important;}
-.hamburger.open span:nth-child(2){opacity:11px !important;transform:scaleX(0)!important;}
+.hamburger.open span:nth-child(2){opacity:0!important;transform:scaleX(0)!important;}
 .hamburger.open span:nth-child(3){transform:translateY(-9.4px) rotate(-45deg)!important;}
 @media(max-width:768px){
 .site-nav>a,.site-nav>.nav-logo{top:42px!important;left:20px!important;}
 .site-nav a img,.site-logo{height:65px!important;}
 body.scrolled .site-nav a img,body.scrolled .site-logo,.site-nav.scrolled a img,.site-nav.scrolled .site-logo{height:55px!important;}
 .nav-search-btn,.hamburger{top:42px!important;}
-.hamburger{right:14px !important;}
-.nav-search-btn{right:72px !important;}
+.hamburger{right:18px!important;}
+.nav-search-btn{right:66px!important;}
 }
 /* ═══ END STANDARDIZED NAV ═══ */
 .close-nav{display:none!important;}
+
+
 /* Nav colors: unified #9f1012 */
-.nav-search-btn{color:var(--text);}
-.hamburger span{background:var(--text);}
+.nav-search-btn{color:#9f1012!important;}
+.hamburger span{background:#9f1012!important;}
 .hamburger.open span{background:var(--cream)!important;}
+
 </style>
 
 <div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Çerez onayı">
   <p class="cc-eyebrow">Gizlilik</p>
-  <h2 class="cc-title">Çerezler hakkında kısa bir not</h2>
+  <h2 class="cc-title">Çerezler hakkında bir not</h2>
   <p class="cc-text">Sitenin çalışması için zorunlu çerezler kullanıyoruz. İzin verirseniz, sitenin nasıl kullanıldığını ölçmek ve geliştirmek için analitik çerezlerini de devreye alıyoruz. Tümünü kabul edebilir, reddedebilir ya da hangilerine izin vereceğinizi tek tek seçebilirsiniz. Detaylar için <a href="/tr/cookies.html">Çerez Politikası</a> sayfasına göz atın.</p>
   <div class="cc-actions">
     <button class="cc-btn cc-btn-reject" id="ccReject">Zorunlu olmayanları reddet</button>
@@ -2622,7 +2623,7 @@ body.scrolled .site-nav a img,body.scrolled .site-logo,.site-nav.scrolled a img,
   document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
   modalBg.addEventListener('click',function(e){ if(e.target===modalBg) closeModal(); });
 
-  /* Cookies sayfasındaki "Manage cookie preferences" linki bunu çağırır */
+  /* Cookies sayfasındaki "Çerez tercihlerini yönet" linki bunu çağırır */
   window.SMTopenCookiePrefs=openModal;
 
   /* ----- 6. INIT ----- */
