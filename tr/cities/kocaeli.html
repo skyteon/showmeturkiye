@@ -222,8 +222,8 @@ img{max-width:100%;display:block;}
 .daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}
 .daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
 .video-modal.active{display:flex;}
 .video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
@@ -1535,7 +1535,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1574,11 +1574,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/kocaeli.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/kocaeli.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/kocaeli.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
@@ -1757,11 +1754,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Kocaeli</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Kocaeli"></div>
+        <div class="atl-map" id="map" aria-label="Kocaeli'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Kocaeli · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Kocaeli · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -1887,7 +1884,7 @@ img{max-width:100%;display:block;}
       </a>
 
       <a class="resto-card" href="https://www.google.com/maps/search/Kerpe+sahil+balik+restaurant+Kandira" target="_blank" rel="noopener">
-        <div class="resto-name">Kerpe Coast Seafood</div>
+        <div class="resto-name">Kerpe Sahil Deniz Ürünleri</div>
         <div class="resto-stars">★★★★ <span>Karadeniz Sofrasıs</span></div>
         <p class="resto-desc">Kerpe'deki küçük körfezde, deniz cephesi boyunca birkaç sade restoran günün Karadeniz avını ızgara ya da tavada kızartarak yerel mezelerle servis ediyor.</p>
         <span class="resto-specialty">Izgara balık, Karadeniz avı, sahil</span>
@@ -1964,8 +1961,8 @@ document.addEventListener('DOMContentLoaded',function(){
   var PLACES=[
     {n:'01', name:'Sapanca Gölü', short:'A freshwater lake between the Samanlı Mountains and the Sakarya plain, ringed by forest with lakeside cafes and walking paths.', lat:40.7163, lng:30.2628, zoom:12},
     {n:'02', name:'Kuzuyayla Tabiat Parkı', short:'A Kartepe-ridge nature park protected since 2011, looking north over both the Gulf of İzmit and Sapanca Lake, good for walking and picnics.', lat:40.6464, lng:30.1169, zoom:13},
-    {n:'03', name:'Ormanya', short:'Kartepe'de doğa parkı; hayvan parkı, kelebek evi ve orman yürüyüş yollarıyla aileler arasında popüler.', lat:40.7325, lng:30.1627, zoom:13},
-    {n:'04', name:'Ballıkayalar', short:'Gebze'de 1,5 km uzunluğunda korumalı kireçtaşı vadisi; Marmara'nın en önemli tırmanış alanlarından, İstanbul'a bir saat.', lat:40.8332, lng:29.5168, zoom:13},
+    {n:'03', name:'Ormanya', short:'Kartepe\'de doğa parkı; hayvan parkı, kelebek evi ve orman yürüyüş yollarıyla aileler arasında popüler.', lat:40.7325, lng:30.1627, zoom:13},
+    {n:'04', name:'Ballıkayalar', short:'Gebze\'de 1,5 km uzunluğunda korumalı kireçtaşı vadisi; Marmara\'nın en önemli tırmanış alanlarından, İstanbul\'a bir saat.', lat:40.8332, lng:29.5168, zoom:13},
     {n:'05', name:'Serindere Kanyonu', short:'Often called the most challenging canyon in Kocaeli, with a chain of 10 to 20 metre waterfalls about 26 km from İzmit, best in spring.', lat:40.6370, lng:30.0255, zoom:13},
     {n:'06', name:'Kerpe', short:'A small Karadeniz holiday town in Kandıra, about 50 km from İzmit, known for shallow clear water, coastal cliffs and camping.', lat:41.1667, lng:30.2167, zoom:13},
     {n:'07', name:'Sardala Bay', short:'A small sheltered cove on the Karadeniz coast of Kandıra, calmer than the open beaches nearby and popular for day trips and camping.', lat:41.1390, lng:29.9619, zoom:13},
@@ -2016,7 +2013,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Kocaeli · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Kocaeli · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

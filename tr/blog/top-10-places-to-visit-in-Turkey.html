@@ -1269,7 +1269,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
 }
 
 /* ═══════════ REVEAL ═══════════ */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal { opacity:1; transform:none; transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ═══════════ RESPONSIVE ═══════════ */
@@ -2033,7 +2033,6 @@ body.invert-nav .hamburger span { background: var(--cream); }
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/blog/top-10-places-to-visit-in-Turkey.html">
 </head>
 <body>
-
 <div class="read-progress" id="readProgress"></div>
 
 <nav class="site-nav">
@@ -2066,12 +2065,12 @@ body.invert-nav .hamburger span { background: var(--cream); }
 <aside class="side-rail" id="sideRail" aria-hidden="true">
   <a href="#ch-istanbul" data-target="ch-istanbul">01<span class="label">Şehir ve Tarih</span></a>
   <a href="#ch-cappadocia" data-target="ch-cappadocia">02<span class="label">Landscape · Nevşehir Province</span></a>
-  <a href="#ch-coast" data-target="ch-coast">03<span class="label">Kıyı &amp; Antiquity · Muğla and Antalya</span></a>
+  <a href="#ch-coast" data-target="ch-coast">03<span class="label">Kıyı ve Antik Çağ · Muğla and Antalya</span></a>
   <a href="#ch-ephesus" data-target="ch-ephesus">04<span class="label">Roman Ruins · İzmir Province</span></a>
   <a href="#ch-pamukkale" data-target="ch-pamukkale">05<span class="label">Natural Wonder · Denizli Province</span></a>
   <a href="#ch-sanliurfa" data-target="ch-sanliurfa">06<span class="label">Archaeology · Şanlıurfa Province</span></a>
   <a href="#ch-mardin" data-target="ch-mardin">07<span class="label">Stone Town · Mardin Province</span></a>
-  <a href="#ch-black-sea" data-target="ch-black-sea">08<span class="label">Dağlar · Trabzon and Rize</span></a>
+  <a href="#ch-black-sea" data-target="ch-black-sea">08<span class="label">Dağlar · Trabzon ve Rize</span></a>
   <a href="#ch-nemrut" data-target="ch-nemrut">09<span class="label">Archaeology · Adıyaman Province</span></a>
   <a href="#ch-gaziantep" data-target="ch-gaziantep">10<span class="label">Food · Gaziantep Province</span></a>
 </aside>
@@ -2126,10 +2125,10 @@ body.invert-nav .hamburger span { background: var(--cream); }
         <li><a href="#ch-cappadocia"><span class="n">02</span><span class="t">Cappadocia</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-coast"><span class="n">03</span><span class="t">Muğla ve Antalya Kıyısı</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-ephesus"><span class="n">04</span><span class="t">Ephesus</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-pamukkale"><span class="n">05</span><span class="t">Pamukkale and Hierapolis</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-sanliurfa"><span class="n">06</span><span class="t">Şanlıurfa and Göbekli Tepe</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-pamukkale"><span class="n">05</span><span class="t">Pamukkale ve Hierapolis</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-sanliurfa"><span class="n">06</span><span class="t">Şanlıurfa ve Göbeklitepe</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-mardin"><span class="n">07</span><span class="t">Mardin</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-black-sea"><span class="n">08</span><span class="t">Trabzon and Rize</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-black-sea"><span class="n">08</span><span class="t">Trabzon ve Rize</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-nemrut"><span class="n">09</span><span class="t">Adıyaman and Mount Nemrut</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-gaziantep"><span class="n">10</span><span class="t">Gaziantep</span><span class="r">1 min</span></a></li>
       </ol>
@@ -2224,7 +2223,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">05</span><span class="sep"></span>Natural Wonder · Denizli Province
       </div>
-      <h2 class="chapter-title">Pamukkale and Hierapolis.</h2>
+      <h2 class="chapter-title">Pamukkale ve Hierapolis.</h2>
       
       <div class="chapter-meta"><span>1 dk okuma</span></div>
     </header>
@@ -2242,7 +2241,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">06</span><span class="sep"></span>Archaeology · Şanlıurfa Province
       </div>
-      <h2 class="chapter-title">Şanlıurfa and Göbekli Tepe.</h2>
+      <h2 class="chapter-title">Şanlıurfa ve Göbeklitepe.</h2>
       
       <div class="chapter-meta"><span>1 dk okuma</span></div>
     </header>
@@ -2271,14 +2270,14 @@ body.invert-nav .hamburger span { background: var(--cream); }
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter is-paper" id="ch-black-sea" data-screen-label="11 Ch8 Trabzon and Rize">
+<section class="chapter is-paper" id="ch-black-sea" data-screen-label="11 Ch8 Trabzon ve Rize">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
       <span class="chapter-num-display" aria-hidden="true">08</span>
       <div class="chapter-kicker">
         <span class="num">08</span><span class="sep"></span>Dağlar · Trabzon ve Rize
       </div>
-      <h2 class="chapter-title">Trabzon and Rize.</h2>
+      <h2 class="chapter-title">Trabzon ve Rize.</h2>
       
       <div class="chapter-meta"><span>1 dk okuma</span></div>
     </header>
@@ -2455,7 +2454,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Show Me Türkiye · Türkiye'de hazırlandı.</span>
-    <span>by the Show Me Türkiye Team</span>
+    <span>Show Me Türkiye Ekibi tarafından</span>
   </div>
 </footer>
 

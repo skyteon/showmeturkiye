@@ -319,8 +319,8 @@ img{max-width:100%;display:block;}
 .daytrip-card:hover .daytrip-desc{color:var(--cream);}
 
 /* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 
 /* VIDEO MODAL */
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
@@ -1642,7 +1642,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1681,11 +1681,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/antalya.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/antalya.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/antalya.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
@@ -1881,11 +1878,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Antalya</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of eight places in Antalya"></div>
+        <div class="atl-map" id="map" aria-label="Antalya haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Antalya · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Antalya · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -2196,7 +2193,7 @@ document.addEventListener('DOMContentLoaded',function(){
     fit.addEventListener('click',function(){
       map.flyToBounds(bounds,{padding:[50,50],duration:0.8});
       setActive(-1);
-      nowBox.innerHTML='<span class="atl-now-num">Antalya · 8 places</span><div class="atl-now-name">Bir saha rehberi</div>';
+      nowBox.innerHTML='<span class="atl-now-num">Antalya · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';
     });
   }
 

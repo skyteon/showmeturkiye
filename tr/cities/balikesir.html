@@ -285,8 +285,8 @@ img{max-width:100%;display:block;}
 .daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}
 .daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
 .video-modal.active{display:flex;}
 .video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
@@ -1598,7 +1598,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1637,11 +1637,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/balikesir.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/balikesir.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/balikesir.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
@@ -1671,7 +1668,7 @@ img{max-width:100%;display:block;}
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-badge">Marmara and North Ege, Turkiye</span>
+    <span class="hero-badge">Marmara ve Kuzey Ege, Türkiye</span>
     <h1>Balıkesir</h1>
     <p class="hero-subtitle">Zeytinlikler, ada kıyıları, göç yolları. Yavaşlamaya değer bir il.</p>
   </div>
@@ -1815,11 +1812,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Balıkesir</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Balıkesir"></div>
+        <div class="atl-map" id="map" aria-label="Balıkesir'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Balıkesir · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Balıkesir · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -2027,10 +2024,10 @@ document.addEventListener('DOMContentLoaded',function(){
     {n:'02', name:'Cunda (Alibey) Adası', short:'Connected to Ayvalık by causeway, Cunda was a prosperous Greek island until 1923 and the stone architecture of that period survives in considerable density.', lat:39.3460, lng:26.6376, zoom:14},
     {n:'03', name:'Erdek ve Kapıdağ Yarımadası', short:'Erdek is the gateway to the Kapıdağ Peninsula, once an island and now connected to the mainland by a narrow tombolo, projecting 30 km into the Marmara Sea.', lat:40.3987, lng:27.7933, zoom:12},
     {n:'04', name:'Kuş Cenneti Milli Parkı', short:'Turkey\'s smallest national park by protected area and arguably its most ecologically significant.', lat:40.2319, lng:28.0401, zoom:13},
-    {n:'05', name:'Kazdağı National Park (Mount Ida)', short:'Antikçağda İda Dağı; Edremit Körfezi'nin üzerinde 1.774 m yükseklikte, çam ormanı, şelaleler ve İlyada'daki tanrı yurdu.', lat:39.6468, lng:26.9568, zoom:11},
+    {n:'05', name:'Kazdağı National Park (Mount Ida)', short:'Antikçağda İda Dağı; Edremit Körfezi\'nin üzerinde 1.774 m yükseklikte, çam ormanı, şelaleler ve İlyada\'daki tanrı yurdu.', lat:39.6468, lng:26.9568, zoom:11},
     {n:'06', name:'Gönen Kaplıcaları', short:'Gönen antik çağdan beri termal kaynakları ile tanınıyor.', lat:40.1133, lng:27.6511, zoom:13},
     {n:'07', name:'Ayvalık Adaları Milli Parkı', short:'An archipelago of 22 islands off the Ayvalık coast, designated a national park, with crystal-clear Ege water, pine forest and the famous Şeytan Sofrası (Devil\'s Dinner Table) viewpoint on Alibey Island.', lat:39.3294, lng:26.6428, zoom:12},
-    {n:'08', name:'Edremit Körfezi', short:'Ege kıyısının en güney bölgesi; Türkiye'nin en kaliteli zeytinyağlarındans finest olive oil, with Mount Ida rising directly behind the coastal towns of Altinoluk, Akcay and Edremit.', lat:39.5722, lng:27.0214, zoom:11}
+    {n:'08', name:'Edremit Körfezi', short:'Ege kıyısının en güney bölgesi; Türkiye\'nin en kaliteli zeytinyağlarındans finest olive oil, with Mount Ida rising directly behind the coastal towns of Altinoluk, Akcay and Edremit.', lat:39.5722, lng:27.0214, zoom:11}
   ];
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
   // MOBILE FIX: ensure Leaflet sees the real container dimensions
@@ -2077,7 +2074,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Balıkesir · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Balıkesir · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

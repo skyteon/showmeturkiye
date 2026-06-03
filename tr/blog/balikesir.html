@@ -1269,7 +1269,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
 }
 
 /* ═══════════ REVEAL ═══════════ */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+.reveal { opacity:1; transform:none; transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ═══════════ RESPONSIVE ═══════════ */
@@ -2036,7 +2036,6 @@ a.text-link:hover { opacity: 0.7; }
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/blog/balikesir.html">
 </head>
 <body>
-
 <div class="read-progress" id="readProgress"></div>
 
 <nav class="site-nav">
@@ -2071,7 +2070,7 @@ a.text-link:hover { opacity: 0.7; }
   <a href="#ch-mount-ida" data-target="ch-mount-ida">02<span class="label">Kaz Dağları</span></a>
   <a href="#ch-glass-terrace" data-target="ch-glass-terrace">03<span class="label">Seyir noktası</span></a>
   <a href="#ch-kaz-museum" data-target="ch-kaz-museum">04<span class="label">Botanik · Kültür</span></a>
-  <a href="#ch-ayvalik" data-target="ch-ayvalik">05<span class="label">Eski şehir · Coast</span></a>
+  <a href="#ch-ayvalik" data-target="ch-ayvalik">05<span class="label">Eski şehir · Kıyı</span></a>
   <a href="#ch-kucukkoy" data-target="ch-kucukkoy">06<span class="label">Village</span></a>
   <a href="#ch-salt-lake" data-target="ch-salt-lake">07<span class="label">İki kısa durak</span></a>
   <a href="#ch-cunda" data-target="ch-cunda">08<span class="label">Ada · Taş yol</span></a>
@@ -2129,7 +2128,7 @@ a.text-link:hover { opacity: 0.7; }
         <li><a href="#ch-safari"><span class="n">01</span><span class="t">Balıkesir Safari</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-mount-ida"><span class="n">02</span><span class="t">Mount Ida (Kaz Dağları)</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-glass-terrace"><span class="n">03</span><span class="t">Mount Ida Glass Terrace</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-kaz-museum"><span class="n">04</span><span class="t">Kaz Mountains Museum</span><span class="r">1 min</span></a></li>
+        <li><a href="#ch-kaz-museum"><span class="n">04</span><span class="t">Kaz Dağları Müzesi</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-ayvalik"><span class="n">05</span><span class="t">Ayvalık</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-kucukkoy"><span class="n">06</span><span class="t">Küçükköy</span><span class="r">1 min</span></a></li>
         <li><a href="#ch-salt-lake"><span class="n">07</span><span class="t">Tuz Gölü ve Şeytan Sofrası</span><span class="r">1 min</span></a></li>
@@ -2206,14 +2205,14 @@ a.text-link:hover { opacity: 0.7; }
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
-<section class="chapter is-paper" id="ch-kaz-museum" data-screen-label="07 Ch4 Kaz Mountains Museum">
+<section class="chapter is-paper" id="ch-kaz-museum" data-screen-label="07 Ch4 Kaz Dağları Müzesi">
   <div class="chapter-inner">
     <header class="chapter-head reveal">
       <span class="chapter-num-display" aria-hidden="true">04</span>
       <div class="chapter-kicker">
         <span class="num">04</span><span class="sep"></span>Botany · Culture
       </div>
-      <h2 class="chapter-title">Kaz Mountains Museum.</h2>
+      <h2 class="chapter-title">Kaz Dağları Müzesi.</h2>
       <p class="chapter-sub">Kaz Dağları'nın florası, folklooru ve ekolojisi.</p>
       <div class="chapter-meta"><span>1 dk okuma</span></div>
     </header>
@@ -2229,7 +2228,7 @@ a.text-link:hover { opacity: 0.7; }
     <header class="chapter-head reveal">
       <span class="chapter-num-display" aria-hidden="true">05</span>
       <div class="chapter-kicker">
-        <span class="num">05</span><span class="sep"></span>Old town · Coast
+        <span class="num">05</span><span class="sep"></span>Eski şehir · Kıyı
       </div>
       <h2 class="chapter-title">Ayvalık.</h2>
       <p class="chapter-sub">Taş sokaklar, eski Rum kilisesi, Ege mutfağı.</p>
@@ -2305,7 +2304,7 @@ a.text-link:hover { opacity: 0.7; }
         <span class="num">09</span><span class="sep"></span>Inland · Geology
       </div>
       <h2 class="chapter-title">Sındırgı ve Jeolojik Sütunlar.</h2>
-      <p class="chapter-sub">Hexagonal basalt columns and a small museum (Müzehan).</p>
+      <p class="chapter-sub">Altıgen bazalt sütunlar ve küçük bir müze (Müzehan).</p>
       <div class="chapter-meta"><span>1 dk okuma</span></div>
     </header>
     <p>Kıyıdan iç kesimlere, Sındırgı ilçesi Türkiye'deki birkaç görünür altıgen bazalt sütun oluşumundan birini barındırıyor; volkanik soğumayla oluşmuş.</p>
@@ -2400,7 +2399,7 @@ a.text-link:hover { opacity: 0.7; }
     <div class="related-grid">
       <a href="./canakkale.html" class="related-card reveal">
         <div class="img" style="background-image: url('https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg');"></div>
-        <div class="cat"><span class="n">01</span>Aegean · History</div>
+        <div class="cat"><span class="n">01</span>Aegean · Tarih</div>
         <h3>Çanakkale: Gallipoli, Troy, and Assos.</h3>
         <div class="read">8 dk okuma</div>
       </a>
@@ -2436,7 +2435,7 @@ a.text-link:hover { opacity: 0.7; }
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Show Me Türkiye · Türkiye'de hazırlandı.</span>
-    <span>by the Show Me Türkiye Team</span>
+    <span>Show Me Türkiye Ekibi tarafından</span>
   </div>
 </footer>
 

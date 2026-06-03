@@ -222,8 +222,8 @@ img{max-width:100%;display:block;}
 .daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}
 .daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
 .video-modal.active{display:flex;}
 .video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
@@ -1539,7 +1539,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1578,11 +1578,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/hakkari.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/hakkari.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/hakkari.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
@@ -1638,7 +1635,7 @@ img{max-width:100%;display:block;}
       </div>
       <div class="why-image reveal">
         <img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-overview.jpg" alt="Hakkari mountains glaciers southeastern Turkey">
-        <div class="why-image-caption">Cilo Mountains, Hakkari Province</div>
+        <div class="why-image-caption">Cilo Dağları, Hakkari</div>
       </div>
     </div>
 </section>
@@ -1761,11 +1758,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Hakkari</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Hakkari"></div>
+        <div class="atl-map" id="map" aria-label="Hakkari'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Hakkari · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Hakkari · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -1891,7 +1888,7 @@ img{max-width:100%;display:block;}
       </a>
 
       <a class="resto-card" href="https://www.google.com/maps/search/Y%C3%BCksekova+pansiyon+lokanta+da%C4%9F" target="_blank" rel="noopener">
-        <div class="resto-name">Mountain Pension Kitchens (Yüksekova)</div>
+        <div class="resto-name">Dağ Pansiyonu Mutfakları (Yüksekova)</div>
         <div class="resto-stars">★★★★ <span>Trekking Pensions</span></div>
         <p class="resto-desc">Yüksekova içinde ve çevresinde trekking ve tırmanış gruplarının kullandığı pansiyonlar; bölgedeki en gerçek yayla sofraları: kuzu güveç, yabani ot salataları.</p>
         <span class="resto-specialty">Yayla güveçleri, yabani otlar, bal; rezervasyonla</span>
@@ -1968,10 +1965,10 @@ document.addEventListener('DOMContentLoaded',function(){
   var PLACES=[
     {n:'01', name:'Cilo Buzulları', short:'Glaciers of the Cilo Mountains in the 2020 Cilo-Sat National Park, among the largest in Turkey and around 20,000 years old, beneath Reşko (4,135 m), the country\u0027s second-highest peak.', lat:37.5650, lng:43.9900, zoom:12},
     {n:'02', name:'Sat Lakes', short:'A series of glacial lakes in the Sat Mountains east of Yüksekova, at around 3,000 to 3,400 metres, the most accessible high-mountain destination in Hakkari.', lat:37.3651, lng:44.1938, zoom:12},
-    {n:'03', name:'Zap Valley', short:'Büyük Zap Nehri Hakkari'den derin bir kanyonla Irak'a uzanır; iç kanyondan geçen dramatik yol.', lat:37.5550, lng:43.7600, zoom:12},
+    {n:'03', name:'Zap Valley', short:'Büyük Zap Nehri Hakkari\'den derin bir kanyonla Irak\'a uzanır; iç kanyondan geçen dramatik yol.', lat:37.5550, lng:43.7600, zoom:12},
     {n:'04', name:'Cennet Cehennem Kanyonu', short:'A glacial valley in the Cilo Mountains reached from the Mergan Plateau, holding glacier lakes and the approach to Reşko, Turkey\u0027s second-highest peak.', lat:37.5402, lng:43.9783, zoom:12},
-    {n:'05', name:'Mergan Yaylası', short:'Hakkari'nin doğusunda 2.400 m yükseklikte yayla; Cilo buzul bölgesine standart giriş, Türkiye'nin en dramatik dağ panoramalarından.', lat:37.5350, lng:43.9850, zoom:12},
-    {n:'06', name:'Berçelan Plateau', short:'Hakkari'nin 20 km kuzeyinde 3.000 m'de yaz yaylası; kara çadırlı göçerler, yabani çiçek çayırları ve sırttaki buzul gölü.', lat:37.6771, lng:43.7221, zoom:12},
+    {n:'05', name:'Mergan Yaylası', short:'Hakkari\'nin doğusunda 2.400 m yükseklikte yayla; Cilo buzul bölgesine standart giriş, Türkiye\'nin en dramatik dağ panoramalarından.', lat:37.5350, lng:43.9850, zoom:12},
+    {n:'06', name:'Berçelan Plateau', short:'Hakkari\'nin 20 km kuzeyinde 3.000 m\'de yaz yaylası; kara çadırlı göçerler, yabani çiçek çayırları ve sırttaki buzul gölü.', lat:37.6771, lng:43.7221, zoom:12},
     {n:'07', name:'Zap River', short:'Bölgenin en hızlı nehirlerinden; Cilo ve Sat buzullarından erime suyu taşır, Zap vadisinde yaz rafting noktası.', lat:37.5650, lng:43.7300, zoom:12},
     {n:'08', name:'Kaval Şelalesi', short:'A waterfall sometimes called the hidden paradise, in a green pocket on the route towards Çukurca, a refreshing roadside stop among the bare high peaks.', lat:37.5250, lng:43.4946, zoom:12}
   ];
@@ -2020,7 +2017,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Hakkari · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Hakkari · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

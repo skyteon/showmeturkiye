@@ -203,7 +203,7 @@
 .resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s;position:relative;overflow:hidden;}.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}.resto-card:hover::before{transform:scaleY(1);}.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}.activity-card{padding:32px 24px;background:var(--white);border:1px solid rgba(42,20,16,0.10);transition:all 0.3s;}.activity-card:hover{background:var(--white);border-color:rgba(192,57,43,0.3);}.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);margin-bottom:12px;}.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text);line-height:1.8;}
 .daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;background:#1a1410;}.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.95) 0%,rgba(10,12,14,0.55) 50%,rgba(10,12,14,0.25) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,0.9);}.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}.video-modal.active{display:flex;}.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}.video-modal iframe{width:100%;height:100%;border:none;}.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:var(--text);font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}.modal-close:hover{opacity:1;}
 
 /* RESPONSIVE */
@@ -1510,7 +1510,7 @@
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1549,11 +1549,8 @@
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/konya.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/konya.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/konya.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
@@ -1705,10 +1702,10 @@
         <article class="atl-place" data-i="5">
           <span class="num">06</span>
           <div class="frame">
-            <img src="https://img.showmeturkiye.com/cities/konya/places/konya-bedesten-aziziye-mosque.jpg" alt="Bedesten and Aziziye Mosque" loading="lazy">
+            <img src="https://img.showmeturkiye.com/cities/konya/places/konya-bedesten-aziziye-mosque.jpg" alt="Bedesten ve Aziziye Camii" loading="lazy">
           </div>
           <div class="caption">
-            <h3 class="name">Bedesten and Aziziye Mosque</h3>
+            <h3 class="name">Bedesten ve Aziziye Camii</h3>
             <p class="note">Kale ile Mevlana Müzesi arasındaki kapalı Osmanlı çarşısı. Halılar, bakır, tespih ve İç Anadolu'nun en büyük sahaflar sokağı.</p>
             <div class="rule"></div>
           </div>
@@ -1734,11 +1731,11 @@
           <div class="atl-map-label"><i></i><b>Konya</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Konya"></div>
+        <div class="atl-map" id="map" aria-label="Konya'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Konya · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Konya · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -1855,7 +1852,7 @@
       <div class="resto-name">Lokmahane</div>
       <div class="resto-stars">&#9733;&#9733;&#9733;&#9733; <span>4.1 (2,200+ reviews)</span></div>
       <p class="resto-desc">Mevlana'nın hemen arkasında Mengüç Caddesi'nde güzel taş konak; Mevlevi mutfağından etkilerle Konya yemeklerinin daha rafine yorumu. Uzun Türk kahvaltısı.</p>
-      <div class="resto-specialty">Konya mutfağı with Mevlevi notes</div>
+      <div class="resto-specialty">Konya mutfağı ve Mevlevi dokunuşları</div>
     </a>
     <a class="resto-card" href="https://www.google.com/maps/search/?api=1&query=Kebap%C3%A7%C4%B1%20Dedeler%201929%20Meram%20Konya&query_place_id=ChIJRa_8gAWF0BQR9kv-gQbBepY" target="_blank">
       <div class="resto-name">Kebapçı Dedeler 1929</div>
@@ -2017,12 +2014,12 @@ document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);
 document.addEventListener('DOMContentLoaded',function(){
   if(typeof L==='undefined'||!document.getElementById('map'))return;
   var PLACES=[
-    {n:'01', name:'Mevlana Müzesi', short:'13. yüzyıl mutasavvıfı Rumi'nin türbesi; Konya'nın simgesi olan turkuaz çinili kubbenin altında.', lat:37.8707, lng:32.5050, zoom:17},
+    {n:'01', name:'Mevlana Müzesi', short:'13. yüzyıl mutasavvıfı Rumi\'nin türbesi; Konya\'nın simgesi olan turkuaz çinili kubbenin altında.', lat:37.8707, lng:32.5050, zoom:17},
     {n:'02', name:'Alaeddin Camii ve Tepesi', short:'12. yüzyıl Selçuklu camisi; eski şehrin merkezindeki yapay tepe üzerinde.', lat:37.8733, lng:32.4929, zoom:17},
     {n:'03', name:'Karatay Medresesi (Çini Müzesi)', short:'1251 yapımı yıldız kubbeyi turkuaz ve lacivert çinilerle kaplı Selçuklu medresesi.', lat:37.8750, lng:32.4929, zoom:17},
     {n:'04', name:'Selimiye Camii', short:'16. yüzyılda II. Selim tarafından Mevlana kompleksinin hemen yanına yaptırılan Osmanlı camii; geniş merkezi kubbe ve çift minare.', lat:37.8705, lng:32.5040, zoom:17},
     {n:'05', name:'Çatalhöyük', short:'9.000 yıllık Neolitik yerleşim; dünyanın en eski proto-kentlerinden.', lat:37.6680, lng:32.8266, zoom:14},
-    {n:'06', name:'Bedesten and Aziziye Mosque', short:'Kale ile Mevlana Müzesi arasındaki kapalı Osmanlı çarşısı.', lat:37.8700, lng:32.5009, zoom:17},
+    {n:'06', name:'Bedesten ve Aziziye Camii', short:'Kale ile Mevlana Müzesi arasındaki kapalı Osmanlı çarşısı.', lat:37.8700, lng:32.5009, zoom:17},
     {n:'07', name:'Konya Panorama Müzesi', short:'Mevlana, Selçuklu hanedanı ve Anadolu Sûfi geleneğini 360 derece panoramik resimlerle anlatan modern müze.', lat:37.8700, lng:32.5118, zoom:15},
     {n:'08', name:'Tropical Butterfly Garden', short:'Europe\'s largest tropical butterfly garden, set in a green park on the edge of the city with thousands of butterflies inside a humid glass dome.', lat:37.9484, lng:32.4616, zoom:14}
   ];
@@ -2071,7 +2068,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Konya · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Konya · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

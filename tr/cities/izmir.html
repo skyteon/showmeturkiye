@@ -318,8 +318,8 @@ img{max-width:100%;display:block;}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
 
 /* SCROLL REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 
 /* VIDEO MODAL */
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
@@ -1644,7 +1644,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1683,11 +1683,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/izmir.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/izmir.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/izmir.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
@@ -1883,11 +1880,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Izmir</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Izmir"></div>
+        <div class="atl-map" id="map" aria-label="Izmir'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Izmir · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Izmir · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -2076,7 +2073,7 @@ img{max-width:100%;display:block;}
       <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/izmir/selcuk-sirince-day-trip-from-izmir.jpg');"></div>
       <div class="daytrip-overlay">
         <div class="daytrip-distance">80 km güney, yaklaşık 1 saat</div>
-        <div class="daytrip-name">Selcuk and Sirince</div>
+        <div class="daytrip-name">Selçuk ve Şirince</div>
         <p class="daytrip-desc">Efes, Aziz Yuhanna Bazilikası, Artemis Tapınağı ve tepe köyü Şirince tek bir günde. Gün bitiminde uzun bir akşam yemeği için Şirince'de kalın; kalabalık dağıldıktan sonra köy başka bir hal alır.</p>
       </div>
     </div>
@@ -2104,13 +2101,13 @@ document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);
 document.addEventListener('DOMContentLoaded',function(){
   if(typeof L==='undefined'||!document.getElementById('map'))return;
   var PLACES=[
-    {n:'01', name:'Efes', short:'Akdeniz'in en iyi korunmuş antik kentlerinden.', lat:37.9409, lng:27.3415, zoom:15},
+    {n:'01', name:'Efes', short:'Akdeniz\'in en iyi korunmuş antik kentlerinden.', lat:37.9409, lng:27.3415, zoom:15},
     {n:'02', name:'Kordon', short:'Izmir\'s long seafront promenade with palm trees, open-air cafes and ferry terminals.', lat:38.4382, lng:27.1414, zoom:15},
     {n:'03', name:'Kemeraltı Çarşısı', short:'Sahilden iç kesimlere uzanan 17. yüzyıldan geniş çarşı.', lat:38.4187, lng:27.1330, zoom:16},
     {n:'04', name:'Eski Foça', short:'Antik Foça üzerinde sessiz balıkçı kasabası; pastel evler, çalışan liman ve yakında koruma altındaki akdeniz foku kolonisi.', lat:38.6714, lng:26.7549, zoom:14},
     {n:'05', name:'Çeşme Yarımadası', short:'Beyaz kumlu plajlar, kaplıcalar, restore edilmiş Ceneviz kalesi ve sakin Çeşme kasabası.', lat:38.3228, lng:26.3028, zoom:13},
-    {n:'06', name:'Konak Clock Tower', short:'İzmir'in simgesi; Konak Meydanı'nda 1901 yapımı süslü Osmanlı kulesi.', lat:38.4189, lng:27.1287, zoom:16},
-    {n:'07', name:'Tarihi Asansör', short:'Karataş'ta 1907 yapımı tuğla asansör; körfeze en iyi panoramik bakışlı terasa çıkarır.', lat:38.4087, lng:27.1176, zoom:16},
+    {n:'06', name:'Konak Clock Tower', short:'İzmir\'in simgesi; Konak Meydanı\'nda 1901 yapımı süslü Osmanlı kulesi.', lat:38.4189, lng:27.1287, zoom:16},
+    {n:'07', name:'Tarihi Asansör', short:'Karataş\'ta 1907 yapımı tuğla asansör; körfeze en iyi panoramik bakışlı terasa çıkarır.', lat:38.4087, lng:27.1176, zoom:16},
     {n:'08', name:'Şirince', short:'A hillside village 8 km from Selçuk (Efes), with old stone and plaster houses, a 19th-century Greek Orthodox church and wine shops selling fruit wines made from local produce.', lat:37.9441, lng:27.4316, zoom:14}
   ];
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
@@ -2158,7 +2155,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Izmir · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Izmir · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

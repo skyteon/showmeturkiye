@@ -281,8 +281,8 @@ img{max-width:100%;display:block;}
 .daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}
 .daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
 .video-modal.active{display:flex;}
 .video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
@@ -1594,7 +1594,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1633,11 +1633,8 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="tr" href="https://showmeturkiye.com/tr/cities/denizli.html">
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/denizli.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/denizli.html">
-
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}.r-reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
-
 <nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
@@ -1812,11 +1809,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Denizli</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Denizli"></div>
+        <div class="atl-map" id="map" aria-label="Denizli'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Denizli · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Denizli · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -2016,11 +2013,11 @@ document.addEventListener('DOMContentLoaded',function(){
   var PLACES=[
     {n:'01', name:'Pamukkale Travertenleri', short:'Termal sular tarafından yüzyıllarca biriktirilen beyaz kalsiyum karbonat terasları; her kademede sığ turkuaz havuzlar.', lat:37.9244, lng:29.1232, zoom:14},
     {n:'02', name:'Hierapolis Antik Kenti', short:'Pergamon kralları tarafından MÖ 2. yüzyılda termal kaplıca şehri olarak kurulan Hierapolis, MS 1. ile 3. yüzyıllar arasında Roma kenti olarak zirvesine ulaştıAD.', lat:37.9249, lng:29.1232, zoom:15},
-    {n:'03', name:'Laodikeia Antik Kenti', short:'Vahiy Kitabı'nın Yedi Kilisesi'nden biri; Laodikeia, siyah yün ticareti ve bankacılığıyla bilinen Roma Asia Minor'ının en zengin kentlerindendiking and a famous school of medicine.', lat:37.8367, lng:29.1088, zoom:14},
+    {n:'03', name:'Laodikeia Antik Kenti', short:'Vahiy Kitabı\'nın Yedi Kilisesi\'nden biri; Laodikeia, siyah yün ticareti ve bankacılığıyla bilinen Roma Asia Minor\'ının en zengin kentlerindendiking and a famous school of medicine.', lat:37.8367, lng:29.1088, zoom:14},
     {n:'04', name:'Honaz Dağı', short:'Ege bölgesinin 2.500 m üzerindeki en yüksek zirvesi; şehrin güneydoğusunda orman, kaynaklar ve yürüyüş yollarıyla milli park.', lat:37.7043, lng:29.2844, zoom:13},
-    {n:'05', name:'Karahayıt Red Springs', short:'Pamukkale'nin 5 km kuzeyinde Karahayıt'ın kendi demir oksit açısından zengin termal kaynakları var; travertenlerine ayırt edici kırmızı, turuncu ved brown coloring - a stark contrast to Pamukkale\'s white.', lat:37.9671, lng:29.1020, zoom:14},
+    {n:'05', name:'Karahayıt Red Springs', short:'Pamukkale\'nin 5 km kuzeyinde Karahayıt\'ın kendi demir oksit açısından zengin termal kaynakları var; travertenlerine ayırt edici kırmızı, turuncu ved brown coloring - a stark contrast to Pamukkale\'s white.', lat:37.9671, lng:29.1020, zoom:14},
     {n:'06', name:'Acigol Lake', short:'Kapadokya yolunda geniş tuz gölü; sıcakta pembeye döner, ılık aylarda flamingoları çeker.', lat:37.8299, lng:29.8931, zoom:12},
-    {n:'07', name:'Tripolis Antik Kenti', short:'Denizli'nin 35 km kuzeyinde Yenicekent yakınında Hellenistik-Roma kenti; tiyatro, sütunlu cadde ve büyük ölçüde sağlam kalmış geniş şehir surlarıy intact.', lat:38.0359, lng:28.9539, zoom:14},
+    {n:'07', name:'Tripolis Antik Kenti', short:'Denizli\'nin 35 km kuzeyinde Yenicekent yakınında Hellenistik-Roma kenti; tiyatro, sütunlu cadde ve büyük ölçüde sağlam kalmış geniş şehir surlarıy intact.', lat:38.0359, lng:28.9539, zoom:14},
     {n:'08', name:'Bagbasi Yaylasi', short:'Şehrin güneyinde Honaz eteklerinde yeşil yayla; çam ormanı ve açık çayırlıkla serin bir yaz kaçışı.', lat:37.6969, lng:29.1435, zoom:12}
   ];
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
@@ -2068,7 +2065,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Denizli · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Denizli · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

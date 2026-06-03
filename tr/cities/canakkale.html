@@ -281,8 +281,8 @@ img{max-width:100%;display:block;}
 .daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}
 .daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}
 .daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}
-.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}
+.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}
 .video-modal.active{display:flex;}
 .video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}
@@ -1594,7 +1594,7 @@ img{max-width:100%;display:block;}
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1634,8 +1634,7 @@ img{max-width:100%;display:block;}
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/canakkale.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/canakkale.html">
 </head>
-<body>
-<nav class="site-nav" id="siteNav">
+<body><nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
   <button class="hamburger" onclick="openNav()" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
@@ -1803,11 +1802,11 @@ img{max-width:100%;display:block;}
           <div class="atl-map-label"><i></i><b>Canakkale</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Canakkale"></div>
+        <div class="atl-map" id="map" aria-label="Canakkale'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Canakkale · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Canakkale · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -1983,7 +1982,7 @@ img{max-width:100%;display:block;}
     <div class="daytrip-card">
       <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/canakkale/bozcaada-island-day-trip-from-canakkale.jpg');"></div>
       <div class="daytrip-overlay">
-        <div class="daytrip-distance">Geyikli'den feribotla, yaklaşık 2 saat from Canakkale</div>
+        <div class="daytrip-distance">Geyikli'den feribotla, yaklaşık 2 saat Çanakkale'den</div>
         <div class="daytrip-name">Bozcaada</div>
         <p class="daytrip-desc">Kuzey Ege'deki Türkiye'nin üçüncü büyük adası; bağları, Venedik-Osmanlı kalesi, temiz plajları ve oldukça sessiz sokakları ile tanınıyor.</p>
       </div>
@@ -2005,14 +2004,14 @@ document.addEventListener('DOMContentLoaded',function(){
   document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
   if(typeof L==='undefined'||!document.getElementById('map'))return;
   var PLACES=[
-    {n:'01', name:'Truva UNESCO Alanı', short:'Antik Truva, MÖ 3.000'den 500'e kadar kesintisiz iskân edilen; Çanakkale şehir merkezinin 30 km güneyinde bir tepede.', lat:39.9576, lng:26.2397, zoom:14},
+    {n:'01', name:'Truva UNESCO Alanı', short:'Antik Truva, MÖ 3.000\'den 500\'e kadar kesintisiz iskân edilen; Çanakkale şehir merkezinin 30 km güneyinde bir tepede.', lat:39.9576, lng:26.2397, zoom:14},
     {n:'02', name:'Aynalı Çarşı', short:'Şehir merkezinde tarihi 19. yüzyıl kapalı çarşısı; Çanakkale seramiği, nazar boncuğu, peynir ve yöresel ürünler.', lat:40.1463, lng:26.4038, zoom:16},
-    {n:'03', name:'Kilitbahir Kalesi', short:'1463'te II. Mehmed tarafından Boğaz'ın en dar noktasını kontrol için inşa edilen Osmanlı kalesi; olağandışı yonca planı ve yedi katlı iç kule.', lat:40.1477, lng:26.3795, zoom:16},
-    {n:'04', name:'Apollon Smintheion Tapınağı', short:'Ayvacık ilçesinde Gülpınar yakınında Apollo Smintheus'a adanmış Hellenistik tapınak; İlyada'nın açılışında geçer, ayakta sütunlar ve küçük müze.', lat:39.5364, lng:26.1170, zoom:14},
-    {n:'05', name:'Assos Antik Kenti', short:'Çanakkale'nin 85 km güneyinde antik Assos şehri, Ege'nin üzerinde volkanik bir kayalığa konuşlanmış.', lat:39.4901, lng:26.3351, zoom:14},
+    {n:'03', name:'Kilitbahir Kalesi', short:'1463\'te II. Mehmed tarafından Boğaz\'ın en dar noktasını kontrol için inşa edilen Osmanlı kalesi; olağandışı yonca planı ve yedi katlı iç kule.', lat:40.1477, lng:26.3795, zoom:16},
+    {n:'04', name:'Apollon Smintheion Tapınağı', short:'Ayvacık ilçesinde Gülpınar yakınında Apollo Smintheus\'a adanmış Hellenistik tapınak; İlyada\'nın açılışında geçer, ayakta sütunlar ve küçük müze.', lat:39.5364, lng:26.1170, zoom:14},
+    {n:'05', name:'Assos Antik Kenti', short:'Çanakkale\'nin 85 km güneyinde antik Assos şehri, Ege\'nin üzerinde volkanik bir kayalığa konuşlanmış.', lat:39.4901, lng:26.3351, zoom:14},
     {n:'06', name:'Gökçeada', short:'Turkey\'s largest island and one of the best windsurfing spots in the country, with steady summer winds at Aydincik beach, plus the first underwater national park, quiet beaches and old Greek villages.', lat:40.1940, lng:25.9047, zoom:12},
     {n:'07', name:'Çanakkale Şehitleri Abidesi', short:'The Çanakkale Martyrs\' Memorial on the Gallipoli Peninsula is the largest war memorial in Turkey, commemorating the Ottoman soldiers who died in the 1915 Dardanelles Campaign.', lat:40.0499, lng:26.2184, zoom:14},
-    {n:'08', name:'Bozcaada', short:'Geyikli'den 35 dakika feribotla ulaşılan küçük Ege adası; Venedik-Osmanlı kalesi ve badanalı evler.ed houses with colourful window frames, vineyards producing the island\'s distinctive wines, and clean beaches on the southern shore.', lat:39.8166, lng:26.0296, zoom:12}
+    {n:'08', name:'Bozcaada', short:'Geyikli\'den 35 dakika feribotla ulaşılan küçük Ege adası; Venedik-Osmanlı kalesi ve badanalı evler.ed houses with colourful window frames, vineyards producing the island\'s distinctive wines, and clean beaches on the southern shore.', lat:39.8166, lng:26.0296, zoom:12}
   ];
   var map=L.map('map',{zoomControl:true,scrollWheelZoom:false,attributionControl:true,zoomSnap:0.25});
   // MOBILE FIX: ensure Leaflet sees the real container dimensions
@@ -2059,7 +2058,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Canakkale · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Canakkale · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};

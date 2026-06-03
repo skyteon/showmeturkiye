@@ -204,7 +204,7 @@
 .resto-section-label{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--brown);margin-bottom:14px;display:block;}.resto-section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);font-weight:300;letter-spacing:0.12em;text-transform:uppercase;color:var(--text);margin-bottom:8px;}.resto-note{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);font-style:italic;margin-bottom:28px;}.resto-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;}.resto-card{padding:28px 24px;background:#fff;border:1px solid rgba(0,0,0,0.05);transition:all 0.3s;position:relative;overflow:hidden;}.resto-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brown);transform:scaleY(0);transition:transform 0.35s ease;transform-origin:bottom;}.resto-card:hover::before{transform:scaleY(1);}.resto-card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,0.1);}.resto-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--text);margin-bottom:5px;}.resto-stars{color:var(--brown);font-size:11px;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:8px;}.resto-stars span{font-family:'Poppins',sans-serif;font-size:11px;font-weight:300;color:var(--text-muted);letter-spacing:0;}.resto-desc{font-family:'Poppins',sans-serif;font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.75;margin-bottom:10px;}.resto-specialty{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--brown);}
 .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}.activity-card{padding:32px 24px;background:var(--white);border:1px solid rgba(42,20,16,0.10);transition:all 0.3s;}.activity-card:hover{background:var(--white);border-color:rgba(192,57,43,0.3);}.activity-num{font-family:'Playfair Display',serif;font-size:42px;font-weight:300;color:var(--brown);opacity:0.25;line-height:1;margin-bottom:14px;}.activity-title{font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--text);margin-bottom:12px;}.activity-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--text);line-height:1.8;}
 .daytrips-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}.daytrip-card{position:relative;aspect-ratio:16/7;overflow:hidden;cursor:pointer;background:#1a1410;}.daytrip-bg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform 0.7s ease;}.daytrip-card:hover .daytrip-bg{transform:scale(1.05);}.daytrip-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,14,0.95) 0%,rgba(10,12,14,0.55) 50%,rgba(10,12,14,0.25) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px;transition:background 0.4s ease;}.daytrip-distance{font-family:'Poppins',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;text-shadow:0 2px 10px rgba(0,0,0,0.9);}.daytrip-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);font-weight:400;color:var(--cream);letter-spacing:0.06em;margin-bottom:10px;text-shadow:0 2px 16px rgba(0,0,0,0.92), 0 0 6px rgba(0,0,0,0.7);}.daytrip-desc{font-family:'Poppins',sans-serif;font-size:13px;font-weight:300;color:var(--cream);line-height:1.75;max-width:100%;opacity:1;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,0.85);}.daytrip-card:hover .daytrip-overlay{background:linear-gradient(to top,rgba(10,12,14,0.96) 0%,rgba(10,12,14,0.6) 55%,rgba(10,12,14,0.25) 100%);}.daytrip-card:hover .daytrip-desc{color:var(--cream);}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.4,0,0.2,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal{opacity:1;transform:none;}.reveal.visible{opacity:1;transform:none;}
 .video-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);z-index:10000;align-items:center;justify-content:center;padding:40px;}.video-modal.active{display:flex;}.video-modal-inner{position:relative;width:100%;max-width:1200px;aspect-ratio:16/9;}.video-modal iframe{width:100%;height:100%;border:none;}.modal-close{position:absolute;top:-48px;right:0;background:none;border:none;color:var(--text);font-size:36px;cursor:pointer;opacity:0.6;transition:opacity 0.2s;}.modal-close:hover{opacity:1;}
 
 /* RESPONSIVE */
@@ -1517,7 +1517,7 @@
 .related-link .arr{transition:transform .35s ease;}
 .related-link:hover{color:var(--brown);gap:13px;}
 .related-link:hover .arr{transform:translateX(4px);}
-.related-sec .r-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
+.related-sec .r-reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.22,.61,.36,1);}
 .related-sec .r-reveal.is-in{opacity:1;transform:none;}
 @media (max-width:900px){.related-grid{grid-template-columns:repeat(3,1fr);gap:12px;}.rel-card-overlay{padding:18px 16px;}.rel-tag{top:12px;left:12px;}}
 @media (max-width:600px){.related-grid{grid-template-columns:1fr;gap:14px;}.rel-card{aspect-ratio:16/10;}.related-foot{gap:18px;}}
@@ -1557,8 +1557,7 @@
 <link rel="alternate" hreflang="en" href="https://showmeturkiye.com/cities/rize.html">
 <link rel="alternate" hreflang="x-default" href="https://showmeturkiye.com/cities/rize.html">
 </head>
-<body>
-<nav class="site-nav" id="siteNav">
+<body><nav class="site-nav" id="siteNav">
   <a href="/tr/"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Aramayı aç"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
   <button class="hamburger" onclick="openNav()" aria-label="Menüyü aç"><span></span><span></span><span></span></button>
@@ -1726,11 +1725,11 @@
           <div class="atl-map-label"><i></i><b>Rize</b><span style="opacity:0.45">·</span>8 yer</div>
           <div class="atl-map-n" title="North">N</div>
         </div>
-        <div class="atl-map" id="map" aria-label="Map of 8 places in Rize"></div>
+        <div class="atl-map" id="map" aria-label="Rize'daki 8 mekanın haritası"></div>
         <div class="atl-mapfoot">
           <div class="atl-now" id="atlNow">
-            <span class="atl-now-num">Rize · 8 places</span>
-            <div class="atl-now-name">Bir saha rehberi</div>
+            <span class="atl-now-num">Rize · 8 mekan</span>
+            <div class="atl-now-name">Saha rehberi</div>
           </div>
           <button class="atl-mapfit" id="atlFit" type="button">Tümünü Göster</button>
         </div>
@@ -1902,7 +1901,7 @@
       <div class="daytrip-bg" style="background-image:url('https://img.showmeturkiye.com/cities/rize/sumela-monastery-day-trip-from-rize.jpg');background-position:center;"></div>
       <div class="daytrip-overlay">
         <div class="daytrip-distance">75 km batı, yaklaşık 1 saat</div>
-        <div class="daytrip-name">Trabzon and Sümela</div>
+        <div class="daytrip-name">Trabzon ve Sümela</div>
         <p class="daytrip-desc">Trabzon kıyı yolundan batıya kolay günübirlik gezi; kendine özgü yemek kültürü, çarşı ve deniz yakınındaki Bizans Ayasofyası. Trabzon'dan güneye Sümela yolu.</p>
       </div>
     </div>
@@ -2029,9 +2028,9 @@ document.addEventListener('DOMContentLoaded',function(){
   var PLACES=[
     {n:'01', name:'Çeçeva Tea Gardens', short:'Terraced tea gardens climbing the hills above Rize from near sea level up into the fog, with the Çeçeva viewpoint looking over the slopes.', lat:41.0328, lng:40.7328, zoom:15},
     {n:'02', name:'Zilkale', short:'A 14th-century fortress of the Empire of Trebizond on a rock spur about 100 metres above the Fırtına River, on the Çat road south of Çamlıhemşin.', lat:40.9261, lng:40.9538, zoom:14},
-    {n:'03', name:'Ayder Yaylası', short:'Fırtına Vadisi'nde 1.350 m'de Ayder; Kaçkar Dağları ve çevre yaylalar için ana üs.', lat:40.9986, lng:41.0538, zoom:14},
+    {n:'03', name:'Ayder Yaylası', short:'Fırtına Vadisi\'nde 1.350 m\'de Ayder; Kaçkar Dağları ve çevre yaylalar için ana üs.', lat:40.9986, lng:41.0538, zoom:14},
     {n:'04', name:'Elevit Yaylası', short:'One of the highest and most remote Rize plateaus at around 1,800 metres, deep in the Kaçkar range above Çamlıhemşin.', lat:40.8552, lng:41.0149, zoom:13},
-    {n:'05', name:'Hüser Plateau', short:'Ayder'in üzerinde yaklaşık 2.400 m'de Doğu Karadeniz'in en yüksek yerleşimlerinden biri; gün doğumu ve batımındaki bulut denisiyle ünlü.', lat:40.9738, lng:41.1130, zoom:13},
+    {n:'05', name:'Hüser Plateau', short:'Ayder\'in üzerinde yaklaşık 2.400 m\'de Doğu Karadeniz\'in en yüksek yerleşimlerinden biri; gün doğumu ve batımındaki bulut denisiyle ünlü.', lat:40.9738, lng:41.1130, zoom:13},
     {n:'06', name:'Pokut Yaylası', short:'A high plateau at around 2,050 metres on the Sal-Hazindağ ridge, reached from Şenyuva on a steep rough road, forested almost to the top.', lat:40.9625, lng:41.0216, zoom:14},
     {n:'07', name:'Palovit Şelalesi', short:'One of the highest-volume waterfalls in Rize, deep in the Çat valley of Çamlıhemşin past Zilkale, inside the Kaçkar Mountains National Park.', lat:40.9414, lng:40.9934, zoom:13},
     {n:'08', name:'Vercenik Plateau', short:'A remote high plateau beneath the 3,711 metre Vercenik peak, the second highest of the Kaçkar range, reached on rough roads above Elevit.', lat:40.7416, lng:40.9166, zoom:13}
@@ -2081,7 +2080,7 @@ document.addEventListener('DOMContentLoaded',function(){
   }
   cards.forEach(function(c){c.addEventListener('click',function(){selectPlace(Number(c.dataset.i));});});
   var fit=document.getElementById('atlFit');
-  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Rize · '+PLACES.length+' places</span><div class="atl-now-name">Bir saha rehberi</div>';});}
+  if(fit){fit.addEventListener('click',function(){map.flyToBounds(bounds,{padding:[50,50],duration:0.8});setActive(-1);nowBox.innerHTML='<span class="atl-now-num">Rize · '+PLACES.length+' mekan</span><div class="atl-now-name">Saha rehberi</div>';});}
   map.on('click',function(){map.scrollWheelZoom.enable();});
   map.on('mouseout',function(){map.scrollWheelZoom.disable();});
   window.selectPlace=function(arg){if(typeof arg==='number'){selectPlace(arg);return;}var idx=Number(arg&&arg.dataset&&arg.dataset.i);if(!isNaN(idx))selectPlace(idx);};
