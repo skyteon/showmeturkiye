@@ -1,0 +1,2 @@
+# Turkish pages removed June 2026. Return 410 Gone so Google de-indexes them permanently.
+/tr/*  410
