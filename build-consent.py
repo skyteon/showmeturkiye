@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """
-Show Me Turkiye - Cookie consent injector (KVKK uyumlu)
-=======================================================
-Tum HTML sayfalara (kok + cities/ routes/ blog/ alt klasorler) KVKK uyumlu
-cookie consent banner'ini ekler. Banner her sayfada </body> etiketinden
-hemen once, tek bir blok olarak yer alir.
+Show Me Turkiye - Cookie consent injector (KVKK uyumlu, GA always-on)
+=====================================================================
+Tum HTML sayfalara (kok + cities/ routes/ blog/ alt klasorler) cookie
+consent banner'ini ekler. Banner her sayfada </body> etiketinden hemen
+once, tek bir blok olarak yer alir.
 
-- Sayfada banner zaten varsa: eskiyi cikartip yenisini koyar (guncelleme).
-- Sayfada </body> yoksa: atlar ve uyarir.
-- Analitik cerezler SADECE kullanici "Accept all" / "Save choices" derse yuklenir.
-  (KVKK opt-in: rizadan once izleme cerezi DUSMEZ.)
+DEGISIKLIK NOTU (6 Haziran 2026):
+- GA artik sayfa yuklenir yuklenmez calisir (consent beklemeden).
+- IP anonimlestirme acik (anonymize_ip:true), KVKK mesru menfaat kapsami.
+- Banner yine gosterilir; kullanici reddederse ileride eklenecek marketing/
+  advertising cerezleri yuklenmez. Analytics ise her durumda calisir.
+
+GA_ID: Script'i calistirmadan once asagidaki GA_ID degerini gercek
+Measurement ID'nle degistir (G-XXXXXXXXXX formatinda). Canli sayfa
+kaynak kodundan bulabilirsin (view-source > 'gtag/js?id=' ara).
 
 Kullanim:   python build-consent.py
-Yeni sayfa ekledikten sonra tekrar calistir.
-
-GA EKLEME: Bu dosyadaki CONSENT_BLOCK icinde GA_ID='G-XXXXXXXXXX' satirini
-gercek GA ID'nle degistir VE loadAnalytics icindeki yorumu ac, sonra bu
-script'i tekrar calistir. Boylece GA tum sayfalara dogru sekilde girer.
 """
 
 import re
@@ -24,6 +24,11 @@ from pathlib import Path
 
 START = "<!-- SMT-CONSENT-START -->"
 END   = "<!-- SMT-CONSENT-END -->"
+
+# === BURAYI DEGISTIR ===
+# Canli sayfadan gercek GA Measurement ID'ni al ve asagiya yaz.
+# Ornek: GA_ID = 'G-ABC123XYZ'
+GA_ID = "G-Q7E5XWC6GR"
 
 CONSENT_BLOCK = START + """
 <style>
@@ -64,7 +69,7 @@ CONSENT_BLOCK = START + """
 <div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cc-eyebrow">Privacy</p>
   <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
+  <p class="cc-text">We use essential and anonymous analytics cookies to keep this site running and improve it. With your consent, we may also use marketing cookies in the future. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
   <div class="cc-actions">
     <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
     <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
@@ -74,14 +79,18 @@ CONSENT_BLOCK = START + """
 <div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
   <div class="cc-modal">
     <h3>Cookie preferences</h3>
-    <p>Choose which cookies you allow. Essential cookies are always on because the site cannot function without them. Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
+    <p>Choose which cookies you allow. Essential and anonymous analytics cookies are always on (legitimate interest, anonymised IP). Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
     <div class="cc-row">
       <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
       <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
     </div>
     <div class="cc-row">
-      <div class="cc-row-info"><h4>Analytics</h4><p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Turkiye. Off until you allow them.</p></div>
-      <label class="cc-toggle"><input type="checkbox" id="ccAnalytics"><span class="cc-slider"></span></label>
+      <div class="cc-row-info"><h4>Anonymous analytics</h4><p>Google Analytics with anonymised IP, used to understand how the site is used in aggregate. Always active under legitimate interest.</p></div>
+      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
+    </div>
+    <div class="cc-row">
+      <div class="cc-row-info"><h4>Marketing</h4><p>Reserved for future use (e.g. retargeting). Off until you allow it.</p></div>
+      <label class="cc-toggle"><input type="checkbox" id="ccMarketing"><span class="cc-slider"></span></label>
     </div>
     <div class="cc-modal-actions">
       <button class="cc-btn cc-btn-reject" id="ccSavePrefs">Save choices</button>
@@ -94,30 +103,35 @@ CONSENT_BLOCK = START + """
   var KEY='smt_cookie_consent_v1';
   var banner=document.getElementById('ccBanner');
   var modalBg=document.getElementById('ccModalBg');
-  var analyticsToggle=document.getElementById('ccAnalytics');
+  var marketingToggle=document.getElementById('ccMarketing');
   function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
   function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
-  var GA_ID='G-XXXXXXXXXX'; // <-- GA ID'ni buraya yaz
+  var GA_ID='__GA_ID__';
   var analyticsLoaded=false;
   function loadAnalytics(){
     if(analyticsLoaded)return;analyticsLoaded=true;
-    /* --- GA aktif etmek icin bu blogun yorumunu kaldir ---
+    if(!GA_ID||GA_ID.indexOf('XXX')>-1)return;
     var s=document.createElement('script');s.async=true;
     s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
     document.head.appendChild(s);
     window.dataLayer=window.dataLayer||[];
     function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-    gtag('js',new Date());gtag('config',GA_ID,{anonymize_ip:true});
-    --- GA blogu sonu --- */
+    gtag('js',new Date());
+    gtag('config',GA_ID,{anonymize_ip:true});
   }
-  function apply(c){if(c&&c.analytics===true)loadAnalytics();}
+  // Analytics her durumda yuklenir (mesru menfaat + anonim IP).
+  loadAnalytics();
+  function apply(c){
+    // Gelecekte marketing/advertising cerezleri buraya eklenir.
+    // Ornek: if(c&&c.marketing===true) loadMarketingPixels();
+  }
   function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
   function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();analyticsToggle.checked=c?!!c.analytics:false;modalBg.classList.add('cc-show');}
+  function openModal(){var c=getConsent();if(marketingToggle){marketingToggle.checked=c?!!c.marketing:false;}modalBg.classList.add('cc-show');}
   function closeModal(){modalBg.classList.remove('cc-show');}
-  function acceptAll(){var c={essential:true,analytics:true};saveConsent(c);apply(c);hideBanner();closeModal();}
-  function rejectNon(){var c={essential:true,analytics:false};saveConsent(c);hideBanner();closeModal();}
-  function savePrefs(){var c={essential:true,analytics:!!analyticsToggle.checked};saveConsent(c);apply(c);hideBanner();closeModal();}
+  function acceptAll(){var c={essential:true,analytics:true,marketing:true};saveConsent(c);apply(c);hideBanner();closeModal();}
+  function rejectNon(){var c={essential:true,analytics:true,marketing:false};saveConsent(c);hideBanner();closeModal();}
+  function savePrefs(){var c={essential:true,analytics:true,marketing:marketingToggle?!!marketingToggle.checked:false};saveConsent(c);apply(c);hideBanner();closeModal();}
   document.getElementById('ccAccept').addEventListener('click',acceptAll);
   document.getElementById('ccReject').addEventListener('click',rejectNon);
   document.getElementById('ccPrefs').addEventListener('click',openModal);
@@ -139,11 +153,17 @@ def inject(html: str) -> str:
     idx = html.rfind("</body>")
     if idx == -1:
         return None  # </body> yok, atla
-    return html[:idx] + CONSENT_BLOCK + "\n" + html[idx:]
+    # GA_ID'yi enjekte et
+    block = CONSENT_BLOCK.replace("__GA_ID__", GA_ID)
+    return html[:idx] + block + "\n" + html[idx:]
 
 
 def main():
     print("Cookie consent banner ekleniyor ...")
+    if "XXX" in GA_ID:
+        print("  ! UYARI: GA_ID hala placeholder ('" + GA_ID + "').")
+        print("  ! Bu dosyanin basindaki GA_ID degerini gercek Measurement ID'nle degistir,")
+        print("  ! sonra bu script'i tekrar calistir. Yoksa GA yuklenmez.")
     pages = list(Path(".").glob("*.html")) + list(Path(".").glob("*/*.html"))
     updated = 0
     skipped = []
@@ -161,4 +181,3 @@ def main():
 
 if __name__ == "__main__":
     main()
- 
