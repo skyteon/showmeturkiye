@@ -1,0 +1,43 @@
+name: Rebuild consent banner
+
+# Iki yontemle tetiklenir:
+# 1) build-consent.py her degistirildiginde otomatik
+# 2) "Actions" sekmesinden manuel "Run workflow" butonu ile
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'build-consent.py'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run consent builder
+        run: python build-consent.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --cached --quiet; then
+            echo "Hicbir HTML degismedi, commit yok"
+          else
+            git commit -m "chore: rebuild consent banner [skip ci]"
+            git push
+          fi
