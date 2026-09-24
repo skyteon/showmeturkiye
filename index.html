@@ -557,6 +557,130 @@ function initRoutesCarousel() {
       </div>
     </div>
 
+
+<!-- ═══════════════════════════════════════
+     LYCIAN WAY - Featured long-distance trail
+     ═══════════════════════════════════════ -->
+<section id="lycianHome" aria-labelledby="lhHeading">
+<style>
+#lycianHome{--lh-ink:var(--text,#2A1410);--lh-muted:var(--text-muted,#5C3530);--lh-accent:#C0392B;--lh-gold:var(--gold,#C9A75D);--lh-surface:var(--cream2,#FAF5EA);--lh-cream:var(--cream,#F4EFE5);--lh-serif:var(--serif,'Playfair Display',Georgia,serif);--lh-sans:var(--sans,'Poppins',system-ui,sans-serif);display:block;padding:96px 0 0;margin:72px 0 0;border-top:1px solid rgba(42,20,16,0.10);position:relative}
+#lycianHome .lh-wrap{max-width:1200px;margin:0 auto}
+#lycianHome .lh-head{text-align:center;max-width:660px;margin:0 auto 56px}
+#lycianHome .lh-eyebrow{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--lh-muted);margin-bottom:24px}
+#lycianHome h2{font-family:var(--lh-serif);font-size:clamp(38px,4.4vw,64px);font-weight:400;letter-spacing:-0.005em;line-height:1.06;color:var(--lh-ink);margin:0 0 22px}
+#lycianHome h2 em{font-style:italic;color:var(--lh-accent)}
+#lycianHome .lh-intro{font-family:var(--lh-sans);font-size:17px;font-weight:400;line-height:1.65;color:var(--lh-muted);margin:0 auto;max-width:560px;text-wrap:pretty}
+#lycianHome .lh-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:stretch}
+#lycianHome .lh-photo{position:relative;margin:0;border-radius:18px;overflow:hidden;min-height:520px;background:#1C1814;display:block;color:#FAF5EA}
+#lycianHome .lh-photo img{color:transparent;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+#lycianHome .lh-photo:hover img{transform:scale(1.06)}
+#lycianHome .lh-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(10,6,4,0.62) 100%);pointer-events:none}
+#lycianHome .lh-cap{position:absolute;left:26px;right:26px;bottom:24px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+#lycianHome .lh-cap b{display:block;font-family:var(--lh-serif);font-weight:400;font-size:clamp(22px,2.2vw,28px);line-height:1.15}
+#lycianHome .lh-cap span{display:block;margin-top:6px;font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(250,245,234,0.85)}
+#lycianHome .lh-cap i{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,245,234,0.5);display:grid;place-items:center;font-style:normal;font-family:var(--lh-sans);font-size:16px;transition:background .3s,color .3s,border-color .3s}
+#lycianHome .lh-photo:hover .lh-cap i{background:#FAF5EA;color:var(--lh-ink);border-color:#FAF5EA}
+#lycianHome .lh-card{background:var(--lh-surface);border:1px solid rgba(42,20,16,0.10);border-radius:18px;padding:26px 26px 24px;display:flex;flex-direction:column}
+#lycianHome .lh-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(42,20,16,0.08)}
+#lycianHome .lh-top span{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--lh-muted)}
+#lycianHome .lh-top span+span{opacity:0.6;font-weight:400;letter-spacing:0.14em}
+#lycianHome .lh-map{flex:1 1 auto;display:flex;align-items:center;padding:18px 0 8px}
+#lycianHome .lh-svg{display:block;width:100%;height:auto;overflow:visible}
+#lycianHome .lh-base{fill:none;stroke:rgba(42,20,16,0.10);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#lycianHome .lh-line{fill:none;stroke:var(--lh-accent);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.8s cubic-bezier(.45,.05,.25,1)}
+#lycianHome.is-drawn .lh-line{stroke-dashoffset:0}
+#lycianHome .lh-pt{fill:var(--lh-surface);stroke:var(--lh-ink);stroke-width:1.4}
+#lycianHome .lh-pt--s{fill:var(--lh-accent);stroke:var(--lh-surface);stroke-width:2.5}
+#lycianHome .lh-pt--f{fill:var(--lh-ink);stroke:var(--lh-surface);stroke-width:2.5}
+#lycianHome .lh-halo{fill:none;stroke:var(--lh-accent);stroke-opacity:.28;stroke-width:1.2}
+#lycianHome .lh-svg text{font-family:var(--lh-sans);font-size:17px;font-weight:400;letter-spacing:0.02em;fill:var(--lh-ink);fill-opacity:.78;stroke:var(--lh-surface);stroke-width:3;paint-order:stroke;stroke-linejoin:round}
+#lycianHome .lh-svg text.lh-k{font-size:12.5px;font-weight:500;letter-spacing:0.22em;fill:var(--lh-accent);fill-opacity:1}
+#lycianHome .lh-svg text.lh-k--f{fill:var(--lh-ink)}
+#lycianHome .lh-svg .lh-lbl{opacity:0;transition:opacity .6s ease}
+#lycianHome.is-drawn .lh-svg .lh-lbl{opacity:1}
+#lycianHome.is-drawn .lh-svg .lh-lbl--2{transition-delay:.9s}
+#lycianHome.is-drawn .lh-svg .lh-lbl--3{transition-delay:1.6s}
+#lycianHome.is-drawn .lh-svg .lh-lbl--4{transition-delay:2.4s}
+#lycianHome .lh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(42,20,16,0.12);border-bottom:1px solid rgba(42,20,16,0.12);margin-top:10px}
+#lycianHome .lh-stat{padding:22px 10px;text-align:center}
+#lycianHome .lh-stat+.lh-stat{border-left:1px solid rgba(42,20,16,0.12)}
+#lycianHome .lh-val{font-family:var(--lh-serif);font-size:clamp(28px,2.8vw,38px);font-weight:400;line-height:1;color:var(--lh-ink);letter-spacing:-0.01em;display:block;margin-bottom:10px}
+#lycianHome .lh-val small{font-size:0.5em;margin-left:3px;letter-spacing:0.02em}
+#lycianHome .lh-key{font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--lh-muted);opacity:0.8}
+#lycianHome .lh-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+#lycianHome .lh-btn{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--lh-ink);background:transparent;border:1px solid rgba(42,20,16,0.22);border-radius:999px;padding:15px 26px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease}
+#lycianHome .lh-btn:hover{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
+#lycianHome .lh-btn.is-primary{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
+#lycianHome .lh-btn.is-primary:hover{background:var(--lh-accent);border-color:var(--lh-accent)}
+#lycianHome .lh-btn:focus-visible,#lycianHome .lh-photo:focus-visible{outline:2px solid var(--lh-accent);outline-offset:3px}
+@media (max-width:900px){
+  #lycianHome{padding-top:72px;margin-top:56px}
+  #lycianHome .lh-head{margin-bottom:40px}
+  #lycianHome .lh-grid{grid-template-columns:1fr}
+  #lycianHome .lh-photo{min-height:0;aspect-ratio:4/3}
+}
+@media (max-width:600px){
+  #lycianHome .lh-intro{font-size:15.5px}
+  #lycianHome .lh-card{padding:20px 18px 18px}
+  #lycianHome .lh-photo{aspect-ratio:4/5}
+  #lycianHome .lh-cap{left:20px;right:20px;bottom:20px}
+  #lycianHome .lh-cap span,#lycianHome .lh-top span,#lycianHome .lh-key{font-size:10.5px;letter-spacing:0.14em}
+  #lycianHome .lh-svg text{font-size:22px}
+  #lycianHome .lh-svg text.lh-k{font-size:16px}
+  #lycianHome .lh-stat{padding:18px 6px}
+  #lycianHome .lh-btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  #lycianHome .lh-line{transition:none;stroke-dashoffset:0}
+  #lycianHome .lh-svg .lh-lbl{transition:none;opacity:1}
+  #lycianHome .lh-photo img{transition:none}
+}
+</style>
+<div class="lh-wrap">
+  <div class="lh-head">
+    <div class="lh-eyebrow">Long-distance trail · Muğla to Antalya</div>
+    <h2 id="lhHeading">Walk the <em>Lycian Way</em>.</h2>
+    <p class="lh-intro">A waymarked footpath along the Teke coast, about 447 km from Ovacık above Ölüdeniz to Geyikbayırı near Antalya. Our guide splits it into 23 sections you can walk one at a time, with a live map that follows you on the trail.</p>
+  </div>
+  <div class="lh-grid">
+    <a class="lh-photo" href="trails/lycian-way.html" aria-label="Open the Lycian Way trail guide">
+      <img src="https://img.showmeturkiye.com/trails/lycian-way/lycian-way-coast-trail.jpg" onerror="this.onerror=null;this.src='https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg'" alt="The Lycian Way trail above the Mediterranean coast" loading="lazy" decoding="async" width="1200" height="1500">
+      <span class="lh-cap"><span style="margin:0;letter-spacing:0;text-transform:none;"><b>Ölüdeniz to Antalya</b><span>Coast, ruins and high villages</span></span><i aria-hidden="true">→</i></span>
+    </a>
+    <div class="lh-card">
+      <div class="lh-top"><span>Ovacık → Geyikbayırı</span><span>West to east</span></div>
+      <div class="lh-map">
+        <svg class="lh-svg" viewBox="0 0 600 398" role="img" aria-label="Outline of the Lycian Way from Ovacık in the west to Geyikbayırı in the east">
+          <path class="lh-base" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
+          <path class="lh-line" pathLength="1" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
+          <g class="lh-lbl"><circle class="lh-halo" cx="29.6" cy="175" r="11"></circle><circle class="lh-pt--s" cx="29.6" cy="175" r="5.5"></circle>
+            <text class="lh-k" x="45.6" y="163.0">START</text><text x="45.6" y="189.0">Ovacık</text></g>
+          <g class="lh-lbl lh-lbl--2"><circle class="lh-pt" cx="222.5" cy="347.8" r="3.6"></circle><text x="222.5" y="375.8" text-anchor="middle">Kaş</text></g>
+          <g class="lh-lbl lh-lbl--3"><circle class="lh-pt" cx="542.1" cy="255.5" r="3.6"></circle><text x="530.1" y="261.5" text-anchor="end">Olympos</text></g>
+          <g class="lh-lbl lh-lbl--4"><circle class="lh-pt--f" cx="543.5" cy="24" r="5.5"></circle>
+            <text class="lh-k lh-k--f" x="529.5" y="20" text-anchor="end">FINISH</text><text x="529.5" y="40.0" text-anchor="end">Geyikbayırı</text></g>
+        </svg>
+      </div>
+      <div class="lh-stats">
+        <div class="lh-stat"><span class="lh-val">447<small>km</small></span><span class="lh-key">About</span></div>
+        <div class="lh-stat"><span class="lh-val">23</span><span class="lh-key">Sections</span></div>
+        <div class="lh-stat"><span class="lh-val">8</span><span class="lh-key">Regions</span></div>
+      </div>
+      <div class="lh-actions">
+        <a class="lh-btn is-primary" href="trails/lycian-way.html">Open the trail guide</a>
+        <a class="lh-btn" href="trails/lycian-way.html#lw-mapsec">See the live map</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var s=document.getElementById('lycianHome');if(!s)return;
+if(!('IntersectionObserver' in window)){s.classList.add('is-drawn');return;}
+var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.add('is-drawn');io.disconnect();}},{threshold:0.25});
+io.observe(s.querySelector('.lh-card')||s);})();
+</script>
+</section>
+
 <!-- ═══════════════════════════════════════
      PROVINCES VISITED - Interactive map game
      ═══════════════════════════════════════ -->
@@ -616,7 +740,7 @@ function initRoutesCarousel() {
     <div class="tm-stats">
       <div class="tm-stat"><span class="tm-val" id="tmCount">0 / 81</span><span class="tm-key">Provinces</span></div>
       <div class="tm-stat is-accent"><span class="tm-val" id="tmPct">0%</span><span class="tm-key">Of Türkiye</span></div>
-      <div class="tm-stat is-level"><span class="tm-val" id="tmLevel">Dreamer</span><span class="tm-key">Traveler level</span></div>
+      <div class="tm-stat is-level"><span class="tm-val" id="tmLevel">Newcomer</span><span class="tm-key">Traveler level</span></div>
     </div>
 
     <div class="tm-card">
@@ -628,11 +752,11 @@ function initRoutesCarousel() {
     </div>
 
     <div class="tm-actions">
-      <button type="button" class="tm-btn is-primary" id="tmDlVert">Download 9:16 vertical</button>
-      <button type="button" class="tm-btn" id="tmDlHorz">Download 16:9 horizontal</button>
+      <button type="button" class="tm-btn is-primary" id="tmDlVert">Download print · vertical</button>
+      <button type="button" class="tm-btn" id="tmDlHorz">Download print · horizontal</button>
       <button type="button" class="tm-reset" id="tmReset">Reset map</button>
     </div>
-    <p class="tm-note" id="tmNote">Your selection stays on this device. Both downloads are print-quality JPG at 300&nbsp;dpi &mdash; 9:16 vertical (2700&times;4800) or 16:9 horizontal (4800&times;2700).</p>
+    <p class="tm-note" id="tmNote">Your selection stays on this device. Both downloads are print quality: A3 at 300&nbsp;dpi, 3508&times;4961 vertical or 4961&times;3508 horizontal.</p>
   </div>
 
 <script>
@@ -643,14 +767,14 @@ function initRoutesCarousel() {
   var VW=1000, VH=420;
   var box=document.getElementById('tmMapBox'), loading=document.getElementById('tmLoading');
   var elCount=document.getElementById('tmCount'), elPct=document.getElementById('tmPct'), elLevel=document.getElementById('tmLevel'), elRead=document.getElementById('tmReadout');
-  var provinces=[], visited=Object.create(null), svg=null, shapeG=null, nodes=Object.create(null), labels=Object.create(null), logoImg=null, logoClean=false, logoTried=false;
+  var provinces=[], visited=Object.create(null), svg=null, shapeG=null, nodes=Object.create(null), labels=Object.create(null), logoImg=null, logoTried=false;
 
   var TRMAP={'\u0130':'I','\u0131':'i','\u015E':'S','\u015F':'s','\u011E':'G','\u011F':'g','\u00DC':'U','\u00FC':'u','\u00D6':'O','\u00F6':'o','\u00C7':'C','\u00E7':'c','\u00C2':'A','\u00E2':'a','\u00CE':'I','\u00EE':'i','\u00DB':'U','\u00FB':'u'};
   function latin(s){return String(s).replace(/[\u0130\u0131\u015E\u015F\u011E\u011F\u00DC\u00FC\u00D6\u00F6\u00C7\u00E7\u00C2\u00E2\u00CE\u00EE\u00DB\u00FB]/g,function(c){return TRMAP[c]||c;});}
   var RENAME={3:'Afyonkarahisar'};
 
-  var LEVELS=[[61,'T\u00FCrkiye Legend'],[46,'T\u00FCrkiye Master'],[31,'T\u00FCrkiye Insider'],[28,'T\u00FCrkiye Expert'],[25,'Trailblazer'],[22,'Province Collector'],[19,'Horizon Chaser'],[16,'T\u00FCrkiye Explorer'],[13,'Seasoned Traveler'],[10,'Road Tripper'],[7,'Anatolian Wanderer'],[4,'Curious Soul'],[1,'First-Timer'],[0,'Dreamer']];
-  function levelFor(n){for(var i=0;i<LEVELS.length;i++){if(n>=LEVELS[i][0])return LEVELS[i][1];}return 'Dreamer';}
+  var LEVELS=[[81,'T\u00FCrkiye Legend'],[66,'T\u00FCrkiye Insider'],[46,'T\u00FCrkiye Expert'],[26,'Local Explorer'],[11,'T\u00FCrkiye Traveler'],[1,'Tourist'],[0,'Newcomer']];
+  function levelFor(n){for(var i=0;i<LEVELS.length;i++){if(n>=LEVELS[i][0])return LEVELS[i][1];}return 'Newcomer';}
 
   function load(){try{var raw=localStorage.getItem(STORE);if(!raw)return;var arr=JSON.parse(raw);if(Object.prototype.toString.call(arr)==='[object Array]'){for(var i=0;i<arr.length;i++)visited[arr[i]]=1;}}catch(e){}}
   function save(){try{localStorage.setItem(STORE,JSON.stringify(Object.keys(visited)));}catch(e){}}
@@ -774,46 +898,16 @@ function initRoutesCarousel() {
   }
 
   /* ---------- export ---------- */
-  /* Logo sources, tried in order. Each must be readable by canvas (same-origin,
-     or CORS-enabled) or the export cannot be written. Enable CORS on the R2 bucket
-     and the direct url wins; the wsrv mirror is the no-config fallback. */
-  var LOGO_PATH='hero/logo-v2.png';
-  var LOGO_SOURCES=[
-    {u:'/'+LOGO_PATH},
-    {u:'https://img.showmeturkiye.com/'+LOGO_PATH,cors:true},
-    {u:'https://wsrv.nl/?url=img.showmeturkiye.com%2F'+encodeURIComponent(LOGO_PATH)+'&w=1400&output=png',cors:true},
-    {u:'https://images.weserv.nl/?url=img.showmeturkiye.com%2F'+encodeURIComponent(LOGO_PATH)+'&w=1400&output=png',cors:true}
-  ];
-  function exportable(im){
-    try{
-      var s=document.createElement('canvas');s.width=s.height=1;
-      var x=s.getContext('2d');x.drawImage(im,0,0);x.getImageData(0,0,1,1);
-      return true;
-    }catch(e){return false;}
-  }
-  function tryLogo(spec){
-    return new Promise(function(res){
-      var im=new Image(),settled=false;
-      var give=function(v){if(!settled){settled=true;res(v);}};
-      if(spec.cors)im.crossOrigin='anonymous';
-      im.onload=function(){give(exportable(im)?im:null);};
-      im.onerror=function(){give(null);};
-      im.src=spec.u;
-      setTimeout(function(){give(null);},8000);
-    });
-  }
   function logo(){
     if(logoTried)return Promise.resolve(logoImg);
     logoTried=true;
-    var i=0;
-    var next=function(){
-      if(i>=LOGO_SOURCES.length)return null;
-      return tryLogo(LOGO_SOURCES[i++]).then(function(im){
-        if(im){logoImg=im;logoClean=true;return im;}
-        return next();
-      });
-    };
-    return Promise.resolve().then(next);
+    return new Promise(function(res){
+      var im=new Image();
+      im.crossOrigin='anonymous';
+      im.onload=function(){logoImg=im;res(im);};
+      im.onerror=function(){res(null);};
+      im.src='https://img.showmeturkiye.com/hero/logo-v2.png';
+    });
   }
   function fonts(){
     if(!document.fonts||!document.fonts.load)return Promise.resolve();
@@ -882,145 +976,71 @@ function initRoutesCarousel() {
     return w*VH/VW;
   }
 
-  function compose(fmt,noLogo){
+  function compose(fmt){
     var W=fmt.w,H=fmt.h,c=document.createElement('canvas');
     c.width=W;c.height=H;
     var ctx=c.getContext('2d');
     ctx.fillStyle=CREAM;ctx.fillRect(0,0,W,H);
-    ctx.textBaseline='alphabetic';
-    var u=Math.min(W,H), tall=H>W, du=u*(tall?1.44:1.0);
-    var pad=Math.round(u*0.062), L=pad, R=W-pad, mid=W/2;
-    var n=total(), pctNum=String(Math.round(n/81*100)), lvl=levelFor(n);
-    var mark=noLogo?null:logoImg;
-    var hair=function(x1,y1,x2,y2,alpha){
-      ctx.strokeStyle='rgba(201,167,93,'+alpha+')';ctx.lineWidth=Math.max(1,u*0.0007);
-      ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
-    };
+    var n=total(),pctNum=String(Math.round(n/81*100)),lvl=levelFor(n),cnt=n+' / 81 provinces';
+    var pad=Math.round(Math.min(W,H)*0.055);
+    ctx.strokeStyle='rgba(201,167,93,0.55)';ctx.lineWidth=Math.max(1,W*0.0008);
+    ctx.strokeRect(pad,pad,W-pad*2,H-pad*2);
 
-    var logoH=du*0.085, y=pad;
-    if(mark){
-      var lw=logoH*(mark.naturalWidth/mark.naturalHeight);
-      ctx.drawImage(mark,mid-lw/2,y,lw,logoH);
-      y+=logoH+du*0.050;
-    }else{
-      y+=du*0.030;
+    var mapW=W*fmt.map, mapH=mapW*VH/VW;
+    var pctSize=W*fmt.pct, lvlSize=W*fmt.lvl, cntSize=W*fmt.cnt;
+    var g1=W*fmt.g1, g2=W*fmt.g2, g3=W*fmt.g3, g4=W*fmt.g4;
+    var stack=mapH+g1+pctSize*0.72+g2+g3+lvlSize+g4+cntSize;
+    var top=(H-stack)/2+H*0.012;
+
+    drawMap(ctx,(W-mapW)/2,top,mapW,true);
+
+    var y=top+mapH+g1+pctSize*0.72;
+    ctx.textBaseline='alphabetic';ctx.fillStyle=ACCENT;
+    drawPct(ctx,pctNum,pctSize,W/2,y,'center');
+    y+=g2;
+    ctx.strokeStyle='rgba(201,167,93,0.85)';ctx.lineWidth=Math.max(1,W*0.001);
+    ctx.beginPath();ctx.moveTo(W/2-W*0.045,y);ctx.lineTo(W/2+W*0.045,y);ctx.stroke();
+    y+=g3+lvlSize;
+    ctx.fillStyle=INK;ctx.font='500 '+lvlSize+'px "Poppins", sans-serif';
+    spaced(ctx,lvl.toUpperCase(),W/2,y,lvlSize*0.26,'center');
+    y+=g4+cntSize;
+    ctx.fillStyle=MUTED;ctx.font='400 '+cntSize+'px "Poppins", sans-serif';
+    spaced(ctx,cnt.toUpperCase(),W/2,y,cntSize*0.2,'center');
+
+    var lx=pad+Math.min(W,H)*0.035, ly=pad+Math.min(W,H)*0.035;
+    var logoH=Math.min(W,H)*0.062;
+    if(logoImg){ctx.drawImage(logoImg,lx,ly,logoH*(logoImg.naturalWidth/logoImg.naturalHeight),logoH);}
+    else{
+      ctx.textAlign='left';ctx.fillStyle=MUTED;
+      var ws=Math.min(W,H)*0.0115;ctx.font='500 '+ws+'px "Poppins", sans-serif';
+      spaced(ctx,'SHOW ME T\u00DCRK\u0130YE',lx,ly+ws,ws*0.32,'left');
     }
-    ctx.textAlign='center';
-    ctx.fillStyle=INK;ctx.font='400 '+(du*0.055)+'px "Playfair Display", Georgia, serif';
-    ctx.fillText('T\u00FCrkiye',mid,y);
-    y+=du*0.027;
-    hair(mid-du*0.058,y,mid+du*0.058,y,0.85);
-    y+=du*0.029;
-    ctx.fillStyle=MUTED;ctx.font='500 '+(du*0.0108)+'px "Poppins", sans-serif';
-    spaced(ctx,'PROVINCES VISITED',mid,y,du*0.0044,'center');
-
-    var tableTop=H-pad-du*(tall?0.205:0.175);
-    hair(L,tableTop,R,tableTop,0.7);
-
-    var topGap=du*(tall?0.055:0.045), botGap=du*(tall?0.045:0.038);
-    var avail=tableTop-y-topGap-botGap;
-    var mapW=W*(tall?0.94:0.86), mapH=mapW*VH/VW;
-    if(mapH>avail){mapH=avail;mapW=mapH*VW/VH;}
-    drawMap(ctx,(W-mapW)/2,y+topGap+(avail-mapH)/2,mapW,true);
-
-    var cellW=(R-L)/3, cy=tableTop+du*(tall?0.118:0.103);
-    hair(L+cellW,tableTop+du*0.020,L+cellW,H-pad-du*0.015,0.7);
-    hair(L+cellW*2,tableTop+du*0.020,L+cellW*2,H-pad-du*0.015,0.7);
-
-    ctx.textAlign='center';
-    ctx.fillStyle=INK;ctx.font='400 '+(du*0.064)+'px "Playfair Display", Georgia, serif';
-    ctx.fillText(n+' / 81',L+cellW*0.5,cy);
-    ctx.fillStyle=ACCENT;
-    drawPct(ctx,pctNum,du*(tall?0.148:0.133),L+cellW*1.5,cy+du*0.012,'center');
-    ctx.textAlign='center';
-    ctx.fillStyle=INK;
-    var lz=du*0.031, maxW=cellW*0.80;
-    ctx.font='400 '+lz+'px "Playfair Display", Georgia, serif';
-    var tw=ctx.measureText(lvl).width;
-    if(tw>maxW){lz=lz*maxW/tw;ctx.font='400 '+lz+'px "Playfair Display", Georgia, serif';}
-    ctx.fillText(lvl,L+cellW*2.5,cy);
-
-    var ly=H-pad-du*0.030;
-    ctx.fillStyle=MUTED;ctx.font='500 '+(du*0.0100)+'px "Poppins", sans-serif';
-    spaced(ctx,'PROVINCES',L+cellW*0.5,ly,du*0.0039,'center');
-    spaced(ctx,'OF T\u00DCRK\u0130YE',L+cellW*1.5,ly,du*0.0039,'center');
-    spaced(ctx,'TRAVELER LEVEL',L+cellW*2.5,ly,du*0.0039,'center');
     return c;
   }
 
   var FORMATS={
-    vertical:{w:2700,h:4800,file:'9x16'},
-    horizontal:{w:4800,h:2700,file:'16x9'}
+    vertical:{w:3508,h:4961,file:'print-a3-vertical-300dpi',map:0.80,pct:0.285,lvl:0.0245,cnt:0.0150,g1:0.080,g2:0.048,g3:0.040,g4:0.030},
+    horizontal:{w:4961,h:3508,file:'print-a3-horizontal-300dpi',map:0.70,pct:0.160,lvl:0.0145,cnt:0.0092,g1:0.045,g2:0.028,g3:0.024,g4:0.018}
   };
 
-  function isMobile(){
-    var ua=navigator.userAgent||'';
-    var coarse=window.matchMedia&&window.matchMedia('(pointer:coarse)').matches;
-    return /Android|iP(hone|ad|od)|Mobile|Silk|Kindle/i.test(ua)||(coarse&&(navigator.maxTouchPoints||0)>0);
-  }
-  function isIOS(){
-    return /iP(hone|ad|od)/.test(navigator.platform||'')||(/Mac/.test(navigator.platform||'')&&navigator.maxTouchPoints>1)||/iPhone|iPad|iPod/.test(navigator.userAgent);
-  }
-  function holdToSave(url){
-    var ov=document.createElement('div');
-    ov.setAttribute('style','position:fixed;inset:0;z-index:99999;background:rgba(42,20,16,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;overflow:auto;-webkit-overflow-scrolling:touch');
-    var im=document.createElement('img');
-    im.src=url;
-    im.setAttribute('style','max-width:100%;max-height:72vh;height:auto;border-radius:4px;-webkit-touch-callout:default');
-    var tip=document.createElement('p');
-    tip.textContent='Press and hold the image, then choose Save to Photos.';
-    tip.setAttribute('style','font-family:Poppins,system-ui,sans-serif;font-size:13px;line-height:1.6;color:#F4EFE5;text-align:center;margin:0;max-width:280px');
-    var close=document.createElement('button');
-    close.type='button';close.textContent='Done';
-    close.setAttribute('style','font-family:Poppins,system-ui,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#2A1410;background:#F4EFE5;border:none;border-radius:999px;padding:15px 30px;cursor:pointer');
-    close.addEventListener('click',function(){ov.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);});
-    ov.appendChild(im);ov.appendChild(tip);ov.appendChild(close);
-    document.body.appendChild(ov);
-  }
-  function deliver(blob,name,done){
-    var url=URL.createObjectURL(blob),file=null,a0=document.createElement('a');
-    if(!isMobile()&&typeof a0.download==='string'){
-      a0.href=url;a0.download=name;document.body.appendChild(a0);a0.click();a0.remove();
-      setTimeout(function(){URL.revokeObjectURL(url);},4000);done();
-      return;
-    }
-    try{file=new File([blob],name,{type:'image/jpeg'});}catch(e){}
-    if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
-      navigator.share({files:[file]})['catch'](function(){})['then'](function(){
-        setTimeout(function(){URL.revokeObjectURL(url);},2000);done();
-      });
-      return;
-    }
-    var a=document.createElement('a');
-    if(typeof a.download==='string'&&!isIOS()){
-      a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
-      setTimeout(function(){URL.revokeObjectURL(url);},4000);done();
-      return;
-    }
-    holdToSave(url);done();
-  }
   function download(key,btn){
     if(!provinces.length)return;
     var label=btn.textContent;
     btn.disabled=true;btn.textContent='Preparing\u2026';
     fonts().then(logo).then(function(){
+      var c=compose(FORMATS[key]);
       var done=function(){btn.disabled=false;btn.textContent=label;};
-      var name='show-me-turkiye-provinces-'+FORMATS[key].file+'.jpg';
-      var run=function(withLogo){
-        var c=compose(FORMATS[key],!withLogo);
-        try{
-          if(c.toBlob){
-            c.toBlob(function(b){
-              if(!b){if(withLogo)run(false);else done();return;}
-              deliver(b,name,done);
-            },'image/jpeg',0.92);
-          }else{
-            var a=document.createElement('a');
-            a.href=c.toDataURL('image/jpeg',0.92);a.download=name;a.click();done();
-          }
-        }catch(err){ if(withLogo)run(false); else done(); }
-      };
-      run(logoClean);
+      var name='show-me-turkiye-provinces-'+FORMATS[key].file+'.png';
+      if(c.toBlob){
+        c.toBlob(function(b){
+          if(!b){done();return;}
+          var u=URL.createObjectURL(b),a=document.createElement('a');
+          a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();
+          setTimeout(function(){URL.revokeObjectURL(u);},4000);done();
+        },'image/png');
+      }else{
+        var a2=document.createElement('a');a2.href=c.toDataURL('image/png');a2.download=name;a2.click();done();
+      }
     })['catch'](function(){btn.disabled=false;btn.textContent=label;});
   }
 
@@ -1900,7 +1920,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   </div>
 </div>
 <script id="smt-search-js">
-const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel Guide: Kebab, Stone Bridge & Southern Turkey", "excerpt": "Discover Adana in southern Turkey. Taste the legendary Adana kebab, cross the ancient Roman stone bridge, and explore the Cukurova plains.", "meta": "City guide", "tags": ["adana", "kebab", "stone", "bridge", "southern", "taste", "legendary", "cross", "ancient", "roman"], "img": "https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg", "url": "/cities/adana.html"}, {"id": "afyonkarahisar", "category": "City", "title": "Afyonkarahisar Travel Guide: Castle Rock, Hot Springs & Seljuk Heritage", "excerpt": "Discover Afyonkarahisar in western Turkey. Climb the Hittite castle rock, visit Seljuk mosques, and soak in natural thermal springs.", "meta": "City guide", "tags": ["afyonkarahisar", "castle", "rock", "springs", "seljuk", "heritage", "western", "climb", "hittite", "mosques"], "img": "https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg", "url": "/cities/afyonkarahisar.html"}, {"id": "ankara", "category": "City", "title": "Ankara Travel Guide: Anitkabir, Museums & Turkey's Capital", "excerpt": "Explore Ankara, Turkey's capital. Visit Anitkabir, the Museum of Anatolian Civilisations, the old citadel, and modern Ankara.", "meta": "City guide", "tags": ["ankara", "anitkabir", "museums", "capital", "explore", "museum", "anatolian", "civilisations", "citadel", "modern"], "img": "https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg", "url": "/cities/ankara.html"}, {"id": "antalya", "category": "City", "title": "Antalya Travel Guide: Kaleici, Aspendos & Turquoise Coast", "excerpt": "Explore Antalya on the Turquoise Coast. Visit Kaleici old town, the ancient ruins of Aspendos and Perge, Duden Waterfalls, and Lara Beach.", "meta": "City guide", "tags": ["antalya", "kaleici", "aspendos", "turquoise", "coast", "explore", "town", "ancient", "ruins", "perge"], "img": "https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg", "url": "/cities/antalya.html"}, {"id": "artvin", "category": "City", "title": "Artvin Travel Guide: Coruh River, Karagol & Kackar Mountains", "excerpt": "Discover Artvin in northeastern Turkey. Raft the Coruh River, explore Karagol lake, trek the Kackar highlands, and visit Macahel.", "meta": "City guide", "tags": ["artvin", "coruh", "river", "karagol", "kackar", "mountains", "northeastern", "raft", "explore", "lake"], "img": "https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg", "url": "/cities/artvin.html"}, {"id": "balikesir", "category": "City", "title": "Balikesir Travel Guide: Ayvalik, Mount Ida & Northern Aegean", "excerpt": "Discover Balikesir Province in northwestern Turkey. Ayvalik olive oil coast, Cunda Island, Erdek, and Mount Ida national park.", "meta": "City guide", "tags": ["balikesir", "ayvalik", "mount", "northern", "aegean", "province", "northwestern", "olive", "coast", "cunda"], "img": "https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg", "url": "/cities/balikesir.html"}, {"id": "bursa", "category": "City", "title": "Bursa Travel Guide: Grand Mosque, Uludag & Ottoman Heritage", "excerpt": "Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb, and Cumalikizik village.", "meta": "City guide", "tags": ["bursa", "grand", "mosque", "uludag", "ottoman", "heritage", "explore", "first", "capital", "empire"], "img": "https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg", "url": "/cities/bursa.html"}, {"id": "canakkale", "category": "City", "title": "Canakkale Travel Guide: Troy, Gallipoli & the Dardanelles", "excerpt": "Discover Canakkale on the Dardanelles Strait. Visit ancient Troy UNESCO site, Gallipoli battlefields, Assos, and Bozcaada island.", "meta": "City guide", "tags": ["canakkale", "troy", "gallipoli", "dardanelles", "strait", "ancient", "unesco", "site", "battlefields", "assos"], "img": "https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg", "url": "/cities/canakkale.html"}, {"id": "nevsehir-cappadocia", "category": "City", "title": "Cappadocia Travel Guide: Goreme, Derinkuyu & Balloon Flights", "excerpt": "Discover Cappadocia in Nevsehir, Turkey. Explore Goreme Open Air Museum, Uchisar Castle, Derinkuyu underground city, and balloon flights.", "meta": "City guide", "tags": ["nevsehir cappadocia", "cappadocia", "goreme", "derinkuyu", "balloon", "flights", "nevsehir", "explore", "open", "museum"], "img": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg", "url": "/cities/nevsehir-cappadocia.html"}, {"id": "denizli", "category": "City", "title": "Denizli Travel Guide: Pamukkale, Hierapolis & Laodicea", "excerpt": "Discover Denizli in southwestern Turkey. Walk Pamukkale's white travertine terraces, explore Hierapolis, Laodicea, and local vineyards.", "meta": "City guide", "tags": ["denizli", "pamukkale", "hierapolis", "laodicea", "southwestern", "walk", "white", "travertine", "terraces", "explore"], "img": "https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg", "url": "/cities/denizli.html"}, {"id": "diyarbakir", "category": "City", "title": "Diyarbakir Travel Guide: City Walls, Ulu Camii & the Tigris", "excerpt": "Discover Diyarbakir on the Tigris. Walk the black basalt city walls and Hevsel Gardens, visit the Ulu Camii and On Gozlu Bridge, and taste kaburga dol", "meta": "City guide", "tags": ["diyarbakir", "city", "walls", "camii", "tigris", "walk", "black", "basalt", "hevsel", "gardens"], "img": "https://img.showmeturkiye.com/cities/diyarbakir/diyarbakir-old-city-tigris.jpg", "url": "/cities/diyarbakir.html"}, {"id": "eskisehir", "category": "City", "title": "Eskisehir Travel Guide: Odunpazari, Gondolas & University City", "excerpt": "Visit Eskisehir, Turkey's youthful university city. Explore Odunpazari old town, ride gondolas on the Porsuk River, and enjoy the cafe scene.", "meta": "City guide", "tags": ["eskisehir", "odunpazari", "gondolas", "university", "city", "youthful", "explore", "town", "ride", "porsuk"], "img": "https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg", "url": "/cities/eskisehir.html"}, {"id": "gaziantep", "category": "City", "title": "Gaziantep Travel Guide: Baklava, Zeugma Mosaics & Turkish Cuisine", "excerpt": "Explore Gaziantep, UNESCO City of Gastronomy. Taste the world's best baklava, visit the Zeugma Mosaic Museum, and the copper bazaar.", "meta": "City guide", "tags": ["gaziantep", "baklava", "zeugma", "mosaics", "turkish", "cuisine", "explore", "unesco", "city", "gastronomy"], "img": "https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg", "url": "/cities/gaziantep.html"}, {"id": "hakkari", "category": "City", "title": "Hakkari Travel Guide: Cilo Glaciers, Zap Valley & Wild Turkey", "excerpt": "Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, and Turkey's most remote frontier.", "meta": "City guide", "tags": ["hakkari", "cilo", "glaciers", "valley", "wild", "southeastern", "trek", "lakes", "explore", "remote"], "img": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg", "url": "/cities/hakkari.html"}, {"id": "istanbul", "category": "City", "title": "Istanbul Travel Guide: Hagia Sophia, Grand Bazaar & Bosphorus", "excerpt": "Explore Istanbul where East meets West. Visit Hagia Sophia, Topkapi Palace, the Grand Bazaar, cruise the Bosphorus, and taste street food.", "meta": "City guide", "tags": ["istanbul", "hagia", "sophia", "grand", "bazaar", "bosphorus", "explore", "east", "meets", "west"], "img": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg", "url": "/cities/istanbul.html"}, {"id": "izmir", "category": "City", "title": "Izmir Travel Guide: Ephesus, Kordon & Aegean Coast", "excerpt": "Explore Izmir on the Aegean coast. Visit Ephesus, stroll the Kordon waterfront, taste boyoz and kumru, and escape to Alacati and Cesme.", "meta": "City guide", "tags": ["izmir", "ephesus", "kordon", "aegean", "coast", "explore", "stroll", "waterfront", "taste", "boyoz"], "img": "https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg", "url": "/cities/izmir.html"}, {"id": "kastamonu", "category": "City", "title": "Kastamonu Travel Guide: Ottoman Old Town, Ilgaz Mountain & Black Sea", "excerpt": "Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek Ilgaz Mountain, and visit Safranbolu-adjacent heritage sites.", "meta": "City guide", "tags": ["kastamonu", "ottoman", "town", "ilgaz", "mountain", "black", "northern", "explore", "trek", "safranbolu"], "img": "https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg", "url": "/cities/kastamonu.html"}, {"id": "kayseri", "category": "City", "title": "Kayseri Travel Guide: Erciyes Skiing, Seljuk Monuments & Pastirma", "excerpt": "Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastirma and manti, gateway to Cappadocia.", "meta": "City guide", "tags": ["kayseri", "erciyes", "skiing", "seljuk", "monuments", "pastirma", "central", "anatolia", "mountain", "explore"], "img": "https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg", "url": "/cities/kayseri.html"}, {"id": "kocaeli", "category": "City", "title": "Kocaeli Travel Guide: Kartepe Skiing, Izmit Gulf & Nature", "excerpt": "Discover Kocaeli in northwestern Turkey. Explore the Gulf of Izmit waterfront, ski Kartepe, walk Masukiye nature trails, and Sapanca Lake.", "meta": "City guide", "tags": ["kocaeli", "kartepe", "skiing", "izmit", "gulf", "nature", "northwestern", "explore", "waterfront", "walk"], "img": "https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg", "url": "/cities/kocaeli.html"}, {"id": "konya", "category": "City", "title": "Konya Travel Guide: Mevlana, Whirling Dervishes & Rumi's City", "excerpt": "Visit Konya, the spiritual heart of Turkey. The Mevlana Museum, Whirling Dervishes, Catalhoyuk archaeological site, and Seljuk architecture.", "meta": "City guide", "tags": ["konya", "mevlana", "whirling", "dervishes", "rumi", "city", "spiritual", "heart", "museum", "catalhoyuk"], "img": "https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg", "url": "/cities/konya.html"}, {"id": "mardin", "category": "City", "title": "Mardin Travel Guide: Stone City, Monasteries & Mesopotamian Views", "excerpt": "Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh, and gaze over the Mesopotamian plains.", "meta": "City guide", "tags": ["mardin", "stone", "city", "monasteries", "mesopotamian", "views", "explore", "golden", "deyrulzafaran", "monastery"], "img": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg", "url": "/cities/mardin.html"}, {"id": "mersin", "category": "City", "title": "Mersin Travel Guide: Kizkalesi Castle, Tarsus & Mediterranean Coast", "excerpt": "Discover Mersin on Turkey's Mediterranean coast. Explore Kizkalesi medieval castle, the ancient city of Tarsus, and the Cilician coast.", "meta": "City guide", "tags": ["mersin", "kizkalesi", "castle", "tarsus", "mediterranean", "coast", "explore", "medieval", "ancient", "city"], "img": "https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg", "url": "/cities/mersin.html"}, {"id": "mugla", "category": "City", "title": "Mugla Travel Guide: Bodrum, Fethiye, Marmaris & Dalyan", "excerpt": "Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan, and Datca. Turquoise coves, gulet cruises, Lycian ruins, and coastal villages.", "meta": "City guide", "tags": ["mugla", "bodrum", "fethiye", "marmaris", "dalyan", "province", "datca", "turquoise", "coves", "gulet"], "img": "https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg", "url": "/cities/mugla.html"}, {"id": "rize", "category": "City", "title": "Rize Travel Guide: Ayder Plateau, Zilkale & Tea Country", "excerpt": "Discover Rize on Turkey's Black Sea coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, tea gardens, and highland plateaus.", "meta": "City guide", "tags": ["rize", "ayder", "plateau", "zilkale", "country", "black", "coast", "explore", "castle", "firtina"], "img": "https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg", "url": "/cities/rize.html"}, {"id": "sanliurfa", "category": "City", "title": "Sanliurfa Travel Guide: Gobeklitepe, Sacred Carp & Ancient History", "excerpt": "Visit Sanliurfa, city of the prophets. See Gobeklitepe, the Pool of Sacred Carp, Harran beehive houses, and the world's oldest temple.", "meta": "City guide", "tags": ["sanliurfa", "gobeklitepe", "sacred", "carp", "ancient", "history", "city", "prophets", "pool", "harran"], "img": "https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg", "url": "/cities/sanliurfa.html"}, {"id": "trabzon", "category": "City", "title": "Trabzon Travel Guide: Sumela Monastery, Uzungol & Black Sea", "excerpt": "Discover Trabzon on the Black Sea coast. Visit Sumela Monastery, Uzungol lake, taste Akcaabat kofte, and explore the Pontic heritage.", "meta": "City guide", "tags": ["trabzon", "sumela", "monastery", "uzungol", "black", "coast", "lake", "taste", "akcaabat", "kofte"], "img": "https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg", "url": "/cities/trabzon.html"}, {"id": "aladaglar", "category": "Journal", "title": "Aladaglar Travel Guide: Demirkazik, Emli Valley & Bolkar Mountains", "excerpt": "Aladaglar guide. Emli Valley, Demirkazik summit, Bolkar Mountains, Meydan Plateau, Lake Karagol, and alpine trekking in Turkey's hidden highlands.", "meta": "Journal", "tags": ["aladaglar", "demirkazik", "emli", "valley", "bolkar", "mountains", "summit", "meydan", "plateau", "lake"], "img": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg", "url": "/blog/aladaglar.html"}, {"id": "antalya", "category": "Journal", "title": "Antalya Travel Guide: Kaleici, Aspendos & the Lycian Coast", "excerpt": "Antalya travel guide. Kaleici old town, Duden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos, and Termessos along the Turkish Riviera.", "meta": "Journal", "tags": ["antalya", "kaleici", "aspendos", "lycian", "coast", "town", "duden", "waterfalls", "lara", "beach"], "img": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg", "url": "/blog/antalya.html"}, {"id": "artvin", "category": "Journal", "title": "Artvin Travel Guide: Coruh Canyon, Karagol & the Kackar Highlands", "excerpt": "Artvin in the far northeast of Turkey. Hatila Valley, Savsat and Borcka Karagol, Tibeti Monastery, Macahel district, and highland plateaus.", "meta": "Journal", "tags": ["artvin", "coruh", "canyon", "karagol", "kackar", "highlands", "northeast", "hatila", "valley", "savsat"], "img": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg", "url": "/blog/artvin.html"}, {"id": "balikesir", "category": "Journal", "title": "Balikesir Travel Guide: Mount Ida, Ayvalik & the Northern Aegean", "excerpt": "Balikesir travel guide. Mount Ida (Kaz Daglari), Ayvalik and Cunda, the Glass Terrace, and the northern Aegean coastline of Turkey.", "meta": "Journal", "tags": ["balikesir", "mount", "ayvalik", "northern", "aegean", "daglari", "cunda", "glass", "terrace", "coastline"], "img": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg", "url": "/blog/balikesir.html"}, {"id": "top-10-places-to-visit-in-Turkey", "category": "Journal", "title": "Best Places to Visit in Turkey", "excerpt": "The best places to visit in Turkey: Istanbul, Cappadocia, the Aegean and Mediterranean coasts, Ephesus, Pamukkale, and hidden gems across the country.", "meta": "Journal", "tags": ["top 10 places to visit in Turkey", "istanbul", "cappadocia", "aegean", "mediterranean", "coasts", "ephesus", "pamukkale", "hidden", "gems"], "img": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg", "url": "/blog/top-10-places-to-visit-in-Turkey.html"}, {"id": "when-is-the-best-time-to-visit-turkiye", "category": "Journal", "title": "Best Time to Visit Turkey: Month-by-Month Guide", "excerpt": "Month-by-month guide to visiting Turkey. Shoulder seasons, peak summer, winter strengths, and what each region looks like through the year.", "meta": "Journal", "tags": ["when is the best time to visit turkiye", "time", "month", "visiting", "shoulder", "seasons", "peak", "summer", "winter", "strengths"], "img": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg", "url": "/blog/when-is-the-best-time-to-visit-turkiye.html"}, {"id": "canakkale", "category": "Journal", "title": "Canakkale Travel Guide: Gallipoli, Troy & Assos", "excerpt": "Canakkale travel guide. Troy archaeological site, Gallipoli memorial, Kilitbahir and Bigali castles, Assos, and Bozcaada island.", "meta": "Journal", "tags": ["canakkale", "gallipoli", "troy", "assos", "archaeological", "site", "memorial", "kilitbahir", "bigali", "castles"], "img": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg", "url": "/blog/canakkale.html"}, {"id": "kapadokya", "category": "Journal", "title": "Cappadocia Travel Guide: Goreme, Derinkuyu & Balloon Flights", "excerpt": "A complete guide to Cappadocia. Goreme Open-Air Museum, Ihlara Valley, Derinkuyu underground city, and hot air balloon flights.", "meta": "Journal", "tags": ["kapadokya", "cappadocia", "goreme", "derinkuyu", "balloon", "flights", "complete", "open", "museum", "ihlara"], "img": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg", "url": "/blog/kapadokya.html"}, {"id": "erzurum", "category": "Journal", "title": "Erzurum Travel Guide: Palandoken Skiing, Old Town & the Dogu Express", "excerpt": "Erzurum travel guide. Palandoken ski resort, Cifte Minareli Medrese, the old town, and the Dogu Express train journey through eastern Turkey.", "meta": "Journal", "tags": ["erzurum", "palandoken", "skiing", "town", "dogu", "express", "resort", "cifte", "minareli", "medrese"], "img": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg", "url": "/blog/erzurum.html"}, {"id": "giresun", "category": "Journal", "title": "Giresun Travel Guide: Whistling Village, Kuzalan & the Hazelnut Coast", "excerpt": "A guide to Giresun on the Black Sea coast. Kuzalan Nature Park, Mavi Gol, Kumbet and Golyani plateaus, and the hazelnut countryside.", "meta": "Journal", "tags": ["giresun", "whistling", "village", "kuzalan", "hazelnut", "coast", "black", "nature", "park", "mavi"], "img": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg", "url": "/blog/giresun.html"}, {"id": "hakkari", "category": "Journal", "title": "Hakkari Travel Guide: Cilo Mountains, Zap Canyon & Turkey's Wild Frontier", "excerpt": "Hakkari travel guide. Cennet Cehennem Valley, Kaval Waterfall, the Zap River, Bercelen Plateau, and Turkey's most remote frontier.", "meta": "Journal", "tags": ["hakkari", "cilo", "mountains", "canyon", "wild", "frontier", "cennet", "cehennem", "valley", "kaval"], "img": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg", "url": "/blog/hakkari.html"}, {"id": "istanbul", "category": "Journal", "title": "Istanbul Travel Guide: Hagia Sophia, Bosphorus & Grand Bazaar", "excerpt": "A complete guide to Istanbul. Hagia Sophia, the Blue Mosque, Topkapi Palace, Basilica Cistern, Grand Bazaar, and the Bosphorus.", "meta": "Journal", "tags": ["istanbul", "hagia", "sophia", "bosphorus", "grand", "bazaar", "complete", "blue", "mosque", "topkapi"], "img": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg", "url": "/blog/istanbul.html"}, {"id": "kemer", "category": "Journal", "title": "Kemer Travel Guide: Olympos, Phaselis & Mount Tahtali", "excerpt": "Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtali cable car, Goynuk Canyon, and the Lycian Way.", "meta": "Journal", "tags": ["kemer", "olympos", "phaselis", "mount", "tahtali", "chimaera", "flames", "ancient", "harbour", "cable"], "img": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg", "url": "/blog/kemer.html"}, {"id": "ordu", "category": "Journal", "title": "Ordu Travel Guide: Boztepe Cable Car, Persembe Plateau & Black Sea Coast", "excerpt": "A complete guide to Ordu on the Black Sea coast. Ulugol Nature Park, Ohtamis Waterfall, Persembe Plateau, and Unye Castle.", "meta": "Journal", "tags": ["ordu", "boztepe", "cable", "persembe", "plateau", "black", "coast", "complete", "ulugol", "nature"], "img": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg", "url": "/blog/ordu.html"}, {"id": "rize", "category": "Journal", "title": "Rize Travel Guide: Ayder, Firtina Valley & Turkey's Tea Country", "excerpt": "Rize travel guide. Ayder Plateau, Firtina River rafting, Zil Castle, Palovit Waterfall, and Turkey's tea country on the Black Sea.", "meta": "Journal", "tags": ["rize", "ayder", "firtina", "valley", "country", "plateau", "river", "rafting", "castle", "palovit"], "img": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg", "url": "/blog/rize.html"}, {"id": "trabzon", "category": "Journal", "title": "Trabzon Travel Guide: Sumela Monastery, Uzungol & Black Sea Coast", "excerpt": "Trabzon travel guide. Sumela Monastery, Uzungol, Cal Cave, Sera Lake, Boztepe, and the Black Sea coast of Turkey.", "meta": "Journal", "tags": ["trabzon", "sumela", "monastery", "uzungol", "black", "coast", "cave", "sera", "lake", "boztepe"], "img": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg", "url": "/blog/trabzon.html"}, {"id": "aegean-coast-escape", "category": "Route", "title": "Aegean Coast Itinerary: Izmir, Bodrum & Fethiye", "excerpt": "An eight-day Aegean coast itinerary. Izmir, Ephesus, Bodrum, Datca, Fethiye, by road and water, slow-paced.", "meta": "Itinerary", "tags": ["aegean coast escape", "aegean", "coast", "itinerary", "izmir", "bodrum", "fethiye", "eight", "ephesus", "datca"], "img": "https://img.showmeturkiye.com/routes/aegean-coast-tour-bodrum-fethiye.jpg", "url": "/routes/aegean-coast-escape.html"}, {"id": "black-sea-highlands", "category": "Route", "title": "Black Sea Highlands Itinerary: Trabzon, Ayder & Karagol", "excerpt": "An eight-day Black Sea itinerary. Trabzon, Sumela, Firtina Valley, Pokut, Ayder, Karagol, and Macahel.", "meta": "Itinerary", "tags": ["black sea highlands", "black", "highlands", "itinerary", "trabzon", "ayder", "karagol", "eight", "sumela", "firtina"], "img": "https://img.showmeturkiye.com/routes/black-sea-highlands-trabzon-rize-tour.jpg", "url": "/routes/black-sea-highlands.html"}, {"id": "eastern-heritage", "category": "Route", "title": "Eastern Turkey Itinerary: Gaziantep, Sanliurfa & Mardin", "excerpt": "A nine-day southeastern Turkey itinerary. Gaziantep, Sanliurfa, Gobeklitepe, Mardin, and the deepest history in the country.", "meta": "Itinerary", "tags": ["eastern heritage", "eastern", "itinerary", "gaziantep", "sanliurfa", "mardin", "nine", "southeastern", "gobeklitepe", "deepest"], "img": "https://img.showmeturkiye.com/routes/eastern-anatolia-tour-mardin-gaziantep.jpg", "url": "/routes/eastern-heritage.html"}, {"id": "first-time-turkey", "category": "Route", "title": "First Time in Turkey: 7-Day Itinerary", "excerpt": "A practical seven-day Turkey itinerary for first-time visitors. Istanbul, Cappadocia, and Antalya, day by day.", "meta": "Itinerary", "tags": ["first time turkey", "first", "time", "itinerary", "practical", "seven", "visitors", "istanbul", "cappadocia", "antalya"], "img": "https://img.showmeturkiye.com/routes/first-time-turkey-itinerary-7-days.jpg", "url": "/routes/first-time-turkey.html"}, {"id": "grand-tour", "category": "Route", "title": "Turkey Grand Tour: 14-Day Itinerary", "excerpt": "A fourteen-day Turkey itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Aegean coast, and Ephesus.", "meta": "Itinerary", "tags": ["grand tour", "grand", "tour", "itinerary", "fourteen", "istanbul", "cappadocia", "antalya", "pamukkale", "aegean"], "img": "https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg", "url": "/routes/grand-tour.html"}, {"id": "photographers-turkey", "category": "Route", "title": "Turkey Photography Itinerary: Istanbul, Cappadocia & Mardin", "excerpt": "A ten-day Turkey itinerary built around four distinct visual landscapes. Istanbul, Cappadocia, Antalya, and Mardin.", "meta": "Itinerary", "tags": ["photographers turkey", "photography", "itinerary", "istanbul", "cappadocia", "mardin", "built", "around", "four", "distinct"], "img": "https://img.showmeturkiye.com/routes/turkey-photography-tour-cappadocia-mardin.jpg", "url": "/routes/photographers-turkey.html"}];
+const SEARCH_DATA = [{"id":"adana","category":"City","title":"Adana","excerpt":"Discover Adana in southern Turkey. Taste the legendary Adana kebab, cross the ancient Roman stone bridge, explore the Çukurova plains and reach the Ta","meta":"City guide","tags":["adana","southern","taste","legendary","kebab","cross","ancient","roman","stone","bridge"],"img":"https://img.showmeturkiye.com/cities/adana/adana-taskopru-stone-bridge.jpg","url":"/cities/adana.html"},{"id":"afyonkarahisar","category":"City","title":"Afyonkarahisar","excerpt":"Discover Afyonkarahisar in western Turkey. Climb the Hittite castle rock, visit Seljuk mosques, soak in Turkey's finest thermal springs, and taste the","meta":"City guide","tags":["afyonkarahisar","western","climb","hittite","castle","rock","seljuk","mosques","soak","finest"],"img":"https://img.showmeturkiye.com/cities/afyonkarahisar/afyonkarahisar-castle-rock.jpg","url":"/cities/afyonkarahisar.html"},{"id":"ankara","category":"City","title":"Ankara","excerpt":"Explore Ankara, Turkiye\\u0027s capital. Visit Anitkabir, the Museum of Anatolian Civilisations, the old citadel and taste Ankara tava.","meta":"City guide","tags":["ankara","explore","capital","anitkabir","museum","anatolian","civilisations","citadel","taste","tava"],"img":"https://img.showmeturkiye.com/cities/ankara/ankara-anitkabir-ataturk-mausoleum.jpg","url":"/cities/ankara.html"},{"id":"antalya","category":"City","title":"Antalya","excerpt":"Explore Antalya on the Turquoise Coast. Visit Kaleici old town, the ancient ruins of Aspendos and Perge, swim in turquoise coves and hike the Lycian W","meta":"City guide","tags":["antalya","explore","turquoise","coast","kaleici","town","ancient","ruins","aspendos","perge"],"img":"https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg","url":"/cities/antalya.html"},{"id":"artvin","category":"City","title":"Artvin","excerpt":"Discover Artvin in northeastern Turkey. Raft the Çoruh River, explore Karagöl lake, trek the Kaçkar Mountains, visit Macahel UNESCO Biosphere Reserve ","meta":"City guide","tags":["artvin","northeastern","raft","çoruh","river","explore","karagöl","lake","trek","kaçkar"],"img":"https://img.showmeturkiye.com/cities/artvin/artvin-karagol.jpg","url":"/cities/artvin.html"},{"id":"balikesir","category":"City","title":"Balıkesir","excerpt":"Discover Balıkesir Province in northwestern Turkey. Ayvalık olive oil coast, Cunda Island, Erdek and the Kapıdağ Peninsula on the Marmara Sea, Manyas ","meta":"City guide","tags":["balikesir","balıkesir","province","northwestern","ayvalık","olive","coast","cunda","island","erdek"],"img":"https://img.showmeturkiye.com/cities/balikesir/balikesir-ayvalik-.jpg","url":"/cities/balikesir.html"},{"id":"bursa","category":"City","title":"Bursa","excerpt":"Explore Bursa, first capital of the Ottoman Empire. Visit the Grand Mosque, Uludag ski resort, the Green Tomb and taste the original Iskender kebab.","meta":"City guide","tags":["bursa","explore","first","capital","ottoman","empire","grand","mosque","uludag","resort"],"img":"https://img.showmeturkiye.com/cities/bursa/bursa-uludag.jpg","url":"/cities/bursa.html"},{"id":"canakkale","category":"City","title":"Canakkale","excerpt":"Discover Canakkale on the Dardanelles Strait. Visit ancient Troy UNESCO site, Gallipoli battlefields, Kilitbahir Castle and taste fresh Dardanelles fi","meta":"City guide","tags":["canakkale","dardanelles","strait","ancient","troy","unesco","site","gallipoli","battlefields","kilitbahir"],"img":"https://img.showmeturkiye.com/cities/canakkale/canakkale-trojan-horse-waterfront.jpg","url":"/cities/canakkale.html"},{"id":"nevsehir-cappadocia","category":"City","title":"Cappadocia (Nevşehir)","excerpt":"Discover Cappadocia in Nevşehir, Turkey. Explore Göreme Open Air Museum, Uçhisar Castle, Derinkuyu underground city, Paşabağ fairy chimneys, and ride ","meta":"City guide","tags":["nevsehir cappadocia","cappadocia","nevşehir","explore","göreme","open","museum","uçhisar","castle","derinkuyu"],"img":"https://img.showmeturkiye.com/cities/nevsehir-cappadocia/nevsehir-cappadocia-fairy-chimneys.jpg","url":"/cities/nevsehir-cappadocia.html"},{"id":"denizli","category":"City","title":"Denizli","excerpt":"Discover Denizli in southwestern Turkey. Walk barefoot on Pamukkale's white travertine terraces, explore Hierapolis, Laodicea and Aphrodisias, and soa","meta":"City guide","tags":["denizli","southwestern","walk","barefoot","pamukkale","white","travertine","terraces","explore","hierapolis"],"img":"https://img.showmeturkiye.com/cities/denizli/denizli-pamukkale-travertines.jpg","url":"/cities/denizli.html"},{"id":"eskisehir","category":"City","title":"Eskisehir","excerpt":"Visit Eskisehir, Turkiye\\u0027s youthful university city. Explore Odunpazari old town, ride gondolas on the Porsuk river and taste the famous cig bore","meta":"City guide","tags":["eskisehir","youthful","university","city","explore","odunpazari","town","ride","gondolas","porsuk"],"img":"https://img.showmeturkiye.com/cities/eskisehir/eskisehir-porsuk-river-odunpazari.jpg","url":"/cities/eskisehir.html"},{"id":"gaziantep","category":"City","title":"Gaziantep","excerpt":"Explore Gaziantep, UNESCO City of Gastronomy. Taste the world\\u0027s best baklava, visit the Zeugma Mosaic Museum and wander the copper bazaars of old","meta":"City guide","tags":["gaziantep","explore","unesco","city","gastronomy","taste","world","baklava","zeugma","mosaic"],"img":"https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg","url":"/cities/gaziantep.html"},{"id":"hakkari","category":"City","title":"Hakkari","excerpt":"Discover Hakkari in southeastern Turkey. Trek to Cilo glaciers and Sat Lakes, explore the Zap valley, climb Turkey's second highest peak Uludoruk, and","meta":"City guide","tags":["hakkari","southeastern","trek","cilo","glaciers","lakes","explore","valley","climb","second"],"img":"https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg","url":"/cities/hakkari.html"},{"id":"istanbul","category":"City","title":"Istanbul","excerpt":"Explore Istanbul where East meets West. Visit Hagia Sophia, Topkapi Palace, the Grand Bazaar, cruise the Bosphorus and taste the best of Turkish cuisi","meta":"City guide","tags":["istanbul","explore","east","meets","west","hagia","sophia","topkapi","palace","grand"],"img":"https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg","url":"/cities/istanbul.html"},{"id":"izmir","category":"City","title":"Izmir","excerpt":"Explore Izmir on the Aegean coast. Visit Ephesus, stroll the Kordon, taste boyoz and kumru and escape to Alacati and Cesme.","meta":"City guide","tags":["izmir","explore","aegean","coast","ephesus","stroll","kordon","taste","boyoz","kumru"],"img":"https://img.showmeturkiye.com/cities/izmir/izmir-ephesus.jpg","url":"/cities/izmir.html"},{"id":"kastamonu","category":"City","title":"Kastamonu","excerpt":"Discover Kastamonu in northern Turkey. Explore the Ottoman old town, trek İlgaz Mountain, visit Safranbolu, and taste the city's famous garlic sausage","meta":"City guide","tags":["kastamonu","northern","explore","ottoman","town","trek","lgaz","mountain","safranbolu","taste"],"img":"https://img.showmeturkiye.com/cities/kastamonu/kastamonu-kure-mountain.jpg","url":"/cities/kastamonu.html"},{"id":"kayseri","category":"City","title":"Kayseri","excerpt":"Discover Kayseri in central Anatolia. Ski Erciyes mountain, explore Seljuk monuments, taste pastırma and mantı, and visit the Sultan Hanı caravanserai","meta":"City guide","tags":["kayseri","central","anatolia","erciyes","mountain","explore","seljuk","monuments","taste","pastırma"],"img":"https://img.showmeturkiye.com/cities/kayseri/kayseri-mount-erciyes-volcano.jpg","url":"/cities/kayseri.html"},{"id":"kocaeli","category":"City","title":"Kocaeli","excerpt":"Discover Kocaeli in northwestern Turkey. Explore the Gulf of İzmit waterfront, ski Kartepe, walk the shores of Sapanca Lake, visit Maşukiye's forest c","meta":"City guide","tags":["kocaeli","northwestern","explore","gulf","zmit","waterfront","kartepe","walk","shores","sapanca"],"img":"https://img.showmeturkiye.com/cities/kocaeli/kocaeli-sea.jpg","url":"/cities/kocaeli.html"},{"id":"konya","category":"City","title":"Konya","excerpt":"Visit Konya, the spiritual heart of Turkiye. The Mevlana Museum of Rumi, the Whirling Dervishes, Catalhoyuk and the famous Konya etli ekmek.","meta":"City guide","tags":["konya","spiritual","heart","mevlana","museum","rumi","whirling","dervishes","catalhoyuk","famous"],"img":"https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg","url":"/cities/konya.html"},{"id":"mardin","category":"City","title":"Mardin","excerpt":"Explore Mardin, the golden stone city. Visit Deyrulzafaran Monastery, the old madrasahs, taste kibbeh and enjoy panoramic views over Mesopotamia.","meta":"City guide","tags":["mardin","explore","golden","stone","city","deyrulzafaran","monastery","madrasahs","taste","kibbeh"],"img":"https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg","url":"/cities/mardin.html"},{"id":"mersin","category":"City","title":"Mersin","excerpt":"Discover Mersin on Turkey's Mediterranean coast. Explore Kızkalesi medieval castle, the ancient city of Silifke, walk the Tarsus waterfall and taste t","meta":"City guide","tags":["mersin","mediterranean","coast","explore","kızkalesi","medieval","castle","ancient","city","silifke"],"img":"https://img.showmeturkiye.com/cities/mersin/mersin-kizkalesi-maidens-castle.jpg","url":"/cities/mersin.html"},{"id":"mugla","category":"City","title":"Mugla","excerpt":"Discover Mugla province: Bodrum, Marmaris, Fethiye, Dalyan and Datca. Turquoise coves, gulet cruises, Lycian ruins and the best Aegean beaches.","meta":"City guide","tags":["mugla","province","bodrum","marmaris","fethiye","dalyan","datca","turquoise","coves","gulet"],"img":"https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg","url":"/cities/mugla.html"},{"id":"rize","category":"City","title":"Rize","excerpt":"Discover Rize on Turkey's Black Sea coast. Explore Ayder Plateau, Zilkale Castle, Firtina Valley, taste muhlama and Anzer honey in Turkey's tea capita","meta":"City guide","tags":["rize","black","coast","explore","ayder","plateau","zilkale","castle","firtina","valley"],"img":"https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg","url":"/cities/rize.html"},{"id":"sanliurfa","category":"City","title":"Sanliurfa","excerpt":"Visit Sanliurfa, city of the prophets. See Gobekli Tepe, the Pool of Sacred Carp, Harran beehive houses and taste legendary Urfa kebab.","meta":"City guide","tags":["sanliurfa","city","prophets","gobekli","tepe","pool","sacred","carp","harran","beehive"],"img":"https://img.showmeturkiye.com/cities/sanliurfa/sanliurfa-balikli-gol.jpg","url":"/cities/sanliurfa.html"},{"id":"trabzon","category":"City","title":"Trabzon","excerpt":"Discover Trabzon on the Black Sea coast. Visit Sumela Monastery, Uzungol lake, taste Akcaabat kofte and explore the Kackar Mountains.","meta":"City guide","tags":["trabzon","black","coast","sumela","monastery","uzungol","lake","taste","akcaabat","kofte"],"img":"https://img.showmeturkiye.com/cities/trabzon/trabzon-sumela-monastery-cliff.jpg","url":"/cities/trabzon.html"},{"id":"aladaglar","category":"Journal","title":"Aladağlar Travel Guide: Demirkazık, Emli Valley, and the Bolkar Mountains","excerpt":"Aladağlar guide. Emli Valley, Kazıklı Ali Canyon climbing, Bolkar Mountains, Meydan Plateau, Lake Karagöl, Lake Çinili, Niğde's Gümüşler Monastery, an","meta":"Journal","tags":["aladaglar","aladağlar","demirkazık","emli","valley","bolkar","mountains","kazıklı","canyon","climbing"],"img":"https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg","url":"/blog/aladaglar.html"},{"id":"antalya","category":"Journal","title":"Antalya Travel Guide: Kaleiçi, Aspendos, and the Lycian Coast","excerpt":"Antalya travel guide. Kaleiçi old town, Düden Waterfalls, Lara Beach, the ancient cities of Perge, Aspendos and Termessos, plus the Lycian coast from ","meta":"Journal","tags":["antalya","kaleiçi","aspendos","lycian","coast","town","düden","waterfalls","lara","beach"],"img":"https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg","url":"/blog/antalya.html"},{"id":"artvin","category":"Journal","title":"Artvin Travel Guide: Çoruh Canyon, Karagöl, and the Kaçkar Highlands","excerpt":"Artvin in the far northeast of Türkiye, Hatila Valley, Şavşat and Borçka Karagöl, Tibeti Monastery, Macahel district, Maral Waterfall, and the Çoruh R","meta":"Journal","tags":["artvin","çoruh","canyon","karagöl","kaçkar","highlands","northeast","hatila","valley","şavşat"],"img":"https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg","url":"/blog/artvin.html"},{"id":"balikesir","category":"Journal","title":"Balıkesir Travel Guide: Kazdağları, Ayvalık, and the Northern Aegean","excerpt":"Balıkesir travel guide. Mount Ida (Kaz Dağları), Ayvalık and Cunda, the Glass Terrace, Devil's Table, Çaylak Waterfall, Küçükköy, and the geological c","meta":"Journal","tags":["balikesir","balıkesir","kazdağları","ayvalık","northern","aegean","mount","dağları","cunda","glass"],"img":"https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg","url":"/blog/balikesir.html"},{"id":"kapadokya","category":"Journal","title":"Cappadocia Travel Guide: Göreme, Derinkuyu, and the Balloon Flight","excerpt":"A complete guide to Cappadocia, Göreme Open-Air Museum, the Ihlara Valley, Derinkuyu underground city, balloon flights, the cave hotels of Göreme and ","meta":"Journal","tags":["kapadokya","cappadocia","göreme","derinkuyu","balloon","flight","complete","open","museum","ihlara"],"img":"https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg","url":"/blog/kapadokya.html"},{"id":"erzurum","category":"Journal","title":"Erzurum Travel Guide: Palandöken Skiing, the Old Town, and the Doğu Express","excerpt":"Erzurum travel guide. Palandöken ski resort, the old town, Çifte Minareli Medrese, Atatürk House, the Doğu Express train, and what eastern Anatolia lo","meta":"Journal","tags":["erzurum","palandöken","skiing","town","doğu","express","resort","çifte","minareli","medrese"],"img":"https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg","url":"/blog/erzurum.html"},{"id":"giresun","category":"Journal","title":"Giresun Travel Guide: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast","excerpt":"A guide to Giresun on the Black Sea coast. Kuzalan Nature Park, Mavi Göl, Goksu Travertines, Kumbet and Golyani plateaus, Çağlayan Waterfall, the whis","meta":"Journal","tags":["giresun","kuşköy","whistling","language","kuzalan","hazelnut","coast","black","nature","park"],"img":"https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg","url":"/blog/giresun.html"},{"id":"hakkari","category":"Journal","title":"Hakkari Travel Guide: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier","excerpt":"Hakkari travel guide. The Valley of Hell in Heaven (Cennet Cehennem Vadisi), Kaval Waterfall, the Zap River, Bercelen Plateau, the city centre, and wh","meta":"Journal","tags":["hakkari","cilo","mountains","canyon","wildest","frontier","valley","hell","heaven","cennet"],"img":"https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg","url":"/blog/hakkari.html"},{"id":"istanbul","category":"Journal","title":"Istanbul Travel Guide: Hagia Sophia, the Bosphorus, and the Grand Bazaar","excerpt":"A complete guide to Istanbul, Hagia Sophia, the Blue Mosque, Topkapı Palace, Basilica Cistern, the Grand Bazaar, and the Bosphorus. Sixteen million pe","meta":"Journal","tags":["istanbul","hagia","sophia","bosphorus","grand","bazaar","complete","blue","mosque","topkapı"],"img":"https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg","url":"/blog/istanbul.html"},{"id":"kemer","category":"Journal","title":"Kemer Travel Guide: Olympos, Phaselis, and Mount Tahtalı","excerpt":"Kemer travel guide. Olympos and the Chimaera flames, Phaselis ancient harbour, Mount Tahtalı cable car, Göynük Canyon, and the southwestern Antalya co","meta":"Journal","tags":["kemer","olympos","phaselis","mount","tahtalı","chimaera","flames","ancient","harbour","cable"],"img":"https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg","url":"/blog/kemer.html"},{"id":"ordu","category":"Journal","title":"Ordu Travel Guide: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast","excerpt":"A complete guide to Ordu on the Black Sea coast. Uluğöl Nature Park, Ohtamış Waterfall, Perşembe Plateau, Ünye Castle, Cape Jason, Uzunkum Beach and B","meta":"Journal","tags":["ordu","boztepe","cable","perşembe","plateau","black","coast","complete","uluğöl","nature"],"img":"https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg","url":"/blog/ordu.html"},{"id":"rize","category":"Journal","title":"Rize Travel Guide: Ayder, the Fırtına Valley, and Turkey's Tea Country","excerpt":"Rize travel guide. Ayder Plateau, Fırtına River rafting, Zil Castle, Palovit Waterfall, Elevit and Handüzü plateaus, Çeceva tea garden, Komilo village","meta":"Journal","tags":["rize","ayder","fırtına","valley","country","plateau","river","rafting","castle","palovit"],"img":"https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg","url":"/blog/rize.html"},{"id":"top-10-places-to-visit-in-Turkey","category":"Journal","title":"Top 10 Places to Visit in Türkiye in 2026","excerpt":"The 10 best places to visit in Türkiye: Istanbul, Cappadocia, the Muğla and Antalya coast, Ephesus, Pamukkale, Şanlıurfa for Göbekli Tepe, Mardin, Tra","meta":"Journal","tags":["top 10 places to visit in Turkey","istanbul","cappadocia","muğla","antalya","coast","ephesus","pamukkale","şanlıurfa","göbekli"],"img":"https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg","url":"/blog/top-10-places-to-visit-in-Turkey.html"},{"id":"trabzon","category":"Journal","title":"Trabzon Travel Guide: Sümela Monastery, Uzungöl, and the Black Sea Coast","excerpt":"Trabzon travel guide. Sümela Monastery, Uzungöl, Çal Cave, Sera Lake, Boztepe, the Ortamahalle old quarter, Asmasu Waterfall, and outdoor activities f","meta":"Journal","tags":["trabzon","sümela","monastery","uzungöl","black","coast","cave","sera","lake","boztepe"],"img":"https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg","url":"/blog/trabzon.html"},{"id":"when-is-the-best-time-to-visit-turkiye","category":"Journal","title":"When Is the Best Time to Visit Türkiye: A Month-by-Month Guide","excerpt":"Month-by-month guide to visiting Türkiye. The shoulder seasons, peak summer, winter strengths, and what each region looks like at each time of year.","meta":"Journal","tags":["when is the best time to visit turkiye","time","month","visiting","shoulder","seasons","peak","summer","winter","strengths"],"img":"https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg","url":"/blog/when-is-the-best-time-to-visit-turkiye.html"},{"id":"canakkale","category":"Journal","title":"Çanakkale Travel Guide: Gallipoli, Troy, and Assos","excerpt":"Çanakkale travel guide. Troy archaeological site, Gallipoli Martyrs' Memorial, Kilitbahir and Bigali castles, Assos, Bozcaada and Gökçeada islands, Ap","meta":"Journal","tags":["canakkale","çanakkale","gallipoli","troy","assos","archaeological","site","martyrs","memorial","kilitbahir"],"img":"https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg","url":"/blog/canakkale.html"},{"id":"aegean-coast-escape","category":"Route","title":"Aegean Coast Escape, 8 days Itinerary","excerpt":"An eight day Aegean coastal trip from Izmir down to Bodrum, Datça, and Fethiye. Slow days, ancient ruins next to turquoise water, and a gulet on the s","meta":"Itinerary","tags":["aegean coast escape","aegean","coast","escape","days","itinerary","eight","coastal","trip","izmir"],"img":"https://img.showmeturkiye.com/routes/aegean-coast-tour-bodrum-fethiye.jpg","url":"/routes/aegean-coast-escape.html"},{"id":"black-sea-highlands","category":"Route","title":"Black Sea Highlands, 7 days Itinerary","excerpt":"Seven days through Türkiye's Black Sea coast and highlands. Sümela Monastery, Ayder Plateau, Hemşin valleys, and the Macahel forest near the Georgian ","meta":"Itinerary","tags":["black sea highlands","black","highlands","days","itinerary","seven","through","coast","sümela","monastery"],"img":"https://img.showmeturkiye.com/routes/black-sea-highlands-trabzon-rize-tour.jpg","url":"/routes/black-sea-highlands.html"},{"id":"eastern-heritage","category":"Route","title":"Eastern Heritage, 9 days Itinerary","excerpt":"Nine days through Türkiye's southeast. Göbekli Tepe, Mardin's stone city, Antep's deep food culture. If time allows, add Karahan Tepe (35 km east), a ","meta":"Itinerary","tags":["eastern heritage","eastern","heritage","days","itinerary","nine","through","southeast","göbekli","tepe"],"img":"https://img.showmeturkiye.com/routes/eastern-anatolia-tour-mardin-gaziantep.jpg","url":"/routes/eastern-heritage.html"},{"id":"family-adventure","category":"Route","title":"Family Adventure, 9 days Itinerary","excerpt":"A practical nine day Türkiye trip with kids. Istanbul Bosphorus boats, Cappadocia underground cities and balloons, Pamukkale wading pools, Antalya bea","meta":"Itinerary","tags":["family adventure","family","adventure","days","itinerary","practical","nine","trip","kids","istanbul"],"img":"https://img.showmeturkiye.com/cities/antalya/antalya-kaleici-old-town-harbour.jpg","url":"/routes/family-adventure.html"},{"id":"first-time-turkey","category":"Route","title":"First Time in Türkiye, 7 days Itinerary","excerpt":"A practical seven day Türkiye itinerary covering Istanbul, Cappadocia, and Antalya. Built for first time visitors who want substance, not a checklist.","meta":"Itinerary","tags":["first time turkey","first","time","days","itinerary","practical","seven","covering","istanbul","cappadocia"],"img":"https://img.showmeturkiye.com/routes/first-time-turkey-itinerary-7-days.jpg","url":"/routes/first-time-turkey.html"},{"id":"foodie-anatolian-trail","category":"Route","title":"Foodie Anatolian Trail, 10 days Itinerary","excerpt":"Ten days eating through Türkiye. Istanbul's imperial kitchen, Gaziantep's pistachios and kebabs, Izmir's olive oil Aegean. Three regions, three deep f","meta":"Itinerary","tags":["foodie anatolian trail","foodie","anatolian","trail","days","itinerary","eating","through","istanbul","imperial"],"img":"https://img.showmeturkiye.com/cities/gaziantep/gaziantep-mosaic-museum.jpg","url":"/routes/foodie-anatolian-trail.html"},{"id":"luxury-turkey","category":"Route","title":"Luxury Türkiye, 8 days Itinerary","excerpt":"Eight days of premium Türkiye. Bosphorus suite hotels in Istanbul, top tier cave spa in Cappadocia, private crewed gulet through the Muğla coves. Slow","meta":"Itinerary","tags":["luxury turkey","luxury","days","itinerary","eight","premium","bosphorus","suite","hotels","istanbul"],"img":"https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg","url":"/routes/luxury-turkey.html"},{"id":"off-the-beaten-path","category":"Route","title":"Off the Beaten Path, 12 days Itinerary","excerpt":"Twelve days through Türkiye's least visited regions. Kastamonu wooden Ottoman houses, Macahel forest near Georgia, Hakkari Kurdish highlands, Mardin M","meta":"Itinerary","tags":["off the beaten path","beaten","path","days","itinerary","twelve","through","least","visited","regions"],"img":"https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg","url":"/routes/off-the-beaten-path.html"},{"id":"photographers-turkey","category":"Route","title":"Photographer's Türkiye, 10 days Itinerary","excerpt":"Ten days built around Türkiye's distinct visual geography. Cappadocia volcanic valleys, Pamukkale travertines, Mardin stone city, Muğla turquoise cove","meta":"Itinerary","tags":["photographers turkey","photographer","days","itinerary","built","around","distinct","visual","geography","cappadocia"],"img":"https://img.showmeturkiye.com/routes/turkey-photography-tour-cappadocia-mardin.jpg","url":"/routes/photographers-turkey.html"},{"id":"romantic-getaway","category":"Route","title":"Romantic Getaway, 6 days Itinerary","excerpt":"Six days for couples. Cave hotels with balcony breakfasts in Cappadocia, then a private gulet through the Muğla coast. Built for slow travel and the k","meta":"Itinerary","tags":["romantic getaway","romantic","getaway","days","itinerary","couples","cave","hotels","balcony","breakfasts"],"img":"https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg","url":"/routes/romantic-getaway.html"},{"id":"spiritual-anatolia","category":"Route","title":"Spiritual Anatolia, 8 days Itinerary","excerpt":"Eight days through Türkiye's spiritual ground. Konya for Rumi and Sufism, Şanlıurfa for Abraham's birthplace and Göbekli Tepe, Mardin for Syriac monas","meta":"Itinerary","tags":["spiritual anatolia","spiritual","anatolia","days","itinerary","eight","through","ground","konya","rumi"],"img":"https://img.showmeturkiye.com/cities/konya/konya-mevlana-dervish.jpg","url":"/routes/spiritual-anatolia.html"},{"id":"grand-tour","category":"Route","title":"The Grand Tour, 14 days Itinerary","excerpt":"A practical fourteen day Türkiye itinerary. Istanbul, Cappadocia, Antalya, Pamukkale, the Muğla coast and Ephesus, with Izmir at the end. Day by day, ","meta":"Itinerary","tags":["grand tour","grand","tour","days","itinerary","practical","fourteen","istanbul","cappadocia","antalya"],"img":"https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg","url":"/routes/grand-tour.html"}];
 
 /* Show Me Türkiye — Site Search (slim variant) */
 (function(){
@@ -2214,143 +2234,5 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 </script>
 <!-- ═══════════════════════════════════════════════════════════ END COOKIE CONSENT ═══════════════════════════════════════════════════════════ -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- SMT-CONSENT-START -->
-<style>
-.cc-banner{position:fixed;left:24px;right:24px;bottom:24px;z-index:2147483000;max-width:560px;margin:0 auto;background:#FAF5EA;color:#2A1410;border:1px solid rgba(42,20,16,0.12);border-radius:14px;box-shadow:0 18px 50px rgba(42,20,16,0.22);font-family:'Poppins',-apple-system,sans-serif;padding:26px 28px 22px;transform:translateY(140%);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .4s ease;pointer-events:none;}
-.cc-banner.cc-show{transform:translateY(0);opacity:1;pointer-events:auto;}
-.cc-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#C9A75D;margin:0 0 10px;}
-.cc-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;margin:0 0 8px;line-height:1.25;}
-.cc-text{font-size:13.5px;line-height:1.6;color:#5C3530;margin:0 0 18px;}
-.cc-text a{color:#C0392B;text-decoration:none;border-bottom:1px solid rgba(192,57,43,.3);}
-.cc-text a:hover{border-color:#C0392B;}
-.cc-actions{display:flex;flex-wrap:wrap;gap:10px;}
-.cc-btn{font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:500;letter-spacing:.04em;border-radius:9px;padding:12px 20px;cursor:pointer;border:1px solid transparent;transition:all .25s ease;flex:1 1 auto;min-width:120px;}
-.cc-btn-accept{background:#2A1410;color:#F4EFE5;}
-.cc-btn-accept:hover{background:#C0392B;}
-.cc-btn-reject{background:transparent;color:#2A1410;border-color:rgba(42,20,16,0.25);}
-.cc-btn-reject:hover{border-color:#2A1410;background:rgba(42,20,16,0.04);}
-.cc-btn-prefs{background:none;border:none;color:#5C3530;font-size:12px;letter-spacing:.04em;text-decoration:underline;cursor:pointer;flex:0 0 auto;padding:12px 8px;font-family:'Poppins',sans-serif;}
-.cc-btn-prefs:hover{color:#2A1410;}
-.cc-modal-bg{position:fixed;inset:0;background:rgba(10,10,10,.55);z-index:2147483001;display:none;align-items:center;justify-content:center;padding:24px;}
-.cc-modal-bg.cc-show{display:flex;}
-.cc-modal{background:#FAF5EA;color:#2A1410;border-radius:16px;max-width:520px;width:100%;max-height:86vh;overflow-y:auto;padding:34px 32px 28px;font-family:'Poppins',sans-serif;box-shadow:0 24px 70px rgba(10,10,10,.4);}
-.cc-modal h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin:0 0 6px;}
-.cc-modal>p{font-size:13.5px;color:#5C3530;line-height:1.6;margin:0 0 22px;}
-.cc-row{border-top:1px solid rgba(42,20,16,.1);padding:18px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
-.cc-row-info h4{font-size:14px;font-weight:600;margin:0 0 5px;}
-.cc-row-info p{font-size:12.5px;color:#5C3530;line-height:1.55;margin:0;}
-.cc-toggle{position:relative;width:44px;height:24px;flex:0 0 auto;margin-top:3px;}
-.cc-toggle input{opacity:0;width:0;height:0;position:absolute;}
-.cc-slider{position:absolute;inset:0;background:rgba(42,20,16,.2);border-radius:24px;cursor:pointer;transition:.3s;}
-.cc-slider::before{content:'';position:absolute;height:18px;width:18px;left:3px;top:3px;background:#FAF5EA;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
-.cc-toggle input:checked+.cc-slider{background:#C0392B;}
-.cc-toggle input:checked+.cc-slider::before{transform:translateX(20px);}
-.cc-toggle input:disabled+.cc-slider{background:#C9A75D;cursor:not-allowed;opacity:.7;}
-.cc-modal-actions{display:flex;gap:10px;margin-top:26px;}
-.cc-modal-actions .cc-btn{flex:1;}
-@media (max-width:600px){.cc-banner{left:12px;right:12px;bottom:12px;padding:22px 20px 18px;}.cc-title{font-size:19px;}.cc-actions{flex-direction:column;}.cc-btn{width:100%;flex:1 1 100%;}.cc-btn-prefs{order:3;text-align:center;}}
-</style>
-<div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-  <p class="cc-eyebrow">Privacy</p>
-  <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential and anonymous analytics cookies to keep this site running and improve it. With your consent, we may also use marketing cookies in the future. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
-  <div class="cc-actions">
-    <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
-    <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
-    <button class="cc-btn-prefs" id="ccPrefs">Customise</button>
-  </div>
-</div>
-<div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
-  <div class="cc-modal">
-    <h3>Cookie preferences</h3>
-    <p>Choose which cookies you allow. Essential and anonymous analytics cookies are always on (legitimate interest, anonymised IP). Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
-      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Anonymous analytics</h4><p>Google Analytics with anonymised IP, used to understand how the site is used in aggregate. Always active under legitimate interest.</p></div>
-      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Marketing</h4><p>Reserved for future use (e.g. retargeting). Off until you allow it.</p></div>
-      <label class="cc-toggle"><input type="checkbox" id="ccMarketing"><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-modal-actions">
-      <button class="cc-btn cc-btn-reject" id="ccSavePrefs">Save choices</button>
-      <button class="cc-btn cc-btn-accept" id="ccAcceptModal">Accept all</button>
-    </div>
-  </div>
-</div>
-<script id="smt-consent-js">
-(function(){
-  var KEY='smt_cookie_consent_v1';
-  var banner=document.getElementById('ccBanner');
-  var modalBg=document.getElementById('ccModalBg');
-  var marketingToggle=document.getElementById('ccMarketing');
-  function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
-  function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
-  var GA_ID='G-Q7E5XWC6GR';
-  var analyticsLoaded=false;
-  function loadAnalytics(){
-    if(analyticsLoaded)return;analyticsLoaded=true;
-    if(!GA_ID||GA_ID.indexOf('XXX')>-1)return;
-    var s=document.createElement('script');s.async=true;
-    s.src='https://www.googletagmanager.com/gtag/js?id='+GA_ID;
-    document.head.appendChild(s);
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
-    gtag('js',new Date());
-    gtag('config',GA_ID,{anonymize_ip:true});
-  }
-  // Analytics her durumda yuklenir (mesru menfaat + anonim IP).
-  loadAnalytics();
-  function apply(c){
-    // Gelecekte marketing/advertising cerezleri buraya eklenir.
-    // Ornek: if(c&&c.marketing===true) loadMarketingPixels();
-  }
-  function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
-  function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();if(marketingToggle){marketingToggle.checked=c?!!c.marketing:false;}modalBg.classList.add('cc-show');}
-  function closeModal(){modalBg.classList.remove('cc-show');}
-  function acceptAll(){var c={essential:true,analytics:true,marketing:true};saveConsent(c);apply(c);hideBanner();closeModal();}
-  function rejectNon(){var c={essential:true,analytics:true,marketing:false};saveConsent(c);hideBanner();closeModal();}
-  function savePrefs(){var c={essential:true,analytics:true,marketing:marketingToggle?!!marketingToggle.checked:false};saveConsent(c);apply(c);hideBanner();closeModal();}
-  document.getElementById('ccAccept').addEventListener('click',acceptAll);
-  document.getElementById('ccReject').addEventListener('click',rejectNon);
-  document.getElementById('ccPrefs').addEventListener('click',openModal);
-  document.getElementById('ccAcceptModal').addEventListener('click',acceptAll);
-  document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
-  modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
-  window.SMTopenCookiePrefs=openModal;
-  var existing=getConsent();
-  if(existing){apply(existing);}else{showBanner();}
-})();
-</script>
-<!-- SMT-CONSENT-END -->
 </body>
 </html>
