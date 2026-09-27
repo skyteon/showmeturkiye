@@ -277,6 +277,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://showmeturkiye.com/blog/getting-around-turkey.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://showmeturkiye.com/blog/istanbul.html</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
