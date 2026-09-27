@@ -2160,7 +2160,7 @@ document.addEventListener('DOMContentLoaded',function(){
   window.addEventListener('orientationchange',function(){setTimeout(function(){try{map.invalidateSize();}catch(e){}},300);});
   var bounds=L.latLngBounds(PLACES.map(function(p){return [p.lat,p.lng];}));
   map.fitBounds(bounds,{padding:[50,50]});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap · © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_40im_1_d9b17e0921af03f0373a4289',{attribution:'© OpenStreetMap · © CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
   var markers=PLACES.map(function(p,i){
     var icon=L.divIcon({className:'',html:'<div class="atl-pin"><span>'+p.n+'</span></div>',iconSize:[34,34],iconAnchor:[10,32],popupAnchor:[7,-26]});
     var m=L.marker([p.lat,p.lng],{icon:icon,title:p.name}).addTo(map);

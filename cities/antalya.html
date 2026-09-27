@@ -2180,7 +2180,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var bounds=L.latLngBounds(PLACES.map(function(p){return [p.lat,p.lng];}));
   map.fitBounds(bounds,{padding:[50,50]});
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_40im_1_d9b17e0921af03f0373a4289',{
     attribution:'© OpenStreetMap · © CARTO',
     subdomains:'abcd',
     maxZoom:19
