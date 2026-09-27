@@ -28,7 +28,7 @@
       "url": "https://showmeturkiye.com/blog/getting-around-turkey.html",
       "image": "https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg",
       "datePublished": "2026-09-27",
-      "dateModified": "2026-09-27",
+      "dateModified": "2026-09-28",
       "author": {
         "@type": "Organization",
         "name": "Show Me Türkiye",
@@ -54,7 +54,8 @@
         "@type": "Place",
         "name": "Türkiye"
       },
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "mainEntityOfPage": "https://showmeturkiye.com/blog/getting-around-turkey.html"
     },
     {
       "@type": "BreadcrumbList",
@@ -2188,6 +2189,9 @@ body.invert-nav .hamburger span { background: var(--cream); }
 .faq-item summary::after{content:'+';position:absolute;right:4px;top:16px;font-family:var(--serif);font-size:26px;color:var(--terracotta);transition:transform .25s}
 .faq-item[open] summary::after{transform:rotate(45deg)}
 .faq-item p{font-size:16.5px!important;margin-bottom:22px!important}
+.inline-figure{margin:8px 0 32px}
+.inline-figure img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:var(--cream-2)}
+.inline-figure figcaption{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
 @media (max-width:640px){.route-table{font-size:13.5px;min-width:0}.route-table td,.route-table th{padding-right:8px}.faq-item summary{font-size:16.5px}}
 </style>
 </head>
@@ -2218,15 +2222,15 @@ body.invert-nav .hamburger span { background: var(--cream); }
 </div>
 
 <aside class="side-rail" id="sideRail" aria-hidden="true">
-  <a href="#ch-quick" data-target="ch-quick">01<span class="label">Quick answer</span></a>
-  <a href="#ch-flights" data-target="ch-flights">02<span class="label">Domestic flights</span></a>
-  <a href="#ch-buses" data-target="ch-buses">03<span class="label">Intercity buses</span></a>
-  <a href="#ch-trains" data-target="ch-trains">04<span class="label">Fast trains</span></a>
-  <a href="#ch-airports" data-target="ch-airports">05<span class="label">Airport to town</span></a>
-  <a href="#ch-driving" data-target="ch-driving">06<span class="label">Driving</span></a>
-  <a href="#ch-local" data-target="ch-local">07<span class="label">Dolmuş · Taxis</span></a>
-  <a href="#ch-ferries" data-target="ch-ferries">08<span class="label">Ferries</span></a>
-  <a href="#ch-faq" data-target="ch-faq">09<span class="label">FAQ</span></a>
+  <a tabindex="-1" href="#ch-quick" data-target="ch-quick">01<span class="label">Quick answer</span></a>
+  <a tabindex="-1" href="#ch-flights" data-target="ch-flights">02<span class="label">Domestic flights</span></a>
+  <a tabindex="-1" href="#ch-buses" data-target="ch-buses">03<span class="label">Intercity buses</span></a>
+  <a tabindex="-1" href="#ch-trains" data-target="ch-trains">04<span class="label">Fast trains</span></a>
+  <a tabindex="-1" href="#ch-airports" data-target="ch-airports">05<span class="label">Airport to town</span></a>
+  <a tabindex="-1" href="#ch-driving" data-target="ch-driving">06<span class="label">Driving</span></a>
+  <a tabindex="-1" href="#ch-local" data-target="ch-local">07<span class="label">Dolmuş · Taxis</span></a>
+  <a tabindex="-1" href="#ch-ferries" data-target="ch-ferries">08<span class="label">Ferries</span></a>
+  <a tabindex="-1" href="#ch-faq" data-target="ch-faq">09<span class="label">FAQ</span></a>
 </aside>
 
 <header class="post-hero" data-screen-label="01 Hero">
@@ -2351,7 +2355,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">02</span><span class="sep"></span>Domestic flights
       </div>
-      <h2 class="chapter-title">Domestic flights.</h2>
+      <h2 class="chapter-title">Domestic flights in Türkiye.</h2>
       <p class="chapter-sub">The fastest way across a very wide country.</p>
       <div class="chapter-meta"><span>1 min read</span></div>
     </header>
@@ -2382,7 +2386,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">03</span><span class="sep"></span>Intercity buses
       </div>
-      <h2 class="chapter-title">Intercity buses.</h2>
+      <h2 class="chapter-title">Intercity buses and the otogar.</h2>
       <p class="chapter-sub">The network that reaches everywhere.</p>
       <div class="chapter-meta"><span>2 min read</span></div>
     </header>
@@ -2410,7 +2414,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">04</span><span class="sep"></span>Fast trains
       </div>
-      <h2 class="chapter-title">High-speed trains.</h2>
+      <h2 class="chapter-title">High-speed trains (YHT).</h2>
       <p class="chapter-sub">City centre to city centre, across the Anatolian plateau.</p>
       <div class="chapter-meta"><span>1 min read</span></div>
     </header>
@@ -2457,7 +2461,7 @@ body.invert-nav .hamburger span { background: var(--cream); }
       <div class="chapter-kicker">
         <span class="num">06</span><span class="sep"></span>Driving
       </div>
-      <h2 class="chapter-title">Renting a car.</h2>
+      <h2 class="chapter-title">Renting a car in Türkiye.</h2>
       <p class="chapter-sub">Where it makes sense, and where it does not.</p>
       <div class="chapter-meta"><span>1 min read</span></div>
     </header>
@@ -2503,6 +2507,10 @@ body.invert-nav .hamburger span { background: var(--cream); }
     </header>
     <p><strong>Across the Bosphorus.</strong> Istanbul's public ferries (vapur) connect the European and Asian sides for the same Istanbulkart fare as a bus. The Eminönü and Karaköy crossings to Kadıköy are among the best ways to see the city, especially near sunset.</p>
     <p><strong>Across the Sea of Marmara.</strong> Fast ferries link Istanbul with the Bursa side of the Marmara, about an hour and a half door to door. It is an easy way to add a Bursa weekend to a week in Istanbul.</p>
+    <figure class="inline-figure">
+      <img src="https://img.showmeturkiye.com/cities/bursa/istanbul-fast-ferry-from-bursa.jpg" alt="Fast ferry crossing the Sea of Marmara between Istanbul and Bursa" loading="lazy" decoding="async">
+      <figcaption>The fast ferry across the Sea of Marmara, the easy way to add Bursa to an Istanbul stay.</figcaption>
+    </figure>
     <p><strong>Across the Dardanelles.</strong> Car ferries cross the strait at Çanakkale, the gateway to Troy and Gallipoli.</p>
     <p><strong>To the Greek islands.</strong> In season, ferries run from Bodrum to Kos, from Marmaris to Rhodes, and from Kaş to Meis (Kastellorizo). Schedules change with the season, so check close to your date.</p>
   </div>
@@ -2618,8 +2626,8 @@ body.invert-nav .hamburger span { background: var(--cream); }
       </div>
     </div>
     <div class="footer-col"><h4>Explore</h4><a href="../explore.html">Cities</a><a href="../routes.html">Routes</a><a href="../blog.html">Journal</a><a href="../projects.html">Films</a></div>
-    <div class="footer-col"><h4>About</h4><a href="../about.html">About us</a><a href="../contact.html">Contact</a><a href="../explore.html">Press</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="../explore.html">Privacy</a><a href="../explore.html">Terms</a><a href="../explore.html">Cookies</a></div>
+    <div class="footer-col"><h4>About</h4><a href="../about.html">About us</a><a href="../contact.html">Contact</a><a href="../press.html">Press</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../cookies.html">Cookies</a></div>
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear">2026</span> Show Me Türkiye · Made in Türkiye.</span>
