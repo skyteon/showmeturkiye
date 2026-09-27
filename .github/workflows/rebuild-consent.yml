@@ -38,6 +38,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Hicbir HTML degismedi, commit yok"
           else
-            git commit -m "chore: rebuild consent banner [skip ci]"
+            git commit -m "chore: rebuild consent banner"
             git push
           fi

@@ -67,6 +67,8 @@ def build_records():
     recs=[]
     for path,slug,cat,url in discover():
         h=path.read_text(encoding="utf-8")
+        if re.search(r'<meta name="robots" content="[^"]*noindex',h):
+            print(f"  - draft (noindex), not indexed: {path}"); continue
         title=title_of(h)
         if not title:
             print(f"  ! skipped (no <title>): {path}"); continue
