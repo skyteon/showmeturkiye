@@ -54,14 +54,14 @@ def discover():
             cat=FOLDER_CATEGORY[folder]
             for p in sorted((root/folder).glob("*.html")):
                 if p.stem in SKIP: continue
-                yield p,p.stem,cat,f"/{folder}/{p.stem}.html"
+                yield p,p.stem,cat,f"/{folder}/{p.stem}"
     else:
         for p in sorted(root.glob("*.html")):
             if p.stem in SKIP: continue
             if p.stem in ROUTE_SLUGS: cat,folder="Route","routes"
             elif p.stem in JOURNAL_SLUGS: cat,folder="Journal","blog"
             else: cat,folder="City","cities"
-            yield p,p.stem,cat,f"/{folder}/{p.stem}.html"
+            yield p,p.stem,cat,f"/{folder}/{p.stem}"
 
 def build_records():
     recs=[]

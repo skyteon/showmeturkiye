@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-Show Me Turkiye - Cookie consent injector (KVKK uyumlu, GA always-on)
+Show Me Turkiye - Cookie consent injector (KVKK uyumlu, opt-in)
 =====================================================================
 Tum HTML sayfalara (kok + cities/ routes/ blog/ alt klasorler) cookie
 consent banner'ini ekler. Banner her sayfada </body> etiketinden hemen
 once, tek bir blok olarak yer alir.
 
-DEGISIKLIK NOTU (6 Haziran 2026):
-- GA artik sayfa yuklenir yuklenmez calisir (consent beklemeden).
-- IP anonimlestirme acik (anonymize_ip:true), KVKK mesru menfaat kapsami.
-- Banner yine gosterilir; kullanici reddederse ileride eklenecek marketing/
-  advertising cerezleri yuklenmez. Analytics ise her durumda calisir.
+DEGISIKLIK NOTU (28 Eylul 2026):
+- GA yalnizca kullanici analytics'e izin verirse yuklenir (opt-in).
+- "Reject non-essential" analytics'i kapatir. Tercih degisirse GA durdurulur.
+- Depolama anahtari v2: eski (hatali) v1 kayitlari silinir, banner yeniden sorulur.
+- Sayfalarda tek bir consent blogu bulunur.
 
 GA_ID: Script'i calistirmadan once asagidaki GA_ID degerini gercek
 Measurement ID'nle degistir (G-XXXXXXXXXX formatinda). Canli sayfa
@@ -69,7 +69,7 @@ CONSENT_BLOCK = START + """
 <div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cc-eyebrow">Privacy</p>
   <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential and anonymous analytics cookies to keep this site running and improve it. With your consent, we may also use marketing cookies in the future. Read more in our <a href="/cookies.html">Cookies Policy</a>.</p>
+  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="/cookies">Cookies Policy</a>.</p>
   <div class="cc-actions">
     <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
     <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
@@ -79,18 +79,14 @@ CONSENT_BLOCK = START + """
 <div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
   <div class="cc-modal">
     <h3>Cookie preferences</h3>
-    <p>Choose which cookies you allow. Essential and anonymous analytics cookies are always on (legitimate interest, anonymised IP). Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
+    <p>Choose which cookies you allow. Essential cookies are always on because the site cannot function without them. Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
     <div class="cc-row">
       <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
       <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
     </div>
     <div class="cc-row">
-      <div class="cc-row-info"><h4>Anonymous analytics</h4><p>Google Analytics with anonymised IP, used to understand how the site is used in aggregate. Always active under legitimate interest.</p></div>
-      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
-    </div>
-    <div class="cc-row">
-      <div class="cc-row-info"><h4>Marketing</h4><p>Reserved for future use (e.g. retargeting). Off until you allow it.</p></div>
-      <label class="cc-toggle"><input type="checkbox" id="ccMarketing"><span class="cc-slider"></span></label>
+      <div class="cc-row-info"><h4>Analytics</h4><p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Türkiye. Off until you allow them.</p></div>
+      <label class="cc-toggle"><input type="checkbox" id="ccAnalytics" aria-label="Allow analytics cookies"><span class="cc-slider"></span></label>
     </div>
     <div class="cc-modal-actions">
       <button class="cc-btn cc-btn-reject" id="ccSavePrefs">Save choices</button>
@@ -100,15 +96,17 @@ CONSENT_BLOCK = START + """
 </div>
 <script id="smt-consent-js">
 (function(){
-  var KEY='smt_cookie_consent_v1';
+  var KEY='smt_cookie_consent_v2';
+  try{localStorage.removeItem('smt_cookie_consent_v1');}catch(e){}
   var banner=document.getElementById('ccBanner');
   var modalBg=document.getElementById('ccModalBg');
-  var marketingToggle=document.getElementById('ccMarketing');
+  var analyticsToggle=document.getElementById('ccAnalytics');
   function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
   function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
   var GA_ID='__GA_ID__';
   var analyticsLoaded=false;
   function loadAnalytics(){
+    window['ga-disable-'+GA_ID]=false;
     if(analyticsLoaded)return;analyticsLoaded=true;
     if(!GA_ID||GA_ID.indexOf('XXX')>-1)return;
     var s=document.createElement('script');s.async=true;
@@ -119,24 +117,20 @@ CONSENT_BLOCK = START + """
     gtag('js',new Date());
     gtag('config',GA_ID,{anonymize_ip:true});
   }
-  // Analytics her durumda yuklenir (mesru menfaat + anonim IP).
-  loadAnalytics();
   function apply(c){
-    // Gelecekte marketing/advertising cerezleri buraya eklenir.
-    // Ornek: if(c&&c.marketing===true) loadMarketingPixels();
+    if(c&&c.analytics===true){loadAnalytics();}
+    else{window['ga-disable-'+GA_ID]=true;}
   }
   function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
   function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();if(marketingToggle){marketingToggle.checked=c?!!c.marketing:false;}modalBg.classList.add('cc-show');}
+  function openModal(){var c=getConsent();if(analyticsToggle){analyticsToggle.checked=c?!!c.analytics:false;}modalBg.classList.add('cc-show');}
   function closeModal(){modalBg.classList.remove('cc-show');}
-  function acceptAll(){var c={essential:true,analytics:true,marketing:true};saveConsent(c);apply(c);hideBanner();closeModal();}
-  function rejectNon(){var c={essential:true,analytics:true,marketing:false};saveConsent(c);hideBanner();closeModal();}
-  function savePrefs(){var c={essential:true,analytics:true,marketing:marketingToggle?!!marketingToggle.checked:false};saveConsent(c);apply(c);hideBanner();closeModal();}
-  document.getElementById('ccAccept').addEventListener('click',acceptAll);
-  document.getElementById('ccReject').addEventListener('click',rejectNon);
+  function choose(analytics){var c={essential:true,analytics:!!analytics};saveConsent(c);apply(c);hideBanner();closeModal();}
+  document.getElementById('ccAccept').addEventListener('click',function(){choose(true);});
+  document.getElementById('ccReject').addEventListener('click',function(){choose(false);});
   document.getElementById('ccPrefs').addEventListener('click',openModal);
-  document.getElementById('ccAcceptModal').addEventListener('click',acceptAll);
-  document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
+  document.getElementById('ccAcceptModal').addEventListener('click',function(){choose(true);});
+  document.getElementById('ccSavePrefs').addEventListener('click',function(){choose(analyticsToggle&&analyticsToggle.checked);});
   modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
   window.SMTopenCookiePrefs=openModal;
   var existing=getConsent();

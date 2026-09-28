@@ -1,0 +1,7 @@
+.git
+.github
+.assetsignore
+DESIGN_SYSTEM.md
+SEARCH-README.md
+*.py
+node_modules
