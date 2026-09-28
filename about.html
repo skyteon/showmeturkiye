@@ -33,6 +33,26 @@
         "@type": "WebSite",
         "name": "Show Me Türkiye",
         "url": "https://showmeturkiye.com/"
+      },
+      "mainEntity": {
+        "@type": "Organization",
+        "@id": "https://showmeturkiye.com/#organization",
+        "name": "Show Me Türkiye",
+        "url": "https://showmeturkiye.com",
+        "foundingDate": "2018",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://showmeturkiye.com/#halil-bekar",
+          "name": "Halil Bekar",
+          "jobTitle": "Director and Cinematographer",
+          "url": "https://halilbekar.com",
+          "image": "https://img.showmeturkiye.com/team/halil-bekar.jpg",
+          "sameAs": [
+            "https://instagram.com/halilbekar",
+            "https://www.youtube.com/@halilbekar",
+            "https://www.linkedin.com/in/halilbekar/"
+          ]
+        }
       }
     },
     {
@@ -1282,6 +1302,19 @@ img { max-width:100%; display:block; }
   .nav-search-btn{ right:72px !important; }
 }
 </style>
+<style id="smt-about-founder">
+.about-body a{color:var(--text);border-bottom:1px solid rgba(192,57,43,.45);transition:color .2s ease,border-color .2s ease}
+.about-body a:hover{color:var(--brown);border-color:var(--brown)}
+.recognition-section{padding:0 48px 88px;background:var(--cream)}
+.recognition-list{list-style:none;margin:0;padding:0;border-top:1px solid rgba(42,20,16,.12)}
+.recognition-item{display:grid;grid-template-columns:96px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid rgba(42,20,16,.12)}
+.recognition-year{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--text-muted)}
+.recognition-award{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.5;color:var(--text);margin:0 0 4px}
+.recognition-meta{font-family:var(--sans);font-size:14px;line-height:1.65;color:var(--text-muted);margin:0}
+.recognition-meta a{color:var(--text-muted);border-bottom:1px solid rgba(42,20,16,.25);transition:color .2s ease,border-color .2s ease}
+.recognition-meta a:hover{color:var(--brown);border-color:var(--brown)}
+@media (max-width:768px){.recognition-section{padding:0 24px 64px}.recognition-item{grid-template-columns:1fr;gap:6px;padding:20px 0}.recognition-year{font-size:18px}}
+</style>
 <style id="smt-a11y">
 .skip-link{position:absolute;left:16px;top:-120px;z-index:2147483646;padding:12px 18px;background:#1a0e0a;color:#F4EFE5;font:500 14px/1.2 'Poppins',system-ui,-apple-system,sans-serif;text-decoration:none;border-radius:4px}
 .skip-link:focus{top:16px;outline:2px solid #C9A75D;outline-offset:2px}
@@ -1368,6 +1401,40 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <div class="value-title">Routes</div>
       <p class="value-text">Ready-made itineraries that connect it all into a single trip, day by day. The planning is done, so all that is left for you is the journey.</p>
     </div>
+  </div>
+</section>
+
+<section class="about-section" id="founder">
+  <div class="about-container">
+    <span class="about-section-eyebrow">The Founder</span>
+    <h2>Started by a filmmaker, <em>built on the road</em>.</h2>
+    <div class="about-body">
+      <p>Show Me Türkiye was founded in 2018 by Halil Bekar, a director and cinematographer who makes travel and documentary films. It began as a simple project: to document Türkiye through original films, shot on location, one city at a time.</p>
+      <p>Halil still leads the platform creatively. The destination films are made by him and his crew, and the guides and routes grow out of the same time in the field. Every article in the Journal is reviewed by him before it goes out.</p>
+      <p>More of his work is on <a href="https://halilbekar.com" target="_blank" rel="noopener">halilbekar.com</a>, <a href="https://instagram.com/halilbekar" target="_blank" rel="noopener">Instagram</a>, <a href="https://www.youtube.com/@halilbekar" target="_blank" rel="noopener">YouTube</a> and <a href="https://www.linkedin.com/in/halilbekar/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="recognition-section" aria-labelledby="recognition-heading">
+  <div class="about-container">
+    <span class="about-section-eyebrow" id="recognition-heading">Selected Recognition</span>
+    <ul class="recognition-list">
+      <li class="recognition-item">
+        <div class="recognition-year">2024</div>
+        <div>
+          <p class="recognition-award">Second Place, Travel Promo</p>
+          <p class="recognition-meta"><a href="https://atiff.com.ge/" target="_blank" rel="noopener">Art &amp; Travel International Film Festival</a>, Tbilisi, Georgia. Film: <a href="https://www.youtube.com/watch?v=GBil27OsaFc" target="_blank" rel="noopener">Show Me Türkiye: Rize</a></p>
+        </div>
+      </li>
+      <li class="recognition-item">
+        <div class="recognition-year">2022</div>
+        <div>
+          <p class="recognition-award">Best Tourism Film, City Category</p>
+          <p class="recognition-meta"><a href="https://www.igfhaber.com/gundem/en-iyi-turizm-filmi-odulu-kocaeli-ye-222425" target="_blank" rel="noopener">7th International Tourism Films Festival</a>, Gaziantep, Türkiye. Film: <a href="https://www.youtube.com/watch?v=XC1klonfzNU" target="_blank" rel="noopener">Show Me Türkiye: Kocaeli</a>, made for Kocaeli Metropolitan Municipality</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </section>
 
