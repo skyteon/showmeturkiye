@@ -60,6 +60,16 @@
       "inLanguage": "en"
     },
     {
+      "@type": "WebPage",
+      "@id": "https://showmeturkiye.com/blog/giresun#webpage",
+      "url": "https://showmeturkiye.com/blog/giresun",
+      "reviewedBy": {
+        "@type": "Person",
+        "@id": "https://showmeturkiye.com/#halil-bekar",
+        "name": "Halil Bekar"
+      }
+    },
+    {
       "@type": "BreadcrumbList",
       "@id": "https://showmeturkiye.com/blog/giresun#breadcrumb",
       "itemListElement": [
@@ -2109,6 +2119,12 @@ a.text-link:hover { opacity: 0.7; }
   .nav-search-btn{ right:72px !important; }
 }
 </style>
+<style id="smt-reviewer">
+.reviewer{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--ink-mute)}
+.reviewer strong{color:var(--ink);font-weight:500}
+.reviewer-avatar{width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--cream);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+.reviewer-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
 <style id="smt-a11y">
 .skip-link{position:absolute;left:16px;top:-120px;z-index:2147483646;padding:12px 18px;background:#1a0e0a;color:#F4EFE5;font:500 14px/1.2 'Poppins',system-ui,-apple-system,sans-serif;text-decoration:none;border-radius:4px}
 .skip-link:focus{top:16px;outline:2px solid #C9A75D;outline-offset:2px}
@@ -2392,6 +2408,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <div class="label">Written by</div>
       <div class="name">Show Me Türkiye Editorial</div>
       <div class="bio">Field notes, routes, and city guides from across Türkiye.</div>
+      <div class="reviewer"><span class="reviewer-avatar"><img src="https://img.showmeturkiye.com/team/halil-bekar.jpg" alt="Halil Bekar" width="32" height="32" loading="lazy" decoding="async" onerror="this.parentNode.textContent='HB'"></span><span>Reviewed by <strong>Halil Bekar</strong>, founder of Show Me Türkiye</span></div>
     </div>
     <div class="share">
       <a href="#" aria-label="Share on X" data-share="x">𝕏</a>
