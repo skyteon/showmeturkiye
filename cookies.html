@@ -1300,14 +1300,14 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <p>This Cookies Policy explains how Show Me Türkiye uses cookies and similar technologies when you visit our website. It works alongside our Privacy Policy.</p>
       <p><strong>What cookies are.</strong> Cookies are small text files that a website stores on your device when you visit. They help the site remember your preferences, keep you signed in to features, and understand how visitors interact with content.</p>
       <p><strong>The cookies we use.</strong> We use a small number of cookies, grouped as follows.</p>
-      <p><strong>Your consent.</strong> When you first visit, we show a cookie notice. Essential cookies are always active because the site cannot work without them. Analytics cookies are only placed if you accept them. You can accept, reject, or choose per category, and you can change your choice at any time using the button at the bottom of this page. We do not place analytics cookies before you give consent.</p>
+      <p><strong>Your choices.</strong> When you first visit, we show a cookie notice. Essential cookies and analytics cookies are always active: essential cookies because the site cannot work without them, and analytics so we can understand how the site is used. We do not use marketing cookies today; if we add them, they will only be placed with your consent. You can review your choices at any time using the button at the bottom of this page.</p>
       <p><strong>Essential cookies.</strong> These keep the site functional, for example by remembering your language choice and that you have made a cookie choice. The site does not work properly without them, so they cannot be turned off, and no consent is required for them.</p>
-      <p><strong>Analytics cookies.</strong> With your consent, we use analytics to understand which pages are visited, how long people stay, and where visitors came from, in aggregate form, to improve our content and structure. These cookies are provided by services whose servers may be located outside Türkiye, which means accepting them involves a transfer of data abroad. They remain off unless you allow them, and you can withdraw your consent at any time.</p>
+      <p><strong>Analytics cookies.</strong> We use Google Analytics to understand which pages are visited, how long people stay, and where visitors came from, in aggregate form, to improve our content and structure. IP anonymisation is enabled. These cookies are provided by services whose servers may be located outside Türkiye, which means data is transferred abroad. You can block them at any time through your browser settings.</p>
       <p><strong>Affiliate links.</strong> When you click a link to a booking partner such as GetYourGuide, Booking, Agoda, Trip.com, Kiwitaxi, Busbud, or DiscoverCars, that partner may set its own cookie on its own site to track whether your visit results in a booking. This allows us to receive a small commission at no extra cost to you. These cookies are set by the partner, on the partner's website, under its own privacy and cookie policies, only after you choose to follow the link.</p>
-      <p><strong>What we collect through analytics.</strong> If you consent to analytics, the data may include your approximate location, device and browser type, the pages you view, and how you reached the site. We use it only in aggregate to improve the site and we do not use it to identify you personally.</p>
-      <p><strong>Managing your choices.</strong> You can change or withdraw your cookie consent at any time using the button below. Separately, most browsers let you view, manage, or block cookies through their privacy or security settings. Blocking essential cookies may prevent some features from working as expected.</p>
+      <p><strong>What we collect through analytics.</strong> Analytics data may include your approximate location, device and browser type, the pages you view, and how you reached the site. We use it only in aggregate to improve the site and we do not use it to identify you personally.</p>
+      <p><strong>Managing your choices.</strong> You can review your cookie choices at any time using the button below. Separately, most browsers let you view, manage, or block cookies through their privacy or security settings. Blocking essential cookies may prevent some features from working as expected.</p>
       <p style="margin-top:8px;"><button type="button" onclick="if(window.SMTopenCookiePrefs){window.SMTopenCookiePrefs();}else{alert('Cookie preferences are available on pages where the cookie notice is active.');}" style="font-family:inherit;font-size:13.5px;font-weight:600;color:#FAF5EA;background:#2A1410;border:none;border-radius:9px;padding:12px 22px;cursor:pointer;letter-spacing:.03em;">Manage cookie preferences</button></p>
-      <p><strong>Legal basis.</strong> We process essential cookies on the basis of our legitimate interest in providing a working website. We process analytics cookies only on the basis of your explicit consent, in line with Turkish Law No. 6698 on the Protection of Personal Data (KVKK) and the Personal Data Protection Authority's guidance on cookies. You have the rights set out in Article 11 of the KVKK, including the right to learn whether your data is processed, to request information, and to request deletion. See our <a href="privacy" style="color:var(--brown);">Privacy Policy</a> for details and contact information.</p>
+      <p><strong>Legal basis.</strong> We process essential cookies on the basis of our legitimate interest in providing a working website. We process analytics cookies, with IP anonymisation, on the basis of our legitimate interest in understanding and improving how the website is used. You have the rights set out in Article 11 of the KVKK, including the right to learn whether your data is processed, to request information, and to request deletion. See our <a href="privacy" style="color:var(--brown);">Privacy Policy</a> for details and contact information.</p>
       <p><strong>Do Not Track.</strong> Some browsers send a "Do Not Track" signal. There is no industry consensus on how to respond to this signal, so we do not currently change our behaviour based on it. You can still control cookies directly through your browser as described above.</p>
       <p><strong>Updates to this policy.</strong> We may update this policy as our use of cookies evolves. The "Last updated" date at the top of this page will always reflect the latest version.</p>
       <p><strong>Questions.</strong> If anything here is unclear, please get in touch through our <a href="contact" style="color:var(--brown);">Contact page</a>.</p>
@@ -1636,6 +1636,7 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 
 
 
+
 <!-- SMT-CONSENT-START -->
 <style>
 .cc-banner{position:fixed;left:24px;right:24px;bottom:24px;z-index:2147483000;max-width:560px;margin:0 auto;background:#FAF5EA;color:#2A1410;border:1px solid rgba(42,20,16,0.12);border-radius:14px;box-shadow:0 18px 50px rgba(42,20,16,0.22);font-family:'Poppins',-apple-system,sans-serif;padding:26px 28px 22px;transform:translateY(140%);opacity:0;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .4s ease;pointer-events:none;}
@@ -1675,7 +1676,7 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 <div class="cc-banner" id="ccBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
   <p class="cc-eyebrow">Privacy</p>
   <h2 class="cc-title">A note on cookies</h2>
-  <p class="cc-text">We use essential cookies to make this site work. With your consent, we also use analytics cookies to understand how the site is used and improve it. You can accept, reject, or choose what to allow. Read more in our <a href="/cookies">Cookies Policy</a>.</p>
+  <p class="cc-text">We use essential and analytics cookies to keep this site running and understand how it is used. Analytics runs with IP anonymisation. With your consent, we may also use marketing cookies in the future. Read more in our <a href="/cookies">Cookies Policy</a>.</p>
   <div class="cc-actions">
     <button class="cc-btn cc-btn-reject" id="ccReject">Reject non-essential</button>
     <button class="cc-btn cc-btn-accept" id="ccAccept">Accept all</button>
@@ -1685,14 +1686,18 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 <div class="cc-modal-bg" id="ccModalBg" role="dialog" aria-modal="true" aria-label="Cookie preferences">
   <div class="cc-modal">
     <h3>Cookie preferences</h3>
-    <p>Choose which cookies you allow. Essential cookies are always on because the site cannot function without them. Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
+    <p>Choose which cookies you allow. Essential and analytics cookies are always on (legitimate interest, IP anonymisation). Your choice is saved on your device and you can change it anytime from the Cookies Policy page.</p>
     <div class="cc-row">
       <div class="cc-row-info"><h4>Essential</h4><p>Required for core features such as remembering your language and that you have seen this notice. Always active.</p></div>
       <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
     </div>
     <div class="cc-row">
-      <div class="cc-row-info"><h4>Analytics</h4><p>Help us understand which pages are visited and how the site is used, in aggregate. These may transfer data to providers outside Türkiye. Off until you allow them.</p></div>
-      <label class="cc-toggle"><input type="checkbox" id="ccAnalytics" aria-label="Allow analytics cookies"><span class="cc-slider"></span></label>
+      <div class="cc-row-info"><h4>Analytics</h4><p>Google Analytics with IP anonymisation, used to understand how the site is used in aggregate. Always active under legitimate interest.</p></div>
+      <label class="cc-toggle"><input type="checkbox" checked disabled><span class="cc-slider"></span></label>
+    </div>
+    <div class="cc-row">
+      <div class="cc-row-info"><h4>Marketing</h4><p>Reserved for future use (e.g. retargeting). Off until you allow it.</p></div>
+      <label class="cc-toggle"><input type="checkbox" id="ccMarketing"><span class="cc-slider"></span></label>
     </div>
     <div class="cc-modal-actions">
       <button class="cc-btn cc-btn-reject" id="ccSavePrefs">Save choices</button>
@@ -1702,17 +1707,15 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 </div>
 <script id="smt-consent-js">
 (function(){
-  var KEY='smt_cookie_consent_v2';
-  try{localStorage.removeItem('smt_cookie_consent_v1');}catch(e){}
+  var KEY='smt_cookie_consent_v1';
   var banner=document.getElementById('ccBanner');
   var modalBg=document.getElementById('ccModalBg');
-  var analyticsToggle=document.getElementById('ccAnalytics');
+  var marketingToggle=document.getElementById('ccMarketing');
   function getConsent(){try{var v=localStorage.getItem(KEY);return v?JSON.parse(v):null;}catch(e){return null;}}
   function saveConsent(o){o.ts=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(o));}catch(e){}}
   var GA_ID='G-Q7E5XWC6GR';
   var analyticsLoaded=false;
   function loadAnalytics(){
-    window['ga-disable-'+GA_ID]=false;
     if(analyticsLoaded)return;analyticsLoaded=true;
     if(!GA_ID||GA_ID.indexOf('XXX')>-1)return;
     var s=document.createElement('script');s.async=true;
@@ -1723,20 +1726,24 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
     gtag('js',new Date());
     gtag('config',GA_ID,{anonymize_ip:true});
   }
+  // Analytics her durumda yuklenir (mesru menfaat + anonim IP).
+  loadAnalytics();
   function apply(c){
-    if(c&&c.analytics===true){loadAnalytics();}
-    else{window['ga-disable-'+GA_ID]=true;}
+    // Gelecekte marketing/advertising cerezleri buraya eklenir.
+    // Ornek: if(c&&c.marketing===true) loadMarketingPixels();
   }
   function showBanner(){setTimeout(function(){banner.classList.add('cc-show');},700);}
   function hideBanner(){banner.classList.remove('cc-show');}
-  function openModal(){var c=getConsent();if(analyticsToggle){analyticsToggle.checked=c?!!c.analytics:false;}modalBg.classList.add('cc-show');}
+  function openModal(){var c=getConsent();if(marketingToggle){marketingToggle.checked=c?!!c.marketing:false;}modalBg.classList.add('cc-show');}
   function closeModal(){modalBg.classList.remove('cc-show');}
-  function choose(analytics){var c={essential:true,analytics:!!analytics};saveConsent(c);apply(c);hideBanner();closeModal();}
-  document.getElementById('ccAccept').addEventListener('click',function(){choose(true);});
-  document.getElementById('ccReject').addEventListener('click',function(){choose(false);});
+  function acceptAll(){var c={essential:true,analytics:true,marketing:true};saveConsent(c);apply(c);hideBanner();closeModal();}
+  function rejectNon(){var c={essential:true,analytics:true,marketing:false};saveConsent(c);hideBanner();closeModal();}
+  function savePrefs(){var c={essential:true,analytics:true,marketing:marketingToggle?!!marketingToggle.checked:false};saveConsent(c);apply(c);hideBanner();closeModal();}
+  document.getElementById('ccAccept').addEventListener('click',acceptAll);
+  document.getElementById('ccReject').addEventListener('click',rejectNon);
   document.getElementById('ccPrefs').addEventListener('click',openModal);
-  document.getElementById('ccAcceptModal').addEventListener('click',function(){choose(true);});
-  document.getElementById('ccSavePrefs').addEventListener('click',function(){choose(analyticsToggle&&analyticsToggle.checked);});
+  document.getElementById('ccAcceptModal').addEventListener('click',acceptAll);
+  document.getElementById('ccSavePrefs').addEventListener('click',savePrefs);
   modalBg.addEventListener('click',function(e){if(e.target===modalBg)closeModal();});
   window.SMTopenCookiePrefs=openModal;
   var existing=getConsent();
