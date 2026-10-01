@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us | Show Me Turkiye</title>
-<meta name="description" content="Show Me Türkiye is an independent travel platform founded in 2018 by filmmaker Halil Bekar. Cinematic films, 26 city guides and day-by-day routes across Turkey.">
+<meta name="description" content="Show Me Türkiye is an independent travel platform founded in 2018 by director Halil Bekar. Original films, 26 city guides and day-by-day routes across Turkey.">
 <meta name="robots" content="max-image-preview:large">
 <link rel="canonical" href="https://showmeturkiye.com/about">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About Us | Show Me Turkiye">
-<meta property="og:description" content="Show Me Türkiye is an independent travel platform founded in 2018 by filmmaker Halil Bekar. Cinematic films, 26 city guides and day-by-day routes across Turkey.">
+<meta property="og:description" content="Show Me Türkiye is an independent travel platform founded in 2018 by director Halil Bekar. Original films, 26 city guides and day-by-day routes across Turkey.">
 <meta property="og:url" content="https://showmeturkiye.com/about">
 <meta property="og:image" content="https://img.showmeturkiye.com/hero/og-image.jpg">
 <meta property="og:site_name" content="Show Me Türkiye">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Us | Show Me Turkiye">
-<meta name="twitter:description" content="Show Me Türkiye is an independent travel platform founded in 2018 by filmmaker Halil Bekar. Cinematic films, 26 city guides and day-by-day routes across Turkey.">
+<meta name="twitter:description" content="Show Me Türkiye is an independent travel platform founded in 2018 by director Halil Bekar. Original films, 26 city guides and day-by-day routes across Turkey.">
 <meta name="twitter:image" content="https://img.showmeturkiye.com/hero/og-image.jpg">
 <script type="application/ld+json">
 {
@@ -25,7 +25,7 @@
       "@type": "WebPage",
       "@id": "https://showmeturkiye.com/about#webpage",
       "name": "About Us",
-      "description": "Show Me Türkiye is an independent travel platform founded in 2018 by filmmaker Halil Bekar. Cinematic films, 26 city guides and day-by-day routes across Turkey.",
+      "description": "Show Me Türkiye is an independent travel platform founded in 2018 by director Halil Bekar. Original films, 26 city guides and day-by-day routes across Turkey.",
       "url": "https://showmeturkiye.com/about",
       "image": "https://img.showmeturkiye.com/hero/og-image.jpg",
       "inLanguage": "en",
@@ -1327,6 +1327,25 @@ a.value-card:focus-visible{outline:2px solid var(--brown);outline-offset:4px}
 .about-cta-primary{background:var(--brown);color:#fff;box-shadow:none}
 .about-cta-primary:hover{background:var(--text);color:#fff;box-shadow:none}
 @media (max-width:768px){.about-stats{grid-template-columns:repeat(2,1fr);gap:28px 16px;margin-top:48px}}
+.about-body{max-width:760px}
+.values-head{max-width:1100px;margin:0 auto 32px}
+.recognition-section{padding-top:16px!important}
+.recognition-title{font-family:var(--serif);font-size:clamp(26px,2.8vw,38px);font-weight:500;line-height:1.12;letter-spacing:-.012em;color:var(--text);margin:0 0 36px}
+.recognition-title em{font-style:italic;color:var(--brown)}
+#founder{padding-bottom:56px}
+@media (max-width:900px){.values-head{max-width:480px;margin-bottom:24px}}
+@media (max-width:768px){
+#founder{padding-bottom:40px}
+.recognition-title{margin-bottom:24px}
+.value-card{padding:28px 24px 26px}
+.value-number{font-size:32px;margin-bottom:14px}
+.value-link{margin-top:16px}
+.about-stat-num{font-size:34px}
+.about-cta{flex-direction:column;align-items:stretch;max-width:340px;margin:0 auto}
+.about-cta-btn{justify-content:center;padding:15px 24px}
+.founder-note blockquote{font-size:20px}
+.founder-note{padding-top:32px}
+}
 </style>
 <style id="smt-a11y">
 .skip-link{position:absolute;left:16px;top:-120px;z-index:2147483646;padding:12px 18px;background:#1a0e0a;color:#F4EFE5;font:500 14px/1.2 'Poppins',system-ui,-apple-system,sans-serif;text-decoration:none;border-radius:4px}
@@ -1386,10 +1405,10 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 <section class="about-section">
   <div class="about-container">
     <span class="about-section-eyebrow">Who We Are</span>
-    <h2>Türkiye, <em>seen properly</em>.</h2>
+    <h2>The independent guide to <em>travelling Türkiye</em>.</h2>
     <div class="about-body">
-      <p>Show Me Türkiye is an independent travel platform made by filmmakers who spend their working lives on the road across the country. We film it, walk it and write about it, so you can plan your trip with the confidence of someone who has already been.</p>
-      <p>Every guide starts with what a visitor actually needs, then adds what only time on the ground can teach: the right neighbourhood, the right season, the place a local would send you.</p>
+      <p>Show Me Türkiye is an independent travel platform founded by director and entrepreneur Halil Bekar. It brings together original destination films, in-depth city guides and day-by-day routes, so travellers can plan Türkiye with clarity and confidence.</p>
+      <p>Every guide is built on first-hand time in the field and checked against official sources, then shaped around what a visitor needs to know: where to go, when to go and how to get there.</p>
     </div>
     <ul class="about-stats" aria-label="Show Me Türkiye in numbers">
       <li><span class="about-stat-num">26</span><span class="about-stat-label">City guides</span></li>
@@ -1400,7 +1419,10 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </section>
 
-<section class="values-section">
+<section class="values-section" aria-labelledby="what-we-make">
+  <div class="values-head">
+    <span class="about-section-eyebrow" id="what-we-make">What We Make</span>
+  </div>
   <div class="values-grid">
     <a class="value-card" href="projects">
       <div class="value-number">01</div>
@@ -1426,9 +1448,9 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 <section class="about-section" id="founder">
   <div class="about-container">
     <span class="about-section-eyebrow">The Founder</span>
-    <h2>Started by a filmmaker, <em>built on the road</em>.</h2>
+    <h2>Founded and led by <em>Halil Bekar</em>.</h2>
     <div class="about-body">
-      <p>Show Me Türkiye was founded in 2018 by Halil Bekar, an award-winning director and cinematographer. He still leads the platform: the films are shot by him and his crew, and every Journal article is reviewed by him before it goes live.</p>
+      <p>Halil Bekar is an award-winning director, cinematographer and entrepreneur who produces destination films for tourism authorities, municipalities and global brands. He founded Show Me Türkiye in 2018 and still leads it today: he directs the films and personally reviews every Journal article before publication.</p>
       <p>More of his work is on <a href="https://halilbekar.com" target="_blank" rel="noopener">halilbekar.com</a>, <a href="https://instagram.com/halilbekar" target="_blank" rel="noopener">Instagram</a>, <a href="https://www.youtube.com/@halilbekar" target="_blank" rel="noopener">YouTube</a> and <a href="https://www.linkedin.com/in/halilbekar/" target="_blank" rel="noopener">LinkedIn</a>.</p>
     </div>
   </div>
@@ -1436,7 +1458,8 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 
 <section class="recognition-section" aria-labelledby="recognition-heading">
   <div class="about-container">
-    <span class="about-section-eyebrow" id="recognition-heading">Selected Recognition</span>
+    <span class="about-section-eyebrow">Recognition</span>
+    <h2 class="recognition-title" id="recognition-heading">Awarded at international <em>tourism film festivals</em>.</h2>
     <ul class="recognition-list">
       <li class="recognition-item">
         <div class="recognition-year">2026</div>
