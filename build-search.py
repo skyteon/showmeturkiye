@@ -78,6 +78,27 @@ def build_records():
     recs.sort(key=lambda r:(r["category"],r["title"].lower()))
     return recs
 
+def ensure_search_css(pages):
+    """Every page that carries the search overlay markup (#smtSearch) must also
+    carry its CSS, otherwise the hidden overlay renders as plain page content.
+    Pages get it either from deferred.css (homepage) or from an inline
+    <style id="smt-search-css"> copy of assets/search.css. If a page has
+    neither, insert the inline copy before the page's own first <style>, so
+    page-specific rules (e.g. nav button position) keep precedence."""
+    css_file=Path("assets/search.css")
+    if not css_file.exists(): return []
+    block='<style id="smt-search-css">\n'+css_file.read_text(encoding="utf-8").strip()+'\n</style>\n'
+    fixed=[]
+    for p in pages:
+        h=p.read_text(encoding="utf-8")
+        if 'id="smtSearch"' not in h or 'id="smt-search-css"' in h or 'deferred.css' in h: continue
+        head_end=h.find("</head>")
+        if head_end<0: continue
+        first_style=h.find("<style",0,head_end)
+        at=first_style if first_style>=0 else head_end
+        p.write_text(h[:at]+block+h[at:],encoding="utf-8"); fixed.append(str(p))
+    return fixed
+
 def main():
     print("Building search index ...")
     recs=build_records()
@@ -99,10 +120,15 @@ def main():
         if new!=h:
             p.write_text(new,encoding="utf-8"); updated+=1
 
+    # 3) make sure no page shows the search overlay unstyled
+    css_fixed=ensure_search_css(pages)
+
     from collections import Counter
     bc=Counter(r["category"] for r in recs)
     print(f"  OK  {len(recs)} pages indexed ({', '.join(f'{v} {k}' for k,v in sorted(bc.items()))})")
     print(f"      inline copies updated in {updated} pages")
+    if css_fixed:
+        print(f"      search CSS restored in {len(css_fixed)} pages: {', '.join(css_fixed)}")
 
 if __name__=="__main__":
     main()
