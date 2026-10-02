@@ -1137,7 +1137,7 @@ const ROUTES = [
     duration:"7 days",
     cities:["Istanbul","Cappadocia","Antalya"],
     for_who:"First-time visitors who want the iconic Türkiye in one trip: Istanbul's Bosphorus, Cappadocia's balloons, and the Antalya coast.",
-    pace:2, paceLabel:"Relaxed", season:"Apr to Sep", distance:"1,400 km", difficulty:"Easy",
+    pace:2, paceLabel:"Relaxed", season:"Apr to Oct", distance:"1,200 km", difficulty:"Easy",
     image:"https://img.showmeturkiye.com/routes/first-time-turkey-itinerary-7-days.jpg",
     flagship:true
   },
@@ -1154,7 +1154,7 @@ const ROUTES = [
     duration:"8 days",
     cities:["Izmir","Muğla"],
     for_who:"Beach and boat lovers. Ancient ruins next to turquoise water, long lunches, and absolutely no rush.",
-    pace:1, paceLabel:"Relaxed", season:"Jun to Sep", distance:"600 km", difficulty:"Easy",
+    pace:1, paceLabel:"Relaxed", season:"May to Oct", distance:"730 km", difficulty:"Easy",
     image:"https://img.showmeturkiye.com/routes/aegean-coast-tour-bodrum-fethiye.jpg"
   },
   {
@@ -1162,7 +1162,7 @@ const ROUTES = [
     duration:"9 days",
     cities:["Şanlıurfa","Mardin","Gaziantep"],
     for_who:"History travelers ready for the southeast: Göbekli Tepe, stone-cut Mardin and Antep cuisine, the region most foreigners miss.",
-    pace:3, paceLabel:"Balanced", season:"Apr, May, Oct", distance:"900 km", difficulty:"Easy",
+    pace:3, paceLabel:"Balanced", season:"Mar to May, Oct to Nov", distance:"770 km", difficulty:"Easy",
     image:"https://img.showmeturkiye.com/routes/eastern-anatolia-tour-mardin-gaziantep.jpg"
   },
   {
@@ -1170,7 +1170,7 @@ const ROUTES = [
     duration:"8 days",
     cities:["Trabzon","Rize","Artvin"],
     for_who:"Travelers tired of crowds. Cliff-cut monasteries, tea fields above the clouds, and valleys most Turks haven't seen.",
-    pace:4, paceLabel:"Active", season:"Jun to Sep", distance:"700 km", difficulty:"Moderate",
+    pace:4, paceLabel:"Active", season:"Jun to Sep", distance:"750 km", difficulty:"Moderate",
     image:"https://img.showmeturkiye.com/routes/black-sea-highlands-trabzon-rize-tour.jpg"
   },
   {
@@ -1178,7 +1178,7 @@ const ROUTES = [
     duration:"10 days",
     cities:["Istanbul","Cappadocia","Antalya","Mardin"],
     for_who:"Photographers chasing distinct geography: volcanic valleys, Mediterranean ruins, ochre stone cities and sunrise balloons.",
-    pace:3, paceLabel:"Balanced", season:"Apr, Sep, Oct", distance:"1,800 km", difficulty:"Easy / Mod.",
+    pace:3, paceLabel:"Balanced", season:"Apr to Jun, Sep to Oct", distance:"2,400 km", difficulty:"Easy / Mod.",
     image:"https://img.showmeturkiye.com/routes/turkey-photography-tour-cappadocia-mardin.jpg"
   }
 ];
@@ -1213,10 +1213,10 @@ function renderFlagship(){
       <div class="r-flagship-tagline">${r.tagline}</div>
       <p class="r-flagship-for">${r.for_who}</p>
       <div class="r-flagship-facts">
-        <div class="r-mini-fact"><span class="fl">Duration</span><span class="fv">14 <small>days</small></span></div>
+        <div class="r-mini-fact"><span class="fl">Duration</span><span class="fv">${r.duration.replace(/\s*days?$/,'')} <small>days</small></span></div>
         <div class="r-mini-fact"><span class="fl">Pace</span><span class="fv" style="font-size:16px;">${r.paceLabel}</span>${paceDots(r.pace)}</div>
         <div class="r-mini-fact"><span class="fl">Best season</span><span class="fv" style="font-size:16px;">${r.season}</span></div>
-        <div class="r-mini-fact"><span class="fl">Distance</span><span class="fv">2,100 <small>km</small></span></div>
+        <div class="r-mini-fact"><span class="fl">Distance</span><span class="fv">${r.distance.replace(/\s*km$/,'')} <small>km</small></span></div>
       </div>
       <div class="r-cta-row">
         <span class="r-btn-primary">View itinerary <span class="arr">→</span></span>
