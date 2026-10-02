@@ -2412,6 +2412,8 @@ em, i {
   
   .r-fab { display: flex; }
   body { padding-bottom: 80px; }
+  /* keep the 80px safe area behind the fixed route bar in the footer colour */
+  body { background: linear-gradient(var(--cream), var(--cream)) top / 100% calc(100% - 80px) no-repeat, #0a0a0a; }
 }
 @media (max-width: 480px) {
   

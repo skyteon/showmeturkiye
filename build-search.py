@@ -78,6 +78,21 @@ def build_records():
     recs.sort(key=lambda r:(r["category"],r["title"].lower()))
     return recs
 
+def head_end(h):
+    """Index of the real </head> (the last one before <body>); comments inside
+    <style> blocks can contain the literal text "</head>". Same approach as
+    build-footer.py."""
+    b=h.find("<body")
+    return h.rfind("</head>",0,b if b>=0 else len(h))
+
+def first_style_tag(h,end):
+    """Index of the first real <style> tag before `end`, ignoring text inside
+    HTML comments, <script> and <style> bodies."""
+    masked=re.sub(r"<!--.*?-->|(<script\b[^>]*>).*?</script>|(<style\b[^>]*>).*?</style>",
+                  lambda m:(m.group(1) or m.group(2) or "").ljust(len(m.group(0))),h[:end],flags=re.S)
+    m=re.search(r"<style\b",masked)
+    return m.start() if m else -1
+
 def ensure_search_css(pages):
     """Every page that carries the search overlay markup (#smtSearch) must also
     carry its CSS, otherwise the hidden overlay renders as plain page content.
@@ -92,10 +107,10 @@ def ensure_search_css(pages):
     for p in pages:
         h=p.read_text(encoding="utf-8")
         if 'id="smtSearch"' not in h or 'id="smt-search-css"' in h or 'deferred.css' in h: continue
-        head_end=h.find("</head>")
-        if head_end<0: continue
-        first_style=h.find("<style",0,head_end)
-        at=first_style if first_style>=0 else head_end
+        end=head_end(h)
+        if end<0: continue
+        first_style=first_style_tag(h,end)
+        at=first_style if first_style>=0 else end
         p.write_text(h[:at]+block+h[at:],encoding="utf-8"); fixed.append(str(p))
     return fixed
 
