@@ -1,0 +1,26 @@
+/* Show Me Türkiye canonical footer (single source of truth).
+   Copied from the homepage footer (deferred.css, 2026-10-02) with design
+   tokens resolved to literal values so it renders identically on every
+   template. build-footer.py embeds this file inline as
+   <style id="smt-footer-css"> in every page; do not edit the inline copies. */
+.footer{box-sizing:border-box;background:#0a0a0a;color:#F4EFE5;padding:96px 40px 40px;margin:0;border:0;font-size:16px;line-height:1.6;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;text-align:left}
+.footer *,.footer *::before,.footer *::after{box-sizing:border-box}
+.footer h3,.footer p{margin:0;padding:0}
+.footer a{text-decoration:none}
+.footer-content{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:64px;margin-bottom:72px}
+.footer-section h3{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:11px;font-weight:500;margin-bottom:24px;text-transform:uppercase;letter-spacing:0.22em;color:#C9A75D;line-height:1.6}
+.footer-section p{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:14px;font-weight:400;line-height:1.7;color:rgba(244,239,229,0.85);max-width:36ch;margin-top:8px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;font-weight:400;color:rgba(244,239,229,0.85);text-decoration:none;transition:color 0.25s ease;letter-spacing:0;line-height:1.4}
+.footer-links a:hover{color:#F4EFE5}
+.footer-logo{display:block;height:54px;width:auto;max-width:100%;margin-bottom:22px;filter:none;opacity:1}
+.footer-bottom{max-width:none;margin:0;text-align:center;padding-top:32px;border-top:1px solid rgba(244,239,229,0.10);color:rgba(244,239,229,0.55);font-size:12px;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0.05em;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{margin:0}
+.footer-bottom-credit{font-style:italic;color:#C9A75D;opacity:0.85}
+.footer-socials{display:flex;gap:12px;margin-top:20px}
+.footer-socials a{width:36px;height:36px;border-radius:999px;border:1px solid rgba(244,239,229,0.18);display:inline-flex;align-items:center;justify-content:center;color:rgba(244,239,229,0.85);transition:all 0.3s ease}
+.footer-socials a:hover{border-color:#F4EFE5;color:#F4EFE5;transform:translateY(-2px)}
+@media (max-width:900px){.footer-content{grid-template-columns:1fr 1fr;gap:40px}}
+@media (max-width:600px){.footer{padding:64px 24px 32px}.footer-content{grid-template-columns:1fr;gap:32px;margin-bottom:48px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:768px){.footer-content{grid-template-columns:1fr 1fr;gap:28px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:480px){.footer-content{grid-template-columns:1fr}}

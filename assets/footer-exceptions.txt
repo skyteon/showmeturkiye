@@ -1,0 +1,4 @@
+# Pages intentionally allowed to differ from the canonical footer (assets/footer.html + assets/footer.css).
+# One path per line, relative to the repo root, with the reason and who approved it, e.g.
+#   landing/special.html   # approved by Halil, 2026-11-01: campaign page without footer links
+# build-footer.py skips these pages when syncing and reports them as EXCEPTION in --check.

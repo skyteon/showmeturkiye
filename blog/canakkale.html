@@ -1245,51 +1245,15 @@ body.invert-nav .hamburger span { background: var(--cream); }
 }
 
 /* ═══════════ FOOTER ═══════════ */
-.footer {
-  background: var(--espresso);
-  color: var(--cream);
-  padding: 0 48px 40px;
-  border-top: 1px solid rgba(244,239,229,0.08);
-}
-.footer-newsletter {
-  border-bottom: 1px solid rgba(244,239,229,0.10);
-  padding: 96px 0;
-  max-width: 1180px; margin: 0 auto 56px;
-  text-align: center;
-  position: relative;
-}
-.footer-newsletter::before {
-  content: '';
-  position: absolute;
-  top: 20px; right: -100px;
-  width: 480px; height: 480px;
-  background: radial-gradient(circle, rgba(201,167,93,0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-.footer-newsletter-inner { max-width: 720px; margin: 0 auto; position: relative; }
-.footer-newsletter .eyebrow {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--gold);
-  display: inline-flex; align-items: center; gap: 14px;
-  margin-bottom: 22px;
-}
-.footer-newsletter .eyebrow::before, .footer-newsletter .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.55; }
-.footer-newsletter h3 {
-  font-family: var(--sans);
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 500; line-height: 1.06;
-  letter-spacing: -0.018em;
-  color: var(--cream);
-  margin-bottom: 16px;
-  text-wrap: balance;
-}
-.footer-newsletter h3 em { font-family: var(--serif); font-style: italic; color: var(--gold); font-weight: 500; }
-.footer-newsletter p {
-  font-size: 15px; line-height: 1.6;
-  color: rgba(244,239,229,0.72);
-  margin-bottom: 32px;
-  max-width: 48ch; margin-left: auto; margin-right: auto;
-}
+
+
+
+
+
+
+
+
+
 .newsletter-form {
   display: flex; gap: 0;
   background: rgba(244,239,229,0.06);
@@ -1318,45 +1282,17 @@ body.invert-nav .hamburger span { background: var(--cream); }
   white-space: nowrap;
 }
 .newsletter-form button:hover { background: var(--gold); gap: 12px; }
-.footer-grid {
-  max-width: 1180px; margin: 0 auto 56px;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 56px;
-}
-.footer-brand img { height: 44px; margin-bottom: 20px; }
-.footer-brand p { font-size: 13.5px; line-height: 1.7; color: rgba(244,239,229,0.72); max-width: 32ch; }
-.footer-social { display: flex; gap: 10px; margin-top: 22px; }
-.footer-social a {
-  width: 38px; height: 38px;
-  border-radius: 999px;
-  border: 1px solid rgba(244,239,229,0.18);
-  display: inline-flex; align-items: center; justify-content: center;
-  color: rgba(244,239,229,0.72);
-  transition: all 0.3s ease;
-}
-.footer-social a svg { width: 18px; height: 18px; }
-.footer-social a:hover { border-color: var(--cream); color: var(--cream); transform: translateY(-2px); }
-.footer-col h4 {
-  font-size: 10.5px; font-weight: 500; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 22px;
-}
-.footer-col a {
-  display: block;
-  font-size: 13.5px; color: rgba(244,239,229,0.72);
-  margin-bottom: 10px;
-  transition: color 0.25s ease, padding-left 0.25s ease;
-}
-.footer-col a:hover { color: var(--cream); padding-left: 4px; }
-.footer-bottom {
-  max-width: 1180px; margin: 0 auto;
-  padding-top: 28px;
-  border-top: 1px solid rgba(244,239,229,0.10);
-  font-size: 12px; color: rgba(244,239,229,0.50);
-  display: flex; justify-content: space-between; flex-wrap: wrap;
-  gap: 14px;
-}
+
+
+
+
+
+
+
+
+
+
+
 
 /* ═══════════ REVEAL ═══════════ */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
@@ -1374,8 +1310,8 @@ body.invert-nav .hamburger span { background: var(--cream); }
   .at-a-glance { border-right: none; padding-right: 0; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
   .toc { padding-top: 32px; }
   .side-rail { display: none; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .footer-brand { grid-column: span 2; }
+  
+  
   .related-grid { grid-template-columns: 1fr 1fr; }
   .related-card:nth-child(3) { display: none; }
 }
@@ -1434,14 +1370,14 @@ body.invert-nav .hamburger span { background: var(--cream); }
   .related-card:nth-child(3) { display: flex; }
   .related-head { flex-direction: column; align-items: flex-start; gap: 16px; }
 
-  .footer { padding: 0 20px 28px; }
-  .footer-newsletter { padding: 64px 0; margin-bottom: 36px; }
+  
+  
   .newsletter-form { flex-direction: column; border-radius: 16px; padding: 8px; gap: 6px; }
   .newsletter-form input { text-align: center; }
   .newsletter-form button { width: 100%; justify-content: center; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-brand { grid-column: auto; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; font-size: 11.5px; }
+  
+  
+  
 }
 
 @media (hover: none) {
@@ -2142,6 +2078,34 @@ var s=function(){b.setAttribute('aria-expanded',o.classList.contains('open')?'tr
 s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']});});
 })(document);
 </script>
+<style id="smt-footer-css">
+/* Show Me Türkiye canonical footer (single source of truth).
+   Copied from the homepage footer (deferred.css, 2026-10-02) with design
+   tokens resolved to literal values so it renders identically on every
+   template. build-footer.py embeds this file inline as
+   <style id="smt-footer-css"> in every page; do not edit the inline copies. */
+.footer{box-sizing:border-box;background:#0a0a0a;color:#F4EFE5;padding:96px 40px 40px;margin:0;border:0;font-size:16px;line-height:1.6;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;text-align:left}
+.footer *,.footer *::before,.footer *::after{box-sizing:border-box}
+.footer h3,.footer p{margin:0;padding:0}
+.footer a{text-decoration:none}
+.footer-content{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:64px;margin-bottom:72px}
+.footer-section h3{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:11px;font-weight:500;margin-bottom:24px;text-transform:uppercase;letter-spacing:0.22em;color:#C9A75D;line-height:1.6}
+.footer-section p{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:14px;font-weight:400;line-height:1.7;color:rgba(244,239,229,0.85);max-width:36ch;margin-top:8px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;font-weight:400;color:rgba(244,239,229,0.85);text-decoration:none;transition:color 0.25s ease;letter-spacing:0;line-height:1.4}
+.footer-links a:hover{color:#F4EFE5}
+.footer-logo{display:block;height:54px;width:auto;max-width:100%;margin-bottom:22px;filter:none;opacity:1}
+.footer-bottom{max-width:none;margin:0;text-align:center;padding-top:32px;border-top:1px solid rgba(244,239,229,0.10);color:rgba(244,239,229,0.55);font-size:12px;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0.05em;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{margin:0}
+.footer-bottom-credit{font-style:italic;color:#C9A75D;opacity:0.85}
+.footer-socials{display:flex;gap:12px;margin-top:20px}
+.footer-socials a{width:36px;height:36px;border-radius:999px;border:1px solid rgba(244,239,229,0.18);display:inline-flex;align-items:center;justify-content:center;color:rgba(244,239,229,0.85);transition:all 0.3s ease}
+.footer-socials a:hover{border-color:#F4EFE5;color:#F4EFE5;transform:translateY(-2px)}
+@media (max-width:900px){.footer-content{grid-template-columns:1fr 1fr;gap:40px}}
+@media (max-width:600px){.footer{padding:64px 24px 32px}.footer-content{grid-template-columns:1fr;gap:32px;margin-bottom:48px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:768px){.footer-content{grid-template-columns:1fr 1fr;gap:28px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:480px){.footer-content{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -2588,23 +2552,51 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 </section>
 
 </main>
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye">
-      <p>A complete travel journal for Türkiye. Curated routes, city guides, and stories from across the country.</p>
-      <div class="footer-social">
-        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+<footer class="footer reveal-up">
+  <div class="footer-content">
+    <div class="footer-section">
+      <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo" width="160" height="48">
+      <p>A complete travel guide to Türkiye. Curated routes, city guides, and stories from across the country.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
         <a href="https://www.facebook.com/showmeturkey/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
-    <div class="footer-col"><h4>Explore</h4><a href="../explore">Cities</a><a href="../routes">Routes</a><a href="../blog">Journal</a><a href="../projects">Films</a></div>
-    <div class="footer-col"><h4>About</h4><a href="../about">About us</a><a href="../contact">Contact</a><a href="../press">Press</a></div>
-    <div class="footer-col"><h4>Legal</h4><a href="../privacy">Privacy</a><a href="../terms">Terms</a><a href="../cookies">Cookies</a></div>
+
+    <div class="footer-section">
+      <h3>Explore</h3>
+      <div class="footer-links">
+        <a href="../explore">Cities</a>
+        <a href="../routes">Routes</a>
+        <a href="../blog">Journal</a>
+        <a href="../projects">Films</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>About</h3>
+      <div class="footer-links">
+        <a href="../about">About us</a>
+        <a href="../contact">Contact</a>
+        <a href="../press">Press</a>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <h3>Legal</h3>
+      <div class="footer-links">
+        <a href="../privacy">Privacy</a>
+        <a href="../terms">Terms</a>
+        <a href="../cookies">Cookies</a>
+      </div>
+    </div>
   </div>
+
   <div class="footer-bottom">
-    <span>© <span id="footerYear">2026</span> Show Me Türkiye · Made in Türkiye.</span>
-    <span>by the Show Me Türkiye Team</span>
+    <p>&copy; <span id="footerYear">2026</span> Show Me Türkiye. Made in Türkiye.</p>
+    <p class="footer-bottom-credit">by Show Me Türkiye Team</p>
   </div>
 </footer>
 

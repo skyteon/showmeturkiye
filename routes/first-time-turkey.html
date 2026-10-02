@@ -2131,57 +2131,18 @@ em, i {
 /* ═══════════════════════════════════════════════════════════
    FOOTER
    ═══════════════════════════════════════════════════════════ */
-.footer {
-  background: var(--espresso);
-  color: var(--cream);
-  padding: 96px 48px 40px;
-}
-.footer-content {
-  max-width: 1320px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 64px;
-  margin-bottom: 72px;
-}
-.footer-section h3 {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 500;
-  margin-bottom: 24px;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: rgba(244,239,229,0.65);
-}
-.footer-section p {
-  font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.7;
-  color: rgba(244,239,229,0.65);
-  margin-bottom: 24px;
-}
-.footer-logo { height: 44px; margin-bottom: 18px; filter: brightness(0) invert(1) opacity(0.9); }
-.footer-links { display: flex; flex-direction: column; gap: 12px; }
-.footer-links a { font-family: var(--sans); font-size: 13px; color: rgba(244,239,229,0.65); transition: color .3s; }
-.footer-links a:hover { color: var(--cream); }
-.footer-socials { display: flex; gap: 14px; }
-.footer-socials a { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(244,239,229,0.18); border-radius: 50%; color: rgba(244,239,229,0.65); transition: all .3s; }
-.footer-socials a:hover { color: var(--text); background: var(--cream); border-color: var(--cream); }
-.footer-bottom {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding-top: 32px;
-  border-top: 1px solid rgba(244,239,229,0.10);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 14px;
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: rgba(244,239,229,0.45);
-  text-transform: uppercase;
-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ═══════════════════════════════════════════════════════════
    FLOATING MOBILE CTA
@@ -2443,13 +2404,13 @@ em, i {
   .r-cost-cell:nth-last-child(-n+4):not(:nth-last-child(-n+2)) { border-bottom: 1px solid rgba(42,20,16,0.08); }
   .r-cost-total { flex-direction: column; align-items: flex-start; gap: 8px; padding: 22px 24px; }
   .r-compare-grid { grid-template-columns: 1fr; }
-  .footer { padding: 60px 24px 32px; }
-  .footer-content { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  
+  
   .r-fab { display: flex; }
   body { padding-bottom: 80px; }
 }
 @media (max-width: 480px) {
-  .footer-content { grid-template-columns: 1fr; }
+  
   .r-hero h1 { font-size: 44px; }
   .r-hero-tagline { font-size: 16px; }
   .site-nav a img { height: 64px; }
@@ -2506,6 +2467,34 @@ var s=function(){b.setAttribute('aria-expanded',o.classList.contains('open')?'tr
 s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']});});
 })(document);
 </script>
+<style id="smt-footer-css">
+/* Show Me Türkiye canonical footer (single source of truth).
+   Copied from the homepage footer (deferred.css, 2026-10-02) with design
+   tokens resolved to literal values so it renders identically on every
+   template. build-footer.py embeds this file inline as
+   <style id="smt-footer-css"> in every page; do not edit the inline copies. */
+.footer{box-sizing:border-box;background:#0a0a0a;color:#F4EFE5;padding:96px 40px 40px;margin:0;border:0;font-size:16px;line-height:1.6;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;text-align:left}
+.footer *,.footer *::before,.footer *::after{box-sizing:border-box}
+.footer h3,.footer p{margin:0;padding:0}
+.footer a{text-decoration:none}
+.footer-content{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:64px;margin-bottom:72px}
+.footer-section h3{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:11px;font-weight:500;margin-bottom:24px;text-transform:uppercase;letter-spacing:0.22em;color:#C9A75D;line-height:1.6}
+.footer-section p{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-style:normal;font-size:14px;font-weight:400;line-height:1.7;color:rgba(244,239,229,0.85);max-width:36ch;margin-top:8px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:14px;font-weight:400;color:rgba(244,239,229,0.85);text-decoration:none;transition:color 0.25s ease;letter-spacing:0;line-height:1.4}
+.footer-links a:hover{color:#F4EFE5}
+.footer-logo{display:block;height:54px;width:auto;max-width:100%;margin-bottom:22px;filter:none;opacity:1}
+.footer-bottom{max-width:none;margin:0;text-align:center;padding-top:32px;border-top:1px solid rgba(244,239,229,0.10);color:rgba(244,239,229,0.55);font-size:12px;font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0.05em;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{margin:0}
+.footer-bottom-credit{font-style:italic;color:#C9A75D;opacity:0.85}
+.footer-socials{display:flex;gap:12px;margin-top:20px}
+.footer-socials a{width:36px;height:36px;border-radius:999px;border:1px solid rgba(244,239,229,0.18);display:inline-flex;align-items:center;justify-content:center;color:rgba(244,239,229,0.85);transition:all 0.3s ease}
+.footer-socials a:hover{border-color:#F4EFE5;color:#F4EFE5;transform:translateY(-2px)}
+@media (max-width:900px){.footer-content{grid-template-columns:1fr 1fr;gap:40px}}
+@media (max-width:600px){.footer{padding:64px 24px 32px}.footer-content{grid-template-columns:1fr;gap:32px;margin-bottom:48px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:768px){.footer-content{grid-template-columns:1fr 1fr;gap:28px}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media (max-width:480px){.footer-content{grid-template-columns:1fr}}
+</style>
 </head>
 <body data-affiliates="on">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -3172,16 +3161,19 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 
 <!-- ═══ FOOTER ═══ -->
 </main>
-<footer class="footer">
+<footer class="footer reveal-up">
   <div class="footer-content">
     <div class="footer-section">
       <img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Turkiye" class="footer-logo" width="160" height="48">
       <p>A complete travel guide to Türkiye. Curated routes, city guides, and stories from across the country.</p>
       <div class="footer-socials">
-        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://instagram.com/showmeturkiye" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
         <a href="https://www.facebook.com/showmeturkey/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
       </div>
     </div>
+
     <div class="footer-section">
       <h3>Explore</h3>
       <div class="footer-links">
@@ -3191,6 +3183,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <a href="../projects">Films</a>
       </div>
     </div>
+
     <div class="footer-section">
       <h3>About</h3>
       <div class="footer-links">
@@ -3199,6 +3192,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <a href="../press">Press</a>
       </div>
     </div>
+
     <div class="footer-section">
       <h3>Legal</h3>
       <div class="footer-links">
@@ -3208,9 +3202,10 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       </div>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <span>© <span id="footerYear">2026</span> Show Me Türkiye · Made in Türkiye</span>
-    <span>by Show Me Türkiye Team</span>
+    <p>&copy; <span id="footerYear">2026</span> Show Me Türkiye. Made in Türkiye.</p>
+    <p class="footer-bottom-credit">by Show Me Türkiye Team</p>
   </div>
 </footer>
 

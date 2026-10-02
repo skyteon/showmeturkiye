@@ -7,6 +7,10 @@ on:
       - '**.html'
       - 'build-search.py'
       - 'build-consent.py'
+      - 'build-footer.py'
+      - 'assets/footer.html'
+      - 'assets/footer.css'
+      - 'assets/footer-exceptions.txt'
   workflow_dispatch:
 
 permissions:
@@ -29,6 +33,12 @@ jobs:
 
       - name: Inject cookie consent banner
         run: python build-consent.py
+
+      - name: Sync canonical footer
+        run: python build-footer.py
+
+      - name: Verify footer consistency
+        run: python build-footer.py --check
 
       - name: Commit updated files
         run: |
