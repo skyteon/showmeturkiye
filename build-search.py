@@ -17,12 +17,13 @@ import re, json, html as ihtml, sys
 from pathlib import Path
 
 SKIP = {"cookies","privacy","terms","contact","press","about",
-        "first-guide","blog","explore","projects","index"}
-FOLDER_CATEGORY = {"cities":"City","routes":"Route","blog":"Journal"}
+        "blog","explore","projects","index"}
+FOLDER_CATEGORY = {"cities":"City","routes":"Route","blog":"Journal","trails":"Trail"}
+ROOT_PAGES = {"first-guide":"Guide"}   # root-level pages that belong in search (not in a scanned folder)
 ROUTE_SLUGS = {"aegean-coast-escape","black-sea-highlands","eastern-heritage",
     "first-time-turkey","grand-tour","photographers-turkey"}
 JOURNAL_SLUGS = {"aladaglar","top-10-places-to-visit-in-Turkey","when-is-the-best-time-to-visit-turkiye"}
-META_LABEL = {"Route":"Itinerary","City":"City guide","Journal":"Journal"}
+META_LABEL = {"Route":"Itinerary","City":"City guide","Journal":"Journal","Trail":"Trail guide","Guide":"Planning guide"}
 STOPWORDS = {"discover","turkey","turkiye","türkiye","this","that","with","from","your","their",
     "where","which","these","about","into","over","under","best","most","also","they","what",
     "when","will","here","there","some","very","just","travel","guide","things","place","places","visit"}
@@ -55,6 +56,9 @@ def discover():
             for p in sorted((root/folder).glob("*.html")):
                 if p.stem in SKIP: continue
                 yield p,p.stem,cat,f"/{folder}/{p.stem}"
+        for stem,cat in ROOT_PAGES.items():
+            p=root/f"{stem}.html"
+            if p.is_file(): yield p,stem,cat,f"/{stem}"
     else:
         for p in sorted(root.glob("*.html")):
             if p.stem in SKIP: continue
