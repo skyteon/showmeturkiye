@@ -1827,14 +1827,13 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         </div>
 
         <div class="lwp-listwrap" id="lwp-listwrap" aria-label="All sections">
-          <div class="lwp-listhead"><div class="lwp-k lwp-listk" id="lwp-listk">Choose a section</div><button type="button" class="lwp-listx" id="lwp-listx" aria-label="Close section list">×</button></div>
+          <div class="lwp-listhead"><div class="lwp-k lwp-listk" id="lwp-listk">23 planning sections</div></div>
           <div class="lwp-list" id="lwp-list" role="list" aria-label="The 23 planning sections"></div>
           <button type="button" class="lwp-viewall" id="lwp-viewall" aria-expanded="false" aria-controls="lwp-list">View all 23 sections</button>
         </div>
 
       </div>
     </aside>
-    <div class="lwp-scrim" id="lwp-scrim" hidden></div>
     </div>
     <details class="lwx-safe"><summary>Planning map <span aria-hidden="true">·</span> Trail conditions can change <span class="lwx-i" aria-hidden="true">i</span></summary><p>Use this map for planning, not as your only navigation source. Trail conditions and access can change. Show Me Türkiye is an independent travel publication and does not maintain the Lycian Way.</p></details>
   </div>
@@ -2600,18 +2599,19 @@ function regFull(r){return r.mains.every(function(s){return done[s.id];});}
 function lastDate(){var l='';MAINS.forEach(function(s){var d=done[s.id];if(d&&d>l)l=d;});return l;}
 
 /* ── SCROLL ─────────────────────────────────────── */
+function jumpY(y){try{window.scrollTo({top:y,left:0,behavior:'instant'});}catch(e){window.scrollTo(0,y);}}
 function scrollToY(y){
   var target=Math.max(0,Math.round(y)),start=window.pageYOffset||document.documentElement.scrollTop||0,dist=target-start;
   if(Math.abs(dist)<2)return;
   if(raf)cancelAnimationFrame(raf);
   var reduce=false;try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
-  if(reduce||!window.requestAnimationFrame){window.scrollTo(0,target);return;}
+  if(reduce||!window.requestAnimationFrame){jumpY(target);return;}
   var dur=Math.min(620,Math.max(260,Math.abs(dist)*0.5)),t0=null;
   function step(ts){
     if(t0===null)t0=ts;
     var p=Math.min(1,(ts-t0)/dur),e=p<0.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
-    window.scrollTo(0,start+dist*e);
-    if(p<1)raf=requestAnimationFrame(step);else{raf=null;window.scrollTo(0,target);}
+    jumpY(start+dist*e);
+    if(p<1)raf=requestAnimationFrame(step);else{raf=null;jumpY(target);}
   }
   raf=requestAnimationFrame(step);
 }
@@ -2773,7 +2773,6 @@ function setMode(m){
   ['whole','sec','follow'].forEach(function(k){var v=$('#lwp-'+k);if(v)v.hidden=(k!==V[m]);});
   var me=$('#lwm-me');if(me)me.classList.toggle('lw-hide',m!=='follow');
   var chip=$('#lwp-mapchip');if(chip)chip.classList.toggle('lw-hide',m!=='whole');
-  var lk=$('#lwp-listk');if(lk)lk.textContent=m==='whole'?'Choose a section':'All sections';
   if(map){endMarks.forEach(function(mk){if(m==='whole')mk.addTo(map);else mk.remove();});if(m==='whole')declutterNums();else numMarks.forEach(function(mk){mk.remove();});}
   if(P&&m==='follow')P.classList.remove('is-list');
   if(map){try{map.invalidateSize(false);}catch(e){}setTimeout(function(){try{map.invalidateSize();}catch(e){}},80);}
@@ -3024,7 +3023,7 @@ function initPlanner(){
     var b=e.target.closest('[data-lwp-i]');if(!b)return;
     select(+b.getAttribute('data-lwp-i'),{scroll:false});
     /* Phones: land with the whole map just under the site bar, detail directly below it. */
-    if(smallScreen()&&!isFull&&mode==='section'&&!PL.classList.contains('is-list')){var mw=$('#lw-mapwrap'),top=mw.getBoundingClientRect().top;if(Math.abs(top-60)>8)scrollToEl(mw,60);}
+    if(smallScreen()&&!isFull&&mode==='section'){var mw=$('#lw-mapwrap'),top=mw.getBoundingClientRect().top;if(Math.abs(top-60)>8)scrollToEl(mw,60);}
   });
   $('#lwp-notes').addEventListener('click',function(){var bd=$('#lwp-notes-body'),o=bd.hidden;bd.hidden=!o;this.setAttribute('aria-expanded',o?'true':'false');this.querySelector('.lwp-pm').textContent=o?'\u2013':'+';});
   var on=function(id,fn){var e=document.getElementById(id);if(e)e.addEventListener('click',fn);};
@@ -3033,30 +3032,8 @@ function initPlanner(){
   on('lwp-ask-yes',function(){var p=pendingSel;stopFollow(true);if(p)select(p.i,{scroll:false});});
   on('lwp-ask-no',function(){pendingSel=null;$('#lwp-ask').classList.add('lw-hide');try{$('#lwp-f-centre').focus({preventScroll:true});}catch(e){}});
   on('lwp-grip',function(){var P=$('#lw-planner'),c=P.classList.toggle('is-collapsed');this.setAttribute('aria-expanded',c?'false':'true');this.querySelector('span').textContent=c?'Show details':'Hide details';setTimeout(function(){try{map.invalidateSize();}catch(e){}},60);});
-  var PL=$('#lw-planner'),LW=$('#lwp-listwrap'),SC=$('#lwp-scrim'),opener=null;
-  function openList(btn){
-    opener=btn;PL.classList.add('is-list');var a=$('#lwp-all');if(a)a.setAttribute('aria-expanded','true');
-    LW.setAttribute('role','dialog');LW.setAttribute('aria-modal','true');
-    if(window.innerWidth>=1024){opener=null;PL.classList.remove('is-list');goWhole();var c1=LW.querySelector('.lwp-it[aria-current="true"]')||LW.querySelector('.lwp-it');setTimeout(function(){try{c1.focus({preventScroll:true});}catch(e){}},40);return;}
-    SC.hidden=false;document.documentElement.classList.add('lwp-lock');
-    var lk=$('#lwp-listk');if(lk)lk.textContent='All sections';
-    var c=LW.querySelector('.lwp-it[aria-current="true"]')||LW.querySelector('.lwp-it');
-    setTimeout(function(){try{c.focus({preventScroll:true});var y=c.offsetTop-LW.clientHeight/2;LW.scrollTop=Math.max(0,y);}catch(e){}},40);
-  }
-  function closeList(picked){
-    if(!PL.classList.contains('is-list'))return;
-    PL.classList.remove('is-list');SC.hidden=true;document.documentElement.classList.remove('lwp-lock');
-    LW.removeAttribute('role');LW.removeAttribute('aria-modal');var a=$('#lwp-all');if(a)a.setAttribute('aria-expanded','false');
-    var to=picked?$('#lwp-s-title'):opener;opener=null;
-    if(to){if(picked)to.setAttribute('tabindex','-1');try{to.focus({preventScroll:true});}catch(e){}}
-    if(picked&&!inView($('#lw-mapwrap'))&&!isFull)scrollToEl($('#lw-mapwrap'),64);
-  }
-  on('lwp-all',function(){openList(this);});
+  var PL=$('#lw-planner');
   on('lwp-viewall',function(){var b=this;keepPlace('#lwp-viewall',function(){var o=!PL.classList.contains('is-expanded');PL.classList.toggle('is-expanded',o);b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Collapse sections':'View all 23 sections';});});
-  on('lwp-listx',function(){closeList(false);});
-  on('lwp-scrim',function(){closeList(false);});
-  $('#lwp-list').addEventListener('click',function(e){if(e.target.closest('[data-lwp-wk]'))return;if(e.target.closest('[data-lwp-i]')&&mode!=='follow')closeList(true);});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&PL.classList.contains('is-list')){e.stopPropagation();closeList(false);}},true);
   on('lwp-consent-ok',function(){$('#lwp-consent').hidden=true;$('#lwm-follow').setAttribute('aria-expanded','false');startFollow();});
   on('lwp-consent-no',function(){$('#lwp-consent').hidden=true;var f=$('#lwm-follow');f.setAttribute('aria-expanded','false');try{f.focus({preventScroll:true});}catch(e){}});
   on('lwm-keybtn',function(){var k=$('#lwm-key'),o=k.classList.toggle('is-open');this.setAttribute('aria-expanded',o?'true':'false');});
@@ -4421,7 +4398,7 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
    ════════════════════════════════════════════════════════════════════ */
 
 /* ── 1. Base ─────────────────────────────────────────────────────────── */
-html{scroll-padding-top:72px;}
+html{scroll-padding-top:72px;scroll-behavior:auto;}
 html,body{overflow-x:hidden;}
 .lw-sec{--gold:#775E28;}
 .lw-sec .lw-hcard,.lw-sec .lw-btn--dark,.lw-sec .lw-btn--on{--gold:#C9A75D;}
@@ -4536,7 +4513,6 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
   #lw-planner .lw-mapwrap{height:100%;}
   #lw-planner #lw-map,#lw-planner[data-mode] #lw-map{height:100%;min-height:0;max-height:none;}
   #lw-planner .lwp-panel{height:100%;border-left:1px solid rgba(42,20,16,.12);overflow-y:auto;overscroll-behavior:contain;}
-  #lw-planner.is-list .lwp-panel{overflow:hidden;}
 }
 @media (max-width:1023px) and (orientation:landscape) and (max-height:500px){#lw-planner #lw-map,#lw-planner[data-mode] #lw-map{height:72vh;height:72svh;min-height:220px;}}
 
@@ -4704,18 +4680,18 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
 
 /* ── 9. Section list: compact rows; bottom sheet below 1024px ─────────── */
 .lwp-listwrap{display:none;}
-#lw-planner.is-list .lwp-listwrap,#lw-planner[data-mode="whole"] .lwp-listwrap{display:block;}
-#lw-planner[data-mode="whole"]:not(.is-list) .lwp-listhead{display:none;}
+#lw-planner[data-mode="whole"] .lwp-listwrap{display:block;}
+#lw-planner[data-mode="whole"] .lwp-listhead{display:none;}
 #lw-planner[data-mode="follow"] .lwp-listwrap{display:none!important;}
 .lwp-viewall{display:none;}
 @media (max-width:1023px){
-  #lw-planner[data-mode="whole"]:not(.is-list):not(.is-expanded) .lwp-list .is-more{display:none;}
-  #lw-planner[data-mode="whole"]:not(.is-list) .lwp-viewall{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:46px;padding:0;background:none;border:0;border-top:1px solid rgba(42,20,16,.12);font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;}
-  #lw-planner[data-mode="whole"]:not(.is-list) .lwp-viewall::after{content:'\2193';color:var(--brown);}
-  #lw-planner.is-expanded[data-mode="whole"] .lwp-viewall::after{content:'\2191';}
+  #lw-planner[data-mode="section"] .lwp-listwrap{display:block;margin-top:14px;padding-top:4px;border-top:1px solid rgba(42,20,16,.14);}
+  #lw-planner:not(.is-expanded) .lwp-list .is-more{display:none;}
+  #lw-planner:not([data-mode="follow"]) .lwp-viewall{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:46px;padding:0;background:none;border:0;border-top:1px solid rgba(42,20,16,.12);font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;}
+  #lw-planner:not([data-mode="follow"]) .lwp-viewall::after{content:'\2193';color:var(--brown);}
+  #lw-planner.is-expanded .lwp-viewall::after{content:'\2191';}
 }
 .lwp-listhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0;background:var(--white);border-bottom:1px solid rgba(42,20,16,.10);position:sticky;top:0;z-index:1;}
-.lwp-listx{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:0;font-size:26px;font-weight:300;line-height:1;color:var(--text);cursor:pointer;}
 .lwp-list{display:flex;flex-direction:column;margin-top:2px;}
 .lwp-reg{padding:10px 0 4px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);}
 .lwp-li{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:stretch;border-top:1px solid rgba(42,20,16,.08);}
@@ -4736,12 +4712,6 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
 .lwp-li:has(.lwp-it[aria-current="true"]) .lwp-wk i{border-color:rgba(250,245,234,.6);}
 .lwp-li:has(.lwp-it[aria-current="true"]) .lwp-wk[aria-pressed="true"] i{background:#C9A75D;border-color:#C9A75D;}
 .lwp-li:has(.lwp-it[aria-current="true"]) .lwp-wk[aria-pressed="true"] i::after{border-color:#2A1410;}
-@media (min-width:1024px){#lw-planner.is-list .lwp-listwrap{position:absolute;inset:0;z-index:5;padding:0 22px 22px;background:var(--white);overflow-y:auto;overscroll-behavior:contain;}}
-@media (max-width:1023px){#lw-planner.is-list .lwp-listwrap{position:fixed;left:0;right:0;bottom:0;z-index:2147483003;max-height:82vh;max-height:82svh;padding:0 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--white);border-top:1px solid rgba(42,20,16,.16);box-shadow:0 -18px 40px -20px rgba(42,20,16,.55);overflow-y:auto;overscroll-behavior:contain;}}
-.lwp-scrim{position:fixed;inset:0;z-index:2147483002;background:rgba(20,9,7,.45);}
-.lwp-scrim[hidden]{display:none;}
-@media (min-width:1024px){.lwp-scrim{display:none!important;}}
-html.lwp-lock{overflow:hidden;}
 
 /* ── 10. Follow mode: map, distance, status, two actions ──────────────── */
 .lwp-fhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px;}
@@ -4780,7 +4750,7 @@ html.lwm-lock,html.lwm-lock body{overflow:hidden!important;}
   #lw-planner.is-full .lwp-body{padding-top:4px;}
   #lw-planner.is-full .lwp-grip{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:44px;padding:0;background:var(--white);border:0;border-bottom:1px solid rgba(42,20,16,.08);font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;}
   #lw-planner.is-full .lwp-grip i{width:36px;height:4px;border-radius:2px;background:rgba(42,20,16,.28);}
-  #lw-planner.is-full.is-collapsed :is(.lwp-mx,.lwp-acts,.lwp-walk,.lwp-info,.lw-caw,.lwp-pn,.lwp-fine,.lwp-consent){display:none!important;}
+  #lw-planner.is-full.is-collapsed :is(.lwp-mx,.lwp-acts,.lwp-walk,.lwp-info,.lw-caw,.lwp-pn,.lwp-fine,.lwp-consent,.lwp-listwrap){display:none!important;}
 }
 
 /* ── 12. Planning-map disclaimer (collapsed) ──────────────────────────── */
