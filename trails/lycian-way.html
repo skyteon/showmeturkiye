@@ -1729,7 +1729,6 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <button type="button" role="radio" data-lwm-layer="paper">Topo</button>
         <button type="button" role="switch" id="lwm-trails" class="lwm-sw" aria-checked="false">Trail network</button>
       </div>
-      <div class="lwm-gesture" id="lwm-gesture" aria-hidden="true"><span>Use two fingers to move the map</span></div>
       <div class="lwm-key" id="lwm-key"><button type="button" class="lwm-keybtn" id="lwm-keybtn" aria-expanded="false" aria-controls="lw-maplegend"><span>Map key</span></button>
         <div id="lw-maplegend">
           <span><i class="lwp-lg-sel"></i>Selected section</span>
@@ -1830,7 +1829,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <div class="lwp-listwrap" id="lwp-listwrap" aria-label="All sections">
           <div class="lwp-listhead"><div class="lwp-k lwp-listk" id="lwp-listk">Choose a section</div><button type="button" class="lwp-listx" id="lwp-listx" aria-label="Close section list">×</button></div>
           <div class="lwp-list" id="lwp-list" role="list" aria-label="The 23 planning sections"></div>
-          <button type="button" class="lwp-viewall" id="lwp-viewall" aria-haspopup="dialog" aria-controls="lwp-listwrap">View all 23 sections</button>
+          <button type="button" class="lwp-viewall" id="lwp-viewall" aria-expanded="false" aria-controls="lwp-list">View all 23 sections</button>
         </div>
 
       </div>
@@ -2777,7 +2776,7 @@ function setMode(m){
   var lk=$('#lwp-listk');if(lk)lk.textContent=m==='whole'?'Choose a section':'All sections';
   if(map){endMarks.forEach(function(mk){if(m==='whole')mk.addTo(map);else mk.remove();});if(m==='whole')declutterNums();else numMarks.forEach(function(mk){mk.remove();});}
   if(P&&m==='follow')P.classList.remove('is-list');
-  if(map)setTimeout(function(){try{map.invalidateSize();}catch(e){}},80);
+  if(map){try{map.invalidateSize(false);}catch(e){}setTimeout(function(){try{map.invalidateSize();}catch(e){}},80);}
 }
 function renderList(){
   var host=$('#lwp-list');if(!host)return;var h='';
@@ -2830,8 +2829,8 @@ function renderPlanner(){
 }
 function fitSection(i,instant){
   if(!map)return;var s=ALL[i],ln=s&&lines[s.id];if(!ln||!SECGEOM[s.key])return;
-  var b=ln.getBounds(),p=smallScreen()?40:64;
-  try{if(instant||noMotion())map.fitBounds(b,{padding:[p,p],maxZoom:14,animate:false});else map.flyToBounds(b,{padding:[p,p],maxZoom:14,duration:.8});}catch(e){}
+  var b=ln.getBounds(),sm=smallScreen(),o=sm?{paddingTopLeft:[28,28],paddingBottomRight:[64,48],maxZoom:14}:{padding:[64,64],maxZoom:14};
+  try{if(instant||noMotion()){o.animate=false;map.fitBounds(b,o);}else{o.duration=.8;map.flyToBounds(b,o);}}catch(e){}
 }
 function goWhole(push){
   if(mode==='follow')stopFollow(true);
@@ -3022,7 +3021,10 @@ function initPlanner(){
   $('#lwp-list').addEventListener('click',function(e){
     var wk=e.target.closest('[data-lwp-wk]');
     if(wk){e.stopPropagation();var id=wk.getAttribute('data-lwp-wk');toggle(id);var again=$('#lwp-list [data-lwp-wk="'+id+'"]');if(again)try{again.focus({preventScroll:true});}catch(_){}return;}
-    var b=e.target.closest('[data-lwp-i]');if(b)select(+b.getAttribute('data-lwp-i'),{scroll:false});
+    var b=e.target.closest('[data-lwp-i]');if(!b)return;
+    select(+b.getAttribute('data-lwp-i'),{scroll:false});
+    /* Phones: land with the whole map just under the site bar, detail directly below it. */
+    if(smallScreen()&&!isFull&&mode==='section'&&!PL.classList.contains('is-list')){var mw=$('#lw-mapwrap'),top=mw.getBoundingClientRect().top;if(Math.abs(top-60)>8)scrollToEl(mw,60);}
   });
   $('#lwp-notes').addEventListener('click',function(){var bd=$('#lwp-notes-body'),o=bd.hidden;bd.hidden=!o;this.setAttribute('aria-expanded',o?'true':'false');this.querySelector('.lwp-pm').textContent=o?'\u2013':'+';});
   var on=function(id,fn){var e=document.getElementById(id);if(e)e.addEventListener('click',fn);};
@@ -3050,7 +3052,7 @@ function initPlanner(){
     if(picked&&!inView($('#lw-mapwrap'))&&!isFull)scrollToEl($('#lw-mapwrap'),64);
   }
   on('lwp-all',function(){openList(this);});
-  on('lwp-viewall',function(){openList(this);});
+  on('lwp-viewall',function(){var b=this;keepPlace('#lwp-viewall',function(){var o=!PL.classList.contains('is-expanded');PL.classList.toggle('is-expanded',o);b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Collapse sections':'View all 23 sections';});});
   on('lwp-listx',function(){closeList(false);});
   on('lwp-scrim',function(){closeList(false);});
   $('#lwp-list').addEventListener('click',function(e){if(e.target.closest('[data-lwp-wk]'))return;if(e.target.closest('[data-lwp-i]')&&mode!=='follow')closeList(true);});
@@ -3466,7 +3468,7 @@ function setLayer(k){
 }
 function applyTouch(){
   if(!map)return;
-  if(!isTouch()||isFull)map.dragging.enable();else map.dragging.disable();
+  map.dragging.enable();
   if(isFull)map.scrollWheelZoom.enable();else map.scrollWheelZoom.disable();
 }
 function setFull(on){
@@ -3502,7 +3504,7 @@ function initMaps(){
   var el=$('#lw-map');
   if(el&&!map){
     map=L.map(el,{scrollWheelZoom:false,zoomControl:false,attributionControl:true,
-      dragging:!touch,tap:true,touchZoom:true,doubleClickZoom:true,zoomSnap:0.5});
+      dragging:true,tap:true,touchZoom:true,doubleClickZoom:true,zoomSnap:0.5});
     baseLayer=tiles(map,layerKey);
     gapLayer=L.layerGroup();
     ALL.forEach(function(s){
@@ -3575,15 +3577,6 @@ function initMaps(){
     map.on('dragstart',function(){ if(mode==='follow'&&followPos){followPos=false;centreBtn();} });
     map.on('click',function(){ if(!isTouch())map.scrollWheelZoom.enable(); });
     map.on('mouseout',function(){ if(!isFull)map.scrollWheelZoom.disable(); });
-    if(touch){
-      var gh=document.getElementById('lwm-gesture'),ght=null,ghN=0;
-      el.addEventListener('touchmove',function(e){
-        if(isFull||!e.touches||e.touches.length!==1||!gh)return;
-        if(!gh.classList.contains('is-on')){if(ghN>=3)return;ghN++;}
-        gh.classList.add('is-on');clearTimeout(ght);
-        ght=setTimeout(function(){gh.classList.remove('is-on');},1200);
-      },{passive:true});
-    }
     window.addEventListener('resize',function(){try{map.invalidateSize();}catch(e){}});
     syncLayerUI();
     syncTrails();
@@ -4529,7 +4522,7 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
 #lw-planner{margin-top:12px;display:grid;grid-template-columns:minmax(0,1fr);border:1px solid rgba(42,20,16,.14);background:var(--white);}
 #lw-planner .lw-mapwrap{position:relative;margin-top:0;border:0;min-width:0;background:var(--cream2);}
 #lw-planner #lw-map{width:100%;height:44vh;height:44svh;min-height:260px;max-height:520px;}
-#lw-planner[data-mode="section"] #lw-map{height:42vh;height:42svh;}
+#lw-planner[data-mode="section"] #lw-map{height:44vh;height:44svh;}
 #lw-planner[data-mode="follow"] #lw-map{height:58vh;height:58svh;min-height:300px;max-height:none;}
 .lwp-panel{position:relative;min-width:0;background:var(--white);display:flex;flex-direction:column;font-family:'Poppins',sans-serif;}
 .lwp-body{display:flex;flex-direction:column;padding:14px 16px 16px;}
@@ -4716,9 +4709,10 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
 #lw-planner[data-mode="follow"] .lwp-listwrap{display:none!important;}
 .lwp-viewall{display:none;}
 @media (max-width:1023px){
-  #lw-planner[data-mode="whole"]:not(.is-list) .lwp-list .is-more{display:none;}
+  #lw-planner[data-mode="whole"]:not(.is-list):not(.is-expanded) .lwp-list .is-more{display:none;}
   #lw-planner[data-mode="whole"]:not(.is-list) .lwp-viewall{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:46px;padding:0;background:none;border:0;border-top:1px solid rgba(42,20,16,.12);font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;}
-  #lw-planner[data-mode="whole"]:not(.is-list) .lwp-viewall::after{content:'\2192';color:var(--brown);}
+  #lw-planner[data-mode="whole"]:not(.is-list) .lwp-viewall::after{content:'\2193';color:var(--brown);}
+  #lw-planner.is-expanded[data-mode="whole"] .lwp-viewall::after{content:'\2191';}
 }
 .lwp-listhead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0;background:var(--white);border-bottom:1px solid rgba(42,20,16,.10);position:sticky;top:0;z-index:1;}
 .lwp-listx{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-right:-10px;padding:0;background:none;border:0;font-size:26px;font-weight:300;line-height:1;color:var(--text);cursor:pointer;}
