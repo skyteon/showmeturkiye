@@ -1,0 +1,11 @@
+// Cloudflare Worker "showmeturkiye" (static assets only, GitHub-connected builds).
+// Unmatched URLs serve /404.html with HTTP 404 instead of an empty response,
+// which iPhone Safari would otherwise offer as a .txt download.
+{
+  "name": "showmeturkiye",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}
