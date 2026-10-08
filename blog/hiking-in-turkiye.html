@@ -2313,6 +2313,123 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
     <p>If you would like the same coast with shorter walks, <a href="./kemer">Kemer</a> makes a good base for Olympos, Phaselis and the slopes of Mount Tahtalı.</p>
   </div>
 </section>
+<section id="lycianHome" aria-label="Lycian Way trail guide">
+<style>
+#lycianHome{--lh-ink:var(--text,#2A1410);--lh-muted:var(--text-muted,#5C3530);--lh-accent:#C0392B;--lh-gold:var(--gold,#C9A75D);--lh-surface:var(--cream2,#FAF5EA);--lh-cream:var(--cream,#F4EFE5);--lh-serif:var(--serif,'Playfair Display',Georgia,serif);--lh-sans:var(--sans,'Poppins',system-ui,sans-serif);display:block;padding:96px 0 0;margin:72px 0 0;border-top:1px solid rgba(42,20,16,0.10);position:relative}
+#lycianHome .lh-wrap{max-width:1200px;margin:0 auto}
+#lycianHome .lh-head{text-align:center;max-width:660px;margin:0 auto 56px}
+#lycianHome .lh-eyebrow{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--lh-muted);margin-bottom:24px}
+#lycianHome h2{font-family:var(--lh-serif);font-size:clamp(38px,4.4vw,64px);font-weight:400;letter-spacing:-0.005em;line-height:1.06;color:var(--lh-ink);margin:0 0 22px}
+#lycianHome h2 em{font-style:italic;color:var(--lh-accent)}
+#lycianHome .lh-intro{font-family:var(--lh-sans);font-size:17px;font-weight:400;line-height:1.65;color:var(--lh-muted);margin:0 auto;max-width:560px;text-wrap:pretty}
+#lycianHome .lh-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:stretch}
+#lycianHome .lh-photo{position:relative;margin:0;border-radius:18px;overflow:hidden;min-height:520px;background:#1C1814;display:block;color:#FAF5EA}
+#lycianHome .lh-photo img{color:transparent;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+#lycianHome .lh-photo:hover img{transform:scale(1.06)}
+#lycianHome .lh-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(10,6,4,0.62) 100%);pointer-events:none}
+#lycianHome .lh-cap{position:absolute;left:26px;right:26px;bottom:24px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+#lycianHome .lh-cap b{display:block;font-family:var(--lh-serif);font-weight:400;font-size:clamp(22px,2.2vw,28px);line-height:1.15}
+#lycianHome .lh-cap span{display:block;margin-top:6px;font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(250,245,234,0.85)}
+#lycianHome .lh-cap i{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,245,234,0.5);display:grid;place-items:center;font-style:normal;font-family:var(--lh-sans);font-size:16px;transition:background .3s,color .3s,border-color .3s}
+#lycianHome .lh-photo:hover .lh-cap i{background:#FAF5EA;color:var(--lh-ink);border-color:#FAF5EA}
+#lycianHome .lh-card{background:var(--lh-surface);border:1px solid rgba(42,20,16,0.10);border-radius:18px;padding:26px 26px 24px;display:flex;flex-direction:column}
+#lycianHome .lh-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(42,20,16,0.08)}
+#lycianHome .lh-top span{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--lh-muted)}
+#lycianHome .lh-top span+span{opacity:0.6;font-weight:400;letter-spacing:0.14em}
+#lycianHome .lh-map{flex:1 1 auto;display:flex;align-items:center;padding:18px 0 8px}
+#lycianHome .lh-svg{display:block;width:100%;height:auto;overflow:visible}
+#lycianHome .lh-base{fill:none;stroke:rgba(42,20,16,0.10);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+#lycianHome .lh-line{fill:none;stroke:var(--lh-accent);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.8s cubic-bezier(.45,.05,.25,1)}
+#lycianHome.is-drawn .lh-line{stroke-dashoffset:0}
+#lycianHome .lh-pt{fill:var(--lh-surface);stroke:var(--lh-ink);stroke-width:1.4}
+#lycianHome .lh-pt--s{fill:var(--lh-accent);stroke:var(--lh-surface);stroke-width:2.5}
+#lycianHome .lh-pt--f{fill:var(--lh-ink);stroke:var(--lh-surface);stroke-width:2.5}
+#lycianHome .lh-halo{fill:none;stroke:var(--lh-accent);stroke-opacity:.28;stroke-width:1.2}
+#lycianHome .lh-svg text{font-family:var(--lh-sans);font-size:17px;font-weight:400;letter-spacing:0.02em;fill:var(--lh-ink);fill-opacity:.78;stroke:var(--lh-surface);stroke-width:3;paint-order:stroke;stroke-linejoin:round}
+#lycianHome .lh-svg text.lh-k{font-size:12.5px;font-weight:500;letter-spacing:0.22em;fill:var(--lh-accent);fill-opacity:1}
+#lycianHome .lh-svg text.lh-k--f{fill:var(--lh-ink)}
+#lycianHome .lh-svg .lh-lbl{opacity:0;transition:opacity .6s ease}
+#lycianHome.is-drawn .lh-svg .lh-lbl{opacity:1}
+#lycianHome.is-drawn .lh-svg .lh-lbl--2{transition-delay:.9s}
+#lycianHome.is-drawn .lh-svg .lh-lbl--3{transition-delay:1.6s}
+#lycianHome.is-drawn .lh-svg .lh-lbl--4{transition-delay:2.4s}
+#lycianHome .lh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(42,20,16,0.12);border-bottom:1px solid rgba(42,20,16,0.12);margin-top:10px}
+#lycianHome .lh-stat{padding:22px 10px;text-align:center}
+#lycianHome .lh-stat+.lh-stat{border-left:1px solid rgba(42,20,16,0.12)}
+#lycianHome .lh-val{font-family:var(--lh-serif);font-size:clamp(28px,2.8vw,38px);font-weight:400;line-height:1;color:var(--lh-ink);letter-spacing:-0.01em;display:block;margin-bottom:10px}
+#lycianHome .lh-val small{font-size:0.5em;margin-left:3px;letter-spacing:0.02em}
+#lycianHome .lh-key{font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--lh-muted);opacity:0.8}
+#lycianHome .lh-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+#lycianHome .lh-btn{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--lh-ink);background:transparent;border:1px solid rgba(42,20,16,0.22);border-radius:999px;padding:15px 26px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease}
+#lycianHome .lh-btn:hover{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
+#lycianHome .lh-btn.is-primary{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
+#lycianHome .lh-btn.is-primary:hover{background:var(--lh-accent);border-color:var(--lh-accent)}
+#lycianHome .lh-btn:focus-visible,#lycianHome .lh-photo:focus-visible{outline:2px solid var(--lh-accent);outline-offset:3px}
+@media (max-width:900px){
+  #lycianHome{padding-top:72px;margin-top:56px}
+  #lycianHome .lh-head{margin-bottom:40px}
+  #lycianHome .lh-grid{grid-template-columns:1fr}
+  #lycianHome .lh-photo{min-height:0;aspect-ratio:4/3}
+}
+@media (max-width:600px){
+  #lycianHome .lh-intro{font-size:15.5px}
+  #lycianHome .lh-card{padding:20px 18px 18px}
+  #lycianHome .lh-photo{aspect-ratio:4/5}
+  #lycianHome .lh-cap{left:20px;right:20px;bottom:20px}
+  #lycianHome .lh-cap span,#lycianHome .lh-top span,#lycianHome .lh-key{font-size:10.5px;letter-spacing:0.14em}
+  #lycianHome .lh-svg text{font-size:22px}
+  #lycianHome .lh-svg text.lh-k{font-size:16px}
+  #lycianHome .lh-stat{padding:18px 6px}
+  #lycianHome .lh-btn{flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){
+  #lycianHome .lh-line{transition:none;stroke-dashoffset:0}
+  #lycianHome .lh-svg .lh-lbl{transition:none;opacity:1}
+  #lycianHome .lh-photo img{transition:none}
+}
+#lycianHome{padding:8px 24px 88px!important;margin:0!important;border-top:0!important}
+#lycianHome .lh-wrap{max-width:1100px}
+@media (max-width:767px){#lycianHome{padding:0 20px 64px!important}}
+</style>
+<div class="lh-wrap">
+  <div class="lh-grid">
+    <a class="lh-photo" href="../trails/lycian-way" aria-label="Open the Lycian Way trail guide">
+      <img src="https://img.showmeturkiye.com/trails/lycian-way/lycian-way-coast-trail.jpg" onerror="this.onerror=null;this.src='https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg'" alt="The Lycian Way trail above the Mediterranean coast" loading="lazy" decoding="async" width="1200" height="1500">
+      <span class="lh-cap"><span style="margin:0;letter-spacing:0;text-transform:none;"><b>Ölüdeniz to Antalya</b><span>Coast, ruins and high villages</span></span><i aria-hidden="true">→</i></span>
+    </a>
+    <div class="lh-card">
+      <div class="lh-top"><span>Ovacık → Geyikbayırı</span><span>West to east</span></div>
+      <div class="lh-map">
+        <svg class="lh-svg" viewBox="0 0 600 398" role="img" aria-label="Outline of the Lycian Way from Ovacık in the west to Geyikbayırı in the east">
+          <path class="lh-base" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
+          <path class="lh-line" pathLength="1" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
+          <g class="lh-lbl"><circle class="lh-halo" cx="29.6" cy="175" r="11"></circle><circle class="lh-pt--s" cx="29.6" cy="175" r="5.5"></circle>
+            <text class="lh-k" x="45.6" y="163.0">START</text><text x="45.6" y="189.0">Ovacık</text></g>
+          <g class="lh-lbl lh-lbl--2"><circle class="lh-pt" cx="222.5" cy="347.8" r="3.6"></circle><text x="222.5" y="375.8" text-anchor="middle">Kaş</text></g>
+          <g class="lh-lbl lh-lbl--3"><circle class="lh-pt" cx="542.1" cy="255.5" r="3.6"></circle><text x="530.1" y="261.5" text-anchor="end">Olympos</text></g>
+          <g class="lh-lbl lh-lbl--4"><circle class="lh-pt--f" cx="543.5" cy="24" r="5.5"></circle>
+            <text class="lh-k lh-k--f" x="529.5" y="20" text-anchor="end">FINISH</text><text x="529.5" y="40.0" text-anchor="end">Geyikbayırı</text></g>
+        </svg>
+      </div>
+      <div class="lh-stats">
+        <div class="lh-stat"><span class="lh-val">447<small>km</small></span><span class="lh-key">About</span></div>
+        <div class="lh-stat"><span class="lh-val">23</span><span class="lh-key">Sections</span></div>
+        <div class="lh-stat"><span class="lh-val">8</span><span class="lh-key">Regions</span></div>
+      </div>
+      <div class="lh-actions">
+        <a class="lh-btn is-primary" href="../trails/lycian-way">Open the trail guide</a>
+        <a class="lh-btn" href="../trails/lycian-way#lw-mapsec">See the live map</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var s=document.getElementById('lycianHome');if(!s)return;
+if(!('IntersectionObserver' in window)){s.classList.add('is-drawn');return;}
+var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.add('is-drawn');io.disconnect();}},{threshold:0.25});
+io.observe(s.querySelector('.lh-card')||s);})();
+</script>
+</section>
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
 
@@ -2407,128 +2524,6 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
     <!-- OWNER IMAGE REQUIRED: Kaz Dağları (Mount Ida) forest trail -->
     <p>Mount Ida rises above the Gulf of Edremit, with pine and fir forest, streams and village paths. Kaz Dağları is an easy-to-moderate forest walk from spring to autumn, and it fits nicely into a stay in Ayvalık or Assos rather than a dedicated trekking trip. Our <a href="./balikesir">Balıkesir guide</a> covers the area and the national park.</p>
   </div>
-</section>
-
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section id="lycianHome" aria-labelledby="lhHeading">
-<style>
-#lycianHome{--lh-ink:var(--text,#2A1410);--lh-muted:var(--text-muted,#5C3530);--lh-accent:#C0392B;--lh-gold:var(--gold,#C9A75D);--lh-surface:var(--cream2,#FAF5EA);--lh-cream:var(--cream,#F4EFE5);--lh-serif:var(--serif,'Playfair Display',Georgia,serif);--lh-sans:var(--sans,'Poppins',system-ui,sans-serif);display:block;padding:96px 0 0;margin:72px 0 0;border-top:1px solid rgba(42,20,16,0.10);position:relative}
-#lycianHome .lh-wrap{max-width:1200px;margin:0 auto}
-#lycianHome .lh-head{text-align:center;max-width:660px;margin:0 auto 56px}
-#lycianHome .lh-eyebrow{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--lh-muted);margin-bottom:24px}
-#lycianHome h2{font-family:var(--lh-serif);font-size:clamp(38px,4.4vw,64px);font-weight:400;letter-spacing:-0.005em;line-height:1.06;color:var(--lh-ink);margin:0 0 22px}
-#lycianHome h2 em{font-style:italic;color:var(--lh-accent)}
-#lycianHome .lh-intro{font-family:var(--lh-sans);font-size:17px;font-weight:400;line-height:1.65;color:var(--lh-muted);margin:0 auto;max-width:560px;text-wrap:pretty}
-#lycianHome .lh-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:stretch}
-#lycianHome .lh-photo{position:relative;margin:0;border-radius:18px;overflow:hidden;min-height:520px;background:#1C1814;display:block;color:#FAF5EA}
-#lycianHome .lh-photo img{color:transparent;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
-#lycianHome .lh-photo:hover img{transform:scale(1.06)}
-#lycianHome .lh-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(10,6,4,0.62) 100%);pointer-events:none}
-#lycianHome .lh-cap{position:absolute;left:26px;right:26px;bottom:24px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
-#lycianHome .lh-cap b{display:block;font-family:var(--lh-serif);font-weight:400;font-size:clamp(22px,2.2vw,28px);line-height:1.15}
-#lycianHome .lh-cap span{display:block;margin-top:6px;font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(250,245,234,0.85)}
-#lycianHome .lh-cap i{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:1px solid rgba(250,245,234,0.5);display:grid;place-items:center;font-style:normal;font-family:var(--lh-sans);font-size:16px;transition:background .3s,color .3s,border-color .3s}
-#lycianHome .lh-photo:hover .lh-cap i{background:#FAF5EA;color:var(--lh-ink);border-color:#FAF5EA}
-#lycianHome .lh-card{background:var(--lh-surface);border:1px solid rgba(42,20,16,0.10);border-radius:18px;padding:26px 26px 24px;display:flex;flex-direction:column}
-#lycianHome .lh-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(42,20,16,0.08)}
-#lycianHome .lh-top span{font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--lh-muted)}
-#lycianHome .lh-top span+span{opacity:0.6;font-weight:400;letter-spacing:0.14em}
-#lycianHome .lh-map{flex:1 1 auto;display:flex;align-items:center;padding:18px 0 8px}
-#lycianHome .lh-svg{display:block;width:100%;height:auto;overflow:visible}
-#lycianHome .lh-base{fill:none;stroke:rgba(42,20,16,0.10);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-#lycianHome .lh-line{fill:none;stroke:var(--lh-accent);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.8s cubic-bezier(.45,.05,.25,1)}
-#lycianHome.is-drawn .lh-line{stroke-dashoffset:0}
-#lycianHome .lh-pt{fill:var(--lh-surface);stroke:var(--lh-ink);stroke-width:1.4}
-#lycianHome .lh-pt--s{fill:var(--lh-accent);stroke:var(--lh-surface);stroke-width:2.5}
-#lycianHome .lh-pt--f{fill:var(--lh-ink);stroke:var(--lh-surface);stroke-width:2.5}
-#lycianHome .lh-halo{fill:none;stroke:var(--lh-accent);stroke-opacity:.28;stroke-width:1.2}
-#lycianHome .lh-svg text{font-family:var(--lh-sans);font-size:17px;font-weight:400;letter-spacing:0.02em;fill:var(--lh-ink);fill-opacity:.78;stroke:var(--lh-surface);stroke-width:3;paint-order:stroke;stroke-linejoin:round}
-#lycianHome .lh-svg text.lh-k{font-size:12.5px;font-weight:500;letter-spacing:0.22em;fill:var(--lh-accent);fill-opacity:1}
-#lycianHome .lh-svg text.lh-k--f{fill:var(--lh-ink)}
-#lycianHome .lh-svg .lh-lbl{opacity:0;transition:opacity .6s ease}
-#lycianHome.is-drawn .lh-svg .lh-lbl{opacity:1}
-#lycianHome.is-drawn .lh-svg .lh-lbl--2{transition-delay:.9s}
-#lycianHome.is-drawn .lh-svg .lh-lbl--3{transition-delay:1.6s}
-#lycianHome.is-drawn .lh-svg .lh-lbl--4{transition-delay:2.4s}
-#lycianHome .lh-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(42,20,16,0.12);border-bottom:1px solid rgba(42,20,16,0.12);margin-top:10px}
-#lycianHome .lh-stat{padding:22px 10px;text-align:center}
-#lycianHome .lh-stat+.lh-stat{border-left:1px solid rgba(42,20,16,0.12)}
-#lycianHome .lh-val{font-family:var(--lh-serif);font-size:clamp(28px,2.8vw,38px);font-weight:400;line-height:1;color:var(--lh-ink);letter-spacing:-0.01em;display:block;margin-bottom:10px}
-#lycianHome .lh-val small{font-size:0.5em;margin-left:3px;letter-spacing:0.02em}
-#lycianHome .lh-key{font-family:var(--lh-sans);font-size:10px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--lh-muted);opacity:0.8}
-#lycianHome .lh-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-#lycianHome .lh-btn{flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;font-family:var(--lh-sans);font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--lh-ink);background:transparent;border:1px solid rgba(42,20,16,0.22);border-radius:999px;padding:15px 26px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease}
-#lycianHome .lh-btn:hover{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
-#lycianHome .lh-btn.is-primary{background:var(--lh-ink);border-color:var(--lh-ink);color:var(--lh-cream)}
-#lycianHome .lh-btn.is-primary:hover{background:var(--lh-accent);border-color:var(--lh-accent)}
-#lycianHome .lh-btn:focus-visible,#lycianHome .lh-photo:focus-visible{outline:2px solid var(--lh-accent);outline-offset:3px}
-@media (max-width:900px){
-  #lycianHome{padding-top:72px;margin-top:56px}
-  #lycianHome .lh-head{margin-bottom:40px}
-  #lycianHome .lh-grid{grid-template-columns:1fr}
-  #lycianHome .lh-photo{min-height:0;aspect-ratio:4/3}
-}
-@media (max-width:600px){
-  #lycianHome .lh-intro{font-size:15.5px}
-  #lycianHome .lh-card{padding:20px 18px 18px}
-  #lycianHome .lh-photo{aspect-ratio:4/5}
-  #lycianHome .lh-cap{left:20px;right:20px;bottom:20px}
-  #lycianHome .lh-cap span,#lycianHome .lh-top span,#lycianHome .lh-key{font-size:10.5px;letter-spacing:0.14em}
-  #lycianHome .lh-svg text{font-size:22px}
-  #lycianHome .lh-svg text.lh-k{font-size:16px}
-  #lycianHome .lh-stat{padding:18px 6px}
-  #lycianHome .lh-btn{flex:1 1 100%}
-}
-@media (prefers-reduced-motion:reduce){
-  #lycianHome .lh-line{transition:none;stroke-dashoffset:0}
-  #lycianHome .lh-svg .lh-lbl{transition:none;opacity:1}
-  #lycianHome .lh-photo img{transition:none}
-}
-</style>
-<div class="lh-wrap">
-  <div class="lh-head">
-    <div class="lh-eyebrow">Long-distance trail · Muğla to Antalya</div>
-    <h2 id="lhHeading">Walk the <em>Lycian Way</em>.</h2>
-    <p class="lh-intro">A waymarked footpath along the Teke coast, about 447 km from Ovacık above Ölüdeniz to Geyikbayırı near Antalya. Our guide splits it into 23 sections you can walk one at a time, with a live map that follows you on the trail.</p>
-  </div>
-  <div class="lh-grid">
-    <a class="lh-photo" href="../trails/lycian-way" aria-label="Open the Lycian Way trail guide">
-      <img src="https://img.showmeturkiye.com/trails/lycian-way/lycian-way-coast-trail.jpg" onerror="this.onerror=null;this.src='https://img.showmeturkiye.com/cities/mugla/mugla-oludeniz-blue-lagoon-aerial.jpg'" alt="The Lycian Way trail above the Mediterranean coast" loading="lazy" decoding="async" width="1200" height="1500">
-      <span class="lh-cap"><span style="margin:0;letter-spacing:0;text-transform:none;"><b>Ölüdeniz to Antalya</b><span>Coast, ruins and high villages</span></span><i aria-hidden="true">→</i></span>
-    </a>
-    <div class="lh-card">
-      <div class="lh-top"><span>Ovacık → Geyikbayırı</span><span>West to east</span></div>
-      <div class="lh-map">
-        <svg class="lh-svg" viewBox="0 0 600 398" role="img" aria-label="Outline of the Lycian Way from Ovacık in the west to Geyikbayırı in the east">
-          <path class="lh-base" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
-          <path class="lh-line" pathLength="1" d="M29.6 175L29.3 177.9L27.7 180.1L27.4 185.8L30.5 189.1L30.1 190.8L35.5 194.8L38.1 194.5L38.4 196.2L34.8 199.2L36.5 202.1L35.3 202.1L34.7 203.8L32.5 203.2L30.5 205.4L30.3 207.4L26.5 210.3L27.1 215.3L24 217.8L31.1 222.1L31.7 226.3L30.5 227.5L30.1 230.7L30.9 231.6L29.8 232.5L31.3 233L31.6 235L29.7 236.1L32.1 239.6L31 242.3L32.1 243.6L32.3 249.4L28.5 252.9L30.9 256.9L30 257.8L30.3 260.1L33.2 260.4L35.9 258.8L37.1 262.3L41.7 261.9L41.7 261.9L42.9 264.1L43.1 268.9L47.7 274.1L47.8 278.9L52.9 284.3L54.6 284.3L54.6 284.3L65.1 283.5L63.6 285.5L65.4 285.7L63.1 287.5L75.8 289.5L81.1 293.4L84.4 293.3L85.3 287.7L88.6 285.4L89.3 283.6L91.7 284.2L95.3 282.7L95.6 279.8L97.7 277.9L96.7 274.7L98.7 276.6L98.8 275.4L98.8 275.4L98 272.8L98.8 272.1L108.6 273.7L111.5 271L114.7 275.1L124.9 279.5L127.6 279.6L128.8 281.6L129.9 281L129.2 285.1L130.6 286.4L131.6 291.1L129.9 292.9L133 301.2L134.8 302.3L135 305.9L133.7 307.6L133.9 310.4L132.4 310.6L128.1 314.8L124.6 312.4L122.6 314.8L115.7 319.1L113.7 316L112.1 316.8L112 314.3L110 311.8L105.7 312.7L103.5 311L103.5 312.2L101 313.2L101.4 315.6L99.9 316.5L99 315.6L99.1 312.3L98.1 316.5L98.1 316.5L98.1 320.4L96.6 323.1L97.2 324.5L100.2 325.8L102.8 322.6L102.5 325.3L103.7 325.5L104.7 327.7L106.2 328.5L108.4 326.9L110.4 327.9L112.4 332L111.9 333.2L113.2 333.6L117.5 331.1L118.1 326.9L115.3 321.4L116.8 318.2L123.3 319.7L124.6 319.4L124.5 317.8L126.3 317.4L128.7 318.4L134.9 317.8L134.9 317.8L137.5 317.8L141 325.3L142.8 325.9L143 324.8L144.2 325L143.1 323.1L143.2 321L144 321.8L143.2 317.8L144.3 317.7L143.6 316L148 313.3L153.7 313.4L154.7 318.6L156.7 317.3L159 321L160.6 320L161.8 322.3L163 322.1L163.4 324.2L157.7 327.2L157.5 328.5L158.9 330.1L158.6 332L163.3 332.7L165.1 330.1L173.5 331.5L179.5 328.9L182.3 330.6L184.4 329.8L185.5 330.6L191.7 321.7L196 318.8L203.3 316.8L208.3 312.6L208.8 310.5L215.6 311.4L217.6 313.9L216.6 320.3L214.4 323L215.1 324.4L228.2 329.3L233.9 328.1L234.6 329.2L232.7 332.9L229.7 332.7L230.1 334.9L228.6 338.8L224.7 342.9L224 346.7L222.2 346.8L222.5 347.8L222.5 347.8L222 349.6L227.8 354.3L226.6 355.8L227.2 358.7L225.8 362.7L225.8 362.7L227.9 368L226.8 369.4L228.4 371.6L237.7 371.3L240.1 372.8L246.8 374.2L249.7 372.3L249.8 370.1L252.3 367.2L255.1 366.5L255 365.2L259.1 360.7L260.9 360.4L265.1 354.8L268.8 357.1L271.9 356.3L273.3 361.9L277.9 364L276.8 368.7L276.8 368.7L279.5 368.9L283.4 366.7L282.5 365.1L287.1 359.1L301.2 350.9L301.1 350.9L305.9 350.2L307.7 350.7L308.5 352.2L319.1 346.2L316.9 343.5L318.7 341.7L317.2 340.7L318.6 338.4L320.8 337.4L320.9 335.5L318.8 334.9L316.6 335.9L316.7 333.8L313.1 332.5L312.8 330.8L309 331.8L307.7 328.7L309.7 326.4L314.8 324.9L314.5 318.8L316.5 318.1L320.5 319L319.9 318L325.2 316.1L334.2 314.6L336.3 317.3L339.3 316.3L339.7 317.3L342.8 316.8L343.8 318L349.1 318.8L349.2 320.1L349.2 320.1L349.1 318.8L343.8 318L342.8 316.8L339.7 317.3L339.3 316.3L336.3 317.3L334.2 314.6L328.2 315.2L321 317.9L319.1 317.5L322.6 310.4L322.4 307.9L325.5 308.1L325.2 306.9L337.1 306.6L349.8 308.5L350.6 305.4L349.2 299.7L350.5 298.4L352.5 289.4L357.3 289.3L361.5 286.7L364.2 283L365 280.5L364.2 278.4L368.2 271.2L375 273.9L376.1 275.4L378.6 275.5L379.4 279.5L381.5 281.5L381.6 288.1L385.1 291.3L385.8 296.2L389.6 298.6L390 300.2L388.4 301.4L389.6 303.6L389 305.9L390.8 305.1L395.6 308.3L402.5 305.1L408.9 310L412.3 309L413.6 304.5L416 303.5L416 303.5L417.5 300.8L421.6 298.3L431.4 294.3L446.5 294.6L449.6 293.5L459.6 293.6L465.3 292L479.8 295.6L479.4 297.5L483.1 300.1L486.3 300.4L492.5 305.7L491.5 307.1L502.5 315L505.5 314.1L506.3 312L508.4 313.9L508.8 312.1L510.7 311.5L513.6 313.6L515.7 313.1L515.7 313.1L519.6 316.6L519.5 319.3L517.6 321.7L518 322.5L516.3 323.1L515.8 326.7L517.1 331L516.1 338.6L517.3 341.1L518.6 336.7L523.2 330.3L531.5 323.3L532.7 316.6L532.2 312.8L535 307.1L537.9 304.5L539.1 300.6L537.3 294.8L538.6 293.9L538.5 288.3L538.5 288.3L539.6 287.1L539.3 283.4L541.1 282.9L543.9 275.5L542.1 274.1L541.8 271.2L544.1 271.4L545.3 268.3L544.4 264.6L542.1 261.4L540.9 256.5L542 255.5L542 255.5L543 255.3L543 253.2L541.7 252L542.4 248.1L542.4 248.1L542.3 251.3L543.5 251.3L545.7 243.6L544.6 242L546.1 241.5L546.6 239.9L544.4 237.7L544.7 236.3L546.3 234.8L549.7 235L549.8 234L550.9 235.6L550.6 234.1L551.8 232.8L551 231.5L553.3 231.2L552.5 230.6L555 229.1L554.1 224.1L556 223.8L553.1 220.2L557.1 220L556.3 217.9L557.8 217.9L558.9 211.4L560.3 211.5L559.7 210.4L563.2 206.4L563.2 206.4L561.2 202.3L562.5 202.7L563.3 200.8L565 200.5L568.5 194.7L570.1 193.9L571.9 194.7L571.9 193.4L571.9 193.4L573.2 190.9L576 190.1L573.7 188.9L570.3 191L559.3 181.7L563.8 175.4L562 175.1L562 173.5L559.2 171.5L560.4 169.2L559.4 166.4L560.3 165.8L552.7 158.8L546.4 157.3L545.9 154.2L547 151.3L545.5 146.2L541.1 144.9L540.3 142.6L538.7 142.2L539.9 139.4L534.8 135.2L535.9 136.4L535.7 138.8L533.3 135.9L534 138.3L531.1 142.2L533.8 142.9L534.2 147.8L533.4 147.3L532.3 150.4L530.1 150.8L530.1 150.8L532.3 150.4L533.4 147.3L534.2 147.8L533.8 142.9L531.1 142.2L534 138.3L532 134.1L534.4 131.2L534.6 124.5L536.8 122.1L538.1 122.1L538.5 120.2L540.3 119.7L540.8 120.7L544.8 121.5L548.6 120L552.6 122.3L552.9 124.2L554.2 122.2L555.6 123.3L556.2 122L557.5 122.1L559.9 123.5L560.6 121.5L562 121.4L562 121.4L562.9 118.7L562.3 114.8L555.3 90.7L552.4 88.6L548.3 89.6L545.9 88.8L549.3 79.7L552.5 77.8L552.6 75.2L550.6 75.9L546.1 80.6L542.1 74.3L539.8 73.6L535.8 74.9L535.8 74.8L531.9 73.2L530.1 74.3L530.9 72.8L529.9 73.2L530.4 72L528.1 71L529.6 67.4L528.4 65.3L530 62.9L530.1 55.9L531.5 55.5L530.9 53.4L532.1 51.7L531.2 45L532.8 44.2L536.2 38.9L540.8 35.7L540.8 32L542.7 30.9L544.7 31.3L545.1 29.1L546.3 29.6L544.9 27.2L546.9 26.7L547 25.4L543.5 24"></path>
-          <g class="lh-lbl"><circle class="lh-halo" cx="29.6" cy="175" r="11"></circle><circle class="lh-pt--s" cx="29.6" cy="175" r="5.5"></circle>
-            <text class="lh-k" x="45.6" y="163.0">START</text><text x="45.6" y="189.0">Ovacık</text></g>
-          <g class="lh-lbl lh-lbl--2"><circle class="lh-pt" cx="222.5" cy="347.8" r="3.6"></circle><text x="222.5" y="375.8" text-anchor="middle">Kaş</text></g>
-          <g class="lh-lbl lh-lbl--3"><circle class="lh-pt" cx="542.1" cy="255.5" r="3.6"></circle><text x="530.1" y="261.5" text-anchor="end">Olympos</text></g>
-          <g class="lh-lbl lh-lbl--4"><circle class="lh-pt--f" cx="543.5" cy="24" r="5.5"></circle>
-            <text class="lh-k lh-k--f" x="529.5" y="20" text-anchor="end">FINISH</text><text x="529.5" y="40.0" text-anchor="end">Geyikbayırı</text></g>
-        </svg>
-      </div>
-      <div class="lh-stats">
-        <div class="lh-stat"><span class="lh-val">447<small>km</small></span><span class="lh-key">About</span></div>
-        <div class="lh-stat"><span class="lh-val">23</span><span class="lh-key">Sections</span></div>
-        <div class="lh-stat"><span class="lh-val">8</span><span class="lh-key">Regions</span></div>
-      </div>
-      <div class="lh-actions">
-        <a class="lh-btn is-primary" href="../trails/lycian-way">Open the trail guide</a>
-        <a class="lh-btn" href="../trails/lycian-way#lw-mapsec">See the live map</a>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-(function(){var s=document.getElementById('lycianHome');if(!s)return;
-if(!('IntersectionObserver' in window)){s.classList.add('is-drawn');return;}
-var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.add('is-drawn');io.disconnect();}},{threshold:0.25});
-io.observe(s.querySelector('.lh-card')||s);})();
-</script>
 </section>
 
 <div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
