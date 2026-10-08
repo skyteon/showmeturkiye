@@ -2630,6 +2630,9 @@ function revealBelow(q){
   if(r.top<64)scrollToEl(el,84);
   else if(r.bottom>vh-24)scrollToY((window.pageYOffset||0)+Math.min(r.top-84,r.bottom-vh+24));
 }
+/* Phones: one offset for every programmatic scroll, measured from the fixed site bar. */
+function navOffset(){var n=document.querySelector('.lw-navbar'),h=0;try{if(n&&getComputedStyle(n).position==='fixed')h=n.offsetHeight;}catch(e){}return Math.max(0,Math.round(h))+12;}
+function mapIntoView(force){var w=$('#lw-mapwrap');if(!w)return;var r=w.getBoundingClientRect(),off=navOffset(),vh=window.innerHeight||800;if(force||r.top<off||r.top>vh*0.35)scrollToEl(w,off);}
 function scrollToEl(el,off){
   if(!el)return;
   scrollToY(el.getBoundingClientRect().top+(window.pageYOffset||document.documentElement.scrollTop||0)-(off||70));
@@ -2781,7 +2784,7 @@ function setMode(m){
 }
 /* Phones: the selected-section detail opens inline, directly under its row in the list (accordion).
    Desktop and full screen keep it in its own panel position. */
-function accOn(){return smallScreen()&&!isFull&&mode==='section';}
+function accOn(){return false;}
 function placeSec(){
   var v=$('#lwp-sec'),home=$('#lwp-sec-home');if(!v||!home)return;
   var li=null;if(accOn()){var b=$('#lwp-list .lwp-it[data-lwp-i="'+sel+'"]');li=b&&b.closest('.lwp-li');}
@@ -2799,7 +2802,7 @@ function renderList(){
     r.mains.forEach(function(s){
       var i=ALL.indexOf(s),d=!!done[s.id];
       var lab='Section '+s.num+', '+s.from+' to '+s.to+', '+km1(DIST[s.key])+' kilometres, '+(DIFFI[s.key]||'')+(d?', walked':'');
-      h+='<div class="lwp-li'+(MAINS.indexOf(s)>2?' is-more':'')+'" role="listitem">'
+      h+='<div class="lwp-li'+(MAINS.indexOf(s)>3?' is-more':'')+'" role="listitem">'
         +'<button type="button" class="lwp-it" data-lwp-i="'+i+'" aria-current="false" aria-label="'+esc(lab)+'">'
         +'<span class="n">'+pad2(s.num)+'</span><span class="t">'+s.from+' \u2192 '+s.to+'</span>'
         +'<span class="m">'+km1(DIST[s.key])+' km<span class="d"> \u00b7 '+(DIFFI[s.key]||'')+'</span></span></button>'
@@ -3040,9 +3043,11 @@ function initPlanner(){
     var b=e.target.closest('[data-lwp-i]');if(!b)return;
     var i=+b.getAttribute('data-lwp-i'),q='#lwp-list .lwp-it[data-lwp-i="'+i+'"]';
     if(smallScreen()&&!isFull){
-      /* Phones: the row stays where it is; its detail opens (or closes) right below it. */
-      if(mode==='section'&&i===sel){keepPlace(q,function(){goWhole();});return;}
-      keepPlace(q,function(){select(i,{scroll:false});});
+      /* Phones: map first, then the section detail. The list folds back to its first four rows. */
+      var PLs=$('#lw-planner'),vbs=$('#lwp-viewall');
+      if(PLs&&PLs.classList.contains('is-expanded')){PLs.classList.remove('is-expanded');if(vbs){vbs.setAttribute('aria-expanded','false');vbs.textContent='View all 23 sections';}}
+      select(i,{scroll:false});
+      requestAnimationFrame(function(){mapIntoView(true);});
       return;
     }
     select(i,{scroll:false});
@@ -3055,7 +3060,7 @@ function initPlanner(){
   on('lwp-ask-no',function(){pendingSel=null;$('#lwp-ask').classList.add('lw-hide');try{$('#lwp-f-centre').focus({preventScroll:true});}catch(e){}});
   on('lwp-grip',function(){var P=$('#lw-planner'),c=P.classList.toggle('is-collapsed');this.setAttribute('aria-expanded',c?'false':'true');this.querySelector('span').textContent=c?'Show details':'Hide details';setTimeout(function(){try{map.invalidateSize();}catch(e){}},60);});
   var PL=$('#lw-planner');
-  on('lwp-viewall',function(){var b=this;keepPlace('#lwp-viewall',function(){var o=!PL.classList.contains('is-expanded');PL.classList.toggle('is-expanded',o);b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Collapse sections':'View all 23 sections';});});
+  on('lwp-viewall',function(){var b=this,o=!PL.classList.contains('is-expanded');var set=function(){PL.classList.toggle('is-expanded',o);b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Collapse sections':'View all 23 sections';};if(o){set();return;}keepPlace('#lwp-viewall',set);var lw=$('#lwp-listwrap');if(lw&&lw.getBoundingClientRect().bottom<navOffset()+48)scrollToEl(lw,navOffset());});
   on('lwp-consent-ok',function(){$('#lwp-consent').hidden=true;$('#lwm-follow').setAttribute('aria-expanded','false');startFollow();});
   on('lwp-consent-no',function(){$('#lwp-consent').hidden=true;var f=$('#lwm-follow');f.setAttribute('aria-expanded','false');try{f.focus({preventScroll:true});}catch(e){}});
   on('lwm-keybtn',function(){var k=$('#lwm-key'),o=k.classList.toggle('is-open');this.setAttribute('aria-expanded',o?'true':'false');});
@@ -3067,7 +3072,7 @@ function initPlanner(){
   });
   if(offline)netNote('offline');
   var hi=readHash();
-  if(hi!=null){select(hi,{scroll:false,noHash:true});setTimeout(function(){scrollToEl($('#lw-planner'),80);},400);}
+  if(hi!=null){select(hi,{scroll:false,noHash:true});setTimeout(function(){if(smallScreen())mapIntoView(true);else scrollToEl($('#lw-planner'),80);},400);}
 }
 function renderGeo(){
   var idle=$('#lw-geo-idle'),ok=$('#lw-geo-ok'),no=$('#lw-geo-no'),off=$('#lw-geo-off');
@@ -3291,7 +3296,7 @@ function select(i,o){
   renderRegions();renderConsole();paintLines();paintSecMap();
   var sc=(o.scroll===undefined)?'map':o.scroll;
   if(isFull)sc=false;
-  if(sc==='map'||sc==='console')scrollToEl($('#lw-mapwrap'),90);
+  if(sc==='map'||sc==='console')scrollToEl($('#lw-mapwrap'),smallScreen()?navOffset():90);
   if(o.fit!==false)fitSection(i);
 }
 /* Every route link outside the planner opens the section here: section mode, map, panel, hash, focus. */
@@ -4066,7 +4071,7 @@ function bind(){
   _on('lwm-zin',function(){if(map)map.zoomIn();});
   _on('lwm-zout',function(){if(map)map.zoomOut();});
   _on('lwm-full',function(){setFull(!isFull);});
-  function pnGo(i){select(i,{scroll:false});if(accOn()){var r=document.querySelector('#lwp-list .lwp-it[data-lwp-i="'+sel+'"]');if(r)scrollToEl(r,68);}}
+  function pnGo(i){select(i,{scroll:false});if(smallScreen()&&!isFull)mapIntoView(false);}
   _on('lwm-prev',function(){pnGo(sel-1);});
   _on('lwm-next',function(){pnGo(sel+1);});
   _on('lwm-layers',function(){ var p=document.getElementById('lwm-layerpanel'),hid=p.classList.toggle('lw-hide'); this.setAttribute('aria-expanded',hid?'false':'true'); this.classList.toggle('is-on',!hid); });
@@ -4719,6 +4724,7 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
   #lw-planner:not(.is-expanded) .lwp-list .is-more{display:none;}
   #lw-planner:not([data-mode="follow"]) .lwp-viewall{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:46px;padding:0;background:none;border:0;border-top:1px solid rgba(42,20,16,.12);font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:var(--text);cursor:pointer;}
   #lw-planner:not([data-mode="follow"]) .lwp-viewall::after{content:'\2193';color:var(--brown);}
+@media (max-width:1023px){.lwp-it:active,.lwp-viewall:active{background:rgba(42,20,16,.06);}.lwp-viewall:active{color:var(--brown);}}
   #lw-planner.is-expanded .lwp-viewall::after{content:'\2191';}
   #lw-planner.is-acc #lwp-whole[hidden]{display:block!important;}
   #lw-planner.is-acc .lwp-listwrap{margin-top:0;padding-top:0;border-top:0;}
@@ -4742,7 +4748,7 @@ html.lwm-lock .lw-navbar,html.lwp-lock .lw-navbar{display:none;}
 .lwp-it[aria-current="true"] .n{color:#C9A75D;}
 .lwp-it[aria-current="true"] .m{color:rgba(250,245,234,.82);}
 .lwp-wk{display:grid;place-items:center;width:44px;min-height:44px;padding:0;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;}
-.lwp-wk i{position:relative;display:block;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(42,20,16,.4);box-sizing:border-box;transition:background .15s,border-color .15s;}
+.lwp-wk i{position:relative;display:block;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(42,20,16,.5);box-sizing:border-box;transition:background .15s,border-color .15s;}
 .lwp-wk:hover i{border-color:var(--text);}
 .lwp-wk[aria-pressed="true"] i{background:#0F5E55;border-color:#0F5E55;}
 .lwp-wk[aria-pressed="true"] i::after{content:'';position:absolute;left:5.5px;top:2px;width:4.5px;height:9px;border:solid var(--white);border-width:0 2px 2px 0;transform:rotate(45deg);}
