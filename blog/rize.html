@@ -3136,7 +3136,7 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
   if(!vids.length) return;
   var calm=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||(navigator.connection&&navigator.connection.saveData);
   function load(v){ if(!v.getAttribute('src')){ v.src=v.dataset.src; v.preload='metadata'; } }
-  function start(v){ load(v); if(calm){ v.controls=true; return; } var p=v.play(); if(p&&p.catch) p.catch(function(){ v.controls=true; }); }
+  function start(v){ load(v); if(calm){ v.controls=true; return; } var p=v.play(); if(p&&p.catch) p.catch(function(err){ if(err&&err.name==='NotAllowedError') v.controls=true; }); }
   if(!('IntersectionObserver' in window)){ vids.forEach(function(v){ load(v); v.controls=true; }); return; }
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ if(e.isIntersecting) start(e.target); else if(!e.target.paused) e.target.pause(); });
