@@ -1637,6 +1637,16 @@ io.observe(s.querySelector('.lh-card')||s);})();
      BLOG SECTION
      ═══════════════════════════════════════ -->
 <section id="journal" class="section blog-section" style="background:var(--cream);padding:100px 40px;">
+<style id="journal-overlay-css">
+#journal .blog-featured-image::after,#journal .blog-mini-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,6,4,0) 40%,rgba(10,6,4,0.72) 100%);pointer-events:none}
+#journal .jo-label{position:absolute;left:24px;right:24px;bottom:20px;z-index:2;color:#FAF5EA;pointer-events:none}
+#journal .jo-label b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:1.05;letter-spacing:-0.01em}
+#journal .jo-label span{display:block;margin-top:8px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,245,234,0.88)}
+#journal .blog-mini-image .jo-label{left:18px;right:18px;bottom:14px}
+#journal .blog-mini-image .jo-label b{font-size:clamp(24px,2.2vw,30px)}
+#journal .blog-mini-image .jo-label span{font-size:10px;margin-top:6px}
+@media (max-width:640px){#journal .jo-label{left:16px;right:16px;bottom:14px}#journal .jo-label b{font-size:30px}#journal .blog-mini-image .jo-label b{font-size:24px}}
+</style>
   <!-- Magazine masthead style header -->
   <div class="blog-masthead reveal-header">
     <div class="blog-masthead-meta">
@@ -1652,8 +1662,9 @@ io.observe(s.querySelector('.lh-card')||s);})();
     <!-- Featured (large) -->
     <article class="blog-featured">
       <a href="blog/hiking-in-turkiye" class="blog-featured-image">
-        <img src="https://img.showmeturkiye.com/trails/lycian-way-coast-trail.jpg" alt="Walker on the Lycian Way above the Mediterranean coast" loading="lazy" decoding="async">
-        <div class="blog-featured-badge">New</div>
+        <img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker with a backpack below the Cilo-Sat peaks" loading="lazy" decoding="async">
+        <div class="blog-featured-badge">New guide</div>
+        <span class="jo-label"><b>Hiking</b><span>Trails · Seasons · Difficulty</span></span>
       </a>
       <div class="blog-featured-body">
         <div class="blog-featured-meta">
@@ -1675,7 +1686,8 @@ io.observe(s.querySelector('.lh-card')||s);})();
     <div class="blog-secondary">
       <article class="blog-mini">
         <a href="blog/national-parks-in-turkiye" class="blog-mini-image">
-          <img src="https://img.showmeturkiye.com/cities/rize/rize-kackar-mountains.jpg" alt="Kaçkar Mountains National Park" loading="lazy" decoding="async">
+          <img src="https://img.showmeturkiye.com/cities/artvin/places/artvin-savsat-karagol-lake.jpg" alt="Karagöl lake in the forest of Karagöl-Sahara National Park" loading="lazy" decoding="async">
+          <span class="jo-label"><b>National Parks</b><span>Where to go · When</span></span>
         </a>
         <div class="blog-mini-body">
           <div class="blog-mini-meta">
@@ -1691,6 +1703,7 @@ io.observe(s.querySelector('.lh-card')||s);})();
       <article class="blog-mini">
         <a href="blog/skiing-in-turkiye" class="blog-mini-image">
           <img src="https://img.showmeturkiye.com/cities/kayseri/erciyes-skiing-day-trip-from-kayseri.jpg" alt="Skiing on Mount Erciyes" loading="lazy" decoding="async">
+          <span class="jo-label"><b>Skiing</b><span>Resorts · Snow · Levels</span></span>
         </a>
         <div class="blog-mini-body">
           <div class="blog-mini-meta">
