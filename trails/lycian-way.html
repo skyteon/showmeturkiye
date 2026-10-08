@@ -2589,7 +2589,8 @@ var LOGO_SRC='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmwAAAEqCAYAAACofAzJ
 /* Map style: Satellite (default) or Topo. Old or unknown stored values, including the retired Clean style, fall back to Satellite. */
 function normLayer(k){return (k==='satellite'||k==='paper')?k:'satellite';}
 function loadJSON(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
-function load(){return loadJSON(KEY,{})||{};}
+/* Walked log: keep only section ids with an ISO date, so stale or hand-edited storage cannot break rendering. */
+function load(){var raw=loadJSON(KEY,{}),out={};if(raw&&typeof raw==='object'&&!Array.isArray(raw)){for(var k in raw){var v=raw[k];if(/^[sa]\d{2}$/.test(k)&&typeof v==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v))out[k]=v;}}return out;}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}}
 function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function pretty(s){if(!s)return '';var p=s.split('-'),M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
