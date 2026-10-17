@@ -390,7 +390,7 @@ JS = r"""
 /* ═══ FILMS 2.0: filters, mobile pagination, inline playback. No network calls, no API key. ═══ */
 (function(){
   var grid=document.getElementById('filmsGrid'); if(!grid) return;
-  var cards=[].slice.call(document.querySelectorAll('.film-card'));
+  var cards=[].slice.call(grid.querySelectorAll('.film-card'));  // the featured card above the grid is never filtered
   var chips=[].slice.call(document.querySelectorAll('.films-chip'));
   var tiles=[].slice.call(document.querySelectorAll('.films-series-tile'));
   var panels=[].slice.call(document.querySelectorAll('.films-context'));
@@ -404,7 +404,7 @@ JS = r"""
     cards.forEach(function(c){
       var ok=(!state.series||c.getAttribute('data-series')===state.series)&&(!state.place||c.getAttribute('data-place')===state.place);
       c.hidden=!ok;
-      if(ok){ n++; var isOver=(n>INITIAL)&&!c.classList.contains('film-card-lead'); c.setAttribute('data-over', isOver?'1':'0'); if(isOver) over++; }
+      if(ok){ n++; var isOver=(n>INITIAL); c.setAttribute('data-over', isOver?'1':'0'); if(isOver) over++; }
     });
     chips.forEach(function(ch){ ch.setAttribute('aria-pressed', String(state.place===ch.getAttribute('data-value'))); });
     tiles.forEach(function(t){ t.setAttribute('aria-pressed', String(state.series===t.getAttribute('data-value'))); });
@@ -562,8 +562,9 @@ def render(data_dir, site, template):
         return f'<span class="film-place">{esc(f["scope"])}</span>' if f["scope"] else ""
 
     total = len(films)
-    # lead
-    feat = films[0]
+    # featured (pinned) film: always visible, not part of the filterable grid
+    feat = next((f for f in films if f["id"] == series_cfg.get("featured")), films[0])
+    feat_num = total - films.index(feat)
     lead_links = ""
     if feat["place"]:
         t = places[feat["place"]].get("guide") or places[feat["place"]].get("journal")
@@ -572,10 +573,10 @@ def render(data_dir, site, template):
     lead_links += f'<a class="films-link ext" href="https://www.youtube.com/watch?v={feat["id"]}" target="_blank" rel="noopener">Watch on YouTube <span class="arr" aria-hidden="true">↗</span></a>'
     where = f' · Filmed in {esc(places[feat["place"]]["label"])}' if feat["place"] else ""
     lead = f'''
-    <div class="film-card film-card-lead" data-series="{feat["s"]["key"]}" data-place="{feat["place"] or ""}">
+    <div class="film-card film-card-lead">
       {player(feat, eager=True)}
       <div class="film-card-body">
-        <div class="film-rule">Latest film · No. {total:02d}</div>
+        <div class="film-rule">Featured film · No. {feat_num:02d}</div>
         <h3 class="film-title">{esc(feat["title"])}</h3>
         <div class="film-meta">{month_year(feat["uploadDate"])} · {iso_minutes(feat.get("duration"))} · {esc(feat["s"]["name"])}{where}</div>
         {f'<p class="film-desc">{esc(feat["desc"])}</p>' if feat["desc"] else ""}
@@ -642,7 +643,7 @@ def render(data_dir, site, template):
 
     # grid
     items = []
-    for i, f in enumerate(films[1:], start=1):
+    for i, f in enumerate(films):
         meta = " · ".join(x for x in (f["uploadDate"][:4], iso_minutes(f.get("duration")), f["s"]["name"]) if x)
         items.append(f'''
       <li class="film-card" data-series="{f["s"]["key"]}" data-place="{f["place"] or ""}">

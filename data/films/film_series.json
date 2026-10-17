@@ -1,5 +1,5 @@
 {
-  "_comment": "The three film series. 'description' is the existing project-card copy from the live projects.html, verbatim. Order here is the display order.",
+  "_comment": "The three film series. 'description' is the existing project-card copy from the live projects.html, verbatim. Order here is the display order. 'featured' = the film pinned as the opening card of /projects (always visible, not affected by filters).",
   "series": [
     {
       "key": "show-me-turkiye",
@@ -23,5 +23,6 @@
       "description": "A bird's-eye perspective of Türkiye's dramatic landscapes - from volcanic plateaus to turquoise coastlines, all from above."
     }
   ],
-  "channel": "https://www.youtube.com/@halilbekar"
+  "channel": "https://www.youtube.com/@halilbekar",
+  "featured": "IxfJr92fJdg"
 }
