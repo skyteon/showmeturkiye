@@ -698,7 +698,8 @@ body {
   overflow-x: hidden;
   font-feature-settings: "lnum" 1, "tnum" 1;
 }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; }a.text-link { color: var(--brown-deep); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-weight: 500; transition: opacity 0.2s ease; }
+a.text-link:hover { opacity: 0.7; }
 .r-overview p a { color: var(--brown); border-bottom: 1px solid rgba(192,57,43,0.35); }
 img { max-width: 100%; display: block; }
 button { background: none; border: 0; cursor: pointer; font: inherit; color: inherit; }
@@ -3052,7 +3053,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <h2>General notes</h2>
         <p><strong>Flights and getting around.</strong> Two domestic flights: Istanbul to Cappadocia, then Cappadocia to Antalya. Both around an hour to an hour and a half. From Antalya you fly home, or extend along the coast.</p>
         <p><strong>Where to stay.</strong> Beyoglu or Karakoy in Istanbul for better food and a less touristy feel. Cave hotel in Goreme, choose by the terrace view. Kaleici old town in Antalya, or a beach resort if you want pool time between sightseeing.</p>
-        <p><strong>Pace.</strong> Seven days is the classic, and it works. If you have ten, Pamukkale fits naturally between Antalya and the airport. Fourteen lets you add the Aegean coast and end in Izmir, the route we call The Grand Tour.</p>
+        <p><strong>Pace.</strong> Seven days is the classic, and it works. If you have ten, <a href="../cities/denizli" class="text-link">Pamukkale</a> fits naturally between Antalya and the airport. Fourteen lets you add the Aegean coast and end in Izmir, the route we call <a href="grand-tour" class="text-link">The Grand Tour</a>.</p>
       </div>
 
     </div>

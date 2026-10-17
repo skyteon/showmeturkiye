@@ -92,7 +92,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden;}
-a{text-decoration:none;color:inherit;}
+a{text-decoration:none;color:inherit;}a.text-link { color: #8B2820; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-weight: 500; transition: opacity 0.2s ease; }
+a.text-link:hover { opacity: 0.7; }
 img{max-width:100%;display:block;}
 
 /* NAV */
@@ -1658,7 +1659,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
     <p class="whyv-lede reveal">A UNESCO Creative City of Gastronomy in southeast Turkey, where pistachio orchards, copper bazaars and one of the world's finest mosaic museums sit on top of 6,000 years of history.</p>
     <div class="whyv-body-grid reveal">
       <p class="whyv-body">The reason most people come is the food. Gaziantep is one of UNESCO's designated cities of gastronomy and the standard is genuinely the highest in Turkey: pistachio baklava that defines the dish, beyran soup eaten at dawn, lahmacun, ali nazik kebab, katmer and the most flavourful Antep pistachios in the country. Eat early, eat often, and don't try to pace yourself.</p>
-      <p class="whyv-body">Beyond the table, the city is anchored by the Zeugma Mosaic Museum, one of the largest mosaic museums in the world, with Roman floors recovered from a town now submerged under a dam. The hilltop citadel, the copper bazaars and the cuisine museum in a restored konak make a tight walking circuit through the old town. Day trips reach Sanliurfa and Gobekli Tepe, the sunken village of Halfeti and the Hittite reliefs at Yesemek.</p>
+      <p class="whyv-body">Beyond the table, the city is anchored by the Zeugma Mosaic Museum, one of the largest mosaic museums in the world, with Roman floors recovered from a town now submerged under a dam. The hilltop citadel, the copper bazaars and the cuisine museum in a restored konak make a tight walking circuit through the old town. Day trips reach <a href="sanliurfa" class="text-link">Sanliurfa</a> and Gobekli Tepe, the sunken village of Halfeti and the Hittite reliefs at Yesemek.</p>
     </div>
   </div>
 </section>
