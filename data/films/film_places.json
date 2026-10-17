@@ -1,0 +1,198 @@
+{
+  "_comment": "Curated, owner-editable film -> place registry for Films 2.0. Every mapping is verified either by an existing embed on the target page (embed) or by the film's own YouTube title naming the place (title). Films not listed here get no place and no destination link. 'guide' = city page, 'journal' = blog article. Routes and images are derived at build time from the production clone; never hand-write them here. Per-film 'description' overrides are VERBATIM sentences from the film's own YouTube description (verified_by youtube-description); 'poster' may name maxres1/2/3 (YouTube's own frames) or an absolute image URL.",
+  "places": {
+    "antalya": {
+      "label": "Antalya",
+      "guide": "cities/antalya.html",
+      "journal": "blog/antalya.html"
+    },
+    "rize": {
+      "label": "Rize",
+      "guide": "cities/rize.html",
+      "journal": "blog/rize.html"
+    },
+    "kocaeli": {
+      "label": "Kocaeli",
+      "guide": "cities/kocaeli.html"
+    },
+    "sakarya": {
+      "label": "Sakarya"
+    },
+    "trabzon": {
+      "label": "Trabzon",
+      "guide": "cities/trabzon.html",
+      "journal": "blog/trabzon.html"
+    },
+    "afyonkarahisar": {
+      "label": "Afyonkarahisar",
+      "guide": "cities/afyonkarahisar.html"
+    },
+    "diyarbakir": {
+      "label": "Diyarbakır",
+      "guide": "cities/diyarbakir.html"
+    },
+    "kemer": {
+      "label": "Kemer",
+      "guide": "cities/antalya.html",
+      "journal": "blog/kemer.html"
+    },
+    "aladaglar": {
+      "label": "Aladağlar",
+      "journal": "blog/aladaglar.html"
+    },
+    "hakkari": {
+      "label": "Hakkari",
+      "guide": "cities/hakkari.html",
+      "journal": "blog/hakkari.html"
+    },
+    "kayseri": {
+      "label": "Kayseri",
+      "guide": "cities/kayseri.html",
+      "journal": "blog/skiing-in-turkiye.html"
+    },
+    "palandoken": {
+      "label": "Palandöken",
+      "journal": "blog/skiing-in-turkiye.html"
+    },
+    "sarikamis": {
+      "label": "Sarıkamış",
+      "journal": "blog/skiing-in-turkiye.html"
+    },
+    "balikesir": {
+      "label": "Balıkesir",
+      "guide": "cities/balikesir.html",
+      "journal": "blog/balikesir.html"
+    },
+    "canakkale": {
+      "label": "Çanakkale",
+      "guide": "cities/canakkale.html",
+      "journal": "blog/canakkale.html"
+    },
+    "artvin": {
+      "label": "Artvin",
+      "guide": "cities/artvin.html",
+      "journal": "blog/artvin.html"
+    },
+    "giresun": {
+      "label": "Giresun",
+      "journal": "blog/giresun.html"
+    },
+    "ordu": {
+      "label": "Ordu",
+      "journal": "blog/ordu.html"
+    }
+  },
+  "films": {
+    "IxfJr92fJdg": {
+      "place": "antalya",
+      "verified_by": "embed",
+      "description": "From coastal winds to mountain peaks, ancient ruins to the pulse of modern life, we condensed an endless city into a seven minute film.",
+      "description_verified_by": "youtube-description"
+    },
+    "GBil27OsaFc": {
+      "place": "rize",
+      "verified_by": "embed"
+    },
+    "XC1klonfzNU": {
+      "place": "kocaeli",
+      "verified_by": "embed"
+    },
+    "ElUzM23qx-A": {
+      "place": "sakarya",
+      "verified_by": "title"
+    },
+    "Kje5lx1cdT0": {
+      "place": "trabzon",
+      "verified_by": "embed"
+    },
+    "GswHLRx01CU": {
+      "place": "afyonkarahisar",
+      "verified_by": "title"
+    },
+    "EplWWcwxpDs": {
+      "place": null,
+      "scope": "Across Türkiye",
+      "verified_by": "title"
+    },
+    "xpWTRCEQRPs": {
+      "place": null,
+      "scope": "Across Türkiye",
+      "verified_by": "title"
+    },
+    "XFJ2lZOj6fo": {
+      "place": "diyarbakir",
+      "verified_by": "embed"
+    },
+    "lePg6qlA6CQ": {
+      "place": "kemer",
+      "verified_by": "embed"
+    },
+    "-lkp2WzCle0": {
+      "place": "aladaglar",
+      "verified_by": "embed"
+    },
+    "V1wzv-gf2Tg": {
+      "place": "hakkari",
+      "verified_by": "embed"
+    },
+    "uE8KyEM6MO4": {
+      "place": "kayseri",
+      "verified_by": "title"
+    },
+    "HpP9XNJROCY": {
+      "place": "palandoken",
+      "verified_by": "title",
+      "description": "If you decide to go on a winter tour in Turkiye, Palandöken is one of the best places you can visit.",
+      "description_verified_by": "youtube-description"
+    },
+    "yUNGN4WIMmY": {
+      "place": "sarikamis",
+      "verified_by": "title",
+      "description": "This year I decided to go on a journey in winter for 15 days to show you the some of the ski resorts of Turkiye and share my experiences in these places. The first one being Sarikamis Ski Resort.",
+      "description_verified_by": "youtube-description"
+    },
+    "lQWRj91JuFM": {
+      "place": "trabzon",
+      "verified_by": "embed"
+    },
+    "3H2vOTkmeZk": {
+      "place": "balikesir",
+      "verified_by": "embed"
+    },
+    "NG312sUWVt0": {
+      "place": "canakkale",
+      "verified_by": "embed"
+    },
+    "besm84ojdEY": {
+      "place": "canakkale",
+      "verified_by": "embed"
+    },
+    "ZqyhuSVvHvA": {
+      "place": null,
+      "scope": "Across Anatolia",
+      "verified_by": "title",
+      "description": "My journey of TransAnatolia started in Hatay and ended in Eskişehir. This journey takes place in the Anatolian side of Turkiye. We have been to 16 different cities in 7 days and I fell in love with the views I have seen during this journey.",
+      "description_verified_by": "youtube-description"
+    },
+    "YgON-iuwe4I": {
+      "place": "trabzon",
+      "verified_by": "embed"
+    },
+    "brnC6u36-Gc": {
+      "place": "rize",
+      "verified_by": "embed"
+    },
+    "lcQpHcxgdjE": {
+      "place": "artvin",
+      "verified_by": "embed"
+    },
+    "9jV5vI0t7nM": {
+      "place": "giresun",
+      "verified_by": "embed"
+    },
+    "ssk35w9zEwI": {
+      "place": "ordu",
+      "verified_by": "embed"
+    }
+  }
+}

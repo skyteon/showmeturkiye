@@ -6,3 +6,4 @@ SEARCH-README.md
 *.py
 node_modules
 wrangler.jsonc
+data

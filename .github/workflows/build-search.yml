@@ -8,6 +8,8 @@ on:
       - 'build-search.py'
       - 'build-consent.py'
       - 'build-footer.py'
+      - 'build-films.py'
+      - 'data/films/**'
       - 'assets/footer.html'
       - 'assets/footer.css'
       - 'assets/footer-exceptions.txt'
@@ -39,6 +41,12 @@ jobs:
 
       - name: Verify footer consistency
         run: python build-footer.py --check
+
+      - name: Render films page
+        run: python build-films.py
+
+      - name: Verify films page consistency
+        run: python build-films.py --check
 
       - name: Commit updated files
         run: |

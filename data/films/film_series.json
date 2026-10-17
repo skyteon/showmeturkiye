@@ -1,0 +1,27 @@
+{
+  "_comment": "The three film series. 'description' is the existing project-card copy from the live projects.html, verbatim. Order here is the display order.",
+  "series": [
+    {
+      "key": "show-me-turkiye",
+      "playlist": "PLcxpMEs-iETYOdLvk1dguRoVBMNC-_aT_",
+      "name": "Show Me Türkiye",
+      "label": "Flagship Series",
+      "description": "Our main cinematic series exploring the most breathtaking destinations, hidden valleys, and ancient cities across Türkiye."
+    },
+    {
+      "key": "let-me-show-you-turkiye",
+      "playlist": "PLcxpMEs-iETam-PhSNCDG_tsX1w99rhVn",
+      "name": "Let Me Show You Türkiye",
+      "label": "Travel Series",
+      "description": "A personal journey through Türkiye's culture, food, and people - intimate stories from the ground up, told with authenticity."
+    },
+    {
+      "key": "skies-of-turkiye",
+      "playlist": "PLcxpMEs-iETb59wZfhuaSZ22l6CMhWE0p",
+      "name": "Skies of Türkiye",
+      "label": "Aerial Series",
+      "description": "A bird's-eye perspective of Türkiye's dramatic landscapes - from volcanic plateaus to turquoise coastlines, all from above."
+    }
+  ],
+  "channel": "https://www.youtube.com/@halilbekar"
+}
