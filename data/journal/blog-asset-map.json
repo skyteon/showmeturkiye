@@ -529,6 +529,42 @@
       "location_evidence": "media-library manifest: province=sakarya, confidence=HIGH, basis=owner filename + GPS 41.12,30.55, captured=2020-07-02",
       "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
       "limitation": ""
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-turn-8",
+      "r2_key": "generated/blog/formula-1-turkey-2027/turn-8-c705a5a0d30b.webp",
+      "cdn_url": "https://img.showmeturkiye.com/generated/blog/formula-1-turkey-2027/turn-8-c705a5a0d30b.webp",
+      "alt": "Conceptual illustration of an unbranded single-seater racing car cornering hard through a long, fast downhill left-hand bend",
+      "caption": "Illustration: a conceptual image of a single-seater held under load through a long, fast left-hander. Not a photograph of Istanbul Park or Turn 8.",
+      "location_evidence": "AI-generated editorial illustration (no real location depicted)",
+      "provenance": {
+        "type": "ai-generated",
+        "provider": "dreamina-manual",
+        "model": "Dreamina (Seedream, official web app, manual handoff)",
+        "original_sha256": "c705a5a0d30b1428a3b1201582ec62f3ba54e8ed2ccd2132621038c06f073d7a",
+        "approval_revision": "revision-003"
+      },
+      "visually_checked": "2026-10-18",
+      "limitation": "illustration, not photography; disclosed in caption"
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-where-to-watch",
+      "r2_key": "generated/blog/formula-1-turkey-2027/where-to-watch-4e92e4204fa8.webp",
+      "cdn_url": "https://img.showmeturkiye.com/generated/blog/formula-1-turkey-2027/where-to-watch-4e92e4204fa8.webp",
+      "alt": "Conceptual illustration of spectators on a grassy general-admission bank watching a single-seater pass through a corner below them",
+      "caption": "Illustration: a conceptual view from a general-admission bank, the kind of spot where you watch a car stay loaded through a corner rather than flash past. Not a photograph of Istanbul Park.",
+      "location_evidence": "AI-generated editorial illustration (no real location depicted)",
+      "provenance": {
+        "type": "ai-generated",
+        "provider": "dreamina-manual",
+        "model": "Dreamina (Seedream, official web app, manual handoff)",
+        "original_sha256": "4e92e4204fa84df53984e3d8a024df51fd7b9854e3e30904e8fbbb4b325ad4d2",
+        "approval_revision": "revision-003"
+      },
+      "visually_checked": "2026-10-18",
+      "limitation": "illustration, not photography; disclosed in caption"
     }
   ],
   "unresolved_gaps": [
