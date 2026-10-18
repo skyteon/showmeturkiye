@@ -11,8 +11,8 @@ and a --check mode for the GitHub Action.
 Data (data/journal/journal.json, version controlled):
     masthead, cover, picks, regions, topics, keep_going   editorial curation (titles, kickers,
                                                           excerpts, images - all editorial text)
-    articles                                              one record per Journal card, in display
-                                                          order: slug, kicker, title, excerpt,
+    articles                                              one record per Journal card (listed
+                                                          newest first by date): slug, kicker, title, excerpt,
                                                           read, date, author, topic, region,
                                                           image, alt
 
@@ -135,10 +135,22 @@ def collect(data, site):
         known.add(a["slug"])
         listed.append(dict(a))
     auto = [auto_record(s, facts[s]) for s in facts if s not in known]
-    auto.sort(key=lambda r: r["_sort"], reverse=True)
     for r in auto:
         warnings.append(f"auto-listed {r['slug']} (not in data/journal/journal.json)")
-    return auto + listed, facts, warnings
+    articles = auto + listed
+    # newest first by the card's month/year (or the article's datePublished when the card has
+    # no date); same month keeps the data-file order; undated cards go last
+    articles.sort(key=lambda a: date_key(a, facts), reverse=True)
+    return articles, facts, warnings
+
+
+def date_key(a, facts):
+    m = re.match(r"^([A-Za-z]+)\s+(\d{4})$", a.get("date") or "")
+    if m and m.group(1) in MONTHS:
+        return (int(m.group(2)), MONTHS.index(m.group(1)) + 1)
+    pub = facts[a["slug"]]["published"]
+    m = re.match(r"^(\d{4})-(\d{2})", pub or "")
+    return (int(m.group(1)), int(m.group(2))) if m else (0, 0)
 
 
 def meta_line(parts):
