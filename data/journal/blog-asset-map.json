@@ -1,6 +1,6 @@
 {
   "_readme": "Verified image-to-subject map for the four October 2026 journal articles. Reuse these associations; verify anything marked with a limitation before captioning it differently. R2 bucket: showmeturkiye-images, CDN img.showmeturkiye.com.",
-  "generated": "2026-10-18",
+  "generated": "2026-10-18 (rev 2)",
   "images": [
     {
       "article": "formula-1-turkey-2027",
@@ -56,116 +56,6 @@
       "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
       "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
       "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "hero / og / card image",
-      "r2_key": "cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
-      "alt": "A ruined medieval church at Ani, on the border plateau east of Kars, at sunset",
-      "caption": "",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-kastamonu",
-      "r2_key": "cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
-      "alt": "Timber-framed Ottoman konak houses on a street in Kastamonu",
-      "caption": "Timber-framed konaks in Kastamonu’s old town.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-kastamonu",
-      "r2_key": "media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
-      "alt": "Glass viewing terrace cantilevered over Çatak Canyon in the Küre Mountains, Kastamonu",
-      "caption": "The glass terrace over Çatak Canyon, near Azdavay in the Küre Mountains.",
-      "location_evidence": "media-library manifest: province=kastamonu, confidence=HIGH, basis=owner filename + GPS 41.66,33.23, captured=2018-10-26",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "cinematic break before/after ch-kastamonu",
-      "r2_key": "blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
-      "alt": "",
-      "caption": "Şavşat Karagöl, the landslide-dammed lake in the Karagöl-Sahara National Park, Artvin.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-artvin",
-      "r2_key": "cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
-      "alt": "Painted timber interior of the İremit mosque in the Macahel valley, Artvin",
-      "caption": "The painted wooden interior of the İremit mosque, Macahel.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "cinematic break before/after ch-artvin",
-      "r2_key": "cities/hakkari/hakkari-cilo-sat-mountains.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg",
-      "alt": "",
-      "caption": "A hiker below the Cilo-Sat peaks, Hakkari.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-hakkari",
-      "r2_key": "cities/hakkari/places/hakkari-cilo-glaciers.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/places/hakkari-cilo-glaciers.jpg",
-      "alt": "Aerial view of glacier ice and meltwater in the Cilo Mountains",
-      "caption": "Glacier ice in the Cilo Mountains, among the largest in Türkiye.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-phrygia",
-      "r2_key": "cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
-      "alt": "Tuff outcrops in the Phrygian Valley seen through a rock-cut opening",
-      "caption": "Rock-cut chambers and tuff outcrops in the Phrygian Valley.",
-      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-ani",
-      "r2_key": "media-library/kars-ani-ruins-church-sunset-004.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/media-library/kars-ani-ruins-church-sunset-004.jpg",
-      "alt": "A visitor beside a ruined medieval church at Ani, Kars, in evening light",
-      "caption": "One of Ani’s surviving churches at sunset. The plateau is empty enough that a single visitor sets the scale.",
-      "location_evidence": "media-library manifest: province=kars, confidence=HIGH, basis=owner filename + same-session camera date 2021-05-11, captured=2021-05-11",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": ""
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "section": "inline figure in ch-kemaliye",
-      "r2_key": "media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
-      "cdn_url": "https://img.showmeturkiye.com/media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
-      "alt": "Aerial view of the turquoise Karasu river, the upper Euphrates, winding between dry hills near İliç, Erzincan",
-      "caption": "The upper Euphrates, the Karasu, near İliç, the district just upstream of Kemaliye.",
-      "location_evidence": "media-library manifest: province=erzincan, confidence=MEDIUM, basis=owner filename \"Erzincan_İliç\", captured=n/a",
-      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
-      "limitation": "Location confidence below HIGH in the media-library manifest"
     },
     {
       "article": "photography-spots-turkiye",
@@ -474,6 +364,171 @@
       "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
       "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
       "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "hero / og / card image",
+      "r2_key": "cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
+      "alt": "A ruined medieval church at Ani, on the border plateau east of Kars, at sunset",
+      "caption": "",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kastamonu",
+      "r2_key": "cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
+      "alt": "Timber-framed Ottoman konak houses on a street in Kastamonu",
+      "caption": "Timber-framed konaks in Kastamonu’s old town.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kastamonu",
+      "r2_key": "media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
+      "alt": "Glass viewing terrace cantilevered over Çatak Canyon in the Küre Mountains, Kastamonu",
+      "caption": "The glass terrace over Çatak Canyon, near Azdavay in the Küre Mountains.",
+      "location_evidence": "media-library manifest: province=kastamonu, confidence=HIGH, basis=owner filename + GPS 41.66,33.23, captured=2018-10-26",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "cinematic break after ch-kastamonu",
+      "r2_key": "blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
+      "alt": "",
+      "caption": "Şavşat Karagöl, the landslide-dammed lake in the Karagöl-Sahara National Park, Artvin.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-artvin",
+      "r2_key": "cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
+      "alt": "Painted timber interior of the İremit mosque in the Macahel valley, Artvin",
+      "caption": "The painted wooden interior of the İremit mosque, Macahel.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "cinematic break after ch-artvin",
+      "r2_key": "cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+      "alt": "",
+      "caption": "A hiker below the Cilo-Sat peaks, Hakkari.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-hakkari",
+      "r2_key": "cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "alt": "Aerial view of glacier ice and meltwater in the Cilo Mountains",
+      "caption": "Glacier ice in the Cilo Mountains, among the largest in Türkiye.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-phrygia",
+      "r2_key": "cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
+      "alt": "Tuff outcrops in the Phrygian Valley seen through a rock-cut opening",
+      "caption": "Rock-cut chambers and tuff outcrops in the Phrygian Valley.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-ani",
+      "r2_key": "media-library/kars-ani-ruins-church-sunset-004.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/kars-ani-ruins-church-sunset-004.jpg",
+      "alt": "A visitor beside a ruined medieval church at Ani, Kars, in evening light",
+      "caption": "One of Ani’s surviving churches at sunset. The plateau is empty enough that a single visitor sets the scale.",
+      "location_evidence": "media-library manifest: province=kars, confidence=HIGH, basis=owner filename + same-session camera date 2021-05-11, captured=2021-05-11",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "cinematic break after ch-ani",
+      "r2_key": "media-library/bolu-yedigoller-national-park-lakes-autumn-027.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/bolu-yedigoller-national-park-lakes-autumn-027.jpg",
+      "alt": "",
+      "caption": "Yedigöller from the air: landslide lakes in a beech forest at the turn of autumn, Bolu.",
+      "location_evidence": "media-library manifest: province=bolu, confidence=HIGH, basis=GPS 40.93-40.95,31.74 + visual, captured=2018-10-31",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-yedigoller",
+      "r2_key": "media-library/bolu-yedigoller-national-park-lakes-autumn-007.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/bolu-yedigoller-national-park-lakes-autumn-007.jpg",
+      "alt": "A lake in Yedigöller National Park reflecting autumn beech forest under a blue sky, Bolu",
+      "caption": "Autumn at Yedigöller: beech forest and still water, the classic frame of the park.",
+      "location_evidence": "media-library manifest: province=bolu, confidence=HIGH, basis=GPS 40.93-40.95,31.74 + visual, captured=2018-10-31",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-yedigoller",
+      "r2_key": "media-library/bolu-yedigoller-national-park-autumn-005.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/bolu-yedigoller-national-park-autumn-005.jpg",
+      "alt": "A visitor standing at the edge of a Yedigöller lake among autumn trees, Bolu",
+      "caption": "The lake edge in October, when the colour is at its peak.",
+      "location_evidence": "media-library manifest: province=bolu, confidence=HIGH, basis=owner filename + visual, captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kemaliye",
+      "r2_key": "media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
+      "alt": "Aerial view of the turquoise Karasu river, the upper Euphrates, winding between dry hills near İliç, Erzincan",
+      "caption": "The upper Euphrates, the Karasu, near İliç, the district just upstream of Kemaliye.",
+      "location_evidence": "media-library manifest: province=erzincan, confidence=MEDIUM, basis=owner filename \"Erzincan_İliç\", captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-acarlar",
+      "r2_key": "media-library/sakarya-acarlar-floodplain-forest-002.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/sakarya-acarlar-floodplain-forest-002.jpg",
+      "alt": "Aerial view of a water channel running through the flooded Acarlar forest, Sakarya",
+      "caption": "The Acarlar longoz from above: water, alder and ash in one green block behind the Black Sea dunes.",
+      "location_evidence": "media-library manifest: province=sakarya, confidence=HIGH, basis=owner filename + GPS 41.12,30.55, captured=2020-07-02",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-acarlar",
+      "r2_key": "media-library/sakarya-acarlar-floodplain-forest-001.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/sakarya-acarlar-floodplain-forest-001.jpg",
+      "alt": "Flooded forest at Acarlar with trees reflected in still water under a blue sky",
+      "caption": "Still water under the trees: the longoz in early summer.",
+      "location_evidence": "media-library manifest: province=sakarya, confidence=HIGH, basis=owner filename + GPS 41.12,30.55, captured=2020-07-02",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
     }
   ],
   "unresolved_gaps": [
@@ -481,11 +536,6 @@
       "article": "formula-1-turkey-2027",
       "need": "Istanbul Park circuit, Turn 8 and race-atmosphere photographs",
       "status": "No owned or licensed circuit imagery in R2 (checked media-library, cities, blog, hero, projects, routes, trails, Instagram). Article illustrated with Istanbul travel photography, captioned as such."
-    },
-    {
-      "article": "hidden-gems-in-turkiye",
-      "need": "Divriği Great Mosque and Hospital; Amasya rock tombs / Yalıboyu houses; Kemaliye Taş Yol tunnels",
-      "status": "Not in R2. No figure placed; Kemaliye uses the upper Euphrates near İliç (media-library, MEDIUM confidence) captioned honestly."
     },
     {
       "article": "photography-spots-turkiye",
@@ -496,6 +546,11 @@
       "article": "turkish-food-by-region",
       "need": "Erzurum cağ kebabı; Antakya künefe; Aegean olive harvest",
       "status": "No Erzurum food photography in R2; Eastern Anatolia uses Hakkari otlu peynir from the foods series."
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "need": "Kemaliye Taş Yol tunnels / Dark Canyon itself",
+      "status": "Not in R2; chapter uses the upper Euphrates near İliç (media-library, MEDIUM confidence) captioned honestly. Divriği and Amasya chapters were removed on 2026-10-18 at the owner's request and replaced by Yedigöller (Bolu) and the Acarlar floodplain forest (Sakarya), both with HIGH-confidence media-library photography."
     }
   ]
 }
