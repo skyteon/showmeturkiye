@@ -266,11 +266,12 @@ em { font-style: italic; }
 .jr-cover-scrim {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(14,9,8,0.20) 0%, rgba(14,9,8,0) 28%, rgba(14,9,8,0.22) 52%, rgba(14,9,8,0.88) 100%),
-    linear-gradient(90deg, rgba(14,9,8,0.62) 0%, rgba(14,9,8,0.28) 40%, rgba(14,9,8,0) 68%);
+    linear-gradient(180deg, rgba(14,9,8,0.20) 0%, rgba(14,9,8,0) 28%, rgba(14,9,8,0.30) 50%, rgba(14,9,8,0.92) 100%),
+    linear-gradient(90deg, rgba(14,9,8,0.72) 0%, rgba(14,9,8,0.38) 42%, rgba(14,9,8,0) 70%);
 }
 .jr-cover-body {
   position: relative; z-index: 1;
+  text-shadow: 0 1px 14px rgba(14,9,8,0.55);
   display: flex; flex-direction: column; align-items: flex-start;
   justify-content: flex-end;
   min-height: inherit; padding: 64px;
@@ -278,10 +279,10 @@ em { font-style: italic; }
 }
 .jr-cover-eyebrow {
   font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 22px;
+  color: rgba(244,239,229,0.92); margin-bottom: 22px;
   display: inline-flex; align-items: center; gap: 12px;
 }
-.jr-cover-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.8; }
+.jr-cover-eyebrow::before { content: ''; width: 28px; height: 1px; background: rgba(244,239,229,0.92); }
 .jr-cover-title {
   font-family: var(--serif); font-weight: 500;
   font-size: clamp(34px, 4.4vw, 64px);
@@ -290,14 +291,14 @@ em { font-style: italic; }
   margin-bottom: 22px;
   text-shadow: 0 2px 24px rgba(14,9,8,0.35);
 }
-.jr-cover-title em { font-style: italic; color: var(--gold); }
+.jr-cover-title em { font-style: italic; color: var(--cream); }
 .jr-cover-excerpt {
   font-size: 16px; line-height: 1.65; color: rgba(244,239,229,0.86);
   max-width: 58ch; margin-bottom: 26px; text-wrap: pretty;
 }
 .jr-cover-byline {
   display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
-  font-size: 12px; letter-spacing: 0.04em; color: rgba(244,239,229,0.70);
+  font-size: 12px; letter-spacing: 0.04em; color: rgba(244,239,229,0.82);
   margin-bottom: 30px;
 }
 .jr-cover-byline span:first-child { color: var(--cream); font-weight: 500; }
@@ -516,7 +517,7 @@ em { font-style: italic; }
 
   .jr-cover { padding: 0; }
   .jr-cover-link { border-radius: 0; min-height: 0; aspect-ratio: 4 / 5; max-height: 620px; box-shadow: none; }
-  .jr-cover-scrim { background: linear-gradient(180deg, rgba(14,9,8,0.22) 0%, rgba(14,9,8,0) 28%, rgba(14,9,8,0.30) 52%, rgba(14,9,8,0.90) 100%); }
+  .jr-cover-scrim { background: linear-gradient(180deg, rgba(14,9,8,0.22) 0%, rgba(14,9,8,0) 26%, rgba(14,9,8,0.42) 48%, rgba(14,9,8,0.94) 100%); }
   .jr-cover-body { position: absolute; inset: 0; min-height: 0; padding: 28px var(--gutter) 32px; max-width: none; }
   .jr-cover-eyebrow { font-size: 10px; margin-bottom: 14px; }
   .jr-cover-title { font-size: clamp(28px, 8.2vw, 38px); margin-bottom: 14px; }
