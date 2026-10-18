@@ -21,7 +21,8 @@ Listing rules:
   * an article that is in the data file uses the data file's card text;
   * an article that is NOT in the data file yet is listed automatically, newest first, from
     the article's own <h1>, meta description, read time, eyebrow and datePublished (nothing is
-    invented: fields the article does not state stay empty);
+    invented: fields the article does not state stay empty); a file with neither <h1> nor
+    <title> is skipped with a warning;
   * data-file records whose article no longer exists are skipped with a warning;
   * story counts, region counts and "last updated" are computed, never typed.
 
@@ -77,6 +78,7 @@ def article_facts(path):
     eyebrow = text_of(find(h, r'class="hero-eyebrow"[^>]*>(.*?)</(?:div|p|span)>'))
     read_m = re.search(r"(\d+)\s*min read", h)
     return {
+        "title": text_of(find(h, r"<title>([^<]*)</title>")),
         "h1": text_of(find(h, r"<h1[^>]*>(.*?)</h1>")),
         "description": find(h, r'<meta name="description" content="([^"]*)"'),
         "og_image": find(h, r'<meta property="og:image" content="([^"]*)"'),
@@ -99,20 +101,32 @@ def auto_record(slug, f):
         if needle in low:
             region = key
             break
-    return {"slug": slug, "kicker": f["eyebrow"].split("·")[0].strip() or "Journal", "title": f["h1"],
+    title = f["h1"] or re.split(r"\s*[|·]\s*Show Me", f["title"])[0].strip()
+    return {"slug": slug, "kicker": f["eyebrow"].split("·")[0].strip() or "Journal", "title": title,
             "excerpt": f["description"], "read": f["read"], "date": month_year(f["published"]),
-            "author": "", "topic": topic, "region": region, "image": f["og_image"], "alt": f["h1"],
+            "author": "", "topic": topic, "region": region, "image": f["og_image"], "alt": title,
             "_auto": True, "_sort": f["published"]}
+
+
+REQUIRED = ("slug", "kicker", "title", "excerpt", "read", "date", "author", "topic", "region", "image", "alt")
 
 
 def collect(data, site):
     files = {os.path.basename(p)[:-5]: p for p in glob.glob(os.path.join(site, "blog", "*.html"))}
-    facts = {}
+    facts, warnings = {}, []
     for slug, p in files.items():
         f = article_facts(p)
-        if f:
-            facts[slug] = f
-    listed, warnings = [], []
+        if f is None:
+            continue
+        if not f["h1"] and not f["title"]:
+            warnings.append(f"skipped blog/{slug}.html: no <h1> or <title>, not listed")
+            continue
+        facts[slug] = f
+    for i, a in enumerate(data["articles"]):
+        missing = [k for k in REQUIRED if k not in a]
+        if missing:
+            sys.exit(f"data/journal/journal.json: articles[{i}] ({a.get('slug', '?')}) is missing {', '.join(missing)}")
+    listed = []
     known = set()
     for a in data["articles"]:
         if a["slug"] not in facts:
@@ -200,11 +214,11 @@ def render_body(data, articles, facts):
       <a href="blog/{esc(x["slug"])}" class="jr-pick-link">
         <span class="jr-pick-num" aria-hidden="true">{i:02d}</span>
         <span class="jr-pick-media">{img(x["image"], x["alt"], x.get("width"), x.get("height"))}</span>
-        <span class="jr-pick-body">
+        <div class="jr-pick-body">
           <span class="jr-meta">{meta_line(x["meta"])}</span>
           <h3 class="jr-pick-title">{x["title"]}</h3>
           <span class="jr-pick-excerpt">{x["excerpt"]}</span>
-        </span>
+        </div>
       </a>
     </li>''')
         out.append(f'''
@@ -255,17 +269,18 @@ def render_body(data, articles, facts):
     cards = []
     for a in articles:
         region_label = regions.get(a["region"], {}).get("label", "")
-        haystack = " ".join([a["title"], a["excerpt"], a["kicker"], region_label, a["slug"].replace("-", " ")])
+        haystack = " ".join([a["title"], a["excerpt"], a["kicker"], region_label, a["slug"].replace("-", " "),
+                             facts[a["slug"]]["description"]])
         haystack = text_of(haystack).lower()
         meta = meta_line([a["read"], a["date"], a["author"]])
         cards.append(f'''    <a href="blog/{esc(a["slug"])}" class="card jr-card" data-topic="{esc(a["topic"])}" data-region="{esc(a["region"])}" data-search="{esc(haystack)}">
       <span class="jr-card-media">{img(a["image"], a["alt"])}</span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">{a["kicker"]}</span>
         <h3 class="jr-card-title">{a["title"]}</h3>
         <span class="jr-card-excerpt">{a["excerpt"]}</span>
         <span class="jr-meta">{meta}</span>
-      </span>
+      </div>
     </a>''')
     out.append(f'''
 <section class="jr-archive" id="archive" aria-labelledby="archiveTitle" data-initial="{int(ar.get("initial", 12))}">

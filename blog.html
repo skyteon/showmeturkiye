@@ -381,7 +381,7 @@ em { font-style: italic; }
 .jr-pills { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
 .jr-pill {
   background: transparent; border: 1px solid transparent; color: var(--ink-soft);
-  padding: 9px 15px; min-height: 40px; border-radius: 999px; white-space: nowrap;
+  padding: 9px 15px; min-height: 44px; border-radius: 999px; white-space: nowrap;
   font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
@@ -485,10 +485,6 @@ em { font-style: italic; }
 .jr-keep-sub { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
 .jr-keep-arr { position: absolute; right: 22px; top: 28px; font-size: 18px; color: var(--ink-mute); transition: transform 0.3s ease, color 0.3s ease; }
 .jr-keep-link:hover .jr-keep-arr { transform: translateX(4px); color: var(--accent); }
-
-/* ═══════════ REVEAL ═══════════ */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
 
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 1100px) {
@@ -1267,7 +1263,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="site-nav" id="siteNav">
-  <a href="./"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" width="320" height="96" alt="Show Me Türkiye"></a>
+  <a href="./"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Open search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
   <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -1328,33 +1324,33 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <a href="blog/when-is-the-best-time-to-visit-turkiye" class="jr-pick-link">
         <span class="jr-pick-num" aria-hidden="true">01</span>
         <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye" width="2400" height="1350" loading="lazy" decoding="async"></span>
-        <span class="jr-pick-body">
+        <div class="jr-pick-body">
           <span class="jr-meta"><span>Planning Guide</span><span class="jr-dot" aria-hidden="true"></span><span>Türkiye</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
           <h3 class="jr-pick-title">When Is the Best Time to Visit Türkiye: Season by Season.</h3>
           <span class="jr-pick-excerpt">There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</span>
-        </span>
+        </div>
       </a>
     </li>
     <li class="jr-pick">
-      <a href="blog/istanbul" class="jr-pick-link">
+      <a href="blog/getting-around-turkey" class="jr-pick-link">
         <span class="jr-pick-num" aria-hidden="true">02</span>
-        <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/media-library/istanbul-galata-tower-night-aerial.jpg" alt="Galata Tower and the Istanbul skyline at night, from the air" width="1080" height="1350" loading="lazy" decoding="async"></span>
-        <span class="jr-pick-body">
-          <span class="jr-meta"><span>City Guide</span><span class="jr-dot" aria-hidden="true"></span><span>Marmara</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
-          <h3 class="jr-pick-title">Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h3>
-          <span class="jr-pick-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</span>
-        </span>
+        <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg" alt="Getting around Türkiye" width="2400" height="1350" loading="lazy" decoding="async"></span>
+        <div class="jr-pick-body">
+          <span class="jr-meta"><span>Planning Guide</span><span class="jr-dot" aria-hidden="true"></span><span>Türkiye</span><span class="jr-dot" aria-hidden="true"></span><span>10 min read</span></span>
+          <h3 class="jr-pick-title">Getting Around Türkiye: Buses, Trains, Flights and Driving.</h3>
+          <span class="jr-pick-excerpt">When to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. The transport half of a Türkiye trip, planned.</span>
+        </div>
       </a>
     </li>
     <li class="jr-pick">
       <a href="blog/hiking-in-turkiye" class="jr-pick-link">
         <span class="jr-pick-num" aria-hidden="true">03</span>
         <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker below the Cilo-Sat peaks" width="2400" height="1350" loading="lazy" decoding="async"></span>
-        <span class="jr-pick-body">
+        <div class="jr-pick-body">
           <span class="jr-meta"><span>Outdoors</span><span class="jr-dot" aria-hidden="true"></span><span>Türkiye</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
           <h3 class="jr-pick-title">Hiking in Türkiye: which trail or region is right for you.</h3>
           <span class="jr-pick-excerpt">Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.</span>
-        </span>
+        </div>
       </a>
     </li>
     </ol>
@@ -1450,203 +1446,203 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <button type="button" class="jr-reset" id="archiveReset" hidden>Clear filters <span aria-hidden="true">×</span></button>
     </div>
     <div class="jr-grid" id="archiveGrid">
-    <a href="blog/getting-around-turkey" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="getting around türkiye: buses, trains, flights and driving. when to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. the transport half of a türkiye trip, planned. planning guide all türkiye getting around turkey">
+    <a href="blog/getting-around-turkey" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="getting around türkiye: buses, trains, flights and driving. when to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. the transport half of a türkiye trip, planned. planning guide all türkiye getting around turkey how to get around turkey: when to fly, bus or take the fast train, how the otogar and dolmuş work, airport links, ferries and renting a car.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg" alt="Getting around Türkiye" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Planning Guide</span>
         <h3 class="jr-card-title">Getting Around Türkiye: Buses, Trains, Flights and Driving.</h3>
         <span class="jr-card-excerpt">When to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. The transport half of a Türkiye trip, planned.</span>
         <span class="jr-meta"><span>10 min read</span><span class="jr-dot" aria-hidden="true"></span><span>September 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/cop31-antalya-2026" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="cop31 antalya 2026: a complete guide to the un climate conference. cop31, the un climate change conference, runs 9–20 november 2026 in antalya, türkiye. dates, venue, who can attend, the green and blue zones, and where to find the official websites. events mediterranean cop31 antalya 2026">
+    <a href="blog/cop31-antalya-2026" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="cop31 antalya 2026: a complete guide to the un climate conference. cop31, the un climate change conference, runs 9–20 november 2026 in antalya, türkiye. dates, venue, who can attend, the green and blue zones, and where to find the official websites. events mediterranean cop31 antalya 2026 cop31, the un climate change conference, runs 9–20 november 2026 in antalya, türkiye. dates, venue, who can attend, the green and blue zones, and where to find the official websites.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg" alt="A limestone canyon in the Taurus Mountains of Antalya" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Events</span>
         <h3 class="jr-card-title">COP31 Antalya 2026: a complete guide to the UN Climate Conference.</h3>
         <span class="jr-card-excerpt">COP31, the UN Climate Change Conference, runs 9–20 November 2026 in Antalya, Türkiye. Dates, venue, who can attend, the Green and Blue Zones, and where to find the official websites.</span>
         <span class="jr-meta"><span>7 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/hiking-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="hiking in türkiye: which trail or region is right for you. which hike in türkiye fits you? we compare the lycian way, kaçkar, aladağlar, cappadocia and more by difficulty, season, length and where you sleep. outdoors all türkiye hiking in turkiye">
+    <a href="blog/hiking-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="hiking in türkiye: which trail or region is right for you. which hike in türkiye fits you? we compare the lycian way, kaçkar, aladağlar, cappadocia and more by difficulty, season, length and where you sleep. outdoors all türkiye hiking in turkiye which hike in türkiye fits you? we compare the lycian way, kaçkar, aladağlar, cappadocia and more by difficulty, season, length and where you sleep.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker below the Cilo-Sat peaks" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Outdoors</span>
         <h3 class="jr-card-title">Hiking in Türkiye: which trail or region is right for you.</h3>
         <span class="jr-card-excerpt">Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/national-parks-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="national parks in türkiye. türkiye has 54 official national parks. find the one that fits your trip, from kaçkar&#x27;s peaks and köprülü kanyon to autumn forests and wetlands, by season. outdoors all türkiye national parks in turkiye">
+    <a href="blog/national-parks-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="national parks in türkiye. türkiye has 54 official national parks. find the one that fits your trip, from kaçkar&#x27;s peaks and köprülü kanyon to autumn forests and wetlands, by season. outdoors all türkiye national parks in turkiye türkiye has 54 official national parks. find the one that fits your trip, from kaçkar&#x27;s peaks and köprülü kanyon to autumn forests and wetlands, by season.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/artvin/places/artvin-savsat-karagol-lake.jpg" alt="Karagöl-Sahara National Park" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Outdoors</span>
         <h3 class="jr-card-title">National Parks in Türkiye.</h3>
         <span class="jr-card-excerpt">Türkiye has 54 official national parks. Find the one that fits your trip, from Kaçkar's peaks and Köprülü Kanyon to autumn forests and wetlands, by season.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/skiing-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="skiing in türkiye: where to ski, and how to choose. palandöken, erciyes, uludağ, kartalkaya, sarıkamış and the smaller mountains, compared by snow, terrain, level and access. winter all türkiye skiing in turkiye">
+    <a href="blog/skiing-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="skiing in türkiye: where to ski, and how to choose. palandöken, erciyes, uludağ, kartalkaya, sarıkamış and the smaller mountains, compared by snow, terrain, level and access. winter all türkiye skiing in turkiye palandöken, erciyes, uludağ, kartalkaya, sarıkamış and the small resorts compared by level, snow, access and life off the slopes.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/kayseri/erciyes-skiing-day-trip-from-kayseri.jpg" alt="Skiing in Türkiye" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Winter</span>
         <h3 class="jr-card-title">Skiing in Türkiye: where to ski, and how to choose.</h3>
         <span class="jr-card-excerpt">Palandöken, Erciyes, Uludağ, Kartalkaya, Sarıkamış and the smaller mountains, compared by snow, terrain, level and access.</span>
         <span class="jr-meta"><span>9 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/sea-to-sky-turkey" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="sea to sky: the kemer hard enduro, from beach to summit. sea to sky is kemer&#x27;s three-day hard enduro race, from the beach to the summit of tahtalı. how it works, where to watch, 2026 dates and where to stay. events mediterranean sea to sky turkey">
+    <a href="blog/sea-to-sky-turkey" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="sea to sky: the kemer hard enduro, from beach to summit. sea to sky is kemer&#x27;s three-day hard enduro race, from the beach to the summit of tahtalı. how it works, where to watch, 2026 dates and where to stay. events mediterranean sea to sky turkey sea to sky is kemer&#x27;s three-day hard enduro race, from the beach to the summit of tahtalı. how it works, where to watch, 2026 dates and where to stay.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Sea to Sky" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Events</span>
         <h3 class="jr-card-title">Sea to Sky: the Kemer hard enduro, from beach to summit.</h3>
         <span class="jr-card-excerpt">Sea to Sky is Kemer's three-day hard enduro race, from the beach to the summit of Tahtalı. How it works, where to watch, 2026 dates and where to stay.</span>
         <span class="jr-meta"><span>6 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/antalya" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="antalya: kaleiçi, aspendos, and the lycian coast. roman aqueducts, greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. antalya is not a resort town. it&#x27;s a province with five thousand years of stone. mediterranean mediterranean antalya">
+    <a href="blog/antalya" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="antalya: kaleiçi, aspendos, and the lycian coast. roman aqueducts, greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. antalya is not a resort town. it&#x27;s a province with five thousand years of stone. mediterranean mediterranean antalya beyond kaleiçi: perge, aspendos and termessos, köprülü canyon, the düden and kurşunlu waterfalls, and day trips to kaş, side and the lycian coast.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg" alt="Antalya" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Mediterranean</span>
         <h3 class="jr-card-title">Antalya: Kaleiçi, Aspendos, and the Lycian Coast.</h3>
         <span class="jr-card-excerpt">Roman aqueducts, Greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. Antalya is not a resort town. It's a province with five thousand years of stone.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/when-is-the-best-time-to-visit-turkiye" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="when is the best time to visit türkiye: season by season. there is no single best month. there are best months for each region. a season-by-season guide for travellers who want the right answer for their specific trip. planning guide all türkiye when is the best time to visit turkiye">
+    <a href="blog/when-is-the-best-time-to-visit-turkiye" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="when is the best time to visit türkiye: season by season. there is no single best month. there are best months for each region. a season-by-season guide for travellers who want the right answer for their specific trip. planning guide all türkiye when is the best time to visit turkiye the best months to visit turkey are late april to may and mid-september to october. season by season: where to go, what to avoid, and when to swim.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Planning Guide</span>
         <h3 class="jr-card-title">When Is the Best Time to Visit Türkiye: Season by Season.</h3>
         <span class="jr-card-excerpt">There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</span>
         <span class="jr-meta"><span>8 min read</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/top-10-places-to-visit-in-Turkey" class="card jr-card" data-topic="destinations" data-region="turkiye" data-search="top 10 places to visit in türkiye in 2026. istanbul and cappadocia are the two everyone gets to. the other eight are where the country starts explaining itself. destinations all türkiye top 10 places to visit in turkey">
+    <a href="blog/top-10-places-to-visit-in-Turkey" class="card jr-card" data-topic="destinations" data-region="turkiye" data-search="top 10 places to visit in türkiye in 2026. istanbul and cappadocia are the two everyone gets to. the other eight are where the country starts explaining itself. destinations all türkiye top 10 places to visit in turkey istanbul and cappadocia, then the eight places that complete a turkey trip: the turquoise coast, ephesus, pamukkale, göbeklitepe, mardin, mount nemrut and more.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Destinations</span>
         <h3 class="jr-card-title">Top 10 Places to Visit in Türkiye in 2026.</h3>
         <span class="jr-card-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself.</span>
         <span class="jr-meta"><span>9 min read</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/istanbul" class="card jr-card" data-topic="city" data-region="marmara" data-search="istanbul: hagia sophia, the bosphorus, and the grand bazaar. sixteen million people, two continents, fifteen hundred years of empire. a city that refuses to choose a side. marmara marmara istanbul">
+    <a href="blog/istanbul" class="card jr-card" data-topic="city" data-region="marmara" data-search="istanbul: hagia sophia, the bosphorus, and the grand bazaar. sixteen million people, two continents, fifteen hundred years of empire. a city that refuses to choose a side. marmara marmara istanbul the istanbul sights worth your time and how to see them well: hagia sophia, topkapı, the grand bazaar, a bosphorus ferry and the neighbourhoods to wander.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg" alt="Istanbul" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Marmara</span>
         <h3 class="jr-card-title">Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h3>
         <span class="jr-card-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</span>
         <span class="jr-meta"><span>8 min read</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/kapadokya" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="cappadocia: göreme, derinkuyu, and the balloon flight. ten million years of volcanic erosion. underground cities going down eighteen levels. byzantine rock-cut churches with frescoes from the tenth century. and the version of the balloon photo that&#x27;s actually worth taking. central anatolia central anatolia kapadokya">
+    <a href="blog/kapadokya" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="cappadocia: göreme, derinkuyu, and the balloon flight. ten million years of volcanic erosion. underground cities going down eighteen levels. byzantine rock-cut churches with frescoes from the tenth century. and the version of the balloon photo that&#x27;s actually worth taking. central anatolia central anatolia kapadokya how to do cappadocia well: the balloon flight, göreme open-air museum, derinkuyu underground city, the ihlara valley walk and where to stay in a cave hotel.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg" alt="Cappadocia" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Central Anatolia</span>
         <h3 class="jr-card-title">Cappadocia: Göreme, Derinkuyu, and the Balloon Flight.</h3>
         <span class="jr-card-excerpt">Ten million years of volcanic erosion. Underground cities going down eighteen levels. Byzantine rock-cut churches with frescoes from the tenth century. And the version of the balloon photo that's actually worth taking.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/kemer" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="kemer: olympos, phaselis, and mount tahtalı. a resort town wrapped around a strategic position, the beydağları rising behind, the lycian coast stretching west, and the chimaera flames within a half-hour drive. mediterranean mediterranean kemer">
+    <a href="blog/kemer" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="kemer: olympos, phaselis, and mount tahtalı. a resort town wrapped around a strategic position, the beydağları rising behind, the lycian coast stretching west, and the chimaera flames within a half-hour drive. mediterranean mediterranean kemer day trips from kemer: the olympos ruins and chimaera flames, swimming at phaselis, the tahtalı cable car and göynük canyon, plus getting there from antalya airport.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Kemer" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Mediterranean</span>
         <h3 class="jr-card-title">Kemer: Olympos, Phaselis, and Mount Tahtalı.</h3>
         <span class="jr-card-excerpt">A resort town wrapped around a strategic position, the Beydağları rising behind, the Lycian coast stretching west, and the Chimaera flames within a half-hour drive.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/trabzon" class="card jr-card" data-topic="city" data-region="black-sea" data-search="trabzon: sümela monastery, uzungöl, and the black sea coast. sümela monastery, an underground river cave, a lake that fills every poster of the eastern black sea, and the most outdoor-active province on this coast. black sea black sea trabzon">
+    <a href="blog/trabzon" class="card jr-card" data-topic="city" data-region="black-sea" data-search="trabzon: sümela monastery, uzungöl, and the black sea coast. sümela monastery, an underground river cave, a lake that fills every poster of the eastern black sea, and the most outdoor-active province on this coast. black sea black sea trabzon the best of trabzon and its valleys: sumela monastery, uzungöl, çal cave, sera lake and the boztepe viewpoint, with how to get there and get around.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg" alt="Trabzon" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Black Sea</span>
         <h3 class="jr-card-title">Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast.</h3>
         <span class="jr-card-excerpt">Sümela Monastery, an underground river cave, a lake that fills every poster of the eastern Black Sea, and the most outdoor-active province on this coast.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/rize" class="card jr-card" data-topic="city" data-region="black-sea" data-search="rize: ayder, the fırtına valley, and türkiye&#x27;s tea country. two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres. black sea black sea rize">
+    <a href="blog/rize" class="card jr-card" data-topic="city" data-region="black-sea" data-search="rize: ayder, the fırtına valley, and türkiye&#x27;s tea country. two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres. black sea black sea rize rize travel guide. ayder plateau, firtina river rafting, zil castle, palovit waterfall, and turkey&#x27;s tea country on the black sea.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg" alt="Rize" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Black Sea</span>
         <h3 class="jr-card-title">Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country.</h3>
         <span class="jr-card-excerpt">Two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/canakkale" class="card jr-card" data-topic="city" data-region="aegean" data-search="çanakkale: gallipoli, troy, and assos. the trojan horse, the gallipoli memorials, the temple of apollo at smintheion, the medieval castles guarding the dardanelles, and the wine islands of bozcaada and gökçeada, all in one province. aegean · history aegean canakkale">
+    <a href="blog/canakkale" class="card jr-card" data-topic="city" data-region="aegean" data-search="çanakkale: gallipoli, troy, and assos. the trojan horse, the gallipoli memorials, the temple of apollo at smintheion, the medieval castles guarding the dardanelles, and the wine islands of bozcaada and gökçeada, all in one province. aegean · history aegean canakkale canakkale travel guide. troy archaeological site, gallipoli memorial, kilitbahir and bigali castles, assos, and bozcaada island.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg" alt="Çanakkale" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Aegean · History</span>
         <h3 class="jr-card-title">Çanakkale: Gallipoli, Troy, and Assos.</h3>
         <span class="jr-card-excerpt">The Trojan horse, the Gallipoli memorials, the temple of Apollo at Smintheion, the medieval castles guarding the Dardanelles, and the wine islands of Bozcaada and Gökçeada, all in one province.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/artvin" class="card jr-card" data-topic="city" data-region="black-sea" data-search="artvin: çoruh canyon, karagöl, and the kaçkar highlands. two karagöl lakes, a çoruh river that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited turkish provinces. northeast black sea artvin">
+    <a href="blog/artvin" class="card jr-card" data-topic="city" data-region="black-sea" data-search="artvin: çoruh canyon, karagöl, and the kaçkar highlands. two karagöl lakes, a çoruh river that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited turkish provinces. northeast black sea artvin artvin in the far northeast of turkey. hatila valley, savsat and borcka karagol, tibeti monastery, macahel district, and highland plateaus.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg" alt="Artvin" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Northeast</span>
         <h3 class="jr-card-title">Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands.</h3>
         <span class="jr-card-excerpt">Two Karagöl lakes, a Çoruh River that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited Turkish provinces.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/giresun" class="card jr-card" data-topic="city" data-region="black-sea" data-search="giresun: kuşköy&#x27;s whistling language, kuzalan, and the hazelnut coast. tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. one of the eastern black sea&#x27;s most underrated stops. most of its best moments are inland. black sea black sea giresun">
+    <a href="blog/giresun" class="card jr-card" data-topic="city" data-region="black-sea" data-search="giresun: kuşköy&#x27;s whistling language, kuzalan, and the hazelnut coast. tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. one of the eastern black sea&#x27;s most underrated stops. most of its best moments are inland. black sea black sea giresun a guide to giresun on the black sea coast. kuzalan nature park, mavi gol, kumbet and golyani plateaus, and the hazelnut countryside.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg" alt="Giresun" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Black Sea</span>
         <h3 class="jr-card-title">Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast.</h3>
         <span class="jr-card-excerpt">Tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. One of the eastern Black Sea's most underrated stops. Most of its best moments are inland.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/erzurum" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="erzurum: palandöken skiing, the old town, and the doğu express. at 1,950 metres on the eastern anatolian plateau, one of the highest provincial capitals in türkiye. seljuk and ottoman stone, the country&#x27;s best ski resort, and the famous doğu express terminus. eastern anatolia eastern anatolia erzurum">
+    <a href="blog/erzurum" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="erzurum: palandöken skiing, the old town, and the doğu express. at 1,950 metres on the eastern anatolian plateau, one of the highest provincial capitals in türkiye. seljuk and ottoman stone, the country&#x27;s best ski resort, and the famous doğu express terminus. eastern anatolia eastern anatolia erzurum erzurum travel guide. palandoken ski resort, cifte minareli medrese, the old town, and the dogu express train journey through eastern turkey.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg" alt="Erzurum" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Eastern Anatolia</span>
         <h3 class="jr-card-title">Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express.</h3>
         <span class="jr-card-excerpt">At 1,950 metres on the eastern Anatolian plateau, one of the highest provincial capitals in Türkiye. Seljuk and Ottoman stone, the country's best ski resort, and the famous Doğu Express terminus.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/hakkari" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="hakkari: cilo mountains, the zap canyon, and türkiye&#x27;s wildest frontier. the cilo and sat mountains, glaciers that almost nobody photographs, the zap river cutting through canyons, and a regional culture you cannot see anywhere else in the country. far southeast eastern anatolia hakkari">
+    <a href="blog/hakkari" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="hakkari: cilo mountains, the zap canyon, and türkiye&#x27;s wildest frontier. the cilo and sat mountains, glaciers that almost nobody photographs, the zap river cutting through canyons, and a regional culture you cannot see anywhere else in the country. far southeast eastern anatolia hakkari hakkari travel guide. cennet cehennem valley, kaval waterfall, the zap river, bercelen plateau, and turkey&#x27;s most remote frontier.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg" alt="Hakkari" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Far Southeast</span>
         <h3 class="jr-card-title">Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier.</h3>
         <span class="jr-card-excerpt">The Cilo and Sat mountains, glaciers that almost nobody photographs, the Zap River cutting through canyons, and a regional culture you cannot see anywhere else in the country.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/ordu" class="card jr-card" data-topic="city" data-region="black-sea" data-search="ordu: boztepe cable car, perşembe plateau, and the black sea coast. ordu starts at the water and climbs. in a single drive: wake up by the sea, stand inside a byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset. black sea black sea ordu">
+    <a href="blog/ordu" class="card jr-card" data-topic="city" data-region="black-sea" data-search="ordu: boztepe cable car, perşembe plateau, and the black sea coast. ordu starts at the water and climbs. in a single drive: wake up by the sea, stand inside a byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset. black sea black sea ordu what to see around ordu on the black sea: the boztepe viewpoint, perşembe plateau, uluğöl, ohtamış waterfall, ünye castle and cape jason.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg" alt="Ordu" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Black Sea</span>
         <h3 class="jr-card-title">Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast.</h3>
         <span class="jr-card-excerpt">Ordu starts at the water and climbs. In a single drive: wake up by the sea, stand inside a Byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/aladaglar" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="aladağlar: demirkazık, emli valley, and the bolkar mountains. emli valley campsites, kazıklı ali canyon&#x27;s vertical rock, the bolkar mountains&#x27; alpine lakes. where turkish mountaineering grew up, and where most turks who climb spend their summers. central taurus central anatolia aladaglar">
+    <a href="blog/aladaglar" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="aladağlar: demirkazık, emli valley, and the bolkar mountains. emli valley campsites, kazıklı ali canyon&#x27;s vertical rock, the bolkar mountains&#x27; alpine lakes. where turkish mountaineering grew up, and where most turks who climb spend their summers. central taurus central anatolia aladaglar how to visit the aladağlar: camping and hiking in emli valley, kazıklı ali canyon, the bolkar mountains and meydan plateau, plus niğde&#x27;s monasteries and food.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg" alt="Aladağlar" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Central Taurus</span>
         <h3 class="jr-card-title">Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains.</h3>
         <span class="jr-card-excerpt">Emli Valley campsites, Kazıklı Ali Canyon's vertical rock, the Bolkar mountains' alpine lakes. Where Turkish mountaineering grew up, and where most Turks who climb spend their summers.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
-    <a href="blog/balikesir" class="card jr-card" data-topic="city" data-region="aegean" data-search="balıkesir: kazdağları, ayvalık, and the northern aegean. kaz dağları&#x27;s pine and oxygen, ayvalık&#x27;s old greek streets, cunda&#x27;s harbour seafood, a glass terrace at altitude. the aegean before it became a brand. aegean aegean balikesir">
+    <a href="blog/balikesir" class="card jr-card" data-topic="city" data-region="aegean" data-search="balıkesir: kazdağları, ayvalık, and the northern aegean. kaz dağları&#x27;s pine and oxygen, ayvalık&#x27;s old greek streets, cunda&#x27;s harbour seafood, a glass terrace at altitude. the aegean before it became a brand. aegean aegean balikesir balikesir travel guide. mount ida (kaz daglari), ayvalik and cunda, the glass terrace, and the northern aegean coastline of turkey.">
       <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg" alt="Balıkesir" loading="lazy" decoding="async"></span>
-      <span class="jr-card-body">
+      <div class="jr-card-body">
         <span class="jr-kicker">Aegean</span>
         <h3 class="jr-card-title">Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean.</h3>
         <span class="jr-card-excerpt">Kaz Dağları's pine and oxygen, Ayvalık's old Greek streets, Cunda's harbour seafood, a Glass Terrace at altitude. The Aegean before it became a brand.</span>
         <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
-      </span>
+      </div>
     </a>
     </div>
     <div class="jr-empty" id="archiveEmpty" hidden>
@@ -1739,12 +1735,6 @@ window.addEventListener('scroll', () => {
   document.body.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
 
-/* ─── Reveal on scroll ─── */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
 /* ─── Footer year ─── */
 const fy = document.getElementById('footerYear');
 if (fy) fy.textContent = new Date().getFullYear();
@@ -1799,8 +1789,10 @@ if (fy) fy.textContent = new Date().getFullYear();
     if (state.topic !== 'all') parts.push(topicLabel[state.topic]);
     if (state.region) parts.push(regionLabel[state.region]);
     if (words.length) parts.push('“' + state.q.trim() + '”');
-    status.innerHTML = (active ? '<b>' + n + '</b> of ' + total : '<b>' + n + '</b>') + (n === 1 ? ' story' : ' stories')
-      + (parts.length ? ' · ' + parts.map(p => '<span>' + p.replace(/</g, '&lt;') + '</span>').join(' · ') : '');
+    status.textContent = '';
+    const strong = document.createElement('b'); strong.textContent = String(n);
+    status.append(strong, active ? ' of ' + total + ' stories' : (n === 1 ? ' story' : ' stories'));
+    parts.forEach(p => { const sp = document.createElement('span'); sp.textContent = p; status.append(' · ', sp); });
     reset.hidden = !active;
     empty.hidden = n > 0;
     const hiddenCount = n - Math.min(n, limit === Infinity ? n : limit);
