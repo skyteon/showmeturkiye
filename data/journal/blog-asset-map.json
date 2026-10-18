@@ -1,0 +1,501 @@
+{
+  "_readme": "Verified image-to-subject map for the four October 2026 journal articles. Reuse these associations; verify anything marked with a limitation before captioning it differently. R2 bucket: showmeturkiye-images, CDN img.showmeturkiye.com.",
+  "generated": "2026-10-18",
+  "images": [
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "hero / og / card image",
+      "r2_key": "cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/istanbul/istanbul-skyline-galata-tower-sunset.jpg",
+      "alt": "Galata Tower and the Golden Horn at dusk, Istanbul",
+      "caption": "",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-airports",
+      "r2_key": "cities/bursa/istanbul-fast-ferry-from-bursa.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/bursa/istanbul-fast-ferry-from-bursa.jpg",
+      "alt": "Rumeli Hisarı fortress on the Bosphorus shore below the Fatih Sultan Mehmet Bridge, seen from the air",
+      "caption": "The Bosphorus divides the trip: Istanbul Airport and the old city on the European side, Sabiha Gökçen and the circuit on the Asian side.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-getting-there",
+      "r2_key": "blog/istanbul-travel-guide-long-read.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/istanbul-travel-guide-long-read.jpg",
+      "alt": "City ferries crossing the Bosphorus at sunset with the Istanbul skyline behind",
+      "caption": "Ferries cross between the two sides all day; the last leg to Tuzla is by rail, road or whatever shuttle the organiser announces.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-where-to-stay",
+      "r2_key": "media-library/istanbul-galata-tower-night-aerial.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/istanbul-galata-tower-night-aerial.jpg",
+      "alt": "Galata Tower lit at night above the rooftops of Beyoğlu, with the Golden Horn behind",
+      "caption": "Galata after dark: the European side you trade for distance when you stay near the circuit.",
+      "location_evidence": "media-library manifest: province=istanbul, confidence=MEDIUM, basis=visual (Galata Tower), captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "formula-1-turkey-2027",
+      "section": "inline figure in ch-itineraries",
+      "r2_key": "cities/istanbul/places/istanbul-dolmabahce-ottoman-palace.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/istanbul/places/istanbul-dolmabahce-ottoman-palace.jpg",
+      "alt": "Dolmabahçe Palace on the Bosphorus shore",
+      "caption": "Dolmabahçe on the Bosphorus: the city half of a race-weekend trip.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "hero / og / card image",
+      "r2_key": "cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/ani-ruins-day-trip-from-artvin.jpg",
+      "alt": "A ruined medieval church at Ani, on the border plateau east of Kars, at sunset",
+      "caption": "",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kastamonu",
+      "r2_key": "cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/kastamonu/places/kastamonu-ottoman-konak-houses.jpg",
+      "alt": "Timber-framed Ottoman konak houses on a street in Kastamonu",
+      "caption": "Timber-framed konaks in Kastamonu’s old town.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kastamonu",
+      "r2_key": "media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/kastamonu-catak-canyon-glass-viewing-terrace-002.jpg",
+      "alt": "Glass viewing terrace cantilevered over Çatak Canyon in the Küre Mountains, Kastamonu",
+      "caption": "The glass terrace over Çatak Canyon, near Azdavay in the Küre Mountains.",
+      "location_evidence": "media-library manifest: province=kastamonu, confidence=HIGH, basis=owner filename + GPS 41.66,33.23, captured=2018-10-26",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "cinematic break before/after ch-kastamonu",
+      "r2_key": "blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/artvin/artvin-cinematic-savsat-karagol-black-water.jpg",
+      "alt": "",
+      "caption": "Şavşat Karagöl, the landslide-dammed lake in the Karagöl-Sahara National Park, Artvin.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-artvin",
+      "r2_key": "cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/artvin/places/artvin-iremit-mosque-wooden.jpg",
+      "alt": "Painted timber interior of the İremit mosque in the Macahel valley, Artvin",
+      "caption": "The painted wooden interior of the İremit mosque, Macahel.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "cinematic break before/after ch-artvin",
+      "r2_key": "cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+      "alt": "",
+      "caption": "A hiker below the Cilo-Sat peaks, Hakkari.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-hakkari",
+      "r2_key": "cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "alt": "Aerial view of glacier ice and meltwater in the Cilo Mountains",
+      "caption": "Glacier ice in the Cilo Mountains, among the largest in Türkiye.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-phrygia",
+      "r2_key": "cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/afyonkarahisar/places/afyonkarahisar-phrygian-valley.jpg",
+      "alt": "Tuff outcrops in the Phrygian Valley seen through a rock-cut opening",
+      "caption": "Rock-cut chambers and tuff outcrops in the Phrygian Valley.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-ani",
+      "r2_key": "media-library/kars-ani-ruins-church-sunset-004.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/kars-ani-ruins-church-sunset-004.jpg",
+      "alt": "A visitor beside a ruined medieval church at Ani, Kars, in evening light",
+      "caption": "One of Ani’s surviving churches at sunset. The plateau is empty enough that a single visitor sets the scale.",
+      "location_evidence": "media-library manifest: province=kars, confidence=HIGH, basis=owner filename + same-session camera date 2021-05-11, captured=2021-05-11",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "section": "inline figure in ch-kemaliye",
+      "r2_key": "media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/erzincan-ilic-turquoise-river-valley-aerial-001.jpg",
+      "alt": "Aerial view of the turquoise Karasu river, the upper Euphrates, winding between dry hills near İliç, Erzincan",
+      "caption": "The upper Euphrates, the Karasu, near İliç, the district just upstream of Kemaliye.",
+      "location_evidence": "media-library manifest: province=erzincan, confidence=MEDIUM, basis=owner filename \"Erzincan_İliç\", captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "hero / og / card image",
+      "r2_key": "blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg",
+      "alt": "Hot-air balloons rising over Cappadocia’s rock valleys at sunrise",
+      "caption": "",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-cappadocia",
+      "r2_key": "blog/kapadokya/kapadokya-cinematic-fairy-chimneys.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-cinematic-fairy-chimneys.jpg",
+      "alt": "Rock pinnacles and fairy chimneys in Cappadocia under an overcast sky",
+      "caption": "Without balloons or low sun, the rock itself carries the frame: Cappadocia’s pinnacles in flat light.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-istanbul",
+      "r2_key": "media-library/istanbul-galata-tower-night-aerial.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/istanbul-galata-tower-night-aerial.jpg",
+      "alt": "Galata Tower lit up in the blue hour, seen from above with the Golden Horn and the historic peninsula behind",
+      "caption": "Galata in the blue hour, when the tower’s lights and the sky are in balance.",
+      "location_evidence": "media-library manifest: province=istanbul, confidence=MEDIUM, basis=visual (Galata Tower), captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-pamukkale-salda",
+      "r2_key": "cities/denizli/places/denizli-pamukkale-travertines-unesco.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/denizli/places/denizli-pamukkale-travertines-unesco.jpg",
+      "alt": "Pamukkale travertine pools at sunset",
+      "caption": "Pamukkale’s pools take the colour of the sky at sunset.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-pamukkale-salda",
+      "r2_key": "media-library/burdur-salda-lake-white-shore-aerial-003.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/burdur-salda-lake-white-shore-aerial-003.jpg",
+      "alt": "Aerial view of Salda Lake’s white mineral shore meeting clear turquoise water",
+      "caption": "Salda from above: white mineral shore, clear water, and a palette that reads best from height or at low sun.",
+      "location_evidence": "media-library manifest: province=burdur, confidence=MEDIUM, basis=owner filename \"Salda\", captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-lycian-coast",
+      "r2_key": "cities/mugla/places/mugla-oludeniz-blue-lagoon-aerial.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/mugla/places/mugla-oludeniz-blue-lagoon-aerial.jpg",
+      "alt": "Ölüdeniz lagoon and beach seen from above",
+      "caption": "Ölüdeniz from above: the lagoon, the spit and Belcekız beach.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-lycian-coast",
+      "r2_key": "media-library/antalya-kemer-tahtali-mountain-summit-sea-of-clouds-002.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/antalya-kemer-tahtali-mountain-summit-sea-of-clouds-002.jpg",
+      "alt": "The Tahtalı summit cable-car station above a sea of cloud at sunset, Kemer",
+      "caption": "The Tahtalı summit station above a sea of cloud: the cable car does the climbing, the light does the rest.",
+      "location_evidence": "",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "cinematic break before/after ch-lycian-coast",
+      "r2_key": "cities/mardin/mardin-stone-city-skyline-night.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/mardin/mardin-stone-city-skyline-night.jpg",
+      "alt": "",
+      "caption": "Mardin’s stone town at golden hour, stepping down towards the Mesopotamian plain.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-kackar",
+      "r2_key": "cities/rize/places/rize-zilkale-medieval-castle.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/rize/places/rize-zilkale-medieval-castle.jpg",
+      "alt": "Zilkale castle on a rock spur above the Fırtına valley",
+      "caption": "Zilkale on its spur above the Fırtına valley.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "cinematic break before/after ch-kackar",
+      "r2_key": "media-library/rize-altiparmak-peaks-above-clouds.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/media-library/rize-altiparmak-peaks-above-clouds.jpg",
+      "alt": "",
+      "caption": "The Altıparmak peaks of the Kaçkar range above the cloud at dusk.",
+      "location_evidence": "media-library manifest: province=rize, confidence=MEDIUM, basis=owner filename; Altıparmak range straddles Rize/Artvin, captured=n/a",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Location confidence below HIGH in the media-library manifest"
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-trabzon",
+      "r2_key": "blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg",
+      "alt": "Sumela Monastery built into the cliff face above the forested Altındere Valley",
+      "caption": "Sumela from across the valley, where the monastery reads as part of the cliff.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "cinematic break before/after ch-trabzon",
+      "r2_key": "blog/trabzon/trabzon-cinematic-uzungol-mountain-lake.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/trabzon/trabzon-cinematic-uzungol-mountain-lake.jpg",
+      "alt": "",
+      "caption": "Uzungöl in winter, when snow on the slopes doubles in the lake.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-hakkari",
+      "r2_key": "cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/places/hakkari-cilo-glaciers.jpg",
+      "alt": "Aerial view of glacier ice in the Cilo range, Hakkari",
+      "caption": "Glacier ice and meltwater in the Cilo range.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "section": "inline figure in ch-erciyes",
+      "r2_key": "cities/nevsehir-cappadocia/mount-erciyes-day-trip-from-cappadocia.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/nevsehir-cappadocia/mount-erciyes-day-trip-from-cappadocia.jpg",
+      "alt": "Mount Erciyes at golden hour with horses in water",
+      "caption": "Erciyes at golden hour from the Cappadocia side.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "hero / og / card image",
+      "r2_key": "blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg",
+      "alt": "Tea terraces on steep green slopes above Rize with a picker among the rows",
+      "caption": "",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-marmara",
+      "r2_key": "cities/istanbul/places/istanbul-spice-bazaar-egyptian-market.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/istanbul/places/istanbul-spice-bazaar-egyptian-market.jpg",
+      "alt": "Vaulted interior of Istanbul’s Spice Bazaar lined with spice and sweet stalls",
+      "caption": "The Spice Bazaar in Eminönü, still an index of the old empire’s trade.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-marmara",
+      "r2_key": "cities/istanbul/foods/istanbul-balik-ekmek-fish-sandwich.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/istanbul/foods/istanbul-balik-ekmek-fish-sandwich.jpg",
+      "alt": "Balık ekmek, a grilled fish sandwich with onion and greens on a copper plate",
+      "caption": "Balık ekmek, grilled fish in bread: the waterfront lunch that starts most people’s Turkish food vocabulary.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-aegean",
+      "r2_key": "cities/izmir/places/izmir-kemeralti-bazaar.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/izmir/places/izmir-kemeralti-bazaar.jpg",
+      "alt": "Café tables in a han courtyard in İzmir’s Kemeraltı Bazaar",
+      "caption": "Kemeraltı, İzmir: the old bazaar quarter where the city still eats and shops.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-aegean",
+      "r2_key": "cities/izmir/foods/izmir-ot-kavurma-aegean-greens.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/izmir/foods/izmir-ot-kavurma-aegean-greens.jpg",
+      "alt": "Ot kavurma, Aegean wild greens cooked in olive oil and topped with yoghurt",
+      "caption": "Ot kavurma: the Aegean’s spring greens, cooked in olive oil and finished with yoghurt.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "cinematic break before/after ch-aegean",
+      "r2_key": "cities/adana/places/adana-taskopru-roman-stone-bridge.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/adana/places/adana-taskopru-roman-stone-bridge.jpg",
+      "alt": "",
+      "caption": "Adana’s Roman stone bridge over the Seyhan at sunset: the Mediterranean’s kebab capital.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-mediterranean",
+      "r2_key": "cities/adana/foods/adana-kebab-grilled-spicy.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/adana/foods/adana-kebab-grilled-spicy.jpg",
+      "alt": "Adana kebab, spiced minced lamb on a flat skewer, served on flatbread with grilled pepper and onion",
+      "caption": "Adana kebab at the source: hand-minced lamb and red pepper on a wide skewer, over charcoal.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-central-anatolia",
+      "r2_key": "cities/kayseri/foods/kayseri-pastirma-cured-beef-pdo.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/kayseri/foods/kayseri-pastirma-cured-beef-pdo.jpg",
+      "alt": "Sliced Kayseri pastırma, air-dried beef with its dark fenugreek coating, on a copper plate",
+      "caption": "Kayseri pastırma: beef cured and air-dried under a paste of fenugreek, garlic and red pepper.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-black-sea",
+      "r2_key": "cities/rize/foods/rize-muhlama-mountain-cheese.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/rize/foods/rize-muhlama-mountain-cheese.jpg",
+      "alt": "Muhlama, melted cheese and cornmeal in butter, pulled from a copper pan with a wooden spoon",
+      "caption": "Muhlama: cornmeal, butter and highland cheese, the dish that defines a yayla breakfast.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "cinematic break before/after ch-black-sea",
+      "r2_key": "blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg",
+      "alt": "",
+      "caption": "Kümbet yayla above Giresun: the summer pastures behind Black Sea butter and cheese.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-southeast",
+      "r2_key": "cities/gaziantep/places/gaziantep-almaci-bazaar.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/gaziantep/places/gaziantep-almaci-bazaar.jpg",
+      "alt": "Dried peppers and spices hanging in a covered bazaar in Gaziantep",
+      "caption": "Dried peppers and spices in Gaziantep’s covered bazaar: the pantry of the Southeast.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-southeast",
+      "r2_key": "cities/gaziantep/foods/gaziantep-baklava-pistachio-traditional.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/gaziantep/foods/gaziantep-baklava-pistachio-traditional.jpg",
+      "alt": "Pistachio baklava on a copper plate in Gaziantep",
+      "caption": "Antep baklava: thin pastry, clarified butter and the pistachio that defines it.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "cinematic break before/after ch-southeast",
+      "r2_key": "blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg",
+      "alt": "",
+      "caption": "Erzurum’s Çifte Minareli Medrese in snow: winter shapes the eastern table.",
+      "location_evidence": "owner-supplied Explore City / blog asset; location per filename and owner labelling on the live site",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": ""
+    },
+    {
+      "article": "turkish-food-by-region",
+      "section": "inline figure in ch-eastern-anatolia",
+      "r2_key": "cities/hakkari/foods/hakkari-otlu-peynir-herbed-cheese.jpg",
+      "cdn_url": "https://img.showmeturkiye.com/cities/hakkari/foods/hakkari-otlu-peynir-herbed-cheese.jpg",
+      "alt": "Otlu peynir, white cheese flecked with wild herbs, on a copper plate with bread and tea",
+      "caption": "Otlu peynir: highland cheese preserved with wild herbs, the eastern plateau in one bite.",
+      "location_evidence": "cities/*/foods/ series: owner-supplied dish photography already live on the city pages; one identical studio styling across the series (linen, copper plate, window light). Origin not confirmed by the owner as of 2026-10-18; flagged 2026-10-03 in reports/smt/new-content-image-manifest.md. Used here on the owner's instruction to use the foods inventory.",
+      "visually_checked": "2026-10-18 (contact sheet from R2 originals)",
+      "limitation": "Studio dish series, provenance unconfirmed"
+    }
+  ],
+  "unresolved_gaps": [
+    {
+      "article": "formula-1-turkey-2027",
+      "need": "Istanbul Park circuit, Turn 8 and race-atmosphere photographs",
+      "status": "No owned or licensed circuit imagery in R2 (checked media-library, cities, blog, hero, projects, routes, trails, Instagram). Article illustrated with Istanbul travel photography, captioned as such."
+    },
+    {
+      "article": "hidden-gems-in-turkiye",
+      "need": "Divriği Great Mosque and Hospital; Amasya rock tombs / Yalıboyu houses; Kemaliye Taş Yol tunnels",
+      "status": "Not in R2. No figure placed; Kemaliye uses the upper Euphrates near İliç (media-library, MEDIUM confidence) captioned honestly."
+    },
+    {
+      "article": "photography-spots-turkiye",
+      "need": "Cappadocia night sky / astrophotography",
+      "status": "media-library has three Milky Way frames (milky-way-night-sky-001/002, milky-way-canyon) with UNKNOWN location; not used because they cannot be identified as Cappadocia."
+    },
+    {
+      "article": "turkish-food-by-region",
+      "need": "Erzurum cağ kebabı; Antakya künefe; Aegean olive harvest",
+      "status": "No Erzurum food photography in R2; Eastern Anatolia uses Hakkari otlu peynir from the foods series."
+    }
+  ]
+}
