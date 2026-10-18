@@ -29,7 +29,7 @@
       "url": "https://showmeturkiye.com/blog/cop31-antalya-2026",
       "image": "https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg",
       "datePublished": "2026-10-14",
-      "dateModified": "2026-10-14",
+      "dateModified": "2026-10-18",
       "author": {
         "@type": "Organization",
         "name": "Show Me Türkiye",
@@ -59,7 +59,15 @@
         "name": "Antalya, Türkiye"
       },
       "inLanguage": "en",
-      "mainEntityOfPage": "https://showmeturkiye.com/blog/cop31-antalya-2026"
+      "mainEntityOfPage": "https://showmeturkiye.com/blog/cop31-antalya-2026",
+      "video": [
+        {
+          "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#film"
+        },
+        {
+          "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#antalya-film"
+        }
+      ]
     },
     {
       "@type": "WebPage",
@@ -69,6 +77,66 @@
         "@type": "Person",
         "@id": "https://showmeturkiye.com/#halil-bekar",
         "name": "Halil Bekar"
+      }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#film",
+      "name": "Beneath One Sky | What We Choose to Protect | COP31",
+      "description": "A short Show Me Türkiye film made from footage captured over the years across Türkiye, from mountains and valleys to forests and rivers: a reflection on how extraordinary and how fragile these landscapes are, and on protecting them for future generations.",
+      "thumbnailUrl": [
+        "https://i.ytimg.com/vi/jXbeO7LeI_0/maxresdefault.jpg"
+      ],
+      "uploadDate": "2026-10-18T05:32:21-07:00",
+      "duration": "PT1M13S",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/jXbeO7LeI_0",
+      "url": "https://www.youtube.com/watch?v=jXbeO7LeI_0",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "@id": "https://showmeturkiye.com/#halil-bekar",
+        "name": "Halil Bekar"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Show Me Türkiye",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://img.showmeturkiye.com/hero/logo-v2.png"
+        }
+      },
+      "isPartOf": {
+        "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#article"
+      }
+    },
+    {
+      "@type": "VideoObject",
+      "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#antalya-film",
+      "name": "Show Me Turkiye - Antalya | The Ultimate Antalya Travel Video!",
+      "description": "Show Me Türkiye's cinematic travel film of Antalya: the coast, the mountains, ancient ruins and the modern city, condensed into a seven minute film.",
+      "thumbnailUrl": [
+        "https://i.ytimg.com/vi/IxfJr92fJdg/maxresdefault.jpg"
+      ],
+      "uploadDate": "2025-03-10T17:30:07+00:00",
+      "duration": "PT6M58S",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/IxfJr92fJdg",
+      "url": "https://www.youtube.com/watch?v=IxfJr92fJdg",
+      "inLanguage": "en",
+      "author": {
+        "@type": "Person",
+        "@id": "https://showmeturkiye.com/#halil-bekar",
+        "name": "Halil Bekar"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Show Me Türkiye",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://img.showmeturkiye.com/hero/logo-v2.png"
+        }
+      },
+      "isPartOf": {
+        "@id": "https://showmeturkiye.com/blog/cop31-antalya-2026#article"
       }
     },
     {
@@ -101,7 +169,6 @@
 <meta name="author" content="Show Me Turkiye">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
 :root {
   --cream:        #F4EFE5;
   --cream-2:      #E8DFCD;
@@ -122,8 +189,10 @@
   --sans:  'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --accent: var(--terracotta);
 
-  --measure: 720px;       /* article column width */
-  --measure-wide: 1180px;  /* hero/section width */
+  --measure: 680px;        /* prose column */
+  --wide: 1180px;          /* editorial container */
+  --gutter: 48px;
+  --ease: cubic-bezier(.22,.61,.36,1);
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -140,31 +209,21 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
-button { font: inherit; cursor: pointer; }
+button { font: inherit; cursor: pointer; color: inherit; }
+:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
 
 /* ═══════════ READING PROGRESS ═══════════ */
-.read-progress {
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 2px; z-index: 2000;
-  background: transparent;
-  pointer-events: none;
-}
+.read-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 2000; pointer-events: none; }
 .read-progress::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(90deg, var(--terracotta), var(--gold));
   width: var(--p, 0%);
-  transition: width 0.08s linear;
 }
 
-/* ═══════════ NAVIGATION (matches index.html) ═══════════ */
+/* ═══════════ NAVIGATION (shared pattern) ═══════════ */
 .site-nav { display: contents; }
-.site-nav > a, .site-nav > .nav-logo {
-  position: fixed; top: 24px; left: 48px; z-index: 1003; display: block;
-}
-.site-nav a img, .site-logo {
-  height: 96px; width: auto; object-fit: contain; display: block;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
-}
+.site-nav > a, .site-nav > .nav-logo { position: fixed; top: 24px; left: 48px; z-index: 1003; display: block; }
+.site-nav a img, .site-logo { height: 96px; width: auto; object-fit: contain; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25)); }
 .hamburger {
   position: fixed; top: 24px; right: 48px;
   display: flex; flex-direction: column; gap: 6px;
@@ -172,1264 +231,523 @@ button { font: inherit; cursor: pointer; }
   padding: 9px; min-width: 44px; min-height: 44px;
   z-index: 1003; align-items: center; justify-content: center;
 }
-.hamburger span {
-  width: 26px; height: 2px; background: var(--ink);
-  display: block;
-  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
-  transform-origin: center;
-}
-body.invert-nav .hamburger span { background: var(--cream); }
-.hamburger.open span { background: var(--cream); }
+.hamburger span { width: 26px; height: 2px; background: var(--cream); display: block; transition: all 0.35s cubic-bezier(0.4,0,0.2,1); transform-origin: center; }
+body.past-hero .hamburger span { background: var(--ink); }
+.hamburger.open span { background: var(--cream) !important; }
 .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+body:not(.past-hero) .nav-search-btn { color: var(--cream); }
+body.past-hero .nav-search-btn { color: var(--ink); }
 
 .nav-overlay {
-  display: none; position: fixed; inset: 0;
-  background: #000000;
+  display: none; position: fixed; inset: 0; background: #000000;
   flex-direction: column; align-items: center; justify-content: center;
-  z-index: 1002;
-  animation: navFade 0.4s cubic-bezier(0.16,1,0.3,1);
+  z-index: 1002; animation: navFade 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 .nav-overlay.open { display: flex; }
 @keyframes navFade { from { opacity: 0; } to { opacity: 1; } }
 .nav-overlay-inner { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 480px; width: 100%; padding: 0 32px; }
-.nav-eyebrow {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.4em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 36px;
-  display: flex; align-items: center; gap: 16px;
-}
+.nav-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 36px; display: flex; align-items: center; gap: 16px; }
 .nav-eyebrow::before, .nav-eyebrow::after { content: ''; width: 34px; height: 1px; background: var(--gold); opacity: 0.55; }
 .nav-overlay nav { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 100%; }
-.nav-overlay a {
-  font-size: 15px; font-weight: 300; letter-spacing: 0.32em;
-  text-transform: uppercase; color: rgba(244,239,229,0.55);
-  padding: 11px 0; transition: color 0.3s ease;
-}
+.nav-overlay a { font-size: 15px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,239,229,0.55); padding: 11px 0; transition: color 0.3s ease; }
 .nav-overlay a:hover, .nav-overlay a.active { color: var(--cream); }
 .nav-overlay a.active { position: relative; }
-.nav-overlay a.active::after {
-  content: ''; position: absolute; bottom: 3px; left: 50%;
-  transform: translateX(-50%); width: 60%; height: 1px; background: var(--gold);
-}
-.close-nav {
-  position: absolute; top: 28px; right: 48px;
-  background: none; border: none; color: var(--cream);
-  font-size: 28px; opacity: 0.55; z-index: 1004; line-height: 1;
-  transition: opacity 0.2s, transform 0.2s;
-}
+.nav-overlay a.active::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 60%; height: 1px; background: var(--gold); }
+.close-nav { position: absolute; top: 28px; right: 48px; background: none; border: none; color: var(--cream); font-size: 28px; opacity: 0.55; z-index: 1004; line-height: 1; transition: opacity 0.2s, transform 0.2s; }
 .close-nav:hover { opacity: 1; transform: rotate(90deg); }
 
-/* ═══════════ SIDE CHAPTER RAIL ═══════════ */
+/* ═══════════ SHARED EDITORIAL PRIMITIVES ═══════════ */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
+  text-transform: uppercase; color: var(--terracotta);
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; opacity: 0.8; }
+.wide { max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter); }
+.measure { max-width: var(--measure); margin: 0 auto; }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.text-link, .prose a { color: var(--terracotta); border-bottom: 1px solid rgba(192,57,43,0.35); transition: border-color 0.2s; }
+.text-link:hover, .prose a:hover { border-color: var(--terracotta); }
+em.it { font-family: var(--serif); font-style: italic; font-weight: 500; }
+
+/* ═══════════ HERO ═══════════ */
+.post-hero {
+  position: relative;
+  height: clamp(560px, 88vh, 880px);
+  overflow: hidden;
+  color: var(--cream);
+  isolation: isolate;
+  background: #1C1814;
+}
+.post-hero .hero-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 45%;
+  z-index: 0;
+}
+.post-hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(14,9,8,0.30) 0%, rgba(14,9,8,0.02) 26%, rgba(14,9,8,0.06) 52%, rgba(14,9,8,0.74) 100%);
+}
+.hero-content {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  max-width: var(--wide); margin: 0 auto;
+  padding: 0 56px 64px;
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.hero-chip {
+  display: inline-block;
+  border: 1px solid rgba(244,239,229,0.5); border-radius: 100px;
+  padding: 7px 16px; margin-bottom: 26px;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--cream);
+}
+.post-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(42px, 6.4vw, 92px);
+  font-weight: 500; line-height: 1.02; letter-spacing: -0.022em;
+  margin-bottom: 22px; text-wrap: balance; color: var(--cream);
+}
+.post-hero h1 .hero-h1-sub {
+  display: block; font-style: italic; font-weight: 500;
+  color: var(--gold-soft); font-size: 0.56em; letter-spacing: -0.01em; margin-top: 10px;
+}
+.hero-sub {
+  font-size: clamp(16px, 1.35vw, 20px); font-weight: 400; line-height: 1.55;
+  color: rgba(244,239,229,0.92); max-width: 52ch; margin-bottom: 30px; text-wrap: pretty;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  padding-top: 18px; border-top: 1px solid rgba(244,239,229,0.24);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(244,239,229,0.8);
+}
+.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
+.hero-meta .author { color: var(--cream); font-weight: 600; }
+
+/* ═══════════ FACTS BAR ═══════════ */
+.facts-bar { background: var(--paper); border-bottom: 1px solid var(--line); }
+.facts-bar .wide {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.facts-bar .fact {
+  padding: 34px 28px 32px 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.facts-bar .fact + .fact { padding-left: 28px; border-left: 1px solid var(--line); }
+.facts-bar .l { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--terracotta); }
+.facts-bar .v { font-family: var(--serif); font-size: clamp(19px, 1.6vw, 23px); font-weight: 500; line-height: 1.22; letter-spacing: -0.012em; color: var(--ink); text-wrap: balance; }
+.facts-bar .v small { display: block; font-family: var(--sans); font-size: 12.5px; font-weight: 400; color: var(--ink-mute); margin-top: 5px; letter-spacing: 0; }
+.facts-bar .v a { border-bottom: 1px solid var(--line-strong); transition: color 0.2s, border-color 0.2s; }
+.facts-bar .v a:hover { color: var(--terracotta); border-color: var(--terracotta); }
+
+/* ═══════════ OPENING ═══════════ */
+.opening { padding: 96px 0 72px; }
+.opening .wide { display: grid; grid-template-columns: minmax(0, var(--measure)) 300px; gap: 96px; justify-content: space-between; align-items: start; }
+.opening .lead {
+  font-size: clamp(20px, 1.8vw, 24px); line-height: 1.55; letter-spacing: -0.010em;
+  color: var(--ink); margin-bottom: 30px; text-wrap: pretty;
+}
+.opening .lead::first-letter {
+  float: left; font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 3.4em; line-height: 0.82; color: var(--terracotta);
+  padding: 6px 16px 2px 0; margin-top: 6px;
+}
+.opening p { font-size: 18px; line-height: 1.78; color: var(--ink); margin-bottom: 22px; }
+.opening .prose p:last-of-type { margin-bottom: 0; }
+
+.guide-list { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line-strong); }
+.guide-list .eyebrow { margin-bottom: 18px; }
+.guide-list ol { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; }
+.guide-list li { border-bottom: 1px solid var(--line); }
+.guide-list a { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: baseline; padding: 12px 0; font-size: 14.5px; font-weight: 500; line-height: 1.3; transition: color 0.25s, transform 0.3s var(--ease); }
+.guide-list a:hover { color: var(--terracotta); transform: translateX(4px); }
+.guide-list .n { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--terracotta); }
+
+.field-notes { position: sticky; top: 56px; padding: 30px 0 0; border-top: 2px solid var(--ink); }
+.field-notes .eyebrow { margin-bottom: 14px; }
+.field-notes h2 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.2; letter-spacing: -0.012em; margin-bottom: 24px; text-wrap: balance; }
+.field-notes h2 em { font-style: italic; color: var(--terracotta); }
+.field-notes ol { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+.field-notes li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; align-items: start; }
+.field-notes .qt-n { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--terracotta); line-height: 1.3; }
+.field-notes .qt-t { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); }
+.field-notes .qt-t strong { display: block; font-weight: 600; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
+.field-notes .qt-t a { color: var(--terracotta); border-bottom: 1px solid rgba(192,57,43,0.35); }
+
+/* ═══════════ CHAPTERS ═══════════ */
+.chapter { padding: 88px 0; position: relative; }
+.chapter + .chapter { padding-top: 0; }
+.chapter-head { max-width: var(--measure); margin: 0 auto 44px; padding-top: 26px; position: relative; }
+.chapter-head::before { content: ''; position: absolute; top: 0; left: 0; width: 72px; height: 1px; background: var(--terracotta); }
+.chapter-kicker { display: inline-flex; align-items: center; gap: 12px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px; }
+.chapter-kicker .num { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 17px; letter-spacing: 0; text-transform: none; }
+.chapter-kicker .sep { width: 14px; height: 1px; background: var(--terracotta); opacity: 0.55; }
+.chapter-title {
+  font-family: var(--sans); font-size: clamp(30px, 3.6vw, 44px); font-weight: 500;
+  line-height: 1.08; letter-spacing: -0.020em; color: var(--ink); text-wrap: balance; max-width: 18ch;
+}
+.chapter-title em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
+.chapter-sub { font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--ink-soft); line-height: 1.4; margin-top: 14px; }
+.prose { max-width: var(--measure); margin: 0 auto; }
+.prose p { font-size: 18px; line-height: 1.78; color: var(--ink); margin-bottom: 24px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose p strong { font-weight: 600; }
+.prose p em { font-family: var(--serif); font-style: italic; color: var(--ink); font-weight: 500; }
+.prose .note { font-size: 14.5px; color: var(--ink-mute); line-height: 1.65; }
+
+/* fact board (definition grid) */
+.factboard { max-width: var(--measure); margin: 8px auto 36px; border-top: 1px solid var(--line-strong); }
+.factboard div { display: grid; grid-template-columns: 150px 1fr; gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.factboard dt { font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute); padding-top: 5px; }
+.factboard dd { font-size: 16.5px; line-height: 1.55; color: var(--ink); }
+.factboard dd a { color: var(--terracotta); border-bottom: 1px solid rgba(192,57,43,0.35); }
+.factboard dd strong { font-weight: 600; }
+
+/* fact strip (3 numbers) */
+.fact-strip { max-width: var(--measure); margin: 44px auto; padding: 26px 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.fact-strip .fact { padding-left: 18px; position: relative; }
+.fact-strip .fact:first-child { padding-left: 0; }
+.fact-strip .fact:not(:first-child)::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 1px; background: var(--line); }
+.fact-strip .n { font-family: var(--serif); font-size: clamp(28px, 2.6vw, 36px); font-weight: 500; color: var(--terracotta); line-height: 1; letter-spacing: -0.02em; display: block; margin-bottom: 8px; }
+.fact-strip .l { font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); line-height: 1.4; }
+
+/* theme list (numbered rows) */
+.theme-list { list-style: none; max-width: var(--measure); margin: 8px auto 36px; border-top: 1px solid var(--line-strong); }
+.theme-list li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 16.5px; line-height: 1.6; color: var(--ink-soft); }
+.theme-list .n { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--terracotta); line-height: 1.2; }
+.theme-list strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
+
+/* ═══════════ FIGURES ═══════════ */
+figure img { width: 100%; height: 100%; object-fit: cover; background: var(--cream-2); }
+figcaption { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
+.figure-wide { max-width: var(--wide); margin: 56px auto; padding: 0 var(--gutter); }
+.figure-wide img { aspect-ratio: 16 / 9; }
+.figure-wide figcaption { margin-top: 12px; max-width: 60ch; }
+
+.figure-offset { max-width: var(--wide); margin: 48px auto; padding: 0 var(--gutter); display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: end; }
+.figure-offset img { aspect-ratio: 16 / 10; }
+.figure-offset figcaption { padding-bottom: 6px; }
+
+.bleed { position: relative; margin: 24px 0 0; overflow: hidden; background: var(--cream-2); }
+.bleed img { width: 100%; height: clamp(320px, 48vw, 640px); object-fit: cover; }
+.bleed figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 72px var(--gutter) 26px;
+  background: linear-gradient(180deg, transparent, rgba(14,9,8,0.55));
+  color: var(--cream); font-size: 15px; text-shadow: 0 1px 10px rgba(0,0,0,0.35);
+}
+.bleed figcaption span { display: block; max-width: var(--wide); margin: 0 auto; padding-left: 14px; border-left: 2px solid var(--gold); }
+
+.diptych { max-width: var(--wide); margin: 56px auto 0; padding: 0 var(--gutter); }
+.diptych .pair { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; height: clamp(300px, 36vw, 520px); }
+.diptych .pair img { height: 100%; }
+.diptych figcaption { margin-top: 12px; max-width: 64ch; }
+
+/* ═══════════ PHOTO ESSAY (climate chapter) ═══════════ */
+.essay { max-width: var(--wide); margin: 32px auto 0; padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 72px; }
+.essay-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.essay-row figure { margin: 0; }
+.essay-row figure img { aspect-ratio: 4 / 5; }
+.essay-row.is-land figure img { aspect-ratio: 4 / 3; }
+.essay-row figcaption { margin-top: 10px; }
+.essay-row .text { max-width: 44ch; }
+.essay-row:nth-child(even) figure { order: 2; }
+.essay-row:nth-child(even) .text { justify-self: end; }
+.essay-row h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.15; letter-spacing: -0.014em; margin-bottom: 16px; }
+.essay-row h3 em { font-style: italic; color: var(--terracotta); }
+.essay-row p { font-size: 17px; line-height: 1.75; color: var(--ink); }
+.essay-row .kicker { font-size: 10.5px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 14px; display: block; }
+
+/* ═══════════ ZONES (how to attend) ═══════════ */
+.zones { max-width: 980px; margin: 16px auto 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+.zone { padding: 28px 0 8px; border-top: 2px solid var(--ink); }
+.zone.is-green { border-top-color: var(--terracotta); }
+.zone .z-tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 10px; }
+.zone h3 { font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.15; letter-spacing: -0.012em; margin-bottom: 6px; }
+.zone .z-sub { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ink-soft); margin-bottom: 18px; }
+.zone p { font-size: 15.5px; line-height: 1.7; color: var(--ink); margin-bottom: 14px; }
+.zone ul { list-style: none; border-top: 1px solid var(--line); }
+.zone li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+.zone li strong { color: var(--ink); font-weight: 600; }
+
+/* ═══════════ PRACTICAL GRID ═══════════ */
+.practical { max-width: 980px; margin: 8px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; border-top: 1px solid var(--line-strong); }
+.practical div { padding: 26px 0 24px; border-bottom: 1px solid var(--line); }
+.practical h3 { font-size: 11px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; }
+.practical p { font-size: 16px; line-height: 1.7; color: var(--ink); }
+
+/* ═══════════ SOURCES ═══════════ */
+.sources { list-style: none; max-width: var(--measure); margin: 8px auto 0; border-top: 1px solid var(--line-strong); }
+.sources li { border-bottom: 1px solid var(--line); }
+.sources a { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; padding: 20px 0; transition: color 0.25s; }
+.sources a:hover { color: var(--terracotta); }
+.sources .s-name { font-size: 17px; font-weight: 500; line-height: 1.3; display: block; }
+.sources .s-url { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--terracotta); display: block; margin-top: 3px; }
+.sources .s-desc { font-size: 14px; color: var(--ink-mute); line-height: 1.55; display: block; margin-top: 6px; }
+.sources .arr { font-size: 18px; color: var(--ink-mute); transition: transform 0.3s var(--ease), color 0.25s; }
+.sources a:hover .arr { transform: translate(4px, -4px); color: var(--terracotta); }
+
+/* ═══════════ FAQ ═══════════ */
+.faq { max-width: var(--measure); margin: 0 auto; border-top: 1px solid var(--line-strong); }
+.faq-item { border-bottom: 1px solid var(--line-strong); }
+.faq-item summary { cursor: pointer; list-style: none; font-size: 18px; font-weight: 500; color: var(--ink); padding: 20px 40px 20px 0; position: relative; line-height: 1.4; transition: color 0.25s; }
+.faq-item summary:hover { color: var(--terracotta); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; position: absolute; right: 4px; top: 14px; font-family: var(--serif); font-size: 28px; color: var(--terracotta); transition: transform 0.25s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { font-size: 16.5px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 22px; max-width: 64ch; }
+
+/* ═══════════ FILM FEATURE ═══════════ */
+.film { background: var(--espresso); color: var(--cream); padding: 104px 0 96px; position: relative; }
+.film .wide { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-areas: 'title copy' 'player player' 'note note'; gap: 44px 48px; align-items: end; }
+.film-title { grid-area: title; }
+.film-copy { grid-area: copy; }
+.film .player { grid-area: player; }
+.film-note { grid-area: note; margin-top: -16px; }
+.film .eyebrow { color: var(--gold); }
+.film h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5.2vw, 72px); line-height: 1.0; letter-spacing: -0.022em; margin-top: 18px; text-wrap: balance; }
+.film h2 em { display: block; font-style: italic; color: var(--gold-soft); font-size: 0.58em; margin-top: 10px; letter-spacing: -0.01em; }
+.film-copy p { font-size: 16.5px; line-height: 1.7; color: rgba(244,239,229,0.80); max-width: 46ch; margin-bottom: 18px; }
+.film-copy p:last-of-type { margin-bottom: 0; }
+.film-meta { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; margin-top: 22px; font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,239,229,0.55); }
+.film-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
+.film-meta a { color: var(--cream); border-bottom: 1px solid rgba(244,239,229,0.3); padding-bottom: 2px; transition: color 0.25s, border-color 0.25s; }
+.film-meta a:hover { color: var(--gold); border-color: var(--gold); }
+
+.player {
+  position: relative; aspect-ratio: 16 / 9; width: 100%;
+  background: #000; overflow: hidden; border-radius: 4px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+}
+.player > picture, .player > picture img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.player .play {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(14,9,8,0.0) 55%, rgba(14,9,8,0.45) 100%);
+  border: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--cream); cursor: pointer;
+}
+.player .play-ring {
+  width: 92px; height: 92px; border-radius: 50%;
+  border: 1px solid rgba(244,239,229,0.75);
+  background: rgba(14,9,8,0.30); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.4s var(--ease), background 0.3s, border-color 0.3s;
+}
+.player .play-ring svg { width: 26px; height: 26px; margin-left: 4px; fill: var(--cream); }
+.player .play:hover .play-ring, .player .play:focus-visible .play-ring { transform: scale(1.08); background: var(--terracotta); border-color: var(--terracotta); }
+.player .play-label {
+  position: absolute; left: 28px; bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream);
+}
+.player .play-label .dur { font-weight: 400; letter-spacing: 0.18em; color: rgba(244,239,229,0.7); }
+.player .play-label::before { content: ''; width: 22px; height: 1px; background: var(--gold); }
+.player.is-playing .play, .player.is-playing picture { display: none; }
+.film-note { font-size: 12.5px; line-height: 1.6; color: rgba(244,239,229,0.5); max-width: 70ch; }
+.film-note a { color: rgba(244,239,229,0.8); border-bottom: 1px solid rgba(244,239,229,0.25); }
+
+/* ═══════════ AUTHOR + SHARE ═══════════ */
+.author-share { padding: 56px 0; background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.author-share-inner { max-width: 820px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--cream); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; padding: 10px; }
+.author-avatar img { width: 100%; height: 100%; object-fit: contain; }
+.author-info { flex: 1; min-width: 200px; }
+.author-info .label { font-size: 10px; font-weight: 600; letter-spacing: 0.30em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 6px; }
+.author-info .name { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.author-info .bio { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+.share { display: flex; gap: 8px; }
+.share a { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line-strong); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--ink); transition: all 0.3s ease; }
+.share a:hover { background: var(--terracotta); color: var(--cream); border-color: var(--terracotta); }
+
+/* ═══════════ DESTINATION FILM (secondary) ═══════════ */
+.video { padding: 96px 0; background: var(--cream-2); }
+.video .wide { max-width: 980px; }
+.video-head { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 32px; }
+.video-head h2 { font-family: var(--sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 500; line-height: 1.08; letter-spacing: -0.018em; margin-top: 14px; text-wrap: balance; }
+.video-head h2 em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
+.video-head p { font-size: 15px; color: var(--ink-soft); max-width: 44ch; margin-top: 10px; }
+.video-head .yt { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--line-strong); padding-bottom: 3px; white-space: nowrap; transition: color 0.25s, border-color 0.25s; }
+.video-head .yt:hover { color: var(--terracotta); border-color: var(--terracotta); }
+.video .player { box-shadow: 0 24px 60px rgba(42,20,16,0.18); }
+.video .player .play-ring { width: 76px; height: 76px; }
+
+/* ═══════════ BOTTOM CTA ═══════════ */
+.bottom-cta { padding: 110px 24px; text-align: center; background: var(--cream); }
+.bottom-cta-inner { max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.bottom-cta .eyebrow { margin-bottom: 20px; }
+.bottom-cta .eyebrow::after { content: ''; width: 24px; height: 1px; background: currentColor; opacity: 0.8; }
+.bottom-cta h2 { font-family: var(--sans); font-size: clamp(32px, 4vw, 48px); font-weight: 500; line-height: 1.06; letter-spacing: -0.018em; margin-bottom: 18px; text-wrap: balance; }
+.bottom-cta h2 em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
+.bottom-cta p { font-size: 16px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 36px; max-width: 48ch; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 14px; padding: 18px 44px;
+  background: var(--ink); color: var(--cream); border-radius: 999px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.30em; text-transform: uppercase;
+  transition: background 0.3s, transform 0.3s var(--ease);
+}
+.btn-primary:hover { background: var(--terracotta); }
+.btn-primary .arrow { transition: transform 0.35s ease; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+/* ═══════════ RELATED ═══════════ */
+.related { padding: 0 0 120px; background: var(--cream); }
+.related-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 44px; padding-top: 48px; border-top: 1px solid var(--line-strong); }
+.related-head h2 { font-family: var(--sans); font-size: clamp(28px, 3.4vw, 40px); font-weight: 500; line-height: 1.08; letter-spacing: -0.018em; margin-top: 14px; }
+.related-head h2 em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
+.related-link { font-size: 12px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); white-space: nowrap; display: inline-flex; gap: 10px; transition: color 0.25s; }
+.related-link:hover { color: var(--terracotta); }
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.related-card { display: flex; flex-direction: column; }
+.related-card .img { aspect-ratio: 4 / 3; background-size: cover; background-position: center; background-color: var(--cream-2); margin-bottom: 18px; transition: transform 0.6s var(--ease); }
+.related-card .cat { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; display: flex; gap: 10px; }
+.related-card .cat .n { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 14px; letter-spacing: 0; text-transform: none; }
+.related-card h3 { font-family: var(--sans); font-size: 19px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 8px; transition: color 0.25s; }
+.related-card:hover h3 { color: var(--terracotta); }
+.related-card .read { font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+
+/* ═══════════ SIDE CHAPTER RAIL (desktop) ═══════════ */
 .side-rail {
-  position: fixed;
-  right: 32px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 90;
-  display: flex; flex-direction: column;
-  gap: 2px;
-  padding: 14px 12px;
-  background: rgba(250, 246, 236, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.45s ease;
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%); z-index: 90;
+  display: flex; flex-direction: column; gap: 2px; padding: 14px 12px;
+  background: rgba(250,246,236,0.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line); border-radius: 999px;
+  opacity: 0; pointer-events: none; transition: opacity 0.45s ease;
 }
 .side-rail.visible { opacity: 1; pointer-events: auto; }
-.side-rail a {
-  position: relative;
-  display: flex; align-items: center;
-  padding: 8px 4px;
-  font-size: 10px; letter-spacing: 0.18em;
-  font-weight: 500;
-  color: var(--ink-mute);
-  text-transform: uppercase;
-  transition: color 0.25s ease;
-}
-.side-rail a::before {
-  content: '';
-  width: 16px; height: 1px;
-  background: currentColor;
-  margin-right: 8px;
-  opacity: 0.50;
-  transition: width 0.3s cubic-bezier(.22,.61,.36,1), opacity 0.3s ease;
-}
-.side-rail a .label {
-  position: absolute; right: calc(100% + 16px); top: 50%; transform: translateY(-50%);
-  white-space: nowrap;
-  font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 13px; letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink);
-  background: var(--cream);
-  padding: 6px 12px;
-  border-radius: 4px;
-  box-shadow: 0 6px 18px rgba(42,20,16,0.12);
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-.side-rail a:hover .label { opacity: 1; }
+.side-rail a { position: relative; display: flex; align-items: center; padding: 7px 4px; font-size: 10px; letter-spacing: 0.18em; font-weight: 500; color: var(--ink-mute); text-transform: uppercase; transition: color 0.25s ease; }
+.side-rail a::before { content: ''; width: 16px; height: 1px; background: currentColor; margin-right: 8px; opacity: 0.5; transition: width 0.3s var(--ease), opacity 0.3s ease; }
+.side-rail a .label { position: absolute; right: calc(100% + 16px); top: 50%; transform: translateY(-50%); white-space: nowrap; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--ink); background: var(--cream); padding: 6px 12px; border-radius: 4px; box-shadow: 0 6px 18px rgba(42,20,16,0.12); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.side-rail a:hover .label, .side-rail a:focus-visible .label { opacity: 1; }
 .side-rail a:hover { color: var(--ink); }
 .side-rail a:hover::before { width: 24px; opacity: 1; }
 .side-rail a.active { color: var(--terracotta); }
 .side-rail a.active::before { width: 32px; opacity: 1; background: var(--terracotta); }
 
-/* ═══════════ HERO ═══════════ */
-.post-hero {
-  position: relative;
-  height: clamp(560px, 78vh, 820px);
-  overflow: hidden;
-  color: var(--cream);
-  isolation: isolate;
+/* ═══════════ MOBILE CHAPTER NAVIGATOR ═══════════ */
+.ch-nav-btn {
+  display: none; position: fixed; right: 16px; bottom: 18px; z-index: 95;
+  align-items: center; gap: 8px; padding: 10px 14px 10px 14px; min-height: 44px;
+  background: var(--ink); color: var(--cream); border: 0; border-radius: 999px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  box-shadow: 0 10px 30px rgba(42,20,16,0.28);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s var(--ease);
 }
-.post-hero .hero-bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  z-index: 0;
-  transform: scale(1.02);
-  animation: heroDrift 22s ease-in-out infinite alternate;
-}
-@keyframes heroDrift {
-  from { transform: scale(1.02) translate(0,0); }
-  to { transform: scale(1.06) translate(-1%, -1.5%); }
-}
-.post-hero::before {
-  content: ''; position: absolute; inset: 0;
-  background:
-    linear-gradient(180deg, rgba(14,9,8,0.55) 0%, rgba(14,9,8,0.10) 30%, rgba(14,9,8,0.30) 60%, rgba(14,9,8,0.88) 100%),
-    radial-gradient(ellipse at 30% 90%, rgba(192,57,43,0.18) 0%, transparent 60%);
-  z-index: 1;
-}
-.hero-content {
+.ch-nav-btn .cur { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--gold-soft); }
+.ch-nav-btn.visible { opacity: 1; pointer-events: auto; transform: none; }
+body.cc-open .ch-nav-btn, body.sheet-open .ch-nav-btn { opacity: 0; pointer-events: none; }
+.ch-sheet { position: fixed; inset: 0; z-index: 1001; display: none; }
+.ch-sheet.open { display: block; }
+.ch-sheet .backdrop { position: absolute; inset: 0; background: rgba(14,9,8,0.45); backdrop-filter: blur(4px); }
+.ch-sheet .panel {
   position: absolute; left: 0; right: 0; bottom: 0;
-  z-index: 2;
-  padding: 0 48px 72px;
-  max-width: 1320px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: flex-start;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 14px;
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.36em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 24px;
-}
-.hero-eyebrow::before {
-  content: ''; width: 40px; height: 1px;
-  background: var(--gold);
-}
-.post-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(40px, 5.8vw, 84px);
-  font-weight: 500;
-  line-height: 1.04;
-  letter-spacing: -0.022em;
-  margin-bottom: 14px;
-  text-wrap: balance;
-  color: var(--cream);
-}
-.post-hero h1 em {
-  font-family: var(--serif); font-style: italic;
-  font-weight: 500;
-  color: var(--cream);
-  letter-spacing: 0;
-}
-.hero-h1-label {
-  font-family: var(--sans);
-  font-size: clamp(16px, 1.5vw, 20px); font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--cream);
-  margin-bottom: 30px;
-}
-.hero-sub {
-  font-family: var(--sans); font-style: normal;
-  font-weight: 400;
-  font-size: clamp(17px, 1.5vw, 22px);
-  line-height: 1.55;
-  color: rgba(244,239,229,0.88);
-  max-width: 42ch;
-  margin-bottom: 36px;
-  text-wrap: pretty;
-}
-.hero-meta {
-  display: flex; flex-wrap: wrap; align-items: center;
-  gap: 18px;
-  font-size: 11px; font-weight: 500; letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(244,239,229,0.78);
-}
-.hero-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
-.hero-meta .author { color: var(--cream); }
-
-/* ═══════════ ARTICLE META STRIP (sticky TOC) ═══════════ */
-.article-meta {
-  position: relative;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-  z-index: 80;
-}
-.article-meta-inner {
-  max-width: 1180px; margin: 0 auto;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 72px;
-  align-items: stretch;
-}
-.at-a-glance {
-  padding: 56px 0;
-  border-right: 1px solid var(--line);
-  padding-right: 64px;
-  display: flex; flex-direction: column;
-}
-.at-a-glance-eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  margin-bottom: 16px;
-  display: inline-flex; align-items: center; gap: 12px;
-}
-.at-a-glance-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--terracotta); }
-.at-a-glance h2 {
-  font-family: var(--sans);
-  font-size: 23px; font-weight: 500;
-  line-height: 1.18;
-  margin-bottom: 28px;
-  letter-spacing: -0.014em;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.glance-list {
-  list-style: none;
-  display: flex; flex-direction: column;
-  gap: 14px;
-  margin: 0 0 32px;
-  padding: 0 0 28px;
-  border-bottom: 1px solid var(--line);
-}
-.glance-list li {
-  position: relative;
-  padding-left: 22px;
-  font-size: 14.5px; line-height: 1.6;
-  color: var(--ink-soft);
-}
-.glance-list li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 10px;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--terracotta);
-}
-.glance-list li strong {
-  font-weight: 600; color: var(--ink);
-}
-
-/* Quick tips (inside the article-meta left column) */
-.quick-tips {
-  list-style: none;
-  display: flex; flex-direction: column;
-  gap: 16px;
-  margin: 0;
-  padding: 0;
-}
-.quick-tips li {
-  display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 14px;
-  align-items: start;
-}
-.quick-tips .qt-n {
-  font-family: var(--serif); font-style: italic;
-  font-weight: 500;
-  font-size: 20px;
-  color: var(--terracotta);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  padding-top: 2px;
-}
-.quick-tips .qt-t {
-  font-family: var(--sans);
-  font-size: 14px; font-weight: 400;
-  line-height: 1.55;
-  color: var(--ink-soft);
-}
-.quick-tips .qt-t strong {
-  font-weight: 600; color: var(--ink);
-  display: block; margin-bottom: 3px;
-  font-size: 14.5px;
-  letter-spacing: -0.005em;
-}
-.quick-tips .qt-t em {
-  font-family: var(--serif); font-style: italic;
-  color: inherit;
-}
-.glance-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px 24px;
-  margin-top: auto;
-}
-.glance-stat {
-  display: flex; flex-direction: column;
-  gap: 6px;
-}
-.glance-stat .n {
-  font-family: var(--sans);
-  font-size: 24px; font-weight: 600;
-  color: var(--terracotta);
-  letter-spacing: -0.016em;
-  line-height: 1;
-}
-.glance-stat .l {
-  font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
-.toc {
-  padding: 56px 0;
-  display: flex; flex-direction: column;
-}
-.toc-eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  margin-bottom: 16px;
-  display: inline-flex; align-items: center; gap: 12px;
-}
-.toc-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--terracotta); }
-.toc-title {
-  font-family: var(--sans);
-  font-size: 23px; font-weight: 500;
-  line-height: 1.18; letter-spacing: -0.014em;
-  margin-bottom: 28px;
-  text-wrap: balance;
-}
-.toc-title em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
-.toc-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-}
-.toc-list li {
-  border-top: 1px solid var(--line);
-}
-.toc-list li:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 18px; }
-.toc-list li:nth-child(even) { padding-left: 18px; }
-.toc-list li:nth-last-child(-n+2) {
-  border-bottom: 1px solid var(--line);
-}
-.toc-list a {
-  display: grid;
-  grid-template-columns: 32px 1fr auto;
-  gap: 14px;
-  align-items: center;
-  padding: 16px 0;
-  transition: color 0.25s ease, padding 0.3s cubic-bezier(.22,.61,.36,1);
-}
-.toc-list a:hover { color: var(--terracotta); }
-.toc-list li:nth-child(odd) a:hover { padding-left: 8px; }
-.toc-list li:nth-child(even) a:hover { padding-left: 26px; }
-.toc-list .n {
-  font-family: var(--serif); font-style: italic;
-  font-size: 18px; color: var(--terracotta);
-  font-weight: 500;
-}
-.toc-list .t {
-  font-size: 15.5px; font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.3;
-}
-.toc-list .r {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
-/* ═══════════ OPENING ═══════════ */
-.opening {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 96px 24px 64px;
-}
-.opening .lead {
-  font-family: var(--sans);
-  font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 24px);
-  line-height: 1.55;
-  color: var(--ink);
-  margin-bottom: 36px;
-  letter-spacing: -0.010em;
-  text-wrap: pretty;
-}
-/* drop cap */
-.opening .lead::first-letter {
-  float: left;
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 3.4em;
-  line-height: 0.82;
-  color: var(--terracotta);
-  padding: 6px 18px 2px 0;
-  margin-top: 6px;
-}
-.opening p {
-  font-family: var(--sans);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.78;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
-.opening p em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  color: var(--ink);
-  font-size: 1.04em;
-}
-.opening p strong {
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* ═══════════ CHAPTER ═══════════ */
-.chapter {
-  padding: 96px 24px;
-  background: var(--cream);
-  position: relative;
-}
-.chapter.is-paper { background: var(--paper); }
-.chapter-inner {
-  max-width: 720px;
-  margin: 0 auto;
-}
-.chapter-head {
-  position: relative;
-  margin-bottom: 48px;
-  padding-top: 24px;
-}
-.chapter-head::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 80px; height: 1px;
-  background: var(--terracotta);
-}
-.chapter-num-display {
-  position: absolute;
-  top: -36px;
-  right: -8px;
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(96px, 14vw, 168px);
-  color: var(--terracotta);
-  opacity: 0.10;
-  line-height: 0.8;
-  letter-spacing: -0.04em;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
-.chapter-kicker {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-  margin-bottom: 18px;
-  position: relative; z-index: 1;
-}
-.chapter-kicker .num {
-  font-family: var(--serif); font-style: italic;
-  font-weight: 500;
-  font-size: 16px; letter-spacing: 0;
-  text-transform: none;
-  color: var(--terracotta);
-}
-.chapter-kicker .sep {
-  width: 14px; height: 1px; background: var(--terracotta); opacity: 0.55;
-}
-.chapter-title {
-  font-family: var(--sans);
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -0.020em;
-  color: var(--ink);
-  text-wrap: balance;
-  margin-bottom: 14px;
-  position: relative; z-index: 1;
-  max-width: 18ch;
-}
-.chapter-title em {
-  font-family: var(--serif); font-style: italic;
-  color: var(--terracotta);
-  font-weight: 500;
-}
-.chapter-sub {
-  font-family: var(--serif); font-style: italic;
-  font-size: 18px; font-weight: 400;
-  color: var(--ink-soft);
-  line-height: 1.4;
-  margin-bottom: 18px;
-  position: relative; z-index: 1;
-}
-.chapter-meta {
-  font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  display: flex; gap: 14px; align-items: center;
-}
-.chapter-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
-
-.chapter p {
-  font-family: var(--sans);
-  font-size: 18px; font-weight: 400;
-  line-height: 1.78;
-  color: var(--ink);
-  margin-bottom: 24px;
-}
-.chapter p strong { font-weight: 600; color: var(--ink); }
-.chapter p em {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--ink);
-  font-weight: 500;
-}
-
-/* ═══════════ PULL QUOTE ═══════════ */
-.pullquote {
-  position: relative;
-  margin: 56px 0;
-  padding: 0 0 0 32px;
-  border-left: 2px solid var(--terracotta);
-}
-.pullquote p {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 1.32;
-  color: var(--ink);
-  margin: 0;
-  letter-spacing: -0.008em;
-  text-wrap: balance;
-}
-.pullquote::after {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: var(--terracotta);
-  opacity: 0.5;
-  margin-top: 20px;
-}
-
-/* Marginalia pull quote on wide screens: pulls into left margin */
-@media (min-width: 1100px) {
-  .pullquote {
-    margin-left: -88px;
-    padding-left: 56px;
-    max-width: calc(100% + 88px);
-  }
-}
-
-/* ═══════════ FACT STRIP (replaces stats grid) ═══════════ */
-.fact-strip {
-  margin: 56px 0;
-  padding: 28px 0;
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line-strong);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-.fact {
-  position: relative;
-  padding-left: 20px;
-}
-.fact:not(:first-child)::before {
-  content: '';
-  position: absolute;
-  top: 4px; bottom: 4px;
-  left: 0;
-  width: 1px;
-  background: var(--line);
-}
-.fact .n {
-  font-family: var(--sans);
-  font-size: clamp(24px, 2.4vw, 32px);
-  font-weight: 600;
-  color: var(--terracotta);
-  line-height: 1;
-  letter-spacing: -0.022em;
-  display: block;
-  margin-bottom: 8px;
-}
-.fact .l {
-  font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  line-height: 1.3;
-}
-
-/* ═══════════ CINEMATIC BREAK ═══════════ */
-.cinematic-break {
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  height: clamp(360px, 52vh, 580px);
-  background: var(--cream-2);
-}
-.cinematic-break .bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-}
-.cinematic-break::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(14,9,8,0.10) 0%, transparent 40%, rgba(14,9,8,0.55) 100%);
-}
-.cinematic-break figcaption {
-  position: absolute;
-  bottom: 32px; left: 48px; right: 48px;
-  z-index: 2;
-  max-width: 540px;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.4;
-  color: var(--cream);
-  padding-left: 14px;
-  border-left: 2px solid var(--gold);
-  text-shadow: 0 1px 12px rgba(0,0,0,0.45);
-}
-
-/* ═══════════ CHAPTER DIVIDER (between chapters) ═══════════ */
-.ch-divider {
-  display: flex; align-items: center; justify-content: center;
-  gap: 28px;
-  padding: 12px 24px 0;
-}
-.ch-divider .line {
-  flex: 0 0 60px; height: 1px; background: var(--terracotta);
-  opacity: 0.45;
-}
-.ch-divider .glyph {
-  font-family: var(--serif); font-style: italic;
-  font-size: 18px;
-  color: var(--terracotta);
-  opacity: 0.85;
-}
-
-/* ═══════════ FIRST-TIMER TIPS ═══════════ */
-.tips {
-  padding: 96px 24px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.tips-inner {
-  max-width: 920px; margin: 0 auto;
-}
-.tips-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 32px;
-  margin-bottom: 48px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-}
-.tips-eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-bottom: 14px;
-}
-.tips-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--terracotta); }
-.tips h2 {
-  font-family: var(--sans);
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 500; line-height: 1.08;
-  letter-spacing: -0.018em;
-  color: var(--ink);
-  text-wrap: balance;
-}
-.tips h2 em {
-  font-family: var(--serif); font-style: italic;
-  color: var(--terracotta); font-weight: 500;
-}
-.tips-byline {
-  font-family: var(--serif); font-style: italic;
-  font-size: 14px;
-  color: var(--ink-mute);
-  flex-shrink: 0;
-  padding-bottom: 4px;
-}
-.tip-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px 56px;
-}
-.tip {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 18px;
-}
-.tip-num {
-  font-family: var(--serif); font-style: italic;
-  font-weight: 500;
-  font-size: 30px;
-  color: var(--terracotta);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  padding-top: 2px;
-}
-.tip-body { display: flex; flex-direction: column; gap: 8px; }
-.tip-title {
-  font-family: var(--sans);
-  font-size: 17px; font-weight: 500;
-  line-height: 1.3;
-  letter-spacing: -0.008em;
-  color: var(--ink);
-}
-.tip-text {
-  font-family: var(--sans);
-  font-size: 14.5px; font-weight: 400;
-  line-height: 1.65;
-  color: var(--ink-soft);
-}
-.tip-text em {
-  font-family: var(--serif); font-style: italic;
-  font-weight: 500; color: var(--ink);
-}
-@media (max-width: 720px) {
-  .tip-list { grid-template-columns: 1fr; gap: 28px; }
-  .tips-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .tip { grid-template-columns: 36px 1fr; gap: 14px; }
-  .tip-num { font-size: 24px; }
-  .tips { padding: 64px 20px; }
-}
-
-/* ═══════════ VIDEO SECTION ═══════════ */
-.video {
-  padding: 96px 24px;
-  background: var(--espresso);
-  color: var(--cream);
-}
-.video-inner { max-width: 1100px; margin: 0 auto; }
-.video-head { text-align: center; margin-bottom: 48px; }
-.video-head .eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--gold);
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-bottom: 18px;
-}
-.video-head .eyebrow::before, .video-head .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.55; }
-.video-head h2 {
-  font-family: var(--sans);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 500; line-height: 1.06;
-  letter-spacing: -0.018em;
-  color: var(--cream);
-  margin-bottom: 14px;
-  text-wrap: balance;
-}
-.video-head h2 em {
-  font-family: var(--serif); font-style: italic;
-  color: var(--gold); font-weight: 500;
-}
-.video-head p {
-  font-size: 15px;
-  color: rgba(244,239,229,0.72);
-  max-width: 42ch;
-  margin: 0 auto;
-}
-.video-frame {
-  position: relative;
-  aspect-ratio: 16/9;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.50);
-}
-.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-
-/* ═══════════ FAQ ═══════════ */
-.faq {
-  padding: 96px 24px;
-  background: var(--cream);
-}
-.faq-inner { max-width: 820px; margin: 0 auto; }
-.faq-header { text-align: center; margin-bottom: 56px; }
-.faq-eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-bottom: 18px;
-}
-.faq-eyebrow::before, .faq-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--terracotta); opacity: 0.6; }
-.faq h2 {
-  font-family: var(--sans);
-  font-size: clamp(32px, 4vw, 46px);
-  font-weight: 500; line-height: 1.06;
-  letter-spacing: -0.018em;
-  color: var(--ink);
-  margin-bottom: 12px;
-  text-wrap: balance;
-}
-.faq h2 em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
-.faq-intro {
-  font-size: 15.5px;
-  color: var(--ink-soft);
-  max-width: 50ch;
-  margin: 0 auto;
-}
-.faq-list {
-  display: flex; flex-direction: column;
-}
-.faq-item {
-  border-top: 1px solid var(--line);
-}
-.faq-item:last-child { border-bottom: 1px solid var(--line); }
-.faq-item details { padding: 0; }
-.faq-item summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 26px 4px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  align-items: center;
-  font-family: var(--sans);
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.35;
-  color: var(--ink);
-  transition: color 0.25s ease;
-}
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary:hover { color: var(--terracotta); }
-.faq-item summary .plus {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 28px; height: 28px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  position: relative;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-.faq-item summary .plus::before,
-.faq-item summary .plus::after {
-  content: '';
-  position: absolute;
-  background: var(--ink);
-  transition: transform 0.3s cubic-bezier(.22,.61,.36,1);
-}
-.faq-item summary .plus::before { width: 10px; height: 1.5px; }
-.faq-item summary .plus::after { width: 1.5px; height: 10px; }
-.faq-item[open] summary .plus {
-  border-color: var(--terracotta);
-  background: var(--terracotta);
-}
-.faq-item[open] summary .plus::before { background: var(--cream); }
-.faq-item[open] summary .plus::after { background: var(--cream); transform: scaleY(0); }
-.faq-item .faq-a {
-  font-size: 15.5px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  padding: 0 40px 26px 4px;
-  max-width: 68ch;
-}
-.faq-item .faq-a strong { font-weight: 600; color: var(--ink); }
-.faq-item .faq-a em { font-family: var(--serif); font-style: italic; color: var(--ink); }
-
-/* ═══════════ AUTHOR + SHARE ═══════════ */
-.author-share {
-  padding: 56px 24px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.author-share-inner {
-  max-width: 820px; margin: 0 auto;
-  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
-}
-.author-avatar {
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: var(--cream);
-  border: 1px solid var(--line);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  padding: 10px;
-}
-.author-avatar img {
-  width: 100%; height: 100%;
-  object-fit: contain;
-  display: block;
-}
-.author-info { flex: 1; min-width: 200px; }
-.author-info .label {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.30em;
-  text-transform: uppercase; color: var(--ink-mute);
-  margin-bottom: 6px;
-}
-.author-info .name {
-  font-family: var(--sans);
-  font-size: 18px; font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-  margin-bottom: 4px;
-}
-.author-info .bio {
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.55;
-}
-.share { display: flex; gap: 8px; }
-.share a {
-  width: 40px; height: 40px;
-  border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 600;
-  color: var(--ink-soft);
-  transition: all 0.3s ease;
-}
-.share a:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); transform: translateY(-2px); }
-
-/* ═══════════ BOTTOM CTA ═══════════ */
-.bottom-cta {
-  padding: 120px 24px;
-  text-align: center;
-  background: var(--cream);
-}
-.bottom-cta-inner { max-width: 720px; margin: 0 auto; }
-.bottom-cta .eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-bottom: 22px;
-}
-.bottom-cta .eyebrow::before, .bottom-cta .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--terracotta); opacity: 0.6; }
-.bottom-cta h2 {
-  font-family: var(--sans);
-  font-size: clamp(34px, 4.4vw, 52px);
-  font-weight: 500; line-height: 1.06;
-  letter-spacing: -0.018em;
-  color: var(--ink);
-  margin-bottom: 18px;
-  text-wrap: balance;
-}
-.bottom-cta h2 em {
-  font-family: var(--serif); font-style: italic;
-  color: var(--terracotta); font-weight: 500;
-}
-.bottom-cta p {
-  font-size: 16px;
-  color: var(--ink-soft);
-  max-width: 46ch;
-  margin: 0 auto 36px;
-  line-height: 1.65;
-}
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 14px;
-  background: var(--ink); color: var(--cream);
-  padding: 18px 32px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  border-radius: 999px;
-  transition: all 0.35s cubic-bezier(.22,.61,.36,1);
-}
-.btn-primary:hover {
-  background: var(--terracotta);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(192,57,43,0.30);
-}
-.btn-primary .arrow { transition: transform 0.3s ease; }
-.btn-primary:hover .arrow { transform: translateX(4px); }
-
-/* ═══════════ RELATED ═══════════ */
-.related {
-  padding: 120px 24px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-}
-.related-inner { max-width: 1180px; margin: 0 auto; }
-.related-head {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 24px;
-  padding-bottom: 28px;
-  margin-bottom: 48px;
-  border-bottom: 1px solid var(--line);
-}
-.related-head .eyebrow {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--terracotta);
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-bottom: 14px;
-}
-.related-head .eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--terracotta); }
-.related-head h2 {
-  font-family: var(--sans);
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 500; line-height: 1.06;
-  letter-spacing: -0.014em;
-  color: var(--ink);
-}
-.related-head h2 em { font-family: var(--serif); font-style: italic; color: var(--terracotta); font-weight: 500; }
-.related-link {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
-  display: inline-flex; align-items: center; gap: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--ink);
-  transition: gap 0.25s ease, color 0.25s ease;
-  flex-shrink: 0;
-}
-.related-link:hover { gap: 14px; color: var(--terracotta); border-color: var(--terracotta); }
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-.related-card {
-  display: flex; flex-direction: column;
-  transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
-}
-.related-card:hover { transform: translateY(-4px); }
-.related-card .img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  background-size: cover; background-position: center;
-  background-color: var(--cream-2);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 20px;
-  position: relative;
-  transition: filter 0.4s ease;
-}
-.related-card .img::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(14,9,8,0.32));
-  opacity: 0; transition: opacity 0.4s ease;
-}
-.related-card:hover .img::after { opacity: 1; }
-.related-card .cat {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.26em;
-  text-transform: uppercase; color: var(--terracotta);
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 12px;
-}
-.related-card .cat .n {
-  font-family: var(--serif); font-style: italic;
-  font-size: 14px; letter-spacing: 0;
-  text-transform: none;
-}
-.related-card h3 {
-  font-family: var(--sans);
-  font-size: 21px; font-weight: 500;
-  line-height: 1.22;
-  letter-spacing: -0.012em;
-  color: var(--ink);
-  margin-bottom: 14px;
-  text-wrap: balance;
-  transition: color 0.3s ease;
-}
-.related-card:hover h3 { color: var(--terracotta); }
-.related-card .read {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.20em;
-  text-transform: uppercase; color: var(--ink-mute);
-}
-
-/* ═══════════ FOOTER ═══════════ */
-
-
-
-
-
-
-
-
-
-.newsletter-form {
-  display: flex; gap: 0;
-  background: rgba(244,239,229,0.06);
-  border: 1px solid rgba(244,239,229,0.18);
-  border-radius: 999px;
-  padding: 6px;
-  max-width: 480px; margin: 0 auto;
-  transition: border-color 0.3s ease;
-}
-.newsletter-form:focus-within { border-color: rgba(244,239,229,0.50); }
-.newsletter-form input {
-  flex: 1; background: transparent; border: none; outline: none;
-  padding: 14px 20px;
-  font: inherit; font-size: 14.5px; color: var(--cream);
-  min-width: 0;
-}
-.newsletter-form input::placeholder { color: rgba(244,239,229,0.50); }
-.newsletter-form button {
-  background: var(--cream); color: var(--espresso);
-  border: none; border-radius: 999px;
-  padding: 14px 22px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-.newsletter-form button:hover { background: var(--gold); gap: 12px; }
-
-
-
-
-
-
-
-
-
-
-
-
-/* ═══════════ REVEAL ═══════════ */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
-.reveal.in { opacity: 1; transform: none; }
+  background: var(--paper); border-radius: 18px 18px 0 0;
+  padding: 18px 20px calc(20px + env(safe-area-inset-bottom));
+  max-height: 82vh; overflow: auto;
+  animation: sheetUp 0.4s var(--ease);
+}
+@keyframes sheetUp { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.ch-sheet .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.ch-sheet .panel-head .eyebrow { margin: 0; }
+.ch-sheet .close { width: 44px; height: 44px; border: 0; background: none; font-size: 26px; line-height: 1; color: var(--ink); }
+.ch-sheet ol { list-style: none; }
+.ch-sheet li { border-bottom: 1px solid var(--line); }
+.ch-sheet a { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: baseline; padding: 13px 0; font-size: 15px; font-weight: 500; }
+.ch-sheet a .n { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--terracotta); }
+.ch-sheet a.active { color: var(--terracotta); }
 
 /* ═══════════ RESPONSIVE ═══════════ */
-@media (max-width: 1200px) {
-  .article-meta-inner { padding: 0 32px; gap: 48px; }
-  .at-a-glance { padding-right: 40px; }
-  .side-rail { right: 16px; }
+@media (max-width: 1180px) {
+  .opening .wide { gap: 64px; grid-template-columns: minmax(0, 1fr) 280px; }
 }
-
-@media (max-width: 960px) {
-  .article-meta-inner { grid-template-columns: 1fr; gap: 0; padding: 0 28px; }
-  .at-a-glance { border-right: none; padding-right: 0; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
-  .toc { padding-top: 32px; }
+@media (max-width: 1023px) {
+  :root { --gutter: 32px; }
   .side-rail { display: none; }
-  
-  
-  .related-grid { grid-template-columns: 1fr 1fr; }
-  .related-card:nth-child(3) { display: none; }
+  .ch-nav-btn { display: inline-flex; }
+  .opening .wide { grid-template-columns: 1fr; gap: 56px; }
+  .field-notes { position: static; }
+  .figure-offset { grid-template-columns: 1fr; gap: 12px; }
+  .essay-row { gap: 32px; }
+  .film .wide { grid-template-columns: 1fr; grid-template-areas: 'title' 'player' 'copy' 'note'; gap: 32px; }
 }
-
-@media (max-width: 640px) {
-  .site-nav > a, .site-nav > .nav-logo { top: 18px; left: 20px; }
-  .site-nav a img, .site-logo { height: 54px; }
-  .hamburger { top: 18px; right: 20px; }
-  .close-nav { top: 22px; right: 22px; }
-
-  .post-hero { height: 70vh; min-height: 480px; }
-  .hero-content { padding: 0 24px 56px; }
-  .hero-h1-label { font-size: 15px; letter-spacing: 0.18em; margin-bottom: 24px; }
-  .hero-meta { gap: 10px; font-size: 10px; letter-spacing: 0.20em; }
-  .hero-meta .dot { width: 2px; height: 2px; }
-
-  .article-meta-inner { padding: 0 20px; }
-  .at-a-glance, .toc { padding-top: 36px; padding-bottom: 36px; }
-  .toc-list { grid-template-columns: 1fr; }
-  .toc-list li:nth-child(odd), .toc-list li:nth-child(even) { border-right: none; padding-left: 0; padding-right: 0; }
-  .toc-list li:nth-last-child(-n+2) { border-bottom: none; }
-  .toc-list li:last-child { border-bottom: 1px solid var(--line); }
-  .toc-list li:nth-child(odd) a:hover, .toc-list li:nth-child(even) a:hover { padding-left: 12px; }
-  .glance-stats { gap: 18px 12px; }
-
-  .opening { padding: 64px 20px 36px; }
+@media (max-width: 768px) {
+  :root { --gutter: 22px; }
+  .post-hero { height: clamp(520px, 82vh, 720px); }
+  .post-hero .hero-img { object-position: 42% 50%; }
+  .hero-content { padding: 0 22px 36px; }
+  .hero-chip { margin-bottom: 16px; }
+  .post-hero h1 { font-size: clamp(34px, 9.2vw, 48px); margin-bottom: 16px; }
+  .post-hero h1 .hero-h1-sub { font-size: 0.62em; }
+  .hero-sub { font-size: 15px; margin-bottom: 20px; }
+  .hero-meta { font-size: 10px; gap: 10px; padding-top: 14px; }
+  .facts-bar .wide { grid-template-columns: 1fr 1fr; }
+  .facts-bar .fact { padding: 22px 16px 20px 0; }
+  .facts-bar .fact + .fact { padding-left: 0; border-left: 0; }
+  .facts-bar .fact:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--line); padding-right: 0; }
+  .facts-bar .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .facts-bar .v { font-size: 17px; }
+  .opening { padding: 64px 0 48px; }
   .opening .lead { font-size: 19px; }
-  .opening .lead::first-letter { font-size: 2.9em; padding-right: 14px; }
-  .opening p { font-size: 16.5px; }
-
-  .chapter { padding: 64px 20px; }
-  .chapter p { font-size: 16.5px; line-height: 1.78; }
-  .chapter-num-display { font-size: 110px; right: -4px; top: -20px; }
-  .chapter-title { font-size: clamp(26px, 7vw, 36px); }
-  .chapter-sub { font-size: 16px; }
-
-  .pullquote { margin: 40px 0; padding-left: 20px; }
-  .pullquote p { font-size: 21px; }
-
-  .fact-strip { grid-template-columns: repeat(2, 1fr); padding: 22px 0; }
-  .fact { padding-left: 14px; }
-  .fact:nth-child(3)::before { display: none; }
-
-  .cinematic-break { height: 56vh; }
-  .cinematic-break figcaption { left: 20px; right: 20px; font-size: 14px; bottom: 24px; }
-
-  .video, .faq, .bottom-cta, .related { padding-left: 20px; padding-right: 20px; padding-top: 72px; padding-bottom: 72px; }
-
-  .faq-item summary { font-size: 16px; padding: 22px 0; }
-  .faq-item .faq-a { font-size: 14.5px; padding-right: 20px; padding-bottom: 22px; }
-
-  .author-share { padding: 40px 20px; }
+  .opening p, .prose p { font-size: 16.5px; line-height: 1.75; }
+  .guide-list ol { grid-template-columns: 1fr; }
+  .chapter { padding: 64px 0; }
+  .chapter-head { margin-bottom: 32px; }
+  .factboard div { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
+  .fact-strip { grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 32px auto; }
+  .fact-strip .fact { padding-left: 12px; }
+  .fact-strip .n { font-size: 24px; }
+  .fact-strip .l { font-size: 9.5px; letter-spacing: 0.14em; }
+  .figure-wide, .diptych { margin: 36px auto; }
+  .figure-wide img { aspect-ratio: 4 / 3; }
+  .bleed img { height: clamp(300px, 70vw, 460px); }
+  .bleed figcaption { padding: 56px var(--gutter) 18px; font-size: 13.5px; }
+  .diptych .pair { grid-template-columns: 1fr; height: auto; gap: 12px; }
+  .diptych .pair img { aspect-ratio: 3 / 2; height: auto; }
+  .diptych .pair img.portrait { aspect-ratio: 4 / 5; }
+  .essay { gap: 48px; padding: 0; }
+  .essay-row { grid-template-columns: 1fr; gap: 20px; }
+  .essay-row:nth-child(even) figure { order: 0; }
+  .essay-row figure img, .essay-row.is-land figure img { aspect-ratio: 4 / 3; }
+  .essay-row figure.keep-portrait img { aspect-ratio: 4 / 5; }
+  .essay-row .text { max-width: none; }
+  .zones { grid-template-columns: 1fr; gap: 24px; }
+  .practical { grid-template-columns: 1fr; }
+  .film { padding: 72px 0 64px; }
+  .film h2 { font-size: clamp(38px, 11vw, 52px); }
+  .film-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .film-meta .dot { display: none; }
+  .player .play-ring { width: 72px; height: 72px; }
+  .player .play-label { left: 16px; bottom: 14px; font-size: 9.5px; }
+  .player .play-label .dur { display: none; }
+  .video { padding: 64px 0; }
+  .video-head { grid-template-columns: 1fr; gap: 14px; }
   .author-share-inner { gap: 20px; }
-  .author-avatar { width: 56px; height: 56px; font-size: 22px; }
-
-  .related-grid { grid-template-columns: 1fr; gap: 28px; }
-  .related-card:nth-child(3) { display: flex; }
-  .related-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-
-  
-  
-  .newsletter-form { flex-direction: column; border-radius: 16px; padding: 8px; gap: 6px; }
-  .newsletter-form input { text-align: center; }
-  .newsletter-form button { width: 100%; justify-content: center; }
-  
-  
-  
+  .bottom-cta { padding: 80px 20px; }
+  .related { padding-bottom: 88px; }
+  .related-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .related-grid { grid-template-columns: 1fr; gap: 36px; }
 }
-
+@media (max-width: 359px) {
+  .facts-bar .wide { grid-template-columns: 1fr; }
+  .facts-bar .fact:nth-child(even) { padding-left: 0; border-left: 0; }
+  .facts-bar .fact:nth-child(n+2) { border-top: 1px solid var(--line); }
+}
+@media (max-width: 420px) {
+  .fact-strip { grid-template-columns: 1fr; gap: 18px; }
+  .fact-strip .fact { padding-left: 0; }
+  .fact-strip .fact:not(:first-child)::before { display: none; }
+}
 @media (hover: none) {
-  .related-card:hover { transform: none; }
-  .related-card:hover h3 { color: var(--ink); }
+  .side-rail a .label { display: none; }
 }
-
-/* ═══ nav 480 ═══ */
-@media (max-width: 480px) {
-  .hamburger { top: 16px; right: 16px; }
-  .site-nav > a, .site-nav > .nav-logo { top: 16px; left: 16px; }
-  .site-nav a img, .site-logo { height: 48px; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .ch-sheet .panel { animation: none; }
 }
-
-
-/* Video playlist layout (multi-video) */
-.video-player { display: grid; grid-template-columns: 1.55fr 1fr; gap: 24px; align-items: start; max-width: 1180px; margin: 0 auto; }
-.video-frame { aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.50); position: relative; min-width: 0; }
-.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.video-list { display: flex; flex-direction: column; gap: 8px; max-height: calc(56.25 * (1.55 / 2.55) * 1vw + 80px); overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: rgba(244,239,229,0.20) transparent; }
-.video-list::-webkit-scrollbar { width: 6px; }
-.video-list::-webkit-scrollbar-thumb { background: rgba(244,239,229,0.18); border-radius: 3px; }
-.video-mini { all: unset; cursor: pointer; display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 8px; border-radius: 6px; border: 1px solid rgba(244,239,229,0.08); background: rgba(244,239,229,0.03); align-items: center; transition: all 0.25s ease; min-width: 0; }
-.video-mini:hover { background: rgba(244,239,229,0.07); border-color: rgba(244,239,229,0.16); }
-.video-mini.active { background: rgba(192,57,43,0.16); border-color: var(--terracotta); }
-.vm-thumb { width: 120px; aspect-ratio: 16/9; border-radius: 4px; overflow: hidden; background: rgba(244,239,229,0.06); position: relative; flex-shrink: 0; }
-.vm-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.vm-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 30px; height: 30px; border-radius: 999px; background: rgba(14,9,8,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: inline-flex; align-items: center; justify-content: center; color: var(--cream); font-size: 10px; opacity: 0; transition: opacity 0.25s ease, background 0.25s ease; }
-.video-mini:hover .vm-play, .video-mini.active .vm-play { opacity: 1; }
-.video-mini.active .vm-play { background: var(--terracotta); }
-.vm-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.vm-n { font-family: var(--serif); font-style: italic; font-size: 12px; color: var(--gold); opacity: 0.85; line-height: 1; }
-.vm-title { font-size: 12.5px; line-height: 1.35; font-weight: 500; color: rgba(244,239,229,0.86); letter-spacing: -0.005em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.video-mini:hover .vm-title, .video-mini.active .vm-title { color: var(--cream); }
-.single-col { grid-template-columns: 1fr !important; }
-.single-col .at-a-glance { border-right: none !important; padding-right: 0 !important; }
-@media (max-width: 900px) {
-  .video-player { grid-template-columns: 1fr; gap: 18px; }
-  .video-list { flex-direction: row; max-height: none; overflow-x: auto; overflow-y: hidden; padding-bottom: 6px; padding-right: 0; }
-  .video-mini { grid-template-columns: 1fr; flex: 0 0 200px; padding: 0; border-radius: 4px; }
-  .vm-thumb { width: 100%; }
-  .vm-body { padding: 8px 10px 10px; }
-}
-
 </style>
 <style id="smt-search-css">
 /* ═══════════════════════════════════════
@@ -1998,43 +1316,6 @@ body.invert-nav .hamburger span { background: var(--cream); }
 }
 
 </style>
-<style id="hero-v2">
-/* Immersive article header (Option 2): overrides base .post-hero */
-.post-hero{ height:clamp(520px,76vh,740px) !important; }
-.post-hero::before{
-  background:
-    linear-gradient(180deg, rgba(14,9,8,0.32) 0%, rgba(14,9,8,0.04) 30%, rgba(14,9,8,0.42) 62%, rgba(14,9,8,0.88) 100%),
-    radial-gradient(ellipse at 26% 96%, rgba(192,57,43,0.16) 0%, transparent 60%) !important;
-}
-.hero-content{ max-width:1180px !important; padding:0 56px 56px !important; }
-/* category -> outlined chip */
-.hero-eyebrow{
-  display:inline-block !important;
-  border:1px solid rgba(244,239,229,0.5); border-radius:100px;
-  padding:7px 16px !important; margin-bottom:22px !important;
-  color:var(--cream) !important; letter-spacing:0.24em !important; font-size:10.5px !important;
-}
-.hero-eyebrow::before, .hero-eyebrow::after{ display:none !important; content:none !important; }
-/* headline */
-.post-hero h1{ margin-bottom:24px !important; line-height:1.1 !important; }
-.post-hero h1 .hero-h1-sub{ display:inline !important; color:var(--gold-soft) !important; font-size:0.92em !important; font-style:italic !important; }
-.hero-h1-label{ font-family:var(--serif) !important; font-style:italic !important; font-weight:500 !important; color:var(--gold-soft) !important; font-size:clamp(22px,2.6vw,34px) !important; line-height:1.05; margin-top:4px; }
-/* deck */
-.hero-sub{ color:rgba(244,239,229,0.9) !important; max-width:48ch !important; margin-bottom:28px !important; }
-/* byline: photo stamp + rule */
-.hero-meta{ align-items:center !important; gap:13px !important; padding-top:20px !important; border-top:1px solid rgba(244,239,229,0.24); }
-.hero-av{ width:46px; height:46px; border-radius:50%; flex-shrink:0; background:var(--cream) url('https://img.showmeturkiye.com/hero/logo-v2.png') center/66% no-repeat !important; border:1px solid rgba(201,167,93,0.6); }
-.hero-meta .author{ color:var(--cream) !important; font-weight:600 !important; }
-@media (max-width:768px){
-  .post-hero{ height:clamp(440px,70vh,600px) !important; }
-  .hero-content{ padding:0 22px 38px !important; }
-  .hero-eyebrow{ margin-bottom:16px !important; }
-  .post-hero h1{ font-size:clamp(31px,8.4vw,46px) !important; }
-  .hero-sub{ font-size:15px !important; margin-bottom:22px !important; }
-  .hero-meta{ font-size:10px !important; gap:11px !important; padding-top:16px !important; }
-  .hero-av{ width:38px; height:38px; }
-}
-</style>
 <style id="nav-align-fix">
 /* Unified nav alignment: logo, search, hamburger share ONE vertical center. */
 .site-nav > a, .site-nav > .nav-logo{ top:56px !important; left:52px !important; transform:translateY(-50%) !important; }
@@ -2059,36 +1340,6 @@ body.invert-nav .hamburger span { background: var(--cream); }
   .hamburger{ right:14px !important; }
   .nav-search-btn{ right:72px !important; }
 }
-</style>
-<style id="transport-guide">
-.route-table-wrap{overflow-x:auto;margin:8px 0 12px;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
-.route-table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:15px;min-width:520px}
-.route-table caption{text-align:left;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--terracotta);padding:18px 0 10px}
-.route-table th{text-align:left;font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);padding:10px 12px 10px 0;border-bottom:1px solid var(--line-strong)}
-.route-table td{padding:13px 12px 13px 0;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top;line-height:1.45}
-.route-table tr:last-child td{border-bottom:0}
-.route-table td:first-child{font-weight:500}
-.chapter p.table-note{font-size:14px;color:var(--ink-mute);line-height:1.6}
-.plain-list{list-style:none;margin:0 0 28px;padding:0;border-top:1px solid var(--line)}
-.plain-list li{font-size:16.5px;line-height:1.65;padding:12px 0;border-bottom:1px solid var(--line);color:var(--ink)}
-.plain-list strong{font-weight:600}
-.chapter p a,.opening p a{color:var(--terracotta);border-bottom:1px solid rgba(192,57,43,.35)}
-.book-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:8px 0 8px}
-.book-label{font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-mute);margin-right:4px}
-.book-links a{display:inline-flex;gap:8px;align-items:baseline;font-size:14px;font-weight:500;color:var(--ink);padding:9px 16px;border:1px solid var(--line-strong);border-radius:999px;transition:border-color .2s,color .2s}
-.book-links a span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
-.book-links a:hover,.book-links a:focus-visible{border-color:var(--terracotta);color:var(--terracotta)}
-.faq{border-top:1px solid var(--line-strong)}
-.faq-item{border-bottom:1px solid var(--line-strong)}
-.faq-item summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:18px;font-weight:500;color:var(--ink);padding:20px 36px 20px 0;position:relative;line-height:1.4}
-.faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary::after{content:'+';position:absolute;right:4px;top:16px;font-family:var(--serif);font-size:26px;color:var(--terracotta);transition:transform .25s}
-.faq-item[open] summary::after{transform:rotate(45deg)}
-.faq-item p{font-size:16.5px!important;margin-bottom:22px!important}
-.inline-figure{margin:8px 0 32px}
-.inline-figure img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:var(--cream-2)}
-.inline-figure figcaption{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-soft);margin-top:10px;line-height:1.5}
-@media (max-width:640px){.route-table{font-size:13.5px;min-width:0}.route-table td,.route-table th{padding-right:8px}.faq-item summary{font-size:16.5px}}
 </style>
 <style id="smt-reviewer">
 .reviewer{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--ink-mute)}
@@ -2172,28 +1423,27 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </div>
 
-<aside class="side-rail" id="sideRail" aria-hidden="true">
-  <a tabindex="-1" href="#ch-at-a-glance" data-target="ch-at-a-glance">01<span class="label">COP31 at a glance</span></a>
-  <a tabindex="-1" href="#ch-what-is-cop" data-target="ch-what-is-cop">02<span class="label">What is COP31?</span></a>
-  <a tabindex="-1" href="#ch-why-it-matters" data-target="ch-why-it-matters">03<span class="label">Why COP31 matters</span></a>
-  <a tabindex="-1" href="#ch-why-antalya" data-target="ch-why-antalya">04<span class="label">Why Antalya and Türkiye?</span></a>
-  <a tabindex="-1" href="#ch-climate-turkiye" data-target="ch-climate-turkiye">05<span class="label">Climate change and Türkiye</span></a>
-  <a tabindex="-1" href="#ch-how-to-attend" data-target="ch-how-to-attend">06<span class="label">How to attend COP31</span></a>
-  <a tabindex="-1" href="#ch-practical" data-target="ch-practical">07<span class="label">Practical Antalya visitor information</span></a>
-  <a tabindex="-1" href="#ch-official-sites" data-target="ch-official-sites">08<span class="label">Official COP31 websites</span></a>
-  <a tabindex="-1" href="#ch-faq" data-target="ch-faq">09<span class="label">FAQ</span></a>
-  <a tabindex="-1" href="#ch-closing" data-target="ch-closing">10<span class="label">Antalya, and why it matters</span></a>
+<aside class="side-rail" id="sideRail" aria-label="Chapters">
+  <a href="#ch-at-a-glance" data-target="ch-at-a-glance">01<span class="label">COP31 at a glance</span></a>
+  <a href="#ch-what-is-cop" data-target="ch-what-is-cop">02<span class="label">What is COP31?</span></a>
+  <a href="#ch-why-it-matters" data-target="ch-why-it-matters">03<span class="label">Why COP31 matters</span></a>
+  <a href="#ch-why-antalya" data-target="ch-why-antalya">04<span class="label">Why Antalya and Türkiye?</span></a>
+  <a href="#ch-climate-turkiye" data-target="ch-climate-turkiye">05<span class="label">Climate change and Türkiye</span></a>
+  <a href="#ch-how-to-attend" data-target="ch-how-to-attend">06<span class="label">How to attend COP31</span></a>
+  <a href="#ch-practical" data-target="ch-practical">07<span class="label">Practical Antalya visitor information</span></a>
+  <a href="#ch-official-sites" data-target="ch-official-sites">08<span class="label">Official COP31 websites</span></a>
+  <a href="#ch-faq" data-target="ch-faq">09<span class="label">Questions we get asked</span></a>
+  <a href="#ch-closing" data-target="ch-closing">10<span class="label">Antalya, and why it matters</span></a>
 </aside>
 
 <main id="main" tabindex="-1">
-<header class="post-hero" data-screen-label="01 Hero">
-  <div class="hero-bg" style="background-image: url('https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg');" role="img" aria-label="Limestone cliffs and pine forest in a deep canyon in the Taurus Mountains of Antalya at sunset"></div>
+<header class="post-hero">
+  <img class="hero-img" src="https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg" alt="Limestone cliffs and pine forest in a deep canyon in the Taurus Mountains of Antalya at sunset" width="2025" height="1350" fetchpriority="high" decoding="async">
   <div class="hero-content">
-    <div class="hero-eyebrow">Events · Climate</div>
+    <div class="hero-chip">Events · Climate · Antalya</div>
     <h1>COP31 Antalya 2026 <span class="hero-h1-sub">the UN climate talks</span></h1>
-
-    <p class="hero-sub">Dates, venue, access and official links. 9–20 November 2026.</p>
-    <div class="hero-meta"><span class="hero-av" style="background-image:url('https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg')"></span>
+    <p class="hero-sub">Dates, venue, access and official links for the UN Climate Change Conference, 9–20 November 2026, and the landscapes the talks are about.</p>
+    <div class="hero-meta">
       <span class="author">Show Me Türkiye</span>
       <span class="dot"></span>
       <span>October 2026</span>
@@ -2203,286 +1453,349 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </header>
 
-<section class="article-meta" data-screen-label="02 Meta">
-  <div class="article-meta-inner">
-
-    <div class="at-a-glance reveal">
-      <div class="at-a-glance-eyebrow">Field notes</div>
-      <h2>COP31: <em>what we tell friends</em>.</h2>
-      <ol class="quick-tips">
-      <li>
-        <span class="qt-n">01</span>
-        <span class="qt-t"><strong>This is not the official site.</strong> Show Me Türkiye is an independent travel publication. For registration, accreditation and anything binding, use <a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a> and <a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a>.</span>
-      </li>
-      <li>
-        <span class="qt-n">02</span>
-        <span class="qt-t"><strong>Two zones, two sets of rules.</strong> The Blue Zone, where the negotiations happen, is for accredited participants only. The Green Zone is run by the host and is open to the public, usually with pre-registration.</span>
-      </li>
-      <li>
-        <span class="qt-n">03</span>
-        <span class="qt-t"><strong>Book through official channels.</strong> The host directs participants to its official accommodation partner and publishes transport, visa and travel pages on cop31.tr.</span>
-      </li>
-      <li>
-        <span class="qt-n">04</span>
-        <span class="qt-t"><strong>November is shoulder season.</strong> Antalya is mild in November, but the first winter rains arrive. Pack a light jacket and something waterproof.</span>
-      </li>
-      <li>
-        <span class="qt-n">05</span>
-        <span class="qt-t"><strong>Stay a day longer.</strong> If you have a free day before or after the conference, Kaleiçi, the Düden waterfalls and the ancient cities of Perge and Aspendos are within easy reach, and the coast around Kemer is about an hour away by road. Start with our <a href="../cities/antalya">Antalya city page</a>, then plan the days with the <a href="./antalya">Antalya travel guide</a> and the <a href="./kemer">Kemer travel guide</a>.</span>
-      </li>
-      <li>
-        <span class="qt-n">06</span>
-        <span class="qt-t"><strong>Rules can change.</strong> Access, registration and programme details are published and updated by the organisers. Check them again in the week before you travel.</span>
-      </li>
-      </ol>
-    </div>
-
-    <div class="toc reveal">
-      <div class="toc-eyebrow">In this guide</div>
-      <h2 class="toc-title">10 chapters, <em>one conference</em>.</h2>
-      <ol class="toc-list">
-        <li><a href="#ch-at-a-glance"><span class="n">01</span><span class="t">COP31 at a glance</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-what-is-cop"><span class="n">02</span><span class="t">What is COP31?</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-why-it-matters"><span class="n">03</span><span class="t">Why COP31 matters</span><span class="r">2 min</span></a></li>
-        <li><a href="#ch-why-antalya"><span class="n">04</span><span class="t">Why Antalya and Türkiye?</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-climate-turkiye"><span class="n">05</span><span class="t">Climate change and Türkiye</span><span class="r">2 min</span></a></li>
-        <li><a href="#ch-how-to-attend"><span class="n">06</span><span class="t">How to attend COP31</span><span class="r">2 min</span></a></li>
-        <li><a href="#ch-practical"><span class="n">07</span><span class="t">Practical Antalya visitor information</span><span class="r">2 min</span></a></li>
-        <li><a href="#ch-official-sites"><span class="n">08</span><span class="t">Official COP31 websites</span><span class="r">1 min</span></a></li>
-        <li><a href="#ch-faq"><span class="n">09</span><span class="t">Questions we get asked</span><span class="r">2 min</span></a></li>
-        <li><a href="#ch-closing"><span class="n">10</span><span class="t">Antalya, and why it matters</span><span class="r">1 min</span></a></li>
-      </ol>
-    </div>
-
+<section class="facts-bar" aria-label="Key facts">
+  <div class="wide">
+    <div class="fact"><span class="l">Dates</span><span class="v">9–20 November 2026<small>Two weeks of negotiations</small></span></div>
+    <div class="fact"><span class="l">Venue</span><span class="v">Antalya EXPO Center<small>Aksu district, east of the city</small></span></div>
+    <div class="fact"><span class="l">Presidency</span><span class="v">Türkiye hosts<small>Australia leads the negotiations</small></span></div>
+    <div class="fact"><span class="l">Official sites</span><span class="v"><a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a><small><a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a> for the host country</small></span></div>
   </div>
 </section>
 
-<article class="opening" data-screen-label="03 Opening">
-  <p class="lead"><strong>COP31, the United Nations Climate Change Conference, takes place in Antalya, Türkiye, from 9 to 20 November 2026.</strong> For two weeks, government delegations from almost every country will negotiate the next steps on climate action, while observers, businesses, researchers, journalists and members of the public gather around the talks.</p>
-    <p>This guide explains what COP31 is, why it matters, who can attend and how to plan a visit to Antalya. It is an independent guide: for registration and official information, use the conference websites listed below.</p>
-</article>
+<section class="opening">
+  <div class="wide">
+    <article class="prose">
+      <p class="lead"><strong>COP31, the United Nations Climate Change Conference, takes place in Antalya, Türkiye, from 9 to 20 November 2026.</strong> For two weeks, government delegations from almost every country will negotiate the next steps on climate action, while observers, businesses, researchers, journalists and members of the public gather around the talks.</p>
+      <p>This guide explains what COP31 is, why it matters, who can attend and how to plan a visit to Antalya. It is an independent guide: for registration and official information, use the conference websites listed below.</p>
+      <nav class="guide-list" aria-label="In this guide">
+        <div class="eyebrow">In this guide</div>
+        <ol>
+          <li><a href="#ch-at-a-glance"><span class="n">01</span><span>COP31 at a glance</span></a></li>
+          <li><a href="#ch-what-is-cop"><span class="n">02</span><span>What is COP31?</span></a></li>
+          <li><a href="#ch-why-it-matters"><span class="n">03</span><span>Why COP31 matters</span></a></li>
+          <li><a href="#ch-why-antalya"><span class="n">04</span><span>Why Antalya and Türkiye?</span></a></li>
+          <li><a href="#ch-climate-turkiye"><span class="n">05</span><span>Climate change and Türkiye</span></a></li>
+          <li><a href="#ch-how-to-attend"><span class="n">06</span><span>How to attend COP31</span></a></li>
+          <li><a href="#ch-practical"><span class="n">07</span><span>Practical Antalya visitor information</span></a></li>
+          <li><a href="#ch-official-sites"><span class="n">08</span><span>Official COP31 websites</span></a></li>
+          <li><a href="#ch-faq"><span class="n">09</span><span>Questions we get asked</span></a></li>
+          <li><a href="#ch-closing"><span class="n">10</span><span>Antalya, and why it matters</span></a></li>
+        </ol>
+      </nav>
+    </article>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+    <aside class="field-notes reveal" aria-labelledby="fieldNotesTitle">
+      <div class="eyebrow">Field notes</div>
+      <h2 id="fieldNotesTitle">COP31: <em>what we tell friends</em>.</h2>
+      <ol>
+        <li><span class="qt-n">01</span><span class="qt-t"><strong>This is not the official site.</strong> Show Me Türkiye is an independent travel publication. For registration, accreditation and anything binding, use <a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a> and <a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a>.</span></li>
+        <li><span class="qt-n">02</span><span class="qt-t"><strong>Two zones, two sets of rules.</strong> The Blue Zone, where the negotiations happen, is for accredited participants only. The Green Zone is run by the host and is open to the public, usually with pre-registration.</span></li>
+        <li><span class="qt-n">03</span><span class="qt-t"><strong>Book through official channels.</strong> The host directs participants to its official accommodation partner and publishes transport, visa and travel pages on cop31.tr.</span></li>
+        <li><span class="qt-n">04</span><span class="qt-t"><strong>November is shoulder season.</strong> Antalya is mild in November, but the first winter rains arrive. Pack a light jacket and something waterproof.</span></li>
+        <li><span class="qt-n">05</span><span class="qt-t"><strong>Stay a day longer.</strong> Kaleiçi, the Düden waterfalls and the ancient cities of Perge and Aspendos are within easy reach, and the coast around Kemer is about an hour away by road. Start with our <a href="../cities/antalya">Antalya city page</a>, then plan the days with the <a href="./antalya">Antalya travel guide</a> and the <a href="./kemer">Kemer travel guide</a>.</span></li>
+        <li><span class="qt-n">06</span><span class="qt-t"><strong>Rules can change.</strong> Access, registration and programme details are published and updated by the organisers. Check them again in the week before you travel.</span></li>
+      </ol>
+    </aside>
+  </div>
+</section>
 
-<section class="chapter is-paper" id="ch-at-a-glance" data-screen-label="04 COP31 at a glance">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-at-a-glance">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">01</span>
-      <div class="chapter-kicker">
-        <span class="num">01</span><span class="sep"></span>At a glance
-      </div>
+      <div class="chapter-kicker"><span class="num">01</span><span class="sep"></span>At a glance</div>
       <h2 class="chapter-title">COP31 at a glance.</h2>
-      <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>The verified essentials, in one place. We recheck them against the official sources and update this list as details are confirmed.</p>
-    <ul class="plain-list">
-      <li><strong>Event:</strong> COP31, the 31st Conference of the Parties to the United Nations Framework Convention on Climate Change (UNFCCC)</li>
-      <li><strong>Dates:</strong> 9–20 November 2026</li>
-      <li><strong>Host city:</strong> Antalya, Türkiye</li>
-      <li><strong>Venue:</strong> Antalya EXPO Center, Aksu, Antalya (Solak Alanya Yolu, Serik Caddesi), as given in the official COP31 FAQ</li>
-      <li><strong>Host and Presidency:</strong> Türkiye; the COP31 President-Designate is Murat Kurum, Minister of Environment, Urbanisation and Climate Change</li>
-      <li><strong>Negotiations:</strong> Chris Bowen, Australia's Minister for Climate Change and Energy, serves as President of Negotiations under the hosting arrangement agreed at COP30</li>
-      <li><strong>Organised under:</strong> the UNFCCC, whose secretariat manages accreditation and the Blue Zone</li>
-      <li><strong>Official websites:</strong> <a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a> (UN Climate Change) and <a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a> (host country)</li>
-      <li><strong>Last verified:</strong> 13 October 2026</li>
-    </ul>
+    <div class="prose">
+      <p>The verified essentials, in one place. We recheck them against the official sources and update this list as details are confirmed.</p>
+    </div>
+    <dl class="factboard reveal">
+      <div><dt>Event</dt><dd>COP31, the 31st Conference of the Parties to the United Nations Framework Convention on Climate Change (UNFCCC)</dd></div>
+      <div><dt>Dates</dt><dd>9–20 November 2026</dd></div>
+      <div><dt>Host city</dt><dd>Antalya, Türkiye</dd></div>
+      <div><dt>Venue</dt><dd>Antalya EXPO Center, Aksu, Antalya (Solak Alanya Yolu, Serik Caddesi), as given in the official COP31 FAQ</dd></div>
+      <div><dt>Host and Presidency</dt><dd>Türkiye; the COP31 President-Designate is Murat Kurum, Minister of Environment, Urbanisation and Climate Change</dd></div>
+      <div><dt>Negotiations</dt><dd>Chris Bowen, Australia's Minister for Climate Change and Energy, serves as President of Negotiations under the hosting arrangement agreed at COP30</dd></div>
+      <div><dt>Organised under</dt><dd>The UNFCCC, whose secretariat manages accreditation and the Blue Zone</dd></div>
+      <div><dt>Official websites</dt><dd><a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a> (UN Climate Change) and <a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a> (host country)</dd></div>
+      <div><dt>Last verified</dt><dd>13 October 2026</dd></div>
+    </dl>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter" id="ch-what-is-cop" data-screen-label="05 What is COP31?">
-  <div class="chapter-inner">
-    <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">02</span>
-      <div class="chapter-kicker">
-        <span class="num">02</span><span class="sep"></span>The basics
+<section class="film" id="film" aria-labelledby="filmTitle">
+  <div class="wide">
+    <div class="film-title reveal">
+      <div class="eyebrow">Our film · 1 min 13 s</div>
+      <h2 id="filmTitle">Beneath One Sky <em>What we choose to protect</em></h2>
+    </div>
+    <div class="film-copy reveal">
+      <p>A cinematic reflection on Türkiye's extraordinary landscapes and the future we share. The footage was gathered over years of travel across the country, from mountains and valleys to forests and rivers, landscapes shaped over millions of years.</p>
+      <p>The more of them we see, the clearer it becomes how much there is to protect, and how much of it we would like the next generation to see for themselves, not only through a screen.</p>
+      <div class="film-meta">
+        <span>Show Me Türkiye</span><span class="dot"></span><span>Filmed across Türkiye</span><span class="dot"></span>
+        <a href="https://www.youtube.com/watch?v=jXbeO7LeI_0" target="_blank" rel="noopener">Watch on YouTube ↗</a>
       </div>
+    </div>
+    <div class="player reveal" id="filmPlayer" data-vid="jXbeO7LeI_0" data-title="Beneath One Sky | What We Choose to Protect | COP31">
+      <picture>
+        <source type="image/webp" srcset="https://i.ytimg.com/vi_webp/jXbeO7LeI_0/maxresdefault.webp">
+        <img src="https://i.ytimg.com/vi/jXbeO7LeI_0/maxresdefault.jpg" alt="Still from Beneath One Sky, a Show Me Türkiye film about Türkiye's landscapes and the responsibility to protect them" width="1280" height="720" loading="lazy" decoding="async">
+      </picture>
+      <button type="button" class="play" aria-label="Play Beneath One Sky, 1 minute 13 seconds">
+        <span class="play-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"/></svg></span>
+        <span class="play-label" aria-hidden="true">Play the film <span class="dur">1:13</span></span>
+      </button>
+      <noscript><a href="https://www.youtube.com/watch?v=jXbeO7LeI_0" target="_blank" rel="noopener">Watch Beneath One Sky on YouTube</a></noscript>
+    </div>
+    <p class="film-note">An independent Show Me Türkiye production. It is not an official UNFCCC or COP31 Presidency film. Playing the film loads it from YouTube; see our <a href="../cookies">cookie page</a>.</p>
+  </div>
+</section>
+
+<section class="chapter" id="ch-what-is-cop">
+  <div class="wide">
+    <header class="chapter-head reveal">
+      <div class="chapter-kicker"><span class="num">02</span><span class="sep"></span>The basics</div>
       <h2 class="chapter-title">What is COP31?</h2>
-      <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>COP stands for Conference of the Parties. The Parties are the 198 members of the United Nations Framework Convention on Climate Change (UNFCCC), the treaty agreed in 1992 to stabilise greenhouse gas concentrations in the atmosphere: 197 countries plus the European Union. They have met every year since 1995, apart from 2020, to negotiate how that goal is put into practice. COP31 is the thirty-first of those meetings.</p>
-    <p>The best-known result of the process is the Paris Agreement of 2015, under which countries aim to hold warming well below 2°C and pursue efforts to limit it to 1.5°C. Each country sets its own targets, called nationally determined contributions, and is expected to strengthen them over time. The annual COPs are where governments review progress, agree rules and negotiate the decisions that hold the system together.</p>
-    <p>A COP is two events at once. In the negotiating rooms, government delegations work through a formal agenda, alongside meetings of the bodies that serve the Kyoto Protocol and the Paris Agreement. Around them, thousands of observers, businesses, researchers, journalists and local visitors take part in exhibitions, side events and public programmes.</p>
+    <div class="prose">
+      <p>COP stands for Conference of the Parties. The Parties are the 198 members of the United Nations Framework Convention on Climate Change (UNFCCC), the treaty agreed in 1992 to stabilise greenhouse gas concentrations in the atmosphere: 197 countries plus the European Union. They have met every year since 1995, apart from 2020, to negotiate how that goal is put into practice. COP31 is the thirty-first of those meetings.</p>
+    </div>
+    <div class="fact-strip reveal">
+      <div class="fact"><span class="n">198</span><span class="l">Parties to the convention</span></div>
+      <div class="fact"><span class="n">1995</span><span class="l">First COP, Berlin. Annual since, apart from 2020</span></div>
+      <div class="fact"><span class="n">1.5°C</span><span class="l">The Paris Agreement's ambition for limiting warming</span></div>
+    </div>
+    <div class="prose">
+      <p>The best-known result of the process is the Paris Agreement of 2015, under which countries aim to hold warming well below 2°C and pursue efforts to limit it to 1.5°C. Each country sets its own targets, called nationally determined contributions, and is expected to strengthen them over time. The annual COPs are where governments review progress, agree rules and negotiate the decisions that hold the system together.</p>
+      <p>A COP is two events at once. In the negotiating rooms, government delegations work through a formal agenda, alongside meetings of the bodies that serve the Kyoto Protocol and the Paris Agreement. Around them, thousands of observers, businesses, researchers, journalists and local visitors take part in exhibitions, side events and public programmes.</p>
+    </div>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter is-paper" id="ch-why-it-matters" data-screen-label="06 Why COP31 matters">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-why-it-matters">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">03</span>
-      <div class="chapter-kicker">
-        <span class="num">03</span><span class="sep"></span>Why it matters
-      </div>
+      <div class="chapter-kicker"><span class="num">03</span><span class="sep"></span>Why it matters</div>
       <h2 class="chapter-title">Why COP31 matters.</h2>
-      <div class="chapter-meta"><span>2 min read</span></div>
     </header>
-    <p>More than a decade after Paris, the focus of the talks has moved from writing rules to delivering on them. The host country's stated aim for COP31 is to move "from negotiation to implementation". In practice, the conference returns to several long-running questions:</p>
-    <ul class="plain-list">
-      <li><strong>Cutting emissions:</strong> whether national targets add up to the Paris goals, and how quickly they are being met.</li>
-      <li><strong>Adaptation:</strong> how countries prepare for heat, drought, floods and rising seas that are already happening.</li>
-      <li><strong>Climate finance:</strong> how money reaches developing countries. At COP29 in Baku, countries agreed a new goal under which developed countries take the lead in mobilising at least 300 billion US dollars a year for developing countries by 2035.</li>
-      <li><strong>Nature and ecosystems:</strong> forests, oceans and biodiversity, which both store carbon and suffer from warming.</li>
-      <li><strong>Accountability:</strong> how countries report what they do, so that pledges can be checked.</li>
-    </ul>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/bolu-yedigoller-national-park-lakes-autumn-007.jpg" alt="Autumn forest reflected in one of the Yedigöller lakes in Bolu" loading="lazy" decoding="async">
-      <figcaption>Forest and lake at Yedigöller National Park, Bolu.</figcaption>
-    </figure>
-    <p>Alongside the formal negotiations, the host runs an Action Agenda. Its published themes include zero waste, oceans and seas, food security, climate-resilient cities, green industrialisation, the clean energy transition and resilient health systems. These are the host's priorities for events and initiatives, not items on the negotiating agenda. The decisions themselves are negotiated and agreed by the Parties during the conference; none of them is settled in advance.</p>
+    <div class="prose">
+      <p>More than a decade after Paris, the focus of the talks has moved from writing rules to delivering on them. The host country's stated aim for COP31 is to move "from negotiation to implementation". In practice, the conference returns to several long-running questions:</p>
+    </div>
+    <ol class="theme-list reveal">
+      <li><span class="n">i</span><span><strong>Cutting emissions</strong> Whether national targets add up to the Paris goals, and how quickly they are being met.</span></li>
+      <li><span class="n">ii</span><span><strong>Adaptation</strong> How countries prepare for heat, drought, floods and rising seas that are already happening.</span></li>
+      <li><span class="n">iii</span><span><strong>Climate finance</strong> How money reaches developing countries. At COP29 in Baku, countries agreed a new goal under which developed countries take the lead in mobilising at least 300 billion US dollars a year for developing countries by 2035.</span></li>
+      <li><span class="n">iv</span><span><strong>Nature and ecosystems</strong> Forests, oceans and biodiversity, which both store carbon and suffer from warming.</span></li>
+      <li><span class="n">v</span><span><strong>Accountability</strong> How countries report what they do, so that pledges can be checked.</span></li>
+    </ol>
+    <div class="prose">
+      <p>Alongside the formal negotiations, the host runs an Action Agenda. Its published themes include zero waste, oceans and seas, food security, climate-resilient cities, green industrialisation, the clean energy transition and resilient health systems. These are the host's priorities for events and initiatives, not items on the negotiating agenda. The decisions themselves are negotiated and agreed by the Parties during the conference; none of them is settled in advance.</p>
+    </div>
   </div>
+  <figure class="figure-wide reveal">
+    <img src="https://img.showmeturkiye.com/media-library/bolu-yedigoller-national-park-lakes-autumn-007.jpg" alt="Autumn forest reflected in one of the Yedigöller lakes in Bolu" width="1801" height="1350" loading="lazy" decoding="async">
+    <figcaption>Forest and lake at Yedigöller National Park, Bolu. Forests, wetlands and lakes are among the ecosystems on the conference's agenda.</figcaption>
+  </figure>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
+<figure class="bleed">
+  <img src="https://img.showmeturkiye.com/media-library/antalya-phaselis-bay-gulet-aerial-006.jpg" alt="Wide aerial view of the forested Phaselis peninsula and its bays on the Kemer coast, with the Beydağları mountains behind" width="2400" height="1012" loading="lazy" decoding="async">
+  <figcaption><span>Phaselis, on the Kemer coast south-west of Antalya: pine forest to the waterline, the mountains of the Beydağları behind. The organisers call Antalya the city of blue and green.</span></figcaption>
+</figure>
 
-<section class="chapter" id="ch-why-antalya" data-screen-label="07 Why Antalya and Türkiye?">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-why-antalya">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">04</span>
-      <div class="chapter-kicker">
-        <span class="num">04</span><span class="sep"></span>The host
-      </div>
+      <div class="chapter-kicker"><span class="num">04</span><span class="sep"></span>The host</div>
       <h2 class="chapter-title">Why Antalya and Türkiye?</h2>
-      <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>The decision on who would host COP31 was taken at COP30 in Belém, Brazil, in November 2025. Türkiye and Australia had both bid, and the outcome was a shared arrangement: Türkiye hosts the conference in Antalya and holds the COP31 Presidency, while Australia's climate minister leads the negotiations as President of Negotiations.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/antalya-kaleici-old-town-yivli-minaret-mountains.jpg" alt="Kaleiçi, Antalya's old town, with its fluted minaret, domes and the bay below the mountains" loading="lazy" decoding="async">
-      <figcaption>Kaleiçi, Antalya's old town, with the bay and the Beydağları range behind.</figcaption>
-    </figure>
-    <p>Antalya is Türkiye's busiest holiday region, so it already has what a conference of this size needs: an international airport with routes across Europe and beyond, a large exhibition centre, and tens of thousands of hotel rooms. The organisers describe it as the city of blue and green, where the Mediterranean meets forested mountains. The same coast and forests that draw visitors are also exposed to heat, drought and wildfire.</p>
-    <p>For our full picture of the city and its surroundings, see the <a href="./antalya">Antalya travel guide</a> and the <a href="../cities/antalya">Antalya city guide</a>.</p>
+    <div class="prose">
+      <p>The decision on who would host COP31 was taken at COP30 in Belém, Brazil, in November 2025. Türkiye and Australia had both bid, and the outcome was a shared arrangement: Türkiye hosts the conference in Antalya and holds the COP31 Presidency, while Australia's climate minister leads the negotiations as President of Negotiations.</p>
+    </div>
+  </div>
+  <figure class="figure-offset reveal">
+    <img src="https://img.showmeturkiye.com/media-library/antalya-kaleici-old-town-yivli-minaret-mountains.jpg" alt="Kaleiçi, Antalya's old town, with its fluted minaret, domes and the bay below the mountains" width="2400" height="1350" loading="lazy" decoding="async">
+    <figcaption>Kaleiçi, Antalya's old town, with the bay and the Beydağları range behind.</figcaption>
+  </figure>
+  <div class="wide">
+    <div class="prose">
+      <p>Antalya is Türkiye's busiest holiday region, so it already has what a conference of this size needs: an international airport with routes across Europe and beyond, a large exhibition centre, and tens of thousands of hotel rooms. The organisers describe it as the city of blue and green, where the Mediterranean meets forested mountains. The same coast and forests that draw visitors are also exposed to heat, drought and wildfire.</p>
+      <p>For our full picture of the city and its surroundings, see the <a href="./antalya">Antalya travel guide</a> and the <a href="../cities/antalya">Antalya city guide</a>.</p>
+    </div>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter is-paper" id="ch-climate-turkiye" data-screen-label="08 Climate change and Türkiye">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-climate-turkiye">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">05</span>
-      <div class="chapter-kicker">
-        <span class="num">05</span><span class="sep"></span>Context
-      </div>
+      <div class="chapter-kicker"><span class="num">05</span><span class="sep"></span>Context</div>
       <h2 class="chapter-title">Climate change and Türkiye.</h2>
-      <div class="chapter-meta"><span>2 min read</span></div>
+      <p class="chapter-sub">Four landscapes from our archive, and what is changing around them.</p>
     </header>
-    <p>Türkiye lies in the Mediterranean basin, which the Intergovernmental Panel on Climate Change (IPCC) describes as a climate change hotspot. Regional assessments by the Mediterranean Experts on Climate and Environmental Change (MedECC) find that the basin is warming faster than the global average, and it is projected to become drier. The effects differ across a country this large.</p>
-    <p><strong>Forests and wildfire.</strong> The pine forests of the south and west coasts are adapted to fire, but longer, hotter and drier summers raise the risk. In the summer of 2021, large wildfires burned in several coastal provinces, including the Manavgat area of Antalya.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/antalya-phaselis-tahtali-mountain-view-002.jpg" alt="Pine forest running down to a bay at Phaselis, with Mount Tahtalı behind" loading="lazy" decoding="async">
-      <figcaption>Pine forest down to the sea at Phaselis, near Kemer.</figcaption>
-    </figure>
-    <p><strong>Water.</strong> Much of the country depends on rain and snowmelt that vary a great deal from year to year. Lower rainfall and higher evaporation put pressure on reservoirs, farming and lakes, and water resources are a central theme in Türkiye's climate adaptation planning.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/burdur-salda-lake-white-shore-aerial-003.jpg" alt="White carbonate rocks along the turquoise shore of Salda Lake in Burdur, seen from above" loading="lazy" decoding="async">
-      <figcaption>Salda Lake in Burdur, one of the inland lakes of the Lakes Region.</figcaption>
-    </figure>
-    <p><strong>Seasons and coasts.</strong> Hotter summers, milder winters and heavier downpours change when and how people farm, travel and live. Low-lying coastal areas and deltas are exposed to rising seas and storms.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/sakarya-karasu-beach-waves-aerial-001.jpg" alt="Waves breaking on a long sandy beach at Karasu, seen from above" loading="lazy" decoding="async">
-      <figcaption>The Black Sea shore at Karasu, Sakarya.</figcaption>
-    </figure>
-    <p><strong>Mountains.</strong> High ranges such as the Kaçkar in the north-east hold snowfields and small glaciers that feed rivers through the summer. Warming shortens the snow season and can push plants and animals to higher ground.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/rize-kackar-range-peaks-sunset.jpg" alt="The jagged peaks of the Kaçkar range above green slopes at sunset" loading="lazy" decoding="async">
-      <figcaption>The Kaçkar range above Rize.</figcaption>
-    </figure>
-    <p>These photographs are from our own archive. They show the landscapes discussed here, not specific climate events. To see more of these places, read our guides to <a href="./national-parks-in-turkiye">national parks in Türkiye</a> and <a href="./hiking-in-turkiye">hiking in Türkiye</a>.</p>
+    <div class="prose">
+      <p>Türkiye lies in the Mediterranean basin, which the Intergovernmental Panel on Climate Change (IPCC) describes as a climate change hotspot. Regional assessments by the Mediterranean Experts on Climate and Environmental Change (MedECC) find that the basin is warming faster than the global average, and it is projected to become drier. The effects differ across a country this large.</p>
+    </div>
+    <div class="essay">
+      <div class="essay-row reveal">
+        <figure>
+          <img src="https://img.showmeturkiye.com/media-library/antalya-phaselis-tahtali-mountain-view-002.jpg" alt="Pine forest running down to a bay at Phaselis, with Mount Tahtalı behind" width="1011" height="1350" loading="lazy" decoding="async">
+          <figcaption>Pine forest down to the sea at Phaselis, near Kemer.</figcaption>
+        </figure>
+        <div class="text">
+          <span class="kicker">Forests and wildfire</span>
+          <h3>Forests that live <em>with fire</em>.</h3>
+          <p>The pine forests of the south and west coasts are adapted to fire, but longer, hotter and drier summers raise the risk. In the summer of 2021, large wildfires burned in several coastal provinces, including the Manavgat area of Antalya.</p>
+        </div>
+      </div>
+      <div class="essay-row reveal">
+        <figure>
+          <img src="https://img.showmeturkiye.com/media-library/burdur-salda-lake-white-shore-aerial-003.jpg" alt="White carbonate rocks along the turquoise shore of Salda Lake in Burdur, seen from above" width="1013" height="1350" loading="lazy" decoding="async">
+          <figcaption>Salda Lake in Burdur, one of the inland lakes of the Lakes Region.</figcaption>
+        </figure>
+        <div class="text">
+          <span class="kicker">Water</span>
+          <h3>Rain, snowmelt and <em>the lakes</em>.</h3>
+          <p>Much of the country depends on rain and snowmelt that vary a great deal from year to year. Lower rainfall and higher evaporation put pressure on reservoirs, farming and lakes, and water resources are a central theme in Türkiye's climate adaptation planning.</p>
+        </div>
+      </div>
+      <div class="essay-row reveal">
+        <figure class="keep-portrait">
+          <img src="https://img.showmeturkiye.com/media-library/sakarya-karasu-beach-waves-aerial-001.jpg" alt="Waves breaking on a long sandy beach at Karasu, seen from above" width="899" height="1350" loading="lazy" decoding="async">
+          <figcaption>The Black Sea shore at Karasu, Sakarya.</figcaption>
+        </figure>
+        <div class="text">
+          <span class="kicker">Seasons and coasts</span>
+          <h3>A longer summer, <em>a higher sea</em>.</h3>
+          <p>Hotter summers, milder winters and heavier downpours change when and how people farm, travel and live. Low-lying coastal areas and deltas are exposed to rising seas and storms.</p>
+        </div>
+      </div>
+      <div class="essay-row is-land reveal">
+        <figure>
+          <img src="https://img.showmeturkiye.com/media-library/rize-kackar-range-peaks-sunset.jpg" alt="The jagged peaks of the Kaçkar range above green slopes at sunset" width="1800" height="1350" loading="lazy" decoding="async">
+          <figcaption>The Kaçkar range above Rize.</figcaption>
+        </figure>
+        <div class="text">
+          <span class="kicker">Mountains</span>
+          <h3>Snow that feeds <em>the rivers</em>.</h3>
+          <p>High ranges such as the Kaçkar in the north-east hold snowfields and small glaciers that feed rivers through the summer. Warming shortens the snow season and can push plants and animals to higher ground.</p>
+        </div>
+      </div>
+    </div>
+    <div class="prose" style="margin-top:56px">
+      <p class="note">These photographs are from our own archive. They show the landscapes discussed here, not specific climate events. To see more of these places, read our guides to <a href="./national-parks-in-turkiye">national parks in Türkiye</a> and <a href="./hiking-in-turkiye">hiking in Türkiye</a>.</p>
+    </div>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter" id="ch-how-to-attend" data-screen-label="09 How to attend COP31">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-how-to-attend">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">06</span>
-      <div class="chapter-kicker">
-        <span class="num">06</span><span class="sep"></span>Attending
-      </div>
+      <div class="chapter-kicker"><span class="num">06</span><span class="sep"></span>Attending</div>
       <h2 class="chapter-title">How to attend COP31.</h2>
-      <div class="chapter-meta"><span>2 min read</span></div>
     </header>
-    <p>The most important thing to understand is that COP31 has two separate areas with separate rules. Not everyone can enter the conference venue.</p>
-    <p><strong>The Blue Zone</strong> is the UN-managed area where the negotiations take place. Entry requires accreditation through the UNFCCC. In practice, that means one of three routes:</p>
-    <ul class="plain-list">
-      <li><strong>Party delegates:</strong> nominated by their national government through its official focal point.</li>
-      <li><strong>Observers:</strong> representatives of organisations already admitted as UNFCCC observers, nominated by their organisation's designated contact point.</li>
-      <li><strong>Media:</strong> journalists apply for press accreditation, which is administered by the UNFCCC secretariat.</li>
-    </ul>
-    <p>Individuals cannot buy a ticket or register themselves for the Blue Zone. The UNFCCC states that registration and badges are free of charge for duly nominated participants.</p>
-    <p><strong>The Green Zone</strong> is coordinated by the host country and is designed for the wider public. According to the official COP31 FAQ, it is open to the public, students, NGOs, companies and researchers, entry is generally free, and pre-registration is required in most cases through the official COP31 website. Visitors need a passport, driving licence or national ID card, and should expect airport-style security checks. The FAQ also describes panels, workshops, exhibitions, film screenings and concerts, with sessions mostly in Turkish and some in English.</p>
-    <p>Organisations that want to host an event or exhibit in the Green Zone can apply through the COP31 website. Details, opening hours and registration can change, so treat the official pages as the final word.</p>
+    <div class="prose">
+      <p>The most important thing to understand is that COP31 has two separate areas with separate rules. Not everyone can enter the conference venue.</p>
+    </div>
+    <div class="zones reveal">
+      <div class="zone">
+        <div class="z-tag">Accredited participants only</div>
+        <h3>The Blue Zone</h3>
+        <p class="z-sub">UN-managed. Where the negotiations take place.</p>
+        <p>Entry requires accreditation through the UNFCCC. In practice, that means one of three routes:</p>
+        <ul>
+          <li><strong>Party delegates:</strong> nominated by their national government through its official focal point.</li>
+          <li><strong>Observers:</strong> representatives of organisations already admitted as UNFCCC observers, nominated by their organisation's designated contact point.</li>
+          <li><strong>Media:</strong> journalists apply for press accreditation, which is administered by the UNFCCC secretariat.</li>
+        </ul>
+        <p style="margin-top:16px">Individuals cannot buy a ticket or register themselves for the Blue Zone. The UNFCCC states that registration and badges are free of charge for duly nominated participants.</p>
+      </div>
+      <div class="zone is-green">
+        <div class="z-tag">Open to the public</div>
+        <h3>The Green Zone</h3>
+        <p class="z-sub">Coordinated by the host country, for the wider public.</p>
+        <p>According to the official COP31 FAQ, it is open to the public, students, NGOs, companies and researchers.</p>
+        <ul>
+          <li><strong>Entry:</strong> generally free, and pre-registration is required in most cases through the official COP31 website.</li>
+          <li><strong>Bring:</strong> a passport, driving licence or national ID card, and expect airport-style security checks.</li>
+          <li><strong>Programme:</strong> panels, workshops, exhibitions, film screenings and concerts, with sessions mostly in Turkish and some in English.</li>
+        </ul>
+        <p style="margin-top:16px">Organisations that want to host an event or exhibit in the Green Zone can apply through the COP31 website.</p>
+      </div>
+    </div>
+    <div class="prose">
+      <p class="note">Details, opening hours and registration can change, so treat the official pages as the final word.</p>
+    </div>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter is-paper" id="ch-practical" data-screen-label="10 Practical Antalya visitor information">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-practical">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">07</span>
-      <div class="chapter-kicker">
-        <span class="num">07</span><span class="sep"></span>Practical
-      </div>
+      <div class="chapter-kicker"><span class="num">07</span><span class="sep"></span>Practical</div>
       <h2 class="chapter-title">Practical Antalya visitor information.</h2>
-      <div class="chapter-meta"><span>2 min read</span></div>
     </header>
-    <p><strong>Getting there.</strong> Antalya Airport (AYT) is the main gateway, with international and domestic flights. The venue, the Antalya EXPO Center, is in the Aksu district east of the city. The official COP31 site publishes airport transfer, transport and digital map information.</p>
-    <p><strong>Getting around during the conference.</strong> The official FAQ says transport is free for accredited participants, and that the Green Zone can be reached by public transport, tram, shuttles and footpaths. Visitors are asked not to come by private car. Allow extra time on your first day.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/antalya-kemer-mountains-bay-sunset-002.jpg" alt="Forested hills and a bay on the Kemer coast at sunset, with the mountains beyond" loading="lazy" decoding="async">
-      <figcaption>The coast west of Antalya, around Kemer, at the end of the day.</figcaption>
-    </figure>
-    <p><strong>Where to stay.</strong> The host directs participants to book through its official accommodation partner, and demand around the conference dates is high. If you are not part of an official delegation, book early and check how far your hotel is from the venue and from public transport.</p>
-    <p><strong>Visas.</strong> Many international visitors need a visa for Türkiye. The official site has a dedicated visa and entry page; accredited participants should follow the process described there.</p>
-    <p><strong>November weather.</strong> Antalya stays mild in November, with comfortable days and cooler evenings, but it is also when the winter rains begin. Pack layers, a light waterproof and comfortable shoes for long days on your feet.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/antalya-kemer-tatlisu-bay-001.jpg" alt="A pine-covered bay with clear water below Mount Tahtalı near Kemer" loading="lazy" decoding="async">
-      <figcaption>Tatlısu Bay near Kemer, about an hour from Antalya.</figcaption>
-    </figure>
+    <div class="practical reveal">
+      <div>
+        <h3>Getting there</h3>
+        <p>Antalya Airport (AYT) is the main gateway, with international and domestic flights. The venue, the Antalya EXPO Center, is in the Aksu district east of the city. The official COP31 site publishes airport transfer, transport and digital map information.</p>
+      </div>
+      <div>
+        <h3>Getting around during the conference</h3>
+        <p>The official FAQ says transport is free for accredited participants, and that the Green Zone can be reached by public transport, tram, shuttles and footpaths. Visitors are asked not to come by private car. Allow extra time on your first day.</p>
+      </div>
+      <div>
+        <h3>Where to stay</h3>
+        <p>The host directs participants to book through its official accommodation partner, and demand around the conference dates is high. If you are not part of an official delegation, book early and check how far your hotel is from the venue and from public transport.</p>
+      </div>
+      <div>
+        <h3>Visas</h3>
+        <p>Many international visitors need a visa for Türkiye. The official site has a dedicated visa and entry page; accredited participants should follow the process described there.</p>
+      </div>
+      <div>
+        <h3>November weather</h3>
+        <p>Antalya stays mild in November, with comfortable days and cooler evenings, but it is also when the winter rains begin. Pack layers, a light waterproof and comfortable shoes for long days on your feet.</p>
+      </div>
+      <div>
+        <h3>A free day</h3>
+        <p>Kaleiçi, the Düden waterfalls, Perge and Aspendos are close to the city, and the coast around Kemer is about an hour away. Our <a class="text-link" href="./antalya">Antalya guide</a> and <a class="text-link" href="./kemer">Kemer guide</a> cover the days around the conference.</p>
+      </div>
+    </div>
   </div>
+  <figure class="diptych reveal">
+    <div class="pair">
+      <img src="https://img.showmeturkiye.com/media-library/antalya-kemer-mountains-bay-sunset-002.jpg" alt="Forested hills and a bay on the Kemer coast at sunset, with the mountains beyond" width="1801" height="1350" loading="lazy" decoding="async">
+      <img class="portrait" src="https://img.showmeturkiye.com/media-library/antalya-kemer-tatlisu-bay-002.jpg" alt="Tatlısu Bay near Kemer seen from above: a pine-covered headland, a small beach and clear water" width="919" height="1350" loading="lazy" decoding="async">
+    </div>
+    <figcaption>The coast west of Antalya, around Kemer, about an hour from the city: the bay below the mountains at the end of the day, and Tatlısu Bay.</figcaption>
+  </figure>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter" id="ch-official-sites" data-screen-label="11 Official COP31 websites">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-official-sites">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">08</span>
-      <div class="chapter-kicker">
-        <span class="num">08</span><span class="sep"></span>Official sources
-      </div>
+      <div class="chapter-kicker"><span class="num">08</span><span class="sep"></span>Official sources</div>
       <h2 class="chapter-title">Official COP31 websites.</h2>
-      <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>Show Me Türkiye is an independent publication and is not affiliated with the UNFCCC or the COP31 Presidency. For registration, accreditation, programmes and any binding information, go to the official sources:</p>
-    <ul class="plain-list">
-      <li><strong>UN Climate Change (UNFCCC):</strong> <a href="https://unfccc.int/cop31" target="_blank" rel="noopener">unfccc.int/cop31</a>, the UN's official conference page</li>
-      <li><strong>UNFCCC information for participants:</strong> <a href="https://unfccc.int/cop31/ifp" target="_blank" rel="noopener">unfccc.int/cop31/ifp</a>, the UN's information for participants</li>
-      <li><strong>COP31 Türkiye (host country):</strong> <a href="https://cop31.tr/" target="_blank" rel="noopener">cop31.tr</a>, with Green Zone registration, accommodation, transport, visa and media information</li>
-      <li><strong>COP31 Türkiye in Turkish:</strong> <a href="https://cop31.tr/tr" target="_blank" rel="noopener">cop31.tr/tr</a>, including the <a href="https://cop31.tr/tr/sss" target="_blank" rel="noopener">frequently asked questions</a></li>
+    <div class="prose">
+      <p>Show Me Türkiye is an independent publication and is not affiliated with the UNFCCC or the COP31 Presidency. For registration, accreditation, programmes and any binding information, go to the official sources:</p>
+    </div>
+    <ul class="sources reveal">
+      <li><a href="https://unfccc.int/cop31" target="_blank" rel="noopener"><span><span class="s-name">UN Climate Change (UNFCCC)</span><span class="s-url">unfccc.int/cop31</span><span class="s-desc">The UN's official conference page.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://unfccc.int/cop31/ifp" target="_blank" rel="noopener"><span><span class="s-name">UNFCCC information for participants</span><span class="s-url">unfccc.int/cop31/ifp</span><span class="s-desc">The UN's information for participants.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://cop31.tr/" target="_blank" rel="noopener"><span><span class="s-name">COP31 Türkiye (host country)</span><span class="s-url">cop31.tr</span><span class="s-desc">Green Zone registration, accommodation, transport, visa and media information.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://cop31.tr/tr" target="_blank" rel="noopener"><span><span class="s-name">COP31 Türkiye in Turkish</span><span class="s-url">cop31.tr/tr</span><span class="s-desc">Including the <span class="text-link-inline">frequently asked questions</span> at cop31.tr/tr/sss.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
     </ul>
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter is-paper" id="ch-faq" data-screen-label="12 Questions we get asked">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-faq">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">09</span>
-      <div class="chapter-kicker">
-        <span class="num">09</span><span class="sep"></span>FAQ
-      </div>
+      <div class="chapter-kicker"><span class="num">09</span><span class="sep"></span>FAQ</div>
       <h2 class="chapter-title">Questions we get asked.</h2>
       <p class="chapter-sub">Short answers to the most common ones.</p>
-      <div class="chapter-meta"><span>2 min read</span></div>
     </header>
-    <div class="faq">
+    <div class="faq reveal">
       <details class="faq-item" open>
         <summary>When is COP31?</summary>
         <p>COP31 runs from 9 to 20 November 2026.</p>
@@ -2515,30 +1828,30 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </section>
 
-<div class="ch-divider"><span class="line"></span><span class="glyph">§</span><span class="line"></span></div>
-
-<section class="chapter" id="ch-closing" data-screen-label="13 Antalya, and why it matters">
-  <div class="chapter-inner">
+<section class="chapter" id="ch-closing">
+  <div class="wide">
     <header class="chapter-head reveal">
-      <span class="chapter-num-display" aria-hidden="true">10</span>
-      <div class="chapter-kicker">
-        <span class="num">10</span><span class="sep"></span>Closing
-      </div>
+      <div class="chapter-kicker"><span class="num">10</span><span class="sep"></span>Closing</div>
       <h2 class="chapter-title">Antalya, and why it matters.</h2>
-      <div class="chapter-meta"><span>1 min read</span></div>
     </header>
-    <p>Most people will know COP31 through headlines about negotiations and final decisions. For anyone who comes to Antalya, it is also a chance to see the landscapes the talks are about: a warm sea, pine forests that live with fire, rivers fed by mountain snow, and a coast that millions of people depend on.</p>
-    <figure class="inline-figure">
-      <img src="https://img.showmeturkiye.com/media-library/sea-turtle-swimming-aerial.jpg" alt="Aerial view of a sea turtle swimming in clear turquoise water off the Antalya coast" loading="lazy" decoding="async">
-      <figcaption>A sea turtle in the clear water off the Antalya coast.</figcaption>
-    </figure>
-    <p>We will keep this guide up to date as official details are confirmed. Until then, the safest rule is simple: check the official websites before you book, and check them again before you travel.</p>
+    <div class="prose">
+      <p>Most people will know COP31 through headlines about negotiations and final decisions. For anyone who comes to Antalya, it is also a chance to see the landscapes the talks are about: a warm sea, pine forests that live with fire, rivers fed by mountain snow, and a coast that millions of people depend on.</p>
+    </div>
+  </div>
+  <figure class="figure-wide reveal">
+    <img src="https://img.showmeturkiye.com/media-library/sea-turtle-swimming-aerial.jpg" alt="A sea turtle swimming in clear turquoise water, seen from above" width="2400" height="1350" loading="lazy" decoding="async">
+    <figcaption>A sea turtle in clear, shallow water, seen from above.</figcaption>
+  </figure>
+  <div class="wide">
+    <div class="prose">
+      <p>We will keep this guide up to date as official details are confirmed. Until then, the safest rule is simple: check the official websites before you book, and check them again before you travel.</p>
+    </div>
   </div>
 </section>
 
 <section class="author-share">
   <div class="author-share-inner">
-    <div class="author-avatar"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></div>
+    <div class="author-avatar"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye" width="44" height="44" loading="lazy" decoding="async"></div>
     <div class="author-info">
       <div class="label">Written by</div>
       <div class="name">Show Me Türkiye Editorial</div>
@@ -2553,21 +1866,32 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </section>
 
-<section class="video">
-  <div class="video-inner">
-    <div class="video-head">
-      <div class="eyebrow">Watch the film</div>
-      <h2>See Antalya <em>in motion</em>.</h2>
-      <p>Our short cinematic film of the city and coast that host COP31.</p>
+<section class="video" aria-labelledby="antalyaFilmTitle">
+  <div class="wide">
+    <div class="video-head reveal">
+      <div>
+        <div class="eyebrow">Destination film</div>
+        <h2 id="antalyaFilmTitle">See Antalya <em>in motion</em>.</h2>
+        <p>Our short cinematic film of the city and coast that host COP31.</p>
+      </div>
+      <a class="yt" href="https://www.youtube.com/watch?v=IxfJr92fJdg" target="_blank" rel="noopener">Watch on YouTube ↗</a>
     </div>
-    <div class="video-frame">
-      <iframe src="https://www.youtube.com/embed/IxfJr92fJdg" title="Show Me Turkiye · Antalya · The Ultimate Antalya Travel Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="player reveal" id="antalyaPlayer" data-vid="IxfJr92fJdg" data-title="Show Me Turkiye · Antalya · The Ultimate Antalya Travel Video">
+      <picture>
+        <source type="image/webp" srcset="https://i.ytimg.com/vi_webp/IxfJr92fJdg/maxresdefault.webp">
+        <img src="https://i.ytimg.com/vi/IxfJr92fJdg/maxresdefault.jpg" alt="Still from Show Me Türkiye's Antalya travel film" width="1280" height="720" loading="lazy" decoding="async">
+      </picture>
+      <button type="button" class="play" aria-label="Play the Antalya travel film, 6 minutes 58 seconds">
+        <span class="play-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z"/></svg></span>
+        <span class="play-label" aria-hidden="true">Play the film <span class="dur">6:58</span></span>
+      </button>
+      <noscript><a href="https://www.youtube.com/watch?v=IxfJr92fJdg" target="_blank" rel="noopener">Watch the Antalya film on YouTube</a></noscript>
     </div>
   </div>
 </section>
 
 <section class="bottom-cta">
-  <div class="bottom-cta-inner">
+  <div class="bottom-cta-inner reveal">
     <div class="eyebrow">Make it a trip</div>
     <h2>Stay for <em>Antalya</em>.</h2>
     <p>Our Antalya city page covers Kaleiçi, the Düden waterfalls, Aspendos and the Lycian coast for the days around the conference.</p>
@@ -2576,7 +1900,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 </section>
 
 <section class="related">
-  <div class="related-inner">
+  <div class="wide">
     <div class="related-head reveal">
       <div>
         <div class="eyebrow">Continue reading</div>
@@ -2608,6 +1932,27 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 </section>
 
 </main>
+
+<button type="button" class="ch-nav-btn" id="chNavBtn" aria-haspopup="dialog" aria-controls="chSheet" aria-expanded="false">Chapters <span class="cur" id="chNavCur">01 / 10</span></button>
+<div class="ch-sheet" id="chSheet" role="dialog" aria-modal="true" aria-label="Chapters" hidden>
+  <div class="backdrop" data-close></div>
+  <div class="panel">
+    <div class="panel-head"><span class="eyebrow">In this guide</span><button type="button" class="close" data-close aria-label="Close chapters">&times;</button></div>
+    <ol>
+      <li><a href="#ch-at-a-glance" data-target="ch-at-a-glance"><span class="n">01</span><span>COP31 at a glance</span></a></li>
+      <li><a href="#ch-what-is-cop" data-target="ch-what-is-cop"><span class="n">02</span><span>What is COP31?</span></a></li>
+      <li><a href="#ch-why-it-matters" data-target="ch-why-it-matters"><span class="n">03</span><span>Why COP31 matters</span></a></li>
+      <li><a href="#ch-why-antalya" data-target="ch-why-antalya"><span class="n">04</span><span>Why Antalya and Türkiye?</span></a></li>
+      <li><a href="#ch-climate-turkiye" data-target="ch-climate-turkiye"><span class="n">05</span><span>Climate change and Türkiye</span></a></li>
+      <li><a href="#ch-how-to-attend" data-target="ch-how-to-attend"><span class="n">06</span><span>How to attend COP31</span></a></li>
+      <li><a href="#ch-practical" data-target="ch-practical"><span class="n">07</span><span>Practical Antalya visitor information</span></a></li>
+      <li><a href="#ch-official-sites" data-target="ch-official-sites"><span class="n">08</span><span>Official COP31 websites</span></a></li>
+      <li><a href="#ch-faq" data-target="ch-faq"><span class="n">09</span><span>Questions we get asked</span></a></li>
+      <li><a href="#ch-closing" data-target="ch-closing"><span class="n">10</span><span>Antalya, and why it matters</span></a></li>
+    </ol>
+  </div>
+</div>
+
 <footer class="footer reveal-up">
   <div class="footer-content">
     <div class="footer-section">
@@ -2657,7 +2002,6 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 </footer>
 
 <script>
-
 /* ─── Nav ─── */
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const closeNavBtn  = document.getElementById('closeNavBtn');
@@ -2668,47 +2012,78 @@ hamburgerBtn.addEventListener('click', () => navOverlay.classList.contains('open
 closeNavBtn.addEventListener('click', closeNav);
 navOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
 navOverlay.addEventListener('click', e => { if (e.target === navOverlay) closeNav(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
-/* ─── Scrolled state for nav (inverts hamburger over light bg) ─── */
+/* ─── Chapters: scroll state, rail, mobile navigator, progress ─── */
 const hero = document.querySelector('.post-hero');
 const sideRail = document.getElementById('sideRail');
+const chNavBtn = document.getElementById('chNavBtn');
+const chNavCur = document.getElementById('chNavCur');
+const chapterEls = Array.from(document.querySelectorAll('section.chapter[id^="ch-"]'));
+const chapterLinks = Array.from(document.querySelectorAll('.side-rail a[data-target], .ch-sheet a[data-target]'));
+let ticking = false;
 function onScroll() {
   const y = window.scrollY;
-  if (y > 80) document.body.classList.add('scrolled'); else document.body.classList.remove('scrolled');
-  // Invert nav once past hero
   const heroH = hero ? hero.offsetHeight : 600;
-  if (y > heroH - 80) document.body.classList.add('invert-nav');
-  else document.body.classList.remove('invert-nav');
-  // Show side rail after hero, hide near footer
+  document.body.classList.toggle('past-hero', y > heroH - 96);
   const docH = document.documentElement.scrollHeight;
   const winH = window.innerHeight;
-  if (y > heroH - 100 && y < docH - winH - 600) sideRail.classList.add('visible');
-  else sideRail.classList.remove('visible');
-  // Reading progress
+  const lastCh = chapterEls[chapterEls.length - 1];
+  const endY = lastCh ? lastCh.offsetTop + lastCh.offsetHeight - winH * 0.6 : docH;
+  const inBody = y > heroH - 100 && y < Math.min(endY, docH - winH - 700);
+  sideRail.classList.toggle('visible', inBody);
+  chNavBtn.classList.toggle('visible', inBody);
   const p = Math.max(0, Math.min(100, (y / (docH - winH)) * 100));
   document.documentElement.style.setProperty('--p', p + '%');
-  // Active chapter highlight
-  highlightActiveChapter(y);
+  // active chapter
+  const offset = winH * 0.4;
+  let active = null, idx = 0;
+  chapterEls.forEach((ch, i) => { if (ch.offsetTop - offset <= y) { active = ch.id; idx = i + 1; } });
+  chapterLinks.forEach(a => a.classList.toggle('active', a.dataset.target === active));
+  chNavCur.textContent = String(Math.max(1, idx)).padStart(2, '0') + ' / ' + String(chapterEls.length).padStart(2, '0');
+  ticking = false;
 }
-window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+window.addEventListener('resize', onScroll);
 
-/* ─── Chapter highlighting in side rail ─── */
-const chapterEls = Array.from(document.querySelectorAll('[id^="ch-"]'));
-const railLinks = Array.from(document.querySelectorAll('.side-rail a'));
-function highlightActiveChapter(y) {
-  const offset = window.innerHeight * 0.4;
-  let activeId = null;
-  for (const ch of chapterEls) {
-    if (ch.offsetTop - offset <= y) activeId = ch.id;
-  }
-  railLinks.forEach(a => a.classList.toggle('active', a.dataset.target === activeId));
+/* mobile chapter sheet */
+const chSheet = document.getElementById('chSheet');
+let lastFocus = null;
+function openSheet() {
+  lastFocus = document.activeElement;
+  chSheet.hidden = false; chSheet.classList.add('open'); document.body.classList.add('sheet-open');
+  chNavBtn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  const act = chSheet.querySelector('a.active') || chSheet.querySelector('a');
+  if (act) act.focus();
 }
+function closeSheet() {
+  chSheet.classList.remove('open'); chSheet.hidden = true; document.body.classList.remove('sheet-open');
+  chNavBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+chNavBtn.addEventListener('click', () => chSheet.classList.contains('open') ? closeSheet() : openSheet());
+chSheet.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeSheet));
+chSheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { closeSheet(); }));
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (chSheet.classList.contains('open')) closeSheet();
+  if (navOverlay.classList.contains('open')) closeNav();
+});
+
+/* hide the chapter button while the cookie banner is on screen (banner markup is injected after this script) */
+document.addEventListener('DOMContentLoaded', () => {
+  const ccBanner = document.getElementById('ccBanner');
+  if (!ccBanner) return;
+  const syncCc = () => document.body.classList.toggle('cc-open', ccBanner.classList.contains('cc-show'));
+  syncCc();
+  new MutationObserver(syncCc).observe(ccBanner, { attributes: true, attributeFilter: ['class'] });
+});
 
 /* ─── Reading time (rough word count) ─── */
 (function() {
   let words = 0;
-  document.querySelectorAll('.opening p, .chapter p, .pullquote p').forEach(p => {
+  document.querySelectorAll('.opening p, .chapter p, .chapter dd, .chapter li, .field-notes li').forEach(p => {
     words += p.textContent.trim().split(/\s+/).length;
   });
   const min = Math.max(1, Math.round(words / 220));
@@ -2719,20 +2094,42 @@ function highlightActiveChapter(y) {
 /* ─── Reveal on scroll ─── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ─── Copy link ─── */
-const copyBtn = document.getElementById('copyLink');
-if (copyBtn) {
-  copyBtn.addEventListener('click', e => {
-    e.preventDefault();
-    navigator.clipboard?.writeText(location.href);
-    const orig = copyBtn.textContent;
-    copyBtn.textContent = '✓';
-    setTimeout(() => { copyBtn.textContent = orig; }, 1500);
+/* ─── Films: click-to-load YouTube (no third-party requests before interaction) ─── */
+document.querySelectorAll('.player[data-vid]').forEach(player => {
+  const btn = player.querySelector('.play');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const id = player.dataset.vid;
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    iframe.title = player.dataset.title || 'Video';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    player.appendChild(iframe);
+    player.classList.add('is-playing');
+    iframe.focus();
   });
-}
+});
+
+/* ─── Share / copy link ─── */
+document.querySelectorAll('.share a[data-share]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const url = encodeURIComponent(location.href.split('#')[0]);
+    const title = encodeURIComponent(document.title);
+    if (a.dataset.share === 'x') window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + title, '_blank', 'noopener');
+    else if (a.dataset.share === 'fb') window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank', 'noopener');
+    else if (a.dataset.share === 'link') {
+      navigator.clipboard?.writeText(location.href.split('#')[0]);
+      const orig = a.textContent; a.textContent = '✓';
+      setTimeout(() => { a.textContent = orig; }, 1500);
+    }
+  });
+});
 
 /* ─── Footer year ─── */
 const fy = document.getElementById('footerYear');
@@ -2740,18 +2137,6 @@ if (fy) fy.textContent = new Date().getFullYear();
 
 /* Initial pass */
 onScroll();
-
-/* ─── Video playlist click handler (swap iframe in place) ─── */
-document.querySelectorAll('.video-mini[data-vid]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.dataset.vid;
-    const frame = document.querySelector('.video-frame iframe');
-    if (frame) frame.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
-    document.querySelectorAll('.video-mini.active').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-
 </script>
 
 <!-- ═══ SITE SEARCH (slim) ═══ -->
