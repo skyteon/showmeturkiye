@@ -102,6 +102,7 @@ a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
 button { font: inherit; cursor: pointer; }
 em { font-style: italic; }
+[hidden] { display: none !important; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px;
@@ -265,8 +266,8 @@ em { font-style: italic; }
 .jr-cover-scrim {
   position: absolute; inset: 0; pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(14,9,8,0.18) 0%, rgba(14,9,8,0) 30%, rgba(14,9,8,0.14) 55%, rgba(14,9,8,0.82) 100%),
-    linear-gradient(90deg, rgba(14,9,8,0.42) 0%, rgba(14,9,8,0) 60%);
+    linear-gradient(180deg, rgba(14,9,8,0.20) 0%, rgba(14,9,8,0) 28%, rgba(14,9,8,0.22) 52%, rgba(14,9,8,0.88) 100%),
+    linear-gradient(90deg, rgba(14,9,8,0.62) 0%, rgba(14,9,8,0.28) 40%, rgba(14,9,8,0) 68%);
 }
 .jr-cover-body {
   position: relative; z-index: 1;
@@ -494,7 +495,12 @@ em { font-style: italic; }
   .jr-region-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .jr-region { aspect-ratio: 4 / 3; }
   .jr-toolbar { grid-template-columns: minmax(0, 1fr) 190px; }
-  .jr-pills { grid-column: 1 / -1; order: 3; }
+  .jr-pills {
+    grid-column: 1 / -1; order: 3; flex-wrap: nowrap; overflow-x: auto;
+    margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .jr-pills::-webkit-scrollbar { display: none; }
   .jr-grid { gap: 48px 28px; }
   .jr-card { grid-column: span 6; }
   .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1), .jr-grid.js-ready .jr-card.is-lead { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 32px; }
@@ -571,12 +577,6 @@ em { font-style: italic; }
 
   .jr-archive { padding: 60px 0 72px; }
   .jr-toolbar { grid-template-columns: 1fr; gap: 10px; }
-  .jr-pills {
-    flex-wrap: nowrap; overflow-x: auto; order: 3;
-    margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter);
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  }
-  .jr-pills::-webkit-scrollbar { display: none; }
   .jr-pill { padding: 9px 14px; font-size: 11.5px; }
   .jr-status-row { margin: 20px 0 24px; }
   .jr-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1188,7 +1188,52 @@ em { font-style: italic; }
 </style>
 <style id="nav-align-fix">
 /* ═══ Unified nav alignment — logo · search · hamburger share ONE vertical center.
-   Portable: paste this block before <style id="smt-footer-css">
+   Portable: paste this block before </head> on every page that uses the site nav. ═══ */
+.site-nav > a, .site-nav > .nav-logo{ top:56px !important; left:52px !important; transform:translateY(-50%) !important; }
+.site-nav a img, .site-logo{ height:80px !important; }
+.hamburger{ top:56px !important; right:52px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
+.hamburger span{ width:28px !important; }
+.nav-search-btn{ top:56px !important; right:112px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
+.nav-search-btn svg{ width:22px !important; height:22px !important; }
+
+@media (max-width:768px){
+  .site-nav > a, .site-nav > .nav-logo{ top:42px !important; left:18px !important; }
+  .site-nav a img, .site-logo{ height:58px !important; }
+  .hamburger{ top:42px !important; right:16px !important; padding:11px !important; gap:6px !important; }
+  .hamburger span{ width:30px !important; height:2.5px !important; }
+  .hamburger.open span:nth-child(1){ transform:translateY(8.5px) rotate(45deg) !important; }
+  .hamburger.open span:nth-child(2){ opacity:0 !important; transform:scaleX(0) !important; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-8.5px) rotate(-45deg) !important; }
+  .nav-search-btn{ top:42px !important; right:74px !important; width:46px !important; height:46px !important; }
+  .nav-search-btn svg{ width:24px !important; height:24px !important; }
+}
+@media (max-width:480px){
+  .site-nav > a, .site-nav > .nav-logo{ left:16px !important; }
+  .hamburger{ right:14px !important; }
+  .nav-search-btn{ right:72px !important; }
+}
+</style>
+<style id="smt-a11y">
+.skip-link{position:absolute;left:16px;top:-120px;z-index:2147483646;padding:12px 18px;background:#1a0e0a;color:#F4EFE5;font:500 14px/1.2 'Poppins',system-ui,-apple-system,sans-serif;text-decoration:none;border-radius:4px}
+.skip-link:focus{top:16px;outline:2px solid #C9A75D;outline-offset:2px}
+main:focus{outline:none}
+html:not(.js) .reveal,html:not(.js) .r-reveal{opacity:1!important;transform:none!important}
+@media (prefers-reduced-motion:reduce){
+html{scroll-behavior:auto!important}
+.reveal,.r-reveal{opacity:1!important;transform:none!important;transition:none!important}
+*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+<script id="smt-js-flag">
+(function(d){var r=d.documentElement;r.classList.add('js');
+window.addEventListener('error',function(){r.classList.remove('js')});
+d.addEventListener('DOMContentLoaded',function(){
+var o=d.getElementById('navOverlay'),b=d.querySelector('button.hamburger');if(!o||!b)return;
+var s=function(){b.setAttribute('aria-expanded',o.classList.contains('open')?'true':'false')};
+s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']});});
+})(document);
+</script>
+<style id="smt-footer-css">
 /* Show Me Türkiye canonical footer (single source of truth).
    Copied from the homepage footer (deferred.css, 2026-10-02) with design
    tokens resolved to literal values so it renders identically on every
@@ -1222,7 +1267,7 @@ em { font-style: italic; }
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
 <nav class="site-nav" id="siteNav">
-  <a href="./"><img data-src="https://img.showmeturkiye.com/hero/logo-v2.png" alt="Show Me Türkiye"></a>
+  <a href="./"><img src="https://img.showmeturkiye.com/hero/logo-v2.png" width="320" height="96" alt="Show Me Türkiye"></a>
   <button class="nav-search-btn" data-search-open aria-label="Open search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
   <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-controls="navOverlay" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>

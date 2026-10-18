@@ -9,7 +9,9 @@ on:
       - 'build-consent.py'
       - 'build-footer.py'
       - 'build-films.py'
+      - 'build-blog.py'
       - 'data/films/**'
+      - 'data/journal/**'
       - 'assets/footer.html'
       - 'assets/footer.css'
       - 'assets/footer-exceptions.txt'
@@ -41,6 +43,12 @@ jobs:
 
       - name: Verify footer consistency
         run: python build-footer.py --check
+
+      - name: Render Journal page
+        run: python build-blog.py
+
+      - name: Verify Journal page consistency
+        run: python build-blog.py --check
 
       - name: Render films page
         run: python build-films.py
