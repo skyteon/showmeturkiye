@@ -1,0 +1,456 @@
+{
+  "_readme": "Journal (blog.html) listing data. build-blog.py renders the page from this file plus blog/*.html. Card titles, excerpts and metadata here are the editorial text shown on the Journal; keep them in sync with the article they describe. Articles found in blog/ but missing here are listed automatically from the article's own <h1>, meta description, read time and date, newest first.",
+  "masthead": {
+    "eyebrow": "From the editors",
+    "title": "The <em>Journal</em>",
+    "sub": "Travel stories, city guides, and hidden corners of Türkiye. Field notes from the road, written by the Show Me Türkiye team."
+  },
+  "cover": {
+    "slug": "top-10-places-to-visit-in-Turkey",
+    "eyebrow": "Cover Story · Destinations",
+    "title": "Top 10 Places to Visit <em>in Türkiye in 2026</em>.",
+    "excerpt": "Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Twelve-thousand-year-old temples in Şanlıurfa, monasteries on a Mesopotamian limestone ridge, an entire coast of Lycian ruins where you can swim inside the ancient harbours, and the toppled stone heads of a forgotten king on a mountain summit in Adıyaman.",
+    "author": "Show Me Türkiye Editorial",
+    "read": "9 min read",
+    "updated": "Updated May 2026",
+    "cta": "Read the cover story",
+    "image": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg",
+    "alt": "Top 10 places to visit in Türkiye in 2026",
+    "width": 2400,
+    "height": 1350
+  },
+  "picks": {
+    "eyebrow": "Editor's Picks",
+    "title": "Three stories worth <em>your evening</em>.",
+    "items": [
+      {
+        "slug": "when-is-the-best-time-to-visit-turkiye",
+        "meta": [
+          "Planning Guide",
+          "Türkiye",
+          "8 min read"
+        ],
+        "title": "When Is the Best Time to Visit Türkiye: Season by Season.",
+        "excerpt": "There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.",
+        "image": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg",
+        "alt": "When is the best time to visit Türkiye",
+        "width": 2400,
+        "height": 1350
+      },
+      {
+        "slug": "istanbul",
+        "meta": [
+          "City Guide",
+          "Marmara",
+          "8 min read"
+        ],
+        "title": "Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.",
+        "excerpt": "Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.",
+        "image": "https://img.showmeturkiye.com/media-library/istanbul-galata-tower-night-aerial.jpg",
+        "alt": "Galata Tower and the Istanbul skyline at night, from the air",
+        "width": 1080,
+        "height": 1350
+      },
+      {
+        "slug": "hiking-in-turkiye",
+        "meta": [
+          "Outdoors",
+          "Türkiye",
+          "8 min read"
+        ],
+        "title": "Hiking in Türkiye: which trail or region is right for you.",
+        "excerpt": "Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.",
+        "image": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+        "alt": "Hiker below the Cilo-Sat peaks",
+        "width": 2400,
+        "height": 1350
+      }
+    ]
+  },
+  "archive": {
+    "eyebrow": "The Archive",
+    "title": "Latest dispatches from <em>across Türkiye</em>.",
+    "initial": 12
+  },
+  "topics": [
+    {
+      "key": "city",
+      "label": "City guides"
+    },
+    {
+      "key": "destinations",
+      "label": "Destinations"
+    },
+    {
+      "key": "outdoors",
+      "label": "Outdoors"
+    },
+    {
+      "key": "planning",
+      "label": "Planning"
+    },
+    {
+      "key": "events",
+      "label": "Events"
+    }
+  ],
+  "regions": {
+    "eyebrow": "Wander by Region",
+    "title": "Pick a <em>direction</em> on the map.",
+    "sub": "Seven regions, eighty-one provinces, one country that genuinely never stops surprising the people who think they already know it.",
+    "items": [
+      {
+        "key": "marmara",
+        "label": "Marmara",
+        "image": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg",
+        "alt": "Galata Tower and the Bosphorus at sunset, Istanbul"
+      },
+      {
+        "key": "aegean",
+        "label": "Aegean",
+        "image": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg",
+        "alt": "Mount Ida, the Kaz Dağları, Balıkesir"
+      },
+      {
+        "key": "mediterranean",
+        "label": "Mediterranean",
+        "image": "https://img.showmeturkiye.com/media-library/antalya-phaselis-bay-gulet-aerial-006.jpg",
+        "alt": "A gulet in Phaselis bay, Antalya, from the air"
+      },
+      {
+        "key": "central-anatolia",
+        "label": "Central Anatolia",
+        "image": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg",
+        "alt": "Hot-air balloons at sunrise over Cappadocia"
+      },
+      {
+        "key": "black-sea",
+        "label": "Black Sea",
+        "image": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg",
+        "alt": "Tea gardens on the mountain slopes of Rize"
+      },
+      {
+        "key": "eastern-anatolia",
+        "label": "Eastern Anatolia",
+        "image": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg",
+        "alt": "Mountain peaks in Hakkari"
+      },
+      {
+        "key": "turkiye",
+        "label": "All Türkiye",
+        "image": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg",
+        "alt": "Top 10 places to visit in Türkiye"
+      }
+    ]
+  },
+  "keep_going": [
+    {
+      "href": "explore",
+      "label": "Explore Türkiye",
+      "sub": "City guides"
+    },
+    {
+      "href": "routes",
+      "label": "Routes",
+      "sub": "Itineraries"
+    },
+    {
+      "href": "projects",
+      "label": "Films",
+      "sub": "Watch the places"
+    },
+    {
+      "href": "first-guide",
+      "label": "First Guide",
+      "sub": "Planning a first trip"
+    }
+  ],
+  "articles": [
+    {
+      "slug": "getting-around-turkey",
+      "kicker": "Planning Guide",
+      "title": "Getting Around Türkiye: Buses, Trains, Flights and Driving.",
+      "excerpt": "When to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. The transport half of a Türkiye trip, planned.",
+      "read": "10 min read",
+      "date": "September 2026",
+      "author": "",
+      "topic": "planning",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg",
+      "alt": "Getting around Türkiye"
+    },
+    {
+      "slug": "cop31-antalya-2026",
+      "kicker": "Events",
+      "title": "COP31 Antalya 2026: a complete guide to the UN Climate Conference.",
+      "excerpt": "COP31, the UN Climate Change Conference, runs 9–20 November 2026 in Antalya, Türkiye. Dates, venue, who can attend, the Green and Blue Zones, and where to find the official websites.",
+      "read": "7 min read",
+      "date": "October 2026",
+      "author": "Show Me Türkiye",
+      "topic": "events",
+      "region": "mediterranean",
+      "image": "https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg",
+      "alt": "A limestone canyon in the Taurus Mountains of Antalya"
+    },
+    {
+      "slug": "hiking-in-turkiye",
+      "kicker": "Outdoors",
+      "title": "Hiking in Türkiye: which trail or region is right for you.",
+      "excerpt": "Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.",
+      "read": "8 min read",
+      "date": "October 2026",
+      "author": "Show Me Türkiye",
+      "topic": "outdoors",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg",
+      "alt": "Hiker below the Cilo-Sat peaks"
+    },
+    {
+      "slug": "national-parks-in-turkiye",
+      "kicker": "Outdoors",
+      "title": "National Parks in Türkiye.",
+      "excerpt": "Türkiye has 54 official national parks. Find the one that fits your trip, from Kaçkar's peaks and Köprülü Kanyon to autumn forests and wetlands, by season.",
+      "read": "8 min read",
+      "date": "October 2026",
+      "author": "Show Me Türkiye",
+      "topic": "outdoors",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/cities/artvin/places/artvin-savsat-karagol-lake.jpg",
+      "alt": "Karagöl-Sahara National Park"
+    },
+    {
+      "slug": "skiing-in-turkiye",
+      "kicker": "Winter",
+      "title": "Skiing in Türkiye: where to ski, and how to choose.",
+      "excerpt": "Palandöken, Erciyes, Uludağ, Kartalkaya, Sarıkamış and the smaller mountains, compared by snow, terrain, level and access.",
+      "read": "9 min read",
+      "date": "October 2026",
+      "author": "Show Me Türkiye",
+      "topic": "outdoors",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/cities/kayseri/erciyes-skiing-day-trip-from-kayseri.jpg",
+      "alt": "Skiing in Türkiye"
+    },
+    {
+      "slug": "sea-to-sky-turkey",
+      "kicker": "Events",
+      "title": "Sea to Sky: the Kemer hard enduro, from beach to summit.",
+      "excerpt": "Sea to Sky is Kemer's three-day hard enduro race, from the beach to the summit of Tahtalı. How it works, where to watch, 2026 dates and where to stay.",
+      "read": "6 min read",
+      "date": "October 2026",
+      "author": "Show Me Türkiye",
+      "topic": "events",
+      "region": "mediterranean",
+      "image": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg",
+      "alt": "Sea to Sky"
+    },
+    {
+      "slug": "antalya",
+      "kicker": "Mediterranean",
+      "title": "Antalya: Kaleiçi, Aspendos, and the Lycian Coast.",
+      "excerpt": "Roman aqueducts, Greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. Antalya is not a resort town. It's a province with five thousand years of stone.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "Show Me Türkiye",
+      "topic": "city",
+      "region": "mediterranean",
+      "image": "https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg",
+      "alt": "Antalya"
+    },
+    {
+      "slug": "when-is-the-best-time-to-visit-turkiye",
+      "kicker": "Planning Guide",
+      "title": "When Is the Best Time to Visit Türkiye: Season by Season.",
+      "excerpt": "There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.",
+      "read": "8 min read",
+      "date": "",
+      "author": "",
+      "topic": "planning",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg",
+      "alt": "When is the best time to visit Türkiye"
+    },
+    {
+      "slug": "top-10-places-to-visit-in-Turkey",
+      "kicker": "Destinations",
+      "title": "Top 10 Places to Visit in Türkiye in 2026.",
+      "excerpt": "Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself.",
+      "read": "9 min read",
+      "date": "",
+      "author": "",
+      "topic": "destinations",
+      "region": "turkiye",
+      "image": "https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg",
+      "alt": "Top 10 places to visit in Türkiye"
+    },
+    {
+      "slug": "istanbul",
+      "kicker": "Marmara",
+      "title": "Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.",
+      "excerpt": "Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.",
+      "read": "8 min read",
+      "date": "",
+      "author": "",
+      "topic": "city",
+      "region": "marmara",
+      "image": "https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg",
+      "alt": "Istanbul"
+    },
+    {
+      "slug": "kapadokya",
+      "kicker": "Central Anatolia",
+      "title": "Cappadocia: Göreme, Derinkuyu, and the Balloon Flight.",
+      "excerpt": "Ten million years of volcanic erosion. Underground cities going down eighteen levels. Byzantine rock-cut churches with frescoes from the tenth century. And the version of the balloon photo that's actually worth taking.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "destinations",
+      "region": "central-anatolia",
+      "image": "https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg",
+      "alt": "Cappadocia"
+    },
+    {
+      "slug": "kemer",
+      "kicker": "Mediterranean",
+      "title": "Kemer: Olympos, Phaselis, and Mount Tahtalı.",
+      "excerpt": "A resort town wrapped around a strategic position, the Beydağları rising behind, the Lycian coast stretching west, and the Chimaera flames within a half-hour drive.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "mediterranean",
+      "image": "https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg",
+      "alt": "Kemer"
+    },
+    {
+      "slug": "trabzon",
+      "kicker": "Black Sea",
+      "title": "Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast.",
+      "excerpt": "Sümela Monastery, an underground river cave, a lake that fills every poster of the eastern Black Sea, and the most outdoor-active province on this coast.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "black-sea",
+      "image": "https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg",
+      "alt": "Trabzon"
+    },
+    {
+      "slug": "rize",
+      "kicker": "Black Sea",
+      "title": "Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country.",
+      "excerpt": "Two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "black-sea",
+      "image": "https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg",
+      "alt": "Rize"
+    },
+    {
+      "slug": "canakkale",
+      "kicker": "Aegean · History",
+      "title": "Çanakkale: Gallipoli, Troy, and Assos.",
+      "excerpt": "The Trojan horse, the Gallipoli memorials, the temple of Apollo at Smintheion, the medieval castles guarding the Dardanelles, and the wine islands of Bozcaada and Gökçeada, all in one province.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "aegean",
+      "image": "https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg",
+      "alt": "Çanakkale"
+    },
+    {
+      "slug": "artvin",
+      "kicker": "Northeast",
+      "title": "Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands.",
+      "excerpt": "Two Karagöl lakes, a Çoruh River that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited Turkish provinces.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "black-sea",
+      "image": "https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg",
+      "alt": "Artvin"
+    },
+    {
+      "slug": "giresun",
+      "kicker": "Black Sea",
+      "title": "Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast.",
+      "excerpt": "Tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. One of the eastern Black Sea's most underrated stops. Most of its best moments are inland.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "black-sea",
+      "image": "https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg",
+      "alt": "Giresun"
+    },
+    {
+      "slug": "erzurum",
+      "kicker": "Eastern Anatolia",
+      "title": "Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express.",
+      "excerpt": "At 1,950 metres on the eastern Anatolian plateau, one of the highest provincial capitals in Türkiye. Seljuk and Ottoman stone, the country's best ski resort, and the famous Doğu Express terminus.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "eastern-anatolia",
+      "image": "https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg",
+      "alt": "Erzurum"
+    },
+    {
+      "slug": "hakkari",
+      "kicker": "Far Southeast",
+      "title": "Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier.",
+      "excerpt": "The Cilo and Sat mountains, glaciers that almost nobody photographs, the Zap River cutting through canyons, and a regional culture you cannot see anywhere else in the country.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "eastern-anatolia",
+      "image": "https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg",
+      "alt": "Hakkari"
+    },
+    {
+      "slug": "ordu",
+      "kicker": "Black Sea",
+      "title": "Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast.",
+      "excerpt": "Ordu starts at the water and climbs. In a single drive: wake up by the sea, stand inside a Byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "black-sea",
+      "image": "https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg",
+      "alt": "Ordu"
+    },
+    {
+      "slug": "aladaglar",
+      "kicker": "Central Taurus",
+      "title": "Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains.",
+      "excerpt": "Emli Valley campsites, Kazıklı Ali Canyon's vertical rock, the Bolkar mountains' alpine lakes. Where Turkish mountaineering grew up, and where most Turks who climb spend their summers.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "destinations",
+      "region": "central-anatolia",
+      "image": "https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg",
+      "alt": "Aladağlar"
+    },
+    {
+      "slug": "balikesir",
+      "kicker": "Aegean",
+      "title": "Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean.",
+      "excerpt": "Kaz Dağları's pine and oxygen, Ayvalık's old Greek streets, Cunda's harbour seafood, a Glass Terrace at altitude. The Aegean before it became a brand.",
+      "read": "8 min read",
+      "date": "May 2026",
+      "author": "",
+      "topic": "city",
+      "region": "aegean",
+      "image": "https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg",
+      "alt": "Balıkesir"
+    }
+  ]
+}

@@ -22,7 +22,7 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebPage",
+      "@type": ["WebPage", "CollectionPage"],
       "@id": "https://showmeturkiye.com/blog#webpage",
       "name": "Turkey Travel Blog: Stories & City Guides",
       "description": "Travel stories, city guides, and hidden corners of Turkey by the Show Me Turkiye editorial team.",
@@ -56,37 +56,35 @@
   ]
 }
 </script>
+<script type="application/ld+json" id="smt-journal-ld">{"@context":"https://schema.org","@type":"ItemList","@id":"https://showmeturkiye.com/blog#stories","name":"Show Me Türkiye Journal stories","numberOfItems":22,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://showmeturkiye.com/blog/getting-around-turkey","name":"Getting Around Türkiye: Buses, Trains, Flights and Driving."},{"@type":"ListItem","position":2,"url":"https://showmeturkiye.com/blog/cop31-antalya-2026","name":"COP31 Antalya 2026: a complete guide to the UN Climate Conference."},{"@type":"ListItem","position":3,"url":"https://showmeturkiye.com/blog/hiking-in-turkiye","name":"Hiking in Türkiye: which trail or region is right for you."},{"@type":"ListItem","position":4,"url":"https://showmeturkiye.com/blog/national-parks-in-turkiye","name":"National Parks in Türkiye."},{"@type":"ListItem","position":5,"url":"https://showmeturkiye.com/blog/skiing-in-turkiye","name":"Skiing in Türkiye: where to ski, and how to choose."},{"@type":"ListItem","position":6,"url":"https://showmeturkiye.com/blog/sea-to-sky-turkey","name":"Sea to Sky: the Kemer hard enduro, from beach to summit."},{"@type":"ListItem","position":7,"url":"https://showmeturkiye.com/blog/antalya","name":"Antalya: Kaleiçi, Aspendos, and the Lycian Coast."},{"@type":"ListItem","position":8,"url":"https://showmeturkiye.com/blog/when-is-the-best-time-to-visit-turkiye","name":"When Is the Best Time to Visit Türkiye: Season by Season."},{"@type":"ListItem","position":9,"url":"https://showmeturkiye.com/blog/top-10-places-to-visit-in-Turkey","name":"Top 10 Places to Visit in Türkiye in 2026."},{"@type":"ListItem","position":10,"url":"https://showmeturkiye.com/blog/istanbul","name":"Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar."},{"@type":"ListItem","position":11,"url":"https://showmeturkiye.com/blog/kapadokya","name":"Cappadocia: Göreme, Derinkuyu, and the Balloon Flight."},{"@type":"ListItem","position":12,"url":"https://showmeturkiye.com/blog/kemer","name":"Kemer: Olympos, Phaselis, and Mount Tahtalı."},{"@type":"ListItem","position":13,"url":"https://showmeturkiye.com/blog/trabzon","name":"Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast."},{"@type":"ListItem","position":14,"url":"https://showmeturkiye.com/blog/rize","name":"Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country."},{"@type":"ListItem","position":15,"url":"https://showmeturkiye.com/blog/canakkale","name":"Çanakkale: Gallipoli, Troy, and Assos."},{"@type":"ListItem","position":16,"url":"https://showmeturkiye.com/blog/artvin","name":"Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands."},{"@type":"ListItem","position":17,"url":"https://showmeturkiye.com/blog/giresun","name":"Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast."},{"@type":"ListItem","position":18,"url":"https://showmeturkiye.com/blog/erzurum","name":"Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express."},{"@type":"ListItem","position":19,"url":"https://showmeturkiye.com/blog/hakkari","name":"Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier."},{"@type":"ListItem","position":20,"url":"https://showmeturkiye.com/blog/ordu","name":"Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast."},{"@type":"ListItem","position":21,"url":"https://showmeturkiye.com/blog/aladaglar","name":"Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains."},{"@type":"ListItem","position":22,"url":"https://showmeturkiye.com/blog/balikesir","name":"Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean."}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://img.showmeturkiye.com">
 <link rel="preload" as="image" href="https://img.showmeturkiye.com/hero/logo-v2.png">
+<link id="smt-journal-preload" rel="preload" as="image" href="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#F4EFE5"/>
-    <text x="100" y="92" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="500" font-size="28" fill="#2A1410">The</text>
-    <text x="100" y="128" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-style="italic" font-weight="500" font-size="36" fill="#C0392B">Journal</text>
-    <line x1="70" y1="142" x2="130" y2="142" stroke="#2A1410" stroke-width="1" opacity="0.3"/>
-  </svg>
-</template>
-<style>
+<style id="smt-journal-css">
+/* ═══════════ JOURNAL 2.0 ═══════════
+   Page styles for blog.html. Design tokens follow DESIGN_SYSTEM.md
+   (cream palette, pomegranate accent, brass gold on dark only). */
 :root {
   --cream:        #F4EFE5;
   --cream-2:      #E8DFCD;
   --cream-3:      #DCD0B7;
   --paper:        #FAF6EC;
   --gold:         #C9A75D;
-  --gold-soft:    #D9BC7A;
   --terracotta:   #C0392B;
-  --terracotta-2: #A12E22;
   --espresso:     #0E0908;
   --ink:          #2A1410;
   --ink-soft:     #5C3530;
   --ink-mute:     #775C54;
   --line:         rgba(42,20,16,0.10);
   --line-strong:  rgba(42,20,16,0.18);
-  --cream-inv:    rgba(244,239,229,0.86);
   --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --sans:  'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --accent: var(--terracotta);
-  --accent-2: var(--gold);
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --gutter: 48px;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -104,8 +102,14 @@ a { text-decoration:none; color:inherit; }
 img { max-width:100%; display:block; }
 button { font: inherit; cursor: pointer; }
 em { font-style: italic; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 
-/* ═══════════ NAVIGATION ═══════════ */
+/* ═══════════ NAVIGATION (shared pattern) ═══════════ */
 .site-nav { display: contents; }
 .site-nav > a, .site-nav > .nav-logo {
   position: fixed; top: 24px; left: 48px; z-index: 1003;
@@ -114,7 +118,6 @@ em { font-style: italic; }
   height: 96px; width: auto; object-fit: contain; display: block;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.25));
 }
-
 .hamburger {
   position: fixed; top: 28px; right: 48px;
   display: flex; flex-direction: column; gap: 6px;
@@ -168,11 +171,6 @@ em { font-style: italic; }
   content: ''; position: absolute; bottom: 3px; left: 50%;
   transform: translateX(-50%); width: 60%; height: 1px; background: var(--gold);
 }
-.nav-lang { margin-top: 40px; display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; }
-.nav-lang button { background: none; border: none; padding: 6px 8px; color: rgba(244,239,229,0.30); transition: color 0.3s ease; }
-.nav-lang button:hover { color: rgba(244,239,229,0.85); }
-.nav-lang button.on { color: var(--cream); font-weight: 400; }
-.nav-lang .sep { color: rgba(244,239,229,0.20); user-select: none; pointer-events: none; }
 .close-nav {
   position: absolute; top: 28px; right: 48px;
   background: none; border: none; color: var(--cream);
@@ -181,868 +179,445 @@ em { font-style: italic; }
 }
 .close-nav:hover { opacity: 1; transform: rotate(90deg); }
 
-/* ═══════════ MASTHEAD (centered, editorial cover) ═══════════ */
-.masthead {
-  padding: 140px 48px 56px;
-  background: var(--cream);
-  position: relative;
-  text-align: center;
-}
-.masthead-inner {
-  max-width: 980px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center;
-  gap: 0;
-  padding-bottom: 36px;
-  border-bottom: 1px solid var(--line);
-}
-.masthead-eyebrow {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--terracotta);
-  border: 1px solid var(--terracotta);
-  padding: 11px 22px;
-  border-radius: 3px;
-  margin-bottom: 36px;
-}
-.masthead-title {
-  font-family: var(--serif); font-weight: 500;
-  font-size: clamp(48px, 7.5vw, 104px);
-  line-height: 1.02;
-  letter-spacing: -0.022em;
-  color: var(--ink);
-  text-wrap: balance;
-  margin-bottom: 32px;
-}
-.masthead-title em {
-  font-style: italic; color: var(--accent);
-  font-weight: 500;
-}
-.masthead-sub {
-  font-family: var(--sans);
-  font-size: clamp(16px, 1.3vw, 18px);
-  font-weight: 400;
-  line-height: 1.65;
-  color: var(--ink-soft);
-  max-width: 56ch;
-  margin: 0 auto;
-  text-wrap: pretty;
-}
-.masthead-meta {
-  max-width: 980px; margin: 28px auto 0;
-  display: flex; justify-content: center; gap: 56px;
-  flex-wrap: wrap;
-}
-.masthead-meta .item {
-  display: inline-flex; align-items: baseline; gap: 12px;
-  font-size: 11px; letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-.masthead-meta .label {
-  font-weight: 600; color: var(--ink);
-}
-.masthead-meta .value {
-  color: var(--ink-soft);
-}
-
-/* ═══════════ HERO / FEATURED STORY ═══════════ */
-.hero {
-  padding: 48px 48px 96px;
-  background: var(--cream);
-  position: relative;
-}
-.hero-inner {
-  max-width: 1320px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  position: relative;
-}
-.hero-image-wrap {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 4px;
-  background: linear-gradient(135deg, #C0392B 0%, #7d2419 60%, #2A1410 100%);
-  box-shadow:
-    0 1px 2px rgba(42,20,16,0.10),
-    0 24px 64px rgba(42,20,16,0.22);
-}
-.hero-image-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 1.4s cubic-bezier(.22,.61,.36,1);
-}
-.hero:hover .hero-image-wrap img { transform: scale(1.04); }
-.hero-image-tag {
-  position: absolute; top: 24px; left: 24px;
-  background: var(--cream);
-  color: var(--ink);
-  padding: 8px 14px;
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.24em; text-transform: uppercase;
-  border-radius: 2px;
-}
-.hero-image-tag::before {
-  content: '★'; color: var(--accent);
-  margin-right: 8px; font-size: 12px;
-}
-
-.hero-text { padding-right: 24px; }
-.hero-eyebrow {
-  display: flex; align-items: center; gap: 14px;
-  font-size: 11px; font-weight: 500; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 28px;
-}
-.hero-eyebrow::after {
-  content: ''; flex: 1; height: 1px; background: var(--line-strong);
-  max-width: 80px;
-}
-.hero h2 {
-  font-family: var(--serif); font-weight: 500;
-  font-size: clamp(36px, 4.4vw, 60px);
-  line-height: 1.04; letter-spacing: -0.018em;
-  color: var(--ink);
-  margin-bottom: 24px;
-  text-wrap: balance;
-}
-.hero h2 em {
-  font-style: italic; color: var(--accent);
-}
-.hero-excerpt {
-  font-family: var(--sans); font-style: normal; font-weight: 400;
-  font-size: 17px; line-height: 1.65;
-  color: var(--ink-soft);
-  margin-bottom: 32px; max-width: 52ch;
-  text-wrap: pretty;
-}
-.hero-byline {
-  display: flex; align-items: center; gap: 18px;
-  font-size: 12px; color: var(--ink-mute);
-  margin-bottom: 36px;
-  letter-spacing: 0.04em;
-}
-.hero-byline .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
-.hero-byline .author { color: var(--ink); font-weight: 500; }
-.hero-cta {
-  display: inline-flex; align-items: center; gap: 14px;
-  background: var(--ink); color: var(--cream);
-  padding: 18px 28px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  border-radius: 999px;
-  transition: all 0.35s cubic-bezier(.22,.61,.36,1);
-}
-.hero-cta:hover {
-  background: var(--accent); color: var(--cream);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(192,57,43,0.30);
-}
-.hero-cta .arr { transition: transform 0.3s ease; }
-.hero-cta:hover .arr { transform: translateX(4px); }
-
-/* ═══════════ FILTER BAR (sticky) ═══════════ */
-.filter-bar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(244,239,229,0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 14px 48px;
-}
-.filter-inner {
-  max-width: 1320px; margin: 0 auto;
-  display: flex; align-items: center; gap: 24px;
-  justify-content: space-between;
-}
-.filter-pills {
-  display: flex; gap: 4px; flex-wrap: wrap;
-  flex: 1; min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.filter-pills::-webkit-scrollbar { display: none; }
-.pill {
-  background: transparent;
-  border: 1px solid transparent;
-  color: var(--ink-soft);
-  padding: 9px 16px;
-  font-size: 12px; font-weight: 500;
-  letter-spacing: 0.08em;
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
-.pill:hover { color: var(--ink); background: rgba(42,20,16,0.04); }
-.pill.active {
-  background: var(--ink); color: var(--cream);
-  border-color: var(--ink);
-}
-.pill .count {
-  font-size: 10px; opacity: 0.55;
-  margin-left: 6px; font-variant-numeric: tabular-nums;
-}
-.search-box {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  padding: 8px 16px;
-  border-radius: 999px;
-  min-width: 240px;
-  transition: all 0.25s ease;
-}
-.search-box:focus-within {
-  border-color: var(--ink-soft);
-  background: var(--cream);
-  box-shadow: 0 0 0 4px rgba(42,20,16,0.04);
-}
-.search-box svg { color: var(--ink-mute); flex-shrink: 0; }
-.search-box input {
-  background: transparent; border: none; outline: none;
-  font: inherit; font-size: 13px; color: var(--ink);
-  width: 100%;
-}
-.search-box input::placeholder { color: var(--ink-mute); }
-
-/* ═══════════ EDITOR'S PICKS ═══════════ */
-.editors-picks {
-  padding: 96px 48px;
-  background: var(--cream);
-  border-bottom: 1px solid var(--line);
-}
-.section-header {
-  max-width: 1320px; margin: 0 auto 56px;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-}
-.section-eyebrow {
+/* ═══════════ SHARED PIECES ═══════════ */
+.jr-wrap { max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
+.jr-eyebrow {
   font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
   text-transform: uppercase; color: var(--accent);
-  margin-bottom: 12px;
   display: inline-flex; align-items: center; gap: 12px;
 }
-.section-eyebrow::before {
-  content: ''; width: 24px; height: 1px; background: var(--accent);
+.jr-eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+.jr-eyebrow-box {
+  gap: 0; font-weight: 600; color: var(--accent);
+  border: 1px solid var(--accent); padding: 10px 20px; border-radius: 3px;
 }
-.section-header h3 {
+.jr-eyebrow-box::before { display: none; }
+.jr-h2 {
   font-family: var(--serif); font-weight: 500;
   font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1.05; letter-spacing: -0.014em;
-  color: var(--ink);
+  line-height: 1.06; letter-spacing: -0.014em;
+  color: var(--ink); text-wrap: balance;
 }
-.section-header h3 em { font-style: italic; color: var(--accent); }
-.section-link {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--ink);
-  display: inline-flex; align-items: center; gap: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--ink);
-  transition: gap 0.25s ease, color 0.25s ease;
-  flex-shrink: 0;
+.jr-h2 em { font-style: italic; color: var(--accent); white-space: nowrap; }
+.jr-section-head { margin-bottom: 44px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.jr-section-head .jr-eyebrow { margin-bottom: 14px; }
+.jr-section-head-split {
+  display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px 64px; align-items: end;
 }
-.section-link:hover { gap: 14px; color: var(--accent); border-color: var(--accent); }
+.jr-section-sub {
+  font-size: 15px; line-height: 1.65; color: var(--ink-soft);
+  max-width: 46ch; text-wrap: pretty;
+}
+.jr-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: 0.05em; color: var(--ink-mute);
+}
+.jr-dot { width: 3px; height: 3px; border-radius: 50%; background: currentColor; opacity: 0.7; flex: none; }
+.jr-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: transparent; border: 1px solid var(--ink); color: var(--ink);
+  padding: 15px 32px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.jr-btn:hover { background: var(--ink); color: var(--cream); transform: translateY(-1px); }
 
-.picks-list {
-  max-width: 1320px; margin: 0 auto;
-  display: flex; flex-direction: column;
-  gap: 0;
-}
-.pick {
-  display: grid;
-  grid-template-columns: 80px 1fr 240px;
-  gap: 48px;
-  padding: 32px 0;
-  border-top: 1px solid var(--line);
-  align-items: center;
-  transition: padding-left 0.4s cubic-bezier(.22,.61,.36,1);
-  position: relative;
-}
-.pick:last-child { border-bottom: 1px solid var(--line); }
-.pick:hover { padding-left: 24px; }
-.pick-num {
-  font-family: var(--serif); font-style: italic;
-  font-size: 56px; font-weight: 400;
-  color: var(--accent);
-  line-height: 1; opacity: 0.92;
-  font-variant-numeric: tabular-nums;
-}
-.pick-content { min-width: 0; }
-.pick-meta {
-  font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--ink-mute);
-  margin-bottom: 12px;
-  display: flex; gap: 14px; align-items: center;
-}
-.pick-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
-.pick h4 {
+/* ═══════════ 01 MASTHEAD ═══════════ */
+.jr-masthead { padding: 148px var(--gutter) 48px; text-align: center; }
+.jr-masthead-inner { max-width: 880px; margin: 0 auto; }
+.jr-masthead .jr-eyebrow-box { margin-bottom: 30px; }
+.jr-title {
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.15; letter-spacing: -0.012em;
-  color: var(--ink);
-  margin-bottom: 10px;
-  transition: color 0.3s ease;
+  font-size: clamp(50px, 7vw, 100px);
+  line-height: 1; letter-spacing: -0.022em; color: var(--ink);
+  margin-bottom: 24px;
 }
-.pick:hover h4 { color: var(--accent); }
-.pick-excerpt {
-  font-size: 14px; line-height: 1.65;
-  color: var(--ink-soft);
-  max-width: 60ch;
+.jr-title em { font-style: italic; color: var(--accent); }
+.jr-sub {
+  font-size: clamp(16px, 1.25vw, 18px); line-height: 1.65; color: var(--ink-soft);
+  max-width: 54ch; margin: 0 auto; text-wrap: pretty;
 }
-.pick-image {
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  border-radius: 4px;
-  background: var(--cream-2);
+.jr-stats {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 48px;
+  margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line);
 }
-.pick-image img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
-}
-.pick:hover .pick-image img { transform: scale(1.06); }
+.jr-stats div { display: inline-flex; align-items: baseline; gap: 12px; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; }
+.jr-stats dt { font-weight: 600; color: var(--ink); }
+.jr-stats dd { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
-/* ═══════════ MAIN GRID (asymmetric magazine) ═══════════ */
-.archive {
-  padding: 96px 48px;
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-}
-.archive-grid {
+/* ═══════════ 02 COVER STORY ═══════════ */
+.jr-cover { padding: 8px var(--gutter) 0; }
+.jr-cover-link {
+  position: relative; display: block; overflow: hidden;
   max-width: 1320px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 40px 32px;
+  border-radius: 6px; background: var(--espresso); color: var(--cream);
+  min-height: min(78vh, 760px);
+  box-shadow: 0 1px 2px rgba(42,20,16,0.10), 0 28px 64px rgba(42,20,16,0.18);
 }
-.card {
-  display: flex; flex-direction: column;
-  background: transparent;
-  position: relative;
-  transition: transform 0.5s cubic-bezier(.22,.61,.36,1);
+.jr-cover-media { position: absolute; inset: 0; }
+.jr-cover-media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  transform: scale(1.001);
+  transition: transform 1.6s var(--ease);
 }
-.card:hover { transform: translateY(-4px); }
-
-.card-img {
-  width: 100%; overflow: hidden;
-  background: var(--cream-2);
-  border-radius: 4px;
-  position: relative;
-  aspect-ratio: 4/3;
+.jr-cover-link:hover .jr-cover-media img { transform: scale(1.035); }
+.jr-cover-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(14,9,8,0.18) 0%, rgba(14,9,8,0) 30%, rgba(14,9,8,0.14) 55%, rgba(14,9,8,0.82) 100%),
+    linear-gradient(90deg, rgba(14,9,8,0.42) 0%, rgba(14,9,8,0) 60%);
+}
+.jr-cover-body {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: flex-start;
+  justify-content: flex-end;
+  min-height: inherit; padding: 64px;
+  max-width: 760px;
+}
+.jr-cover-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 22px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.jr-cover-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.8; }
+.jr-cover-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(34px, 4.4vw, 64px);
+  line-height: 1.04; letter-spacing: -0.018em;
+  color: var(--cream); text-wrap: balance;
   margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(14,9,8,0.35);
 }
-/* Category-tinted fallback gradients (when images don't load) */
-.card[data-category="cities"] .card-img    { background: linear-gradient(135deg, #C0392B, #2A1410); }
-.card[data-category="coast"] .card-img     { background: linear-gradient(135deg, #0F7BB5, #0a4f76); }
-.card[data-category="mountain"] .card-img  { background: linear-gradient(135deg, #5C3530, #2A1410); }
-.card[data-category="history"] .card-img   { background: linear-gradient(135deg, #C9A75D, #8d6e34); }
-.card[data-category="planning"] .card-img  { background: linear-gradient(135deg, #4A6B4F, #2c3f30); }
-.pick:nth-child(1) .pick-image { background: linear-gradient(135deg, #C0392B, #7d2419); }
-.pick:nth-child(2) .pick-image { background: linear-gradient(135deg, #C9A75D, #8d6e34); }
-.pick:nth-child(3) .pick-image { background: linear-gradient(135deg, #5C3530, #2A1410); }
-.card-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
+.jr-cover-title em { font-style: italic; color: var(--gold); }
+.jr-cover-excerpt {
+  font-size: 16px; line-height: 1.65; color: rgba(244,239,229,0.86);
+  max-width: 58ch; margin-bottom: 26px; text-wrap: pretty;
 }
-.card:hover .card-img img { transform: scale(1.05); }
-.card-img::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(14,9,8,0.18) 100%);
-  pointer-events: none;
-  opacity: 0;
+.jr-cover-byline {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  font-size: 12px; letter-spacing: 0.04em; color: rgba(244,239,229,0.70);
+  margin-bottom: 30px;
+}
+.jr-cover-byline span:first-child { color: var(--cream); font-weight: 500; }
+.jr-cover-byline .jr-dot { background: rgba(244,239,229,0.6); }
+.jr-cover-cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--cream); color: var(--ink);
+  padding: 17px 28px; border-radius: 999px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, gap 0.3s ease;
+}
+.jr-cover-link:hover .jr-cover-cta { background: var(--accent); color: var(--cream); gap: 18px; }
+
+/* ═══════════ 03 EDITOR'S PICKS ═══════════ */
+.jr-picks { padding: 104px 0 96px; }
+.jr-picks-list {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+.jr-pick-link { display: grid; grid-template-rows: auto auto 1fr; gap: 0; height: 100%; }
+.jr-pick-num {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 56px; line-height: 0.9; color: var(--accent);
+  margin-bottom: 18px; font-variant-numeric: tabular-nums;
+}
+.jr-pick-media {
+  display: block; aspect-ratio: 4 / 5; overflow: hidden;
+  border-radius: 4px; background: var(--cream-2); margin-bottom: 22px;
+}
+.jr-pick-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.jr-pick-link:hover .jr-pick-media img { transform: scale(1.05); }
+.jr-pick-body { display: flex; flex-direction: column; gap: 10px; }
+.jr-pick-body .jr-meta { font-size: 10.5px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; }
+.jr-pick-title {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(22px, 1.9vw, 27px); line-height: 1.16; letter-spacing: -0.012em;
+  color: var(--ink); text-wrap: balance; transition: color 0.3s ease;
+}
+.jr-pick-link:hover .jr-pick-title { color: var(--accent); }
+.jr-pick-excerpt { font-size: 14px; line-height: 1.65; color: var(--ink-soft); text-wrap: pretty; }
+
+/* ═══════════ 04 REGIONS ═══════════ */
+.jr-regions { padding: 0 0 104px; }
+.jr-region-list {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 16px;
+}
+.jr-region {
+  position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden;
+  border-radius: 4px; background: var(--ink); color: var(--cream);
+  isolation: isolate;
+}
+.jr-region-media { position: absolute; inset: 0; }
+.jr-region-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease), filter 0.5s ease; }
+.jr-region::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(14,9,8,0.05) 30%, rgba(14,9,8,0.78) 100%);
   transition: opacity 0.4s ease;
 }
-.card:hover .card-img::after { opacity: 1; }
-
-.card-cat {
-  font-size: 10px; font-weight: 600; letter-spacing: 0.26em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 12px;
-}
-.card h4 {
-  font-family: var(--serif); font-weight: 500;
-  font-size: 20px; line-height: 1.2; letter-spacing: -0.008em;
-  color: var(--ink);
-  margin-bottom: 12px;
-  text-wrap: balance;
-  transition: color 0.3s ease;
-}
-.card:hover h4 { color: var(--accent); }
-.card p {
-  font-size: 13.5px; line-height: 1.65;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-  text-wrap: pretty;
-}
-.card-meta {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 11px; color: var(--ink-mute);
-  letter-spacing: 0.05em;
-  margin-top: auto;
-}
-.card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-mute); }
-
-/* Size variants */
-.card-wide   { grid-column: span 4; }   /* big editorial */
-.card-wide .card-img { aspect-ratio: 16/9; }
-.card-wide h4 { font-size: 30px; }
-.card-wide p { font-size: 15px; max-width: 56ch; }
-
-.card-med    { grid-column: span 2; }   /* standard */
-.card-tall   { grid-column: span 2; }   /* tall portrait */
-.card-tall .card-img { aspect-ratio: 3/4; }
-
-.card-text   { grid-column: span 2; }
-.card-text .card-img { display: none; }
-.card-text {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  padding: 32px 28px;
-  justify-content: space-between;
-  min-height: 320px;
-}
-.card-text::before {
-  content: '“';
-  font-family: var(--serif);
-  font-size: 96px;
-  line-height: 0.6;
-  color: var(--accent);
-  opacity: 0.30;
-  margin-bottom: 8px;
-  display: block;
-  height: 0;
-}
-.card-text h4 { font-size: 22px; margin-top: 32px; }
-.card-text p { font-style: normal; font-family: var(--sans); font-size: 14px; line-height: 1.7; }
-
-.card-half   { grid-column: span 3; }
-.card-half .card-img { aspect-ratio: 5/3; }
-.card-half h4 { font-size: 24px; }
-
-/* Load more */
-.load-more-wrap {
-  max-width: 1320px; margin: 64px auto 0;
-  text-align: center;
-}
-.load-more {
-  background: transparent;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  padding: 16px 36px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.28em; text-transform: uppercase;
-  border-radius: 999px;
-  transition: all 0.3s ease;
-}
-.load-more:hover {
-  background: var(--ink); color: var(--cream);
-  transform: translateY(-1px);
-}
-
-/* ═══════════ REGIONS ═══════════ */
-.regions {
-  padding: 96px 48px;
-  background: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-.regions-inner {
-  max-width: 1320px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 80px;
-  align-items: center;
-}
-.regions-left h3 {
-  font-family: var(--serif); font-weight: 500;
-  font-size: clamp(34px, 4.2vw, 56px);
-  line-height: 1.04; letter-spacing: -0.018em;
-  color: var(--ink);
-  margin-bottom: 24px;
-  text-wrap: balance;
-}
-.regions-left h3 em { font-style: italic; color: var(--accent); }
-.regions-left p {
-  font-family: var(--sans); font-style: normal;
-  font-size: 16px; line-height: 1.65;
-  color: var(--ink-soft);
-  margin-bottom: 36px;
-  max-width: 50ch;
-}
-.regions-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  border-top: 1px solid var(--line);
-}
-.region-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 4px;
-  border-bottom: 1px solid var(--line);
-  transition: padding 0.3s ease, color 0.3s ease;
-  cursor: pointer;
-}
-.region-item:hover { padding-left: 16px; color: var(--accent); }
-.region-item:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 20px; }
-.region-item:nth-child(even) { padding-left: 20px; }
-.region-item:nth-child(even):hover { padding-left: 36px; }
-.region-name {
-  font-family: var(--serif);
-  font-size: 19px; font-weight: 500;
-  letter-spacing: -0.005em;
-}
-.region-name em { font-style: italic; color: var(--ink-mute); font-size: 14px; font-family: var(--sans); margin-left: 8px; letter-spacing: 0.06em; }
-.region-arrow {
-  font-size: 14px; color: var(--ink-mute);
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-.region-item:hover .region-arrow { transform: translateX(4px); color: var(--accent); }
-
-.regions-right {
-  position: relative;
-  aspect-ratio: 6/5;
-  background: linear-gradient(135deg, var(--cream-2) 0%, var(--cream-3) 100%);
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 40px;
-  display: flex; align-items: center; justify-content: center;
-}
-.regions-right::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    radial-gradient(circle at 22% 38%, rgba(192,57,43,0.20) 0%, transparent 6%),
-    radial-gradient(circle at 35% 52%, rgba(201,167,93,0.25) 0%, transparent 5%),
-    radial-gradient(circle at 50% 45%, rgba(192,57,43,0.18) 0%, transparent 5%),
-    radial-gradient(circle at 64% 58%, rgba(201,167,93,0.22) 0%, transparent 5%),
-    radial-gradient(circle at 76% 42%, rgba(192,57,43,0.20) 0%, transparent 5%),
-    radial-gradient(circle at 28% 65%, rgba(201,167,93,0.18) 0%, transparent 4%);
-  pointer-events: none;
-}
-.regions-map {
-  width: 100%; height: 100%;
-  position: relative; z-index: 1;
-  filter: drop-shadow(0 6px 16px rgba(42,20,16,0.18));
-}
-.regions-map svg { width: 100%; height: 100%; }
-.regions-map svg path {
-  fill: var(--ink);
-  fill-opacity: 0.86;
-  stroke: var(--cream);
-  stroke-width: 0.5;
-}
-.regions-caption {
-  position: absolute; bottom: 24px; left: 28px; right: 28px;
-  font-size: 10.5px; font-weight: 500; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--ink-soft);
-  display: flex; justify-content: space-between; gap: 16px;
-}
-
-/* ═══════════ NEWSLETTER ═══════════ */
-.newsletter-section {
-  padding: 96px 48px;
-  background: var(--espresso);
+.jr-region:hover .jr-region-media img { transform: scale(1.06); }
+.jr-region-name, .jr-region-count { position: absolute; left: 16px; right: 16px; z-index: 2; }
+.jr-region-name {
+  bottom: 34px; font-family: var(--serif); font-weight: 500;
+  font-size: clamp(18px, 1.5vw, 22px); line-height: 1.1; letter-spacing: -0.01em;
   color: var(--cream);
-  position: relative;
-  overflow: hidden;
 }
-.newsletter-section::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(201,167,93,0.10) 0%, transparent 60%);
-  pointer-events: none;
+.jr-region-count {
+  bottom: 16px; font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: rgba(244,239,229,0.78);
 }
-.newsletter-inner {
-  max-width: 920px; margin: 0 auto;
-  text-align: center;
-  position: relative;
+.jr-region.is-active { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ═══════════ 05 ARCHIVE ═══════════ */
+.jr-archive { padding: 96px 0 104px; background: var(--paper); border-top: 1px solid var(--line); }
+.jr-toolbar {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 300px) 200px;
+  gap: 14px 16px; align-items: center;
 }
-.newsletter-eyebrow {
-  font-size: 11px; font-weight: 500; letter-spacing: 0.32em;
-  text-transform: uppercase; color: var(--gold);
-  display: inline-flex; align-items: center; gap: 14px;
-  margin-bottom: 24px;
+.jr-pills { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.jr-pill {
+  background: transparent; border: 1px solid transparent; color: var(--ink-soft);
+  padding: 9px 15px; min-height: 40px; border-radius: 999px; white-space: nowrap;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
-.newsletter-eyebrow::before, .newsletter-eyebrow::after {
-  content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.55;
+.jr-pill:hover { color: var(--ink); background: rgba(42,20,16,0.05); }
+.jr-pill.is-active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.jr-pill-n { font-size: 10px; opacity: 0.6; margin-left: 5px; font-variant-numeric: tabular-nums; }
+.jr-search, .jr-select {
+  display: flex; align-items: center; gap: 10px; position: relative;
+  background: var(--cream); border: 1px solid var(--line-strong); border-radius: 999px;
+  padding: 0 16px; min-height: 46px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
-.newsletter-section h3 {
+.jr-search:focus-within, .jr-select:focus-within { border-color: var(--ink-soft); box-shadow: 0 0 0 4px rgba(42,20,16,0.05); }
+.jr-search svg { width: 15px; height: 15px; color: var(--ink-mute); flex: none; }
+.jr-search input {
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
+  font: inherit; font-size: 14px; color: var(--ink); height: 44px;
+}
+.jr-search input::placeholder { color: var(--ink-mute); }
+.jr-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+.jr-select select {
+  appearance: none; -webkit-appearance: none;
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
+  font: inherit; font-size: 13px; color: var(--ink); height: 44px; padding-right: 22px; cursor: pointer;
+}
+.jr-select svg { position: absolute; right: 14px; width: 14px; height: 14px; color: var(--ink-mute); pointer-events: none; }
+.jr-status-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin: 26px 0 32px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
+}
+.jr-status { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+.jr-status b { font-weight: 600; color: var(--ink); }
+.jr-reset {
+  background: none; border: 0; color: var(--accent);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; min-height: 32px;
+}
+.jr-reset:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.jr-grid {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 56px 32px; align-items: start;
+}
+.jr-card {
+  grid-column: span 4;
+  display: flex; flex-direction: column; min-width: 0;
+}
+.jr-card.is-out, .jr-card.is-overflow { display: none; }
+.jr-card-media {
+  display: block; aspect-ratio: 4 / 3; overflow: hidden; position: relative;
+  border-radius: 4px; background: var(--cream-2); margin-bottom: 20px;
+}
+.jr-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.jr-card:hover .jr-card-media img { transform: scale(1.045); }
+.jr-card-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.jr-kicker { font-size: 10px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--accent); }
+.jr-card-title {
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(36px, 4.4vw, 58px);
-  line-height: 1.05; letter-spacing: -0.018em;
-  color: var(--cream);
-  margin-bottom: 20px;
-  text-wrap: balance;
+  font-size: 21px; line-height: 1.2; letter-spacing: -0.008em;
+  color: var(--ink); text-wrap: balance; transition: color 0.3s ease;
 }
-.newsletter-section h3 em { font-style: italic; color: var(--gold); }
-.newsletter-section p {
-  font-family: var(--sans); font-style: normal;
-  font-size: 16px; line-height: 1.65;
-  color: rgba(244,239,229,0.78);
-  margin-bottom: 40px;
-  max-width: 56ch;
-  margin-left: auto; margin-right: auto;
+.jr-card:hover .jr-card-title { color: var(--accent); }
+.jr-card-excerpt { font-size: 13.5px; line-height: 1.65; color: var(--ink-soft); text-wrap: pretty; }
+.jr-card .jr-meta { margin-top: 4px; }
+
+/* lead rhythm: the first card of every group of four reads as a spread */
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1), .jr-grid.js-ready .jr-card.is-lead {
+  grid-column: span 12;
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 0 48px; align-items: center;
+  padding-bottom: 8px;
 }
-.newsletter-form {
-  display: flex; gap: 0; align-items: stretch;
-  background: rgba(244,239,229,0.06);
-  border: 1px solid rgba(244,239,229,0.18);
-  border-radius: 999px;
-  padding: 6px;
-  max-width: 540px;
-  margin: 0 auto;
-  transition: border-color 0.3s ease;
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1).is-out, .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1).is-overflow,
+.jr-grid.js-ready .jr-card.is-lead.is-out, .jr-grid.js-ready .jr-card.is-lead.is-overflow { display: none; }
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-media, .jr-card.is-lead .jr-card-media { aspect-ratio: 16 / 10; margin-bottom: 0; }
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-title, .jr-card.is-lead .jr-card-title { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.1; }
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-excerpt, .jr-card.is-lead .jr-card-excerpt { font-size: 15px; max-width: 52ch; }
+.jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-body, .jr-card.is-lead .jr-card-body { gap: 14px; padding-right: 8px; }
+
+.jr-empty { text-align: center; padding: 72px 20px 40px; max-width: 520px; margin: 0 auto; }
+.jr-empty-title { font-family: var(--serif); font-weight: 500; font-size: 28px; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
+.jr-empty-sub { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin-bottom: 28px; }
+.jr-more { text-align: center; margin-top: 64px; }
+
+/* ═══════════ 06 KEEP EXPLORING ═══════════ */
+.jr-keep { padding: 72px 0 88px; background: var(--cream-2); }
+.jr-keep .jr-eyebrow { margin-bottom: 24px; }
+.jr-keep-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong);
 }
-.newsletter-form:focus-within { border-color: rgba(244,239,229,0.50); }
-.newsletter-form input {
-  flex: 1; background: transparent; border: none; outline: none;
-  padding: 14px 22px;
-  font: inherit; font-size: 15px; color: var(--cream);
-  min-width: 0;
+.jr-keep-link {
+  position: relative; display: flex; flex-direction: column; gap: 6px;
+  padding: 28px 56px 28px 24px; min-height: 120px;
+  border-right: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong);
+  transition: background 0.3s ease;
 }
-.newsletter-form input::placeholder { color: rgba(244,239,229,0.50); }
-.newsletter-btn {
-  background: var(--cream); color: var(--espresso);
-  border: none; border-radius: 999px;
-  padding: 14px 26px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-.newsletter-btn:hover { background: var(--gold); color: var(--espresso); gap: 12px; }
-.newsletter-trust {
-  margin-top: 24px;
-  font-size: 11px; letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(244,239,229,0.45);
-}
+.jr-keep-link:hover { background: rgba(250,246,236,0.7); }
+.jr-keep-label { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); transition: color 0.3s ease; }
+.jr-keep-link:hover .jr-keep-label { color: var(--accent); }
+.jr-keep-sub { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); }
+.jr-keep-arr { position: absolute; right: 22px; top: 28px; font-size: 18px; color: var(--ink-mute); transition: transform 0.3s ease, color 0.3s ease; }
+.jr-keep-link:hover .jr-keep-arr { transform: translateX(4px); color: var(--accent); }
 
-/* ═══════════ FOOTER ═══════════ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.visually-hidden {
-  position: absolute !important; width: 1px; height: 1px;
-  padding: 0; margin: -1px; overflow: hidden;
-  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-}
+/* ═══════════ REVEAL ═══════════ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
 
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 1100px) {
-  .archive-grid { grid-template-columns: repeat(4, 1fr); }
-  .card-wide { grid-column: span 4; }
-  .card-half { grid-column: span 2; }
-  .card-text { grid-column: span 2; }
-  .pick { grid-template-columns: 60px 1fr 180px; gap: 32px; }
-  .pick-num { font-size: 44px; }
+  .jr-region-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .jr-region { aspect-ratio: 4 / 3; }
+  .jr-toolbar { grid-template-columns: minmax(0, 1fr) 190px; }
+  .jr-pills { grid-column: 1 / -1; order: 3; }
+  .jr-grid { gap: 48px 28px; }
+  .jr-card { grid-column: span 6; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1), .jr-grid.js-ready .jr-card.is-lead { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 32px; }
 }
 
 @media (max-width: 900px) {
-  .masthead, .hero, .editors-picks, .archive, .regions, .newsletter-section { padding-left: 28px; padding-right: 28px; }
-  .filter-bar { padding-left: 24px; padding-right: 24px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-text { padding-right: 0; }
-  .hero-image-wrap { aspect-ratio: 4/5; max-height: 70vh; }
-  .regions-inner { grid-template-columns: 1fr; gap: 48px; }
-  
-  .pick { grid-template-columns: 48px 1fr; }
-  .pick-image { display: none; }
-  .pick-num { font-size: 36px; }
-  .archive-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
-  .card-wide, .card-half, .card-text, .card-tall, .card-med { grid-column: span 2; }
-  .card-text { min-height: auto; }
+  :root { --gutter: 28px; }
+  .jr-masthead { padding-top: 128px; }
+  .jr-cover-link { min-height: min(72vh, 640px); }
+  .jr-cover-body { padding: 44px 36px; }
+  .jr-picks { padding: 80px 0 72px; }
+  .jr-picks-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .jr-pick-num { font-size: 44px; }
+  .jr-section-head-split { grid-template-columns: 1fr; gap: 16px; }
+  .jr-regions { padding-bottom: 80px; }
+  .jr-archive { padding: 72px 0 80px; }
+  .jr-keep-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
-  .masthead-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .masthead-meta { align-items: flex-start; }
+  :root { --gutter: 20px; }
   .hamburger { top: 14px; right: 16px; padding: 12px; min-width: 44px; min-height: 44px; }
   .site-nav > a, .site-nav > .nav-logo { top: 14px; left: 16px; }
   .site-nav a img { height: 48px; }
-  body.scrolled .site-nav a img { height: 40px; }
 
-  .masthead { padding: 96px 20px 36px; }
-  .masthead-eyebrow { padding: 9px 16px; font-size: 10px; letter-spacing: 0.28em; margin-bottom: 24px; }
-  .masthead-inner { padding-bottom: 28px; }
-  .masthead-meta { gap: 24px 32px; margin-top: 22px; }
+  .jr-masthead { padding: 108px var(--gutter) 28px; }
+  .jr-masthead .jr-eyebrow-box { padding: 8px 14px; font-size: 10px; letter-spacing: 0.26em; margin-bottom: 22px; }
+  .jr-title { margin-bottom: 16px; }
+  .jr-sub { font-size: 15px; }
+  .jr-stats { gap: 10px 24px; margin-top: 22px; padding-top: 20px; }
+  .jr-stats div { font-size: 10px; gap: 8px; }
 
-  .hero, .editors-picks, .archive, .regions, .newsletter-section { padding-left: 20px; padding-right: 20px; }
-  .hero { padding-top: 32px; padding-bottom: 56px; }
-  .hero-inner { gap: 28px; }
-  .hero-image-wrap { aspect-ratio: 4/5; max-height: 60vh; }
-  .hero-image-tag { top: 16px; left: 16px; padding: 7px 12px; font-size: 9.5px; }
-  .hero h2 { font-size: clamp(30px, 8vw, 42px); margin-bottom: 18px; }
-  .hero-excerpt { font-size: 15px; margin-bottom: 24px; }
-  .hero-byline { gap: 10px; flex-wrap: wrap; font-size: 11px; margin-bottom: 28px; }
-  .hero-byline .dot { width: 2px; height: 2px; }
-  .hero-cta { padding: 16px 24px; font-size: 10.5px; letter-spacing: 0.24em; width: 100%; justify-content: center; }
+  .jr-cover { padding: 0; }
+  .jr-cover-link { border-radius: 0; min-height: 0; aspect-ratio: 4 / 5; max-height: 620px; box-shadow: none; }
+  .jr-cover-scrim { background: linear-gradient(180deg, rgba(14,9,8,0.22) 0%, rgba(14,9,8,0) 28%, rgba(14,9,8,0.30) 52%, rgba(14,9,8,0.90) 100%); }
+  .jr-cover-body { position: absolute; inset: 0; min-height: 0; padding: 28px var(--gutter) 32px; max-width: none; }
+  .jr-cover-eyebrow { font-size: 10px; margin-bottom: 14px; }
+  .jr-cover-title { font-size: clamp(28px, 8.2vw, 38px); margin-bottom: 14px; }
+  .jr-cover-excerpt { font-size: 14px; margin-bottom: 18px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .jr-cover-byline { font-size: 11px; gap: 10px; margin-bottom: 20px; }
+  .jr-cover-cta { width: 100%; justify-content: center; padding: 15px 20px; font-size: 10.5px; letter-spacing: 0.22em; }
 
-  .editors-picks, .archive, .regions { padding-top: 64px; padding-bottom: 64px; }
-  .section-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 36px; padding-bottom: 18px; }
-  .section-header h3 { font-size: clamp(26px, 7vw, 36px); }
+  .jr-section-head { margin-bottom: 28px; padding-bottom: 16px; }
+  .jr-h2 { font-size: clamp(26px, 7.2vw, 34px); }
+  .jr-section-sub { font-size: 14px; }
 
-  .pick { grid-template-columns: 40px 1fr; gap: 18px; padding: 22px 0; }
-  .pick:hover { padding-left: 0; }
-  .pick-num { font-size: 30px; }
-  .pick h4 { font-size: 20px; }
-  .pick-meta { font-size: 9.5px; gap: 10px; flex-wrap: wrap; }
-  .pick-excerpt { font-size: 13.5px; }
+  .jr-picks { padding: 64px 0 56px; }
+  .jr-picks .jr-wrap { padding-right: 0; }
+  .jr-picks .jr-section-head { margin-right: var(--gutter); }
+  .jr-picks-list {
+    display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0 var(--gutter) 8px 0; scroll-padding-left: var(--gutter);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .jr-picks-list::-webkit-scrollbar { display: none; }
+  .jr-pick { flex: 0 0 min(78vw, 320px); scroll-snap-align: start; }
+  .jr-pick-num { font-size: 38px; margin-bottom: 12px; }
+  .jr-pick-media { margin-bottom: 16px; }
+  .jr-pick-title { font-size: 21px; }
+  .jr-pick-excerpt { font-size: 13.5px; }
 
-  .filter-bar { padding: 12px 20px; }
-  .filter-inner { flex-direction: column; align-items: stretch; gap: 10px; }
-  .search-box { min-width: 0; }
-  .filter-pills { margin: 0 -20px; padding: 0 20px; }
-  .pill { padding: 8px 14px; font-size: 11.5px; }
+  .jr-regions { padding-bottom: 64px; }
+  .jr-regions .jr-wrap { padding-right: 0; }
+  .jr-regions .jr-section-head { margin-right: var(--gutter); }
+  .jr-region-list {
+    display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 0 var(--gutter) 8px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .jr-region-list::-webkit-scrollbar { display: none; }
+  .jr-region-list li { flex: 0 0 min(44vw, 180px); scroll-snap-align: start; }
+  .jr-region { aspect-ratio: 3 / 4; }
+  .jr-region-name { font-size: 19px; bottom: 32px; left: 14px; right: 14px; }
+  .jr-region-count { left: 14px; right: 14px; bottom: 14px; }
 
-  .archive-grid { grid-template-columns: 1fr; gap: 24px; }
-  .card-wide, .card-half, .card-text, .card-tall, .card-med { grid-column: span 1; }
-  .card-img { margin-bottom: 16px; }
-  .card-wide .card-img, .card-half .card-img, .card-tall .card-img { aspect-ratio: 4/3; }
-  .card h4, .card-wide h4, .card-half h4 { font-size: 21px; }
-  .card p { font-size: 14px; }
-  .card-text { min-height: auto; padding: 24px 20px; }
-  .card-text h4 { margin-top: 20px; font-size: 20px; }
+  .jr-archive { padding: 60px 0 72px; }
+  .jr-toolbar { grid-template-columns: 1fr; gap: 10px; }
+  .jr-pills {
+    flex-wrap: nowrap; overflow-x: auto; order: 3;
+    margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter);
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .jr-pills::-webkit-scrollbar { display: none; }
+  .jr-pill { padding: 9px 14px; font-size: 11.5px; }
+  .jr-status-row { margin: 20px 0 24px; }
+  .jr-grid { grid-template-columns: 1fr; gap: 40px; }
+  .jr-card, .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1), .jr-grid.js-ready .jr-card.is-lead { grid-column: span 1; display: flex; flex-direction: column; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1).is-out, .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1).is-overflow,
+  .jr-grid.js-ready .jr-card.is-lead.is-out, .jr-grid.js-ready .jr-card.is-lead.is-overflow { display: none; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-media, .jr-card.is-lead .jr-card-media { aspect-ratio: 16 / 10; margin-bottom: 18px; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-title, .jr-card.is-lead .jr-card-title { font-size: 26px; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-excerpt, .jr-card.is-lead .jr-card-excerpt { font-size: 14px; }
+  .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-body, .jr-card.is-lead .jr-card-body { padding-right: 0; gap: 10px; }
+  .jr-card-media { margin-bottom: 16px; }
+  .jr-card-title { font-size: 21px; }
+  .jr-card-excerpt { font-size: 14px; }
+  .jr-more { margin-top: 44px; }
+  .jr-btn { width: 100%; }
 
-  /* Boxed cards: tighter padding on mobile */
-  body[data-cards="boxed"] .card { padding: 12px; }
-
-  /* Overlap hero on mobile: give image a real height */
-  body[data-hero="overlap"] .hero { padding: 0; }
-  body[data-hero="overlap"] .hero-inner { display: flex; flex-direction: column; min-height: auto; }
-  body[data-hero="overlap"] .hero-image-wrap { aspect-ratio: 4/5; height: auto; max-height: 60vh; width: 100%; order: -1; }
-  body[data-hero="overlap"] .hero-text { margin-left: 0; padding: 40px 20px 56px; box-shadow: none; }
-
-  .regions-list { grid-template-columns: 1fr; }
-  .region-item:nth-child(odd) { border-right: none; padding-right: 4px; }
-  .region-item:nth-child(even) { padding-left: 4px; border-bottom: 1px solid var(--line); }
-  .region-item:nth-child(even):hover { padding-left: 16px; }
-  .regions-right { padding: 24px; }
-
-  .newsletter-section { padding-top: 64px; padding-bottom: 64px; }
-  .newsletter-section h3 { font-size: clamp(28px, 7.5vw, 40px); }
-  .newsletter-section p { font-size: 14.5px; margin-bottom: 28px; }
-  .newsletter-form { flex-direction: column; border-radius: 16px; padding: 6px; gap: 6px; }
-  .newsletter-form input { text-align: center; padding: 14px 18px; font-size: 14.5px; }
-  .newsletter-btn { width: 100%; justify-content: center; padding: 14px 22px; }
-  .newsletter-trust { font-size: 10.5px; margin-top: 20px; }
-
-  
-  
-  
-  
-  
-  
+  .jr-keep { padding: 56px 0 64px; }
+  .jr-keep-grid { grid-template-columns: 1fr; }
+  .jr-keep-link { min-height: 0; padding: 20px 48px 20px 18px; }
+  .jr-keep-label { font-size: 21px; }
+  .jr-keep-arr { top: 20px; right: 18px; }
 }
 
 @media (max-width: 400px) {
-  .masthead-title { font-size: 44px; line-height: 0.98; }
-  .hero h2 { font-size: 28px; }
-  .hero-image-tag { padding: 6px 10px; font-size: 9px; letter-spacing: 0.22em; }
-  .card h4, .card-wide h4, .card-half h4 { font-size: 19px; }
-  .pick h4 { font-size: 18px; }
-  .pick-num { font-size: 26px; }
-  .pick { grid-template-columns: 34px 1fr; gap: 14px; }
-  
-  
+  .jr-title { font-size: 46px; }
+  .jr-cover-link { max-height: 560px; }
+  .jr-cover-title { font-size: 27px; }
+  .jr-pick { flex-basis: 82vw; }
+  .jr-card-title, .jr-grid:not(.js-ready) .jr-card:nth-child(4n+1) .jr-card-title, .jr-card.is-lead .jr-card-title { font-size: 20px; }
+  .jr-keep-label { font-size: 19px; }
 }
 
 @media (hover: none) {
-  /* Disable hover-only transforms on touch devices to avoid sticky states */
-  .card:hover { transform: none; }
-  .card:hover h4 { color: var(--ink); }
-  .pick:hover { padding-left: 0; }
-  .pick:hover h4 { color: var(--ink); }
-  .hero:hover .hero-image-wrap img { transform: none; }
-  
-  .region-item:hover { padding-left: 4px; color: var(--ink); }
+  .jr-cover-link:hover .jr-cover-media img, .jr-pick-link:hover .jr-pick-media img,
+  .jr-card:hover .jr-card-media img, .jr-region:hover .jr-region-media img { transform: none; }
+  .jr-card:hover .jr-card-title, .jr-pick-link:hover .jr-pick-title, .jr-keep-link:hover .jr-keep-label { color: var(--ink); }
 }
 
-/* ═══════════ REVEAL ANIMATIONS ═══════════ */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
-.reveal.in { opacity: 1; transform: none; }
-
-/* ═══════════ TWEAKS-DRIVEN VARIATIONS ═══════════ */
-body[data-accent="gold"]     { --accent: #B8893A; --accent-2: #C9A75D; }
-body[data-accent="terracotta"]{ --accent: #C0392B; --accent-2: #C9A75D; }
-body[data-accent="forest"]   { --accent: #4A6B4F; --accent-2: #C9A75D; }
-body[data-accent="ink"]      { --accent: #2A1410; --accent-2: #C9A75D; }
-
-body[data-bg="paper"]   { background: var(--paper); }
-body[data-bg="cream"]   { background: var(--cream); }
-body[data-bg="dark"]    {
-  background: #1a1310;
-  --ink: #F4EFE5; --ink-soft: rgba(244,239,229,0.78); --ink-mute: rgba(244,239,229,0.50);
-  --cream: #1a1310; --cream-2: #2a1f1a; --paper: #15100d; --line: rgba(244,239,229,0.12); --line-strong: rgba(244,239,229,0.20);
+@media (prefers-reduced-motion: reduce) {
+  .jr-cover-media img, .jr-pick-media img, .jr-card-media img, .jr-region-media img { transition: none; }
 }
-body[data-bg="dark"] .hamburger { background: rgba(244,239,229,0.10); border-color: rgba(244,239,229,0.18); }
-body[data-bg="dark"] .hamburger span { background: var(--cream); }
-body[data-bg="dark"] .filter-bar { background: rgba(26,19,16,0.85); }
-body[data-bg="dark"] .hero-cta { background: var(--cream); color: var(--espresso); }
-body[data-bg="dark"] .load-more { border-color: var(--cream); color: var(--cream); }
-body[data-bg="dark"] .load-more:hover { background: var(--cream); color: var(--espresso); }
-body[data-bg="dark"] .card-text { background: #2a1f1a; }
-
-body[data-hero="cinematic"] .hero-inner { grid-template-columns: 1fr; }
-body[data-hero="cinematic"] .hero-image-wrap { aspect-ratio: 21/9; order: -1; max-height: 70vh; }
-body[data-hero="cinematic"] .hero-text { padding-right: 0; max-width: 800px; margin: 0 auto; text-align: center; }
-body[data-hero="cinematic"] .hero-eyebrow { justify-content: center; }
-body[data-hero="cinematic"] .hero-eyebrow::after { display: none; }
-body[data-hero="cinematic"] .hero-eyebrow::before { content: ''; flex: 0 0 40px; height: 1px; background: var(--accent); }
-
-body[data-hero="overlap"] .hero { padding-top: 0; padding-bottom: 0; }
-body[data-hero="overlap"] .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 0; align-items: stretch; min-height: 80vh; }
-body[data-hero="overlap"] .hero-image-wrap { aspect-ratio: auto; height: 100%; border-radius: 0; }
-body[data-hero="overlap"] .hero-text { background: var(--cream); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; margin-left: -80px; z-index: 2; position: relative; box-shadow: -20px 0 60px rgba(42,20,16,0.10); }
-
-@media (max-width: 900px) {
-  body[data-hero="overlap"] .hero-text { margin-left: 0; padding: 48px 28px; }
-  body[data-hero="overlap"] .hero-inner { min-height: auto; }
-}
-
-/* Card style variants */
-body[data-cards="boxed"] .card {
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 16px;
-  overflow: hidden;
-}
-body[data-cards="boxed"] .card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 20px 48px rgba(42,20,16,0.10);
-}
-body[data-cards="boxed"] .card .card-img { margin-bottom: 18px; }
-body[data-cards="boxed"] .card-text { background: var(--paper); }
-
-body[data-cards="bordered"] .card {
-  border-top: 1px solid var(--ink);
-  padding-top: 20px;
-}
-body[data-cards="bordered"] .card-img { border-radius: 0; }
-
-/* density */
-body[data-density="cozy"]    .archive-grid { gap: 56px 40px; }
-body[data-density="default"] .archive-grid { gap: 40px 32px; }
-body[data-density="compact"] .archive-grid { gap: 28px 20px; }
 </style>
 <style id="smt-search-css">
 /* ═══════════════════════════════════════
@@ -1613,52 +1188,7 @@ body[data-density="compact"] .archive-grid { gap: 28px 20px; }
 </style>
 <style id="nav-align-fix">
 /* ═══ Unified nav alignment — logo · search · hamburger share ONE vertical center.
-   Portable: paste this block before </head> on every page that uses the site nav. ═══ */
-.site-nav > a, .site-nav > .nav-logo{ top:56px !important; left:52px !important; transform:translateY(-50%) !important; }
-.site-nav a img, .site-logo{ height:80px !important; }
-.hamburger{ top:56px !important; right:52px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
-.hamburger span{ width:28px !important; }
-.nav-search-btn{ top:56px !important; right:112px !important; transform:translateY(-50%) !important; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.28)); }
-.nav-search-btn svg{ width:22px !important; height:22px !important; }
-
-@media (max-width:768px){
-  .site-nav > a, .site-nav > .nav-logo{ top:42px !important; left:18px !important; }
-  .site-nav a img, .site-logo{ height:58px !important; }
-  .hamburger{ top:42px !important; right:16px !important; padding:11px !important; gap:6px !important; }
-  .hamburger span{ width:30px !important; height:2.5px !important; }
-  .hamburger.open span:nth-child(1){ transform:translateY(8.5px) rotate(45deg) !important; }
-  .hamburger.open span:nth-child(2){ opacity:0 !important; transform:scaleX(0) !important; }
-  .hamburger.open span:nth-child(3){ transform:translateY(-8.5px) rotate(-45deg) !important; }
-  .nav-search-btn{ top:42px !important; right:74px !important; width:46px !important; height:46px !important; }
-  .nav-search-btn svg{ width:24px !important; height:24px !important; }
-}
-@media (max-width:480px){
-  .site-nav > a, .site-nav > .nav-logo{ left:16px !important; }
-  .hamburger{ right:14px !important; }
-  .nav-search-btn{ right:72px !important; }
-}
-</style>
-<style id="smt-a11y">
-.skip-link{position:absolute;left:16px;top:-120px;z-index:2147483646;padding:12px 18px;background:#1a0e0a;color:#F4EFE5;font:500 14px/1.2 'Poppins',system-ui,-apple-system,sans-serif;text-decoration:none;border-radius:4px}
-.skip-link:focus{top:16px;outline:2px solid #C9A75D;outline-offset:2px}
-main:focus{outline:none}
-html:not(.js) .reveal,html:not(.js) .r-reveal{opacity:1!important;transform:none!important}
-@media (prefers-reduced-motion:reduce){
-html{scroll-behavior:auto!important}
-.reveal,.r-reveal{opacity:1!important;transform:none!important;transition:none!important}
-*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-}
-</style>
-<script id="smt-js-flag">
-(function(d){var r=d.documentElement;r.classList.add('js');
-window.addEventListener('error',function(){r.classList.remove('js')});
-d.addEventListener('DOMContentLoaded',function(){
-var o=d.getElementById('navOverlay'),b=d.querySelector('button.hamburger');if(!o||!b)return;
-var s=function(){b.setAttribute('aria-expanded',o.classList.contains('open')?'true':'false')};
-s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']});});
-})(document);
-</script>
-<style id="smt-footer-css">
+   Portable: paste this block before <style id="smt-footer-css">
 /* Show Me Türkiye canonical footer (single source of truth).
    Copied from the homepage footer (deferred.css, 2026-10-02) with design
    tokens resolved to literal values so it renders identically on every
@@ -1687,7 +1217,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
 @media (max-width:480px){.footer-content{grid-template-columns:1fr}}
 </style>
 </head>
-<body data-accent="terracotta" data-bg="cream" data-hero="overlap" data-cards="boxed" data-density="compact">
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ═══════════ NAVIGATION ═══════════ -->
@@ -1713,383 +1243,390 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </div>
 
-<!-- ═══════════ MASTHEAD ═══════════ -->
 <main id="main" tabindex="-1">
-<section class="masthead" data-screen-label="01 Masthead">
-  <div class="masthead-inner">
-    <span class="masthead-eyebrow">From the editors</span>
-    <h1 class="masthead-title">The <em>Journal</em></h1>
-    <p class="masthead-sub">Travel stories, city guides, and hidden corners of Türkiye. Field notes from the road, written by the Show Me Türkiye team.</p>
+<!-- JOURNAL:BODY:START -->
+<header class="jr-masthead">
+  <div class="jr-masthead-inner">
+    <p class="jr-eyebrow jr-eyebrow-box">From the editors</p>
+    <h1 class="jr-title">The <em>Journal</em></h1>
+    <p class="jr-sub">Travel stories, city guides, and hidden corners of Türkiye. Field notes from the road, written by the Show Me Türkiye team.</p>
+    <dl class="jr-stats">
+      <div><dt>Stories</dt><dd>22</dd></div>
+      <div><dt>Regions</dt><dd>6</dd></div>
+      <div><dt>Last updated</dt><dd>October 2026</dd></div>
+    </dl>
   </div>
-  <div class="masthead-meta">
-    <span class="item"><span class="label">Stories</span><span class="value">16</span></span>
-    <span class="item"><span class="label">Last updated</span><span class="value">May 2026</span></span>
-    <span class="item"><span class="label">Regions</span><span class="value">7</span></span>
-  </div>
+</header>
+
+<section class="jr-cover" aria-labelledby="coverTitle">
+  <a class="jr-cover-link" href="blog/top-10-places-to-visit-in-Turkey">
+    <div class="jr-cover-media"><img src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye in 2026" width="2400" height="1350" fetchpriority="high" decoding="async"></div>
+    <div class="jr-cover-scrim" aria-hidden="true"></div>
+    <div class="jr-cover-body">
+      <p class="jr-cover-eyebrow">Cover Story · Destinations</p>
+      <h2 id="coverTitle" class="jr-cover-title">Top 10 Places to Visit <em>in Türkiye in 2026</em>.</h2>
+      <p class="jr-cover-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Twelve-thousand-year-old temples in Şanlıurfa, monasteries on a Mesopotamian limestone ridge, an entire coast of Lycian ruins where you can swim inside the ancient harbours, and the toppled stone heads of a forgotten king on a mountain summit in Adıyaman.</p>
+      <p class="jr-cover-byline"><span>Show Me Türkiye Editorial</span><span class="jr-dot" aria-hidden="true"></span><span>9 min read</span><span class="jr-dot" aria-hidden="true"></span><span>Updated May 2026</span></p>
+      <span class="jr-cover-cta">Read the cover story <span class="arr" aria-hidden="true">→</span></span>
+    </div>
+  </a>
 </section>
 
-<!-- ═══════════ HERO / FEATURED STORY ═══════════ -->
-<section class="hero" data-screen-label="02 Featured">
-  <div class="hero-inner">
-    <div class="hero-text reveal">
-      <div class="hero-eyebrow">Cover Story · Destinations</div>
-      <h2><a href="blog/top-10-places-to-visit-in-Turkey" style="color:inherit;text-decoration:none;">Top 10 Places to Visit <em>in Türkiye in 2026</em>.</a></h2>
-      <p class="hero-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Twelve-thousand-year-old temples in Şanlıurfa, monasteries on a Mesopotamian limestone ridge, an entire coast of Lycian ruins where you can swim inside the ancient harbours, and the toppled stone heads of a forgotten king on a mountain summit in Adıyaman.</p>
-      <div class="hero-byline">
-        <span class="author">Show Me Türkiye Editorial</span>
-        <span class="dot"></span>
-        <span>9 min read</span>
-        <span class="dot"></span>
-        <span>Updated May 2026</span>
-      </div>
-      <a href="blog/top-10-places-to-visit-in-Turkey" class="hero-cta">
-        Read the cover story <span class="arr">→</span>
+<section class="jr-picks" aria-labelledby="picksTitle">
+  <div class="jr-wrap">
+    <div class="jr-section-head">
+      <p class="jr-eyebrow">Editor&#x27;s Picks</p>
+      <h2 id="picksTitle" class="jr-h2">Three stories worth <em>your evening</em>.</h2>
+    </div>
+    <ol class="jr-picks-list">
+    <li class="jr-pick">
+      <a href="blog/when-is-the-best-time-to-visit-turkiye" class="jr-pick-link">
+        <span class="jr-pick-num" aria-hidden="true">01</span>
+        <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye" width="2400" height="1350" loading="lazy" decoding="async"></span>
+        <span class="jr-pick-body">
+          <span class="jr-meta"><span>Planning Guide</span><span class="jr-dot" aria-hidden="true"></span><span>Türkiye</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
+          <h3 class="jr-pick-title">When Is the Best Time to Visit Türkiye: Season by Season.</h3>
+          <span class="jr-pick-excerpt">There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</span>
+        </span>
       </a>
-    </div>
-    <a href="blog/top-10-places-to-visit-in-Turkey" class="hero-image-wrap reveal" style="display:block;text-decoration:none;">
-      <div class="hero-image-tag">Cover Story</div>
-      <img data-src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye in 2026">
-    </a>
+    </li>
+    <li class="jr-pick">
+      <a href="blog/istanbul" class="jr-pick-link">
+        <span class="jr-pick-num" aria-hidden="true">02</span>
+        <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/media-library/istanbul-galata-tower-night-aerial.jpg" alt="Galata Tower and the Istanbul skyline at night, from the air" width="1080" height="1350" loading="lazy" decoding="async"></span>
+        <span class="jr-pick-body">
+          <span class="jr-meta"><span>City Guide</span><span class="jr-dot" aria-hidden="true"></span><span>Marmara</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
+          <h3 class="jr-pick-title">Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h3>
+          <span class="jr-pick-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</span>
+        </span>
+      </a>
+    </li>
+    <li class="jr-pick">
+      <a href="blog/hiking-in-turkiye" class="jr-pick-link">
+        <span class="jr-pick-num" aria-hidden="true">03</span>
+        <span class="jr-pick-media"><img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker below the Cilo-Sat peaks" width="2400" height="1350" loading="lazy" decoding="async"></span>
+        <span class="jr-pick-body">
+          <span class="jr-meta"><span>Outdoors</span><span class="jr-dot" aria-hidden="true"></span><span>Türkiye</span><span class="jr-dot" aria-hidden="true"></span><span>8 min read</span></span>
+          <h3 class="jr-pick-title">Hiking in Türkiye: which trail or region is right for you.</h3>
+          <span class="jr-pick-excerpt">Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.</span>
+        </span>
+      </a>
+    </li>
+    </ol>
   </div>
 </section>
 
-<!-- ═══════════ FILTER BAR ═══════════ -->
-<div class="filter-bar" style="display:none">
-  <div class="filter-inner">
-    <div class="filter-pills" id="filterPills">
-      <button class="pill active" data-filter="all">All Stories <span class="count">13</span></button>
-      <button class="pill" data-filter="coast">Coast <span class="count">5</span></button>
-      <button class="pill" data-filter="mountain">Mountain <span class="count">4</span></button>
-      <button class="pill" data-filter="cities">Cities <span class="count">3</span></button>
-      <button class="pill" data-filter="history">History <span class="count">1</span></button>
+<section class="jr-regions" aria-labelledby="regionsTitle">
+  <div class="jr-wrap">
+    <div class="jr-section-head jr-section-head-split">
+      <div>
+        <p class="jr-eyebrow">Wander by Region</p>
+        <h2 id="regionsTitle" class="jr-h2">Pick a <em>direction</em> on the map.</h2>
+      </div>
+      <p class="jr-section-sub">Seven regions, eighty-one provinces, one country that genuinely never stops surprising the people who think they already know it.</p>
     </div>
-    <label class="search-box">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="search" placeholder="Search stories, regions, cities…" id="searchInput">
-    </label>
-  </div>
-</div>
-
-<!-- ═══════════ EDITOR'S PICKS ═══════════ -->
-<section class="editors-picks" data-screen-label="03 Editor's Picks" style="display:none">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-eyebrow">Editor's Picks</div>
-      <h3>Three stories worth <em>your evening</em>.</h3>
-    </div>
-    <a href="#archive" class="section-link">View all <span>→</span></a>
-  </div>
-  <div class="picks-list">
-    <a href="blog/top-10-places-to-visit-in-Turkey" class="pick reveal">
-      <div class="pick-num">01</div>
-      <div class="pick-content">
-        <div class="pick-meta">
-          <span>Destinations</span><span class="dot"></span>
-          <span>Türkiye</span><span class="dot"></span>
-          <span>9 min read</span>
-        </div>
-        <h4>Top 10 Places to Visit in Türkiye in 2026.</h4>
-        <p class="pick-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself. Lycian ruins you swim through, Mesopotamian monasteries, and stone heads on a mountain summit in Adıyaman.</p>
-      </div>
-      <div class="pick-image"><img data-src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye"></div>
-    </a>
-    <a href="blog/when-is-the-best-time-to-visit-turkiye" class="pick reveal">
-      <div class="pick-num">02</div>
-      <div class="pick-content">
-        <div class="pick-meta">
-          <span>Planning Guide</span><span class="dot"></span>
-          <span>Türkiye</span><span class="dot"></span>
-          <span>8 min read</span>
-        </div>
-        <h4>When Is the Best Time to Visit Türkiye: Season by Season.</h4>
-        <p class="pick-excerpt">There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</p>
-      </div>
-      <div class="pick-image"><img data-src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye"></div>
-    </a>
-    <a href="blog/istanbul" class="pick reveal">
-      <div class="pick-num">03</div>
-      <div class="pick-content">
-        <div class="pick-meta">
-          <span>City Guide</span><span class="dot"></span>
-          <span>Marmara</span><span class="dot"></span>
-          <span>8 min read</span>
-        </div>
-        <h4>Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h4>
-        <p class="pick-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</p>
-      </div>
-      <div class="pick-image"><img data-src="https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg" alt="Istanbul"></div>
-    </a>
+    <ul class="jr-region-list" aria-label="Browse stories by region">
+      <li><a class="jr-region" href="?region=marmara#archive" data-region="marmara">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg" alt="Galata Tower and the Bosphorus at sunset, Istanbul" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Marmara</span>
+        <span class="jr-region-count">1 story</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=aegean#archive" data-region="aegean">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg" alt="Mount Ida, the Kaz Dağları, Balıkesir" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Aegean</span>
+        <span class="jr-region-count">2 stories</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=mediterranean#archive" data-region="mediterranean">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/media-library/antalya-phaselis-bay-gulet-aerial-006.jpg" alt="A gulet in Phaselis bay, Antalya, from the air" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Mediterranean</span>
+        <span class="jr-region-count">4 stories</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=central-anatolia#archive" data-region="central-anatolia">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg" alt="Hot-air balloons at sunrise over Cappadocia" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Central Anatolia</span>
+        <span class="jr-region-count">2 stories</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=black-sea#archive" data-region="black-sea">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg" alt="Tea gardens on the mountain slopes of Rize" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Black Sea</span>
+        <span class="jr-region-count">5 stories</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=eastern-anatolia#archive" data-region="eastern-anatolia">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg" alt="Mountain peaks in Hakkari" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">Eastern Anatolia</span>
+        <span class="jr-region-count">2 stories</span>
+      </a></li>
+      <li><a class="jr-region" href="?region=turkiye#archive" data-region="turkiye">
+        <span class="jr-region-media"><img src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye" loading="lazy" decoding="async"></span>
+        <span class="jr-region-name">All Türkiye</span>
+        <span class="jr-region-count">6 stories</span>
+      </a></li>
+    </ul>
   </div>
 </section>
 
-<!-- ═══════════ MAIN ARCHIVE GRID ═══════════ -->
-<section class="archive" id="archive" data-screen-label="04 Archive">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-eyebrow">The Archive</div>
-      <h3>Latest dispatches from <em>across Türkiye</em>.</h3>
+<section class="jr-archive" id="archive" aria-labelledby="archiveTitle" data-initial="12">
+  <div class="jr-wrap">
+    <div class="jr-section-head">
+      <p class="jr-eyebrow">The Archive</p>
+      <h2 id="archiveTitle" class="jr-h2">Latest dispatches from <em>across Türkiye</em>.</h2>
     </div>
-    <a href="#" class="section-link">RSS feed <span>↗</span></a>
-  </div>
-  <div class="archive-grid" id="archiveGrid">
-
-    <!-- WIDE / Getting around -->
-    <a href="blog/getting-around-turkey" class="card card-wide reveal" data-category="planning">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg" alt="Getting around Türkiye"></div>
-      <div class="card-cat">Planning Guide</div>
-      <h4>Getting Around Türkiye: Buses, Trains, Flights and Driving.</h4>
-      <p>When to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. The transport half of a Türkiye trip, planned.</p>
-      <div class="card-meta"><span>10 min read</span><span class="dot"></span><span>September 2026</span></div>
-    </a>
-    <a href="blog/cop31-antalya-2026" class="card card-med reveal" data-category="planning">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg" alt="A limestone canyon in the Taurus Mountains of Antalya"></div>
-      <div class="card-cat">Events</div>
-      <h4>COP31 Antalya 2026: a complete guide to the UN Climate Conference.</h4>
-      <p>COP31, the UN Climate Change Conference, runs 9–20 November 2026 in Antalya, Türkiye. Dates, venue, who can attend, the Green and Blue Zones, and where to find the official websites.</p>
-      <div class="card-meta"><span>7 min read</span><span class="dot"></span><span>October 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-    <a href="blog/hiking-in-turkiye" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker below the Cilo-Sat peaks"></div>
-      <div class="card-cat">Outdoors</div>
-      <h4>Hiking in Türkiye: which trail or region is right for you.</h4>
-      <p>Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>October 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-    <a href="blog/national-parks-in-turkiye" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/cities/artvin/places/artvin-savsat-karagol-lake.jpg" alt="Karagöl-Sahara National Park"></div>
-      <div class="card-cat">Outdoors</div>
-      <h4>National Parks in Türkiye.</h4>
-      <p>Türkiye has 54 official national parks. Find the one that fits your trip, from Kaçkar's peaks and Köprülü Kanyon to autumn forests and wetlands, by season.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>October 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-    <a href="blog/skiing-in-turkiye" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/cities/kayseri/erciyes-skiing-day-trip-from-kayseri.jpg" alt="Skiing in Türkiye"></div>
-      <div class="card-cat">Winter</div>
-      <h4>Skiing in Türkiye: where to ski, and how to choose.</h4>
-      <p>Palandöken, Erciyes, Uludağ, Kartalkaya, Sarıkamış and the smaller mountains, compared by snow, terrain, level and access.</p>
-      <div class="card-meta"><span>9 min read</span><span class="dot"></span><span>October 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-
-    <!-- MED / Antalya -->
-    <a href="blog/antalya" class="card card-med reveal" data-category="coast">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg" alt="Antalya"></div>
-      <div class="card-cat">Mediterranean</div>
-      <h4>Antalya: Kaleiçi, Aspendos, and the Lycian Coast.</h4>
-      <p>Roman aqueducts, Greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. Antalya is not a resort town. It's a province with five thousand years of stone.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-
-    <!-- MED / Best time to visit -->
-    <a href="blog/when-is-the-best-time-to-visit-turkiye" class="card card-med reveal" data-category="planning">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye"></div>
-      <div class="card-cat">Planning Guide</div>
-      <h4>When Is the Best Time to Visit Türkiye: Season by Season.</h4>
-      <p>There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</p>
-      <div class="card-meta"><span>8 min read</span></div>
-    </a>
-
-    <!-- MED / Top 10 places -->
-    <a href="blog/top-10-places-to-visit-in-Turkey" class="card card-med reveal" data-category="planning">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye"></div>
-      <div class="card-cat">Destinations</div>
-      <h4>Top 10 Places to Visit in Türkiye in 2026.</h4>
-      <p>Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself.</p>
-      <div class="card-meta"><span>9 min read</span></div>
-    </a>
-
-    <!-- MED / Istanbul -->
-    <a href="blog/istanbul" class="card card-med reveal" data-category="cities">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg" alt="Istanbul"></div>
-      <div class="card-cat">Marmara</div>
-      <h4>Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h4>
-      <p>Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</p>
-      <div class="card-meta"><span>8 min read</span></div>
-    </a>
-
-    <!-- Cappadocia -->
-    <a href="blog/kapadokya" class="card card-med reveal" data-category="cities">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg" alt="Cappadocia"></div>
-      <div class="card-cat">Central Anatolia</div>
-      <h4>Cappadocia: Göreme, Derinkuyu, and the Balloon Flight.</h4>
-      <p>Ten million years of volcanic erosion. Underground cities going down eighteen levels. Byzantine rock-cut churches with frescoes from the tenth century. And the version of the balloon photo that's actually worth taking.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Kemer -->
-    <a href="blog/kemer" class="card card-med reveal" data-category="coast">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Kemer"></div>
-      <div class="card-cat">Mediterranean</div>
-      <h4>Kemer: Olympos, Phaselis, and Mount Tahtalı.</h4>
-      <p>A resort town wrapped around a strategic position, the Beydağları rising behind, the Lycian coast stretching west, and the Chimaera flames within a half-hour drive.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Trabzon -->
-    <a href="blog/trabzon" class="card card-med reveal" data-category="cities">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg" alt="Trabzon"></div>
-      <div class="card-cat">Black Sea</div>
-      <h4>Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast.</h4>
-      <p>Sümela Monastery, an underground river cave, a lake that fills every poster of the eastern Black Sea, and the most outdoor-active province on this coast.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Rize -->
-    <a href="blog/rize" class="card card-med reveal" data-category="coast">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg" alt="Rize"></div>
-      <div class="card-cat">Black Sea</div>
-      <h4>Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country.</h4>
-      <p>Two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- HALF / Çanakkale -->
-    <a href="blog/canakkale" class="card card-half reveal" data-category="history">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg" alt="Çanakkale"></div>
-      <div class="card-cat">Aegean · History</div>
-      <h4>Çanakkale: Gallipoli, Troy, and Assos.</h4>
-      <p>The Trojan horse, the Gallipoli memorials, the temple of Apollo at Smintheion, the medieval castles guarding the Dardanelles, and the wine islands of Bozcaada and Gökçeada, all in one province.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- HALF / Artvin -->
-    <a href="blog/artvin" class="card card-half reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg" alt="Artvin"></div>
-      <div class="card-cat">Northeast</div>
-      <h4>Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands.</h4>
-      <p>Two Karagöl lakes, a Çoruh River that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited Turkish provinces.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- TALL / Giresun -->
-    <a href="blog/giresun" class="card card-tall reveal" data-category="coast">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg" alt="Giresun"></div>
-      <div class="card-cat">Black Sea</div>
-      <h4>Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast.</h4>
-      <p>Tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. One of the eastern Black Sea's most underrated stops. Most of its best moments are inland.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Erzurum -->
-    <a href="blog/erzurum" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg" alt="Erzurum"></div>
-      <div class="card-cat">Eastern Anatolia</div>
-      <h4>Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express.</h4>
-      <p>At 1,950 metres on the eastern Anatolian plateau, one of the highest provincial capitals in Türkiye. Seljuk and Ottoman stone, the country's best ski resort, and the famous Doğu Express terminus.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Hakkari -->
-    <a href="blog/hakkari" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg" alt="Hakkari"></div>
-      <div class="card-cat">Far Southeast</div>
-      <h4>Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier.</h4>
-      <p>The Cilo and Sat mountains, glaciers that almost nobody photographs, the Zap River cutting through canyons, and a regional culture you cannot see anywhere else in the country.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Ordu -->
-    <a href="blog/ordu" class="card card-med reveal" data-category="cities">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg" alt="Ordu"></div>
-      <div class="card-cat">Black Sea</div>
-      <h4>Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast.</h4>
-      <p>Ordu starts at the water and climbs. In a single drive: wake up by the sea, stand inside a Byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Aladağlar -->
-    <a href="blog/aladaglar" class="card card-med reveal" data-category="mountain">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg" alt="Aladağlar"></div>
-      <div class="card-cat">Central Taurus</div>
-      <h4>Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains.</h4>
-      <p>Emli Valley campsites, Kazıklı Ali Canyon's vertical rock, the Bolkar mountains' alpine lakes. Where Turkish mountaineering grew up, and where most Turks who climb spend their summers.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-    <!-- MED / Balıkesir -->
-    <a href="blog/balikesir" class="card card-med reveal" data-category="coast">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg" alt="Balıkesir"></div>
-      <div class="card-cat">Aegean</div>
-      <h4>Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean.</h4>
-      <p>Kaz Dağları's pine and oxygen, Ayvalık's old Greek streets, Cunda's harbour seafood, a Glass Terrace at altitude. The Aegean before it became a brand.</p>
-      <div class="card-meta"><span>8 min read</span><span class="dot"></span><span>May 2026</span></div>
-    </a>
-
-
-    <a href="blog/sea-to-sky-turkey" class="card card-med reveal" data-category="planning">
-      <div class="card-img"><img data-src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Sea to Sky"></div>
-      <div class="card-cat">Events</div>
-      <h4>Sea to Sky: the Kemer hard enduro, from beach to summit.</h4>
-      <p>Sea to Sky is Kemer's three-day hard enduro race, from the beach to the summit of Tahtalı. How it works, where to watch, 2026 dates and where to stay.</p>
-      <div class="card-meta"><span>6 min read</span><span class="dot"></span><span>October 2026</span><span class="dot"></span><span>Show Me Türkiye</span></div>
-    </a>
-  </div>
-
-  <div class="load-more-wrap">
-    <button class="load-more">Load older dispatches</button>
-  </div>
-</section>
-
-<!-- ═══════════ REGIONS ═══════════ -->
-<section class="regions" data-screen-label="05 Regions" style="display:none">
-  <div class="regions-inner">
-    <div class="regions-left reveal">
-      <div class="section-eyebrow">Wander by Region</div>
-      <h3>Pick a <em>direction</em> on the map.</h3>
-      <p>Seven regions, eighty-one provinces, one country that genuinely never stops surprising the people who think they already know it.</p>
-      <div class="regions-list">
-        <a href="#" class="region-item"><span class="region-name">Marmara <em>· 5</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">Aegean <em>· 4</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">Mediterranean <em>· 6</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">Central Anatolia <em>· 3</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">Black Sea <em>· 8</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">East Anatolia <em>· 4</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">Southeast <em>· 3</em></span><span class="region-arrow">→</span></a>
-        <a href="#" class="region-item"><span class="region-name">All Türkiye <em>· 33</em></span><span class="region-arrow">→</span></a>
+    <form class="jr-toolbar" id="archiveTools" role="search" aria-label="Find a story" action="#archive">
+      <div class="jr-pills" role="group" aria-label="Filter by topic">
+        <button type="button" class="jr-pill is-active" data-topic="all" aria-pressed="true">All stories <span class="jr-pill-n">22</span></button>
+        <button type="button" class="jr-pill" data-topic="city" aria-pressed="false">City guides <span class="jr-pill-n">12</span></button>
+        <button type="button" class="jr-pill" data-topic="destinations" aria-pressed="false">Destinations <span class="jr-pill-n">3</span></button>
+        <button type="button" class="jr-pill" data-topic="outdoors" aria-pressed="false">Outdoors <span class="jr-pill-n">3</span></button>
+        <button type="button" class="jr-pill" data-topic="planning" aria-pressed="false">Planning <span class="jr-pill-n">2</span></button>
+        <button type="button" class="jr-pill" data-topic="events" aria-pressed="false">Events <span class="jr-pill-n">2</span></button>
       </div>
+      <label class="jr-search">
+        <span class="visually-hidden">Search stories</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" name="q" id="archiveSearch" placeholder="Search stories, regions, cities…" autocomplete="off" enterkeyhint="search">
+      </label>
+      <label class="jr-select">
+        <span class="visually-hidden">Region</span>
+        <select name="region" id="archiveRegion">
+        <option value="">All regions</option>
+        <option value="marmara">Marmara</option>
+        <option value="aegean">Aegean</option>
+        <option value="mediterranean">Mediterranean</option>
+        <option value="central-anatolia">Central Anatolia</option>
+        <option value="black-sea">Black Sea</option>
+        <option value="eastern-anatolia">Eastern Anatolia</option>
+        <option value="turkiye">All Türkiye</option>
+        </select>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </label>
+    </form>
+    <div class="jr-status-row">
+      <p class="jr-status" id="archiveStatus" aria-live="polite">22 stories</p>
+      <button type="button" class="jr-reset" id="archiveReset" hidden>Clear filters <span aria-hidden="true">×</span></button>
     </div>
-    <div class="regions-right reveal">
-      <div class="regions-map">
-        <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-          <!-- Stylized Türkiye silhouette -->
-          <path d="M40,200
-                   C 60,150 100,120 150,115
-                   C 200,110 240,130 280,125
-                   C 320,120 360,100 410,105
-                   C 460,110 500,130 540,128
-                   C 580,126 620,115 660,120
-                   C 700,125 740,140 760,160
-                   L 770,170
-                   C 775,185 770,205 755,215
-                   C 740,225 715,230 690,228
-                   C 660,225 635,235 620,250
-                   C 605,265 575,275 545,272
-                   C 510,268 485,250 455,252
-                   C 425,254 400,270 370,272
-                   C 340,274 310,265 280,265
-                   C 250,265 225,275 200,275
-                   C 170,275 145,265 115,255
-                   C 85,245 60,225 50,210 Z"/>
-          <!-- City markers as small circles -->
-          <circle cx="155" cy="180" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="265" cy="200" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="180" cy="225" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="345" cy="195" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="475" cy="155" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="600" cy="160" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="685" cy="190" r="6" fill="#C0392B" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="540" cy="225" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-          <circle cx="395" cy="230" r="5" fill="#C9A75D" stroke="#F4EFE5" stroke-width="1.5"/>
-        </svg>
-      </div>
-      <div class="regions-caption">
-        <span>Türkiye · 33 cities covered</span>
-        <span>★ Editor's pick</span>
-      </div>
+    <div class="jr-grid" id="archiveGrid">
+    <a href="blog/getting-around-turkey" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="getting around türkiye: buses, trains, flights and driving. when to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. the transport half of a türkiye trip, planned. planning guide all türkiye getting around turkey">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/routes/turkey-grand-tour-14-day-itinerary.jpg" alt="Getting around Türkiye" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Planning Guide</span>
+        <h3 class="jr-card-title">Getting Around Türkiye: Buses, Trains, Flights and Driving.</h3>
+        <span class="jr-card-excerpt">When to fly, when to take the bus, where the fast train goes, and how to get from every major airport into town. The transport half of a Türkiye trip, planned.</span>
+        <span class="jr-meta"><span>10 min read</span><span class="jr-dot" aria-hidden="true"></span><span>September 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/cop31-antalya-2026" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="cop31 antalya 2026: a complete guide to the un climate conference. cop31, the un climate change conference, runs 9–20 november 2026 in antalya, türkiye. dates, venue, who can attend, the green and blue zones, and where to find the official websites. events mediterranean cop31 antalya 2026">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/media-library/limestone-canyon-pine-valley-004.jpg" alt="A limestone canyon in the Taurus Mountains of Antalya" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Events</span>
+        <h3 class="jr-card-title">COP31 Antalya 2026: a complete guide to the UN Climate Conference.</h3>
+        <span class="jr-card-excerpt">COP31, the UN Climate Change Conference, runs 9–20 November 2026 in Antalya, Türkiye. Dates, venue, who can attend, the Green and Blue Zones, and where to find the official websites.</span>
+        <span class="jr-meta"><span>7 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/hiking-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="hiking in türkiye: which trail or region is right for you. which hike in türkiye fits you? we compare the lycian way, kaçkar, aladağlar, cappadocia and more by difficulty, season, length and where you sleep. outdoors all türkiye hiking in turkiye">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/hakkari/hakkari-cilo-sat-mountains.jpg" alt="Hiker below the Cilo-Sat peaks" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Outdoors</span>
+        <h3 class="jr-card-title">Hiking in Türkiye: which trail or region is right for you.</h3>
+        <span class="jr-card-excerpt">Which hike in Türkiye fits you? We compare the Lycian Way, Kaçkar, Aladağlar, Cappadocia and more by difficulty, season, length and where you sleep.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/national-parks-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="national parks in türkiye. türkiye has 54 official national parks. find the one that fits your trip, from kaçkar&#x27;s peaks and köprülü kanyon to autumn forests and wetlands, by season. outdoors all türkiye national parks in turkiye">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/artvin/places/artvin-savsat-karagol-lake.jpg" alt="Karagöl-Sahara National Park" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Outdoors</span>
+        <h3 class="jr-card-title">National Parks in Türkiye.</h3>
+        <span class="jr-card-excerpt">Türkiye has 54 official national parks. Find the one that fits your trip, from Kaçkar's peaks and Köprülü Kanyon to autumn forests and wetlands, by season.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/skiing-in-turkiye" class="card jr-card" data-topic="outdoors" data-region="turkiye" data-search="skiing in türkiye: where to ski, and how to choose. palandöken, erciyes, uludağ, kartalkaya, sarıkamış and the smaller mountains, compared by snow, terrain, level and access. winter all türkiye skiing in turkiye">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/cities/kayseri/erciyes-skiing-day-trip-from-kayseri.jpg" alt="Skiing in Türkiye" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Winter</span>
+        <h3 class="jr-card-title">Skiing in Türkiye: where to ski, and how to choose.</h3>
+        <span class="jr-card-excerpt">Palandöken, Erciyes, Uludağ, Kartalkaya, Sarıkamış and the smaller mountains, compared by snow, terrain, level and access.</span>
+        <span class="jr-meta"><span>9 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/sea-to-sky-turkey" class="card jr-card" data-topic="events" data-region="mediterranean" data-search="sea to sky: the kemer hard enduro, from beach to summit. sea to sky is kemer&#x27;s three-day hard enduro race, from the beach to the summit of tahtalı. how it works, where to watch, 2026 dates and where to stay. events mediterranean sea to sky turkey">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Sea to Sky" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Events</span>
+        <h3 class="jr-card-title">Sea to Sky: the Kemer hard enduro, from beach to summit.</h3>
+        <span class="jr-card-excerpt">Sea to Sky is Kemer's three-day hard enduro race, from the beach to the summit of Tahtalı. How it works, where to watch, 2026 dates and where to stay.</span>
+        <span class="jr-meta"><span>6 min read</span><span class="jr-dot" aria-hidden="true"></span><span>October 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/antalya" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="antalya: kaleiçi, aspendos, and the lycian coast. roman aqueducts, greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. antalya is not a resort town. it&#x27;s a province with five thousand years of stone. mediterranean mediterranean antalya">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/antalya/antalya-hero-kaleici-harbour-sunset.jpg" alt="Antalya" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Mediterranean</span>
+        <h3 class="jr-card-title">Antalya: Kaleiçi, Aspendos, and the Lycian Coast.</h3>
+        <span class="jr-card-excerpt">Roman aqueducts, Greek theatres still in use, a beach city that grew up around an old harbour, and the most ancient-cities-per-coastline ratio in the country. Antalya is not a resort town. It's a province with five thousand years of stone.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span><span class="jr-dot" aria-hidden="true"></span><span>Show Me Türkiye</span></span>
+      </span>
+    </a>
+    <a href="blog/when-is-the-best-time-to-visit-turkiye" class="card jr-card" data-topic="planning" data-region="turkiye" data-search="when is the best time to visit türkiye: season by season. there is no single best month. there are best months for each region. a season-by-season guide for travellers who want the right answer for their specific trip. planning guide all türkiye when is the best time to visit turkiye">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/best-time-to-visit/best-time-hero-four-seasons-collage.jpg" alt="When is the best time to visit Türkiye" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Planning Guide</span>
+        <h3 class="jr-card-title">When Is the Best Time to Visit Türkiye: Season by Season.</h3>
+        <span class="jr-card-excerpt">There is no single best month. There are best months for each region. A season-by-season guide for travellers who want the right answer for their specific trip.</span>
+        <span class="jr-meta"><span>8 min read</span></span>
+      </span>
+    </a>
+    <a href="blog/top-10-places-to-visit-in-Turkey" class="card jr-card" data-topic="destinations" data-region="turkiye" data-search="top 10 places to visit in türkiye in 2026. istanbul and cappadocia are the two everyone gets to. the other eight are where the country starts explaining itself. destinations all türkiye top 10 places to visit in turkey">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/top-10-places/top10-hero-turkiye-iconic-landscape.jpg" alt="Top 10 places to visit in Türkiye" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Destinations</span>
+        <h3 class="jr-card-title">Top 10 Places to Visit in Türkiye in 2026.</h3>
+        <span class="jr-card-excerpt">Istanbul and Cappadocia are the two everyone gets to. The other eight are where the country starts explaining itself.</span>
+        <span class="jr-meta"><span>9 min read</span></span>
+      </span>
+    </a>
+    <a href="blog/istanbul" class="card jr-card" data-topic="city" data-region="marmara" data-search="istanbul: hagia sophia, the bosphorus, and the grand bazaar. sixteen million people, two continents, fifteen hundred years of empire. a city that refuses to choose a side. marmara marmara istanbul">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/istanbul/istanbul-hero-galata-tower-bosphorus-sunset.jpg" alt="Istanbul" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Marmara</span>
+        <h3 class="jr-card-title">Istanbul: Hagia Sophia, the Bosphorus, and the Grand Bazaar.</h3>
+        <span class="jr-card-excerpt">Sixteen million people, two continents, fifteen hundred years of empire. A city that refuses to choose a side.</span>
+        <span class="jr-meta"><span>8 min read</span></span>
+      </span>
+    </a>
+    <a href="blog/kapadokya" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="cappadocia: göreme, derinkuyu, and the balloon flight. ten million years of volcanic erosion. underground cities going down eighteen levels. byzantine rock-cut churches with frescoes from the tenth century. and the version of the balloon photo that&#x27;s actually worth taking. central anatolia central anatolia kapadokya">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kapadokya/kapadokya-hero-hot-air-balloons-sunrise.jpg" alt="Cappadocia" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Central Anatolia</span>
+        <h3 class="jr-card-title">Cappadocia: Göreme, Derinkuyu, and the Balloon Flight.</h3>
+        <span class="jr-card-excerpt">Ten million years of volcanic erosion. Underground cities going down eighteen levels. Byzantine rock-cut churches with frescoes from the tenth century. And the version of the balloon photo that's actually worth taking.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/kemer" class="card jr-card" data-topic="city" data-region="mediterranean" data-search="kemer: olympos, phaselis, and mount tahtalı. a resort town wrapped around a strategic position, the beydağları rising behind, the lycian coast stretching west, and the chimaera flames within a half-hour drive. mediterranean mediterranean kemer">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/kemer/kemer-mount-tahtali-cable-car-view.jpg" alt="Kemer" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Mediterranean</span>
+        <h3 class="jr-card-title">Kemer: Olympos, Phaselis, and Mount Tahtalı.</h3>
+        <span class="jr-card-excerpt">A resort town wrapped around a strategic position, the Beydağları rising behind, the Lycian coast stretching west, and the Chimaera flames within a half-hour drive.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/trabzon" class="card jr-card" data-topic="city" data-region="black-sea" data-search="trabzon: sümela monastery, uzungöl, and the black sea coast. sümela monastery, an underground river cave, a lake that fills every poster of the eastern black sea, and the most outdoor-active province on this coast. black sea black sea trabzon">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/trabzon/trabzon-hero-sumela-monastery-cliff.jpg" alt="Trabzon" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Black Sea</span>
+        <h3 class="jr-card-title">Trabzon: Sümela Monastery, Uzungöl, and the Black Sea Coast.</h3>
+        <span class="jr-card-excerpt">Sümela Monastery, an underground river cave, a lake that fills every poster of the eastern Black Sea, and the most outdoor-active province on this coast.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/rize" class="card jr-card" data-topic="city" data-region="black-sea" data-search="rize: ayder, the fırtına valley, and türkiye&#x27;s tea country. two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres. black sea black sea rize">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/rize/rize-hero-tea-gardens-mountain-slopes.jpg" alt="Rize" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Black Sea</span>
+        <h3 class="jr-card-title">Rize: Ayder, the Fırtına Valley, and Türkiye's Tea Country.</h3>
+        <span class="jr-card-excerpt">Two thousand millimetres of rain a year, a single defining crop, and a vertical landscape that goes from sea level to four thousand metres in forty kilometres.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/canakkale" class="card jr-card" data-topic="city" data-region="aegean" data-search="çanakkale: gallipoli, troy, and assos. the trojan horse, the gallipoli memorials, the temple of apollo at smintheion, the medieval castles guarding the dardanelles, and the wine islands of bozcaada and gökçeada, all in one province. aegean · history aegean canakkale">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/canakkale/canakkale-hero-gallipoli-memorial.jpg" alt="Çanakkale" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Aegean · History</span>
+        <h3 class="jr-card-title">Çanakkale: Gallipoli, Troy, and Assos.</h3>
+        <span class="jr-card-excerpt">The Trojan horse, the Gallipoli memorials, the temple of Apollo at Smintheion, the medieval castles guarding the Dardanelles, and the wine islands of Bozcaada and Gökçeada, all in one province.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/artvin" class="card jr-card" data-topic="city" data-region="black-sea" data-search="artvin: çoruh canyon, karagöl, and the kaçkar highlands. two karagöl lakes, a çoruh river that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited turkish provinces. northeast black sea artvin">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/artvin/artvin-hero-coruh-valley-overview.jpg" alt="Artvin" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Northeast</span>
+        <h3 class="jr-card-title">Artvin: Çoruh Canyon, Karagöl, and the Kaçkar Highlands.</h3>
+        <span class="jr-card-excerpt">Two Karagöl lakes, a Çoruh River that the locals raft and the engineers re-routed, monasteries half-hidden in valleys, and one of the least-visited Turkish provinces.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/giresun" class="card jr-card" data-topic="city" data-region="black-sea" data-search="giresun: kuşköy&#x27;s whistling language, kuzalan, and the hazelnut coast. tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. one of the eastern black sea&#x27;s most underrated stops. most of its best moments are inland. black sea black sea giresun">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/giresun/giresun-hero-kumbet-plateau-yayla.jpg" alt="Giresun" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Black Sea</span>
+        <h3 class="jr-card-title">Giresun: Kuşköy's Whistling Language, Kuzalan, and the Hazelnut Coast.</h3>
+        <span class="jr-card-excerpt">Tea, hazelnuts, and a village where they communicate across mountain valleys by whistling. One of the eastern Black Sea's most underrated stops. Most of its best moments are inland.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/erzurum" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="erzurum: palandöken skiing, the old town, and the doğu express. at 1,950 metres on the eastern anatolian plateau, one of the highest provincial capitals in türkiye. seljuk and ottoman stone, the country&#x27;s best ski resort, and the famous doğu express terminus. eastern anatolia eastern anatolia erzurum">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/erzurum/erzurum-hero-cifte-minareli-medrese.jpg" alt="Erzurum" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Eastern Anatolia</span>
+        <h3 class="jr-card-title">Erzurum: Palandöken Skiing, the Old Town, and the Doğu Express.</h3>
+        <span class="jr-card-excerpt">At 1,950 metres on the eastern Anatolian plateau, one of the highest provincial capitals in Türkiye. Seljuk and Ottoman stone, the country's best ski resort, and the famous Doğu Express terminus.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/hakkari" class="card jr-card" data-topic="city" data-region="eastern-anatolia" data-search="hakkari: cilo mountains, the zap canyon, and türkiye&#x27;s wildest frontier. the cilo and sat mountains, glaciers that almost nobody photographs, the zap river cutting through canyons, and a regional culture you cannot see anywhere else in the country. far southeast eastern anatolia hakkari">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/hakkari/hakkari-hero-mountains-peaks.jpg" alt="Hakkari" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Far Southeast</span>
+        <h3 class="jr-card-title">Hakkari: Cilo Mountains, the Zap Canyon, and Türkiye's Wildest Frontier.</h3>
+        <span class="jr-card-excerpt">The Cilo and Sat mountains, glaciers that almost nobody photographs, the Zap River cutting through canyons, and a regional culture you cannot see anywhere else in the country.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/ordu" class="card jr-card" data-topic="city" data-region="black-sea" data-search="ordu: boztepe cable car, perşembe plateau, and the black sea coast. ordu starts at the water and climbs. in a single drive: wake up by the sea, stand inside a byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset. black sea black sea ordu">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/ordu/ordu-hero-cape-jason.jpg" alt="Ordu" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Black Sea</span>
+        <h3 class="jr-card-title">Ordu: Boztepe Cable Car, Perşembe Plateau, and the Black Sea Coast.</h3>
+        <span class="jr-card-excerpt">Ordu starts at the water and climbs. In a single drive: wake up by the sea, stand inside a Byzantine castle, lunch on a plateau at a thousand metres, watch the city light up below you at sunset.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/aladaglar" class="card jr-card" data-topic="destinations" data-region="central-anatolia" data-search="aladağlar: demirkazık, emli valley, and the bolkar mountains. emli valley campsites, kazıklı ali canyon&#x27;s vertical rock, the bolkar mountains&#x27; alpine lakes. where turkish mountaineering grew up, and where most turks who climb spend their summers. central taurus central anatolia aladaglar">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/aladaglar/aladaglar-hero-demirkazik-peak-3756m.jpg" alt="Aladağlar" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Central Taurus</span>
+        <h3 class="jr-card-title">Aladağlar: Demirkazık, Emli Valley, and the Bolkar Mountains.</h3>
+        <span class="jr-card-excerpt">Emli Valley campsites, Kazıklı Ali Canyon's vertical rock, the Bolkar mountains' alpine lakes. Where Turkish mountaineering grew up, and where most Turks who climb spend their summers.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    <a href="blog/balikesir" class="card jr-card" data-topic="city" data-region="aegean" data-search="balıkesir: kazdağları, ayvalık, and the northern aegean. kaz dağları&#x27;s pine and oxygen, ayvalık&#x27;s old greek streets, cunda&#x27;s harbour seafood, a glass terrace at altitude. the aegean before it became a brand. aegean aegean balikesir">
+      <span class="jr-card-media"><img src="https://img.showmeturkiye.com/blog/balikesir/balikesir-hero-mount-ida-kaz-daglari.jpg" alt="Balıkesir" loading="lazy" decoding="async"></span>
+      <span class="jr-card-body">
+        <span class="jr-kicker">Aegean</span>
+        <h3 class="jr-card-title">Balıkesir: Kazdağları, Ayvalık, and the Northern Aegean.</h3>
+        <span class="jr-card-excerpt">Kaz Dağları's pine and oxygen, Ayvalık's old Greek streets, Cunda's harbour seafood, a Glass Terrace at altitude. The Aegean before it became a brand.</span>
+        <span class="jr-meta"><span>8 min read</span><span class="jr-dot" aria-hidden="true"></span><span>May 2026</span></span>
+      </span>
+    </a>
+    </div>
+    <div class="jr-empty" id="archiveEmpty" hidden>
+      <p class="jr-empty-title">No stories match that yet.</p>
+      <p class="jr-empty-sub">Try another word, a region, or clear the filters to see every dispatch.</p>
+      <button type="button" class="jr-btn" data-reset>Show all stories</button>
+    </div>
+    <div class="jr-more" id="archiveMoreWrap" hidden>
+      <button type="button" class="jr-btn" id="archiveMore">Show more stories</button>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ FOOTER ═══════════ -->
+<nav class="jr-keep" aria-label="Keep exploring Show Me Türkiye">
+  <div class="jr-wrap">
+    <p class="jr-eyebrow">Keep exploring</p>
+    <div class="jr-keep-grid">
+      <a href="explore" class="jr-keep-link"><span class="jr-keep-label">Explore Türkiye</span><span class="jr-keep-sub">City guides</span><span class="jr-keep-arr" aria-hidden="true">→</span></a>
+      <a href="routes" class="jr-keep-link"><span class="jr-keep-label">Routes</span><span class="jr-keep-sub">Itineraries</span><span class="jr-keep-arr" aria-hidden="true">→</span></a>
+      <a href="projects" class="jr-keep-link"><span class="jr-keep-label">Films</span><span class="jr-keep-sub">Watch the places</span><span class="jr-keep-arr" aria-hidden="true">→</span></a>
+      <a href="first-guide" class="jr-keep-link"><span class="jr-keep-label">First Guide</span><span class="jr-keep-sub">Planning a first trip</span><span class="jr-keep-arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</nav>
+<!-- JOURNAL:BODY:END -->
 </main>
 <footer class="footer reveal-up">
   <div class="footer-content">
@@ -2139,10 +1676,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
   </div>
 </footer>
 
-<!-- ═══════════ TWEAKS PANEL ═══════════ -->
-<div id="tweaksRoot"></div>
-
-<script>
+<script id="smt-journal-js">
 /* ─── Navigation ─── */
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const closeNavBtn  = document.getElementById('closeNavBtn');
@@ -2157,63 +1691,131 @@ navOverlay.addEventListener('click', e => { if (e.target === navOverlay) closeNa
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 80) document.body.classList.add('scrolled');
-  else document.body.classList.remove('scrolled');
+  document.body.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
-
-/* ─── Filter pills ─── */
-const pills = document.querySelectorAll('.pill');
-const cards = document.querySelectorAll('#archiveGrid .card');
-pills.forEach(p => {
-  p.addEventListener('click', () => {
-    pills.forEach(x => x.classList.remove('active'));
-    p.classList.add('active');
-    const f = p.dataset.filter;
-    cards.forEach(c => {
-      if (f === 'all' || c.dataset.category === f) {
-        c.style.display = '';
-      } else {
-        c.style.display = 'none';
-      }
-    });
-  });
-});
-
-/* ─── Search ─── */
-const searchInput = document.getElementById('searchInput');
-searchInput && searchInput.addEventListener('input', e => {
-  const q = e.target.value.toLowerCase().trim();
-  cards.forEach(c => {
-    const text = c.textContent.toLowerCase();
-    c.style.display = (q === '' || text.includes(q)) ? '' : 'none';
-  });
-  if (q !== '') {
-    pills.forEach(x => x.classList.remove('active'));
-    pills[0].classList.add('active');
-  }
-});
 
 /* ─── Reveal on scroll ─── */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.06, rootMargin: '0px 0px -32px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 /* ─── Footer year ─── */
-document.getElementById('footerYear').textContent = new Date().getFullYear();
+const fy = document.getElementById('footerYear');
+if (fy) fy.textContent = new Date().getFullYear();
 
-/* Resilient image loader: tests URL and only sets src if it loads. Silent on 404. */
-document.querySelectorAll('img[data-src]').forEach(img => {
-  const url = img.dataset.src;
-  const test = new Image();
-  test.onload = () => { img.src = url; };
-  test.onerror = () => { /* leave parent's gradient fallback in place */ };
-  test.src = url;
-});
+/* ─── Archive: topic pills + region + search, shareable in the URL ─── */
+(function () {
+  const section = document.getElementById('archive');
+  const grid = document.getElementById('archiveGrid');
+  if (!section || !grid) return;
+  const cards = Array.from(grid.querySelectorAll('.jr-card'));
+  const pills = Array.from(document.querySelectorAll('.jr-pill'));
+  const search = document.getElementById('archiveSearch');
+  const region = document.getElementById('archiveRegion');
+  const status = document.getElementById('archiveStatus');
+  const reset = document.getElementById('archiveReset');
+  const empty = document.getElementById('archiveEmpty');
+  const moreWrap = document.getElementById('archiveMoreWrap');
+  const more = document.getElementById('archiveMore');
+  const form = document.getElementById('archiveTools');
+  const tiles = Array.from(document.querySelectorAll('.jr-region[data-region]'));
+  const INITIAL = parseInt(section.dataset.initial, 10) || 12;
+  const total = cards.length;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const topicLabel = {}; pills.forEach(p => { topicLabel[p.dataset.topic] = p.firstChild.textContent.trim(); });
+  const regionLabel = {}; Array.from(region.options).forEach(o => { regionLabel[o.value] = o.textContent; });
+  const state = { topic: 'all', region: '', q: '' };
+  let expanded = false;
 
+  const norm = s => (s || '').toLowerCase().replace(/ı/g, 'i').replace(/İ/g, 'i')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+  function apply() {
+    const words = norm(state.q).trim().split(/\s+/).filter(Boolean);
+    const matches = [];
+    cards.forEach(c => {
+      const ok = (state.topic === 'all' || c.dataset.topic === state.topic)
+        && (!state.region || c.dataset.region === state.region)
+        && words.every(w => norm(c.dataset.search).includes(w));
+      c.classList.toggle('is-out', !ok);
+      if (ok) matches.push(c);
+    });
+    const limit = expanded ? Infinity : INITIAL;
+    matches.forEach((c, i) => {
+      c.classList.toggle('is-overflow', i >= limit);
+      c.classList.toggle('is-lead', i % 4 === 0);
+    });
+    grid.classList.add('js-ready');
+
+    const active = state.topic !== 'all' || state.region || words.length;
+    const n = matches.length;
+    const parts = [];
+    if (state.topic !== 'all') parts.push(topicLabel[state.topic]);
+    if (state.region) parts.push(regionLabel[state.region]);
+    if (words.length) parts.push('“' + state.q.trim() + '”');
+    status.innerHTML = (active ? '<b>' + n + '</b> of ' + total : '<b>' + n + '</b>') + (n === 1 ? ' story' : ' stories')
+      + (parts.length ? ' · ' + parts.map(p => '<span>' + p.replace(/</g, '&lt;') + '</span>').join(' · ') : '');
+    reset.hidden = !active;
+    empty.hidden = n > 0;
+    const hiddenCount = n - Math.min(n, limit === Infinity ? n : limit);
+    moreWrap.hidden = hiddenCount <= 0;
+    if (hiddenCount > 0) more.textContent = 'Show ' + hiddenCount + ' more ' + (hiddenCount === 1 ? 'story' : 'stories');
+
+    pills.forEach(p => {
+      const on = p.dataset.topic === state.topic;
+      p.classList.toggle('is-active', on);
+      p.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    tiles.forEach(t => t.classList.toggle('is-active', t.dataset.region === state.region));
+    if (region.value !== state.region) region.value = state.region;
+    if (search.value !== state.q) search.value = state.q;
+
+    const params = new URLSearchParams();
+    if (state.topic !== 'all') params.set('topic', state.topic);
+    if (state.region) params.set('region', state.region);
+    if (state.q.trim()) params.set('q', state.q.trim());
+    const qs = params.toString();
+    const url = location.pathname + (qs ? '?' + qs : '') + (active ? '#archive' : location.hash);
+    if (url !== location.pathname + location.search + location.hash) history.replaceState(null, '', url);
+  }
+
+  function clear() {
+    state.topic = 'all'; state.region = ''; state.q = '';
+    apply();
+  }
+
+  function goToArchive() {
+    section.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  pills.forEach(p => p.addEventListener('click', () => { state.topic = p.dataset.topic; apply(); }));
+  region.addEventListener('change', () => { state.region = region.value; apply(); });
+  let t;
+  search.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { state.q = search.value; apply(); }, 120); });
+  search.addEventListener('search', () => { state.q = search.value; apply(); });
+  form.addEventListener('submit', e => { e.preventDefault(); state.q = search.value; apply(); });
+  reset.addEventListener('click', () => { clear(); search.focus(); });
+  empty.querySelector('[data-reset]').addEventListener('click', () => { clear(); search.focus(); });
+  more.addEventListener('click', () => {
+    const firstHidden = cards.find(c => c.classList.contains('is-overflow') && !c.classList.contains('is-out'));
+    expanded = true; apply();
+    if (firstHidden) { firstHidden.setAttribute('tabindex', '-1'); firstHidden.focus({ preventScroll: false }); }
+  });
+  tiles.forEach(tile => tile.addEventListener('click', e => {
+    e.preventDefault();
+    state.region = tile.dataset.region === state.region ? '' : tile.dataset.region;
+    apply(); goToArchive();
+  }));
+
+  const params = new URLSearchParams(location.search);
+  const topic = params.get('topic'); const reg = params.get('region'); const q = params.get('q');
+  if (topic && topicLabel[topic]) state.topic = topic;
+  if (reg && regionLabel.hasOwnProperty(reg)) state.region = reg;
+  if (q) state.q = q;
+  apply();
+})();
 </script>
-
-<!-- Tweaks panel stripped from production build (defaults baked into body data-attrs) -->
 
 <!-- ═══ SITE SEARCH (slim) ═══ -->
 <div class="search-overlay" data-variant="slim" id="smtSearch" role="dialog" aria-modal="true" aria-label="Search Show Me Türkiye">
@@ -2366,130 +1968,6 @@ const SEARCH_DATA = [{"id": "adana", "category": "City", "title": "Adana Travel 
 })();
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- SMT-CONSENT-START -->
 <style>
