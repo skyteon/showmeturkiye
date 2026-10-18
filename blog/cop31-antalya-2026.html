@@ -421,15 +421,15 @@ em.it { font-family: var(--serif); font-style: italic; font-weight: 500; }
 .theme-list strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
 
 /* ═══════════ FIGURES ═══════════ */
-figure img { width: 100%; height: 100%; object-fit: cover; background: var(--cream-2); }
+figure img { width: 100%; height: auto; object-fit: cover; background: var(--cream-2); }
 figcaption { font-family: var(--serif); font-style: italic; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5; }
 .figure-wide { max-width: var(--wide); margin: 56px auto; padding: 0 var(--gutter); }
 .figure-wide img { aspect-ratio: 16 / 9; }
 .figure-wide figcaption { margin-top: 12px; max-width: 60ch; }
 
-.figure-offset { max-width: var(--wide); margin: 48px auto; padding: 0 var(--gutter); display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: end; }
+.figure-offset { max-width: 980px; margin: 48px auto; padding: 0 var(--gutter); }
 .figure-offset img { aspect-ratio: 16 / 10; }
-.figure-offset figcaption { padding-bottom: 6px; }
+.figure-offset figcaption { margin-top: 12px; max-width: 60ch; }
 
 .bleed { position: relative; margin: 24px 0 0; overflow: hidden; background: var(--cream-2); }
 .bleed img { width: 100%; height: clamp(320px, 48vw, 640px); object-fit: cover; }
@@ -442,8 +442,8 @@ figcaption { font-family: var(--serif); font-style: italic; font-size: 14.5px; c
 .bleed figcaption span { display: block; max-width: var(--wide); margin: 0 auto; padding-left: 14px; border-left: 2px solid var(--gold); }
 
 .diptych { max-width: var(--wide); margin: 56px auto 0; padding: 0 var(--gutter); }
-.diptych .pair { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; height: clamp(300px, 36vw, 520px); }
-.diptych .pair img { height: 100%; }
+.diptych .pair { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; align-items: start; }
+.diptych .pair img { height: clamp(300px, 36vw, 520px); display: block; }
 .diptych figcaption { margin-top: 12px; max-width: 64ch; }
 
 /* ═══════════ PHOTO ESSAY (climate chapter) ═══════════ */
@@ -670,7 +670,6 @@ body.cc-open .ch-nav-btn, body.sheet-open .ch-nav-btn { opacity: 0; pointer-even
   .ch-nav-btn { display: inline-flex; }
   .opening .wide { grid-template-columns: 1fr; gap: 56px; }
   .field-notes { position: static; }
-  .figure-offset { grid-template-columns: 1fr; gap: 12px; }
   .essay-row { gap: 32px; }
   .film .wide { grid-template-columns: 1fr; grid-template-areas: 'title' 'player' 'copy' 'note'; gap: 32px; }
 }
@@ -707,7 +706,7 @@ body.cc-open .ch-nav-btn, body.sheet-open .ch-nav-btn { opacity: 0; pointer-even
   .bleed figcaption { padding: 56px var(--gutter) 18px; font-size: 13.5px; }
   .diptych .pair { grid-template-columns: 1fr; height: auto; gap: 12px; }
   .diptych .pair img { aspect-ratio: 3 / 2; height: auto; }
-  .diptych .pair img.portrait { aspect-ratio: 4 / 5; }
+  .diptych .pair img.portrait { aspect-ratio: 4 / 5; height: auto; }
   .essay { gap: 48px; padding: 0; }
   .essay-row { grid-template-columns: 1fr; gap: 20px; }
   .essay-row:nth-child(even) figure { order: 0; }
@@ -1589,7 +1588,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <li><span class="n">v</span><span><strong>Accountability</strong> How countries report what they do, so that pledges can be checked.</span></li>
     </ol>
     <div class="prose">
-      <p>Alongside the formal negotiations, the host runs an Action Agenda. Its published themes include zero waste, oceans and seas, food security, climate-resilient cities, green industrialisation, the clean energy transition and resilient health systems. These are the host's priorities for events and initiatives, not items on the negotiating agenda. The decisions themselves are negotiated and agreed by the Parties during the conference; none of them is settled in advance.</p>
+      <p>Alongside the formal negotiations, the host runs an Action Agenda. Its ten published themes are zero waste, oceans and seas, food security, climate-resilient cities, the Climate Implementation Bridge, youth and education, green industrialisation, the clean energy transition, Rio synergy, and dynamic and resilient health systems. These are the host's priorities for events and initiatives, not items on the negotiating agenda. The decisions themselves are negotiated and agreed by the Parties during the conference; none of them is settled in advance.</p>
     </div>
   </div>
   <figure class="figure-wide reveal">
@@ -1715,9 +1714,9 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
         <p class="z-sub">Coordinated by the host country, for the wider public.</p>
         <p>According to the official COP31 FAQ, it is open to the public, students, NGOs, companies and researchers.</p>
         <ul>
-          <li><strong>Entry:</strong> generally free, and pre-registration is required in most cases through the official COP31 website.</li>
-          <li><strong>Bring:</strong> a passport, driving licence or national ID card, and expect airport-style security checks.</li>
-          <li><strong>Programme:</strong> panels, workshops, exhibitions, film screenings and concerts, with sessions mostly in Turkish and some in English.</li>
+          <li><strong>Entry:</strong> generally free, and pre-registration is required in most cases through the official COP31 website or the Green Zone registration platform. On-site registration is possible at some events with limited capacity.</li>
+          <li><strong>Bring:</strong> a valid ID (passport, driving licence or national ID card). Bag searches, X-ray scanning and metal detector checks may be applied.</li>
+          <li><strong>Programme:</strong> panels, workshops, exhibitions, film screenings, concerts, cultural talks and networking events, mostly in Turkish, with some English sessions. Hours are generally 09:00 to 20:00, varying by event.</li>
         </ul>
         <p style="margin-top:16px">Organisations that want to host an event or exhibit in the Green Zone can apply through the COP31 website.</p>
       </div>
@@ -1737,19 +1736,19 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
     <div class="practical reveal">
       <div>
         <h3>Getting there</h3>
-        <p>Antalya Airport (AYT) is the main gateway, with international and domestic flights. The venue, the Antalya EXPO Center, is in the Aksu district east of the city. The official COP31 site publishes airport transfer, transport and digital map information.</p>
+        <p>Antalya Airport (AYT) is the main gateway, with international and domestic flights. The venue, the Antalya EXPO Center, is in the Aksu district east of the city. The official FAQ says the venue is reached from the airport by road and that dedicated COP31 shuttle services will be arranged; the official site publishes transport and digital map information.</p>
       </div>
       <div>
         <h3>Getting around during the conference</h3>
-        <p>The official FAQ says transport is free for accredited participants, and that the Green Zone can be reached by public transport, tram, shuttles and footpaths. Visitors are asked not to come by private car. Allow extra time on your first day.</p>
+        <p>According to the official FAQ, the Blue Zone is served by public transport, shuttle services, taxis and private transport, and transport is free for accredited participants. The Green Zone is reached by public transport, tram, shuttle services and walking paths; the FAQ does not recommend private vehicles. Green Zone hours are given as generally 09:00 to 20:00, varying by event.</p>
       </div>
       <div>
         <h3>Where to stay</h3>
-        <p>The host directs participants to book through its official accommodation partner, and demand around the conference dates is high. If you are not part of an official delegation, book early and check how far your hotel is from the venue and from public transport.</p>
+        <p>The official FAQ directs bookings to the host's official accommodation partner, cop31.coraltravel.com, and says accommodation guides will be published on the COP31 portal. If you are not part of an official delegation, check how far your hotel is from the venue and from public transport.</p>
       </div>
       <div>
         <h3>Visas</h3>
-        <p>Many international visitors need a visa for Türkiye. The official site has a dedicated visa and entry page; accredited participants should follow the process described there.</p>
+        <p>The official FAQ says a visa is required for most international participants and that special visa processes may apply for COP participants. The official site has a dedicated visa and entry page; follow the process described there.</p>
       </div>
       <div>
         <h3>November weather</h3>
@@ -1766,7 +1765,7 @@ s();new MutationObserver(s).observe(o,{attributes:true,attributeFilter:['class']
       <img src="https://img.showmeturkiye.com/media-library/antalya-kemer-mountains-bay-sunset-002.jpg" alt="Forested hills and a bay on the Kemer coast at sunset, with the mountains beyond" width="1801" height="1350" loading="lazy" decoding="async">
       <img class="portrait" src="https://img.showmeturkiye.com/media-library/antalya-kemer-tatlisu-bay-002.jpg" alt="Tatlısu Bay near Kemer seen from above: a pine-covered headland, a small beach and clear water" width="919" height="1350" loading="lazy" decoding="async">
     </div>
-    <figcaption>The coast west of Antalya, around Kemer, about an hour from the city: the bay below the mountains at the end of the day, and Tatlısu Bay.</figcaption>
+    <figcaption>The Kemer coast west of Antalya at the end of the day, and Tatlısu Bay near Kemer.</figcaption>
   </figure>
 </section>
 
